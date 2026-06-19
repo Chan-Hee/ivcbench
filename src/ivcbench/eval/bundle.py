@@ -44,14 +44,37 @@ def save_bundle(path, *, pred_cells=None, test_cells=None, cell_strata=None, con
     return path
 
 
+def _cells_to_means(kw):
+    """Collapse per-cell arrays to per-stratum mean profiles (tiny; reproduces Pearson-Δ EXACTLY, but not
+    energy distance, which needs the per-cell cloud). The per-stratum mean is exactly what pearson_delta
+    macro-averages, so score_bundle on the means matches the per-cell score to machine precision."""
+    pred = np.asarray(kw["pred_cells"]); test = np.asarray(kw["test_cells"]); sid = np.asarray(kw["cell_strata"])
+    strata = list(dict.fromkeys(sid.tolist()))
+    out = dict(control_mean=kw["control_mean"], genes=kw["genes"],
+               pred_means=np.array([pred[sid == s].mean(0) for s in strata]),
+               obs_means=np.array([test[sid == s].mean(0) for s in strata]), strata=strata)
+    if kw.get("exclude_gene_idx") is not None:
+        out["exclude_gene_idx"] = kw["exclude_gene_idx"]
+    drop = {"pred_cells", "test_cells", "cell_strata", "fit_on", "n_pca", "pred_means", "obs_means", "strata"}
+    for k, v in kw.items():
+        if k not in drop and k not in out:
+            out[k] = v
+    return out
+
+
 def dump_bundle(out_dir, *, cluster, model, split, **kw):
     """Env/dir convenience wrapper: write <out_dir>/<cluster>__<model>__<split>.npz if out_dir is set, else
-    no-op. NEVER raises — prediction-dumping must not abort a scored run. Pass IVCBENCH_PRED_DUMP as out_dir."""
+    no-op. NEVER raises — prediction-dumping must not abort a scored run. Pass IVCBENCH_PRED_DUMP as out_dir.
+    If IVCBENCH_PRED_DUMP_MEANS is also set, store compact per-stratum means (Pearson-Δ only) instead of the
+    large per-cell arrays — the form deposited in the GitHub repo (per-cell bundles, which also carry energy
+    distance, are far larger and belong in a Zenodo data record)."""
     if not out_dir:
         return None
     try:
         os.makedirs(out_dir, exist_ok=True)
         fn = f"{cluster}__{model}__{split}.npz".replace("/", "_")
+        if os.environ.get("IVCBENCH_PRED_DUMP_MEANS") and kw.get("pred_cells") is not None:
+            kw = _cells_to_means(kw)
         return save_bundle(os.path.join(out_dir, fn), cluster=cluster, model=model, split=split, **kw)
     except Exception:  # noqa: BLE001 — never let prediction-dumping break the run
         return None
