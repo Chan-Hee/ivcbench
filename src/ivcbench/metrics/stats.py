@@ -1,11 +1,19 @@
-"""Statistical protocol: 3-seed bootstrap CI on macro-averaged scores + Benjamini–Hochberg."""
+"""Generic statistical helpers: a bootstrap CI over a supplied value vector + Benjamini-Hochberg.
+
+The bootstrap UNIT is whatever the caller passes in. The runner (run.py) passes per-stratum macro
+scores for its per-row result CIs; the final paper-level inferential CIs are computed by the bespoke
+assembly scripts over the biological unit named for each task (donor, lineage, dataset, or compound),
+never over the model seeds (seeds are collapsed within a biological unit before inference). See
+Supplementary Note S2 for the per-task inference unit.
+"""
 from __future__ import annotations
 
 import numpy as np
 
 
 def bootstrap_ci(values, n_boot: int = 2000, ci: float = 0.95, seed: int = 0) -> dict:
-    """Bootstrap CI over per-(seed/stratum) macro scores."""
+    """Bootstrap a (1-alpha) CI over the supplied value vector. The caller chooses the unit of `values`
+    (per-stratum macro scores in the runner; the per-task biological unit in the final paper assembly)."""
     v = np.asarray(values, dtype=float)
     v = v[~np.isnan(v)]
     if len(v) == 0:

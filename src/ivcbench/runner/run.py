@@ -96,8 +96,11 @@ def run_job(
                                               split.test_strata)["corr"]
     headline_prog = float(np.nanmean(list(prog_corrs.values()))) if prog_corrs else float("nan")
 
-    # 95% bootstrap CI on the macro-average, resampling strata (statistical protocol). Meaningful
-    # even for deterministic baselines where the 3 model seeds are identical.
+    # Runner-level 95% bootstrap CI for THIS result row, resampling the per-stratum macro scores.
+    # These are per-row descriptive CIs, NOT the final paper inferential CIs: the headline donor /
+    # lineage / dataset / compound claims are re-bootstrapped over their biological unit (with seeds
+    # collapsed within a unit) by the bespoke assembly scripts. Meaningful even for deterministic
+    # baselines where the model seeds are identical.
     resp_ci = bootstrap_ci(list(resp["per_stratum"].values()), seed=seed)
     dist_ci = bootstrap_ci(list(dist["per_stratum"].values()), seed=seed)
 

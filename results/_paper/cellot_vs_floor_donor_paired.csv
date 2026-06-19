@@ -1,2 +1,2 @@
-comparison,src,n,cellot,cell_mean,gap,cellot_wins,wilcoxon_p
-C2_donor_CellOT_vs_cellmean_floor_paired,results_raw_C2_rewrapped.csv,106,0.3691141509433962,0.2598132075471698,0.1093009433962264,93,4.667536973953371e-14
+comparison,src,n,cellot,cell_mean,gap,cellot_wins,wilcoxon_p,matched_baseline,gap_vs_matched,ci_low,ci_high
+C2_donor_CellOT_vs_cellmean_floor_paired,results_raw_C2_rewrapped.csv,106,0.3691141509433962,0.2598132075471698,0.1093009433962264,93,4.667536973953371e-14,0.2671,0.102,0.083,0.1217

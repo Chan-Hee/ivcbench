@@ -98,10 +98,14 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-Heavy per-family baselines (scGPT, GEARS/AttentionPert, CPA/chemCPA, STATE, CellOT, scPRAM) have
+Heavy per-family baselines (scGPT, GEARS/AttentionPert, CPA/chemCPA, STATE, CellOT, scPRAM, PertAdapt) have
 **conflicting torch/python pins** and are run in their own conda environments; their runners under
-`scripts/` shell out and read paths from environment variables (`IVCBENCH_*`). The deposited result
-tables under `results/` let you regenerate every figure **without** re-running any model.
+`scripts/` shell out and read paths from environment variables (`IVCBENCH_*`). These heavy runners are
+provided as **provenance for re-execution**, not as fully pinned lockfiles: re-running a heavy model
+requires its author-maintained environment and the upstream model repository, and the `environment.yml`
+/ `requirements.txt` in this release cover only the GPU-free analysis core. The deposited result
+tables under `results/` (and the prediction-bundle reproduction in [`predictions/`](predictions/)) let
+you regenerate every figure and re-score the deposited predictions **without** re-running any heavy model.
 
 ## Quickstart (GPU-free core)
 

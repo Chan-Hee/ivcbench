@@ -5,6 +5,11 @@ and is fetched by the download scripts in `scripts/` into `data/<cluster>/<datas
 the matching loader in `src/ivcbench/data/loaders/`. The machine-readable manifest is
 [`scripts/datasets.csv`](../scripts/datasets.csv).
 
+`scripts/datasets.csv` is the **download/access manifest for the datasets actually scored in the benchmark
+(15 rows)**; it is deliberately smaller than the **21-dataset landscape survey in Supplementary Table S1**,
+which inventories the full immune-perturbation dataset space (including datasets surveyed but not scored).
+The two are not expected to match row-for-row.
+
 The deposited result tables under [`results/`](../results) are sufficient to reproduce every figure and
 Supplementary Table **without** downloading any raw data (see [`REPRODUCE.md`](../REPRODUCE.md)).
 

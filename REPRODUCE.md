@@ -12,8 +12,8 @@ Figure scripts read deposited CSV/JSON and write PNG+PDF into `results/_paper/`.
 (listed in the "computed by" column) recompute a derived table from the per-cluster `results_raw.csv`
 and the real loaders; they are included for provenance but their outputs are already deposited.
 
-**Final manuscript layout (binding).** The submission is **3 main figures + 13 supplementary figures
-(S1–S13) + 12 Supplementary Tables (S1, S2a, S2b, S3–S12)**:
+**Final manuscript layout (binding).** The submission is **3 main figures + 8 supplementary figures
+(S1–S8) + 12 Supplementary Tables (S1, S2a, S2b, S3–S12)**:
 
 - **Fig 1** — benchmark framework (`figure_framework.py`)
 - **Fig 2** — generalization map + CellOT donor CDF (`make_figure2_landscape_verdict.py`)
@@ -21,8 +21,11 @@ and the real loaders; they are included for provenance but their outputs are alr
 
 The full per-cluster figure plate (`figure_landscape / ranking / cellcontext / perturbation /
 donor_decision / within_family_fit`) is retained for provenance and feeds several of the S-figures
-below; the canonical S1–S13 PNGs are the renders deposited in `results/_paper/` (md5-identical to
-`BiB_submission/figures/SupplementaryFigure_S1..S13.png`).
+below; the 8 submitted supplementary-figure PNGs (S1–S8) are the renders deposited in `results/_paper/`
+(md5-identical to `BiB_submission/figures/SupplementaryFigure_S1..S8.png`). The additional analyses
+listed further below (chemistry-channel collapse, program-dimensionality, and the three new-data
+analyses) are deposited as release provenance; in the submitted supplement they appear as
+Supplementary Notes/Tables, not as numbered supplementary figures.
 
 ---
 
@@ -36,11 +39,13 @@ below; the canonical S1–S13 PNGs are the renders deposited in `results/_paper/
 
 ---
 
-## Supplementary figures (S1–S13)
+## Supplementary figures (S1–S8, submitted) + additional release analyses (S9–S13)
 
-Each row: **canonical S-number → generating script (or documented method) → backing data file**. Every
-script and file named below is present in this release (verified). Figure scripts that read only
-deposited tables rebuild the canonical PNG byte-for-byte.
+**S1–S8 are the submitted supplementary figures** (md5-identical to `BiB_submission/figures/`).
+**S9–S13 below are additional analyses deposited as release provenance; they are NOT part of the
+submitted 8-figure supplement** — in the manuscript these analyses appear as Supplementary
+Notes/Tables, not as numbered supplementary figures. Each row: **S-number → generating script →
+backing data file**; every script and file named below is present in this release (verified).
 
 | S# | Content | Figure script (`scripts/`) | Output (`results/_paper/`) | Computed by → backing data (deposited) |
 |---|---|---|---|---|
@@ -72,7 +77,8 @@ Each Supplementary Table is published with the submission under the **deposited 
 (in `BiB_submission/supplementary/`) and is backed by the listed result file in this release. S1 and
 S2a are curated inventory tables (maintained in `scripts/datasets.csv` and `supp/results_supplementary.md`);
 the rest are mechanically assembled from the deposited per-cluster leaderboards and immune-novelty tables.
-*(The S1–S13 numbering in the figures sections above is the independent Supplementary **Figure** series;
+*(The supplementary **Figure** series in the sections above is independent of the table numbering: the
+submitted figures are S1–S8 (S9–S13 are additional release analyses, not submitted figures), while
 Supplementary **Tables** are S1, S2a, S2b, S3–S12.)*
 
 | Table | Content | Deposited file (`BiB_submission/supplementary/`) | Backing data / script (`scripts/`) |
