@@ -75,7 +75,7 @@ def c5_unseen_task():
     d = df[df["split"] == "C5_global_compound_holdout"]
     g = d.groupby("baseline")["pearson_delta"].mean()
     # add chemCPA from native summary (unseen-compound). Prefer the deposited results/_paper copy so the
-    # github_release deposit self-regenerates without the benchmark outputs/ tree; fall back to it.
+    # ivcbench deposit self-regenerates without the benchmark outputs/ tree; fall back to it.
     _cc = os.path.join(OUT, "chemcpa_op3_unseen_compound_summary.csv")
     if not os.path.exists(_cc):
         _cc = os.path.join(ROOT, "outputs", "additional_models", "chemcpa_op3_unseen_compound_summary.csv")

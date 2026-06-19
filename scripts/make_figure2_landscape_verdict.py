@@ -55,8 +55,8 @@ from matplotlib.patches import Rectangle, FancyBboxPatch
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]            # github_release
-REPO = ROOT.parent                                     # repo root (has github_release + benchmark)
+ROOT = Path(__file__).resolve().parents[1]            # ivcbench
+REPO = ROOT.parent                                     # repo root (has ivcbench + benchmark)
 sys.path.insert(0, str(ROOT / "src"))
 from ivcbench.report.style import (  # noqa: E402
     set_pub_style, despine,
@@ -73,7 +73,7 @@ FS_AXIS_LABEL = 7.6      # every axis label (landscape spine label + panel-b x/y
 
 
 # ============================================================================================
-# DATA RESOLUTION — prefer the local github_release copy; fall back to the benchmark working tree
+# DATA RESOLUTION — prefer the local ivcbench copy; fall back to the benchmark working tree
 # for the few artefacts the release omits (CellOT-by-lineage, chemCPA-compound, additional models).
 # ============================================================================================
 def _resolve(*cands: Path) -> Path | None:

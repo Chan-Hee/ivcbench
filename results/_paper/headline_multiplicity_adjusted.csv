@@ -1,9 +1,9 @@
 contrast,family,raw_p,BH_p,Holm_p,survives_FDR05,source,note
-H1_T1_cellcontext_scGen_vs_floor,headline_floor,0.460938,0.4609,0.4609,False,False,
-H2_T3_unseenPerturbation_bestcond_vs_floor,headline_floor,0.0625,0.0833,0.125,False,False,
-H3_T4_modality_scGen_vs_floor,headline_floor,n.e.,n.e.,n.e.,n.e.,n.e.,
-H4_T5_cellcontext_FPridge_vs_floor,headline_floor,0.03125,0.0625,0.09375,False,False,
-H5_T5_unseenCompound_TanimotoTOST_equiv0,headline_floor,0.0029326,0.01173,0.01173,True,True,
+H1_T1_cellcontext_scGen_vs_floor,headline_floor,0.460938,0.4609,0.4609,False,,
+H2_T3_unseenPerturbation_bestcond_vs_floor,headline_floor,0.0625,0.0833,0.125,False,,
+H3_T4_modality_scGen_vs_floor,headline_floor,n.e.,n.e.,n.e.,n.e.,,
+H4_T5_cellcontext_FPridge_vs_floor,headline_floor,0.03125,0.0625,0.09375,False,,
+H5_T5_unseenCompound_TanimotoTOST_equiv0,headline_floor,0.0029326,0.01173,0.01173,True,,
 C2_donor_scPRAM_vs_CellOT_paired,confirmatory,4.3485e-19,1.3e-18,1.3e-18,True,scpram_vs_cellot_donor_paired.csv,"paired n=106 (FINAL), scPRAM wins 1/106, gap -0.210 (scPRAM LOSES vs CellOT); src scpram_vs_cellot_donor_paired.csv"
 C2_donor_CellOT_vs_floor,confirmatory,4.668e-14,7.0e-14,9.3e-14,True,results_raw_C2_rewrapped.csv,"CellOT vs cell-mean floor, paired Wilcoxon n=106, 93/106 donors win, gap +0.109; src results_raw_C2_rewrapped.csv / cellot_vs_floor_donor_paired.csv (NOT soskic_donor_axis.csv)"
 C5_FPridge_compound_matching_null_Fisher,confirmatory,3.23605e-10,3.24e-10,3.24e-10,True,recomputed: Fisher-combine 4 per-lineage perm_p from results/C5/ifn_shuffle_null.csv,"per-lineage one-sided p=[0.0005, 0.0005, 0.0005, 0.0005]; Fisher-combined (POS result, FP-ridge only)"
