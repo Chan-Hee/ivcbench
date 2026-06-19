@@ -4,7 +4,7 @@
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
   <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-blue.svg">
-  <a href="https://doi.org/10.5281/zenodo.XXXXXXX"><img alt="DOI" src="https://img.shields.io/badge/DOI-pending%20release-lightgrey.svg"></a>
+  <a href="https://doi.org/10.5281/zenodo.20756159"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.20756159.svg"></a>
   <img alt="Status" src="https://img.shields.io/badge/manuscript-under%20review-orange.svg">
 </p>
 
@@ -211,7 +211,7 @@ If you use this benchmark, please cite the article and the archived code:
   author    = {Lee, Chanhee and Ryu, Jae Yong},
   year      = {2026},
   version   = {1.0.1},
-  doi       = {10.5281/zenodo.XXXXXXX},
+  doi       = {10.5281/zenodo.20756159},
   publisher = {Zenodo}
 }
 ```
