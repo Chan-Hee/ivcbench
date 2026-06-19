@@ -17,7 +17,7 @@ authors:
   - family-names: Ryu
     given-names: Jae Yong
     affiliation: "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea"
-version: 1.0.0
+version: 1.0.1
 date-released: "2026-06-19"
 license: MIT
 repository-code: "https://github.com/Chan-Hee/ivcbench"

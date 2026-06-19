@@ -210,7 +210,7 @@ If you use this benchmark, please cite the article and the archived code:
   title     = {ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
   author    = {Lee, Chanhee and Ryu, Jae Yong},
   year      = {2026},
-  version   = {1.0.0},
+  version   = {1.0.1},
   doi       = {10.5281/zenodo.XXXXXXX},
   publisher = {Zenodo}
 }
