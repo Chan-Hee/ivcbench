@@ -5,17 +5,17 @@
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
   <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-blue.svg">
   <a href="https://doi.org/10.5281/zenodo.XXXXXXX"><img alt="DOI" src="https://img.shields.io/badge/DOI-pending%20release-lightgrey.svg"></a>
-  <img alt="Type" src="https://img.shields.io/badge/Briefings%20in%20Bioinformatics-Problem%20Solving%20Protocol-success.svg">
+  <img alt="Status" src="https://img.shields.io/badge/manuscript-under%20review-orange.svg">
 </p>
 
 <p align="center">
   Code, deposited result tables, and figure scripts for<br>
   <b>"Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization"</b><br>
-  Chanhee Lee &amp; Jae Yong Ryu &middot; <i>Briefings in Bioinformatics</i>
+  Chanhee Lee &amp; Jae Yong Ryu
 </p>
 
 <p align="center">
-  <img src="results/_paper/figure2_landscape_verdict.png" alt="Generalization landscape: where models clear the universal floor across tasks" width="88%">
+  <img src="results/_paper/figure1_benchmark_process.png" alt="The benchmark: curated immune tasks, leak-safe splits, method families, three immune-aware metrics, and the floor-adjudicated verdict rule" width="92%">
 </p>
 
 This repository evaluates whether perturbation-prediction models (foundation, latent/compositional,
@@ -199,11 +199,11 @@ the deposited result file it reads.
 If you use this benchmark, please cite the article and the archived code:
 
 ```bibtex
-@article{Lee2026ImmuneVirtualCell,
-  title   = {Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
-  author  = {Lee, Chanhee and Ryu, Jae Yong},
-  journal = {Briefings in Bioinformatics},
-  year    = {2026}
+@unpublished{Lee2026ImmuneVirtualCell,
+  title  = {Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
+  author = {Lee, Chanhee and Ryu, Jae Yong},
+  year   = {2026},
+  note   = {Manuscript under review}
 }
 
 @software{ivcbench,

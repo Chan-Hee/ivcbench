@@ -3,9 +3,9 @@ message: "If you use this software or the deposited benchmark results, please ci
 type: software
 title: "ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization"
 abstract: >-
-  Code, deposited result tables, and figure scripts for the Briefings in
-  Bioinformatics Problem Solving Protocol "Toward Immune Virtual Cells: An
-  Immune-Aware Benchmark of Perturbation-Prediction Generalization". The
+  Code, deposited result tables, and figure scripts for the manuscript
+  "Toward Immune Virtual Cells: An Immune-Aware Benchmark of
+  Perturbation-Prediction Generalization" (under review). The
   benchmark tests whether single-cell perturbation-prediction models generalize
   across the axes that matter for immunology (cell-context transfer, unseen
   perturbations, unseen donors, and readout modality) and whether they beat a
@@ -31,12 +31,12 @@ keywords:
   - optimal transport
   - immune-aware evaluation
 preferred-citation:
-  type: article
+  type: unpublished
   title: "Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization"
   authors:
     - family-names: Lee
       given-names: Chanhee
     - family-names: Ryu
       given-names: Jae Yong
-  journal: "Briefings in Bioinformatics"
   year: 2026
+  notes: "Manuscript under review"
