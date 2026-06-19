@@ -1,225 +1,169 @@
-<h1 align="center">ivcbench</h1>
-<h3 align="center">An Immune-Aware Benchmark of Perturbation-Prediction Generalization</h3>
+# ivcbench
 
-<p align="center">
-  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
-  <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-blue.svg">
-  <a href="https://doi.org/10.5281/zenodo.20756159"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.20756159.svg"></a>
-  <img alt="Status" src="https://img.shields.io/badge/manuscript-under%20review-orange.svg">
-</p>
+Repository for the analyses in:
 
-<p align="center">
-  Code, deposited result tables, and figure scripts for<br>
-  <b>"Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization"</b><br>
-  Chanhee Lee &amp; Jae Yong Ryu
-</p>
+**Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization**
 
-<p align="center">
-  <img src="results/_paper/figure1_benchmark_process.png" alt="The benchmark: curated immune tasks, leak-safe splits, method families, three immune-aware metrics, and the floor-adjudicated verdict rule" width="92%">
-</p>
+Chanhee Lee and Jae Yong Ryu
 
-This repository evaluates whether perturbation-prediction models (foundation, latent/compositional,
-prior-graph, optimal-transport, and hybrid families) **generalize across the axes that matter for
-immunology** — cell-context transfer, unseen perturbations, unseen donors, and readout modality — and
-whether they beat a set of pre-registered simple baselines (the *universal floor*). **The contribution is
-evaluation methodology, not a new model.**
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20756159.svg)](https://doi.org/10.5281/zenodo.20756159)
 
-<sub>The deposited result tables under [`results/`](results/) reproduce **every** figure and supplementary
-table **without** downloading raw data or re-running any model.</sub>
+This repository contains the benchmark code, deposited result tables, and figure scripts used for the
+manuscript. The study is an evaluation of perturbation-prediction models in immune single-cell settings;
+it does not introduce a new model.
 
----
+The benchmark asks whether models generalize across several axes that are common in immune perturbation
+studies: cell context, unseen perturbations, unseen donors, and readout modality. Models are compared with
+simple pre-specified baselines, including a two-member "floor" used for the main pass/fail interpretation.
 
-## Contents
+![Benchmark overview](results/_paper/figure1_benchmark_process.png)
 
-- [Headline finding](#headline-finding)
-- [What this repository provides](#what-this-repository-provides)
-- [Install](#install)
-- [Quickstart (GPU-free core)](#quickstart-gpu-free-core)
-- [Benchmark recipe (the pipeline)](#benchmark-recipe-the-pipeline)
-- [Data availability](#data-availability)
-- [Reproducing each figure / table](#reproducing-each-figure--table)
-- [Citation](#citation)
-- [License](#license)
-
----
-
-## Headline finding
-
-1. **Conditioning rarely beats simple baselines.** Across 35 model-by-task cells (32 conditioned + 3
-   CINEMA-OT comparators), only **two conditioned cells** beat both floor members: CellOT on the Soskic
-   donor axis and an FP-ridge chemistry prior on OP3 cell-context.
-2. **Where it helps, it helps with cell/donor *context*, not unseen biology.** CellOT crosses the donor
-   barrier (+0.102 Pearson-Δ over the cell-mean baseline, 93/106 donors, paired Wilcoxon p = 4.7×10⁻¹⁴);
-   the win is **model-level, not family-level** (its family-mate scPRAM loses to CellOT in 105/106 donors).
-3. **Unseen perturbations and immune programs are a blind spot.** No method beats the floor on unseen-gene
-   CRISPR (0/15 cells), explicit chemistry conditioning collapses on unseen compounds (chemCPA), and every
-   multi-dimensional immune program fails to transfer — type-I interferon survives only because it reduces
-   to a coarse mean shift.
-
-**New-data corroboration.** Three independent datasets reproduce the same law: an unseen-cytokine LOCO on the
-Human Cytokine Dictionary shows the regime split (annotation-only "novel" cytokines stay at/below the floor,
-cytokines seen in other celltypes transfer above it), an n = 2 surface-readout replication on the Chen FOXP3
-Perturb-icCITE-seq data (E-GEAD-648) reproduces the modality finding, and a CellOT donor learning curve on
-Soskic shows how the donor-axis win scales with training-donor count.
-
-**At-a-glance results table:** [`results/_paper/cross_cluster_headline.csv`](results/_paper/cross_cluster_headline.csv)
-(human-readable: [`cross_cluster_headline.md`](results/_paper/cross_cluster_headline.md)); the per-task
-fit verdicts are in [`results/_paper/descriptive_fit_matrix.csv`](results/_paper/descriptive_fit_matrix.csv).
-
----
-
-## What this repository provides
+## Repository contents
 
 | Path | Contents |
 |------|----------|
-| **`src/ivcbench/`** | GPU-free benchmark core: data schema + real-data loaders, leak-proof split builder + **leak auditor** (the hard gate), applicability registry, the metric suite (response, distribution, program, robustness, stats), and the runner. |
-| **`scripts/`** | Figure-generation scripts (main + supplementary), the analysis scripts that compute the deposited derived tables, per-family model runners, and the dataset **download scripts** (`download_*.sh`, `datasets.csv`). Raw-data *artifacts* are not shipped; only the scripts that fetch them. |
-| **`results/`** | The **deposited paper-level result tables** (CSV/JSON) and the backing figure PNG/PDFs (per-cluster `C1`–`C5`, the `_paper` plate, and `newdata/` for the corroboration analyses). No raw data, checkpoints, or logs (~13 MB). |
-| **`data/README.md`** | Every dataset with its accession/DOI and the script that downloads/preprocesses it. |
+| `src/ivcbench/` | Core benchmark package: schemas, loaders, split construction, leak audit, baseline registry, metrics, statistics, and runners. |
+| `scripts/` | Figure scripts, table assembly scripts, model-family runners, and dataset download/preprocessing scripts. |
+| `results/` | Deposited paper-level result tables and generated figure files. Raw data and model checkpoints are not included. |
+| `data/README.md` | Dataset accessions, download notes, and the corresponding scripts. |
+| `predictions/` | Prediction-bundle format and small examples used by the reproduction tests. |
+| `REPRODUCE.md` | Mapping from figures/tables to scripts and input result files. |
 
-**Not shipped** (see `.gitignore`): raw `*.h5ad`/`*.npz` data, model checkpoints, the `.venv`, per-seed
-prediction arrays, and the manuscript `.docx`. The full working tree is ~172 GB; this release is tens of MB.
+The release is intended to support inspection of the reported analyses without requiring reviewers to
+rerun the original GPU-heavy model training jobs. Raw single-cell objects, checkpoints, large prediction
+arrays, and local virtual environments are excluded.
 
----
+## Main results
 
-## Install
+The main benchmark contains 35 model-by-task cells across five task clusters. In this release, the headline
+tables are:
 
-The split/audit/metric core and all figure/analysis scripts run in a single lightweight environment.
+- [`results/_paper/cross_cluster_headline.csv`](results/_paper/cross_cluster_headline.csv)
+- [`results/_paper/cross_cluster_headline.md`](results/_paper/cross_cluster_headline.md)
+- [`results/_paper/descriptive_fit_matrix.csv`](results/_paper/descriptive_fit_matrix.csv)
+
+The short version of the result is that most conditioned models do not clear both simple floor baselines.
+Two model-by-task cells do: CellOT on the Soskic donor-held-out task and an FP-ridge chemistry prior on the
+OP3 cell-context task. The CellOT effect is largest on the donor axis; the FP-ridge result is reported as a
+model-level observation and does not survive all multiplicity corrections.
+
+For unseen perturbations, the benchmark is largely negative. No method clears the floor on the unseen-gene
+CRISPR tasks, explicit chemistry conditioning does not rescue the unseen-compound setting, and most
+multi-dimensional immune programs do not transfer cleanly across contexts. The type-I interferon result is
+treated separately because it is close to a coarse mean-shift response.
+
+Additional checks in the release examine three external or partially independent settings: leave-one-cytokine
+analysis on the Human Cytokine Dictionary summary table, the Chen FOXP3 Perturb-icCITE-seq checkpoint
+replication, and a CellOT donor learning curve on the Soskic dataset. These analyses are included for
+corroboration and provenance rather than as additional submitted supplementary figures.
+
+## Installation
+
+The core analysis environment is GPU-free and is used for split auditing, metric recomputation, table
+assembly, and figure generation.
 
 ```bash
-# conda
-conda env create -f environment.yml      # creates env "ivc" (python 3.13)
+conda env create -f environment.yml
 conda activate ivc
-pip install -e .                          # editable install of the ivcbench package
+pip install -e .
+```
 
-# or pure pip
-python -m venv .venv && . .venv/bin/activate
+or:
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
 pip install -r requirements.txt
 pip install -e .
 ```
 
-Heavy per-family baselines (scGPT, GEARS/AttentionPert, CPA/chemCPA, STATE, CellOT, scPRAM, PertAdapt) have
-**conflicting torch/python pins** and are run in their own conda environments; their runners under
-`scripts/` shell out and read paths from environment variables (`IVCBENCH_*`). These heavy runners are
-provided as **provenance for re-execution**, not as fully pinned lockfiles: re-running a heavy model
-requires its author-maintained environment and the upstream model repository, and the `environment.yml`
-/ `requirements.txt` in this release cover only the GPU-free analysis core. The deposited result
-tables under `results/` (and the prediction-bundle reproduction in [`predictions/`](predictions/)) let
-you regenerate every figure and re-score the deposited predictions **without** re-running any heavy model.
+Several model families require their own environments because their upstream implementations have conflicting
+Python, PyTorch, and CUDA requirements. The corresponding runner scripts are kept under `scripts/` to document
+how the submitted result tables were generated. The core `environment.yml` and `requirements.txt` are not
+intended to reproduce every heavy training environment.
 
-## Quickstart (GPU-free core)
+## Quick check
 
 ```bash
-make setup    # .venv + editable install (core deps only)
-make test     # leak auditor + C5 smoke pipeline
-make pilot    # C5 single-pass on a synthetic OP3-shaped fixture -> results table
+make setup
+make test
+make pilot
 ```
 
-Reproduce a figure straight from the deposited tables:
+`make test` runs the lightweight leak-audit and reproduction tests. `make pilot` runs a small synthetic
+OP3-shaped example and writes a results table.
+
+## Reproducing figures from deposited tables
+
+The deposited CSV/JSON files under `results/` are sufficient to regenerate the manuscript figures and
+tables without downloading raw data.
+
+Examples:
 
 ```bash
-python scripts/make_figure2_landscape_verdict.py  # -> results/_paper/figure2_landscape_verdict.{png,pdf,tiff}
-python scripts/figure_framework.py                # Figure 1 (framework)
-python scripts/figure_immune_blindspot.py         # immune blind-spot map
+python scripts/figure_framework.py
+python scripts/make_figure2_landscape_verdict.py
+python scripts/figure_immune_blindspot.py
 ```
 
----
+For the complete mapping from manuscript items to scripts and input files, see
+[`REPRODUCE.md`](REPRODUCE.md).
 
-## Benchmark recipe (the pipeline)
+## Benchmark workflow
 
-```
- inputs (real or synthetic single-cell perturbation data)
-   │
-   ▼
- build leak-proof split  (splits/builder.py — leave-one-lineage/donor/gene/compound-out)
-   │
-   ▼
- LEAK AUDIT  (splits/audit.py — HARD GATE; nothing scores until it passes)
-   │
-   ▼
- applicability gate  (baselines/registry.py — run each family only on tasks its representation claims;
-                      skip not_defined / inapplicable cells)
-   │
-   ▼
- per-fold fitting  (train on the held-out fold's TRAIN cells only: train-fold response genes + a
-                    train-fold PCA basis; no held-out information enters fitting)
-   │
-   ▼
- universal-floor baselines  (the universal two-member floor is {cell-mean shift, linear-PCA shift} and a
-                             model must beat BOTH members to have delivered; donor shift and training-mean
-                             shift are descriptive context comparators, not universal-floor members)
-   │
-   ▼
- three immune-aware metrics  (response-direction Pearson-Δ · distributional E-distance · immune-program
-                              AUCell-Δ)   [metrics/response.py · distribution.py · program.py]
-   │
-   ▼
- cluster-bootstrap CIs + multiplicity control  (bootstrap over the biological unit — lineage / dataset /
-                              donor — never over seeds; Wilcoxon signed-rank; BH + Holm)  [metrics/stats.py]
-   │
-   ▼
- output tables  (results/<cluster>/results_raw.csv  ->  results/_paper/*.csv/json  ->  figures)
-```
+The benchmark is organized as:
 
-Seeds are collapsed to technical repeats **within** a biological unit and never enter the bootstrap as
-independent observations. See `src/ivcbench/` and the per-cluster modules `clusters/c1..c5.py`.
+1. Load a real or synthetic perturbation dataset.
+2. Build the task-specific split, such as held-out lineage, donor, gene, or compound.
+3. Run the leak audit before scoring.
+4. Apply the model applicability registry.
+5. Fit each model or baseline using only the training part of the held-out fold.
+6. Score response-direction, distributional, and immune-program metrics.
+7. Estimate uncertainty over the biological unit of the task, not over technical seeds.
+8. Assemble cluster-level tables and manuscript figures.
 
----
+The relevant modules are in:
 
-## Data availability
+- `src/ivcbench/splits/`
+- `src/ivcbench/baselines/`
+- `src/ivcbench/metrics/`
+- `src/ivcbench/clusters/`
 
-All datasets are **public or access-controlled deposits**; raw data are **downloaded via the scripts in
-`scripts/`, not shipped** in this repository. Accessions/DOIs and the responsible script for each dataset
-are listed in [`data/README.md`](data/README.md) and machine-readable in
-[`scripts/datasets.csv`](scripts/datasets.csv). Headline anchors:
+Seeds are collapsed within the biological unit before bootstrap summaries are computed.
 
-| Dataset | Accession / DOI | Download script |
+## Data
+
+Raw data are not distributed in this repository. Public accessions, controlled-access notes, and download
+scripts are listed in [`data/README.md`](data/README.md) and [`scripts/datasets.csv`](scripts/datasets.csv).
+
+| Dataset | Accession / DOI | Notes |
 |---|---|---|
-| Kang 2018 PBMC IFN-β | GEO **GSE96583** | `scripts/download_kang.sh`, `download_public.sh` |
-| Soskic CD4⁺ activation (106-donor LODO) | trynkalab processed h5ad; raw **EGAD00001008197** | `scripts/download_soskic.sh` |
-| Shifrut primary-T KO | GEO **GSE119450** | `scripts/download_public.sh` |
-| Schmidt primary-T CRISPRa | GEO **GSE190604** | `scripts/download_public.sh` |
-| McCutcheon primary-T CRISPRi/a | GEO **GSE218985** | `scripts/download_public.sh` |
-| Chen FOXP3 Perturb-icCITE-seq (checkpoint replication) | DDBJ **PRJDB16517** / GEA **E-GEAD-648** | (login; see `data/README.md`) |
-| Human Cytokine Dictionary summary table (unseen-cytokine LOCO) | Parse + Allen `theislab/HumanCytokineDict` (bioRxiv 2025.12.12.693897) | portal; `data/human_cytokine_dict/hcd_mini.csv` |
-| Frangieh Perturb-CITE-seq (tumour) | scPerturb Zenodo **10.5281/zenodo.13350497** | (Zenodo; see `data/README.md`) |
-| McCarthy/OP3 PBMC chemical perturbation | GEO **GSE279945** | `scripts/download_op3.sh` |
+| Kang 2018 PBMC IFN-beta | GEO `GSE96583` | Public GEO data. |
+| Soskic CD4+ activation | raw `EGAD00001008197`; processed trynkalab h5ad | Used for the donor-held-out task. |
+| Shifrut primary-T KO | GEO `GSE119450` | Public GEO data. |
+| Schmidt primary-T CRISPRa | GEO `GSE190604` | Public GEO data. |
+| McCutcheon primary-T CRISPRi/a | GEO `GSE218985` | Public GEO data. |
+| Chen FOXP3 Perturb-icCITE-seq | DDBJ `PRJDB16517` / GEA `E-GEAD-648` | Controlled/login access; see `data/README.md`. |
+| Human Cytokine Dictionary | Parse + Allen / theislab summary table | Used for the leave-one-cytokine analysis. |
+| Frangieh Perturb-CITE-seq | Zenodo `10.5281/zenodo.13350497` | Tumour-cell checkpoint analysis. |
+| McCarthy/OP3 PBMC chemical perturbation | GEO `GSE279945` | Chemical perturbation task. |
 
-The deposited result tables in `results/` are sufficient to reproduce every figure and supplementary table
-**without** downloading any raw data.
+## Prediction-bundle reproduction
 
----
-
-## Reproducing each figure / table
-
-See **[`REPRODUCE.md`](REPRODUCE.md)** for the full table mapping every main figure, supplementary figure,
-and Supplementary Table (S1, S2a, S2b, S3–S12) to the exact script under `scripts/` that generates it and
-the deposited result file it reads.
-
-### Reproduce the evaluation itself — predictions → metrics (no GPU)
-
-Result tables regenerate the figures, but the **evaluation is also independently checkable**: each model's
-per-cell predictions are deposited as a self-describing bundle, and `scripts/reproduce_eval.py` recomputes
-Pearson-Δ and energy distance from them with the **same frozen metric code** used for the paper — no raw data,
-no checkpoints, no GPU. This is the model-output layer set as the norm by scPerturBench, PertEval-scFM, and NCBench.
+The figure tables can be regenerated directly from `results/`. For an additional check of the metric layer,
+`scripts/reproduce_eval.py` recomputes Pearson-Delta and energy distance from saved prediction bundles.
 
 ```bash
-make reproduce-eval                                    # score every bundle under predictions/
+make reproduce-eval
 python scripts/reproduce_eval.py 'predictions/**/*.npz' -o reproduced_results.csv
 ```
 
-The reproduced Pearson-Δ and energy distance match `results/<cluster>/results_raw.csv` to 1e-6 for the
-predictive baselines (the train-cloud PCA-50 basis is stored in each bundle; checked in
-`tests/test_reproduce_eval.py`). The bundle format and a runnable synthetic example are in
-[`predictions/`](predictions/). Re-running the heavy models with `IVCBENCH_PRED_DUMP=<dir>` set writes one
-bundle per evaluation as a by-product of any `make cluster C=...` run; the real C1–C5 bundles are archived on
-Zenodo with the result tables.
-
----
+The synthetic examples in `predictions/` are included in the tests. Full C1-C5 prediction bundles are archived
+with the deposited result tables rather than stored directly in the GitHub repository.
 
 ## Citation
-
-If you use this benchmark, please cite the article and the archived code:
 
 ```bibtex
 @unpublished{Lee2026ImmuneVirtualCell,
@@ -239,13 +183,14 @@ If you use this benchmark, please cite the article and the archived code:
 }
 ```
 
-GitHub also offers a "Cite this repository" button from [`CITATION.cff`](CITATION.cff).
+GitHub also reads citation metadata from [`CITATION.cff`](CITATION.cff).
 
 ## License
 
-[MIT](LICENSE). Each third-party dataset retains its own license/terms; see [`data/README.md`](data/README.md).
+The code in this repository is released under the [MIT license](LICENSE). Dataset-specific terms remain with
+the original data providers; see [`data/README.md`](data/README.md).
 
 ## Funding
 
-This research was supported by the G-LAMP Program of the National Research Foundation of Korea (NRF) grant
-funded by the Ministry of Education (No. RS-2025-25441317).
+This work was supported by the G-LAMP Program of the National Research Foundation of Korea (NRF), funded by
+the Ministry of Education (No. RS-2025-25441317).
