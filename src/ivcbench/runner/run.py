@@ -5,6 +5,8 @@ Flow:  build split -> AUDIT (hard gate) -> applicability gating -> fit (train on
 """
 from __future__ import annotations
 
+import os
+
 import numpy as np
 
 from ..baselines.base import BaselineAdapter
@@ -71,6 +73,15 @@ def run_job(
     resp_incl = (resp if excl is None
                  else pearson_delta(pred.pred_cells, test_X, pred.control_mean, split.test_strata, None))
     dist = e_distance(pred.pred_cells, test_X, split.test_strata, fit_on=cs.X[split.train_idx])
+
+    # Deposit this evaluation's PREDICTION BUNDLE if IVCBENCH_PRED_DUMP=<dir> is set, so a cluster re-run
+    # materialises the model-output layer in the GPU-free reproduce_eval format (predictions -> metrics).
+    # dump_bundle stores the EXACT scoring inputs + the train-cloud PCA basis and never raises.
+    from ..eval.bundle import dump_bundle
+    dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster=registry_task, model=adapter.name, split=spec.name,
+                pred_cells=pred.pred_cells, test_cells=test_X, cell_strata=split.test_strata,
+                control_mean=pred.control_mean, genes=cs.var_names, exclude_gene_idx=excl,
+                fit_on=cs.X[split.train_idx])
 
     # Immune-program axis (Axis 3): dataset-aware, one AUCell-Δ correlation per program. The headline
     # aucell_program_corr is the mean over programs; per-program values populate panel (b)/Supp S3.

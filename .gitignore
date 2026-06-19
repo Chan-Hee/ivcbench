@@ -9,6 +9,8 @@ outputs/
 *.npy
 # ...but keep the small deposited paper-backing arrays under results/_paper/
 !results/_paper/*.npz
+# ...and the small synthetic example prediction bundles so `make reproduce-eval` runs out-of-the-box
+!predictions/example/*.npz
 *.pkl
 *.rds
 *.mtx

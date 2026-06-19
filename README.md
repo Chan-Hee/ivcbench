@@ -192,6 +192,25 @@ See **[`REPRODUCE.md`](REPRODUCE.md)** for the full table mapping every main fig
 and Supplementary Table (S1, S2a, S2b, S3–S12) to the exact script under `scripts/` that generates it and
 the deposited result file it reads.
 
+### Reproduce the evaluation itself — predictions → metrics (no GPU)
+
+Result tables regenerate the figures, but the **evaluation is also independently checkable**: each model's
+per-cell predictions are deposited as a self-describing bundle, and `scripts/reproduce_eval.py` recomputes
+Pearson-Δ and energy distance from them with the **same frozen metric code** used for the paper — no raw data,
+no checkpoints, no GPU. This is the model-output layer set as the norm by scPerturBench, PertEval-scFM, and NCBench.
+
+```bash
+make reproduce-eval                                    # score every bundle under predictions/
+python scripts/reproduce_eval.py 'predictions/**/*.npz' -o reproduced_results.csv
+```
+
+The reproduced Pearson-Δ and energy distance match `results/<cluster>/results_raw.csv` to 1e-6 for the
+predictive baselines (the train-cloud PCA-50 basis is stored in each bundle; checked in
+`tests/test_reproduce_eval.py`). The bundle format and a runnable synthetic example are in
+[`predictions/`](predictions/). Re-running the heavy models with `IVCBENCH_PRED_DUMP=<dir>` set writes one
+bundle per evaluation as a by-product of any `make cluster C=...` run; the real C1–C5 bundles are archived on
+Zenodo with the result tables.
+
 ---
 
 ## Citation
@@ -210,7 +229,7 @@ If you use this benchmark, please cite the article and the archived code:
   title     = {ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
   author    = {Lee, Chanhee and Ryu, Jae Yong},
   year      = {2026},
-  version   = {1.0.1},
+  version   = {1.0.2},
   doi       = {10.5281/zenodo.20756159},
   publisher = {Zenodo}
 }

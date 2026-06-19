@@ -49,6 +49,7 @@ def main(seed_list, out_dir):
     from ivcbench.clusters.spec import _c5_held_compounds
     from ivcbench.data.loaders.op3 import load
     from ivcbench.data.schema import CONTROL_TOKEN
+    from ivcbench.eval.bundle import dump_bundle
     from ivcbench.metrics.distribution import e_distance
     from ivcbench.metrics.program import aucell_delta_corr
     from ivcbench.metrics.response import pearson_delta
@@ -108,6 +109,13 @@ def main(seed_list, out_dir):
     # ---- metrics, EXACTLY as run.py ----
     resp = pearson_delta(pred_cells, test_X, ctrl_mean, test_strata, None)
     dist = e_distance(pred_cells, test_X, test_strata, fit_on=cs.X[split.train_idx])
+
+    # GPU-free reproduction bundle for the heavy model (chemCPA native) — env-gated, additive, no-op
+    # unless IVCBENCH_PRED_DUMP is set. Captures the EXACT arrays fed to the scoring calls above.
+    dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster=spec.cluster, model="chemCPA",
+                split=spec.name, pred_cells=pred_cells, test_cells=test_X, cell_strata=test_strata,
+                control_mean=ctrl_mean, genes=cs.var_names, exclude_gene_idx=None,
+                fit_on=cs.X[split.train_idx])
 
     progs = c5.C5_PROGRAMS
     prog_corr = {}

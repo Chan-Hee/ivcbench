@@ -34,6 +34,7 @@ from ivcbench.metrics.distribution import e_distance
 from ivcbench.metrics.program import aucell
 from ivcbench.baselines.simple import CellMean, DonorShift, CtrlPred, LinearPCA
 from ivcbench.baselines.heavy import env_python
+from ivcbench.eval.bundle import dump_bundle
 
 RUNNER = ROOT / "model_runners" / "scpram_runner.py"
 SCPRAM_ENV = "ivc-scpram"
@@ -154,6 +155,12 @@ def main():
             pred_cells = np.tile(prof[None, :], (len(test_strata), 1)).astype(np.float32)
             pe = float(pearson_delta(pred_cells, test_X, ctrl_mean, test_strata)["macro"])
             ed = float(e_distance(pred_cells, test_X, test_strata, fit_on=ed_basis)["macro"])
+            # GPU-free reproduction bundle: the EXACT arrays scored above for this scPRAM (model, split).
+            dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"),
+                        cluster=sp.spec.registry_task, model="scPRAM", split=sp.spec.name,
+                        pred_cells=pred_cells, test_cells=test_X, cell_strata=test_strata,
+                        control_mean=ctrl_mean, genes=cs.var_names, exclude_gene_idx=None,
+                        fit_on=ed_basis, n_pca=50)
             au = float(aucell(prof[None, :], gs_ifn).mean()) - ctrl_auc
             seed_pearson.append(pe); seed_edist.append(ed); seed_aucell.append(au)
             timing.append(dict(lineage=lin, seed=seed, sec=round(dt, 1),

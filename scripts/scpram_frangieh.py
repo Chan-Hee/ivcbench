@@ -55,6 +55,7 @@ from ivcbench.metrics.distribution import e_distance
 from ivcbench.metrics.program import aucell
 from ivcbench.baselines.simple import CellMean, DonorShift, CtrlPred, LinearPCA
 from ivcbench.baselines.heavy import env_python
+from ivcbench.eval.bundle import dump_bundle
 
 RUNNER = ROOT / "model_runners" / "scpram_runner.py"
 SCPRAM_ENV = "ivc-scpram"
@@ -205,6 +206,10 @@ def main():
             pred_cells = np.tile(prof[None, :], (len(ts), 1)).astype(np.float32)
             pe = float(pearson_delta(pred_cells, test_X, ctrl_mean, ts, excl_idx)["macro"])
             ed = float(e_distance(pred_cells, test_X, ts, fit_on=ed_basis)["macro"])
+            dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster="C4", model="scPRAM",
+                        split=spec.name, pred_cells=pred_cells, test_cells=test_X, cell_strata=ts,
+                        control_mean=ctrl_mean, genes=cs.var_names, exclude_gene_idx=excl_idx,
+                        fit_on=ed_basis)
             au = ((float(aucell(prof[None, :], gs_ifn).mean()) - ctrl_auc) if len(gs_ifn) else float("nan"))
             ran = True
             non_degenerate = bool(np.isfinite(prof).all() and float(prof.std()) > 1e-6)

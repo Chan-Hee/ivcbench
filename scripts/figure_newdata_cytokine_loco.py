@@ -28,7 +28,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-ROOT = Path("/data1/home/chlee/projects/immune virtual cell/benchmark")
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from ivcbench.report.style import (set_pub_style, despine, panel_title, style_legend,  # noqa: E402
                                    NAVY, NAVY_DARK, SLATE_BAND, CLAY_DARK, CONDITIONED,

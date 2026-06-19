@@ -1,7 +1,7 @@
 PY := ./.venv/bin/python
 PIP := ./.venv/bin/pip
 
-.PHONY: setup test pilot data.c5 cluster integrated-figure clean
+.PHONY: setup test pilot reproduce-eval data.c5 cluster integrated-figure clean
 
 setup:                       ## GPU-free smoke-test core (subset of requirements.txt); full figure/analysis rebuild uses `pip install -r requirements.txt`
 	# `make setup` installs only the GPU-free smoke-test core deps below; the full
@@ -16,6 +16,9 @@ test:                        ## run leak-audit + smoke tests (GPU-free)
 
 pilot:                       ## C5 "1패스" on synthetic OP3-shaped data
 	$(PY) scripts/run_c5_pilot.py
+
+reproduce-eval:              ## predictions -> metrics, GPU-free: recompute scores from deposited prediction bundles
+	$(PY) scripts/reproduce_eval.py 'predictions/**/*.npz' 'predictions/*.npz' -o reproduced_results.csv
 
 data.c5:                     ## download OP3 (GSE279945) — public, no DAC
 	bash scripts/download_op3.sh

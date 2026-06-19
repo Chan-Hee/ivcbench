@@ -34,6 +34,7 @@ from ivcbench.metrics.response import pearson_delta
 from ivcbench.metrics.distribution import e_distance
 from ivcbench.baselines.simple import CellMean, DonorShift, CtrlPred, LinearPCA
 from ivcbench.baselines.heavy import env_python
+from ivcbench.eval.bundle import dump_bundle
 
 from c2_soskic_donor import (load_soskic_donor, lodo_spec, e_distance_basis,
                              response_gene_idx, program_delta_mae, SOSKIC_PROGRAMS)
@@ -167,6 +168,10 @@ def main():
             pred_aligned = pa_pred_cells(by_lineage, test_strata, ctrl_mean)
             pe = float(pearson_delta(pred_aligned, test_X, ctrl_mean, test_strata, rg)["macro"])
             ed = float(e_distance(pred_aligned, test_X, test_strata, fit_on=ed_basis)["macro"])
+            dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"),
+                        cluster=sp.spec.registry_task, model="PertAdapt", split=sp.spec.name,
+                        pred_cells=pred_aligned, test_cells=test_X, cell_strata=test_strata,
+                        control_mean=ctrl_mean, genes=cs.var_names, exclude_gene_idx=rg, fit_on=ed_basis)
             au = program_delta_mae(pred_aligned, test_X, ctrl_X, test_strata, ctrl_strat_str, cs)["aucell_delta_score"]
             s_pe.append(pe); s_ed.append(ed); s_au.append(au)
             timing.append(dict(donor=str(dnr), seed=seed, sec=round(dt, 1),

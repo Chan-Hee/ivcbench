@@ -38,6 +38,7 @@ from ivcbench.splits.builder import build_split
 from ivcbench.splits.audit import audit_split
 from ivcbench.metrics.response import pearson_delta
 from ivcbench.metrics.distribution import e_distance
+from ivcbench.eval.bundle import dump_bundle
 from ivcbench.baselines.simple import CellMean, DonorShift, CtrlPred, LinearPCA
 from ivcbench.baselines.heavy import env_python
 
@@ -185,6 +186,10 @@ def main():
             pe = float(pearson_delta(pred_aligned, test_X, ctrl_mean, test_strata, rg)["macro"])
             ed = float(e_distance(pred_aligned, test_X, test_strata, fit_on=ed_basis)["macro"])
             au = program_delta_mae(pred_aligned, test_X, ctrl_X, test_strata, ctrl_strat_str, cs)["aucell_delta_score"]
+            dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"),
+                        cluster=sp.spec.cluster, model="STATE", split=sp.spec.name,
+                        pred_cells=pred_aligned, test_cells=test_X, cell_strata=test_strata,
+                        control_mean=ctrl_mean, genes=cs.var_names, exclude_gene_idx=rg, fit_on=ed_basis)
             s_pe.append(pe); s_ed.append(ed); s_au.append(au)
             timing.append(dict(donor=str(d), seed=seed, sec=round(dt, 1),
                                n_train=int(len(sp.train_idx)), n_test=int(len(sp.test_idx)),

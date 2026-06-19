@@ -17,7 +17,7 @@ authors:
   - family-names: Ryu
     given-names: Jae Yong
     affiliation: "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea"
-version: 1.0.1
+version: 1.0.2
 date-released: "2026-06-19"
 doi: 10.5281/zenodo.20756159
 identifiers:

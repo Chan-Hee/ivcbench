@@ -46,6 +46,7 @@ from ivcbench.splits.audit import audit_split
 from ivcbench.metrics.response import pearson_delta
 from ivcbench.metrics.distribution import e_distance
 from ivcbench.metrics.program import aucell
+from ivcbench.eval.bundle import dump_bundle
 from ivcbench.baselines.simple import CellMean, DonorShift, CtrlPred, LinearPCA
 from ivcbench.baselines.heavy import env_python
 
@@ -199,6 +200,10 @@ def main():
             pred_cells = state_pred_cells(by_donor, test_strata, ctrl_mean)
             pe = float(pearson_delta(pred_cells, test_X, ctrl_mean, test_strata)["macro"])
             ed = float(e_distance(pred_cells, test_X, test_strata, fit_on=ed_basis)["macro"])
+            dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster=sp.spec.registry_task, model="STATE",
+                        split=sp.spec.name, pred_cells=pred_cells, test_cells=test_X, cell_strata=test_strata,
+                        control_mean=ctrl_mean, genes=cs.var_names, exclude_gene_idx=None,
+                        fit_on=ed_basis, n_pca=50)
             # IFN AUCell-Δ on the (tiled) predicted cloud vs control (same convention as the floor)
             au = float(aucell(pred_cells, gs_ifn).mean()) - ctrl_auc
             seed_pearson.append(pe); seed_edist.append(ed); seed_aucell.append(au)
