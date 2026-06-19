@@ -1,0 +1,41 @@
+{
+  "n_celltypes_tested": 24,
+  "n_held_cytokine_instances": 1810,
+  "n_unscoreable": 99,
+  "pooled_mean_pearson": {
+    "zero": 0.0,
+    "cytokine-mean": 0.19457249427804835,
+    "DE-profile-nearest": 0.3252199751704421,
+    "feature-nearest": 0.15348195981176213
+  },
+  "pooled_median_pearson": {
+    "zero": 0.0,
+    "cytokine-mean": 0.1685281017399405,
+    "DE-profile-nearest": 0.30228668744041287,
+    "feature-nearest": 0.08857367592978879
+  },
+  "floor_method": "cytokine-mean",
+  "conditioned_vs_floor_gap": {
+    "DE_profile_nearest": {
+      "mean": 0.1306474808923937,
+      "ci_lo": 0.1224326312422857,
+      "ci_hi": 0.13901893921996128,
+      "n_beat_floor": 1429,
+      "frac_beat": 0.7895027624309392
+    },
+    "feature_nearest": {
+      "mean": -0.0410905344662862,
+      "ci_lo": -0.04765500547110169,
+      "ci_hi": -0.03463788923079424,
+      "n_beat_floor": 539,
+      "frac_beat": 0.2977900552486188
+    },
+    "either_conditioned_beats_floor": {
+      "n": 1469,
+      "frac": 0.8116022099447514
+    }
+  },
+  "zero_baseline_mean_pearson": 0.0,
+  "per_celltype_csv": "results/newdata/cytokine_loco_per_celltype.csv",
+  "verdict": "a conditioned predictor beats the floor on average"
+}

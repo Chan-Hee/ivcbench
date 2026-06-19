@@ -1,0 +1,134 @@
+{
+  "dataset": "Chen E-GEAD-648 (Perturb-icCITE-seq, primary human CD4+ Treg, CRISPR-KO)",
+  "modality": "SURFACE ADT (CITE) \u2014 PD-L1 and PD-1 BOTH on the surface panel",
+  "n_cells": 335814,
+  "n_surface_markers": 277,
+  "n_KO_targets": 295,
+  "frac25": {
+    "PD-L1_CD274": {
+      "obs_mean": 0.00892599206417799,
+      "sd": 0.070857934653759,
+      "sem": 0.00823706758976333,
+      "ci": [
+        -0.007218363749980285,
+        0.025070347878336265
+      ],
+      "straddles_zero": true,
+      "effect_sd_units": 0.12597025453527622,
+      "z_vs_zero": 1.0836371034845977,
+      "sign_match_frac": 0.5,
+      "n_held_KO": 74
+    },
+    "PD-1_CD279": {
+      "obs_mean": -0.020610777661204338,
+      "sd": 0.07710576057434082,
+      "sem": 0.008963362600313395,
+      "ci": [
+        -0.03817864553819188,
+        -0.0030429097842167956
+      ],
+      "straddles_zero": false,
+      "effect_sd_units": 0.26730528961364236,
+      "z_vs_zero": -2.2994470468575825,
+      "sign_match_frac": 0.5945945945945946,
+      "n_held_KO": 74
+    }
+  },
+  "frac50": {
+    "PD-L1_CD274": {
+      "obs_mean": 0.004420713987201452,
+      "sd": 0.0652848556637764,
+      "sem": 0.0053663820787506296,
+      "ci": [
+        -0.00609720161443097,
+        0.014938629588833874
+      ],
+      "straddles_zero": true,
+      "effect_sd_units": 0.06771423391005987,
+      "z_vs_zero": 0.8237792095919226,
+      "sign_match_frac": 0.47297297297297297,
+      "n_held_KO": 148
+    },
+    "PD-1_CD279": {
+      "obs_mean": -0.012644222937524319,
+      "sd": 0.07525712251663208,
+      "sem": 0.006186097364624758,
+      "ci": [
+        -0.024768750977046988,
+        -0.0005196948980016498
+      ],
+      "straddles_zero": false,
+      "effect_sd_units": 0.16801363797466348,
+      "z_vs_zero": -2.043974123302746,
+      "sign_match_frac": 0.5135135135135135,
+      "n_held_KO": 148
+    }
+  },
+  "robustness_CLR": {
+    "frac25": {
+      "PD-1_CD279": {
+        "obs_mean": -0.06685228645801544,
+        "ci": [
+          -0.09076908138590149,
+          -0.04293549153012939
+        ],
+        "straddles_zero": false,
+        "effect_sd_units": 0.6368622646792554,
+        "sign_match_frac": 0.7432432432432432
+      },
+      "PD-L1_CD274": {
+        "obs_mean": 0.016767626628279686,
+        "ci": [
+          0.00831872692431188,
+          0.02521652633224749
+        ],
+        "straddles_zero": false,
+        "effect_sd_units": 0.45217200561811244,
+        "sign_match_frac": 0.6891891891891891
+      }
+    },
+    "frac50": {
+      "PD-1_CD279": {
+        "obs_mean": -0.05560492351651192,
+        "ci": [
+          -0.07139602404943568,
+          -0.039813822983588154
+        ],
+        "straddles_zero": false,
+        "effect_sd_units": 0.5673069219326164,
+        "sign_match_frac": 0.722972972972973
+      },
+      "PD-L1_CD274": {
+        "obs_mean": 0.014925051480531693,
+        "ci": [
+          0.009280458320577684,
+          0.0205696446404857
+        ],
+        "straddles_zero": false,
+        "effect_sd_units": 0.42599100216014507,
+        "sign_match_frac": 0.6756756756756757
+      }
+    }
+  },
+  "assay_floor_confound": {
+    "pearson_effect_vs_signmatch": 0.9225342906959447,
+    "p": 2.0376372543032418e-230,
+    "n": 554,
+    "mean_signmatch_near_floor": 0.5275900900900901,
+    "mean_signmatch_recovered": 0.7229089278852313,
+    "mean_effect_near_floor": 0.0981098211100235,
+    "mean_effect_recovered": 0.5939087178380563
+  },
+  "raw_surface_diag": {
+    "PD-L1_CD274": {
+      "total_counts": 452661.0,
+      "frac_cells_positive": 0.4977368424187199,
+      "mean_per_cell": 1.3479515314102173
+    },
+    "PD-1_CD279": {
+      "total_counts": 112408680.0,
+      "frac_cells_positive": 0.9993448754369979,
+      "mean_per_cell": 334.7349548339844
+    }
+  }
+}

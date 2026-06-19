@@ -1,0 +1,36 @@
+# C1 — cytokine-response prediction (§5.1 / "3.1"). Paper narrative anchor.
+cluster: C1
+datasets:
+  - id: kang
+    accession: GSE96583            # PUBLIC — 29,065 cells / 8 SLE donors / IFN-β 6h / 6 lineages
+    loader: ivcbench.data.loaders.kang:load
+    role: lineage-level IFN-β reproduction anchor (NOT a cell-resolution endpoint)
+  - id: cano_gamez
+    accession: EGAS01001003215     # DAC — naive/memory CD4 x Th0/Th2/Th17/iTreg
+    role: naive->memory CD4 state transfer
+  - id: oesinghaus
+    accession: bioRxiv-2025.12.12.693897   # preprint — PBMC 12 donor x 90 cytokine + PBS, 24h
+    role: cytokine breadth + within-resource cell-resolution penalty
+
+side_info:
+  cytokine_prior: receptor_family + JAK_STAT + pathway   # LOcyt conditioning (external, declared)
+
+splits:
+  - name: C1_resolution_fine_loct   # Axis 1 — cell-resolution penalty
+    factory: ivcbench.clusters.c1:resolution_fine_loct
+    registry_task: C1_LOCT
+  - name: C1_cd4_state_transfer     # Axis 1 — naive->memory
+    factory: ivcbench.clusters.c1:cd4_state_transfer
+    registry_task: C1_state
+  - name: C1_locyt                  # Axis 2 — unseen cytokine (gated)
+    factory: ivcbench.clusters.c1:locyt
+    registry_task: C1_LOcyt
+    note: Tanimoto-like similarity is POST-HOC difficulty stratification, never a model input.
+
+baselines_core: [ctrl-pred, cell-mean, donor-shift, linear-PCA, scGen, CPA, scGPT, CINEMA-OT, STATE]
+# Graph family (GEARS, AttentionPert) inapplicable — cytokine is not a gene-level perturbation.
+
+immune_program:
+  type_i_ifn: [ISG15, IFI6, MX1, MX2, OAS1, OAS2, IFIT1, IFIT3, ISG20, STAT1, IRF7, IFI44, IFI44L, RSAD2, USP18]
+
+compute_gpu_hr_estimate: 280

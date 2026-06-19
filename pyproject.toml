@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ivcbench"
+version = "1.0.0"
+description = "An immune-aware benchmark of perturbation-prediction generalization"
+requires-python = ">=3.10"
+dependencies = ["numpy", "scipy", "pandas", "scikit-learn", "pyyaml",
+                "matplotlib", "python-docx"]  # figure + Word export are part of the paper cycle
+
+[project.optional-dependencies]
+# heavy stack for real data + foundation/latent/OT/graph baselines (install per-family conda env)
+full = ["anndata", "scanpy", "torch", "rdkit"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

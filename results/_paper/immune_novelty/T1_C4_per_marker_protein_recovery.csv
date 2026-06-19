@@ -1,0 +1,41 @@
+marker,alias,held_frac_pct,n_held_KO,predictor,predDelta,obsDelta_mean,obsDelta_sd,effect_z,mean_dir_match,sign_match_frac,recoverable
+CD117,CD117,25,62,cell-mean (best-simple global protein shift),-0.2863,-0.3328,0.2263,1.471,True,0.9355,yes
+CD119,IFNGR1 (CD119),25,62,cell-mean (best-simple global protein shift),-0.0918,-0.076,0.1472,0.517,True,0.7258,yes
+CD140a,CD140a,25,62,cell-mean (best-simple global protein shift),-0.073,-0.0287,0.277,0.103,True,0.5161,weak
+CD140b,CD140b,25,62,cell-mean (best-simple global protein shift),-0.2479,-0.2596,0.1775,1.462,True,0.9677,yes
+CD172a,CD172a,25,62,cell-mean (best-simple global protein shift),-0.2774,-0.3015,0.1875,1.608,True,0.9194,yes
+CD184,CD184,25,62,cell-mean (best-simple global protein shift),-0.2685,-0.2526,0.1861,1.357,True,0.9194,yes
+CD202b,CD202b,25,62,cell-mean (best-simple global protein shift),-0.2369,-0.2351,0.2125,1.106,True,0.8871,yes
+CD274,PD-L1 (CD274),25,62,cell-mean (best-simple global protein shift),-0.0429,0.0421,0.1495,0.281,False,0.3548,NO (near-zero / direction-unrecoverable)
+CD29,CD29 (ITGB1),25,62,cell-mean (best-simple global protein shift),-0.0135,-0.0042,0.0649,0.065,True,0.5323,weak
+CD309,CD309,25,62,cell-mean (best-simple global protein shift),0.1713,0.1525,0.2505,0.609,True,0.7903,yes
+CD44,CD44,25,62,cell-mean (best-simple global protein shift),0.0325,0.0184,0.0552,0.333,True,0.8065,yes
+CD47,CD47,25,62,cell-mean (best-simple global protein shift),-0.012,0.0047,0.085,0.055,False,0.5161,weak
+CD49f,CD49f,25,62,cell-mean (best-simple global protein shift),-0.0024,0.0458,0.1775,0.258,False,0.3387,NO (near-zero / direction-unrecoverable)
+CD58,CD58 (LFA-3),25,62,cell-mean (best-simple global protein shift),-0.1342,-0.1471,0.1263,1.165,True,0.9032,yes
+CD59,CD59,25,62,cell-mean (best-simple global protein shift),-0.017,-0.0107,0.1115,0.096,True,0.4839,NO (near-zero / direction-unrecoverable)
+CD61,CD61,25,62,cell-mean (best-simple global protein shift),-0.1973,-0.2511,0.2314,1.085,True,0.8387,yes
+HLA_A,HLA-A (class I),25,62,cell-mean (best-simple global protein shift),-0.0478,-0.0542,0.2393,0.226,True,0.6452,yes
+HLA_E,HLA-E (class I),25,62,cell-mean (best-simple global protein shift),0.2068,0.1517,0.2244,0.676,True,0.7419,yes
+CD9,CD9,25,62,cell-mean (best-simple global protein shift),-0.0919,-0.0987,0.0967,1.02,True,0.871,yes
+CD279,PD-1 (CD279),25,62,cell-mean (best-simple global protein shift),-0.43,-0.3939,0.2201,1.789,True,0.9839,yes
+CD117,CD117,50,124,cell-mean (best-simple global protein shift),-0.2805,-0.3014,0.2358,1.278,True,0.9032,yes
+CD119,IFNGR1 (CD119),50,124,cell-mean (best-simple global protein shift),-0.0929,-0.0786,0.1495,0.526,True,0.7016,yes
+CD140a,CD140a,50,124,cell-mean (best-simple global protein shift),-0.07,-0.0654,0.2026,0.323,True,0.629,yes
+CD140b,CD140b,50,124,cell-mean (best-simple global protein shift),-0.2625,-0.2235,0.2173,1.029,True,0.8871,yes
+CD172a,CD172a,50,124,cell-mean (best-simple global protein shift),-0.2808,-0.287,0.191,1.503,True,0.9355,yes
+CD184,CD184,50,124,cell-mean (best-simple global protein shift),-0.2628,-0.2654,0.1946,1.364,True,0.8871,yes
+CD202b,CD202b,50,124,cell-mean (best-simple global protein shift),-0.2292,-0.2355,0.2173,1.084,True,0.8871,yes
+CD274,PD-L1 (CD274),50,124,cell-mean (best-simple global protein shift),-0.0178,-0.0226,0.2587,0.088,True,0.4597,NO (near-zero / direction-unrecoverable)
+CD29,CD29 (ITGB1),50,124,cell-mean (best-simple global protein shift),-0.0111,-0.009,0.0634,0.142,True,0.5968,weak
+CD309,CD309,50,124,cell-mean (best-simple global protein shift),0.1668,0.164,0.2463,0.666,True,0.7823,yes
+CD44,CD44,50,124,cell-mean (best-simple global protein shift),0.0293,0.0277,0.0316,0.879,True,0.8548,yes
+CD47,CD47,50,124,cell-mean (best-simple global protein shift),-0.0165,0.0002,0.0685,0.002,False,0.5484,weak
+CD49f,CD49f,50,124,cell-mean (best-simple global protein shift),0.0194,0.0002,0.1777,0.001,True,0.5242,weak
+CD58,CD58 (LFA-3),50,124,cell-mean (best-simple global protein shift),-0.1473,-0.1277,0.1379,0.926,True,0.8145,yes
+CD59,CD59,50,124,cell-mean (best-simple global protein shift),-0.0161,-0.0142,0.1068,0.133,True,0.5242,weak
+CD61,CD61,50,124,cell-mean (best-simple global protein shift),-0.2104,-0.2066,0.2826,0.731,True,0.8226,yes
+HLA_A,HLA-A (class I),50,124,cell-mean (best-simple global protein shift),-0.0524,-0.042,0.1874,0.224,True,0.6532,yes
+HLA_E,HLA-E (class I),50,124,cell-mean (best-simple global protein shift),0.1877,0.1926,0.2145,0.898,True,0.8226,yes
+CD9,CD9,50,124,cell-mean (best-simple global protein shift),-0.093,-0.0961,0.1151,0.835,True,0.8548,yes
+CD279,PD-1 (CD279),50,124,cell-mean (best-simple global protein shift),-0.4365,-0.4112,0.2166,1.899,True,0.9919,yes

@@ -1,0 +1,33 @@
+{
+  "n_held_gene_obs": 370,
+  "n_datasets": 5,
+  "predictability_def": "floor (best of cell-mean/donor-shift/linear-PCA) per-stratum downstream-only Pearson-delta, recomputed from deposited cells",
+  "validation_max_abs_floor_diff_vs_deposited": 0.00149,
+  "strongest_factor": "response_gene_overlap",
+  "strongest_rho": 0.528,
+  "strongest_within_dataset_rho": 0.593,
+  "partial_resp_overlap_given_effect": {
+    "rho": 0.47567675744685867,
+    "p": 2.74225288241928e-22,
+    "n": 370
+  },
+  "partial_effect_given_resp_overlap": {
+    "rho": -0.08115156218001322,
+    "p": 0.11916908751423783,
+    "n": 370
+  },
+  "rank_R2_response_block": {
+    "R2": 0.2922355605133261,
+    "n": 370
+  },
+  "rank_R2_representation_block": {
+    "R2": 0.008730760614429456,
+    "n": 363
+  },
+  "rank_R2_all": {
+    "R2": 0.31068607365246237,
+    "n": 363
+  },
+  "heavy_minus_floor_macro_gap_mean": -0.0313,
+  "heavy_beats_floor_cells": "0/15"
+}

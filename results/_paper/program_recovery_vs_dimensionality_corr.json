@@ -1,0 +1,34 @@
+{
+  "fve_pc1": {
+    "n": 8,
+    "pearson_r": -0.0899,
+    "pearson_p": 0.8323,
+    "spearman_r": 0.1078,
+    "spearman_p": 0.7995,
+    "law_direction": "higher->recover"
+  },
+  "mean_abs_r": {
+    "n": 8,
+    "pearson_r": 0.0824,
+    "pearson_p": 0.8462,
+    "spearman_r": 0.2395,
+    "spearman_p": 0.5678,
+    "law_direction": "higher->recover"
+  },
+  "part_ratio": {
+    "n": 8,
+    "pearson_r": 0.4576,
+    "pearson_p": 0.2542,
+    "spearman_r": 0.3713,
+    "spearman_p": 0.3652,
+    "law_direction": "lower->recover"
+  },
+  "eff_dim_frac": {
+    "n": 8,
+    "pearson_r": -0.391,
+    "pearson_p": 0.3382,
+    "spearman_r": -0.3832,
+    "spearman_p": 0.3487,
+    "law_direction": "lower->recover"
+  }
+}

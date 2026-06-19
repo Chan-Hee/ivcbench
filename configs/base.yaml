@@ -1,0 +1,14 @@
+# Global defaults shared by every cluster run.
+seeds: [0, 1, 2]            # 3 seeds for headline cells; dev uses [0]
+gpus: [0, 1]                # 2x L40 (of 4 available on this host)
+paths:
+  data: data
+  results: results
+  logs: logs
+metrics:
+  pca_components: 50        # E-distance space
+  aucell_top_frac: 0.05
+stats:
+  bootstrap: 2000
+  ci: 0.95
+  fdr_alpha: 0.05           # Benjamini-Hochberg, within-cluster baseline-pairs

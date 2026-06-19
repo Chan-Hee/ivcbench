@@ -1,0 +1,34 @@
+# C5 — small-molecule perturbation (Szałata 2024 / OP3). Pilot cluster.
+cluster: C5
+dataset:
+  id: op3
+  accession: GSE279945        # PUBLIC — no DAC
+  loader: ivcbench.data.loaders.op3:load
+  modality: rna
+  cell_types: [CD4T, CD8T, B, NK, Mono]
+  controls: [DMSO]            # never held out as a drug
+  positive_controls: [belinostat, dabrafenib]   # excluded from drug holdout (manifest only)
+  n_benchmark_compounds: 144
+
+side_info:                    # external — declared in paper
+  fingerprint: morgan         # RDKit Morgan
+  scaffold: murcko
+  moa: lincs_l1000
+
+splits:
+  - name: C5_global_compound_holdout    # Axis 1
+    factory: ivcbench.clusters.c5:global_compound_holdout
+    registry_task: C5_unseen_cpd
+    note: Tanimoto distance is a POST-HOC difficulty axis, never a model input.
+  - name: C5_cross_celltype_loct        # Axis 2
+    factory: ivcbench.clusters.c5:cross_celltype_loct
+    registry_task: C1_LOCT
+    held_lineages: [CD4T, CD8T, B, NK, Mono]   # leave-one-cell-type-out, repeated
+
+baselines_core: [ctrl-pred, cell-mean, donor-shift, linear-PCA, scGen, CPA, scGPT, CINEMA-OT, STATE]
+baselines_full_extra: [UCE, CellOT]   # GEARS/AttentionPert inapplicable (compound != gene)
+
+immune_program:
+  immunomod_moa: lincs_l1000_immunomod   # AUCell gene set (exploratory, table-only per OnePager)
+
+compute_gpu_hr_estimate: 70

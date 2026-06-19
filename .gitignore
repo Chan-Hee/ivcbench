@@ -1,0 +1,59 @@
+# ---- raw data & large scientific binaries (downloaded via scripts/, never committed) ----
+data/**
+!data/README.md
+outputs/
+*.h5ad
+*.h5
+*.loom
+*.npz
+*.npy
+# ...but keep the small deposited paper-backing arrays under results/_paper/
+!results/_paper/*.npz
+*.pkl
+*.rds
+*.mtx
+*.mtx.gz
+*.zip
+*.tar
+*.tar.gz
+*.parquet
+
+# ---- model checkpoints ----
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+checkpoints/
+model_runners/**/checkpoints/
+
+# ---- environments ----
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+build/
+dist/
+
+# ---- python caches ----
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# ---- logs & scratch ----
+*.log
+logs/
+*.tmp
+/tmp/
+
+# ---- manuscript binaries (not part of the code release) ----
+*.docx
+
+# ---- OS / editor ----
+.DS_Store
+.idea/
+.vscode/

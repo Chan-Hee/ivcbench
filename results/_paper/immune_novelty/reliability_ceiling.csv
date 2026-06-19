@@ -1,0 +1,6 @@
+cluster,task,n_units,reliability_halfsample,reliability_fullsample_SB,ci_lo_halfsample,ci_hi_halfsample,median_unit_r,min_unit_r,max_unit_r
+C1,cytokine/Kang LOCT,63,0.7576,0.8621,0.7076,0.802,0.7978,0.1927,0.9629
+C2,donor/Soskic LODO,206,0.7483,0.8561,0.7364,0.7601,0.7613,0.2978,0.9515
+C3,gene/CRISPR-Shifrut LO-gene,20,0.3472,0.5155,0.2557,0.4424,0.2455,0.0605,0.7083
+C4,complex/Frangieh unseen-KO (RNA),247,0.3364,0.5035,0.3272,0.3459,0.3342,0.0091,0.7133
+C5,small-mol/OP3 unseen-compound,556,0.4913,0.6589,0.478,0.5049,0.4515,0.219,0.9704

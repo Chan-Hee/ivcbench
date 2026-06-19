@@ -1,0 +1,50 @@
+{
+  "n_held_observed": 28,
+  "n_common": 28,
+  "predicted_genes_match_loader_panel": true,
+  "per_seed_predicted_collapse": {
+    "0": {
+      "between_compound_var_pred_profile": 7.396947098372772e-07,
+      "between_compound_std_pred_profile_mean_over_genes": 0.0007910270713645556,
+      "pairwise_pearson_r_min": 0.9999818124647303,
+      "pairwise_pearson_r_mean": 0.999994149863155,
+      "pairwise_pearson_r_max": 0.9999996058659042
+    },
+    "1": {
+      "between_compound_var_pred_profile": 2.8192942764095483e-07,
+      "between_compound_std_pred_profile_mean_over_genes": 0.000489825792321316,
+      "pairwise_pearson_r_min": 0.999992625692126,
+      "pairwise_pearson_r_mean": 0.9999977911692498,
+      "pairwise_pearson_r_max": 0.9999997617549559
+    },
+    "2": {
+      "between_compound_var_pred_profile": 6.354302259160578e-07,
+      "between_compound_std_pred_profile_mean_over_genes": 0.0007312033082568586,
+      "pairwise_pearson_r_min": 0.9999829771736117,
+      "pairwise_pearson_r_mean": 0.9999954041292326,
+      "pairwise_pearson_r_max": 0.9999991997662614
+    }
+  },
+  "seed_averaged": {
+    "between_compound_var_PRED_profile": 2.849761036460455e-07,
+    "between_compound_var_OBS_profile": 0.013826761127961128,
+    "between_compound_var_PRED_delta": 2.849761036460454e-07,
+    "between_compound_var_OBS_delta": 0.013826761127961128,
+    "collapse_ratio_delta_pred_over_obs": 2.0610474210750146e-05,
+    "collapse_ratio_profile_pred_over_obs": 2.061047421075015e-05,
+    "pred_delta_pairwise_r_min": 0.9999919702932818,
+    "pred_delta_pairwise_r_mean": 0.9999978926661524,
+    "obs_delta_pairwise_r_min": -0.5867193560499949,
+    "obs_delta_pairwise_r_mean": 0.2427233999643315,
+    "pred_profile_dispersion": {
+      "rms_between_compound_dev": 0.0005242121571069167,
+      "rms_grand_mean": 0.8527627337458633,
+      "ratio": 0.0006147221687376645
+    },
+    "obs_profile_dispersion": {
+      "rms_between_compound_dev": 0.1154683862818475,
+      "rms_grand_mean": 0.8259502398675307,
+      "ratio": 0.1398006571199335
+    }
+  }
+}

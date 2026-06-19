@@ -1,0 +1,10 @@
+cluster,dataset,split_type,program,best_family,best_corr,latent_corr,chemistry_corr,simple_floor_corr,recovered
+C5,op3_GSE279945,LOCT (cell-context),type_I_IFN,latent,0.786,0.786,0.77,0.0,yes
+C5,op3_GSE279945,LOCT (cell-context),inflammatory_NFkB,chemistry,0.116,0.086,0.116,0.0,weak
+C5,op3_GSE279945,LOCT (cell-context),effector_lymphocyte,chemistry,0.033,0.031,0.033,0.0,NO
+C3,5 primary-T CRISPR,true LO-gene (unseen-pert),TCR_activation,graph,0.0047,-0.0052,,0.0,NO
+C3,5 primary-T CRISPR,true LO-gene (unseen-pert),IL2_STAT5,foundation,0.0047,0.0022,,0.0,NO
+C3,5 primary-T CRISPR,true LO-gene (unseen-pert),proliferation,foundation,0.0,0.0,,0.0,NO
+C3,5 primary-T CRISPR,true LO-gene (unseen-pert),effector_cytokine,hybrid,0.0562,0.0,,0.0,NO
+C3,5 primary-T CRISPR,true LO-gene (unseen-pert),Treg_exhaustion,graph,0.0009,-0.002,,0.0,NO
+C1,kang_GSE96583,LODO/randsplit (donor),type_i_ifn,n/a,,,,,"NOT ESTIMABLE (single program / single perturbation -> AUCell-delta corr degenerate, returns 0)"

@@ -1,0 +1,32 @@
+# Lightweight pip environment for the GPU-free benchmark core + analysis + figure scripts.
+# Major versions pinned (derived from the project .venv); install the package with `pip install -e .`.
+#
+# Heavy per-family baselines (scGPT, GEARS/AttentionPert, CPA/chemCPA, STATE, CellOT, scPRAM) have
+# conflicting torch/python pins and live in their own environments — NOT required to rebuild figures.
+
+# --- core numerics ---
+numpy>=2.4,<3
+scipy>=1.17,<2
+pandas>=2.3,<3
+scikit-learn>=1.8,<2
+
+# --- single-cell IO (real-data loaders) ---
+anndata>=0.12,<0.13
+h5py>=3.16,<4
+zarr>=3,<4
+
+# --- chemistry (C5) ---
+rdkit>=2026.3,<2027
+
+# --- plotting + config + reporting ---
+matplotlib>=3.10,<4
+PyYAML>=6,<7
+python-docx>=1.2,<2
+openpyxl>=3.1,<4
+
+# --- immune-program scoring (AUCell) ---
+decoupler>=2
+
+# --- test / dev ---
+pytest>=9,<10
+pyarrow>=15

@@ -1,0 +1,11 @@
+held_state,model,family,pearson_delta,e_distance,pred_ifn_delta,obs_ifn_delta,n_strata,leak_free
+CD4_Naive,scGen,latent,-0.1404,6.4533,-0.074,-0.0216,105,True
+CD4_Naive,ctrl-pred,simple,0.0253,5.9081,-0.074,-0.0216,105,True
+CD4_Naive,cell-mean,simple,-0.1235,8.1029,-0.074,-0.0216,105,True
+CD4_Naive,donor-shift,simple,-0.4798,6.9745,-0.074,-0.0216,105,True
+CD4_Naive,linear-PCA,simple,-0.4491,6.8473,-0.074,-0.0216,105,True
+CD4_Memory,scGen,latent,-0.0861,7.2355,-0.0424,-0.0275,101,True
+CD4_Memory,ctrl-pred,simple,0.0138,6.5923,-0.0424,-0.0275,101,True
+CD4_Memory,cell-mean,simple,-0.0253,7.9286,-0.0424,-0.0275,101,True
+CD4_Memory,donor-shift,simple,-0.416,7.4599,-0.0424,-0.0275,101,True
+CD4_Memory,linear-PCA,simple,-0.3854,7.3534,-0.0424,-0.0275,101,True

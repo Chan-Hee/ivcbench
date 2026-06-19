@@ -1,0 +1,13 @@
+cluster,dataset,lineage,scGen_pearson_delta,best_simple_model,best_simple_pearson_delta,gap_scGen_minus_simple,ci_overlap,winner,best_conditioned_model,best_conditioned_pearson_delta
+C1,kang_GSE96583,Mono_CD14,0.9169,linear-PCA,0.819,0.0979,False,scGen,,
+C1,kang_GSE96583,CD8T,0.745,donor-shift,0.722,0.023,True,simple/tie,,
+C1,kang_GSE96583,CD4T,0.7983,donor-shift,0.7854,0.013,True,simple/tie,,
+C1,kang_GSE96583,B,0.808,linear-PCA,0.8292,-0.0211,True,simple/tie,,
+C1,kang_GSE96583,NK,0.7367,donor-shift,0.7832,-0.0465,True,simple/tie,,
+C1,kang_GSE96583,Mk,0.5432,donor-shift,0.6031,-0.0599,True,simple/tie,,
+C1,kang_GSE96583,Mono_FCGR3A,0.8182,linear-PCA,0.8813,-0.0631,False,simple/tie,,
+C1,kang_GSE96583,DC,0.7495,linear-PCA,0.8223,-0.0727,True,simple/tie,,
+C5,op3_GSE279945,B,0.1257,linear-PCA,0.2997,,,FP-ridge,FP-ridge,0.4156
+C5,op3_GSE279945,Mono,0.1604,donor-shift,0.1902,,,FP-ridge,FP-ridge,0.3057
+C5,op3_GSE279945,NK,0.2199,linear-PCA,0.2594,,,FP-ridge,FP-ridge,0.3898
+C5,op3_GSE279945,T_cells,0.202,linear-PCA,0.334,,,FP-ridge,FP-ridge,0.4387

@@ -1,0 +1,10 @@
+baseline,family,is_simple,mean_pearson_delta,n_splits
+FP-ridge,chemistry,False,0.34279948032273977,5
+linear-PCA,simple,True,0.2455053461858839,5
+donor-shift,simple,True,0.24321155789157656,5
+CINEMA-OT,ot,False,0.23701664616443746,5
+scGen,latent,False,0.1588450474771386,5
+CPA,latent,False,0.07462903500373634,5
+cell-mean,simple,True,0.054418970580937275,5
+STATE,hybrid,False,0.04373281525687846,5
+ctrl-pred,simple,True,-0.00758812419575792,5

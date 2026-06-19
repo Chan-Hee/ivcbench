@@ -1,0 +1,24 @@
+{
+  "upload_type": "software",
+  "title": "ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization",
+  "description": "<p>Code, deposited result tables, and figure scripts for the <i>Briefings in Bioinformatics</i> Problem Solving Protocol <b>\"Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization\"</b> (Lee &amp; Ryu).</p><p>The benchmark evaluates whether single-cell perturbation-prediction models (foundation, latent/compositional, prior-graph, optimal-transport, and hybrid families) generalize across the axes that matter for immunology &mdash; cell-context transfer, unseen perturbations, unseen donors, and readout modality &mdash; and whether they beat a set of pre-registered simple baselines (the <i>universal floor</i>). The contribution is evaluation methodology, not a new model. This archive contains the GPU-free benchmark core (leak-proof split builder and leak auditor, applicability registry, the three immune-aware metrics, cluster-bootstrap statistics, and the runner), the figure and analysis scripts, the dataset download scripts, and the deposited paper-level result tables that reproduce every figure and supplementary table without re-running any model.</p>",
+  "creators": [
+    { "name": "Lee, Chanhee", "affiliation": "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea" },
+    { "name": "Ryu, Jae Yong", "affiliation": "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea" }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "single-cell perturbation prediction",
+    "virtual cell",
+    "benchmark",
+    "immunology",
+    "generalization",
+    "optimal transport",
+    "immune-aware evaluation",
+    "CRISPR",
+    "drug response prediction",
+    "foundation models"
+  ],
+  "notes": "This research was supported by the G-LAMP Program of the National Research Foundation of Korea (NRF) grant funded by the Ministry of Education (No. RS-2025-25441317)."
+}

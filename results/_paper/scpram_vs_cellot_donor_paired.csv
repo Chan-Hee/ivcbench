@@ -1,0 +1,2 @@
+comparison,n_shared_donors,scpram_wins,mean_gap,scpram_mean,cellot_mean,wilcoxon_p,scpram_delta_vs_floor,note
+scPRAM_vs_CellOT_C2_donor_paired,106,1,-0.20994150943396228,0.15917264150943394,0.3691141509433962,4.348499899879881e-19,-0.10789245283018868,FINAL n=106

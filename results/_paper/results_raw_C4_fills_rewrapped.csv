@@ -1,0 +1,13 @@
+baseline,family,split,registry_task,action,headline_eligible,seed,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,pearson_delta_ontarget,e_distance,e_distance_lo,e_distance_hi,aucell_program_corr,cluster,dataset,modality,frac_held,e_distance_framework_scale
+CellOT,ot,C4_modality_lo_ko_25,C4_Axis2,run_floor,False,0,True,True,10700,3576,62,0.6085673229348275,,,,0.5265807888527627,,,,C4,frangieh_rna,RNA,25,False
+CellOT,ot,C4_modality_lo_ko_50,C4_Axis2,run_floor,False,0,True,True,7232,7044,124,0.5749142596332897,,,,0.5552622320011138,,,,C4,frangieh_rna,RNA,50,False
+CPA,latent,C4_modality_lo_ko_25,C4_Axis2,run_headline,True,0,True,True,10700,3576,62,0.5092643452658048,,,0.5079750616343752,6.644393461828228,,,-0.1192012257002071,C4,frangieh_rna,RNA,25,True
+CPA,latent,C4_modality_lo_ko_50,C4_Axis2,run_headline,True,0,True,True,7232,7044,124,0.560286859658757,,,0.5617965080534979,6.472171771485278,,,0.1442488081662548,C4,frangieh_rna,RNA,50,True
+scPRAM,ot,C4_modality_lo_ko_25,C4_Axis2,run_floor,False,0,True,True,10700,3576,62,0.3926341817263634,,,,8.839365416432662,,,,C4,frangieh_rna,RNA,25,False
+scPRAM,ot,C4_modality_lo_ko_50,C4_Axis2,run_floor,False,0,True,True,7232,7044,124,0.2377519330024839,,,,9.391552055157526,,,,C4,frangieh_rna,RNA,50,False
+STATE,hybrid,C4_modality_lo_ko_25,C4_Axis2,run_headline,True,0,True,True,10700,3576,62,0.0312417857874665,,,0.0347150571704391,6.55304243477133,,,,C4,frangieh_rna,RNA,25,True
+STATE,hybrid,C4_modality_lo_ko_50,C4_Axis2,run_headline,True,0,True,True,7232,7044,124,0.0195666873072285,,,0.0287248268147278,6.585740375350477,,,,C4,frangieh_rna,RNA,50,True
+GEARS,graph,C4_modality_lo_ko_25,C4_Axis2,run_floor,True,0,True,True,10700,3576,62,0.4700325214484286,,,0.46868533430801285,6.506386360961714,,,0.0,C4,frangieh_rna,RNA,25,True
+AttentionPert,graph,C4_modality_lo_ko_25,C4_Axis2,run_floor,True,0,True,True,10700,3576,62,0.5167947561900702,,,0.5146308138125366,6.470518415758404,,,0.0,C4,frangieh_rna,RNA,25,True
+GEARS,graph,C4_modality_lo_ko_50,C4_Axis2,run_floor,True,0,True,True,7232,7044,124,0.41594316540736587,,,0.41780341240847785,6.526491375457116,,,0.0,C4,frangieh_rna,RNA,50,True
+AttentionPert,graph,C4_modality_lo_ko_50,C4_Axis2,run_floor,True,0,True,True,7232,7044,124,0.505876281636677,,,0.5027249505172574,6.480728711891826,,,0.0,C4,frangieh_rna,RNA,50,True

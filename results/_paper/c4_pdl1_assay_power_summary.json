@@ -1,0 +1,169 @@
+{
+  "part1_surface_power": {
+    "frac25": {
+      "PD-L1_CD274": {
+        "obs_mean": 0.0420544296503067,
+        "sd": 0.1495155096054077,
+        "sem": 0.018988488708384977,
+        "ci": [
+          0.004837675661026657,
+          0.07927118363958674
+        ],
+        "straddles_zero": false,
+        "effect_sd_units": 0.28127135279339394,
+        "z_vs_zero": 2.214732846629138,
+        "sign_match_frac": 0.3548387096774194,
+        "n_held_KO": 62
+      },
+      "PD-1_CD279": {
+        "obs_mean": -0.393881618976593,
+        "sd": 0.2201419174671173,
+        "sem": 0.027958051476389353,
+        "ci": [
+          -0.44867839294823303,
+          -0.339084845004953
+        ],
+        "straddles_zero": false,
+        "effect_sd_units": 1.789216808450064,
+        "z_vs_zero": -14.088307238050087,
+        "sign_match_frac": 0.9838709677419356,
+        "n_held_KO": 62
+      },
+      "n_markers_total": 20,
+      "n_markers_straddle_zero": 5,
+      "markers_straddle_zero": [
+        "CD140a",
+        "CD29",
+        "CD47",
+        "CD59",
+        "HLA_A"
+      ]
+    },
+    "frac50": {
+      "PD-L1_CD274": {
+        "obs_mean": -0.0226419065147638,
+        "sd": 0.2587077021598816,
+        "sem": 0.02323263749153923,
+        "ci": [
+          -0.06817703926405567,
+          0.022893226234528077
+        ],
+        "straddles_zero": true,
+        "effect_sd_units": 0.08751925947983985,
+        "z_vs_zero": -0.9745732279862517,
+        "sign_match_frac": 0.4596774193548387,
+        "n_held_KO": 124
+      },
+      "PD-1_CD279": {
+        "obs_mean": -0.4112377464771271,
+        "sd": 0.2165659219026565,
+        "sem": 0.019448193906016785,
+        "ci": [
+          -0.4493555060972713,
+          -0.37311998685698283
+        ],
+        "straddles_zero": false,
+        "effect_sd_units": 1.8989033125071866,
+        "z_vs_zero": -21.145292383674786,
+        "sign_match_frac": 0.9919354838709676,
+        "n_held_KO": 124
+      },
+      "n_markers_total": 20,
+      "n_markers_straddle_zero": 5,
+      "markers_straddle_zero": [
+        "CD274",
+        "CD29",
+        "CD47",
+        "CD49f",
+        "CD59"
+      ]
+    },
+    "assay_floor_confound": {
+      "pearson_effect_vs_signmatch": 0.896042722533189,
+      "p": 5.6701178151255325e-15,
+      "n": 40,
+      "mean_signmatch_near_floor": 0.5346774193548388,
+      "mean_signmatch_recovered": 0.8137096774193551,
+      "mean_effect_near_floor": 0.09120922708692128,
+      "mean_effect_recovered": 0.9633654877258735
+    }
+  },
+  "part2_decoupling": {
+    "frac25": {
+      "n_markers_with_rna_match": 12,
+      "n_surface_moves": 8,
+      "n_rna_moves": 8,
+      "n_both_move": 5,
+      "n_rna_only_decoupled": 3,
+      "rna_only_markers": [
+        "HLA_A",
+        "CD47",
+        "CD29"
+      ],
+      "n_surface_only": 3,
+      "surface_only_markers": [
+        "CD49f",
+        "CD184",
+        "CD309"
+      ]
+    },
+    "frac50": {
+      "n_markers_with_rna_match": 12,
+      "n_surface_moves": 7,
+      "n_rna_moves": 9,
+      "n_both_move": 5,
+      "n_rna_only_decoupled": 4,
+      "rna_only_markers": [
+        "CD274",
+        "CD59",
+        "CD47",
+        "CD29"
+      ],
+      "n_surface_only": 2,
+      "surface_only_markers": [
+        "CD184",
+        "CD309"
+      ]
+    }
+  },
+  "cd274_decouple_rows": [
+    {
+      "held_frac_pct": 25,
+      "surface_marker": "CD274",
+      "rna_gene": "CD274",
+      "n_held_KO": 62,
+      "surf_mean": 0.0420544296503067,
+      "surf_sd": 0.14951550960540771,
+      "surf_ci_lo": 0.004837675661026643,
+      "surf_ci_hi": 0.07927118363958677,
+      "surf_straddles0": false,
+      "surf_z": 2.214732846629137,
+      "rna_mean": -0.05790654569864273,
+      "rna_sd": 0.06434012204408646,
+      "rna_ci_lo": -0.07392181060376542,
+      "rna_ci_hi": -0.041891280793520044,
+      "rna_straddles0": false,
+      "rna_z": -7.086660427462538,
+      "paired_pearson": 0.35851234524860326
+    },
+    {
+      "held_frac_pct": 50,
+      "surface_marker": "CD274",
+      "rna_gene": "CD274",
+      "n_held_KO": 124,
+      "surf_mean": -0.022641906514763832,
+      "surf_sd": 0.2587077021598816,
+      "surf_ci_lo": -0.06817703926405572,
+      "surf_ci_hi": 0.022893226234528045,
+      "surf_straddles0": true,
+      "surf_z": -0.974573227986253,
+      "rna_mean": -0.06354682147502899,
+      "rna_sd": 0.0601857453584671,
+      "rna_ci_lo": -0.07414011221060672,
+      "rna_ci_hi": -0.05295353073945126,
+      "rna_straddles0": false,
+      "rna_z": -11.75739291330426,
+      "paired_pearson": 0.4544642522837079
+    }
+  ]
+}

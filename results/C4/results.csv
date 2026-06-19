@@ -1,0 +1,17 @@
+cluster,dataset,modality,split,baseline,family,action,headline_eligible,registry_task,pearson_delta,pearson_delta_ontarget,e_distance,aucell_program_corr,ran
+C4,frangieh_RNA,RNA,C4_modality_lo_ko_25,cell-mean,simple,run_headline,True,C4_Axis2,0.6719524004767018,0.6711039418174375,6.356180212831153,,True
+C4,frangieh_RNA,RNA,C4_modality_lo_ko_25,ctrl-pred,simple,run_headline,True,C4_Axis2,0.025947235081525098,0.029082203974887248,6.553042387098088,,True
+C4,frangieh_RNA,RNA,C4_modality_lo_ko_25,donor-shift,simple,run_headline,True,C4_Axis2,0.6719524004767018,0.6711039418174375,6.356180212831153,,True
+C4,frangieh_RNA,RNA,C4_modality_lo_ko_25,linear-PCA,simple,run_headline,True,C4_Axis2,0.2914931868172942,0.2926753010420549,6.356179964874236,,True
+C4,frangieh_RNA,RNA,C4_modality_lo_ko_50,cell-mean,simple,run_headline,True,C4_Axis2,0.6505082167925373,0.6516362712267907,6.394088871544574,,True
+C4,frangieh_RNA,RNA,C4_modality_lo_ko_50,ctrl-pred,simple,run_headline,True,C4_Axis2,0.01581703312061314,0.025296139917167414,6.5857406168775565,,True
+C4,frangieh_RNA,RNA,C4_modality_lo_ko_50,donor-shift,simple,run_headline,True,C4_Axis2,0.6505082167925373,0.6516362712267907,6.394088871544574,,True
+C4,frangieh_RNA,RNA,C4_modality_lo_ko_50,linear-PCA,simple,run_headline,True,C4_Axis2,0.27515802689782914,0.2785468775208198,6.394089046704889,,True
+C4,frangieh_protein,protein-CITE,C4_modality_lo_ko_25,cell-mean,simple,run_headline,True,C4_Axis2,0.6829374634450481,0.6862581742386664,3.2054813093288894,,True
+C4,frangieh_protein,protein-CITE,C4_modality_lo_ko_25,ctrl-pred,simple,run_headline,True,C4_Axis2,0.07727948466556207,0.08804435439543018,3.3377904295711014,,True
+C4,frangieh_protein,protein-CITE,C4_modality_lo_ko_25,donor-shift,simple,run_headline,True,C4_Axis2,0.6829374634450481,0.6862581742386664,3.2054813093288894,,True
+C4,frangieh_protein,protein-CITE,C4_modality_lo_ko_25,linear-PCA,simple,run_headline,True,C4_Axis2,0.6829374634450481,0.6862581742386664,3.2054813093288894,,True
+C4,frangieh_protein,protein-CITE,C4_modality_lo_ko_50,cell-mean,simple,run_headline,True,C4_Axis2,0.6961475467429526,0.6831323718051275,3.200282281855894,,True
+C4,frangieh_protein,protein-CITE,C4_modality_lo_ko_50,ctrl-pred,simple,run_headline,True,C4_Axis2,0.16120826805971802,0.099442798054717,3.3291163753116932,,True
+C4,frangieh_protein,protein-CITE,C4_modality_lo_ko_50,donor-shift,simple,run_headline,True,C4_Axis2,0.6961475467429526,0.6831323718051275,3.200282281855894,,True
+C4,frangieh_protein,protein-CITE,C4_modality_lo_ko_50,linear-PCA,simple,run_headline,True,C4_Axis2,0.6961475467429526,0.6831323718051275,3.200282281855894,,True

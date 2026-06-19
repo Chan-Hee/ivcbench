@@ -1,0 +1,124 @@
+{
+  "C5_cellcontext": {
+    "n_lineages": 6,
+    "mean_gap": 0.11919300550936111,
+    "ci": [
+      0.10060372888421583,
+      0.1377085297125479
+    ],
+    "boot_pos_frac": 1.0,
+    "per_lineage": [
+      0.1414942265800299,
+      0.1448905266382144,
+      0.08753517536662409,
+      0.1121808243111419,
+      0.14130084752765687,
+      0.08775643263249949
+    ],
+    "vs_primary_floor_mean": 0.12307842233489319
+  },
+  "C3_perturbation": {
+    "n_datasets": 5,
+    "n_cells": 15,
+    "mean_gap": -0.2410039303707108,
+    "cluster_ci": [
+      -0.28860486140150254,
+      -0.19187596807798385
+    ],
+    "boot_neg_frac": 1.0,
+    "cells_cond_wins": 0,
+    "vs_primary_floor_mean": -0.2410039303707108,
+    "floor_winner_counts": {
+      "cell-mean": 15
+    }
+  },
+  "C3_leave_one_dataset_out": {
+    "chen": {
+      "mean_gap": -0.24082641218143408,
+      "all_negative": true
+    },
+    "mccutcheon_CRISPRa": {
+      "mean_gap": -0.23615051356955843,
+      "all_negative": true
+    },
+    "mccutcheon_CRISPRi": {
+      "mean_gap": -0.2470164079357177,
+      "all_negative": true
+    },
+    "schmidt": {
+      "mean_gap": -0.2618010955175396,
+      "all_negative": true
+    },
+    "shifrut": {
+      "mean_gap": -0.2192252226493042,
+      "all_negative": true
+    }
+  },
+  "donor_inflation": {
+    "n_donors": 8,
+    "mean": 0.01681452306608359,
+    "cluster_ci": [
+      -0.00028239920114477447,
+      0.032877509136839456
+    ],
+    "boot_pos_frac": 0.9731,
+    "per_donor": [
+      0.002402623494466146,
+      -0.01940339555342992,
+      0.0574671079715093,
+      0.03396365170677503,
+      0.030746469895044964,
+      0.02318038170536359,
+      0.01891101400057475,
+      -0.012751668691635132
+    ]
+  },
+  "primary_floor_note": {
+    "rule": "Universal two-member floor = {cell-mean, linear-PCA}; a model must beat BOTH members. Donor shift and training-mean shift are descriptive context comparators, not universal-floor members; the per-cell best-of-four-floors is reported descriptively as an upper floor only.",
+    "C3_floor_winner_counts": {
+      "cell-mean": 15
+    }
+  },
+  "applicability_audit": {
+    "C1": {
+      "ctrl-pred": "run_headline",
+      "cell-mean": "run_headline",
+      "donor-shift": "run_headline",
+      "linear-PCA": "run_headline",
+      "scGen": "run_headline",
+      "CPA": "run_headline"
+    },
+    "C3": {
+      "ctrl-pred": "run_headline",
+      "cell-mean": "run_headline",
+      "donor-shift": "run_headline",
+      "linear-PCA": "run_headline",
+      "GEARS": "run_headline",
+      "AttentionPert": "run_headline",
+      "scGen": "run_adapted",
+      "CPA": "run_adapted",
+      "STATE": "run_headline",
+      "CINEMA-OT": "run_floor",
+      "scGPT": "run_headline"
+    },
+    "C4": {
+      "ctrl-pred": "run_headline",
+      "cell-mean": "run_headline",
+      "donor-shift": "run_headline",
+      "linear-PCA": "run_headline",
+      "scGen": "run_headline",
+      "linear-shift-KOemb": "run_headline"
+    },
+    "C5": {
+      "ctrl-pred": "run_floor",
+      "cell-mean": "run_floor",
+      "donor-shift": "run_floor",
+      "linear-PCA": "run_floor",
+      "FP-ridge": "run_headline",
+      "CPA": "run_headline",
+      "scGen": "run_adapted",
+      "STATE": "run_adapted",
+      "CINEMA-OT": "run_adapted"
+    }
+  }
+}
