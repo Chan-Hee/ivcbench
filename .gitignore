@@ -16,6 +16,7 @@ outputs/
 !predictions/C1/*.npz
 !predictions/C2/*.npz
 !predictions/C3/*.npz
+!predictions/C4/*.npz
 !predictions/C5/*.npz
 *.pkl
 *.rds

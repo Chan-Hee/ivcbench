@@ -8,12 +8,13 @@ compact mean form is Pearson-Δ-exact and small enough (~KB–MB each) to ship i
 
 ## What the bundle layer covers
 
-Bundles are deposited for **27 of the 35 model-by-task census cells** — clusters **C1, C2, C3, and C5**,
-every model family that runs in those clusters (the universal floor — cell-mean, ctrl-pred, donor-shift,
-linear-PCA — plus scGen, PertAdapt, CPA, scPRAM, STATE, CellOT, GEARS, AttentionPert, scGPT, scFoundation,
-CINEMA-OT, FP-ridge, and chemCPA), across every biological unit of each task (C1 lineages, **C2 all 106
-donors including the heavy comparators**, C3 all five CRISPR datasets per split, C5 lineages and the
-compound-holdout). This is the layer a reviewer recomputes on a laptop with no data or GPU.
+Bundles are deposited for **all 35 model-by-task census cells** — clusters **C1–C5** — plus the two-member
+floor (cell-mean, linear-PCA) of each task, covering every model family (the universal floor — cell-mean,
+ctrl-pred, donor-shift, linear-PCA — plus scGen, PertAdapt, CPA, scPRAM, STATE, CellOT, GEARS, AttentionPert,
+scGPT, scFoundation, CINEMA-OT, FP-ridge, linear-shift-KOemb, and chemCPA), across every biological unit of
+each task (C1 lineages, **C2 all 106 donors including the heavy comparators**, C3 all five CRISPR datasets per
+split, **C4 the Frangieh RNA leave-one-KO folds**, C5 lineages and the compound-holdout). This is the layer a
+reviewer recomputes on a laptop with no data or GPU.
 
 The paper's strongest positive result reproduces directly: the **C2 donor-axis CellOT macro is 0.3666**
 recomputed from the 106 deposited per-donor bundles (census 0.3666), and scPRAM 0.1592, STATE 0.1830, CPA
@@ -27,8 +28,10 @@ pearson_delta, e_distance`):
 - **Exact (≤1e-4 vs census):** all deterministic baselines, FP-ridge, CINEMA-OT, and the deterministic
   heavy comparators on C2 (CellOT, scPRAM, STATE, CPA) — the per-donor macros above match cell-for-cell.
   All nine C3 models reproduce their per-dataset and 5-dataset macro Pearson-Δ exactly at the 10% holdout.
+  On the C4 RNA leave-one-KO folds, CellOT, CPA, scPRAM, STATE, linear-shift-KOemb, and the cell-mean /
+  linear-PCA floors reproduce exactly (the GEARS and AttentionPert graph fills land within ~0.003).
 - **Within seed variation (~0.003–0.05):** the stochastic latent / foundation / hybrid models whose
-  *deposited* census number is a seed-mean while a bundle captures a single seed (e.g. scGen on C1/C2,
+  *deposited* census number is a seed-mean while a bundle captures a single seed (e.g. scGen on C1/C2/C4,
   CPA/STATE/scGen on the C5 folds, scGPT on the larger C3 holdouts). The single-seed bundle reproduces the
   direction and magnitude but not the last digit of the seed-averaged census value; the seed-averaged number
   is the deposited `results/*/results_raw.csv`.
@@ -45,12 +48,10 @@ pearson_delta, e_distance`):
   bundle; CellOT's prediction and its scorer (`stratum_align` + `edist_clouds`, in `scripts/cellot_*.py`) are
   both deposited, and re-running the script reproduces it. (CellOT's *Pearson-Δ* still reproduces from its
   bundle, as above.)
-- **C4 — complex/Frangieh, Axis-2 RNA→surface modality decoupling (8 census cells).** This axis is the
-  RNA-versus-surface-protein decoupling diagnostic; its fold mixes readout modalities and is not scored
-  through the symmetric prediction-bundle wrapper. The eight C4 census Pearson-Δ values are reproduced from
-  `results/C4/results_raw.csv`, and the per-surface-marker protein recovery (Supplementary Table S8 / Fig 3)
-  from `results/_paper/immune_novelty/T1_C4_per_marker_protein_recovery.csv`. AttentionPert and GEARS on the
-  C4 fold were scored from `results_raw.csv` only and have no deposited bundle.
+- **C4 surface-protein readout.** The deposited C4 bundles are the **RNA** leave-one-KO modality — the
+  Axis-2 census cell that the 35-cell map reports. The separate *surface-protein* per-marker recovery
+  (Supplementary Table S8 / Fig 3) is a different readout and is reproduced from
+  `results/_paper/immune_novelty/T1_C4_per_marker_protein_recovery.csv`, not from these bundles.
 
 ## Two reproduction tiers
 

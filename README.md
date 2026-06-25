@@ -99,9 +99,9 @@ OP3-shaped example and writes a results table.
 
 Reproduction works at two levels.
 
-**From the deposited predictions (CPU, minutes).** 27 of the 35 model-by-task census cells (clusters C1, C2,
-C3, C5) ship the compact mean bundle that produced them under `predictions/`. The core environment recomputes
-their Pearson-Δ from those files, with no GPU and no raw data:
+**From the deposited predictions (CPU, minutes).** All 35 model-by-task census cells (clusters C1–C5) ship the
+compact mean bundle that produced them under `predictions/`. The core environment recomputes their Pearson-Δ
+from those files, with no GPU and no raw data:
 
 ```bash
 make setup
@@ -110,9 +110,9 @@ make reproduce-eval  # deposited prediction bundles -> per-(model, task) Pearson
 
 The deterministic baselines and the deterministic heavy comparators (CellOT, scPRAM, STATE, CPA on the donor
 axis) come back exactly — including the headline C2 donor CellOT macro, 0.3666 — and the stochastic models come
-back to within their seed variation. The remaining axes (energy distance, CellOT's bespoke asymmetric scorer,
-the C4 RNA→surface modality fold) are reproduced by other routes; `predictions/COVERAGE.md` is the
-cell-by-cell account, and the figure-to-script mapping is in [`REPRODUCE.md`](REPRODUCE.md).
+back to within their seed variation. The distributional axis (energy distance) and CellOT's bespoke asymmetric
+scorer are reproduced by other routes; `predictions/COVERAGE.md` is the cell-by-cell account, and the
+figure-to-script mapping is in [`REPRODUCE.md`](REPRODUCE.md).
 
 **By retraining (GPU).** To regenerate the predictions from scratch, set up each model family's environment and
 re-run that family's runner script under `scripts/`. Each family has its own environment because the upstream

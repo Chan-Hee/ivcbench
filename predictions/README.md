@@ -34,11 +34,12 @@ baselines (verified in `tests/test_reproduce_eval.py`).
 
 ## What is here
 
-- **`C1/`, `C2/`, `C3/`, `C5/`** — the deposited **compact mean bundles** that back the census: per-stratum
-  `pred_means`/`obs_means` (Pearson-Δ-exact, ~KB–MB each) for **27 of the 35** model-by-task cells, including all
-  106 C2 per-donor bundles for every heavy comparator and all five C3 CRISPR datasets per split. `make
-  reproduce-eval` recomputes their Pearson-Δ GPU-free. See [`COVERAGE.md`](COVERAGE.md) for the cell-by-cell
-  fidelity and for how the rest is reproduced (energy distance, CellOT's asymmetric scorer, the C4 modality axis).
+- **`C1/`–`C5/`** — the deposited **compact mean bundles** that back the census: per-stratum
+  `pred_means`/`obs_means` (Pearson-Δ-exact, ~KB–MB each) for **all 35** model-by-task cells, including all
+  106 C2 per-donor bundles for every heavy comparator, all five C3 CRISPR datasets per split, and the C4
+  Frangieh RNA leave-one-KO folds (plus the cell-mean / linear-PCA floors). `make reproduce-eval` recomputes
+  their Pearson-Δ GPU-free. See [`COVERAGE.md`](COVERAGE.md) for the cell-by-cell fidelity and for how the
+  other axes are reproduced (energy distance, CellOT's asymmetric scorer, the C4 surface-protein readout).
 - **`example/`** — a small *synthetic* bundle set (OP3-shaped fixture, the `make pilot` data) so `make
   reproduce-eval` runs out-of-the-box and demonstrates the per-cell format. These are **not** the paper's numbers.
 - The larger **per-cell bundles** (which additionally carry the energy-distance axis) are not shipped here; they are
@@ -63,13 +64,14 @@ python scripts/scpram_soskic.py --gpu 0    # ... etc.
 
 ## Reproduction coverage (what reproduces, and how)
 
-The deposited **compact mean bundles reproduce Pearson-Δ** for the C1/C2/C3/C5 census cells (27 of 35).
-Deterministic baselines, FP-ridge, CINEMA-OT, and the deterministic heavy comparators on C2 (CellOT, scPRAM,
-STATE, CPA) reproduce **exactly** (≤1e-4); stochastic latent/foundation models reproduce **within seed
-variation** (the deposited census value is a seed-mean, a bundle is one seed). The C2 donor-axis CellOT macro
-(0.3666, the paper's headline positive) reproduces exactly from the 106 per-donor bundles. The
-**energy-distance** axis, **CellOT's bespoke asymmetric 3-seed energy distance**, and the **C4 modality axis**
-are reproduced by other routes — [`COVERAGE.md`](COVERAGE.md) is the authoritative cell-by-cell account.
+The deposited **compact mean bundles reproduce Pearson-Δ** for all 35 census cells (clusters C1–C5).
+Deterministic baselines, FP-ridge, CINEMA-OT, and the deterministic heavy comparators (CellOT, scPRAM, STATE,
+CPA on the C2 donor axis; CellOT/CPA/scPRAM/STATE/linear-shift-KOemb on the C4 RNA fold) reproduce **exactly**
+(≤1e-4); stochastic latent/foundation/graph models reproduce **within seed variation** (the deposited census
+value is a seed-mean, a bundle is one seed). The C2 donor-axis CellOT macro (0.3666, the paper's headline
+positive) reproduces exactly from the 106 per-donor bundles. The **energy-distance** axis, **CellOT's bespoke
+asymmetric 3-seed energy distance**, and the **C4 surface-protein readout** are reproduced by other routes —
+[`COVERAGE.md`](COVERAGE.md) is the authoritative cell-by-cell account.
 
 **CellOT note (honest scope).** CellOT's *Pearson-Δ* reproduces from its bundle as above, but its deposited
 *distributional* score is a **3-seed mean** of a model-specific *asymmetric* energy distance (a single
