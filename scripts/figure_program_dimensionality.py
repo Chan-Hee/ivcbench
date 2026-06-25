@@ -82,7 +82,7 @@ def main():
         "Law predicts a POSITIVE slope (more low-rank → recovered).  Observed: flat / non-significant;\n"
         "the most low-rank program (effector-lymph, FVE-PC1=0.66) is essentially NOT recovered.")
     scatter_panel(
-        axes[1], "b", "Recovery vs program-shift signal (the real driver)",
+        axes[1], "b", "Recovery vs program-shift signal (signal magnitude)",
         "x = SD of observed program-Δ across perturbation strata",
         "obs_shift_sd", "across-stratum program-shift SD  (signal) →",
         DF,

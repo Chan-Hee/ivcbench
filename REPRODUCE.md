@@ -93,7 +93,7 @@ Supplementary **Tables** are S1, S2a, S2b, S3–S12.)*
 | **S7** | Donor axis: scPRAM vs CellOT, paired per-donor | `Supplementary_Table_S7_scpram_vs_cellot_donor_paired.csv` | `scpram_vs_cellot_donor_paired.csv` via `cellot_assemble.py` / `soskic_donor_postprocess.py` |
 | **S8** | Per-surface-marker protein recovery (PD-1/PD-L1; effect-size vs sign-match) | `Supplementary_Table_S8_per_marker_protein_recovery.csv` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv` + `c4_surface_marker_CIs.csv` via `c4_per_marker.py` |
 | **S9** | Per-lineage predictability (cell-context advantage localization) | `Supplementary_Table_S9_per_lineage_predictability.csv` | `immune_novelty/T3_per_lineage_predictability.csv` via `c5_loct_expand.py` |
-| **S10** | Headline-survivor table after BH/Holm multiplicity correction | `Supplementary_Table_S10_headline_multiplicity_adjusted.csv` | `headline_multiplicity_adjusted.csv` via `headline_multiplicity.py` |
+| **S10** | Headline-survivor table after BH/Holm multiplicity correction (two pre-specified families) | `Supplementary_Table_S10_headline_multiplicity_adjusted.csv` | `headline_multiplicity.py` byte-reproduces `results/_paper/headline_multiplicity_adjusted.csv` (two-family BH/Holm; H4 FP-ridge BH=0.0625 does not survive). The deposited `BiB_submission/` S10 is the journal-formatted view of that table (reordered columns, rounded display, T-task labels). |
 | **S11** | Per-program AUCell recovery vs observed-shift magnitude (the r = +0.87 law) + dimensionality proxies | `Supplementary_Table_S11_program_recovery_vs_magnitude.csv` | `program_recovery_vs_dimensionality.csv` via `program_recovery_vs_dimensionality.py` |
 | **S12** | Distributional-fidelity axis: per-(task, split, model) energy distance + Pearson-Δ | `Supplementary_Table_S12_energy_distance.csv` | assembled from per-cluster `results/{C1,C3,C4,C5}/results_raw.csv` distributional columns |
 
@@ -119,6 +119,38 @@ The analysis scripts (`newdata_cytokine_loco.py`, `chen_checkpoint_replication.p
 `cellot_donor_learning_curve.py`) read **raw** data and are included for provenance; the three figure
 scripts read only the deposited tables in `results/newdata/` (+ one Frangieh comparator in
 `results/_paper/`) and rebuild without raw data or a GPU.
+
+---
+
+## Retraining from scratch
+
+Everything above rebuilds from the deposited predictions with no GPU. To regenerate the predictions themselves
+by retraining every model, set up the per-family environments by hand and run each family's runner script.
+
+**Per-family environments.** Each model family has its own environment because the upstream implementations carry
+conflicting CUDA and PyTorch versions (they span CUDA 11.3 to 12.8); each environment carries its own CUDA
+runtime, so only a recent NVIDIA driver is needed.
+
+| Environment | Models |
+|---|---|
+| `ivc` (core, CPU) | run_cluster orchestration, floor baselines, FP-ridge, linear-shift-KOemb, metrics, assembly, figures |
+| `scperturbench_eval` (+ `_jaxgpu` for the GPU path) | scGen, CINEMA-OT |
+| `ivc-cpa` | CPA, chemCPA |
+| `cellot` | CellOT |
+| `ivc-scpram` | scPRAM |
+| `ivc-state` | STATE |
+| `scgpt` | scGPT, GEARS, AttentionPert |
+| `scfoundation` | scFoundation, PertAdapt |
+
+Run each model family's runner script (`scripts/{cellot,scpram,state,cpa,chemcpa,graph,cinemaot,pertadapt}_*.py`,
+plus `scripts/run_cluster.py` for the core-runner models) in its own environment from the table above; each
+runner inlines its own per-model commands and hyperparameters (caps, epochs, steps, seeds). The donor-axis
+models (STATE, scPRAM on Soskic) run one donor per GPU: each donor launches roughly two dozen internal workers,
+so more than two in parallel oversubscribes the host. CPA uses three seeds, the others one.
+
+**Stability.** We retrained every cell from scratch in an independent end-to-end run. The deterministic
+baselines reproduced exactly; the trained models reproduced their reported Pearson-Δ to within run-to-run
+variation (of order 0.003–0.01), and no verdict in the main figure changed.
 
 ---
 

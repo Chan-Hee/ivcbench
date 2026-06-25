@@ -35,7 +35,7 @@ def main(argv=None):
     a = ap.parse_args(argv)
     files = sorted({f for g in a.bundles for f in glob.glob(g, recursive=True)} or a.bundles)
     rows = [score_bundle(f) for f in files]
-    cols = ["cluster", "model", "split", "n_test_strata", "pearson_delta", "e_distance"]
+    cols = ["cluster", "model", "split", "dataset", "n_test_strata", "pearson_delta", "e_distance"]
     w = csv.DictWriter(a.out and open(a.out, "w", newline="") or sys.stdout, fieldnames=cols)
     w.writeheader()
     for r in rows:

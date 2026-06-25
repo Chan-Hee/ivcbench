@@ -1,0 +1,36 @@
+cluster,task,split,unit,n_unit,family,model,pearson_delta,floor_cell_mean,floor_linear_PCA,floor_mean,delta_vs_floor_mean,beats_both_floor_members,beats_floor_mean
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,Latent,CPA,0.7111,0.5896,0.7803,0.6849,0.0262,False,True
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,Latent,scGen,0.7497,0.5896,0.7803,0.6849,0.0647,False,True
+C2,donor/Soskic,donor (LODO),donor,106,Latent,CPA,0.1958,0.2598,0.0362,0.148,0.0478,False,True
+C2,donor/Soskic,donor (LODO),donor,106,OT,CellOT,0.3666,0.2598,0.0362,0.148,0.2186,True,True
+C2,donor/Soskic,donor (LODO),donor,106,Hybrid,STATE,0.183,0.2598,0.0362,0.148,0.035,False,True
+C2,donor/Soskic,donor (LODO),donor,106,Latent,scGen,0.147,0.2598,0.0362,0.148,-0.001,False,False
+C2,donor/Soskic,donor (LODO),donor,106,OT,scPRAM,0.1592,0.2598,0.0362,0.148,0.0112,False,True
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,AttentionPert,0.2244,0.4937,0.2966,0.3952,-0.1708,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,OT,CINEMA-OT,0.4579,0.4937,0.2966,0.3952,0.0627,False,True
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Latent,CPA,0.0586,0.4937,0.2966,0.3952,-0.3366,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,GEARS,0.1738,0.4937,0.2966,0.3952,-0.2213,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Hybrid,PertAdapt,-0.0014,0.4937,0.2966,0.3952,-0.3965,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Hybrid,STATE,-0.0206,0.4937,0.2966,0.3952,-0.4157,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Foundation,scFoundation,0.0444,0.4937,0.2966,0.3952,-0.3507,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Foundation,scGPT,0.2164,0.4937,0.2966,0.3952,-0.1788,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Latent,scGen,0.1049,0.4937,0.2966,0.3952,-0.2902,False,False
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Graph,AttentionPert,0.5098,0.6612,0.2833,0.4723,0.0376,False,True
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Latent,CPA,0.5348,0.6612,0.2833,0.4723,0.0625,False,True
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,OT,CellOT,0.5917,0.6612,0.2833,0.4723,0.1195,False,True
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Graph,GEARS,0.4404,0.6612,0.2833,0.4723,-0.0318,False,False
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Hybrid,STATE,0.0254,0.6612,0.2833,0.4723,-0.4469,False,False
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Deterministic shift,linear-shift-KOemb,0.6177,0.6612,0.2833,0.4723,0.1454,False,True
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Latent,scGen,0.5564,0.6612,0.2833,0.4723,0.0841,False,True
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,OT,scPRAM,0.3152,0.6612,0.2833,0.4723,-0.1571,False,False
+C5,small-mol/OP3,unseen-compound,compound,28,OT,CINEMA-OT,0.1718,0.1722,0.1498,0.161,0.0108,False,True
+C5,small-mol/OP3,unseen-compound,compound,28,Latent,CPA,0.1067,0.1722,0.1498,0.161,-0.0543,False,False
+C5,small-mol/OP3,unseen-compound,compound,28,Chemistry,FP-ridge,0.1642,0.1722,0.1498,0.161,0.0032,False,True
+C5,small-mol/OP3,unseen-compound,compound,28,Hybrid,STATE,0.0045,0.1722,0.1498,0.161,-0.1565,False,False
+C5,small-mol/OP3,unseen-compound,compound,28,Latent,scGen,0.0702,0.1722,0.1498,0.161,-0.0908,False,False
+C5,small-mol/OP3,unseen-compound,compound,28,Chemistry,chemCPA,0.116,0.1722,0.1498,0.161,-0.0449,False,False
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,OT,CINEMA-OT,0.2533,0.025,0.2694,0.1472,0.1061,False,True
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Latent,CPA,0.041,0.025,0.2694,0.1472,-0.1062,False,False
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Chemistry,FP-ridge,0.3874,0.025,0.2694,0.1472,0.2402,True,True
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Hybrid,STATE,0.0601,0.025,0.2694,0.1472,-0.0871,False,False
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Latent,scGen,0.1797,0.025,0.2694,0.1472,0.0325,False,True

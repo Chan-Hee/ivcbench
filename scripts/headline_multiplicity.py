@@ -1,12 +1,14 @@
 #!/usr/bin/env python
-"""PREREGISTRATION §4 global multiplicity correction over the pre-specified headline contrasts.
+"""PREREGISTRATION §4 multiplicity correction over the pre-specified headline contrasts.
 
 Gathers the RAW per-contrast p-values that EXIST in the deposited artifacts (recomputed
 deterministically from the deposited inputs, or read directly where a p is deposited),
 restricts to the maximal NON-RAGGED submatrix (headline contrasts that actually ran on the
 headline response-direction axis AND carry a deposited/recomputable raw p), then applies
-Benjamini-Hochberg AND Holm across that pre-specified set. Contrasts whose raw p is not
-deposited are listed as [MISSING] and EXCLUDED from the correction (never invented).
+Benjamini-Hochberg AND Holm WITHIN each of two pre-specified families — the headline
+floor-clearance tests (H1-H5) and the confirmatory contrasts (C2 donor, C5 compound-null) —
+matching the deposited Supplementary Table S10. Contrasts whose raw p is not deposited are
+listed as [MISSING] and EXCLUDED from the correction (never invented).
 
 Deposits results/_paper/headline_multiplicity_adjusted.csv.
 No fabrication: every raw_p traces to a deposited file (path logged) or is recomputed
@@ -122,53 +124,57 @@ rows.append(("C5_FPridge_compound_matching_null_Fisher", p_c5null,
              "recomputed: Fisher-combine 4 per-lineage perm_p from results/C5/ifn_shuffle_null.csv",
              f"per-lineage one-sided p={pv}; Fisher-combined (POS result, FP-ridge only)"))
 
-# ================= BH and Holm across the present (non-MISSING) headline set =================
-present = [(c, p) for (c, p, *_ ) in rows if p is not None]
-m = len(present)
-order = sorted(range(m), key=lambda i: present[i][1])
-ps = [present[i][1] for i in order]
-
-# Benjamini-Hochberg (monotone, capped at 1)
-bh = [0.0] * m
-running = 1.0
-for rank in range(m, 0, -1):
-    raw = ps[rank - 1]
-    val = min(raw * m / rank, running)
-    bh[rank - 1] = val
-    running = val
-# Holm (step-down, monotone, capped at 1)
-holm = [0.0] * m
-running = 0.0
-for rank in range(1, m + 1):
-    raw = ps[rank - 1]
-    val = max(running, min(raw * (m - rank + 1), 1.0))
-    holm[rank - 1] = val
-    running = val
+# ============ BH and Holm WITHIN each pre-specified family (not pooled) ============
+# Two pre-specified families: the headline floor-clearance tests (H1-H5) and the
+# confirmatory contrasts (C2 donor, C5 compound-null). Pooling them would over-shrink the
+# floor family and flip H4 (FP-ridge) to surviving; the deposited Supplementary Table S10
+# corrects within family, so H4 BH=0.0625 does NOT survive.
+def family_of(contrast):
+    return "headline_floor" if contrast.startswith("H") else "confirmatory"
 
 adj = {}
-for pos, i in enumerate(order):
-    contrast = present[i][0]
-    adj[contrast] = (round(bh[pos], 6), round(holm[pos], 6))
+for fam in ("headline_floor", "confirmatory"):
+    present = [(c, p) for (c, p, *_ ) in rows if p is not None and family_of(c) == fam]
+    m = len(present)
+    order = sorted(range(m), key=lambda i: present[i][1])
+    ps = [present[i][1] for i in order]
+    # Benjamini-Hochberg (monotone, capped at 1)
+    bh = [0.0] * m
+    running = 1.0
+    for rank in range(m, 0, -1):
+        val = min(ps[rank - 1] * m / rank, running)
+        bh[rank - 1] = val
+        running = val
+    # Holm (step-down, monotone, capped at 1)
+    holm = [0.0] * m
+    running = 0.0
+    for rank in range(1, m + 1):
+        val = max(running, min(ps[rank - 1] * (m - rank + 1), 1.0))
+        holm[rank - 1] = val
+        running = val
+    for pos, i in enumerate(order):
+        adj[present[i][0]] = (bh[pos], holm[pos])  # keep full precision (tiny confirmatory p's must not round to 0)
 
 # ================= write the deposit =================
 out = R / "_paper" / "headline_multiplicity_adjusted.csv"
 with out.open("w", newline="") as fh:
     w = csv.writer(fh)
-    w.writerow(["contrast", "raw_p", "BH_p", "Holm_p", "survives_FDR05", "source", "note"])
+    w.writerow(["contrast", "raw_p", "BH_p", "Holm_p", "survives_FDR05", "family", "source", "note"])
     for (contrast, p, source, note) in rows:
+        fam = family_of(contrast)
         if p is None:
-            w.writerow([contrast, "[MISSING]", "[MISSING]", "[MISSING]", "[MISSING]", source, note])
+            w.writerow([contrast, "[MISSING]", "[MISSING]", "[MISSING]", "[MISSING]", fam, source, note])
         else:
             bh_p, holm_p = adj[contrast]
             survives = bh_p < 0.05   # True/False, matching the deposited table
-            w.writerow([contrast, f"{p:.6g}", f"{bh_p:.6g}", f"{holm_p:.6g}", survives, source, note])
+            w.writerow([contrast, f"{p:.6g}", f"{bh_p:.6g}", f"{holm_p:.6g}", survives, fam, source, note])
 
-print(f"m (contrasts in correction) = {m}")
-print(f"{'contrast':45s} {'raw_p':>12s} {'BH_p':>12s} {'Holm_p':>12s}  surv")
+print(f"{'contrast':45s} {'raw_p':>12s} {'BH_p':>12s} {'Holm_p':>12s} {'family':>14s}  surv")
 for (contrast, p, *_ ) in rows:
+    fam = family_of(contrast)
     if p is None:
-        print(f"{contrast:45s} {'[MISSING]':>12s} {'[MISSING]':>12s} {'[MISSING]':>12s}   -")
+        print(f"{contrast:45s} {'[MISSING]':>12s} {'[MISSING]':>12s} {'[MISSING]':>12s} {fam:>14s}   -")
     else:
         bh_p, holm_p = adj[contrast]
-        print(f"{contrast:45s} {p:12.4g} {bh_p:12.4g} {holm_p:12.4g}  {'YES' if bh_p<0.05 else 'no'}")
+        print(f"{contrast:45s} {p:12.4g} {bh_p:12.4g} {holm_p:12.4g} {fam:>14s}  {'YES' if bh_p<0.05 else 'no'}")
 print(f"\nwrote {out}")

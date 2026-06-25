@@ -1,7 +1,7 @@
 cluster,dataset,lineage,scGen_pearson_delta,best_simple_model,best_simple_pearson_delta,gap_scGen_minus_simple,ci_overlap,winner,best_conditioned_model,best_conditioned_pearson_delta
-C1,kang_GSE96583,Mono_CD14,0.9169,linear-PCA,0.819,0.0979,False,scGen,,
-C1,kang_GSE96583,CD8T,0.745,donor-shift,0.722,0.023,True,simple/tie,,
-C1,kang_GSE96583,CD4T,0.7983,donor-shift,0.7854,0.013,True,simple/tie,,
+C1,kang_GSE96583,Mono_CD14,0.8843,linear-PCA,0.819,0.0653,False,scGen,,
+C1,kang_GSE96583,CD8T,0.7629,donor-shift,0.722,0.0409,True,simple/tie,,
+C1,kang_GSE96583,CD4T,0.7835,donor-shift,0.7854,-0.0019,True,simple/tie,,
 C1,kang_GSE96583,B,0.808,linear-PCA,0.8292,-0.0211,True,simple/tie,,
 C1,kang_GSE96583,NK,0.7367,donor-shift,0.7832,-0.0465,True,simple/tie,,
 C1,kang_GSE96583,Mk,0.5432,donor-shift,0.6031,-0.0599,True,simple/tie,,

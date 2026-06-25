@@ -1,20 +1,20 @@
 cluster,task,split,unit,n_unit,family,model,pearson_delta,floor_cell_mean,floor_linear_PCA,floor_mean,delta_vs_floor_mean,delta_vs_cell_mean,delta_vs_linear_PCA,beats_both_floor_members,beats_floor_mean
 C1,cytokine/Kang,cell-context (LOCT),lineage,8,Latent,CPA,0.7111,0.5896,0.7803,0.6849,0.0262,0.1215,-0.0692,False,True
 C1,cytokine/Kang,cell-context (LOCT),lineage,8,Latent,scGen,0.7645,0.5896,0.7803,0.6849,0.0795,0.1749,-0.0158,False,True
-C2,donor/Soskic,donor (LODO),donor,106,Latent,CPA,0.1966,0.2598,0.0362,0.148,0.0485,-0.0633,0.1603,False,True
-C2,donor/Soskic,donor (LODO),donor,106,OT,CellOT,0.3691,0.2598,0.0362,0.148,0.2211,0.1093,0.3329,True,True
+C2,donor/Soskic,donor (LODO),donor,106,Latent,CPA,0.1934,0.2598,0.0362,0.148,0.0453,-0.0665,0.1571,False,True
+C2,donor/Soskic,donor (LODO),donor,106,OT,CellOT,0.3666,0.2598,0.0362,0.148,0.2186,0.1068,0.3304,True,True
 C2,donor/Soskic,donor (LODO),donor,106,Hybrid,STATE,0.183,0.2598,0.0362,0.148,0.035,-0.0768,0.1468,False,True
 C2,donor/Soskic,donor (LODO),donor,106,Latent,scGen,0.1436,0.2598,0.0362,0.148,-0.0044,-0.1162,0.1074,False,False
 C2,donor/Soskic,donor (LODO),donor,106,OT,scPRAM,0.1592,0.2598,0.0362,0.148,0.0112,-0.1006,0.1229,False,True
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,AttentionPert,0.2139,0.4937,0.2966,0.3952,-0.1813,-0.2798,-0.0827,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,AttentionPert,0.2269,0.4937,0.2966,0.3952,-0.1682,-0.2668,-0.0697,False,False
 C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,OT,CINEMA-OT,0.4579,0.4937,0.2966,0.3952,0.0627,-0.0359,0.1613,False,True
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Latent,CPA,0.0735,0.4937,0.2966,0.3952,-0.3217,-0.4203,-0.2231,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,GEARS,0.2004,0.4937,0.2966,0.3952,-0.1948,-0.2934,-0.0962,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Latent,CPA,0.0767,0.4937,0.2966,0.3952,-0.3184,-0.417,-0.2198,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,GEARS,0.207,0.4937,0.2966,0.3952,-0.1882,-0.2867,-0.0896,False,False
 C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Hybrid,PertAdapt,-0.0014,0.4937,0.2966,0.3952,-0.3965,-0.4951,-0.2979,False,False
 C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Hybrid,STATE,-0.0206,0.4937,0.2966,0.3952,-0.4157,-0.5143,-0.3171,False,False
 C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Foundation,scFoundation,0.0437,0.4937,0.2966,0.3952,-0.3514,-0.45,-0.2528,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Foundation,scGPT,0.0582,0.4937,0.2966,0.3952,-0.3369,-0.4355,-0.2383,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Latent,scGen,0.0796,0.4937,0.2966,0.3952,-0.3156,-0.4141,-0.217,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Foundation,scGPT,0.1654,0.4937,0.2966,0.3952,-0.2298,-0.3284,-0.1312,False,False
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Latent,scGen,0.1049,0.4937,0.2966,0.3952,-0.2902,-0.3888,-0.1916,False,False
 C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Graph,AttentionPert,0.5113,0.6612,0.2833,0.4723,0.0391,-0.1499,0.228,False,True
 C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Latent,CPA,0.5348,0.6612,0.2833,0.4723,0.0625,-0.1265,0.2514,False,True
 C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,OT,CellOT,0.5917,0.6612,0.2833,0.4723,0.1195,-0.0695,0.3084,False,True

@@ -36,9 +36,9 @@ Fig. S1) to the main text and annotates the §2 sparsity headline directly on it
       at or below the floor and carries no ring; that is the one-shape finding: conditioning crosses
       the cell-context and donor barriers, never the unseen-perturbation barrier.
 
-  2b  The donor barrier in detail — per-donor CellOT minus the matched per-donor simple baseline on
-      the Soskic CD4 leave-one-donor-out task (n = 106). CellOT beats the matched baseline in 93 of
-      106 donors; mean gap +0.102 Pearson-delta [+0.083, +0.122]; paired Wilcoxon p = 4.7e-14.
+  2b  The donor barrier in detail — per-donor CellOT minus the per-donor CELL-MEAN FLOOR on the
+      Soskic CD4 leave-one-donor-out task (n = 106). CellOT clears the cell-mean floor in 93 of 106
+      donors; mean gap +0.107 Pearson-delta [+0.085, +0.129]; paired Wilcoxon p = 1.6e-13.
 
 Every plotted value is read from deposited source data; no hardcoded numbers. Vector primitives,
 true print points, editable text (pdf.fonttype 42), unicode minus. Output: results/_paper/
@@ -260,12 +260,25 @@ def load_cells():
         if score == score:  # not NaN
             cells[(model, col)] = (float(score), action)
 
-    # C1 cell-context (Kang LOCT)
+    # C1 cell-context (Kang LOCT). For scGen, prefer the deposited 3-SEED MEAN
+    # (multiseed_scgen_summary.csv) over the seed-0 value in results_raw, so the printed Kang cells
+    # match Table S9 / Note S3 (CD14 monocyte 0.884, not the seed-0 0.917). Other models / lineages
+    # without a multiseed row keep their seed-0 results_raw value.
+    ms_path = _resolve(GH / "results" / "_paper" / "multiseed_scgen_summary.csv",
+                       BM / "results" / "_paper" / "multiseed_scgen_summary.csv")
+    scgen_kang_mean = {}
+    if ms_path is not None:
+        _ms = pd.read_csv(ms_path)
+        _ms = _ms[(_ms.cluster == "C1") & _ms.lineage.notna() & (_ms.n_seed >= 2)]
+        scgen_kang_mean = {r.lineage: float(r.pearson_mean) for r in _ms.itertuples()}
     d1 = _ran("C1")
     for s in (x for x in d1.split.unique() if x.startswith("C1_loct")):
         lin = s.replace("C1_loct_", "")
         for _, r in d1[d1.split == s].iterrows():
-            put(r.baseline, f"C1·{lin}", r.pearson_delta, _norm_action(r.action))
+            score = r.pearson_delta
+            if r.baseline == "scGen" and lin in scgen_kang_mean:
+                score = scgen_kang_mean[lin]      # 3-seed mean (deposited), not seed-0
+            put(r.baseline, f"C1·{lin}", score, _norm_action(r.action))
 
     # C5 cell-context (OP3 LOCT) + C5 unseen-compound
     d5 = _ran("C5")
@@ -428,14 +441,14 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
     bar_colors = [DIV_CMAP(bnorm(v)) for v in g]
     axB.bar(x, g, width=1.0, color=bar_colors, edgecolor=CELL_EC, linewidth=0.12, zorder=3)
     axB.axhline(0.0, color=INK, lw=1.0, zorder=4)
-    axB.text(n - 1.5, -0.016, "matched simple baseline", ha="right", va="top",
+    axB.text(n - 1.5, -0.016, "cell-mean floor", ha="right", va="top",
              fontsize=7.0, color=GREY_MID, style="italic", zorder=8, clip_on=False)
     axB.axhspan(summ["lo"], summ["hi"], color=NAVY, alpha=0.07, zorder=1)
     axB.axhline(summ["mean"], color=NAVY_DARK, lw=1.0, ls=(0, (4, 2)), zorder=4)
     axB.set_xlim(-0.5, n - 0.5)
     axB.set_ylim(g.min() * 1.25, max(g.max(), summ["hi"]) * 1.18)
     axB.set_xlabel("donor (Soskic CD4 leave-one-donor-out), sorted by gap", fontsize=7.6, color=INK)
-    axB.set_ylabel("CellOT − matched baseline\n(Pearson-Δ)", fontsize=7.6, color=INK)
+    axB.set_ylabel("CellOT − cell-mean floor\n(Pearson-Δ)", fontsize=7.6, color=INK)
     despine(axB)
     axB.tick_params(labelsize=7.0)
 
@@ -461,7 +474,7 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
     mant = pw / (10 ** expo)
     p_txt = f"{mant:.1f} × 10$^{{{_MINUS}{abs(expo)}}}$"
     lines = [(f"{wins} of {n} donors", "head"),
-             ("over the matched simple baseline", "sub"),
+             ("over the cell-mean floor", "sub"),
              (f"mean gap {fmt_signed(summ['mean'])} "
               f"[{fmt_signed(summ['lo'])}, {fmt_signed(summ['hi'])}]", "body"),
              (f"paired Wilcoxon p = {p_txt}", "body")]
@@ -954,7 +967,7 @@ def main():
         assert Image.open(p).mode == "RGB", f"{p.name} is not RGB after flatten"
     print(f"wrote {base}.png/.pdf/.tiff   ({fig_w:.2f} x {fig_h:.2f} in; cell {cell} in; {nM} rows)")
     print(f"  2a verdict cells: CellOT @ T2 Soskic donor; FP-ridge @ T5 OP3 cell-context")
-    print(f"  2b donor: {wins}/{n} over matched baseline; mean {summ['mean']:+.3f} "
+    print(f"  2b donor: {wins}/{n} over cell-mean floor; mean {summ['mean']:+.3f} "
           f"[{summ['lo']:+.3f},{summ['hi']:+.3f}]; paired Wilcoxon p={pw:.2e}")
 
 

@@ -95,21 +95,31 @@ make pilot
 `make test` runs the lightweight leak-audit and reproduction tests. `make pilot` runs a small synthetic
 OP3-shaped example and writes a results table.
 
-## Reproducing figures from deposited tables
+## Reproducing the results
 
-The deposited CSV/JSON files under `results/` are sufficient to regenerate the manuscript figures and
-tables without downloading raw data.
+Reproduction works at two levels.
 
-Examples:
+**From the deposited predictions (CPU, minutes).** 27 of the 35 model-by-task census cells (clusters C1, C2,
+C3, C5) ship the compact mean bundle that produced them under `predictions/`. The core environment recomputes
+their Pearson-Δ from those files, with no GPU and no raw data:
 
 ```bash
-python scripts/figure_framework.py
-python scripts/make_figure2_landscape_verdict.py
-python scripts/figure_immune_blindspot.py
+make setup
+make reproduce-eval  # deposited prediction bundles -> per-(model, task) Pearson-Δ scores
 ```
 
-For the complete mapping from manuscript items to scripts and input files, see
-[`REPRODUCE.md`](REPRODUCE.md).
+The deterministic baselines and the deterministic heavy comparators (CellOT, scPRAM, STATE, CPA on the donor
+axis) come back exactly — including the headline C2 donor CellOT macro, 0.3666 — and the stochastic models come
+back to within their seed variation. The remaining axes (energy distance, CellOT's bespoke asymmetric scorer,
+the C4 RNA→surface modality fold) are reproduced by other routes; `predictions/COVERAGE.md` is the
+cell-by-cell account, and the figure-to-script mapping is in [`REPRODUCE.md`](REPRODUCE.md).
+
+**By retraining (GPU).** To regenerate the predictions from scratch, set up each model family's environment and
+re-run that family's runner script under `scripts/`. Each family has its own environment because the upstream
+implementations carry conflicting CUDA and PyTorch versions; the environment table and the individual per-model
+commands and hyperparameters are listed in [`REPRODUCE.md`](REPRODUCE.md). An independent end-to-end rerun
+reproduced the reported numbers within the trained models' stochastic variation, with the deterministic cells
+matching exactly.
 
 ## Benchmark workflow
 
@@ -149,19 +159,6 @@ scripts are listed in [`data/README.md`](data/README.md) and [`scripts/datasets.
 | Human Cytokine Dictionary | Parse + Allen / theislab summary table | Used for the leave-one-cytokine analysis. |
 | Frangieh Perturb-CITE-seq | Zenodo `10.5281/zenodo.13350497` | Tumour-cell checkpoint analysis. |
 | McCarthy/OP3 PBMC chemical perturbation | GEO `GSE279945` | Chemical perturbation task. |
-
-## Prediction-bundle reproduction
-
-The figure tables can be regenerated directly from `results/`. For an additional check of the metric layer,
-`scripts/reproduce_eval.py` recomputes Pearson-Delta and energy distance from saved prediction bundles.
-
-```bash
-make reproduce-eval
-python scripts/reproduce_eval.py 'predictions/**/*.npz' -o reproduced_results.csv
-```
-
-The synthetic examples in `predictions/` are included in the tests. Full C1-C5 prediction bundles are archived
-with the deposited result tables rather than stored directly in the GitHub repository.
 
 ## Citation
 

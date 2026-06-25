@@ -1,5 +1,5 @@
 lineage,scGen,scGen_lo,scGen_hi,best_simple_model,best_simple,best_simple_lo,best_simple_hi,gap,ci_overlap
-Mono_CD14,0.9169,0.9105,0.9225,linear-PCA,0.819,0.8129,0.8248,0.0979,False
+Mono_CD14,0.884,0.835,0.911,linear-PCA,0.819,0.8129,0.8248,0.065,False
 CD8T,0.745,0.6954,0.7865,donor-shift,0.722,0.6584,0.7718,0.023,True
 CD4T,0.7983,0.7734,0.8225,donor-shift,0.7854,0.7695,0.7998,0.013,True
 B,0.808,0.7989,0.8177,linear-PCA,0.8292,0.8162,0.8413,-0.0211,True

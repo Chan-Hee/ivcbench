@@ -20,37 +20,37 @@
   "C3_perturbation": {
     "n_datasets": 5,
     "n_cells": 15,
-    "mean_gap": -0.2410039303707108,
+    "mean_gap": -0.1883712126796959,
     "cluster_ci": [
-      -0.28860486140150254,
-      -0.19187596807798385
+      -0.24800132443404035,
+      -0.11961198691494553
     ],
     "boot_neg_frac": 1.0,
     "cells_cond_wins": 0,
-    "vs_primary_floor_mean": -0.2410039303707108,
+    "vs_primary_floor_mean": -0.1883712126796959,
     "floor_winner_counts": {
       "cell-mean": 15
     }
   },
   "C3_leave_one_dataset_out": {
     "chen": {
-      "mean_gap": -0.24082641218143408,
+      "mean_gap": -0.20000163789921097,
       "all_negative": true
     },
     "mccutcheon_CRISPRa": {
-      "mean_gap": -0.23615051356955843,
+      "mean_gap": -0.17540544311905296,
       "all_negative": true
     },
     "mccutcheon_CRISPRi": {
-      "mean_gap": -0.2470164079357177,
+      "mean_gap": -0.1814584175688858,
       "all_negative": true
     },
     "schmidt": {
-      "mean_gap": -0.2618010955175396,
+      "mean_gap": -0.21746600486205123,
       "all_negative": true
     },
     "shifrut": {
-      "mean_gap": -0.2192252226493042,
+      "mean_gap": -0.16752455994927862,
       "all_negative": true
     }
   },
@@ -95,11 +95,13 @@
       "linear-PCA": "run_headline",
       "GEARS": "run_headline",
       "AttentionPert": "run_headline",
+      "scGPT": "run_headline",
+      "scFoundation": "run_headline",
       "scGen": "run_adapted",
       "CPA": "run_adapted",
       "STATE": "run_headline",
-      "CINEMA-OT": "run_floor",
-      "scGPT": "run_headline"
+      "PertAdapt": "run_headline",
+      "CINEMA-OT": "run_floor"
     },
     "C4": {
       "ctrl-pred": "run_headline",

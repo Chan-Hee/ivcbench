@@ -86,7 +86,7 @@ def score_bundle(path):
     d = np.load(path, allow_pickle=True)
     ctrl = np.asarray(d["control_mean"], np.float64)
     excl = np.asarray(d["exclude_gene_idx"], int) if "exclude_gene_idx" in d.files else None
-    meta = {k: (d[k].item() if d[k].shape == () else d[k]) for k in ("cluster", "model", "split") if k in d.files}
+    meta = {k: (d[k].item() if d[k].shape == () else d[k]) for k in ("cluster", "model", "split", "dataset") if k in d.files}
     if "pred_cells" in d.files:
         pred = np.asarray(d["pred_cells"], np.float64); obs = np.asarray(d["test_cells"], np.float64)
         sid = np.asarray(d["cell_strata"]); n_strata = len(np.unique(sid))
@@ -105,5 +105,5 @@ def score_bundle(path):
         sid = np.arange(obs.shape[0]); n_strata = obs.shape[0]
         pr = pearson_delta(pred, obs, ctrl, sid, exclude_genes=excl)
         ed = float("nan")
-    return {**{k: str(meta.get(k, "")) for k in ("cluster", "model", "split")},
+    return {**{k: str(meta.get(k, "")) for k in ("cluster", "model", "split", "dataset")},
             "n_test_strata": int(n_strata), "pearson_delta": pr["macro"], "e_distance": ed}
