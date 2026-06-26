@@ -20,6 +20,29 @@ simple pre-specified baselines, including a two-member "floor" used for the main
 
 ![Benchmark overview](results/_paper/figure1_benchmark_process.png)
 
+## Reproduce in one command
+
+A `Containerfile` ships in the repository. It builds a GPU-free image that carries the deposited prediction
+bundles and the analysis environment, so you can recompute the headline numbers without installing anything
+locally:
+
+```bash
+podman build -t ivcbench .
+podman run --rm ivcbench
+```
+
+That recomputes the 35-cell census (the per-(model, task) Pearson-Δ) from the bundles and writes
+`reproduced_results.csv` inside the container. There is no conda step, no GPU, and no raw single-cell data.
+To keep the output on the host, mount a directory and point the script at it:
+
+```bash
+podman run --rm -v "$PWD/out:/ivcbench/out" ivcbench \
+  .venv/bin/python scripts/reproduce_eval.py 'predictions/**/*.npz' -o out/reproduced_results.csv
+```
+
+`docker` works the same way in place of `podman`. This is the top rung of the reproduction ladder below; the
+other rungs trade a container for a local environment, figures, or full retraining.
+
 ## Repository contents
 
 | Path | Contents |
@@ -54,7 +77,7 @@ CRISPR tasks, explicit chemistry conditioning does not rescue the unseen-compoun
 multi-dimensional immune programs do not transfer cleanly across contexts. The type-I interferon result is
 treated separately because it is close to a coarse mean-shift response.
 
-Additional checks in the release examine three external or partially independent settings: leave-one-cytokine
+The release also examines three external or partially independent settings: a leave-one-cytokine
 analysis on the Human Cytokine Dictionary summary table, the Chen FOXP3 Perturb-icCITE-seq checkpoint
 replication, and a CellOT donor learning curve on the Soskic dataset. These analyses are included for
 corroboration and provenance rather than as additional submitted supplementary figures.
@@ -82,7 +105,7 @@ pip install -e .
 Several model families require their own environments because their upstream implementations have conflicting
 Python, PyTorch, and CUDA requirements. The corresponding runner scripts are kept under `scripts/` to document
 how the submitted result tables were generated. The core `environment.yml` and `requirements.txt` are not
-intended to reproduce every heavy training environment.
+meant to reproduce every heavy training environment.
 
 ## Quick check
 
@@ -95,32 +118,36 @@ make pilot
 `make test` runs the lightweight leak-audit and reproduction tests. `make pilot` runs a small synthetic
 OP3-shaped example and writes a results table.
 
-## Reproducing the results
+## Reproduction ladder
 
-Reproduction works at two levels.
+The release is built so you can reproduce as much or as little as you want, easiest first. Each rung goes one
+step deeper, and you can stop at whichever one answers your question.
 
-**From the deposited predictions (CPU, minutes).** All 35 model-by-task census cells (clusters C1–C5) ship the
-compact mean bundle that produced them under `predictions/`. The core environment recomputes their Pearson-Δ
-from those files, with no GPU and no raw data:
+**Rung 1: one command, no local setup.** Build and run the container as shown in
+[Reproduce in one command](#reproduce-in-one-command) above. This recomputes the 35-cell census from the
+deposited bundles with no conda, no GPU, and no raw data, and writes `reproduced_results.csv`. For most
+readers this is enough to confirm the headline numbers.
 
-```bash
-make setup
-make reproduce-eval  # deposited prediction bundles -> per-(model, task) Pearson-Δ scores
-```
+**Rung 2: a local environment.** If you would rather not use a container, install the core environment with
+`environment.yml` or `requirements.txt` followed by `pip install -e .` (see [Installation](#installation)),
+then run `make reproduce-eval`. This is the same recomputation as rung 1, run directly on your machine instead
+of inside an image. The deterministic baselines and the deterministic heavy comparators (CellOT, scPRAM,
+STATE, CPA on the donor axis) come back exactly, including the headline C2 donor CellOT macro of 0.3666, and
+the stochastic models come back to within their seed variation. The distributional axis (energy distance) and
+CellOT's bespoke asymmetric scorer are reproduced by other routes. `predictions/COVERAGE.md` is the
+cell-by-cell account of what reproduces and how.
 
-The deterministic baselines and the deterministic heavy comparators (CellOT, scPRAM, STATE, CPA on the donor
-axis) come back exactly — including the headline C2 donor CellOT macro, 0.3666 — and the stochastic models come
-back to within their seed variation. The distributional axis (energy distance) and CellOT's bespoke asymmetric
-scorer are reproduced by other routes; `predictions/COVERAGE.md` is the cell-by-cell account, and the
-figure-to-script mapping is in [`REPRODUCE.md`](REPRODUCE.md).
+**Rung 3: figures and tables.** To rebuild the manuscript figures and the deposited derived tables from the
+result files, run the scripts under `scripts/`. The figure-to-script mapping lives in
+[`REPRODUCE.md`](REPRODUCE.md). This rung is also GPU-free and uses only the core environment from rung 2.
 
-**By retraining (GPU).** To regenerate the predictions from scratch, set up each model family's environment and
-re-run that family's runner script under `scripts/`. Each family has its own environment because the upstream
-implementations carry conflicting CUDA and PyTorch versions; the environment table (with each model's upstream
-repository), the `$IVCBENCH_*` runner variables, and the per-model commands and hyperparameters are in
-[`REPRODUCE.md`](REPRODUCE.md). An independent end-to-end rerun
-reproduced the reported numbers within the trained models' stochastic variation, with the deterministic cells
-matching exactly.
+**Rung 4: retraining a model from scratch (GPU).** This is the heavy path. Each model family has its own
+conda environment, because the upstream implementations carry conflicting Python, PyTorch, and CUDA pins, so
+one container cannot hold them all; this is the same arrangement scPerturBench uses. To retrain one model,
+build that family's environment from its upstream repository, fetch the raw data, set the family's
+`$IVCBENCH_*` variables, and run its runner under `scripts/`, then re-score with `make reproduce-eval`.
+[`REPRODUCE.md`](REPRODUCE.md) carries the per-family environment table with each model's upstream
+repository, the `$IVCBENCH_*` variable reference, and the per-model commands and hyperparameters.
 
 ## Benchmark workflow
 

@@ -1,0 +1,13 @@
+# Keep the image to the source, the deposited prediction bundles, and the analysis env.
+.git
+.venv
+**/__pycache__
+**/*.pyc
+*.egg-info
+reproduced_results.csv
+out/
+# raw single-cell data is never shipped (data/ holds only download scripts + manifests)
+data/**/*.h5ad
+data/**/*.h5
+data/**/*.loom
+data/**/*.zarr
