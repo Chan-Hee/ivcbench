@@ -18,8 +18,10 @@ self-describing .npz (the `ivcbench` prediction-bundle format, one per cluster x
 
     python scripts/reproduce_eval.py 'predictions/**/*.npz' -o reproduced_results.csv
 
-recomputes per-(cluster, model, split) Pearson-Delta and energy distance with the SAME frozen metric code used
-for the paper (ivcbench.metrics). Compare against the deposited results_raw.csv to confirm every headline number.
+recomputes per-(cluster, model, split) Pearson-Delta with the SAME frozen metric code used for the paper
+(ivcbench.metrics); energy distance is recomputed ONLY for the per-cell bundle variant, so the deposited
+compact mean bundles leave the e_distance column empty (Pearson-Delta only). The Pearson-Delta rows aggregate
+to the 35-cell headline census; scripts/check_consistency.py confirms they reproduce the deposited numbers.
 """
 from __future__ import annotations
 import argparse, csv, glob, sys
@@ -35,8 +37,8 @@ def main(argv=None):
     a = ap.parse_args(argv)
     import os
     files = sorted({f for g in a.bundles for f in glob.glob(g, recursive=True)} or a.bundles)
-    # predictions/example holds 4 format-demo toy bundles (a copied LOCT fold) — they document the
-    # .npz layout, they are NOT census members. Keep them out of the reproduced rows.
+    # predictions/example holds 4 format-demo toy bundles (a copied LOCT fold); they document the
+    # .npz layout but are NOT census members. Keep them out of the reproduced rows.
     files = [f for f in files if os.sep + "example" + os.sep not in f]
     rows = [score_bundle(f) for f in files]
     cols = ["cluster", "model", "split", "dataset", "n_test_strata", "pearson_delta", "e_distance"]

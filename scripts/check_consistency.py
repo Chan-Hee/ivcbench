@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deposit consistency gate — the census must always equal what the bundles re-score to.
+"""Deposit consistency gate: the census must always equal what the bundles re-score to.
 
 Single source of truth = the deposited prediction bundles. `assemble_cross_cluster.build()`
 re-scores them (GPU-free) and assembles the 35-cell headline; this gate rebuilds that table
@@ -66,7 +66,7 @@ def check():
         problems.append(f"floor-clearing cells {sorted(clearers)} != expected {sorted(FLOOR_CLEARERS)}")
 
     # (4) the per-cluster results_raw.csv the figures read must agree with the bundles at display
-    # precision (scripts/sync_results_raw.py enforces this) — guards the figures from drifting.
+    # precision (scripts/sync_results_raw.py enforces this), guarding the figures from drifting.
     from sync_results_raw import drift
     for rel, model, key, old, new in drift():
         problems.append(f"results_raw drift: {rel} {model} {key} = {old} != bundle {new:.4f}")

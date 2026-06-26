@@ -1,7 +1,7 @@
 # Build context for the GPU-free EVAL image (Containerfile / `podman build -t ivcbench .`).
 # This image only needs the source, the deposited prediction bundles, and the analysis env, so the
 # two heavy trees are excluded outright: build/ holds the multi-GB conda-pack tarballs for the
-# training image, and data/ holds the raw single-cell datasets — neither is read when re-scoring the
+# training image, and data/ holds the raw single-cell datasets; neither is read when re-scoring the
 # bundles. Keeping them out is what makes the eval build small (~200 MB context) and fast. The
 # training image uses a separate ignore that re-includes build/train_envs/ (.dockerignore.train,
 # wired in scripts/build_train_image.sh).
