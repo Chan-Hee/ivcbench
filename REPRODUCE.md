@@ -1,6 +1,6 @@
 # Reproducing the figures and tables
 
-Every figure and Supplementary Table is rebuilt **from the deposited result files in `results/`** — no
+Every figure and Supplementary Table is rebuilt **from the deposited result files in `results/`**; no
 raw data and no model re-runs are required. Run each script from the repository root with the `ivc`
 environment active (`conda activate ivc` or the `.venv`), e.g.:
 
@@ -15,9 +15,9 @@ and the real loaders; they are included for provenance but their outputs are alr
 **Final manuscript layout (binding).** The submission is **3 main figures + 8 supplementary figures
 (S1–S8) + 12 Supplementary Tables (S1, S2a, S2b, S3–S12)**:
 
-- **Fig 1** — benchmark framework (`figure_framework.py`)
-- **Fig 2** — generalization map + CellOT donor CDF (`make_figure2_landscape_verdict.py`)
-- **Fig 3** — immune blind-spot map (`figure_immune_blindspot.py`)
+- **Fig 1**: benchmark framework (`figure_framework.py`)
+- **Fig 2**: generalization map + CellOT donor CDF (`make_figure2_landscape_verdict.py`)
+- **Fig 3**: immune blind-spot map (`figure_immune_blindspot.py`)
 
 The full per-cluster figure plate (`figure_landscape / ranking / cellcontext / perturbation /
 donor_decision / within_family_fit`) is retained for provenance and feeds several of the S-figures
@@ -33,9 +33,9 @@ Supplementary Notes/Tables, not as numbered supplementary figures.
 
 | Main figure | Script (`scripts/`) | Output (`results/_paper/`) | Reads (deposited) |
 |---|---|---|---|
-| **Fig 1 — Benchmark framework** | `figure_framework.py` | `figure_framework.{png,pdf}` | `results/{C1,C3,C4,C5}/results_raw.csv` (method / lineage / donor / split counts) |
-| **Fig 2 — Generalization map + donor CDF** | `make_figure2_landscape_verdict.py` | `figure2_landscape_verdict.{png,pdf,tiff}` | (a) 35-cell map (32 conditioned + 3 CINEMA-OT comparators) from `cross_cluster_headline.csv`; (b) CellOT donor CDF from `cellot_soskic_raw.csv` + `cellot_summary.csv` + `cellot_vs_floor_donor_paired.csv`, paired-Wilcoxon p in `headline_multiplicity_adjusted.csv` |
-| **Fig 3 — Immune blind-spot map** | `figure_immune_blindspot.py` | `figure_immune_blindspot.{png,pdf}` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv`, `immune_novelty/T2_per_program_AUCell_map.csv`, `immune_novelty/T3_per_lineage_predictability.csv`, `results/C3/program_null.csv`, `results/C5/results_raw.csv`, `multiseed_scgen_summary.csv` |
+| **Fig 1: Benchmark framework** | `figure_framework.py` | `figure_framework.{png,pdf}` | `results/{C1,C3,C4,C5}/results_raw.csv` (method / lineage / donor / split counts) |
+| **Fig 2: Generalization map + donor CDF** | `make_figure2_landscape_verdict.py` | `figure2_landscape_verdict.{png,pdf,tiff}` | (a) 35-cell map (32 conditioned + 3 CINEMA-OT comparators) from `cross_cluster_headline.csv`; (b) CellOT donor CDF from `cellot_soskic_raw.csv` + `cellot_summary.csv` + `cellot_vs_floor_donor_paired.csv`, paired-Wilcoxon p in `headline_multiplicity_adjusted.csv` |
+| **Fig 3: Immune blind-spot map** | `figure_immune_blindspot.py` | `figure_immune_blindspot.{png,pdf}` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv`, `immune_novelty/T2_per_program_AUCell_map.csv`, `immune_novelty/T3_per_lineage_predictability.csv`, `results/C3/program_null.csv`, `results/C5/results_raw.csv`, `multiseed_scgen_summary.csv` |
 
 ---
 
@@ -43,7 +43,7 @@ Supplementary Notes/Tables, not as numbered supplementary figures.
 
 **S1–S8 are the submitted supplementary figures** (md5-identical to `BiB_submission/figures/`).
 **S9–S13 below are additional analyses deposited as release provenance; they are NOT part of the
-submitted 8-figure supplement** — in the manuscript these analyses appear as Supplementary
+submitted 8-figure supplement**; in the manuscript these analyses appear as Supplementary
 Notes/Tables, not as numbered supplementary figures. Each row: **S-number → generating script →
 backing data file**; every script and file named below is present in this release (verified).
 
@@ -104,14 +104,14 @@ Supplementary **Tables** are S1, S2a, S2b, S3–S12.)*
 The three new-data supplementary figures extend the benchmark's central law
 (*conditioning helps cell/donor context, not unseen biology*) onto three independent datasets:
 
-- **S11 — unseen-cytokine LOCO** (`newdata_cytokine_loco.py`): leave-one-cytokine-out over the Human
+- **S11: unseen-cytokine LOCO** (`newdata_cytokine_loco.py`): leave-one-cytokine-out over the Human
   Cytokine Dictionary summary table (`data/human_cytokine_dict/hcd_mini.csv`, raw). It separates the
-  **two conditioning regimes** — annotation-only "truly novel" cytokines sit at/below the floor (the law
+  **two conditioning regimes**: annotation-only "truly novel" cytokines sit at/below the floor (the law
   holds), while a cytokine observed in *other* celltypes transfers above it. Outputs in `results/newdata/`.
-- **S12 — Chen checkpoint replication** (`chen_checkpoint_replication.py`): an n = 2 surface-protein
+- **S12: Chen checkpoint replication** (`chen_checkpoint_replication.py`): an n = 2 surface-protein
   readout replication on the Chen FOXP3 Perturb-icCITE-seq data (`data/C3/chen`, access-controlled),
   scored on the same surface-marker recovery metric as C4/Frangieh.
-- **S13 — CellOT donor learning curve** (`cellot_donor_learning_curve.py`): the donor-count sweep
+- **S13: CellOT donor learning curve** (`cellot_donor_learning_curve.py`): the donor-count sweep
   {8,16,32,64,96} on Soskic, two seeds on two GPUs, showing how the CellOT donor-axis win scales with the
   number of training donors. The merged/summary CSVs are deposited; the figure rebuilds with no GPU.
 
@@ -144,7 +144,7 @@ model is in the header of its runner script under `scripts/`.
 | `scperturbench_eval` (+ `_jaxgpu` for the GPU path) | scGen, CINEMA-OT | `theislab/scgen`; CINEMA-OT via the scPerturBench eval harness |
 | `ivc-state` | STATE | Arc Institute **State** state-transition model (`scripts/state_*.py`) |
 | `scgpt` | scGPT, GEARS, AttentionPert | `bowang-lab/scGPT`, `snap-stanford/GEARS`, AttentionPert (`scripts/graph_frangieh.py`) |
-| `scfoundation` | scFoundation, PertAdapt | `biomap-research/scFoundation`; PertAdapt (Bai et al. 2025) — official artifacts per `data/pertadapt/official/PROVENANCE.md` (`scripts/pertadapt_validate.py`) |
+| `scfoundation` | scFoundation, PertAdapt | `biomap-research/scFoundation`; PertAdapt (Bai et al. 2025); official artifacts per `data/pertadapt/official/PROVENANCE.md` (`scripts/pertadapt_validate.py`) |
 
 Run each model family's runner script (`scripts/{cellot,scpram,state,cpa,chemcpa,graph,cinemaot,pertadapt}_*.py`,
 plus `scripts/run_cluster.py` for the core-runner models) in its own environment from the table above; each
@@ -160,9 +160,9 @@ when retraining:
 |---|---|
 | `IVCBENCH_KANG_PATH`, `IVCBENCH_SOSKIC_PATH`, `IVCBENCH_OP3_PATH`, `IVCBENCH_FRANGIEH_DIR` | raw dataset locations (download per [`data/README.md`](data/README.md)) |
 | `IVCBENCH_SCPERTURBENCH_DATASET_DIR`, `IVCBENCH_GENE2GO`, `IVCBENCH_SCFOUNDATION_CKPT` | scPerturBench data dir, GO mapping (GEARS/PertAdapt), scFoundation checkpoint |
-| `IVCBENCH_CELLOT_PY`, `IVCBENCH_IVC_SCPRAM_PYTHON`, `IVCBENCH_SCPERTURBENCH_EVAL_PYTHON` | per-family Python interpreter — point at that conda env's `bin/python` |
+| `IVCBENCH_CELLOT_PY`, `IVCBENCH_IVC_SCPRAM_PYTHON`, `IVCBENCH_SCPERTURBENCH_EVAL_PYTHON` | per-family Python interpreter, pointing at that conda env's `bin/python` |
 | `IVCBENCH_PRED_DUMP`, `IVCBENCH_PRED_DUMP_MEANS` | dump predictions to a directory; `=1` writes the **compact per-stratum mean bundles** (the deposited `predictions/` layer that `make reproduce-eval` re-scores) |
-| `IVCBENCH_SEEDS`, `IVCBENCH_<MODEL>_EPOCHS` / `_MAXCELLS` / `_STEPS` (e.g. `IVCBENCH_CPA_EPOCHS`, `IVCBENCH_SCGEN_EPOCHS`, `IVCBENCH_STATE_STEPS`) | optional overrides — each runner has the paper defaults inlined, so these are only for re-tuning |
+| `IVCBENCH_SEEDS`, `IVCBENCH_<MODEL>_EPOCHS` / `_MAXCELLS` / `_STEPS` (e.g. `IVCBENCH_CPA_EPOCHS`, `IVCBENCH_SCGEN_EPOCHS`, `IVCBENCH_STATE_STEPS`) | optional overrides; each runner has the paper defaults inlined, so these are only for re-tuning |
 | `IVCBENCH_PA_REPO`, `IVCBENCH_PA_GO_MASK_NPZ`, `IVCBENCH_PA_ADAMSON_DIR` | PertAdapt upstream repo + its official artifacts |
 
 So a from-scratch run of one model is: build that family's env from the upstream repo above → set its data-path
@@ -194,5 +194,5 @@ variation (of order 0.003–0.01), and no verdict in the main figure changed.
 - Heavy per-family model runners (`scripts/{cellot,scpram,state,cpa,chemcpa,graph,cinemaot,pertadapt}_*.py`
   and `scripts/cellot_donor_learning_curve.py`) are included for provenance. They require GPU, per-family
   conda environments, and the raw data, and read external paths from `$IVCBENCH_*` environment variables.
-  They are **not** needed to rebuild any figure or Supplementary Table above — those are reproduced from the
+  They are **not** needed to rebuild any figure or Supplementary Table above; those are reproduced from the
   deposited tables only.
