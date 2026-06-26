@@ -116,8 +116,9 @@ figure-to-script mapping is in [`REPRODUCE.md`](REPRODUCE.md).
 
 **By retraining (GPU).** To regenerate the predictions from scratch, set up each model family's environment and
 re-run that family's runner script under `scripts/`. Each family has its own environment because the upstream
-implementations carry conflicting CUDA and PyTorch versions; the environment table and the individual per-model
-commands and hyperparameters are listed in [`REPRODUCE.md`](REPRODUCE.md). An independent end-to-end rerun
+implementations carry conflicting CUDA and PyTorch versions; the environment table (with each model's upstream
+repository), the `$IVCBENCH_*` runner variables, and the per-model commands and hyperparameters are in
+[`REPRODUCE.md`](REPRODUCE.md). An independent end-to-end rerun
 reproduced the reported numbers within the trained models' stochastic variation, with the deterministic cells
 matching exactly.
 

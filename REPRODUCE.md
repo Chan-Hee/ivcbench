@@ -131,22 +131,43 @@ by retraining every model, set up the per-family environments by hand and run ea
 conflicting CUDA and PyTorch versions (they span CUDA 11.3 to 12.8); each environment carries its own CUDA
 runtime, so only a recent NVIDIA driver is needed.
 
-| Environment | Models |
-|---|---|
-| `ivc` (core, CPU) | run_cluster orchestration, floor baselines, FP-ridge, linear-shift-KOemb, metrics, assembly, figures |
-| `scperturbench_eval` (+ `_jaxgpu` for the GPU path) | scGen, CINEMA-OT |
-| `ivc-cpa` | CPA, chemCPA |
-| `cellot` | CellOT |
-| `ivc-scpram` | scPRAM |
-| `ivc-state` | STATE |
-| `scgpt` | scGPT, GEARS, AttentionPert |
-| `scfoundation` | scFoundation, PertAdapt |
+Build each heavy environment from its model's **upstream repository** (each upstream pins its own
+CUDA/PyTorch); only the core `ivc` env ships here (`environment.yml`). The authoritative provenance for every
+model is in the header of its runner script under `scripts/`.
+
+| Environment | Models | Upstream implementation (build the env from this) |
+|---|---|---|
+| `ivc` (core, CPU) | run_cluster orchestration, floor baselines, FP-ridge, linear-shift-KOemb, metrics, assembly, figures | this repo (`environment.yml`) |
+| `cellot` | CellOT | `bunnech/cellot` @ `ff28778` (Bunne et al. 2023); scored on the official `ae`/`data_space` path (`scripts/cellot_runner.py`) |
+| `ivc-scpram` | scPRAM | `github.com/jiang-q19/scPRAM`, PyPI `scpram==0.0.3` (Jiang et al. 2024, Bioinformatics btae265) |
+| `ivc-cpa` | CPA, chemCPA | `theislab/cpa` (+ chemCPA) |
+| `scperturbench_eval` (+ `_jaxgpu` for the GPU path) | scGen, CINEMA-OT | `theislab/scgen`; CINEMA-OT via the scPerturBench eval harness |
+| `ivc-state` | STATE | Arc Institute **State** state-transition model (`scripts/state_*.py`) |
+| `scgpt` | scGPT, GEARS, AttentionPert | `bowang-lab/scGPT`, `snap-stanford/GEARS`, AttentionPert (`scripts/graph_frangieh.py`) |
+| `scfoundation` | scFoundation, PertAdapt | `biomap-research/scFoundation`; PertAdapt (Bai et al. 2025) — official artifacts per `data/pertadapt/official/PROVENANCE.md` (`scripts/pertadapt_validate.py`) |
 
 Run each model family's runner script (`scripts/{cellot,scpram,state,cpa,chemcpa,graph,cinemaot,pertadapt}_*.py`,
 plus `scripts/run_cluster.py` for the core-runner models) in its own environment from the table above; each
 runner inlines its own per-model commands and hyperparameters (caps, epochs, steps, seeds). The donor-axis
 models (STATE, scPRAM on Soskic) run one donor per GPU: each donor launches roughly two dozen internal workers,
 so more than two in parallel oversubscribes the host. CPA uses three seeds, the others one.
+
+**Runner environment variables (`$IVCBENCH_*`).** The per-family runners take their inputs and per-model
+settings from environment variables, so the same script runs on any host with no path edits. The ones you set
+when retraining:
+
+| Variable(s) | Purpose |
+|---|---|
+| `IVCBENCH_KANG_PATH`, `IVCBENCH_SOSKIC_PATH`, `IVCBENCH_OP3_PATH`, `IVCBENCH_FRANGIEH_DIR` | raw dataset locations (download per [`data/README.md`](data/README.md)) |
+| `IVCBENCH_SCPERTURBENCH_DATASET_DIR`, `IVCBENCH_GENE2GO`, `IVCBENCH_SCFOUNDATION_CKPT` | scPerturBench data dir, GO mapping (GEARS/PertAdapt), scFoundation checkpoint |
+| `IVCBENCH_CELLOT_PY`, `IVCBENCH_IVC_SCPRAM_PYTHON`, `IVCBENCH_SCPERTURBENCH_EVAL_PYTHON` | per-family Python interpreter — point at that conda env's `bin/python` |
+| `IVCBENCH_PRED_DUMP`, `IVCBENCH_PRED_DUMP_MEANS` | dump predictions to a directory; `=1` writes the **compact per-stratum mean bundles** (the deposited `predictions/` layer that `make reproduce-eval` re-scores) |
+| `IVCBENCH_SEEDS`, `IVCBENCH_<MODEL>_EPOCHS` / `_MAXCELLS` / `_STEPS` (e.g. `IVCBENCH_CPA_EPOCHS`, `IVCBENCH_SCGEN_EPOCHS`, `IVCBENCH_STATE_STEPS`) | optional overrides — each runner has the paper defaults inlined, so these are only for re-tuning |
+| `IVCBENCH_PA_REPO`, `IVCBENCH_PA_GO_MASK_NPZ`, `IVCBENCH_PA_ADAMSON_DIR` | PertAdapt upstream repo + its official artifacts |
+
+So a from-scratch run of one model is: build that family's env from the upstream repo above → set its data-path
+and `IVCBENCH_*_PY` variables → run its `scripts/` runner (which prints the exact command + hyperparameters it
+used) → set `IVCBENCH_PRED_DUMP[_MEANS]` to refreeze bundles. `make reproduce-eval` then re-scores them GPU-free.
 
 **Stability.** We retrained every cell from scratch in an independent end-to-end run. The deterministic
 baselines reproduced exactly; the trained models reproduced their reported Pearson-Δ to within run-to-run
