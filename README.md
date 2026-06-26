@@ -60,7 +60,13 @@ The run re-scores every deposited prediction bundle, reassembles the 35-cell hea
 the committed paper numbers, printing `DEPOSIT CONSISTENCY: PASS` when the two agree. The census is assembled
 from the very bundles a reviewer re-scores, so each cell reproduces exactly rather than to within a tolerance,
 the donor CellOT macro of 0.3666 and the OP3 FP-ridge cell-context result of 0.3874 among them;
-`predictions/COVERAGE.md` is the cell-by-cell account. Without a container, install the core environment
+`predictions/COVERAGE.md` is the cell-by-cell account. This path reproduces the response-direction Pearson-Δ
+headline, the primary floor-clearance axis the paper's conclusions turn on. It does not reproduce the
+corroborating distributional energy-distance metric (Supplementary Table S12): the deposited bundles are
+compact per-stratum means, and
+energy distance needs the per-cell prediction cloud, so `reproduce-eval` leaves its `e_distance` column empty
+by design (`predictions/COVERAGE.md`). That axis comes back through the GPU retraining path or by re-dumping
+per-cell bundles. Without a container, install the core environment
 (`pip install -e .` against `requirements.txt`) and run `make reproduce`, which re-scores the bundles and
 runs the same consistency gate; `make test` adds the leak audit and the smoke tests. The scripts under
 `scripts/` rebuild the manuscript figures from the reassembled tables.
