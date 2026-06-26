@@ -96,9 +96,12 @@ EXPECT=(
 )
 
 present_glob() {  # $1 = glob relative to data/ ; 0 if at least one non-empty match exists
-  local g="${ROOT}/data/$1" f
+  local f
   shopt -s nullglob
-  for f in ${g}; do [ -s "${f}" ] && { shopt -u nullglob; return 0; }; done
+  # quote the base path: this checkout's path contains a space ("immune virtual cell"), which an
+  # unquoted glob word-splits on, so present datasets were falsely reported MISSING. Leave $1 unquoted
+  # so any '*' in the sentinel still expands.
+  for f in "${ROOT}/data/"$1; do [ -s "${f}" ] && { shopt -u nullglob; return 0; }; done
   shopt -u nullglob
   return 1
 }
