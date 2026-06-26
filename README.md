@@ -143,11 +143,22 @@ result files, run the scripts under `scripts/`. The figure-to-script mapping liv
 
 **Rung 4: retraining a model from scratch (GPU).** This is the heavy path. Each model family has its own
 conda environment, because the upstream implementations carry conflicting Python, PyTorch, and CUDA pins, so
-one container cannot hold them all; this is the same arrangement scPerturBench uses. To retrain one model,
-build that family's environment from its upstream repository, fetch the raw data, set the family's
-`$IVCBENCH_*` variables, and run its runner under `scripts/`, then re-score with `make reproduce-eval`.
+one container cannot hold them all; this is the same arrangement scPerturBench uses. Two commands drive it:
+`make train MODEL=<name>` retrains a single model and re-scores it, and `make train-all` runs the whole
+pipeline. Both orchestrate the per-family runners under `scripts/`: they preflight each unit, set
+`IVCBENCH_PRED_DUMP[_MEANS]` so a retrained model refreezes its prediction bundles, run the exact runner
+command, and finish with `make reproduce-eval`. They do not remove the need for the per-family environments,
+the raw data, or a GPU; a unit whose environment or data is absent on the host is reported as a clean skip
+with the variable to set, not a crash. The exact runner command for every model is listed in the
+auditable [`scripts/train_manifest.csv`](scripts/train_manifest.csv); both commands accept `--dry-run` to
+print the resolved plan without running anything. So a single model is
+`make train MODEL=cellot` once that family's environment is built from its upstream repository and the raw
+data is fetched and pointed at by the family's `$IVCBENCH_*` variables.
 [`REPRODUCE.md`](REPRODUCE.md) carries the per-family environment table with each model's upstream
-repository, the `$IVCBENCH_*` variable reference, and the per-model commands and hyperparameters.
+repository, the `$IVCBENCH_*` variable reference, and the per-model commands and hyperparameters. The two
+foundation models (scGPT, scFoundation on the unseen-gene cluster) were run through the scPerturBench eval
+harness rather than an in-repo runner; the manifest marks them as such and the drivers report them as
+not-runnable from this repository with a pointer rather than failing.
 
 ## Benchmark workflow
 

@@ -1,7 +1,7 @@
 PY := ./.venv/bin/python
 PIP := ./.venv/bin/pip
 
-.PHONY: setup test pilot reproduce-eval data.c5 cluster integrated-figure clean
+.PHONY: setup test pilot reproduce-eval train train-all data.c5 cluster integrated-figure clean
 
 setup:                       ## GPU-free smoke-test core (subset of requirements.txt); full figure/analysis rebuild uses `pip install -r requirements.txt`
 	# `make setup` installs only the GPU-free smoke-test core deps below; the full
@@ -19,6 +19,13 @@ pilot:                       ## C5 "1패스" on synthetic OP3-shaped data
 
 reproduce-eval:              ## predictions -> metrics, GPU-free: recompute scores from deposited prediction bundles
 	$(PY) scripts/reproduce_eval.py 'predictions/**/*.npz' 'predictions/*.npz' -o reproduced_results.csv
+
+train:                       ## retrain ONE model + reproduce it (heavy: needs that family's env+data+GPU), e.g. make train MODEL=cellot
+	@test -n "$(MODEL)" || (echo "usage: make train MODEL=cellot"; exit 1)
+	bash scripts/train_one.sh $(MODEL)
+
+train-all:                   ## retrain everything + reproduce all results (heavy: per-family envs+data+GPUs); see scripts/train_manifest.csv
+	bash scripts/reproduce_all.sh
 
 data.c5:                     ## download OP3 (GSE279945) — public, no DAC
 	bash scripts/download_op3.sh

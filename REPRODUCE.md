@@ -169,6 +169,18 @@ So a from-scratch run of one model is: build that family's env from the upstream
 and `IVCBENCH_*_PY` variables → run its `scripts/` runner (which prints the exact command + hyperparameters it
 used) → set `IVCBENCH_PRED_DUMP[_MEANS]` to refreeze bundles. `make reproduce-eval` then re-scores them GPU-free.
 
+**Driven by the manifest (`make train` / `make train-all`).** Those per-model steps are now wrapped by a single
+auditable manifest, [`scripts/train_manifest.csv`](scripts/train_manifest.csv), which lists one row per runnable
+(model, cluster) unit with its conda env, the `$IVCBENCH_*` interpreter and data-path variables, and the exact
+runner command. `make train MODEL=<name>` retrains and re-scores one model; `make train-all` runs the whole
+pipeline (CPU `ivc` rows first, then the GPU families). Both preflight each unit against the environment and data
+variables in the tables above, set `IVCBENCH_PRED_DUMP[_MEANS]` for you, run the manifest command, and finish with
+`make reproduce-eval`; a unit whose env or data is missing on the host is reported as a clean skip naming the
+variable to set, never a crash. Pass `--dry-run` to either to print the resolved plan without executing. The two
+foundation models (scGPT, scFoundation) were run through the scPerturBench eval harness rather than an in-repo
+runner, so the manifest leaves their command empty and the drivers report them as not-runnable from this
+repository with a pointer back to this section.
+
 **Stability.** We retrained every cell from scratch in an independent end-to-end run. The deterministic
 baselines reproduced exactly; the trained models reproduced their reported Pearson-Δ to within run-to-run
 variation (of order 0.003–0.01), and no verdict in the main figure changed.
