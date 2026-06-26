@@ -11,3 +11,7 @@ data/**/*.h5ad
 data/**/*.h5
 data/**/*.loom
 data/**/*.zarr
+# build/ holds the conda-pack tarballs for the heavy training image; keep it out of the small EVAL
+# image context, but the negation lets Containerfile.train COPY the packed envs it needs.
+build/**
+!build/train_envs/**

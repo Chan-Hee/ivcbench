@@ -125,11 +125,26 @@ scripts read only the deposited tables in `results/newdata/` (+ one Frangieh com
 ## Retraining from scratch
 
 Everything above rebuilds from the deposited predictions with no GPU. To regenerate the predictions themselves
-by retraining every model, set up the per-family environments by hand and run each family's runner script.
+by retraining every model, you need the raw data and the per-family environments.
 
-**Per-family environments.** Each model family has its own environment because the upstream implementations carry
-conflicting CUDA and PyTorch versions (they span CUDA 11.3 to 12.8); each environment carries its own CUDA
-runtime, so only a recent NVIDIA driver is needed.
+**Raw data in one command.** `make data` (which runs `scripts/download_all.sh`) fetches every public census
+dataset into `data/<cluster>/<dataset>/` and prints a summary of what is present and what is still missing;
+`bash scripts/download_all.sh --list` previews the plan without downloading. The two access-controlled deposits
+(Chen 2025 via DDBJ/GEA login, Cano-Gamez via the EGA data-access committee) are named in that summary but must
+be obtained manually; see `data/README.md` and `scripts/apply_ega_dac.md`.
+
+**The bundled-environment training image.** As an alternative to building each environment by hand, the
+per-family conda environments can be bundled into one large training image. `scripts/build_train_image.sh`
+conda-packs each existing heavy env into `build/train_envs/<env>.tar.gz` and then builds `Containerfile.train`,
+which unpacks them into `/opt/conda/envs/<env>` so the family interpreters are present at
+`/opt/conda/envs/<env>/bin/python` (the build script also writes `build/train_envs/train_image.env` with the
+matching `IVCBENCH_*_PY` exports). This is the scPerturBench-style artifact: it is large (the prior full build
+was about 70 GB), so it is built once and hosted on Zenodo rather than in this repository, and it is separate
+from the small, verified, GPU-free eval image (`Containerfile`). `build/` is git-ignored.
+
+**Per-family environments (built by hand).** Each model family has its own environment because the upstream
+implementations carry conflicting CUDA and PyTorch versions (they span CUDA 11.3 to 12.8); each environment
+carries its own CUDA runtime, so only a recent NVIDIA driver is needed.
 
 Build each heavy environment from its model's **upstream repository** (each upstream pins its own
 CUDA/PyTorch); only the core `ivc` env ships here (`environment.yml`). The authoritative provenance for every

@@ -1,7 +1,7 @@
 PY := ./.venv/bin/python
 PIP := ./.venv/bin/pip
 
-.PHONY: setup test pilot reproduce-eval train train-all data.c5 cluster integrated-figure clean
+.PHONY: setup test pilot reproduce-eval train train-all reproduce-all train-image data data.c5 cluster integrated-figure clean
 
 setup:                       ## GPU-free smoke-test core (subset of requirements.txt); full figure/analysis rebuild uses `pip install -r requirements.txt`
 	# `make setup` installs only the GPU-free smoke-test core deps below; the full
@@ -27,7 +27,18 @@ train:                       ## retrain ONE model + reproduce it (heavy: needs t
 train-all:                   ## retrain everything + reproduce all results (heavy: per-family envs+data+GPUs); see scripts/train_manifest.csv
 	bash scripts/reproduce_all.sh
 
-data.c5:                     ## download OP3 (GSE279945) — public, no DAC
+reproduce-all:               ## FULL paper reproduction (GPU): download data -> train every model -> re-score -> final figure
+	$(MAKE) data
+	$(MAKE) train-all
+	$(MAKE) integrated-figure
+
+train-image:                 ## build the all-environments retraining image (large; conda-packs the heavy envs, see Containerfile.train)
+	bash scripts/build_train_image.sh
+
+data:                        ## download ALL public census raw data in one command (use --list via the script to preview)
+	bash scripts/download_all.sh
+
+data.c5:                     ## download OP3 (GSE279945), public, no DAC
 	bash scripts/download_op3.sh
 
 cluster:                     ## one paper cycle (REAL data): results + manifest + figure + draft, e.g. make cluster C=C1

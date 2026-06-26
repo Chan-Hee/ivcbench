@@ -20,28 +20,50 @@ simple pre-specified baselines, including a two-member "floor" used for the main
 
 ![Benchmark overview](results/_paper/figure1_benchmark_process.png)
 
-## Reproduce in one command
+## Reproducing the paper
 
-A `Containerfile` ships in the repository. It builds a GPU-free image that carries the deposited prediction
-bundles and the analysis environment, so you can recompute the headline numbers without installing anything
-locally:
+Pick the path that matches what you have. Both are a handful of commands; the graduated detail behind them is
+in the [reproduction ladder](#reproduction-ladder) below. `docker` works in place of `podman` throughout.
+
+### No GPU: confirm every number (one command)
+
+The repository ships a `Containerfile` that builds a GPU-free image carrying the deposited prediction bundles
+and the analysis environment. One build and one run recompute the 35-cell census, with no conda, no GPU, and
+no raw single-cell data:
 
 ```bash
-podman build -t ivcbench .
-podman run --rm ivcbench
+podman build -t ivcbench . && podman run --rm ivcbench
 ```
 
-That recomputes the 35-cell census (the per-(model, task) Pearson-Δ) from the bundles and writes
-`reproduced_results.csv` inside the container. There is no conda step, no GPU, and no raw single-cell data.
-To keep the output on the host, mount a directory and point the script at it:
+It writes `reproduced_results.csv` (per-(model, task) Pearson-Δ); the C2 donor CellOT macro comes back at
+0.3666. To keep the file on the host, mount a directory:
 
 ```bash
 podman run --rm -v "$PWD/out:/ivcbench/out" ivcbench \
   .venv/bin/python scripts/reproduce_eval.py 'predictions/**/*.npz' -o out/reproduced_results.csv
 ```
 
-`docker` works the same way in place of `podman`. This is the top rung of the reproduction ladder below; the
-other rungs trade a container for a local environment, figures, or full retraining.
+### A GPU: reproduce the whole paper from nothing (three steps)
+
+This trains every model and rebuilds the numbers and figures. The model families need conflicting CUDA and
+PyTorch versions, so they are bundled as separate conda environments inside one image, the same arrangement
+scPerturBench uses; the author publishes that image to Zenodo so you do not build the environments yourself.
+
+```bash
+# 1. get the all-environments image (every model env inside)
+podman pull <zenodo-image>        # author builds + hosts it with scripts/build_train_image.sh
+
+# 2. download all public raw data (Chen and Cano-Gamez need a manual login/DAC; the script says which)
+make data
+
+# 3. train every model and rebuild the numbers and the figure, inside the image
+podman run --gpus all -v "$PWD:/ivcbench" ivcbench-train make reproduce-all
+```
+
+Step 3 runs on the GPU and takes a while: `make reproduce-all` chains the data download, the full retraining,
+the GPU-free re-score, and the final figure in order. A model whose environment or data is missing is reported
+as a clean skip naming what to set, not a crash. If you would rather build the environments on the host than
+pull the image, the [reproduction ladder](#reproduction-ladder) covers that route.
 
 ## Repository contents
 
@@ -141,9 +163,25 @@ cell-by-cell account of what reproduces and how.
 result files, run the scripts under `scripts/`. The figure-to-script mapping lives in
 [`REPRODUCE.md`](REPRODUCE.md). This rung is also GPU-free and uses only the core environment from rung 2.
 
-**Rung 4: retraining a model from scratch (GPU).** This is the heavy path. Each model family has its own
+**Rung 4: retraining a model from scratch (GPU).** This is the heavy path, and it is the rung that needs a
+GPU. There are two friction points, the raw data and the per-family environments, and each has a one-step
+turnkey option. For the data, `make data` runs every public download script in turn and prints a summary of
+what landed under `data/`; the two access-controlled deposits (Chen 2025 via DDBJ/GEA login, Cano-Gamez via
+the EGA data-access committee) still need a manual login and are named in that summary rather than fetched.
+For the environments, you have a choice. You can build each model family's environment yourself from its
+upstream repository, which is the arrangement below and the one scPerturBench uses. Or you can pull the
+all-environments training image, which bundles the per-family conda environments so the family interpreters
+are already present at `/opt/conda/envs/<env>/bin/python`; that image is built once with
+`scripts/build_train_image.sh` (it conda-packs each env and assembles `Containerfile.train`) and is hosted
+externally on Zenodo rather than in this repository, because it is large, on the order of tens of gigabytes.
+Either way, once the data is fetched and an environment is available, `make train MODEL=<name>` retrains a
+single model and re-scores it and `make train-all` runs the whole pipeline.
+
+Each model family has its own
 conda environment, because the upstream implementations carry conflicting Python, PyTorch, and CUDA pins, so
-one container cannot hold them all; this is the same arrangement scPerturBench uses. Two commands drive it:
+one container cannot hold them all; this is the same arrangement scPerturBench uses. The small GPU-free eval
+image in rung 1 is the verified, in-repo one; the all-environments training image is the separate large
+Zenodo artifact and is not built or checked inside this repository. Two commands drive the retraining:
 `make train MODEL=<name>` retrains a single model and re-scores it, and `make train-all` runs the whole
 pipeline. Both orchestrate the per-family runners under `scripts/`: they preflight each unit, set
 `IVCBENCH_PRED_DUMP[_MEANS]` so a retrained model refreezes its prediction bundles, run the exact runner

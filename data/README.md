@@ -30,7 +30,7 @@ Supplementary Table **without** downloading any raw data (see [`REPRODUCE.md`](.
 | C3 | **Schmidt 2022** primary-T CRISPRa | CRISPR unseen-gene | GEO **GSE190604** | public | `download_public.sh` | `loaders/schmidt.py` |
 | C3 | **McCutcheon 2023** primary-T CRISPRi/a | CRISPR unseen-gene | GEO **GSE218985** (subseries of GSE218988) | public | `download_public.sh` | `loaders/mccutcheon.py` |
 | C3 | **Chen 2025** FOXP3 Perturb-icCITE-seq | CRISPR unseen-gene | DDBJ **PRJDB16517** / GEA **E-GEAD-648** (NOT GSE255832) | login | — (DDBJ/GEA login) | `loaders/chen.py` |
-| C4 | **Frangieh 2021** Perturb-CITE-seq (tumour) | complex-context / modality stress test | scPerturb Zenodo **10.5281/zenodo.13350497** | public | — (Zenodo) | `loaders/frangieh.py` |
+| C4 | **Frangieh 2021** Perturb-CITE-seq (tumour) | complex-context / modality stress test | scPerturb Zenodo **10.5281/zenodo.13350497** | public | `download_frangieh.sh` | `loaders/frangieh.py` |
 | C4 | **Belk 2022** exhaustion Perturb-seq (mouse) | complex-context | GEO **GSE203592** (super-series GSE203593) | public | `download_public.sh` | — |
 | C4 | **Zhou 2023** OT-I CD8 in vivo (mouse) | complex-context | GEO **GSE216800** (subseries GSE216909) | public | — | — |
 | C4 | **Pretto 2025** OT-I CD8 metabolic CROP-seq (mouse) | complex-context | GEO **GSE255832** | public | — | — |
@@ -54,12 +54,20 @@ data/C4/frangieh/<Zenodo RNA + protein h5ad>
 data/C5/op3/GSE279945_sc_counts_processed.h5ad
 ```
 
-Run the public downloads (no access control) with:
+Run every public download in one command:
+
+```bash
+make data                          # = bash scripts/download_all.sh (all public datasets, with a summary)
+bash scripts/download_all.sh --list   # preview the plan without downloading
+```
+
+or run the individual scripts:
 
 ```bash
 bash scripts/download_public.sh    # Kang (C1) + Shifrut/Schmidt/McCutcheon/Chen (C3) + Belk (C4)
 bash scripts/download_op3.sh       # OP3 (C5)
 bash scripts/download_soskic.sh    # Soskic processed h5ad (C2)
+bash scripts/download_frangieh.sh  # Frangieh Perturb-CITE-seq h5ad (C4), scPerturb Zenodo 13350497
 ```
 
 Access-controlled datasets (Cano-Gamez EGA DAC; Chen DDBJ/GEA login; Frangieh Zenodo; CZI VCP datasets)
