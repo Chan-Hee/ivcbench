@@ -22,9 +22,11 @@
 #   bash scripts/build_train_image.sh           # pack envs + build this image (author, one time)
 #   podman build -f Containerfile.train -t ivcbench-train .
 #
-# Base: a CUDA 12.4 runtime so the GPU families find a recent CUDA userspace (each packed env still
-# carries its own CUDA/PyTorch wheels; only a recent NVIDIA driver is needed on the host).
-FROM nvidia/cuda:12.4.1-runtime-ubuntu22.04
+# Base: a CUDA 12.6 runtime so the GPU families find a recent CUDA userspace (each packed env still
+# carries its own CUDA/PyTorch wheels; only a recent NVIDIA driver is needed on the host). The ubuntu24.04
+# variant ships system python 3.12, which the GPU-free analysis venv needs: requirements.txt pins numpy>=2.4,
+# which requires python>=3.11, so the older ubuntu22.04 base (python 3.10) cannot build the venv.
+FROM nvidia/cuda:12.6.3-runtime-ubuntu24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /ivcbench
@@ -45,7 +47,7 @@ RUN mkdir -p /opt/conda/envs \
          echo ">> unpacking $env"; \
          mkdir -p "/opt/conda/envs/$env"; \
          tar -xzf "$tb" -C "/opt/conda/envs/$env"; \
-         "/opt/conda/envs/$env/bin/conda-unpack"; \
+         "/opt/conda/envs/$env/bin/python" "/opt/conda/envs/$env/bin/conda-unpack"; \
        done \
     && rm -rf /tmp/train_envs
 
