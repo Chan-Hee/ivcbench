@@ -1,9 +1,9 @@
 # GPU-free reproduction image for ivcbench.
 #
 # This image carries the deposited prediction bundles and the analysis environment, so the
-# 35-cell census, the headline numbers, and the figures can be recomputed with one command —
-# no conda, no GPU, and no raw single-cell data. Retraining the models is a separate, heavier
-# path (each model family has its own conda environment); see REPRODUCE.md.
+# 35-cell Pearson-delta census and the headline numbers can be recomputed and verified with one
+# command, with no conda, no GPU, and no raw single-cell data. (Rebuilding the figures and retraining
+# the models are separate, heavier paths, each with its own environment; see REPRODUCE.md.)
 #
 #   podman build -t ivcbench .
 #   podman run --rm ivcbench                 # re-score the bundles, rebuild the census, verify it reproduces the paper

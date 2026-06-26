@@ -55,7 +55,10 @@ Supplementary Notes/Tables, not as numbered supplementary figures.
 
 ## Supplementary figures (S1–S8, submitted) + additional release analyses (S9–S13)
 
-**S1–S8 are the submitted supplementary figures** (md5-identical to `BiB_submission/figures/`).
+**S1–S8 are the submitted supplementary figures.** The deposited
+`BiB_submission/figures/SupplementaryFigure_S1..S8.png` carry the same content but are the
+journal-formatted renders (margin-normalized, exported to PNG/TIFF), so they are not byte-identical to
+the `results/_paper/` source figures.
 **S9–S13 below are additional analyses deposited as release provenance; they are NOT part of the
 submitted 8-figure supplement**; in the manuscript these analyses appear as Supplementary
 Notes/Tables, not as numbered supplementary figures. Each row: **S-number → generating script →
@@ -91,6 +94,9 @@ Each Supplementary Table is published with the submission under the **deposited 
 (in `BiB_submission/supplementary/`) and is backed by the listed result file in this release. S1 and
 S2a are curated inventory tables (maintained in `scripts/datasets.csv` and `supp/results_supplementary.md`);
 the rest are mechanically assembled from the deposited per-cluster leaderboards and immune-novelty tables.
+Most submitted tables are byte-identical to the backing file listed; S5, S7, S10 and S11 are
+journal-formatted views of theirs (added or reordered columns, T1–T5 task labels, rounded display), so
+the values match but the files are not byte-identical.
 *(The supplementary **Figure** series in the sections above is independent of the table numbering: the
 submitted figures are S1–S8 (S9–S13 are additional release analyses, not submitted figures), while
 Supplementary **Tables** are S1, S2a, S2b, S3–S12.)*
@@ -102,9 +108,9 @@ Supplementary **Tables** are S1, S2a, S2b, S3–S12.)*
 | **S2b** | Per-(model, task) headline census (35-cell Pearson-Δ vs floor: 32 conditioned + 3 CINEMA-OT comparators) | `Supplementary_Table_S2b_cross_cluster_headline.csv` | `cross_cluster_headline.csv` via `assemble_cross_cluster.py` |
 | **S3** | Within-family verdict agreement + per-unit Spearman ρ | `Supplementary_Table_S3_within_family_consistency.csv` | `within_family_consistency.csv` |
 | **S4** | Descriptive fit-matrix (a-priori expectation vs observed beats-floor per family×task) | `Supplementary_Table_S4_descriptive_fit_matrix.csv` | `descriptive_fit_matrix.csv` via `assemble_fit_matrix.py` |
-| **S5** | Donor axis: CellOT vs floor, paired per-donor (n = 106; cell-mean gap +0.109 **and** matched-baseline gap +0.102 [CI]) | `Supplementary_Table_S5_cellot_vs_floor_donor_paired.csv` | `cellot_vs_floor_donor_paired.csv` + `cellot_summary.csv` via `cellot_assemble.py` |
+| **S5** | Donor axis: CellOT vs floor, paired per-donor (n = 106; cell-mean gap +0.107 **and** matched-baseline gap +0.100 [CI]) | `Supplementary_Table_S5_cellot_vs_floor_donor_paired.csv` | `cellot_vs_floor_donor_paired.csv` via `scripts/c2_donor_paired.py` (per-donor bundle scores) |
 | **S6** | Per-immune-program AUCell-Δ recovery map | `Supplementary_Table_S6_per_program_AUCell_map.csv` | `immune_novelty/T2_per_program_AUCell_map.csv` |
-| **S7** | Donor axis: scPRAM vs CellOT, paired per-donor | `Supplementary_Table_S7_scpram_vs_cellot_donor_paired.csv` | `scpram_vs_cellot_donor_paired.csv` via `cellot_assemble.py` / `soskic_donor_postprocess.py` |
+| **S7** | Donor axis: scPRAM vs CellOT, paired per-donor | `Supplementary_Table_S7_scpram_vs_cellot_donor_paired.csv` | `scpram_vs_cellot_donor_paired.csv` via `scripts/c2_donor_paired.py` (per-donor bundle scores) |
 | **S8** | Per-surface-marker protein recovery (PD-1/PD-L1; effect-size vs sign-match) | `Supplementary_Table_S8_per_marker_protein_recovery.csv` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv` + `c4_surface_marker_CIs.csv` via `c4_per_marker.py` |
 | **S9** | Per-lineage predictability (cell-context advantage localization) | `Supplementary_Table_S9_per_lineage_predictability.csv` | `immune_novelty/T3_per_lineage_predictability.csv` via `c5_loct_expand.py` |
 | **S10** | Headline-survivor table after BH/Holm multiplicity correction (two pre-specified families) | `Supplementary_Table_S10_headline_multiplicity_adjusted.csv` | `headline_multiplicity.py` byte-reproduces `results/_paper/headline_multiplicity_adjusted.csv` (two-family BH/Holm; H4 FP-ridge BH=0.0625 does not survive). The deposited `BiB_submission/` S10 is the journal-formatted view of that table (reordered columns, rounded display, T-task labels). |
@@ -138,8 +144,11 @@ scripts read only the deposited tables in `results/newdata/` (+ one Frangieh com
 
 ## Retraining from scratch
 
-Everything above rebuilds from the deposited predictions with no GPU. To regenerate the predictions themselves
-by retraining every model, you need the raw data and the per-family environments.
+Everything above rebuilds with no GPU. The headline Pearson-Δ census and the bundle-sourced tables
+(S2b, S3, S4, S5, S7, S10) come from the deposited prediction bundles; the figures and the remaining
+tables (the S12 energy-distance table, the S9–S13 provenance analyses) are assembled from the deposited
+result CSVs, not from the bundles. To regenerate the predictions themselves by retraining every model,
+you need the raw data and the per-family environments.
 
 **Raw data in one command.** `make data` (which runs `scripts/download_all.sh`) fetches every public census
 dataset into `data/<cluster>/<dataset>/` and prints a summary of what is present and what is still missing;
