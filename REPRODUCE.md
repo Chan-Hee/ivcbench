@@ -215,7 +215,10 @@ runner command. `make train MODEL=<name>` retrains and re-scores one model; `mak
 pipeline (CPU `ivc` rows first, then the GPU families). Both preflight each unit against the environment and data
 variables in the tables above, set `IVCBENCH_PRED_DUMP[_MEANS]` for you, run the manifest command, and finish with
 `make reproduce-eval`; a unit whose env or data is missing on the host is reported as a clean skip naming the
-variable to set, never a crash. Pass `--dry-run` to either to print the resolved plan without executing. The two
+variable to set, never a crash. To print the resolved preflight plan without executing, forward `--dry-run`
+through `ARGS` (`make train MODEL=<name> ARGS=--dry-run`, `make train-all ARGS=--dry-run`) or call the scripts
+directly (`scripts/train_one.sh <name> --dry-run`, `scripts/reproduce_all.sh --dry-run`); a bare
+`make train-all --dry-run` is GNU make's own dry run, not the script preflight. The two
 foundation models (scGPT, scFoundation) were run through the scPerturBench eval harness rather than an in-repo
 runner, so the manifest leaves their command empty and the drivers report them as not-runnable from this
 repository with a pointer back to this section.

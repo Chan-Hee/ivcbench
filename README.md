@@ -73,7 +73,9 @@ runs the same consistency gate; `make test` adds the leak audit and the smoke te
 
 ### With a GPU: reproduce the whole paper from nothing (three steps)
 
-This trains every model and rebuilds the numbers and figures. The model families need conflicting CUDA and
+This trains every model whose environment and data are present (units with a missing env or dataset are
+cleanly skipped, and the run re-scores whatever ran, so a complete full reproduction needs all the listed
+environments and datasets in place) and rebuilds the headline numbers and the integrated figure. The model families need conflicting CUDA and
 PyTorch versions, so each lives in its own conda environment inside one image, the same arrangement
 scPerturBench uses; the author publishes that image to Zenodo, so you do not build the environments yourself.
 
@@ -88,8 +90,10 @@ make data
 podman run --gpus all -v "$PWD:/ivcbench" ivcbench-train make reproduce-all
 ```
 
-Step 3 runs on the GPU and takes a while: `make reproduce-all` chains the data download, the full retraining,
-the GPU-free re-score, and the final figure in order. To retrain a single model instead, run
+Step 3 runs on the GPU and takes a while: `make reproduce-all` chains the data download, the retraining of
+every ready model, the GPU-free re-score, and the final integrated figure in order (the submitted
+supplementary figures and tables are rebuilt separately by the figure and table scripts; see `REPRODUCE.md`).
+To retrain a single model instead, run
 `make train MODEL=<name>` (the runnable names and their exact commands are in
 [`scripts/train_manifest.csv`](scripts/train_manifest.csv)). A model whose environment or data is missing is
 reported as a clean skip naming what to set, not a crash.
