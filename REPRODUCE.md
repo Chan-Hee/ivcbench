@@ -12,6 +12,20 @@ Figure scripts read deposited CSV/JSON and write PNG+PDF into `results/_paper/`.
 (listed in the "computed by" column) recompute a derived table from the per-cluster `results_raw.csv`
 and the real loaders; they are included for provenance but their outputs are already deposited.
 
+**The headline census is bundle-sourced.** The 35-cell table `results/_paper/cross_cluster_headline.csv`
+(Supplementary Table S2b), `within_family_consistency.csv` (S3) and `descriptive_fit_matrix.csv` (S4) are
+re-scored directly from the deposited prediction bundles under `predictions/`, the same GPU-free path a
+reviewer runs. `make census` rebuilds them (`scripts/assemble_cross_cluster.py`, `assemble_fit_matrix.py`),
+and `make check` (also run by `make test`) re-derives the census from the bundles and fails the build if
+the committed numbers have drifted from it, so the table a reader reproduces and the table the paper
+reports cannot diverge. The C2 donor paired statistics (S5, S7) and their multiplicity adjustment (S10)
+are likewise computed from the per-donor bundle scores. The per-cluster `results_raw.csv` tables remain the
+provenance for the other derived tables and for the figure scripts; `scripts/sync_results_raw.py`
+re-derives their response-direction `pearson_delta` from the bundles (to the printed precision) so the
+figures read the same numbers as the census, and `make check` fails if any cell has drifted. In short, one
+source (the bundles) feeds the census, the paired statistics, and the figures, and the gate keeps them
+locked together.
+
 **Final manuscript layout (binding).** The submission is **3 main figures + 8 supplementary figures
 (S1–S8) + 12 Supplementary Tables (S1, S2a, S2b, S3–S12)**:
 

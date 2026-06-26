@@ -48,19 +48,22 @@ map, the per-family environment table, the `$IVCBENCH_*` variables, and the exac
 
 ### Without a GPU: confirm the numbers
 
-The repository ships a `Containerfile` carrying the deposited prediction bundles and the analysis
-environment. One build and one run recompute the 35-cell census, with no conda, no GPU, and no raw data:
+The repository ships a `Containerfile` that carries the deposited prediction bundles and the analysis
+environment, so the paper's 35-cell census is recomputed from the bundles with one build and one run, with no
+conda, no GPU, and no raw single-cell data:
 
 ```bash
-podman build -t ivcbench . && podman run --rm ivcbench
+podman build -t ivcbench . && podman run --rm ivcbench    # docker works in place of podman
 ```
 
-It writes `reproduced_results.csv` (per-(model, task) Pearson-Δ). The deterministic comparators come back
-exactly, including the C2 donor CellOT macro of 0.3666, and the stochastic models to within their seed
-variation; `predictions/COVERAGE.md` is the cell-by-cell account. To run the same recomputation without a
-container, install the core environment (`pip install -e .` from `environment.yml` or `requirements.txt`) and
-run `make reproduce-eval`. `make test` runs the leak audit and the smoke tests, and the scripts under
-`scripts/` rebuild the manuscript figures from the deposited tables.
+The run re-scores every deposited prediction bundle, reassembles the 35-cell headline, and checks it against
+the committed paper numbers, printing `DEPOSIT CONSISTENCY: PASS` when the two agree. The census is assembled
+from the very bundles a reviewer re-scores, so each cell reproduces exactly rather than to within a tolerance,
+the donor CellOT macro of 0.3666 and the OP3 FP-ridge cell-context result of 0.3874 among them;
+`predictions/COVERAGE.md` is the cell-by-cell account. Without a container, install the core environment
+(`pip install -e .` against `requirements.txt`) and run `make reproduce`, which re-scores the bundles and
+runs the same consistency gate; `make test` adds the leak audit and the smoke tests. The scripts under
+`scripts/` rebuild the manuscript figures from the reassembled tables.
 
 ### With a GPU: reproduce the whole paper from nothing (three steps)
 

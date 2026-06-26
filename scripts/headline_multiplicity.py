@@ -104,16 +104,15 @@ rows.append(("C2_donor_scPRAM_vs_CellOT_paired", p_c2_paired,
              f"paired n={int(paired.n_shared_donors.iloc[0])} of 106, scPRAM wins "
              f"{int(paired.scpram_wins.iloc[0])}, gap {float(paired.mean_gap.iloc[0]):+.3f} (scPRAM LOSES)"))
 
-# CellOT-vs-floor exact donor paired Wilcoxon IS deposited in cellot_vs_floor_donor_paired.csv
-# (wilcoxon_p); the per-donor source is also in results_raw_C2_rewrapped.csv. (A prior revision wrongly
-# marked this MISSING claiming the data was not deposited, which dropped it from the BH/Holm set.)
+# CellOT-vs-floor exact donor paired Wilcoxon is deposited in cellot_vs_floor_donor_paired.csv
+# (wilcoxon_p), recomputed from the per-donor prediction bundles by scripts/c2_donor_paired.py.
 cf = pd.read_csv(R / "_paper" / "cellot_vs_floor_donor_paired.csv")
 p_c2_cellot = float(cf.wilcoxon_p.iloc[0])
 rows.append(("C2_donor_CellOT_vs_floor", p_c2_cellot,
-             "results_raw_C2_rewrapped.csv",
+             "cellot_vs_floor_donor_paired.csv",
              f"CellOT vs cell-mean floor, paired Wilcoxon n={int(cf.n.iloc[0])}, "
              f"{int(cf.cellot_wins.iloc[0])}/106 donors win, gap {float(cf.gap.iloc[0]):+.3f}; "
-             "src results_raw_C2_rewrapped.csv / cellot_vs_floor_donor_paired.csv (NOT soskic_donor_axis.csv)"))
+             "src prediction bundles via scripts/c2_donor_paired.py -> cellot_vs_floor_donor_paired.csv"))
 
 # ----- C5 FP-ridge compound-matching permutation null (headline 'compound-resolved' claim) -----
 nul = pd.read_csv(R / "C5" / "ifn_shuffle_null.csv")

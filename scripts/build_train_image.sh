@@ -100,9 +100,11 @@ command -v podman >/dev/null 2>&1 || { echo "!! podman not found; tarballs are r
 
 echo ""
 echo "------------------------------------------------------------------"
-echo " podman build -f Containerfile.train -t ${IMAGE} ."
+echo " podman build -f Containerfile.train --ignorefile .dockerignore.train -t ${IMAGE} ."
 echo "------------------------------------------------------------------"
-podman build -f Containerfile.train -t "${IMAGE}" .
+# .dockerignore.train re-includes build/train_envs/ (the packed envs this image COPYs); the default
+# .dockerignore excludes build/ entirely so the small eval image never ingests these multi-GB tarballs.
+podman build -f Containerfile.train --ignorefile .dockerignore.train -t "${IMAGE}" .
 echo ""
 echo "DONE: built ${IMAGE} (LARGE). Inside it, run \`make train-all\` with the family pythons at"
 echo "      /opt/conda/envs/<env>/bin/python (source ${ENVFILE} to set the IVCBENCH_*_PY variables)."

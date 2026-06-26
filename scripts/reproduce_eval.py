@@ -33,7 +33,11 @@ def main(argv=None):
     ap.add_argument("bundles", nargs="+", help="prediction .npz files (globs ok)")
     ap.add_argument("-o", "--out", default=None, help="write reproduced rows to CSV")
     a = ap.parse_args(argv)
+    import os
     files = sorted({f for g in a.bundles for f in glob.glob(g, recursive=True)} or a.bundles)
+    # predictions/example holds 4 format-demo toy bundles (a copied LOCT fold) — they document the
+    # .npz layout, they are NOT census members. Keep them out of the reproduced rows.
+    files = [f for f in files if os.sep + "example" + os.sep not in f]
     rows = [score_bundle(f) for f in files]
     cols = ["cluster", "model", "split", "dataset", "n_test_strata", "pearson_delta", "e_distance"]
     w = csv.DictWriter(a.out and open(a.out, "w", newline="") or sys.stdout, fieldnames=cols)

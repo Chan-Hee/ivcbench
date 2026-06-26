@@ -1,7 +1,7 @@
 PY := ./.venv/bin/python
 PIP := ./.venv/bin/pip
 
-.PHONY: setup test pilot reproduce-eval train train-all reproduce-all train-image data data.c5 cluster integrated-figure clean
+.PHONY: setup test pilot reproduce-eval census check reproduce train train-all reproduce-all train-image data data.c5 cluster integrated-figure clean
 
 setup:                       ## GPU-free smoke-test core (subset of requirements.txt); full figure/analysis rebuild uses `pip install -r requirements.txt`
 	# `make setup` installs only the GPU-free smoke-test core deps below; the full
@@ -17,8 +17,22 @@ test:                        ## run leak-audit + smoke tests (GPU-free)
 pilot:                       ## C5 "1패스" on synthetic OP3-shaped data
 	$(PY) scripts/run_c5_pilot.py
 
-reproduce-eval:              ## predictions -> metrics, GPU-free: recompute scores from deposited prediction bundles
+reproduce-eval:              ## predictions -> per-bundle metrics, GPU-free: re-score every deposited prediction bundle
 	$(PY) scripts/reproduce_eval.py 'predictions/**/*.npz' 'predictions/*.npz' -o reproduced_results.csv
+
+check:                       ## GPU-free gate: rebuild the census from the bundles and assert the committed paper numbers match
+	$(PY) scripts/check_consistency.py
+
+reproduce:                   ## full GPU-free reader path: re-score every bundle, then verify the committed census reproduces it
+	$(MAKE) reproduce-eval
+	$(MAKE) check
+
+census:                      ## MAINTAINER ONLY: re-derive every bundle-sourced artifact (results_raw sync, headline S2b, S3, S4, C2 paired S5/S7, multiplicity S10)
+	$(PY) scripts/sync_results_raw.py
+	$(PY) scripts/assemble_cross_cluster.py
+	$(PY) scripts/assemble_fit_matrix.py
+	$(PY) scripts/c2_donor_paired.py
+	$(PY) scripts/headline_multiplicity.py
 
 train:                       ## retrain ONE model + reproduce it (heavy: needs that family's env+data+GPU), e.g. make train MODEL=cellot
 	@test -n "$(MODEL)" || (echo "usage: make train MODEL=cellot"; exit 1)

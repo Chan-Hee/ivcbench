@@ -6,7 +6,7 @@
 # path (each model family has its own conda environment); see REPRODUCE.md.
 #
 #   podman build -t ivcbench .
-#   podman run --rm ivcbench                 # recompute per-(model,task) Pearson-Δ from the bundles
+#   podman run --rm ivcbench                 # re-score the bundles, rebuild the census, verify it reproduces the paper
 #   podman run --rm -v "$PWD/out:/ivcbench/out" ivcbench \
 #       .venv/bin/python scripts/reproduce_eval.py 'predictions/**/*.npz' -o out/reproduced_results.csv
 #
@@ -29,5 +29,6 @@ RUN python -m venv .venv \
 COPY . .
 RUN .venv/bin/pip install --no-cache-dir -e .
 
-# Default run reproduces the deposited census from the bundles (writes reproduced_results.csv).
-CMD ["make", "reproduce-eval"]
+# Default run re-scores the bundles, rebuilds the 35-cell census, and asserts it reproduces the
+# committed paper numbers (floor verdicts intact). `make reproduce` also writes reproduced_results.csv.
+CMD ["make", "reproduce"]

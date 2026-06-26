@@ -1,14 +1,14 @@
 cluster,task,split,family,models,deltas_vs_floor_mean,n_beat_both_floor,n_models,verdict_agreement,spearman_rho_pair,flag
-C1,cytokine/Kang,cell-context (LOCT),Latent,CPA+scGen,"[0.0262, 0.0795]",0,2,agree,0.4761904761904762,
-C2,donor/Soskic,donor (LODO),Latent,CPA+scGen,"[0.0485, -0.0044]",0,2,agree,0.442496044987025,
-C2,donor/Soskic,donor (LODO),OT,CellOT+scPRAM,"[0.2211, 0.0112]",1,2,split,0.4584942401058458,
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Foundation,scFoundation+scGPT,"[-0.3514, -0.3369]",0,2,agree,0.9999999999999999,
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Graph,AttentionPert+GEARS,"[-0.1813, -0.1948]",0,2,agree,0.8999999999999998,
+C1,cytokine/Kang,cell-context (LOCT),Latent,CPA+scGen,"[0.0262, 0.0647]",0,2,agree,0.261904761904762,
+C2,donor/Soskic,donor (LODO),Latent,CPA+scGen,"[0.0453, -0.001]",0,2,agree,0.37207345643247597,
+C2,donor/Soskic,donor (LODO),OT,CellOT+scPRAM,"[0.2186, 0.0111]",1,2,split,0.41923067234299827,
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Foundation,scFoundation+scGPT,"[-0.3514, -0.2298]",0,2,agree,-0.3,
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Graph,AttentionPert+GEARS,"[-0.1682, -0.1882]",0,2,agree,0.8999999999999998,
 C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Hybrid,PertAdapt+STATE,"[-0.3965, -0.4157]",0,2,agree,0.7,
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Latent,CPA+scGen,"[-0.3217, -0.3156]",0,2,agree,0.7,
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",Graph,AttentionPert+GEARS,"[0.0391, -0.0293]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 units); CellOT/scPRAM single-seed per split -> re-run for CI"
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",Latent,CPA+scGen,"[0.0625, 0.0732]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 units); CellOT/scPRAM single-seed per split -> re-run for CI"
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Latent,CPA+scGen,"[-0.3184, -0.2902]",0,2,agree,0.7,
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",Graph,AttentionPert+GEARS,"[0.0357, -0.0306]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 units); CellOT/scPRAM single-seed per split -> re-run for CI"
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",Latent,CPA+scGen,"[0.0625, 0.0841]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 units); CellOT/scPRAM single-seed per split -> re-run for CI"
 C4,complex/Frangieh,"unseen-KO (modality, RNA)",OT,CellOT+scPRAM,"[0.1195, -0.1571]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 units); CellOT/scPRAM single-seed per split -> re-run for CI"
-C5,small-mol/OP3,cell-context (LOCT),Latent,CPA+scGen,"[-0.0936, 0.0298]",0,2,agree,-0.7999999999999999,
+C5,small-mol/OP3,cell-context (LOCT),Latent,CPA+scGen,"[-0.1062, 0.0325]",0,2,agree,-1.0,
 C5,small-mol/OP3,unseen-compound,Chemistry,FP-ridge+chemCPA,"[0.0032, -0.0494]",0,2,agree,,
-C5,small-mol/OP3,unseen-compound,Latent,CPA+scGen,"[-0.0023, -0.0748]",0,2,agree,,
+C5,small-mol/OP3,unseen-compound,Latent,CPA+scGen,"[-0.0543, -0.0908]",0,2,agree,,

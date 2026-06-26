@@ -1,2 +1,2 @@
-comparison,src,n,cellot,cell_mean,gap,cellot_wins,wilcoxon_p
-C2_donor_CellOT_vs_cellmean_floor_paired,results_raw_C2_rewrapped.csv,106,0.36661,0.25981,0.1068,93,1.5814e-13
+comparison,src,n,cellot,cell_mean,gap,cellot_wins,wilcoxon_p,gap_vs_matched,ci_low,ci_high
+C2_donor_CellOT_vs_cellmean_floor_paired,"prediction bundles (predictions/C2; C2_soskic_LODO CellOT vs C2_lodo cell-mean, paired by donor)",106,0.36662529237486785,0.25981503890705626,0.1068102534678117,93,1.5811188271484114e-13,0.1,0.079,0.121

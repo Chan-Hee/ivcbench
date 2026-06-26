@@ -4,20 +4,18 @@
 This is the deposited-data driver for `scripts/fit_recommendation.py` (PREREGISTRATION rule 5).
 The fit-recommendation module needs a PER-UNIT long table (cluster, split, family, baseline, <unit>,
 pearson_delta, ran, leak_free) so it can run a TRUE biological-unit cluster bootstrap of the
-family-minus-universal-floor gap. The five `results/C*/results_raw.csv` tables store the unit inside
-the split *name* (e.g. C1_loct_B) rather than in a unit column, and the C2 donor table lives in
-`results_raw_C2_rewrapped.csv` -> so we first re-shape the SAME deposited sources that
-`assemble_cross_cluster.py` macro-averages, but KEEP the per-unit rows, then call
-`fit_recommendation.fit_matrix` on that long table.
+family-minus-universal-floor gap. We build that long table from the SAME bundle re-score the headline
+uses (`assemble_cross_cluster.score_all`) but KEEP the per-unit rows, then call
+`fit_recommendation.fit_matrix` on it. Provenance is therefore identical to the headline census:
+the per-unit values are the GPU-free re-score of the deposited prediction bundles, single source of truth.
 
-Provenance is identical to `assemble_cross_cluster.py` (one biological unit per cluster per
-PREREGISTRATION Sec 7):
-  C1 lineage (LOCT, n=8)         from results/C1/results_raw.csv          [split-encoded unit]
-  C2 donor  (LODO, n=106)        from results_raw_C2_rewrapped.csv        [donor column]
-  C3 dataset (LO-gene 10%, n=5)  from results/C3/results_raw.csv          [dataset column]
-  C4 modality-fold (RNA, n=2)    from results/C4/results_raw.csv + fills  [split-encoded unit] -> n<3 -> PENDING
-  C5 lineage (LOCT, n=4 coarse)  from results/C5/results_raw.csv          [split-encoded unit]
-  C5 compound (unseen-cpd, n=28) per-compound CI is deposited only at the SUMMARY level
+One biological unit per cluster (PREREGISTRATION Sec 7):
+  C1 lineage (LOCT, n=8)         bundles cluster C1_LOCT, split C1_loct_*
+  C2 donor  (LODO, n=106)        bundles cluster C2/C2_LODO, split C2_soskic_LODO_*/C2_lodo_*
+  C3 dataset (LO-gene 10%, n=5)  bundles cluster C3_LO_gene, split C3_true_lo_gene_10 [dataset column]
+  C4 modality-fold (RNA, n=2)    bundles cluster C4/C4_Axis2, split C4_modality_lo_ko_* -> n<3 -> PENDING
+  C5 lineage (LOCT, n=4 coarse)  bundles cluster C1_LOCT, split C5_loct_*
+  C5 compound (unseen-cpd, n=28) per-compound CI deposited only at the SUMMARY level
                                  (chemcpa_op3_unseen_compound_summary.csv) -> attach as deposited CI.
 
 The fit verdict is UNCHANGED from fit_recommendation.py: a family WORKS on a task iff its best
@@ -98,85 +96,47 @@ TASKLABEL = {
 }
 
 
-def _long_c1() -> pd.DataFrame:
-    df = pd.read_csv(ROOT / "results" / "C1" / "results_raw.csv")
-    d = df[df["split"].str.startswith("C1_loct")].copy()
-    d["unit"] = d["split"]  # lineage = split name
-    d["task_split"] = "cell-context (LOCT)"
-    d["task_name"] = "cytokine/Kang"
-    d["split_key"] = "C1_loct"
-    return d[["baseline", "pearson_delta", "unit", "cluster", "split_key", "task_name", "task_split",
-              "ran", "leak_free"]]
-
-
-def _long_c2() -> pd.DataFrame:
-    df = pd.read_csv(PAPER / "results_raw_C2_rewrapped.csv")
-    d = df[(df["donor"] != "PENDING") & df["pearson_delta"].notna() & (df["ran"] == True)].copy()  # noqa: E712
-    d = d.rename(columns={"model": "baseline", "donor": "unit"})
-    d["task_split"] = "donor (LODO)"
-    d["task_name"] = "donor/Soskic"
-    d["split_key"] = "C2_soskic"
-    if "leak_free" not in d.columns:
-        d["leak_free"] = True
-    return d[["baseline", "pearson_delta", "unit", "cluster", "split_key", "task_name", "task_split",
-              "ran", "leak_free"]]
-
-
-def _long_c3() -> pd.DataFrame:
-    df = pd.read_csv(ROOT / "results" / "C3" / "results_raw.csv")
-    d = df[df["split"] == "C3_true_lo_gene_10"].copy()
-    d["unit"] = d["dataset"]
-    d["task_split"] = "unseen-perturbation (LO-gene 10%)"
-    d["task_name"] = "gene/CRISPR"
-    d["split_key"] = "C3_true_lo_gene_10"
-    if "leak_free" not in d.columns:
-        d["leak_free"] = True
-    return d[["baseline", "pearson_delta", "unit", "cluster", "split_key", "task_name", "task_split",
-              "ran", "leak_free"]]
-
-
-def _long_c4() -> pd.DataFrame:
-    base = pd.read_csv(ROOT / "results" / "C4" / "results_raw.csv")
-    base = base[base["modality"] == "RNA"].copy()
-    fills = pd.read_csv(PAPER / "results_raw_C4_fills_rewrapped.csv")
-    keep = ["baseline", "split", "pearson_delta", "ran", "leak_free"]
-    b = base[[c for c in keep if c in base.columns]].copy()
-    f = fills[[c for c in keep if c in fills.columns]].copy()
-    allc4 = pd.concat([b, f], ignore_index=True)
-    allc4 = allc4[allc4["split"].str.startswith("C4_modality_lo_ko")].copy()
-    allc4["unit"] = allc4["split"]  # modality fold = split name (only 2 -> n<3 -> PENDING CI)
-    allc4["task_split"] = "unseen-KO (modality, RNA)"
-    allc4["task_name"] = "complex/Frangieh"
-    allc4["cluster"] = "C4"
-    allc4["split_key"] = "C4_modality_lo_ko"
-    if "ran" not in allc4.columns:
-        allc4["ran"] = True
-    if "leak_free" not in allc4.columns:
-        allc4["leak_free"] = True
-    return allc4[["baseline", "pearson_delta", "unit", "cluster", "split_key", "task_name",
-                  "task_split", "ran", "leak_free"]]
-
-
-def _long_c5_loct() -> pd.DataFrame:
-    df = pd.read_csv(ROOT / "results" / "C5" / "results_raw.csv")
-    d = df[df["split"].str.startswith("C5_loct")].copy()
-    d["unit"] = d["split"]
-    d["task_split"] = "cell-context (LOCT)"
-    d["task_name"] = "small-mol/OP3"
-    d["split_key"] = "C5_loct"
-    if "leak_free" not in d.columns:
-        d["leak_free"] = True
-    return d[["baseline", "pearson_delta", "unit", "cluster", "split_key", "task_name", "task_split",
-              "ran", "leak_free"]]
+# the four cluster-bootstrap-capable task cells + C5-LOCT, sourced from the SAME bundle re-score the
+# headline uses (assemble_cross_cluster.score_all). Each row carries one biological unit so the
+# cluster bootstrap resamples real units. (cluster, match, unit_of, split_key, task_name, task_split)
+_LONG_SPECS = [
+    ("C1", ["C1_LOCT"], lambda s: s.startswith("C1_loct"),
+     lambda r: r["split"], "C1_loct", "cytokine/Kang", "cell-context (LOCT)"),
+    ("C2", ["C2", "C2_LODO"], lambda s: s.startswith(("C2_soskic_LODO", "C2_lodo")),
+     lambda r: r["split"].replace("C2_soskic_LODO_", "").replace("C2_lodo_", ""),
+     "C2_soskic", "donor/Soskic", "donor (LODO)"),
+    ("C3", ["C3_LO_gene"], lambda s: s == "C3_true_lo_gene_10",
+     lambda r: r["dataset"], "C3_true_lo_gene_10", "gene/CRISPR", "unseen-perturbation (LO-gene 10%)"),
+    ("C4", ["C4", "C4_Axis2"], lambda s: s.startswith("C4_modality_lo_ko"),
+     lambda r: r["split"], "C4_modality_lo_ko", "complex/Frangieh", "unseen-KO (modality, RNA)"),
+    ("C5", ["C1_LOCT"], lambda s: s.startswith("C5_loct"),
+     lambda r: r["split"], "C5_loct", "small-mol/OP3", "cell-context (LOCT)"),
+]
 
 
 def build_long() -> pd.DataFrame:
-    """Per-unit long table for the cluster-bootstrap-capable clusters (C1, C2, C3, C4, C5-LOCT)."""
-    parts = [_long_c1(), _long_c2(), _long_c3(), _long_c4(), _long_c5_loct()]
+    """Per-unit long table for the cluster-bootstrap-capable cells (C1, C2, C3, C4, C5-LOCT),
+    re-scored from the deposited bundles so it is identical in provenance to the headline census."""
+    from assemble_cross_cluster import score_all  # shared bundle re-score (single source of truth)
+    df = score_all()
+    df["dataset"] = df["dataset"].fillna("")
+    parts = []
+    for cl, clusters, match, unit_of, split_key, tn, ts in _LONG_SPECS:
+        d = df[df["cluster"].isin(clusters) & df["split"].map(match)].copy()
+        d["unit"] = d.apply(unit_of, axis=1)
+        d = d.rename(columns={"model": "baseline"})
+        # collapse any cluster/dataset duplication onto (baseline, unit) -> that model's bundle value
+        d = d.groupby(["baseline", "unit"], as_index=False)["pearson_delta"].mean()
+        d["cluster"] = cl
+        d["split_key"] = split_key
+        d["task_name"] = tn
+        d["task_split"] = ts
+        d["ran"] = True
+        d["leak_free"] = True
+        parts.append(d)
     long = pd.concat(parts, ignore_index=True)
     long["family"] = long["baseline"].map(FAMILY)
-    # the fit-recommendation module groups on `split`; give it the per-task split-key as `split`
-    long["split"] = long["split_key"]
+    long["split"] = long["split_key"]  # fit_recommendation groups on `split`
     return long
 
 
@@ -195,9 +155,13 @@ def deposited_c5_compound_row() -> dict:
     floor_best = max(cm, lp)
     fp = float(h[h.model == "FP-ridge"]["pearson_delta"].iloc[0])
     gap = fp - floor_best
-    # deposited chemCPA per-compound bootstrap CI (chemCPA - no-chemistry baseline), n=28
-    cc = pd.read_csv(ROOT / "outputs" / "additional_models" /
-                     "chemcpa_op3_unseen_compound_summary.csv")
+    # deposited chemCPA per-compound bootstrap CI (chemCPA - no-chemistry baseline), n=28.
+    # Prefer the deposited results/_paper copy so the ivcbench deposit self-regenerates without the
+    # benchmark outputs/ tree (assemble_cross_cluster.c5_unseen_task uses the same fallback).
+    _cc = PAPER / "chemcpa_op3_unseen_compound_summary.csv"
+    if not _cc.exists():
+        _cc = ROOT / "outputs" / "additional_models" / "chemcpa_op3_unseen_compound_summary.csv"
+    cc = pd.read_csv(_cc)
     cc0 = cc.iloc[0]
     # The deposited CI is chemCPA-minus-baseline; the chemistry family's best member is FP-ridge.
     # We attach the chemistry-family deposited per-compound bootstrap on the chemCPA member as the

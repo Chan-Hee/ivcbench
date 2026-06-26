@@ -1,0 +1,17 @@
+# Build context for the all-environments TRAINING image (Containerfile.train, used by
+# scripts/build_train_image.sh via `--ignorefile .dockerignore.train`). Same exclusions as the eval
+# ignore, except the conda-pack tarballs under build/train_envs/ are RE-INCLUDED so Containerfile.train
+# can COPY the packed per-family environments into the image. Raw single-cell data is still excluded.
+.git
+.venv
+**/__pycache__
+**/*.pyc
+*.egg-info
+reproduced_results.csv
+out/
+data/**/*.h5ad
+data/**/*.h5
+data/**/*.loom
+data/**/*.zarr
+build/**
+!build/train_envs/**
