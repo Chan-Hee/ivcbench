@@ -35,8 +35,9 @@ locked together.
 
 The full per-cluster figure plate (`figure_landscape / ranking / cellcontext / perturbation /
 donor_decision / within_family_fit`) is retained for provenance and feeds several of the S-figures
-below; the 8 submitted supplementary-figure PNGs (S1–S8) are the renders deposited in `results/_paper/`
-(md5-identical to `BiB_submission/figures/SupplementaryFigure_S1..S8.png`). The additional analyses
+below; the 8 submitted supplementary-figure PNGs (S1–S8) in `BiB_submission/figures/` are the
+journal-formatted renders of those `results/_paper/` figures (margin-normalized and exported, so not
+byte-identical to the source PNGs; only S2 == `figure_cellcontext.png` happens to match). The additional analyses
 listed further below (chemistry-channel collapse, program-dimensionality, and the three new-data
 analyses) are deposited as release provenance; in the submitted supplement they appear as
 Supplementary Notes/Tables, not as numbered supplementary figures.
@@ -94,7 +95,7 @@ Each Supplementary Table is published with the submission under the **deposited 
 (in `BiB_submission/supplementary/`) and is backed by the listed result file in this release. S1 and
 S2a are curated inventory tables (maintained in `scripts/datasets.csv` and `supp/results_supplementary.md`);
 the rest are mechanically assembled from the deposited per-cluster leaderboards and immune-novelty tables.
-Most submitted tables are byte-identical to the backing file listed; S5, S7, S10 and S11 are
+Most submitted tables are byte-identical to the backing file listed; S5, S7, S8, S10 and S11 are
 journal-formatted views of theirs (added or reordered columns, T1–T5 task labels, rounded display), so
 the values match but the files are not byte-identical.
 *(The supplementary **Figure** series in the sections above is independent of the table numbering: the
