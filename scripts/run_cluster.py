@@ -113,7 +113,10 @@ def main():
             r = run_job(cs, sp, adapter, seed=seed, immune_programs=programs, exclude_genes=excl,
                         response_gene_fn=spec.extra.get("response_gene_fn"),  # C2: training-only panel
                         adapted_implemented=True,      # scGen/CPA adapted runners are implemented
-                        dataset=ds_name)               # per-dataset bundle key (avoids C3 filename collision)
+                        # per-dataset bundle key ONLY for multi-dataset clusters (C3), where one split name
+                        # is reused across datasets and would collide; single-dataset clusters keep the
+                        # deposited (suffix-free) filenames so a re-dump overwrites in place.
+                        dataset=(ds_name if spec.datasets else None))
             r.update(cluster=args.cluster, dataset=ds_name, modality=modality)
             return _checkpoint(r)                     # persist immediately (crash-safe)
 
