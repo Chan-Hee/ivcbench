@@ -27,12 +27,62 @@ _ISOTYPE = {"Rat_IgG2a", "Mouse_IgG1", "Mouse_IgG2a", "Mouse_IgG2b"}   # protein
 _DIR = "data/C4/frangieh"
 
 
+def _read_h5ad_robust(path):
+    """Open an h5ad, falling back to a raw h5py read + in-memory construct when the installed anndata is
+    too old to parse the file's encoding. The cellot env ships anndata 0.7.6, which cannot read the
+    scPerturb frangieh's newer obsm/layers encoding; h5py reads the raw HDF5 regardless of encoding
+    version, and 0.7.6 can still *construct* an AnnData from in-memory arrays. Returns (adata, backed)."""
+    import anndata
+    try:
+        return anndata.read_h5ad(path, backed="r"), True
+    except Exception:
+        return _read_h5ad_h5py(path), False
+
+
+def _read_h5ad_h5py(path):
+    """Raw h5py read -> in-memory AnnData. Robust to (a) anndata too old to parse the file encoding and
+    (b) backed-sparse-CSC fancy row-indexing quirks in some envs (e.g. ivc-scpram's anndata/scipy)."""
+    import anndata
+    import h5py
+    with h5py.File(path, "r") as f:
+        Xg = f["X"]
+        shape = tuple(int(x) for x in Xg.attrs["shape"])
+        maker = sp.csc_matrix if "csc" in str(Xg.attrs.get("encoding-type", "")) else sp.csr_matrix
+        mat = maker((Xg["data"][:], Xg["indices"][:], Xg["indptr"][:]), shape=shape)
+        obs = _read_h5_dataframe(f["obs"])
+        var = _read_h5_dataframe(f["var"])
+    return anndata.AnnData(X=mat.tocsr(), obs=obs, var=var)
+
+
+def _read_h5_dataframe(g):
+    """Reconstruct a DataFrame from an anndata-h5py dataframe group (encoding-version-robust): handles
+    categorical columns stored as {codes, categories} groups and plain array columns."""
+    import h5py
+    idx_key = g.attrs.get("_index", "_index")
+    idx_key = idx_key.decode() if isinstance(idx_key, bytes) else idx_key
+    order = g.attrs.get("column-order", [k for k in g.keys() if k != idx_key])
+    order = [c.decode() if isinstance(c, bytes) else c for c in order]
+
+    def _col(item):
+        if isinstance(item, h5py.Group):                       # categorical: {codes, categories}
+            cats = [c.decode() if isinstance(c, bytes) else c for c in item["categories"][:]]
+            return pd.Categorical.from_codes(item["codes"][:], cats)
+        v = item[:]
+        return v.astype(str) if v.dtype.kind == "S" else v
+
+    cols = {k: _col(g[k]) for k in order if k in g}
+    df = pd.DataFrame(cols)
+    if idx_key in g:
+        df.index = pd.Index(_col(g[idx_key]))
+    return df
+
+
 def load(modality: str = "rna", condition: str = "IFNγ", subsample_per_group: int = 60,
          n_hvg: int = 2000, seed: int = 0) -> CellSet:  # noqa: F821
     import anndata
     base = Path(os.environ.get("IVCBENCH_FRANGIEH_DIR", _DIR))
     fname = "FrangiehIzar2021_RNA.h5ad" if modality == "rna" else "FrangiehIzar2021_protein.h5ad"
-    a = anndata.read_h5ad(str(base / fname), backed="r")
+    a, _backed = _read_h5ad_robust(str(base / fname))
     obs = a.obs
 
     keep_cond = obs["perturbation_2"].astype(str) == condition
@@ -46,7 +96,10 @@ def load(modality: str = "rna", condition: str = "IFNγ", subsample_per_group: i
         sel.append(v if len(v) <= subsample_per_group else rng.choice(v, subsample_per_group, replace=False))
     idx = np.sort(np.concatenate(sel))
 
-    sub = a[idx].to_memory()
+    try:
+        sub = a[idx].to_memory() if _backed else a[idx].copy()
+    except Exception:   # backed-CSC fancy row-index quirk in some envs -> re-read fully in memory via h5py
+        sub = _read_h5ad_h5py(str(base / fname))[idx].copy()
     counts = sub.X.tocsr() if sp.issparse(sub.X) else sp.csr_matrix(sub.X)
     var = list(map(str, sub.var_names))
     if modality != "rna":                                 # drop isotype-control antibodies

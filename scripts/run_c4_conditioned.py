@@ -83,6 +83,12 @@ def main():
         cs = load(modality=modality)
         g = cs.uns["genes_perturbed"]
         ds_name = cs.uns.get("dataset", f"frangieh_{modality}")
+        # The census deposits ONLY the RNA C4_Axis2 bundles; the protein modality is the analysis-only
+        # modality comparator (its numbers go to results/C4/conditioned_rows.json). The RNA and protein
+        # runs share one cluster/model/split bundle filename (no modality key), so dumping protein would
+        # overwrite the RNA bundle the census reads. RNA runs first and dumps; drop the dump for protein.
+        if modality != "rna":
+            os.environ.pop("IVCBENCH_PRED_DUMP", None)
         for frac, lbl in [(0.25, "25"), (0.50, "50")]:
             held = c4.held_ko_fraction(g, frac, seed=0)
             spec = c4.modality_lo_ko(held, lbl)
