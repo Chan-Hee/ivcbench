@@ -43,6 +43,17 @@ STENV="${IVCBENCH_IVC_STATE_PYTHON:-$HOME/miniconda3/envs/ivc-state/bin/python}"
 SPENV="${IVCBENCH_IVC_SCPRAM_PYTHON:-$HOME/miniconda3/envs/ivc-scpram/bin/python}"
 log(){ echo "[$(date '+%F %T')] $*"; }
 
+# The deposit organises bundles into per-cluster subdirs (predictions/C1/, ...) but dump_bundle writes
+# FLAT into $DUMP. Flatten any existing subdir bundles into $DUMP first, so each regenerated bundle
+# OVERWRITES its deposited counterpart in place instead of leaving a flat-vs-subdir duplicate that the
+# recursive census glob would double-count. Names are unique on (cluster,model,split) so this never
+# clobbers two distinct bundles; deposit-only models (e.g. scFoundation) keep their bundle for re-score.
+if find "$DUMP" -mindepth 2 -name '*.npz' -print -quit | grep -q .; then
+  log "flattening per-cluster subdirs in $DUMP for in-place regeneration"
+  find "$DUMP" -mindepth 2 -name '*.npz' -exec mv -n {} "$DUMP/" \;
+  find "$DUMP" -mindepth 1 -type d -empty -delete
+fi
+
 log "L2 reproduce-all-bundles | dump=$DUMP | test=$TEST | gpus=$GPUS"
 log "IVCBENCH_PRED_DUMP=$IVCBENCH_PRED_DUMP IVCBENCH_PRED_DUMP_MEANS=1"
 
