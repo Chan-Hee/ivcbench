@@ -168,9 +168,9 @@ def main():
     else:
         # FULL: must be launched with CUDA_VISIBLE_DEVICES=2,3 (GPUs 0,1 are off-limits/busy).
         cvd = os.environ.get("CUDA_VISIBLE_DEVICES", "")
-        if cvd not in ("2,3", "2, 3"):
-            sys.exit(f"[graph_frangieh] FULL run must pin CUDA_VISIBLE_DEVICES=2,3 (got '{cvd}'). "
-                     f"Launch:\n  {launch_cmd}")
+        if not cvd.strip():   # need GPU(s) pinned (GEARS + AttentionPert are GPU-only); any free device(s) work
+            sys.exit(f"[graph_frangieh] FULL run needs CUDA_VISIBLE_DEVICES pinned to free GPU(s) (got '{cvd}'). "
+                     f"e.g.\n  {launch_cmd}")
         os.environ.setdefault("IVCBENCH_GEARS_EPOCHS", "15")
         os.environ.setdefault("IVCBENCH_ATTNPERT_EPOCHS", "20")
         fracs = [(0.25, "25"), (0.50, "50")]
