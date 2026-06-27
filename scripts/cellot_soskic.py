@@ -10,7 +10,7 @@ Primary baseline = matched simple context baseline (cell-mean / donor-shift; not
 COMPUTE: full 106 = target. --test K runs the first K donors (sorted) as EXPLORATORY only.
 """
 from __future__ import annotations
-import sys, time, argparse, json
+import os, sys, time, argparse, json
 from pathlib import Path
 import numpy as np, pandas as pd
 
@@ -102,6 +102,12 @@ def main():
             pe = float(pearson_delta(aligned, test_X, ctrl_mean, test_strata, rg)["macro"])
             ed = R.edist_clouds(pred_genes, ctrl_strata, test_X, test_strata, ed_basis)
             au = program_delta_mae(aligned, test_X, ctrl_X, test_strata, ctrl_strat_str, cs)["aucell_delta_score"]
+            if seed == args.seeds[0]:  # deposit the seed-0 prediction bundle (cellot_score = seed-0 point)
+                from ivcbench.eval.bundle import dump_bundle
+                dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster="C2", model="CellOT", split=sp.spec.name,
+                            pred_cells=aligned, test_cells=test_X, cell_strata=test_strata,
+                            control_mean=ctrl_mean, genes=cs.var_names, exclude_gene_idx=rg,
+                            fit_on=ed_basis, n_pca=50)
             s_pe.append(pe); s_ed.append(ed); s_au.append(au); s_mmd.append(best_mmd)
             timing.append(dict(donor=str(d), seed=seed, sec=round(dt, 1), best_mmd=round(best_mmd, 5),
                                n_train=int(len(sp.train_idx)), n_test=int(len(sp.test_idx)),

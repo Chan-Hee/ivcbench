@@ -146,6 +146,12 @@ def main():
             pe = float(pearson_delta(pr.pred_cells, test_X, pr.control_mean, test_strata, rg)["macro"])
             ed = float(e_distance(pr.pred_cells, test_X, test_strata, fit_on=ed_basis)["macro"])
             au = program_delta_mae(pr.pred_cells, test_X, ctrl_X, test_strata, ctrl_strat_str, cs)["aucell_delta_score"]
+            if seed == args.seeds[0]:  # deposit the seed-0 prediction bundle (cpa_score = seed-0 point)
+                from ivcbench.eval.bundle import dump_bundle
+                dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster="C2", model="CPA", split=sp.spec.name,
+                            pred_cells=pr.pred_cells, test_cells=test_X, cell_strata=test_strata,
+                            control_mean=pr.control_mean, genes=cs.var_names, exclude_gene_idx=rg,
+                            fit_on=ed_basis, n_pca=50)
             s_pe.append(pe); s_ed.append(ed); s_au.append(au)
             timing.append(dict(donor=str(d), seed=seed, sec=round(dt, 1),
                                n_train=int(len(sp.train_idx)), n_test=int(len(sp.test_idx)),

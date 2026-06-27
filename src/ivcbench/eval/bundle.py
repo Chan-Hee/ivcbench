@@ -72,7 +72,11 @@ def dump_bundle(out_dir, *, cluster, model, split, **kw):
         return None
     try:
         os.makedirs(out_dir, exist_ok=True)
-        fn = f"{cluster}__{model}__{split}.npz".replace("/", "_")
+        # Multi-dataset clusters (C3) reuse one split name across datasets; without a dataset key the
+        # per-dataset bundles collide and overwrite. Key the filename on `dataset` when the caller provides it.
+        ds = kw.get("dataset") or kw.get("ds_name")
+        stem = f"{cluster}__{model}__{split}" + (f"__{ds}" if ds else "")
+        fn = f"{stem}.npz".replace("/", "_")
         if os.environ.get("IVCBENCH_PRED_DUMP_MEANS") and kw.get("pred_cells") is not None:
             kw = _cells_to_means(kw)
         return save_bundle(os.path.join(out_dir, fn), cluster=cluster, model=model, split=split, **kw)

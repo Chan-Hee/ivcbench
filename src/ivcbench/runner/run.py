@@ -32,6 +32,7 @@ def run_job(
     exclude_genes: list[str] | None = None,
     response_gene_fn=None,
     adapted_implemented: bool = False,
+    dataset: str | None = None,
 ) -> dict:
     registry_task = spec.registry_task or spec.name
     action = decide(adapter.name, registry_task, adapted_implemented)
@@ -79,6 +80,7 @@ def run_job(
     # dump_bundle stores the EXACT scoring inputs + the train-cloud PCA basis and never raises.
     from ..eval.bundle import dump_bundle
     dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster=registry_task, model=adapter.name, split=spec.name,
+                dataset=dataset,  # key the bundle filename per-dataset (C3 reuses one split across datasets)
                 pred_cells=pred.pred_cells, test_cells=test_X, cell_strata=split.test_strata,
                 control_mean=pred.control_mean, genes=cs.var_names, exclude_gene_idx=excl,
                 fit_on=cs.X[split.train_idx])

@@ -292,6 +292,12 @@ def main():
             pe = float(pearson_delta(aligned, test_X, ctrl_mean, test_strata, excl_idx)["macro"])
             ed = edist_clouds(pred_genes, ctrl_strata, test_X, test_strata, ed_basis)
             au = ((float(aucell(pred_genes, gs_ifn).mean()) - ctrl_auc) if len(gs_ifn) else float("nan"))
+            if seed == args.seeds[0]:  # deposit the seed-0 prediction bundle (C4 CellOT fill)
+                from ivcbench.eval.bundle import dump_bundle
+                dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster="C4", model="CellOT", split=spec.name,
+                            pred_cells=aligned, test_cells=test_X, cell_strata=test_strata,
+                            control_mean=ctrl_mean, genes=cs.var_names, exclude_gene_idx=excl_idx,
+                            fit_on=ed_basis, n_pca=50)
             seed_pe.append(pe); seed_ed.append(ed); seed_au.append(au); seed_mmd.append(best_mmd)
             timing.append(dict(frac=frac_label, seed=seed, sec=round(dt, 1),
                                best_mmd=round(float(best_mmd), 5) if best_mmd == best_mmd else None,

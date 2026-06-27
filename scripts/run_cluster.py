@@ -40,7 +40,13 @@ def main():
                     "computed (dataset, split, baseline, seed) rows verbatim and only run the rows "
                     "missing from it (e.g. newly added baselines). Regenerates all reports from the "
                     "merged table via the normal code path — no separate merge step.")
+    ap.add_argument("--test", type=int, default=0, help="run only the first K splits/units per dataset "
+                    "(de-risk subset; 0 = all). Does not change which adapters run, only how many units.")
+    ap.add_argument("--only", default="", help="comma-separated baseline names to run (e.g. "
+                    "'cell-mean,linear-PCA,ctrl-pred,donor-shift,scGen'); empty = all spec.baselines. "
+                    "Used to deposit a cluster's curated scheme without its bespoke-runner duplicates.")
     args = ap.parse_args()
+    only_set = {s.strip() for s in args.only.split(",") if s.strip()}
     gpus = [g.strip() for g in args.gpus.split(",") if g.strip()]
 
     spec = REGISTRY[args.cluster]
@@ -87,11 +93,15 @@ def main():
     def run_on(cs, ds_name, modality):
         programs = spec.program_sets(cs)              # dataset-aware multi-program sets (Supp S3)
         sps = spec.splits(cs)
+        if args.test:                                 # de-risk: first K units only (default 0 = all)
+            sps = sps[:args.test]
         ctx["splits"] = sps
         print(f"[{args.cluster}] {ds_name} ({modality or 'single'}): {cs.n_cells} cells x {cs.n_genes} genes",
               flush=True)
+        bsel = [B for B in spec.baselines
+                if not only_set or getattr(B, "name", getattr(B, "__name__", "")) in only_set]
         jobs = [(sp, sp.held_values if spec.downstream_only else None, seed, B)
-                for sp in sps for seed in args.seeds for B in spec.baselines]
+                for sp in sps for seed in args.seeds for B in bsel]
 
         def run1(sp, excl, seed, B, gpu=None):
             ck = (str(ds_name), str(sp.name), str(getattr(B, "name", B.__name__)), int(seed))
@@ -102,7 +112,8 @@ def main():
                 adapter.cuda_device = gpu             # SubprocessAdapter pins CUDA_VISIBLE_DEVICES
             r = run_job(cs, sp, adapter, seed=seed, immune_programs=programs, exclude_genes=excl,
                         response_gene_fn=spec.extra.get("response_gene_fn"),  # C2: training-only panel
-                        adapted_implemented=True)      # scGen/CPA adapted runners are implemented
+                        adapted_implemented=True,      # scGen/CPA adapted runners are implemented
+                        dataset=ds_name)               # per-dataset bundle key (avoids C3 filename collision)
             r.update(cluster=args.cluster, dataset=ds_name, modality=modality)
             return _checkpoint(r)                     # persist immediately (crash-safe)
 

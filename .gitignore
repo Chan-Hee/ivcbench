@@ -68,3 +68,5 @@ reproduced_results.csv
 .DS_Store
 .idea/
 .vscode/
+CPA_info.json
+history.csv
