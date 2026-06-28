@@ -59,13 +59,13 @@ log "IVCBENCH_PRED_DUMP=$IVCBENCH_PRED_DUMP IVCBENCH_PRED_DUMP_MEANS=1"
 
 # ---- C1 cytokine/Kang LOCT: floors + scGen + CPA (run_job dumps; self-contained envs) ---------------
 log "[C1] run_cluster --cluster C1"
-$CORE scripts/run_cluster.py --cluster C1 --real --seeds 0 $TARG
+$CORE scripts/run_cluster.py --cluster C1 --real --seeds 0 --gpus "$GPUS" $TARG
 
 # ---- C2 donor/Soskic LODO ---------------------------------------------------------------------------
 # scheme B (cluster=C2_LODO): floors + scGen via run_job, with --only so the bespoke OT/latent models
 # below are not duplicated under the C2_LODO key.
 log "[C2] scheme-B floors+scGen via run_cluster --only"
-$CORE scripts/run_cluster.py --cluster C2 --real --seeds 0 $TARG \
+$CORE scripts/run_cluster.py --cluster C2 --real --seeds 0 --gpus "$GPUS" $TARG \
   --only "ctrl-pred,cell-mean,donor-shift,linear-PCA,scGen"
 # scheme A (cluster=C2): CellOT/CPA/STATE/scPRAM bespoke, sharded across GPUs (106 donors). --test caps.
 SK=""; [ "$TEST" -gt 0 ] && SK="--test $TEST"
@@ -91,21 +91,23 @@ else log "[C2] PertAdapt SKIPPED (scFoundation ckpt absent) -> use deposited bun
 # and, when their external src/ckpt is present, scGPT/scFoundation/AttentionPert/PertAdapt. Absent ones
 # are skipped by the subprocess adapter and reproduced from their deposited bundle.
 log "[C3] run_cluster --cluster C3 (self-contained + any present foundation/graph models)"
-$CORE scripts/run_cluster.py --cluster C3 --real --seeds 0 $TARG
+$CORE scripts/run_cluster.py --cluster C3 --real --seeds 0 --gpus "$GPUS" $TARG
 
 # ---- C4 complex/Frangieh modality-LO-KO: floors via run_cluster + bespoke OT/latent/graph/state/cond --
 log "[C4] run_cluster floors + bespoke frangieh"
-$CORE scripts/run_cluster.py --cluster C4 --real --seeds 0 $TARG
-CUDA_VISIBLE_DEVICES="${G[0]}" "$CELLOT" scripts/cellot_frangieh.py --chunk 0 1 --gpu 0 >"$DUMP/.log_cellot_frangieh.txt" 2>&1 || log "  cellot_frangieh failed"
-CUDA_VISIBLE_DEVICES="${G[0]}" "$CPAENV"  scripts/cpa_frangieh.py    --chunk 0 1 --gpu 0 >"$DUMP/.log_cpa_frangieh.txt" 2>&1 || log "  cpa_frangieh failed"
-CUDA_VISIBLE_DEVICES="${G[0]}" "$SPENV"   scripts/scpram_frangieh.py --chunk 0 1 --gpu 0 >"$DUMP/.log_scpram_frangieh.txt" 2>&1 || log "  scpram_frangieh failed"
-CUDA_VISIBLE_DEVICES="${G[0]}" "$CORE"    scripts/state_frangieh.py  --chunk 0 1 --gpu 0 --steps 400 >"$DUMP/.log_state_frangieh.txt" 2>&1 || log "  state_frangieh failed"
+$CORE scripts/run_cluster.py --cluster C4 --real --seeds 0 --gpus "$GPUS" $TARG
+# bespoke C4 OT/latent/state run CONCURRENTLY, one per GPU (failures land in their .log files)
+CUDA_VISIBLE_DEVICES="${G[0]}"          "$CELLOT" scripts/cellot_frangieh.py --chunk 0 1 --gpu 0            >"$DUMP/.log_cellot_frangieh.txt" 2>&1 &
+CUDA_VISIBLE_DEVICES="${G[$((1%NG))]}"  "$CPAENV" scripts/cpa_frangieh.py    --chunk 0 1 --gpu 0            >"$DUMP/.log_cpa_frangieh.txt" 2>&1 &
+CUDA_VISIBLE_DEVICES="${G[$((2%NG))]}"  "$SPENV"  scripts/scpram_frangieh.py --chunk 0 1 --gpu 0            >"$DUMP/.log_scpram_frangieh.txt" 2>&1 &
+CUDA_VISIBLE_DEVICES="${G[$((3%NG))]}"  "$CORE"   scripts/state_frangieh.py  --chunk 0 1 --gpu 0 --steps 400 >"$DUMP/.log_state_frangieh.txt" 2>&1 &
+wait
 CUDA_VISIBLE_DEVICES="${G[0]}" "$CORE"    scripts/graph_frangieh.py  --full >"$DUMP/.log_graph_frangieh.txt" 2>&1 || log "  graph_frangieh failed (GEARS ok; AttentionPert needs external src)"
 "$CORE" scripts/run_c4_conditioned.py >"$DUMP/.log_c4_cond.txt" 2>&1 || log "  run_c4_conditioned failed"
 
 # ---- C5 small-mol/OP3: floors + FP-ridge + CPA/scGen/STATE/CINEMA-OT via run_cluster, + chemCPA --------
 log "[C5] run_cluster --cluster C5 (FP-ridge + framework)"
-$CORE scripts/run_cluster.py --cluster C5 --real --seeds 0 $TARG
+$CORE scripts/run_cluster.py --cluster C5 --real --seeds 0 --gpus "$GPUS" $TARG
 log "[C5] chemCPA native -> evaluate (dumps bundle)"
 CUDA_VISIBLE_DEVICES="${G[0]}" "$CPAENV" scripts/chemcpa_native_op3.py 0 outputs/additional_models >"$DUMP/.log_chemcpa_native.txt" 2>&1 || log "  chemcpa_native failed"
 "$CORE" scripts/chemcpa_evaluate.py >"$DUMP/.log_chemcpa_eval.txt" 2>&1 || log "  chemcpa_evaluate failed"
