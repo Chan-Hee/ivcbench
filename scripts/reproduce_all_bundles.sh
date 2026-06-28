@@ -64,9 +64,13 @@ $CORE scripts/run_cluster.py --cluster C1 --real --seeds 0 --gpus "$GPUS" $TARG
 # ---- C2 donor/Soskic LODO ---------------------------------------------------------------------------
 # scheme B (cluster=C2_LODO): floors + scGen via run_job, with --only so the bespoke OT/latent models
 # below are not duplicated under the C2_LODO key.
-log "[C2] scheme-B floors+scGen via run_cluster --only"
+# scheme-B's floors+scGen are CPU-only (scGen trains on CPU to match the deposit), so run them in the
+# BACKGROUND and let the GPU-sharded scheme-A below train concurrently: the GPUs stay busy on CellOT/CPA/
+# STATE/scPRAM while scGen runs on CPU (no idle-GPU window). They write disjoint bundles (C2_LODO vs C2).
+log "[C2] scheme-B floors+scGen (CPU, background) || scheme-A bespoke (GPU sharded)"
 $CORE scripts/run_cluster.py --cluster C2 --real --seeds 0 --gpus "$GPUS" $TARG \
-  --only "ctrl-pred,cell-mean,donor-shift,linear-PCA,scGen"
+  --only "ctrl-pred,cell-mean,donor-shift,linear-PCA,scGen" >"$DUMP/.log_c2_schemeB.txt" 2>&1 &
+C2B_PID=$!
 # scheme A (cluster=C2): CellOT/CPA/STATE/scPRAM bespoke, sharded across GPUs (106 donors). --test caps.
 SK=""; [ "$TEST" -gt 0 ] && SK="--test $TEST"
 log "[C2] bespoke CellOT/CPA/STATE/scPRAM (sharded $NG-way) + PertAdapt"
@@ -81,6 +85,8 @@ shard "$CELLOT" cellot_soskic.py --ae-iters 12000 --cellot-iters 8000
 shard "$CPAENV" cpa_soskic.py --cpa-epochs 60
 shard "$STENV"  state_soskic.py --steps 400
 shard "$SPENV"  scpram_soskic.py --epochs 100
+wait "$C2B_PID" 2>/dev/null   # scheme-B (CPU floors+scGen) must also finish before the census assembles
+log "[C2] scheme-B + scheme-A done"
 # PertAdapt needs the scFoundation ckpt + GO mask; skip cleanly if absent.
 if [ -n "${IVCBENCH_SCFOUNDATION_CKPT:-}" ] && [ -f "${IVCBENCH_SCFOUNDATION_CKPT:-/nonexistent}" ]; then
   log "[C2] PertAdapt"; CUDA_VISIBLE_DEVICES="${G[0]}" "${IVCBENCH_SCFOUNDATION_PYTHON:-$HOME/miniconda3/envs/scfoundation/bin/python}" \
