@@ -29,8 +29,10 @@ make reproduce-eval                                    # scores every bundle und
 python ../scripts/reproduce_eval.py 'example/*.npz'    # or a glob
 ```
 
-The reported Pearson-Δ and energy distance match `results/<cluster>/results_raw.csv` to 1e-6 for the predictive
-baselines (verified in `tests/test_reproduce_eval.py`).
+For the deposited `C1/`-`C5/` compact bundles, this command recomputes Pearson-Δ only; the `e_distance`
+column is intentionally empty because the compact bundles do not contain per-cell clouds. Per-cell bundles
+that include `pred_cells`/`test_cells` and the train-cloud PCA basis reproduce both Pearson-Δ and energy
+distance; the synthetic `example/` bundles exercise that format in `tests/test_reproduce_eval.py`.
 
 ## What is here
 

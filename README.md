@@ -40,10 +40,15 @@ The consistency gate prints `DEPOSIT CONSISTENCY: PASS` when the deposited
 bundles reproduce the committed headline numbers.
 
 This path covers the 35 model-by-task Pearson-delta census and the floor-clearance
-verdicts used for the main conclusions. It does not retrain the original models
-or download raw single-cell data. Retraining is documented for provenance in
-[REPRODUCE.md](REPRODUCE.md) and requires the original datasets, model-specific
-environments, and GPU access.
+verdicts used for the main conclusions. The deposited bundles are compact
+per-stratum mean bundles, so they reproduce Pearson-Δ exactly but do not contain
+the per-cell prediction clouds required to recompute energy distance. The
+distributional-fidelity axis is reproduced from the deposited result tables
+(`results/*/results_raw.csv` and Supplementary Table S12); regenerating it from
+raw predictions requires the larger per-cell bundle/retraining path described in
+[REPRODUCE.md](REPRODUCE.md) and [predictions/COVERAGE.md](predictions/COVERAGE.md).
+The GPU-free path does not retrain the original models or download raw
+single-cell data.
 
 ## Main Results
 
@@ -76,7 +81,7 @@ unseen-compound setting.
 | Path | Purpose |
 |---|---|
 | `src/ivcbench/` | Core package: schemas, loaders, split construction, leak audit, metrics, baselines, and runners. |
-| `predictions/` | Deposited prediction bundles used by the GPU-free reproduction path. |
+| `predictions/` | Deposited compact prediction bundles used by the GPU-free Pearson-Δ reproduction path. |
 | `results/` | Paper-level result tables and generated figures. |
 | `scripts/` | Reproduction, figure, download, and retraining/provenance scripts. |
 | `model_runners/` | Thin wrappers for model-family environments used during retraining. |
@@ -98,7 +103,8 @@ Some source datasets require login or data-access approval. See
 for the per-dataset accessions, access status, and loaders.
 
 The deposited prediction bundles under `predictions/` are sufficient for the
-GPU-free headline reproduction path.
+GPU-free headline Pearson-Δ reproduction path. Distributional-fidelity tables are
+deposited under `results/` and are not recomputed from the compact bundles.
 
 ## Common Commands
 
