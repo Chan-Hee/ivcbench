@@ -159,3 +159,9 @@ the original data providers; see [`data/README.md`](data/README.md).
 
 This work was supported by the G-LAMP Program of the National Research Foundation of Korea (NRF), funded by
 the Ministry of Education (No. RS-2025-25441317).
+
+This work was supported by the Korea Health Industry Development Institute (KHIDI), funded by the Ministry of
+Health and Welfare, Republic of Korea (No. RS-2025-25459520).
+
+This research was funded by the National Research Foundation of Korea (NRF) grants funded by the Korean
+Government (MSIT; grant no. RS-2025-02304296).
