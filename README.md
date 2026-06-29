@@ -15,7 +15,7 @@ introduces no new model of its own.
 Each axis is a generalization question that recurs in immune perturbation studies. Models are scored against
 simple pre-specified baselines, including a two-member "floor" that drives the main pass/fail interpretation.
 
-![Benchmark overview](results/_paper/figure1_benchmark_process.png)
+![Benchmark framework (Figure 1)](results/_paper/Figure1.png)
 
 ## Main results
 
