@@ -57,7 +57,7 @@ pearson_delta, e_distance`):
 
 1. **GPU-free (minutes):** `make reproduce-eval` scores the deposited bundles; the 35-cell census + figures are
    regenerated from `results/*/results_raw.csv` (the validated path — 35/35 cells, 0 verdict flips vs the paper;
-   see `reproduction/verdict_diff_35cell.csv`).
+   see `results/_paper/verdict_diff_35cell.csv`).
 2. **From scratch (GPU):** each model family has its own environment (conflicting CUDA/PyTorch versions, see
    `REPRODUCE.md`); re-running every family's runner script under `scripts/` retrains everything and lands on
    the same conclusions.
