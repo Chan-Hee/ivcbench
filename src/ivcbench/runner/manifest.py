@@ -1,9 +1,9 @@
 """Reproducibility metadata for one cluster cycle.
 
-Writes results/<cluster>/manifest.json capturing everything needed to reproduce the run: git commit,
-env, seeds, per-(split,baseline,seed) status + leak-audit reports, data provenance, and metric
-config. This is the "메타데이터 정리" half of one paper cycle — every figure/draft number is
-traceable back to a manifest entry.
+Writes results/<cluster>/manifest.json with the git commit, environment,
+seeds, per-(split, baseline, seed) status, leak-audit reports, data provenance,
+and metric configuration. Every generated figure, table, and report draft should
+trace back to a manifest entry.
 """
 from __future__ import annotations
 

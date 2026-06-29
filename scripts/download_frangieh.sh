@@ -61,5 +61,8 @@ for p in "${PAIRS[@]}"; do
 done
 
 echo "== recording checksums =="
-find "${DEST}" -type f -name '*.h5ad' -print0 | xargs -0 sha256sum > "${DEST}/frangieh.sha256"
+(
+  cd "${ROOT}"
+  find data/C4/frangieh -type f -name '*.h5ad' -print0 | xargs -0 sha256sum > data/C4/frangieh/frangieh.sha256
+)
 echo "DONE: Frangieh Perturb-CITE-seq h5ad (C4), scPerturb Zenodo ${RECORD}"

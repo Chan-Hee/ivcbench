@@ -1,9 +1,7 @@
-"""Auto-generated draft of a Section-3 results subsection, in the voice of
-"Toward Immune Virtual Cells" and wired to the four evaluation axes it defines.
+"""Auto-generated benchmark result prose.
 
 Numbers are pulled from the results table so the prose stays in sync with the run; a banner marks
-whether the underlying data is synthetic (placeholder) or a real accession. The author edits/optimizes
-this draft, then moves to the next cluster — this is the "draft" half of one paper cycle.
+whether the underlying data is synthetic or a real accession.
 """
 from __future__ import annotations
 
@@ -499,6 +497,6 @@ def write_draft(cluster: str, df: pd.DataFrame, data_source: str, out_path: str 
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     drafter = _DRAFTERS.get(cluster)
-    text = drafter(df, data_source) if drafter else f"### {cluster}\n\n(Draft generator TODO.)\n"
+    text = drafter(df, data_source) if drafter else f"### {cluster}\n\nNo report template is registered for this cluster.\n"
     out_path.write_text(text)
     return out_path

@@ -32,7 +32,7 @@ CLUSTER_META = {
         "side_info": "Cytokine-side conditioning for the LOcyt split uses receptor-family, "
                      "JAK–STAT, and pathway priors as external side information, applied at "
                      "evaluation time only (never for model selection).",
-        "compute": "~280 A100-equivalent GPU-hours (≈30% of the Section-3 budget).",
+        "compute": "~280 A100-equivalent GPU-hours (about 30% of the benchmark compute budget).",
         "program": "Type-I interferon response module (AUCell).",
     },
     "C3": {
@@ -52,7 +52,7 @@ CLUSTER_META = {
         "side_info": "Gene-side conditioning (Gene Ontology / co-expression / learned gene embeddings) "
                      "is the representation an unseen gene is predicted from; required for the "
                      "Latent/OT families to be defined on the true-LO-gene split.",
-        "compute": "~250 A100-equivalent GPU-hours (≈27% of the Section-3 budget).",
+        "compute": "~250 A100-equivalent GPU-hours (about 27% of the benchmark compute budget).",
         "program": "T-cell activation / effector module (AUCell), dataset-aware.",
     },
     "C5": {
@@ -65,7 +65,7 @@ CLUSTER_META = {
         "side_info": "Compound-side conditioning uses RDKit Morgan fingerprints, Murcko scaffolds, "
                      "and LINCS L1000 MOA/target annotation as external side information. Tanimoto "
                      "distance is used only post-hoc to stratify error, never as a model input.",
-        "compute": "~70 A100-equivalent GPU-hours (≈8% of the Section-3 budget).",
+        "compute": "~70 A100-equivalent GPU-hours (about 8% of the benchmark compute budget).",
         "program": "Immunomodulatory MOA module (AUCell; exploratory).",
     },
 }

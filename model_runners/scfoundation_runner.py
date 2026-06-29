@@ -26,8 +26,7 @@ TRAIN cells ONLY. Held-gene expression never enters the runner. The runner is in
 so every basis is refit per fold (no cross-fold carry-over).
 
 scFoundation source dir (load.py, pretrainmodels/, OS_scRNA_gene_index.19264.tsv) from
-$IVCBENCH_SCFOUNDATION_DIR (default the local single_cell_fm/scFoundation/model). Checkpoint from
-$IVCBENCH_SCFOUNDATION_CKPT (default models/scFoundation/models.ckpt). Epochs / cell-cap / PCA dim /
+$IVCBENCH_SCFOUNDATION_DIR. Checkpoint from $IVCBENCH_SCFOUNDATION_CKPT. Epochs / cell-cap / PCA dim /
 target-resolution token via $IVCBENCH_SCF_{EPOCHS,MAXCELLS,PCA,HIGHRES}.
 """
 from __future__ import annotations
@@ -40,8 +39,9 @@ import numpy as np
 
 
 def _scf_dir() -> Path:
-    p = os.environ.get("IVCBENCH_SCFOUNDATION_DIR",
-                       "/data1/home/chlee/projects/single_cell_fm/scFoundation/model")
+    p = os.environ.get("IVCBENCH_SCFOUNDATION_DIR")
+    if not p:
+        raise FileNotFoundError("set $IVCBENCH_SCFOUNDATION_DIR to the scFoundation source directory")
     d = Path(p)
     if not (d / "load.py").exists():
         raise FileNotFoundError(f"scFoundation source dir {d} missing load.py "
@@ -50,8 +50,9 @@ def _scf_dir() -> Path:
 
 
 def _ckpt_path() -> Path:
-    p = os.environ.get("IVCBENCH_SCFOUNDATION_CKPT",
-                       "/data1/home/chlee/projects/single_cell_fm/models/scFoundation/models.ckpt")
+    p = os.environ.get("IVCBENCH_SCFOUNDATION_CKPT")
+    if not p:
+        raise FileNotFoundError("set $IVCBENCH_SCFOUNDATION_CKPT to the scFoundation checkpoint")
     c = Path(p)
     if not c.exists():
         raise FileNotFoundError(f"scFoundation checkpoint {c} not found (set $IVCBENCH_SCFOUNDATION_CKPT)")

@@ -1,7 +1,7 @@
-# EGA Data Access Committee (DAC) applications — **send Day 1**
+# EGA Data Access Committee (DAC) Applications
 
 EGA controlled-access approval typically takes **1–4 weeks** and is the single largest schedule risk
-(PLAN.md §3, §8). These two block C1 (partially) and C2 (fully). Public clusters proceed meanwhile.
+for affected datasets. Public datasets can be downloaded independently while approval is pending.
 
 | Cluster | Dataset | Accession | What you predict / need it for |
 |---|---|---|---|
@@ -14,7 +14,7 @@ EGA controlled-access approval typically takes **1–4 weeks** and is the single
 2. Prepare:
    - PI / institution, project title, **research use statement** (immune perturbation-prediction
      benchmark; model-evaluation, non-clinical, no re-identification).
-   - Data-handling: secure on-prem storage (`/data1`, access-controlled), no redistribution.
+   - Data-handling: secure institutional storage, access controls, no redistribution.
    - Signed **Data Access Agreement** (institutional signatory may be required — start early).
 3. Submit; record application date + ticket id in `data/manifest.csv`.
 4. On approval: download via EGA download client (pyega3) into `data/<cluster>/<dataset>/`,
@@ -29,5 +29,6 @@ EGA controlled-access approval typically takes **1–4 weeks** and is the single
 
 ## Preprint / resource-stage (request from authors, not EGA)
 
-Zhu 2025 · Moonen 2026 · Belk 2022 · Zhou 2023 — email corresponding authors; **Week-1 QC gate**
-decides main vs supplementary (PLAN.md §8). Subsample large dumps to 100–200k cells/perturbation.
+Zhu 2025, Moonen 2026, Belk 2022, and Zhou 2023 are not fetched by this EGA
+note. See `data/README.md` and `scripts/datasets.csv` for their current access
+routes and benchmark role.

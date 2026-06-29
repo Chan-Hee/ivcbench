@@ -26,7 +26,7 @@ from pathlib import Path
 
 import numpy as np
 
-ROOT = Path("/data1/home/chlee/projects/immune virtual cell/benchmark")
+ROOT = Path(os.environ.get("IVCBENCH_REPO_ROOT", Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 

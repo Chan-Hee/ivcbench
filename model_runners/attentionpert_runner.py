@@ -25,8 +25,9 @@ from pathlib import Path
 
 import numpy as np
 
-ATTN_SRC = os.environ.get("IVCBENCH_ATTNPERT_SRC",
-                          "/data1/home/chlee/projects/scPerturBench/image_rootfs/home/software/AttentionPert")
+ATTN_SRC = os.environ.get("IVCBENCH_ATTNPERT_SRC")
+if not ATTN_SRC:
+    raise FileNotFoundError("set $IVCBENCH_ATTNPERT_SRC to the AttentionPert source directory")
 sys.path.insert(0, ATTN_SRC)
 
 

@@ -35,6 +35,9 @@ dl "$(geo GSE218985)/GSE218985_RAW.tar" "$ROOT/data/C3/mccutcheon"
 dl "$(geo GSE203592)/GSE203592_integrated_v2.rds.gz" "$ROOT/data/C4/belk"
 
 echo "== recording checksums =="
-find "$ROOT/data/C1/kang" "$ROOT/data/C3" "$ROOT/data/C4/belk" -type f \
-     ! -name '*.sha256' ! -name '_*' -print0 | xargs -0 sha256sum > "$ROOT/data/public_downloads.sha256"
+(
+  cd "$ROOT"
+  find data/C1/kang data/C3 data/C4/belk -type f \
+       ! -name '*.sha256' ! -name '_*' -print0 | xargs -0 sha256sum > data/public_downloads.sha256
+)
 echo "DONE: public GEO datasets for C1 + C3"

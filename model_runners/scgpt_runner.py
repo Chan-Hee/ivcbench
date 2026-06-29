@@ -11,8 +11,8 @@ each held target gene, feed control cells with the flag set at that gene's posit
 is the predicted perturbed profile, averaged over controls and scattered back into the full HVG panel
 (non-modelled genes keep the control mean). Leak-safe: held-gene expression never enters training.
 
-Model dir (vocab.json/config.json/best_model.pt) from $IVCBENCH_SCGPT_MODEL_DIR (default the local
-scGPT_human). Epochs/seq-len/cell-cap via $IVCBENCH_SCGPT_{EPOCHS,SEQLEN,MAXCELLS}.
+Model dir (vocab.json/config.json/best_model.pt) from $IVCBENCH_SCGPT_MODEL_DIR.
+Epochs/seq-len/cell-cap via $IVCBENCH_SCGPT_{EPOCHS,SEQLEN,MAXCELLS}.
 """
 from __future__ import annotations
 
@@ -25,8 +25,9 @@ import numpy as np
 
 
 def _model_dir() -> Path:
-    p = os.environ.get("IVCBENCH_SCGPT_MODEL_DIR",
-                       "/data1/home/chlee/projects/single_cell_fm/models/scGPT_human")
+    p = os.environ.get("IVCBENCH_SCGPT_MODEL_DIR")
+    if not p:
+        raise FileNotFoundError("set $IVCBENCH_SCGPT_MODEL_DIR to the scGPT_human checkpoint directory")
     d = Path(p)
     if not (d / "vocab.json").exists():
         raise FileNotFoundError(f"scGPT model dir {d} missing vocab.json (set $IVCBENCH_SCGPT_MODEL_DIR)")

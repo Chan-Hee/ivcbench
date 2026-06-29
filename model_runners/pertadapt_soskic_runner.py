@@ -34,16 +34,18 @@ sys.path.insert(0, str(ROOT / "vendor"))
 
 
 def _scf_dir() -> Path:
-    p = os.environ.get("IVCBENCH_SCFOUNDATION_DIR",
-                       "/data1/home/chlee/projects/single_cell_fm/scFoundation/model")
+    p = os.environ.get("IVCBENCH_SCFOUNDATION_DIR")
+    if not p:
+        raise FileNotFoundError("set $IVCBENCH_SCFOUNDATION_DIR to the scFoundation source directory")
     if not (Path(p) / "load.py").exists():
         raise FileNotFoundError(f"scFoundation source dir {p} missing load.py")
     return Path(p)
 
 
 def _ckpt_path() -> Path:
-    p = os.environ.get("IVCBENCH_SCFOUNDATION_CKPT",
-                       "/data1/home/chlee/projects/single_cell_fm/models/scFoundation/models.ckpt")
+    p = os.environ.get("IVCBENCH_SCFOUNDATION_CKPT")
+    if not p:
+        raise FileNotFoundError("set $IVCBENCH_SCFOUNDATION_CKPT to the scFoundation checkpoint")
     if not Path(p).exists():
         raise FileNotFoundError(f"scFoundation checkpoint {p} not found")
     return Path(p)

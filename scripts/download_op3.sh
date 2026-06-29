@@ -4,7 +4,8 @@
 set -euo pipefail
 
 ACC="GSE279945"
-DEST="$(dirname "$0")/../data/C5/op3"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+DEST="$ROOT/data/C5/op3"
 mkdir -p "$DEST"
 
 # GEO supplementary files live under this stable path (NNN = first digits, rest masked with 'nnn').
@@ -23,6 +24,6 @@ echo ">> Review ${DEST}/_files.txt, then download the processed matrix (e.g. *.h
 echo "   curl -fL -o '${DEST}/<file>' '${BASE}/<file>'"
 echo
 echo ">> After download, record checksum + provenance:"
-echo "   sha256sum '${DEST}/'* >> data/manifest.csv"
+echo "   cd <repo root> && sha256sum data/C5/op3/* >> data/manifest.csv"
 echo
 echo "NOTE: ingest with ivcbench.data.loaders.op3:load -> unified CellSet (subsample if needed)."

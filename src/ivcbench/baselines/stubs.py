@@ -1,10 +1,8 @@
-"""Heavy-baseline adapter stubs — one class per non-Simple baseline.
+"""Legacy heavy-baseline placeholders.
 
-Each is owned by an `adapter@<family>` agent (PLAN.md §6) and wraps the native repo behind the
-BaselineAdapter interface, running in its own pinned conda env. They raise until implemented; the
-applicability registry + gating already route jobs to them correctly, and the Simple-4 baselines
-prove the surrounding pipeline. `adapted=True` baselines must additionally implement the
-side-info conditioning extension noted in the registry.
+The production heavy-baseline wrappers live in ``ivcbench.baselines.heavy`` and
+``model_runners/``. This module remains for older imports and makes unavailable
+adapters fail with a clear message instead of silently entering a benchmark run.
 """
 from __future__ import annotations
 
@@ -12,12 +10,13 @@ from .base import BaselineAdapter, PredResult  # noqa: F401
 
 
 class _Unimplemented(BaselineAdapter):
-    repo = "TODO"
-    conda_env = "TODO"
+    repo = "external model repository"
+    conda_env = "model-specific environment"
 
     def fit(self, cs, split, side_info=None):
         raise NotImplementedError(
-            f"{self.name}: wrap {self.repo} (env: {self.conda_env}). See PLAN.md §6/§8."
+            f"{self.name}: adapter is not available in this legacy stub module. "
+            "Use ivcbench.baselines.heavy or the corresponding model_runners entry."
         )
 
     def predict(self, cs, split, side_info=None) -> PredResult:  # pragma: no cover

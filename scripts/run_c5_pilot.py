@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-"""C5 pilot driver — the "1패스" on synthetic OP3-shaped data (GPU-free).
+"""C5 pilot driver: one pass on synthetic OP3-shaped data (GPU-free).
 
 Runs the Simple-4 baselines through both C5 splits, end to end:
   synth -> build split -> LEAK AUDIT -> applicability gating -> fit -> predict -> 4-axis metrics.
-Heavy baselines (chemCPA/scGPT/CINEMA-OT/STATE) are added in Phase 1 behind the same BaselineAdapter
-interface; this driver proves the surrounding machinery first.
+Heavy baselines (chemCPA/scGPT/CINEMA-OT/STATE) use the same BaselineAdapter
+interface; this driver exercises the surrounding machinery without raw data.
 """
 from __future__ import annotations
 

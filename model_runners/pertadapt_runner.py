@@ -49,8 +49,9 @@ sys.path.insert(0, str(ROOT / "vendor"))   # make `pertadapt` importable
 
 
 def _scf_dir() -> Path:
-    p = os.environ.get("IVCBENCH_SCFOUNDATION_DIR",
-                       "/data1/home/chlee/projects/single_cell_fm/scFoundation/model")
+    p = os.environ.get("IVCBENCH_SCFOUNDATION_DIR")
+    if not p:
+        raise FileNotFoundError("set $IVCBENCH_SCFOUNDATION_DIR to the scFoundation source directory")
     d = Path(p)
     if not (d / "load.py").exists():
         raise FileNotFoundError(f"scFoundation source dir {d} missing load.py (set $IVCBENCH_SCFOUNDATION_DIR)")
@@ -58,8 +59,9 @@ def _scf_dir() -> Path:
 
 
 def _ckpt_path() -> Path:
-    p = os.environ.get("IVCBENCH_SCFOUNDATION_CKPT",
-                       "/data1/home/chlee/projects/single_cell_fm/models/scFoundation/models.ckpt")
+    p = os.environ.get("IVCBENCH_SCFOUNDATION_CKPT")
+    if not p:
+        raise FileNotFoundError("set $IVCBENCH_SCFOUNDATION_CKPT to the scFoundation checkpoint")
     c = Path(p)
     if not c.exists():
         raise FileNotFoundError(f"scFoundation checkpoint {c} not found (set $IVCBENCH_SCFOUNDATION_CKPT)")
