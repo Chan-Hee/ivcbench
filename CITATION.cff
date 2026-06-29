@@ -19,10 +19,10 @@ authors:
     affiliation: "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea"
 version: 1.1.0
 date-released: "2026-06-29"
-doi: 10.5281/zenodo.20756159
+doi: 10.5281/zenodo.21017582
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.20756159
+    value: 10.5281/zenodo.21017582
     description: "Zenodo archive (v1.1.0)"
 license: MIT
 repository-code: "https://github.com/Chan-Hee/ivcbench"
