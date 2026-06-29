@@ -10,7 +10,7 @@ introduces no new model of its own.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21017582.svg)](https://doi.org/10.5281/zenodo.21017582)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20756042.svg)](https://doi.org/10.5281/zenodo.20756042)
 
 Each axis is a generalization question that recurs in immune perturbation studies. Models are scored against
 simple pre-specified baselines, including a two-member "floor" that drives the main pass/fail interpretation.
@@ -142,8 +142,8 @@ the per-dataset scripts are in [`data/README.md`](data/README.md) and [`scripts/
   title     = {ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
   author    = {Lee, Chanhee and Ryu, Jae Yong},
   year      = {2026},
-  version   = {1.1.0},
-  doi       = {10.5281/zenodo.21017582},
+  version   = {1.1.1},
+  doi       = {10.5281/zenodo.20756042},
   publisher = {Zenodo}
 }
 ```
