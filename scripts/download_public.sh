@@ -28,11 +28,8 @@ for f in GSE190604_barcodes.tsv.gz GSE190604_features.tsv.gz GSE190604_matrix.mt
 # McCutcheon 2023 (C3) — scRNA subseries of GSE218988
 dl "$(geo GSE218985)/GSE218985_RAW.tar" "$ROOT/data/C3/mccutcheon"
 
-# Chen 2025 (C3) — Perturb-icCITE-seq FOXP3; 4 libraries (10x mtx + protospacer calls)
-B=$(geo GSE255832)
-for lib in MMA198_1 MMA198_2 MMA200_1 MMA202_1; do
-  for suf in barcodes.tsv.gz features.tsv.gz matrix.mtx.gz protospacer_calls_per_cell.csv.gz; do
-    dl "$B/GSE255832_${lib}_${suf}" "$ROOT/data/C3/chen"; done; done
+# Chen 2025 (C3) is controlled-access (DDBJ PRJDB16517 / GEA E-GEAD-648); obtain by login,
+# not a public GEO download. (GSE255832 is the unrelated Pretto 2025 mouse dataset, not used here.)
 
 # Belk 2022 (C4) — Perturb-seq integrated Seurat object (super-series GSE203593)
 dl "$(geo GSE203592)/GSE203592_integrated_v2.rds.gz" "$ROOT/data/C4/belk"
