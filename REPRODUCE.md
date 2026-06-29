@@ -1,6 +1,6 @@
 # Reproducing the figures and tables
 
-Every figure and Supplementary Table is rebuilt **from the deposited result files in `results/`**; no
+Every data-driven figure and Supplementary Table is rebuilt **from the deposited result files in `results/`** (Figure 1 is a static hand-drawn schematic); no
 raw data and no model re-runs are required. Run each script from the repository root with the `ivc`
 environment active (`conda activate ivc` or the `.venv`), e.g.:
 

@@ -66,7 +66,7 @@ bundles and runs the same consistency gate; `make test` adds the leak audit and 
 - **Reproduced (one GPU-free run):** the 35-cell response-direction Pearson-Δ headline census, the
   floor-clearance verdicts, and the main positive and negative conclusions, checked against the committed
   numbers by the consistency gate.
-- **Rebuilt from deposited result files:** every manuscript figure and Supplementary Table, via the
+- **Rebuilt from deposited result files:** every data-driven figure (Figure 1 is a hand-drawn schematic) and Supplementary Table, via the
   scripts under `scripts/` (see [`REPRODUCE.md`](REPRODUCE.md)).
 - **Provided for provenance:** the raw-data accessions and download scripts, the leak-safe split builder
   and auditor, the per-model runners, the per-family environment table, and the training manifest:
