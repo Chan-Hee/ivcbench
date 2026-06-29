@@ -19,7 +19,7 @@ from pathlib import Path
 PAPER = Path(__file__).resolve().parents[1] / "results" / "_paper"
 # the only images that belong in results/_paper/: the manuscript figures (png + pdf each)
 KEEP_STEMS = {
-    "figure_framework", "figure_ranking", "figure_cellcontext",
+    "figure_ranking", "figure_cellcontext",
     "figure_perturbation", "figure_donor_decision",
     "figure_landscape",          # v2 §2 method × split landscape
     "figure_immune_blindspot",   # v2 §5 immune blind-spot map (Figure 7)

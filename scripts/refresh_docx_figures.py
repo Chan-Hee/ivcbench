@@ -27,7 +27,7 @@ WD = Path(__file__).resolve().parents[1]
 PAPER = WD / "results" / "_paper"
 BLIP = "{http://schemas.openxmlformats.org/drawingml/2006/main}blip"
 NUM_TO_KEY = {
-    "1": "figure_framework", "2": "figure_ranking", "3": "figure_landscape",
+    "2": "figure_ranking", "3": "figure_landscape",
     "4": "figure_cellcontext", "5": "figure_perturbation", "6": "figure_donor_decision",
     "7": "figure_immune_blindspot", "8": "figure_within_family_fit",
 }

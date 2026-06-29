@@ -68,7 +68,6 @@ def expected_values():
 
 
 FIGS = [
-    ("Fig1-framework", "figure_framework", ["C1_n_methods", "C3_n_methods", "C4_n_methods", "C5_n_methods"]),
     ("Fig2-ranking", "figure_ranking", ["C3_floor_mean", "C5cpd_FPridge", "C5cpd_floor", "C1_LODO_scGen"]),
     ("Fig3-landscape", "figure_landscape", ["C3_floor_mean", "C5cpd_FPridge", "C5cpd_floor", "C1_LODO_scGen"]),
     ("Fig4-cellcontext", "figure_cellcontext", ["C5_IFN_FPridge", "C5_IFN_scGen", "C5_bulk_FPridge", "C5_bulk_scGen"]),

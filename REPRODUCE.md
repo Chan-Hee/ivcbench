@@ -29,7 +29,7 @@ locked together.
 **Final manuscript layout (binding).** The submission is **3 main figures + 8 supplementary figures
 (S1–S8) + 12 Supplementary Tables (S1, S2a, S2b, S3–S12)**:
 
-- **Fig 1**: benchmark framework (`figure_framework.py`)
+- **Fig 1**: benchmark workflow schematic (hand-drawn; a static figure, not script-generated)
 - **Fig 2**: generalization map + CellOT donor CDF (`make_figure2_landscape_verdict.py`)
 - **Fig 3**: immune blind-spot map (`figure_immune_blindspot.py`)
 
@@ -48,7 +48,7 @@ Supplementary Notes/Tables, not as numbered supplementary figures.
 
 | Main figure | Script (`scripts/`) | Output (`results/_paper/`) | Reads (deposited) |
 |---|---|---|---|
-| **Fig 1: Benchmark framework** | `figure_framework.py` | `figure_framework.{png,pdf}` | `results/{C1,C3,C4,C5}/results_raw.csv` (method / lineage / donor / split counts) |
+| **Fig 1: Benchmark workflow** | hand-drawn (not script-generated) | static figure (deposited as `BiB_submission/figures/Figure1.png`) | — |
 | **Fig 2: Generalization map + donor CDF** | `make_figure2_landscape_verdict.py` | `figure2_landscape_verdict.{png,pdf,tiff}` | (a) 35-cell map (32 conditioned + 3 CINEMA-OT comparators) from `cross_cluster_headline.csv`; (b) CellOT donor CDF from `cellot_soskic_raw.csv` + `cellot_summary.csv` + `cellot_vs_floor_donor_paired.csv`, paired-Wilcoxon p in `headline_multiplicity_adjusted.csv` |
 | **Fig 3: Immune blind-spot map** | `figure_immune_blindspot.py` | `figure_immune_blindspot.{png,pdf}` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv`, `immune_novelty/T2_per_program_AUCell_map.csv`, `immune_novelty/T3_per_lineage_predictability.csv`, `results/C3/program_null.csv`, `results/C5/results_raw.csv`, `multiseed_scgen_summary.csv` |
 

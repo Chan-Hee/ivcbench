@@ -17,7 +17,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 PY = str(ROOT / ".venv" / "bin" / "python")
 PAPER = ROOT / "results" / "_paper"
-SCRIPTS = ["figure_framework", "figure_landscape", "figure_ranking", "figure_cellcontext",
+SCRIPTS = ["figure_landscape", "figure_ranking", "figure_cellcontext",
            "figure_perturbation", "figure_donor_decision",
            "figure_immune_blindspot",   # v2 §5 immune blind-spot map
            "figure_within_family_fit"]  # v2 §4 within-family consistency + descriptive fit-matrix

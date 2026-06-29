@@ -251,7 +251,7 @@ def main():
     def emit_fig(num):
         """Emit an image paragraph (embedded PNG) + its caption paragraph, in numeric order."""
         from docx.shared import Emu
-        key = {"1": "figure_framework", "2": "figure_ranking", "3": "figure_landscape",
+        key = {"2": "figure_ranking", "3": "figure_landscape",
                "4": "figure_cellcontext", "5": "figure_perturbation", "6": "figure_donor_decision",
                "7": "figure_immune_blindspot", "8": "figure_within_family_fit"}[num]
         png = PAPER / f"{key}.png"
