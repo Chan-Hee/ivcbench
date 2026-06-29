@@ -17,13 +17,13 @@ authors:
   - family-names: Ryu
     given-names: Jae Yong
     affiliation: "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea"
-version: 1.0.2
-date-released: "2026-06-25"
+version: 1.1.0
+date-released: "2026-06-29"
 doi: 10.5281/zenodo.20756159
 identifiers:
   - type: doi
     value: 10.5281/zenodo.20756159
-    description: "Zenodo archive (v1.0.2)"
+    description: "Zenodo archive (v1.1.0)"
 license: MIT
 repository-code: "https://github.com/Chan-Hee/ivcbench"
 url: "https://github.com/Chan-Hee/ivcbench"

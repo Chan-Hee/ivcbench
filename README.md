@@ -142,7 +142,7 @@ the per-dataset scripts are in [`data/README.md`](data/README.md) and [`scripts/
   title     = {ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
   author    = {Lee, Chanhee and Ryu, Jae Yong},
   year      = {2026},
-  version   = {1.0.2},
+  version   = {1.1.0},
   doi       = {10.5281/zenodo.20756159},
   publisher = {Zenodo}
 }
