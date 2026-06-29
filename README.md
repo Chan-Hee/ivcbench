@@ -12,7 +12,7 @@ model.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20756042.svg)](https://doi.org/10.5281/zenodo.20756042)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20756042-1682D4)](https://doi.org/10.5281/zenodo.20756042)
 
 ![Benchmark framework](results/_paper/Figure1.png)
 
