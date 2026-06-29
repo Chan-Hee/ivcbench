@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# reproduce_all_bundles.sh - L2 turn-key: retrain every census model FROM SCRATCH and re-dump its
+# reproduce_all_bundles.sh - provenance: retrain every census model FROM SCRATCH and re-dump its
 # prediction bundle into IVCBENCH_PRED_DUMP, so the bundle-sourced census (scripts/assemble_cross_cluster.py)
-# reproduces every paper number from a fresh GitHub checkout. This is the GPU "Tier-2" backbone behind
+# reproduces every paper number from a fresh GitHub checkout. This is the GPU provenance backbone behind
 # `make reproduce-all`. It orchestrates the SAME proven per-cell runners that produced the deposit (not the
 # unvalidated manifest path), each with IVCBENCH_PRED_DUMP[_MEANS] set so a re-run materialises the
 # model-output layer the GPU-free re-scorer reads.

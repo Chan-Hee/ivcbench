@@ -5,7 +5,7 @@
 #   bash scripts/build_train_image.sh --pack-only     # only produce the env tarballs, skip the build
 #   bash scripts/build_train_image.sh --envs "cellot ivc-state"   # restrict to a subset
 #
-# Level 1 (the in-repo Containerfile / `podman build -t ivcbench .`) is the small, verified, GPU-free
+# The in-repo Containerfile (`podman build -t ivcbench .`) is the small, verified, GPU-free
 # eval image. THIS is the heavy retraining image: it bundles the per-family conda environments so a
 # reader with a GPU can run `make train-all` without building each upstream env by hand. conda-pack
 # freezes each existing env into build/train_envs/<env>.tar.gz; Containerfile.train unpacks them into

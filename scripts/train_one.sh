@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# train_one.sh - Level 2 of the reproduction ladder: retrain ONE model family and refreeze its
+# train_one.sh - a provenance path: retrain ONE model family and refreeze its
 # prediction bundles so `make reproduce-eval` can re-score it GPU-free.
 #
 #   scripts/train_one.sh <model> [--dry-run]
@@ -11,7 +11,7 @@
 # This is the HEAVY path. It orchestrates the per-family runners; it does NOT remove the need for the
 # per-family conda environments (built from each upstream repo per REPRODUCE.md), the raw data
 # (per data/README.md), or a GPU. A missing env or dataset is reported as a clean SKIP, never a crash.
-# Level 1 (`make reproduce-eval`) needs none of those.
+# The GPU-free path (`make reproduce-eval`) needs none of those.
 set -euo pipefail
 
 # Resolve repo root from this script's own location, then cd there.
@@ -53,7 +53,7 @@ if [ "${#ROWS[@]}" -eq 0 ]; then
 fi
 
 echo "=================================================================="
-echo " ivcbench Level 2 retrain: ${MODEL}   (${#ROWS[@]} unit(s))"
+echo " ivcbench retrain (provenance): ${MODEL}   (${#ROWS[@]} unit(s))"
 [ "${DRY_RUN}" -eq 1 ] && echo " (--dry-run: resolved commands are printed, nothing heavy executes)"
 echo "=================================================================="
 

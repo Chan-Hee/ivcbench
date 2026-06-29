@@ -34,14 +34,14 @@ census:                      ## MAINTAINER ONLY: re-derive every bundle-sourced 
 	$(PY) scripts/c2_donor_paired.py
 	$(PY) scripts/headline_multiplicity.py
 
-train:                       ## retrain ONE model + reproduce it; ARGS forwarded to the script, e.g. make train MODEL=cellot ARGS=--dry-run
+train:                       ## PROVENANCE: retrain ONE model + re-dump its bundle (per-family env+data+GPU); ARGS forwarded, e.g. make train MODEL=cellot ARGS=--dry-run
 	@test -n "$(MODEL)" || (echo "usage: make train MODEL=cellot [ARGS=--dry-run]"; exit 1)
 	bash scripts/train_one.sh $(MODEL) $(ARGS)
 
-train-all:                   ## retrain everything + reproduce all results (per-family envs+data+GPUs); ARGS forwarded, e.g. ARGS=--dry-run
+train-all:                   ## PROVENANCE: retrain every ready model + re-dump bundles (needs all per-family envs+data+GPUs); ARGS forwarded, e.g. ARGS=--dry-run
 	bash scripts/reproduce_all.sh $(ARGS)
 
-reproduce-all:               ## GPU reproduction: download data -> train every ready model -> re-score -> final INTEGRATED figure (submitted figures/tables rebuild separately, see REPRODUCE.md)
+reproduce-all:               ## PROVENANCE (not the headline path): download data -> retrain every ready model -> re-score -> integrated figure; the reproduction of record is GPU-free `make reproduce` (see REPRODUCE.md)
 	$(MAKE) data
 	$(MAKE) train-all
 	$(MAKE) integrated-figure

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # _train_lib.sh - ONE implementation of manifest parsing + per-row preflight + per-row run, sourced by
-# both scripts/train_one.sh (Level 2) and scripts/reproduce_all.sh (Level 3). Assumes the caller has
+# both scripts/train_one.sh (single model) and scripts/reproduce_all.sh (all models). Assumes the caller has
 # already cd'd to the repo root and that ${REPO_ROOT} is set.
 #
 # Per-row contract (run_manifest_row): exit codes are returned via `return`, not `exit`, so one bad row

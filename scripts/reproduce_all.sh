@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# reproduce_all.sh - Level 3 of the reproduction ladder: retrain EVERY model family and reproduce all
+# reproduce_all.sh - a provenance path: retrain EVERY model family and re-dump all
 # results, then re-score GPU-free.
 #
 #   scripts/reproduce_all.sh [--dry-run]
@@ -12,7 +12,7 @@
 #
 # THIS IS THE HEAVY PATH. It needs the per-family conda environments (built from each upstream repo per
 # REPRODUCE.md), the raw data (per data/README.md), and GPUs for the GPU families. It does NOT replace
-# them. Level 1 (`make reproduce-eval`) reproduces the census from the deposited bundles with none of
+# them. The GPU-free path (`make reproduce-eval`) reproduces the census from the deposited bundles with none of
 # that: no conda, no GPU, no raw data, and is the right rung for most readers.
 set -euo pipefail
 
@@ -31,11 +31,11 @@ for arg in "$@"; do
 done
 
 echo "=================================================================="
-echo " ivcbench Level 3: retrain everything + reproduce all results"
+echo " ivcbench retrain-all (provenance): retrain every ready model + re-dump bundles"
 echo "=================================================================="
 echo " HEAVY PATH. Needs the per-family conda environments (REPRODUCE.md),"
 echo " the raw data (data/README.md), and GPUs for the GPU families."
-echo " Level 1 'make reproduce-eval' reproduces the census from the"
+echo " GPU-free 'make reproduce-eval' reproduces the census from the"
 echo " deposited bundles with no conda, no GPU, and no raw data."
 [ "${DRY_RUN}" -eq 1 ] && echo " (--dry-run: prints the resolved plan; nothing heavy executes)"
 echo ""
@@ -126,6 +126,6 @@ fi
 
 echo ""
 echo "=================================================================="
-echo " Level 3 summary"
+echo " retrain-all (provenance) summary"
 echo "=================================================================="
 for s in "${SUMMARY[@]}"; do echo "  ${s}"; done

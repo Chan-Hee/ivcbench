@@ -143,9 +143,11 @@ scripts read only the deposited tables in `results/newdata/` (+ one Frangieh com
 
 ---
 
-## Retraining from scratch
+## Regenerating the prediction bundles by retraining (provenance)
 
-Everything above rebuilds with no GPU. The headline Pearson-Δ census and the bundle-sourced tables
+This section documents how the deposited prediction bundles were produced; it is provenance, not a
+one-command reproduction path. The reproduction of record for the paper's numbers is the GPU-free bundle
+re-score described above. Everything above rebuilds with no GPU. The headline Pearson-Δ census and the bundle-sourced tables
 (S2b, S3, S4, S5, S7, S10) come from the deposited prediction bundles; the figures and the remaining
 tables (the S12 energy-distance table, the S9–S13 provenance analyses) are assembled from the deposited
 result CSVs, not from the bundles. To regenerate the predictions themselves by retraining every model,
@@ -223,9 +225,12 @@ foundation models (scGPT, scFoundation) were run through the scPerturBench eval 
 runner, so the manifest leaves their command empty and the drivers report them as not-runnable from this
 repository with a pointer back to this section.
 
-**Stability.** We retrained every cell from scratch in an independent end-to-end run. The deterministic
-baselines reproduced exactly; the trained models reproduced their reported Pearson-Δ to within run-to-run
-variation (of order 0.003–0.01), and no verdict in the main figure changed.
+**Determinism and run-to-run variation.** The GPU-free path is exact by construction: the census is
+re-scored from the deposited bundles, so the headline numbers and floor verdicts reproduce bit-for-bit.
+The deterministic components of the retraining path (the floor baselines, FP-ridge, and the linear-shift
+diagnostic) likewise re-dump their bundles exactly. Trained models are stochastic and reproduce their
+reported Pearson-Δ only to within run-to-run variation (of order 0.003–0.01), which is why the
+bundle-level GPU-free path, not retraining, is the reproduction of record for the paper's numbers.
 
 ---
 

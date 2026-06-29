@@ -1,7 +1,7 @@
 # Containerfile.train, the ALL-ENVIRONMENTS retraining image (scPerturBench-style).
 #
 # This image bundles the per-family conda environments so a reader who HAS a GPU can run the heavy
-# retraining ladder (`make train MODEL=<name>`, `make train-all`) without building each upstream env by
+# retraining path (`make train MODEL=<name>`, `make train-all`) without building each upstream env by
 # hand. Each environment was frozen with conda-pack into build/train_envs/<env>.tar.gz by
 # scripts/build_train_image.sh; here we unpack each into /opt/conda/envs/<env> and run conda-unpack so
 # its interpreter at /opt/conda/envs/<env>/bin/python is relocatable and runnable.

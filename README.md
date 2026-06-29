@@ -40,63 +40,57 @@ Human Cytokine Dictionary summary table, the Chen FOXP3 Perturb-icCITE-seq check
 CellOT donor learning curve on the Soskic dataset. These corroborate the main results and document
 provenance; they are not additional submitted supplementary figures.
 
-## Reproducing the paper
+## Reproducing the benchmark results
 
-Two paths, depending on whether you have a GPU. `docker` works in place of `podman`. The figure-to-script
-map, the per-family environment table, the `$IVCBENCH_*` variables, and the exact per-model commands live in
-[`REPRODUCE.md`](REPRODUCE.md); this section is the entry point.
-
-### Without a GPU: confirm the numbers
-
-The repository ships a `Containerfile` that carries the deposited prediction bundles and the analysis
-environment, so the paper's 35-cell census is recomputed from the bundles with one build and one run, with no
-conda, no GPU, and no raw single-cell data:
+The release is built around one reproduction claim. The paper's main results (the 35-cell Pearson-Δ
+headline census and the floor-clearance verdicts behind the conclusions) are recomputed from the
+deposited prediction bundles by a single containerized, GPU-free run, with no conda, no GPU, and no raw
+single-cell data. The figure-to-script map, the per-family environment table, the `$IVCBENCH_*`
+variables, and the per-model commands live in [`REPRODUCE.md`](REPRODUCE.md); this section is the entry
+point. `docker` works in place of `podman`.
 
 ```bash
 podman build -t ivcbench . && podman run --rm ivcbench    # docker works in place of podman
 ```
 
-The run re-scores every deposited prediction bundle, reassembles the 35-cell headline, and checks it against
-the committed paper numbers, printing `DEPOSIT CONSISTENCY: PASS` when the two agree. The census is assembled
-from the very bundles a reviewer re-scores, so each cell reproduces exactly rather than to within a tolerance,
-the donor CellOT macro of 0.3666 and the OP3 FP-ridge cell-context result of 0.3874 among them;
-`predictions/COVERAGE.md` is the cell-by-cell account. This path reproduces the response-direction Pearson-Δ
-headline, the primary floor-clearance axis the paper's conclusions turn on. It does not reproduce the
-corroborating distributional energy-distance metric (Supplementary Table S12): the deposited bundles are
-compact per-stratum means, and
-energy distance needs the per-cell prediction cloud, so `reproduce-eval` leaves its `e_distance` column empty
-by design (`predictions/COVERAGE.md`). That axis comes back through the GPU retraining path or by re-dumping
-per-cell bundles. Without a container, install the core environment
-(`pip install -e .` against `requirements.txt`) and run `make reproduce`, which re-scores the bundles and
-runs the same consistency gate; `make test` adds the leak audit and the smoke tests. The scripts under
-`scripts/` rebuild the manuscript figures from the reassembled tables.
+The run re-scores every deposited prediction bundle, reassembles the 35-cell headline, and checks it
+against the committed paper numbers, printing `DEPOSIT CONSISTENCY: PASS` when the two agree. Because the
+census is assembled from the very bundles being re-scored, each cell reproduces exactly rather than to
+within a tolerance (the donor CellOT macro of 0.3666 and the OP3 FP-ridge cell-context result of 0.3874
+among them); `predictions/COVERAGE.md` is the cell-by-cell account. Without a container, install the core
+environment (`pip install -e .` against `requirements.txt`) and run `make reproduce`, which re-scores the
+bundles and runs the same consistency gate; `make test` adds the leak audit and the smoke tests.
 
-### With a GPU: reproduce the whole paper from nothing (three steps)
+**Scope of the reproduction.**
 
-This trains every model whose environment and data are present (units with a missing env or dataset are
-cleanly skipped, and the run re-scores whatever ran, so a complete full reproduction needs all the listed
-environments and datasets in place) and rebuilds the headline numbers and the integrated figure. The model families need conflicting CUDA and
-PyTorch versions, so each lives in its own conda environment inside one image, the same arrangement
-scPerturBench uses; the author publishes that image to Zenodo, so you do not build the environments yourself.
+- **Reproduced (one GPU-free run):** the 35-cell response-direction Pearson-Δ headline census, the
+  floor-clearance verdicts, and the main positive and negative conclusions, checked against the committed
+  numbers by the consistency gate.
+- **Rebuilt from deposited result files:** every manuscript figure and Supplementary Table, via the
+  scripts under `scripts/` (see [`REPRODUCE.md`](REPRODUCE.md)).
+- **Provided for provenance:** the raw-data accessions and download scripts, the leak-safe split builder
+  and auditor, the per-model runners, the per-family environment table, and the training manifest:
+  everything needed to regenerate the prediction bundles by retraining, documented but not offered as a
+  one-command reproduction.
+- **Outside the GPU-free path:** the corroborating distributional energy-distance metric (Supplementary
+  Table S12). The deposited bundles are compact per-stratum means and energy distance needs the per-cell
+  prediction cloud, so `reproduce-eval` leaves its `e_distance` column empty by design
+  (`predictions/COVERAGE.md`); that axis is regenerated by re-dumping per-cell bundles through the
+  retraining path.
 
-```bash
-# 1. get the all-environments image (every model env inside)
-podman pull <zenodo-image>        # author builds + hosts it with scripts/build_train_image.sh
+### Regenerating the prediction bundles by retraining (provenance)
 
-# 2. download all public raw data (Chen and Cano-Gamez need a manual login/DAC; the script says which)
-make data
-
-# 3. train every model and rebuild the numbers and the figure, inside the image
-podman run --gpus all -v "$PWD:/ivcbench" ivcbench-train make reproduce-all
-```
-
-Step 3 runs on the GPU and takes a while: `make reproduce-all` chains the data download, the retraining of
-every ready model, the GPU-free re-score, and the final integrated figure in order (the submitted
-supplementary figures and tables are rebuilt separately by the figure and table scripts; see `REPRODUCE.md`).
-To retrain a single model instead, run
-`make train MODEL=<name>` (the runnable names and their exact commands are in
-[`scripts/train_manifest.csv`](scripts/train_manifest.csv)). A model whose environment or data is missing is
-reported as a clean skip naming what to set, not a crash.
+Retraining the external models from raw data is documented for provenance, not offered as a one-command
+path. It needs the raw datasets (two of which are access-controlled), a GPU, and the per-family conda
+environments (the upstream implementations carry conflicting CUDA/PyTorch versions, so each model family
+runs in its own environment), and the trained models reproduce their reported Pearson-Δ only to within
+run-to-run variation. `make train MODEL=<name>` retrains and re-scores a single model (runnable names and
+exact commands in [`scripts/train_manifest.csv`](scripts/train_manifest.csv)); `make data` fetches the
+public datasets (`--list` previews the plan; the two access-controlled datasets are flagged for manual
+login/DAC); and `make reproduce-all` chains the whole retraining path on a host that has every
+environment and dataset in place. A unit whose environment or data is missing is reported as a clean skip
+naming what to set, not a crash. The per-family environments and the bundled training image are described
+in [`REPRODUCE.md`](REPRODUCE.md).
 
 ## What's in the repository
 
