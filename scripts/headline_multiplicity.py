@@ -7,7 +7,7 @@ restricts to the maximal NON-RAGGED submatrix (headline contrasts that actually 
 headline response-direction axis AND carry a deposited/recomputable raw p), then applies
 Benjamini-Hochberg AND Holm WITHIN each of two pre-specified families — the headline
 floor-clearance tests (H1-H5) and the confirmatory contrasts (C2 donor, C5 compound-null) —
-matching the deposited Supplementary Table S10. Contrasts whose raw p is not deposited are
+matching the deposited Supplementary Table S11. Contrasts whose raw p is not deposited are
 listed as [MISSING] and EXCLUDED from the correction (never invented).
 
 Deposits results/_paper/headline_multiplicity_adjusted.csv.
@@ -126,7 +126,7 @@ rows.append(("C5_FPridge_compound_matching_null_Fisher", p_c5null,
 # ============ BH and Holm WITHIN each pre-specified family (not pooled) ============
 # Two pre-specified families: the headline floor-clearance tests (H1-H5) and the
 # confirmatory contrasts (C2 donor, C5 compound-null). Pooling them would over-shrink the
-# floor family and flip H4 (FP-ridge) to surviving; the deposited Supplementary Table S10
+# floor family and flip H4 (FP-ridge) to surviving; the deposited Supplementary Table S11
 # corrects within family, so H4 BH=0.0625 does NOT survive.
 def family_of(contrast):
     return "headline_floor" if contrast.startswith("H") else "confirmatory"

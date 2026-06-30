@@ -38,12 +38,13 @@ which writes the larger per-cell bundles described in `predictions/COVERAGE.md`.
 
 The full per-cluster figure plate (`figure_landscape / ranking / cellcontext / perturbation /
 donor_decision / within_family_fit`) is retained for provenance and feeds several of the S-figures
-below; the 8 submitted supplementary-figure PNGs (S1–S8) in `BiB_submission/figures/` are the
-journal-formatted renders of those `results/_paper/` figures (margin-normalized and exported, so not
-byte-identical to the source PNGs; only S2 == `figure_cellcontext.png` happens to match). The additional analyses
-listed further below (chemistry-channel collapse, program-dimensionality, and the three new-data
-analyses) are deposited as release provenance; in the submitted supplement they appear as
-Supplementary Notes/Tables, not as numbered supplementary figures.
+below; the 8 submitted supplementary figures (S1–S8) are embedded in
+`BiB_submission/supplementary/Supplementary_Material.docx`. They are journal-formatted renders of the
+`results/_paper/` figures (margin-normalized and exported, so not byte-identical to every source PNG; only
+S2 == `figure_cellcontext.png` happens to match). The additional analyses listed further below
+(chemistry-channel collapse, program-dimensionality, and the three new-data analyses) are deposited as
+release provenance; in the submitted supplement they appear as Supplementary Notes/Tables, not as numbered
+supplementary figures.
 
 ---
 
@@ -51,7 +52,7 @@ Supplementary Notes/Tables, not as numbered supplementary figures.
 
 | Main figure | Script (`scripts/`) | Output (`results/_paper/`) | Reads (deposited) |
 |---|---|---|---|
-| **Fig 1: Benchmark workflow** | hand-drawn (not script-generated) | static figure (deposited as `BiB_submission/figures/Figure1.png`) | — |
+| **Fig 1: Benchmark workflow** | hand-drawn (not script-generated) | static figure (`results/_paper/Figure1.png`; submitted as `BiB_submission/figures/Figure1.tiff`) | — |
 | **Fig 2: Generalization map + donor CDF** | `make_figure2_landscape_verdict.py` | `figure2_landscape_verdict.{png,pdf,tiff}` | (a) 35-cell map (29 conditioned + 6 diagnostic comparators) from `cross_cluster_headline.csv`; (b) CellOT donor CDF from `cellot_soskic_raw.csv` + `cellot_summary.csv` + `cellot_vs_floor_donor_paired.csv`, paired-Wilcoxon p in `headline_multiplicity_adjusted.csv` |
 | **Fig 3: Immune blind-spot map** | `figure_immune_blindspot.py` | `figure_immune_blindspot.{png,pdf}` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv`, `immune_novelty/T2_per_program_AUCell_map.csv`, `immune_novelty/T3_per_lineage_predictability.csv`, `results/C3/program_null.csv`, `results/C5/results_raw.csv`, `multiseed_scgen_summary.csv` |
 
@@ -62,9 +63,10 @@ Supplementary Notes/Tables, not as numbered supplementary figures.
 *Note: `BiB_submission/…` paths name files in the journal submission package, which is separate from this
 code archive; this release ships the regenerating scripts and the backing result files named below.*
 
-**S1–S8 are the submitted supplementary figures** (journal submission `SupplementaryFigure_S1..S8.png`;
-this release regenerates them under `results/_paper/`, margin-normalized so not byte-identical). Each
-row: submitted S-number → figure script → backing data (all present in this release).
+**S1–S8 are the submitted supplementary figures** (embedded in the journal submission
+`Supplementary_Material.docx`; this release regenerates their sources under `results/_paper/`,
+margin-normalized so not byte-identical). Each row: submitted S-number → figure script → backing data (all
+present in this release).
 
 | S# | Content | Figure script (`scripts/`) | Computed by → backing data (deposited) |
 |---|---|---|---|
@@ -137,11 +139,12 @@ The analysis scripts read **raw** data and are provenance; the three figure scri
 
 This section documents how the deposited prediction bundles were produced; it is provenance, not a
 one-command reproduction path. The reproduction of record for the paper's numbers is the GPU-free bundle
-re-score described above. Everything above rebuilds with no GPU. The headline Pearson-Δ census and the bundle-sourced tables
-(S2b, S3, S4, S5, S7, S10) come from the deposited prediction bundles; the figures and the remaining
-tables (the S12 energy-distance table, the additional release analyses) are assembled from the deposited
-result CSVs, not from the bundles. To regenerate the predictions themselves by retraining every model,
-you need the raw data and the per-family environments.
+re-score described above. Everything above rebuilds with no GPU. The bundle-sourced tables include the
+descriptive fit matrix (S3), the headline census (S4), the OP3 fine-lineage check (S5), the donor paired
+checks (S9, S10), and the multiplicity table (S11); the figures and the remaining tables (including the
+S8 energy-distance table and the additional release analyses) are assembled from the deposited result CSVs,
+not from the bundles. To regenerate the predictions themselves by retraining every model, you need the raw
+data and the per-family environments.
 
 **Raw data in one command.** `make data` (which runs `scripts/download_all.sh`) fetches every public census
 dataset into `data/<cluster>/<dataset>/` and prints a summary of what is present and what is still missing;

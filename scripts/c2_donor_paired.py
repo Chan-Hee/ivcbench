@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-"""Recompute the C2 donor paired statistics (Supplementary Tables S5, S7) from the prediction bundles.
+"""Recompute the C2 donor paired statistics (Supplementary Tables S9, S10) from the prediction bundles.
 
 Single source of truth = the deposited bundles (same as the headline census). The donor-held-out task
 carries two split-construction schemes among the deposited bundles: the bespoke `C2_soskic_LODO_*` folds
 (CellOT, scPRAM) and the framework `C2_lodo_*` folds (the simple floors). Both index the same 106 donors,
 so we pair them by donor id and run the paired Wilcoxon exactly as the paper reports it:
 
-    CellOT vs the cell-mean floor   -> results/_paper/cellot_vs_floor_donor_paired.csv   (S5)
-    scPRAM vs CellOT                -> results/_paper/scpram_vs_cellot_donor_paired.csv   (S7)
+    CellOT vs the cell-mean floor   -> results/_paper/cellot_vs_floor_donor_paired.csv   (S9)
+    scPRAM vs CellOT                -> results/_paper/scpram_vs_cellot_donor_paired.csv   (S10)
 
 This reproduces the main-text headline donor result (CellOT 0.3666, mean gap +0.107, 93/106 donors,
 paired Wilcoxon p = 1.58e-13). The matched-per-donor context baseline columns (matched_baseline,
 gap_vs_matched, ci_low/ci_high) are NOT derivable from the standard model bundles, so they are preserved
 from the deposited CSV; everything else is re-derived from the bundles. `scripts/headline_multiplicity.py`
-reads the `wilcoxon_p` here, so re-running this then that regenerates S10 consistently.
+reads the `wilcoxon_p` here, so re-running this then that regenerates S11 consistently.
 """
 from __future__ import annotations
 import os

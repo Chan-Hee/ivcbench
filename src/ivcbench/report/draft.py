@@ -257,7 +257,8 @@ def c5_draft(df: pd.DataFrame, data_source: str) -> str:
         "is recovered by control-anchored shifts but fails for a target-agnostic pooled mean and for "
         "from-scratch latent decoders. CINEMA-OT is perturbation-agnostic (≈ donor-shift) and is shown "
         "as a reference, not a per-compound OT prediction. Remaining ports (scGPT-compound foundation, "
-        "CellOT) and a Tanimoto-stratified analysis are noted next steps (Figure 7; Supplementary Table S5)."
+        "CellOT) and a Tanimoto-stratified analysis are noted next steps in the legacy C5 report and "
+        "deposited C5 Tanimoto table."
     )
 
     # compact pivot table (baseline × split, Pearson-Δ), baselines tagged by their gating role
@@ -279,7 +280,8 @@ def c5_draft(df: pd.DataFrame, data_source: str) -> str:
             "perturbation-agnostic (one global OT shift ≈ donor-shift), not a per-compound OT prediction. "
             "On the unseen-compound split only the applicable chemistry models (FP-ridge, chemCPA) are "
             "headline-ranked; on LOCT the compound is seen so all models are ranked. Energy-distance and "
-            "per-program AUCell-Δ are in Supplementary Table S5.")
+            "per-program AUCell-Δ are in Supplementary Table S7; energy-distance values are in "
+            "Supplementary Table S8.")
 
     return (banner + "\n" + p_setup + p_axis1 + p_axis2 + p_axis3 + p_concl
             + "\n\n#### Pearson-Δ leaderboard (this run)\n\n" + head + "\n" + "\n".join(lines) + note + "\n")

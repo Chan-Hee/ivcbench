@@ -65,7 +65,7 @@ def assemble() -> pd.DataFrame:
     aux_c1 = (table["cluster"] == "C1") & (~table["split"].astype(str).str.startswith("C1_loct"))
     table = table[~aux_c1]
     # Normalise the family label for the deterministic knockout-embedding shift to match the
-    # method survey / census (Supplementary Tables S2a, S2b); results_raw carries a stale "latent".
+    # method survey / census (Supplementary Tables S2, S4); results_raw carries a stale "latent".
     table.loc[table["model"] == "linear-shift-KOemb", "family"] = "Deterministic shift"
     table = table.drop_duplicates().sort_values(
         ["cluster", "dataset", "modality", "split", "family", "model"],

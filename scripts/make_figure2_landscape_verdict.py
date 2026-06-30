@@ -305,7 +305,7 @@ def load_cells():
     C3_KEY = {"chen": "C3·chen", "mccutcheon_CRISPRa": "C3·mccA",
               "mccutcheon_CRISPRi": "C3·mccI", "schmidt": "C3·Schm", "shifrut": "C3·Shif"}
     d3 = _ran("C3")
-    d3 = d3[d3.split == "C3_true_lo_gene_10"]   # headline 10% LO-gene split only (match S2b census; not pooled 10/25/50%)
+    d3 = d3[d3.split == "C3_true_lo_gene_10"]   # headline 10% LO-gene split only (match S4 census; not pooled 10/25/50%)
     for ds in d3.dataset.unique():
         key = C3_KEY[ds]
         for b in d3[d3.dataset == ds].baseline.unique():
@@ -335,12 +335,12 @@ def load_cells():
     if cc is not None:
         put("chemCPA", "C5·cpd", float(pd.read_csv(cc).chemCPA_score.iloc[0]), "native")
 
-    # ---- completeness fills: every model that ran must appear (Table S2b / 14-model census) -------
+    # ---- completeness fills: every model that ran must appear (Table S4 / 14-model census) -------
     # The two single-aggregate columns (C4 modality, C2 donor) previously under-loaded. Six C4
     # models (CPA, CellOT, GEARS, AttentionPert, STATE, scPRAM) live in the C4 "fills" deposit, and
     # CPA/STATE/scPRAM on the donor axis are not in the soskic per-donor file; pull both so the grid
     # shows all 14 models and every aggregate cell matches cross_cluster_headline (= Suppl. Table
-    # S2b = main text). put_abs never overwrites an already-loaded (validated) cell.
+    # S4 = main text). put_abs never overwrites an already-loaded (validated) cell.
     def put_abs(model, col, score, action):
         if (model, col) not in cells and score == score:  # absent & not NaN
             cells[(model, col)] = (float(score), action)

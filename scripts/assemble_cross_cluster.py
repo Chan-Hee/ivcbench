@@ -39,7 +39,7 @@ FAMILY = {
     "GEARS": "Graph", "AttentionPert": "Graph",
     "STATE": "Hybrid", "PertAdapt": "Hybrid",
     "CellOT": "OT", "scPRAM": "OT", "CINEMA-OT": "OT",
-    "linear-shift-KOemb": "Deterministic shift",  # category matches Table 2 / S2a (deterministic shift, diagnostic comparator)
+    "linear-shift-KOemb": "Deterministic shift",  # category matches main Table 2 / Supplementary Table S2
 }
 
 # ---------------- re-score every deposited bundle (GPU-free), excluding the format-demo toys --------

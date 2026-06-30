@@ -27,7 +27,7 @@ reproduce:                   ## full GPU-free reader path: re-score every bundle
 	$(MAKE) reproduce-eval
 	$(MAKE) check
 
-census:                      ## re-derive every bundle-sourced artifact (results_raw sync, headline S2b, S3, S4, C2 paired S5/S7, multiplicity S10)
+census:                      ## re-derive every bundle-sourced artifact (results_raw sync, S3/S4, C2 paired S9/S10, multiplicity S11)
 	$(PY) scripts/sync_results_raw.py
 	$(PY) scripts/assemble_cross_cluster.py
 	$(PY) scripts/assemble_fit_matrix.py
