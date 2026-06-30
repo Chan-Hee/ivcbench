@@ -53,15 +53,15 @@ single-cell data.
 ## Main Results
 
 The benchmark asks whether methods beat simple, pre-specified floor baselines
-on five immune perturbation task clusters:
+on five immune perturbation tasks:
 
-| Cluster | Generalization question |
+| Task | Generalization question |
 |---|---|
-| C1 | Cell-context transfer under cytokine stimulation |
-| C2 | Donor-held-out CD4+ activation |
-| C3 | Unseen-gene CRISPR perturbations |
-| C4 | Complex immune checkpoint and modality stress tests |
-| C5 | Small-molecule perturbations and cell-context transfer |
+| T1 | Cell-context transfer under cytokine stimulation |
+| T2 | Donor-held-out CD4+ activation |
+| T3 | Unseen-gene CRISPR perturbations |
+| T4 | Complex immune checkpoint and modality stress tests |
+| T5 | Small-molecule perturbations and cell-context transfer |
 
 Headline artifacts:
 
