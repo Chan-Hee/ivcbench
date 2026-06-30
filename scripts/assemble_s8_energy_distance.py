@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble Supplementary Table S12 from deposited per-task result tables."""
+"""Assemble Supplementary Table S8 from deposited per-task result tables."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUT = ROOT / "results" / "_paper" / "Supplementary_Table_S12_energy_distance.csv"
+DEFAULT_OUT = ROOT / "results" / "_paper" / "Supplementary_Table_S8_energy_distance.csv"
 
 SOURCES = (
     ROOT / "results" / "C1" / "results_raw.csv",

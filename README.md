@@ -44,7 +44,7 @@ verdicts used for the main conclusions. The deposited bundles are compact
 per-stratum mean bundles, so they reproduce Pearson-Δ exactly but do not contain
 the per-cell prediction clouds required to recompute energy distance. The
 distributional-fidelity axis is reproduced from the deposited result tables
-(`results/*/results_raw.csv` and Supplementary Table S12); regenerating it from
+(`results/*/results_raw.csv` and Supplementary Table S8); regenerating it from
 raw predictions requires the larger per-cell bundle/retraining path described in
 [REPRODUCE.md](REPRODUCE.md) and [predictions/COVERAGE.md](predictions/COVERAGE.md).
 The GPU-free path does not retrain the original models or download raw
@@ -133,7 +133,7 @@ model-family environment, and hardware to already be available.
   title     = {ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
   author    = {Lee, Chanhee and Ryu, Jae Yong},
   year      = {2026},
-  version   = {1.1.4},
+  version   = {1.1.5},
   doi       = {10.5281/zenodo.20756042},
   publisher = {Zenodo}
 }

@@ -7,6 +7,6 @@ Makefile or scripts, while library users can import subpackages such as
 
 from __future__ import annotations
 
-__version__ = "1.1.4"
+__version__ = "1.1.5"
 
 __all__ = ["__version__"]

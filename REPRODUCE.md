@@ -13,7 +13,7 @@ Figure scripts read deposited CSV/JSON and write PNG+PDF into `results/_paper/`.
 and the real loaders; they are included for provenance but their outputs are already deposited.
 
 **The headline census is bundle-sourced.** The 35-cell table `results/_paper/cross_cluster_headline.csv`
-(Supplementary Table S2b), `within_family_consistency.csv` (S3) and `descriptive_fit_matrix.csv` (S4) are
+(Supplementary Table S4) and `descriptive_fit_matrix.csv` (Supplementary Table S3) are
 re-scored directly from the deposited prediction bundles under `predictions/`, the same GPU-free path a
 reviewer runs. Those deposited bundles are compact per-stratum mean bundles, so this path reproduces
 **Pearson-Δ exactly** but does **not** recompute energy distance, which requires per-cell prediction clouds
@@ -21,16 +21,16 @@ and the train-cloud PCA basis. `make census` rebuilds the bundle-sourced Pearson
 (`scripts/assemble_cross_cluster.py`, `assemble_fit_matrix.py`), and `make check` (also run by `make test`)
 re-derives the census from the bundles and fails the build if the committed numbers have drifted from it,
 so the table a reader reproduces and the table the paper reports cannot diverge. The C2 donor paired
-statistics (S5, S7) and their multiplicity adjustment (S10) are likewise computed from the per-donor bundle
+statistics (S9, S10) and their multiplicity adjustment (S11) are likewise computed from the per-donor bundle
 scores. The per-cluster `results_raw.csv` tables remain the provenance for the distributional-fidelity axis
-(including Supplementary Table S12) and for figure scripts; `scripts/sync_results_raw.py` re-derives their
+(including Supplementary Table S8) and for figure scripts; `scripts/sync_results_raw.py` re-derives their
 response-direction `pearson_delta` from the bundles (to the printed precision) so the figures read the same
 Pearson-Δ numbers as the census, and `make check` fails if any cell has drifted. Regenerating energy
 distance from raw predictions requires re-running the model scripts with `IVCBENCH_PRED_DUMP_MEANS` unset,
 which writes the larger per-cell bundles described in `predictions/COVERAGE.md`.
 
 **Final manuscript layout (binding).** The submission is **3 main figures + 8 supplementary figures
-(S1–S8) + 12 Supplementary Tables (S1, S2a, S2b, S3–S12)**:
+(S1–S8) + 12 Supplementary Tables (S1–S12)**:
 
 - **Fig 1**: benchmark workflow schematic (hand-drawn; a static figure, not script-generated)
 - **Fig 2**: generalization map + CellOT donor CDF (`make_figure2_landscape_verdict.py`)
@@ -85,34 +85,31 @@ C3 unseen-gene predictability probe (`c3_predictability_analysis.py`), and chemC
 collapse (`figure_chemcpa_collapse.py`).
 
 
-## Supplementary Tables (S1, S2a, S2b, S3–S12)
+## Supplementary Tables (S1–S12)
 
-Each Supplementary Table is published with the submission under the **deposited file name** shown
-(in `BiB_submission/supplementary/`) and is backed by the listed result file in this release. S1 and
-S2a are curated inventory tables maintained from `scripts/datasets.csv` and the deposited S2a CSV;
-the rest are mechanically assembled from the deposited per-cluster leaderboards and immune-novelty tables.
-Most submitted tables are byte-identical to the backing file listed; S5, S7, S8, S10 and S11 are
-journal-formatted views of theirs (added or reordered columns, T1–T5 task labels, rounded display), so
-the values match but the files are not byte-identical.
+Each Supplementary Table is published with the submission and backed by the listed result file in this
+release. Ten of the twelve tables are embedded in `Supplementary_Material.docx`; the descriptive
+fit-matrix (S3) and the energy-distance table (S8) are also deposited as machine-readable CSVs. S1 and
+S2 are curated inventory tables maintained from `scripts/datasets.csv`; the rest are mechanically
+assembled from the deposited per-cluster leaderboards and immune-novelty tables.
 *(The supplementary **Figure** series in the sections above is independent of the table numbering: the
 submitted figures are S1–S8 (additional release figures are provenance, not submitted), while
-Supplementary **Tables** are S1, S2a, S2b, S3–S12.)*
+Supplementary **Tables** are S1–S12.)*
 
-| Table | Content | Deposited file (`BiB_submission/supplementary/`) | Backing data / script (`scripts/`) |
+| Table | Content | Journal supplement | Backing data / script (`scripts/`) |
 |---|---|---|---|
-| **S1** | 21-dataset immune inventory (12 anchors + curation criteria) | `Supplementary_TableS1_extended_dataset_inventory.docx` | `scripts/datasets.csv` (curated manifest) |
-| **S2a** | Surveyed method + comparator inventory with benchmark applicability | `Supplementary_Table_S2a_method_survey.csv` | curated inventory (`scripts/datasets.csv` + deposited S2a CSV) |
-| **S2b** | Per-(model, split) headline census (35-cell Pearson-Δ vs floor: 29 conditioned + 6 diagnostic comparators) | `Supplementary_Table_S2b_cross_cluster_headline.csv` | `cross_cluster_headline.csv` via `assemble_cross_cluster.py` |
-| **S3** | Within-family verdict agreement + per-unit Spearman ρ | `Supplementary_Table_S3_within_family_consistency.csv` | `within_family_consistency.csv` |
-| **S4** | Descriptive fit-matrix (a-priori expectation vs observed beats-floor per family×task) | `Supplementary_Table_S4_descriptive_fit_matrix.csv` | `descriptive_fit_matrix.csv` via `assemble_fit_matrix.py` |
-| **S5** | Donor axis: CellOT vs floor, paired per-donor (n = 106; cell-mean gap +0.107 **and** matched-baseline gap +0.100 [CI]) | `Supplementary_Table_S5_cellot_vs_floor_donor_paired.csv` | `cellot_vs_floor_donor_paired.csv` via `scripts/c2_donor_paired.py` (per-donor bundle scores) |
-| **S6** | Per-immune-program AUCell-Δ recovery map | `Supplementary_Table_S6_per_program_AUCell_map.csv` | `immune_novelty/T2_per_program_AUCell_map.csv` |
-| **S7** | Donor axis: scPRAM vs CellOT, paired per-donor | `Supplementary_Table_S7_scpram_vs_cellot_donor_paired.csv` | `scpram_vs_cellot_donor_paired.csv` via `scripts/c2_donor_paired.py` (per-donor bundle scores) |
-| **S8** | Per-surface-marker protein recovery (PD-1/PD-L1; effect-size vs sign-match) | `Supplementary_Table_S8_per_marker_protein_recovery.csv` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv` + `c4_surface_marker_CIs.csv` via `c4_per_marker.py` |
-| **S9** | Per-lineage predictability (cell-context advantage localization) | `Supplementary_Table_S9_per_lineage_predictability.csv` | `immune_novelty/T3_per_lineage_predictability.csv` via `c5_loct_expand.py` |
-| **S10** | Headline-survivor table after BH/Holm multiplicity correction (two pre-specified families) | `Supplementary_Table_S10_headline_multiplicity_adjusted.csv` | `headline_multiplicity.py` byte-reproduces `results/_paper/headline_multiplicity_adjusted.csv` (two-family BH/Holm; H4 FP-ridge BH=0.0625 does not survive). The deposited `BiB_submission/` S10 is the journal-formatted view of that table (reordered columns, rounded display, T-task labels). |
-| **S11** | Per-program AUCell recovery vs observed-shift magnitude (the r = +0.87 law) + dimensionality proxies | `Supplementary_Table_S11_program_recovery_vs_magnitude.csv` | `program_recovery_vs_dimensionality.csv` via `program_recovery_vs_dimensionality.py` |
-| **S12** | Distributional-fidelity axis: per-(task, split, model, modality) energy distance + Pearson-Δ | `Supplementary_Table_S12_energy_distance.csv` | `assemble_s12_energy_distance.py` from `results/{C1,C3,C4,C5}/results_raw.csv` |
+| **S1** | 21-dataset immune inventory (anchors + curation criteria) | embedded in `Supplementary_Material.docx` | `scripts/datasets.csv` (curated manifest) |
+| **S2** | Surveyed method + comparator inventory with benchmark applicability | embedded in `Supplementary_Material.docx` | curated inventory (`scripts/datasets.csv`) |
+| **S3** | Descriptive fit-matrix (a-priori expectation vs observed beats-floor per family×task) | `Supplementary_Table_S3_descriptive_fit_matrix.csv` | `descriptive_fit_matrix.csv` via `assemble_fit_matrix.py` |
+| **S4** | Per-(model, split) headline census (35-cell Pearson-Δ vs floor: 29 conditioned + 6 diagnostic comparators) | embedded in `Supplementary_Material.docx` | `cross_cluster_headline.csv` via `assemble_cross_cluster.py` |
+| **S5** | OP3 fine-lineage cell-context transfer (FP-ridge vs the three floors, six fine OP3 lineages) | embedded in `Supplementary_Material.docx` | `Supplementary_Table_S5_op3_fine_lineage.csv` (FP-ridge per-lineage scores) |
+| **S6** | Per-surface-marker protein recovery (PD-1/PD-L1; effect-size vs sign-match) | embedded in `Supplementary_Material.docx` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv` + `c4_surface_marker_CIs.csv` via `c4_per_marker.py` |
+| **S7** | Per-immune-program AUCell-Δ recovery map | embedded in `Supplementary_Material.docx` | `immune_novelty/T2_per_program_AUCell_map.csv` |
+| **S8** | Distributional-fidelity axis: per-(task, split, model, modality) energy distance + Pearson-Δ | `Supplementary_Table_S8_energy_distance.csv` | `assemble_s8_energy_distance.py` from `results/{C1,C3,C4,C5}/results_raw.csv` |
+| **S9** | Donor axis: CellOT vs floor, paired per-donor (n = 106; cell-mean gap +0.107 **and** matched-baseline gap +0.100 [CI]) | embedded in `Supplementary_Material.docx` | `cellot_vs_floor_donor_paired.csv` via `scripts/c2_donor_paired.py` (per-donor bundle scores) |
+| **S10** | Donor axis: scPRAM vs CellOT, paired per-donor | embedded in `Supplementary_Material.docx` | `scpram_vs_cellot_donor_paired.csv` via `scripts/c2_donor_paired.py` (per-donor bundle scores) |
+| **S11** | Headline-survivor table after BH/Holm multiplicity correction (two pre-specified families) | embedded in `Supplementary_Material.docx` | `headline_multiplicity.py` byte-reproduces `results/_paper/headline_multiplicity_adjusted.csv` (two-family BH/Holm; H4 FP-ridge BH=0.0625 does not survive) |
+| **S12** | Per-program AUCell recovery vs observed-shift magnitude (the r = +0.87 law) + dimensionality proxies | embedded in `Supplementary_Material.docx` | `program_recovery_vs_dimensionality.csv` via `program_recovery_vs_dimensionality.py` |
 
 ---
 
