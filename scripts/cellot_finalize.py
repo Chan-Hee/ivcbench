@@ -54,7 +54,7 @@ def summarize(raw_csv, unit_col, dataset, split, applicability, integration, dow
 
 kang = summarize(OUT / "cellot_kang_raw.csv", "lineage", "kang_GSE96583",
                  "C1_leave_one_lineage_out", "native (task-matched OT stimulation transfer)",
-                 "main", "none (full 8 lineages, seeds 0/1/2 collapsed within lineage)", wilcox=True)
+                 "supplementary", "none (full 8 lineages, seeds 0/1/2 collapsed within lineage)", wilcox=True)
 kang.to_csv(OUT / "cellot_kang_by_lineage.csv", index=False)
 
 _sos_raw = pd.read_csv(OUT / "cellot_soskic_raw.csv")

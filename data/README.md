@@ -64,7 +64,7 @@ bash scripts/download_all.sh --list   # preview the plan without downloading
 or run the individual scripts:
 
 ```bash
-bash scripts/download_public.sh    # Kang (C1) + Shifrut/Schmidt/McCutcheon/Chen (C3) + Belk (C4)
+bash scripts/download_public.sh    # Kang (C1) + Shifrut/Schmidt/McCutcheon (C3) + Belk (C4)  (Chen C3 is login-gated, obtained separately)
 bash scripts/download_op3.sh       # OP3 (C5)
 bash scripts/download_soskic.sh    # Soskic processed h5ad (C2)
 bash scripts/download_frangieh.sh  # Frangieh Perturb-CITE-seq h5ad (C4), scPerturb Zenodo 13350497

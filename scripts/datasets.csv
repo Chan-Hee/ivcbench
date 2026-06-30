@@ -6,7 +6,7 @@ C2,soskic,trynkalab-cog-bucket,public,trynkalab.cog.sanger.ac.uk processed h5ad 
 C3,shifrut,GSE119450,public,GEO RAW.tar,downloaded
 C3,schmidt,GSE190604,public,GEO 10x mtx,downloaded
 C3,mccutcheon,GSE218985,public,GEO RAW.tar (subseries of GSE218988),downloading
-C3,chen,PRJDB16517,login,DDBJ BioProject PRJDB16517 + GEA E-GEAD-643..890 (no GEO); human FOXP3 Perturb-icCITE-seq (Nature 642:191) — CORRECTED from mis-mapped GSE255832; verified by audit,needs-download
+C3,chen,PRJDB16517,login,DDBJ BioProject PRJDB16517 + GEA E-GEAD-648 (no GEO); human FOXP3 Perturb-icCITE-seq (Nature 642:191) — CORRECTED from mis-mapped GSE255832; verified by audit,needs-download
 C3,zhu,GSE314342,login,CZI VCP CLI processed (free account); GEO raw GSE314342_RAW.tar=160GB (impractical); bulk CSVs public,needs-vcp-cli
 C3,moonen,bioRxiv-2026.03.09.710372,login,CZI Virtual Cells Platform CLI (free account); 4.1M cells + 1032 CREs,needs-vcp-cli
 C4,frangieh,scPerturb-zenodo-13350497,public,scPerturb Zenodo h5ad RNA(1.46GB)+protein(25MB) — no SCP login; record 13350497 verified by successful download,downloaded

@@ -52,64 +52,57 @@ Supplementary Notes/Tables, not as numbered supplementary figures.
 | Main figure | Script (`scripts/`) | Output (`results/_paper/`) | Reads (deposited) |
 |---|---|---|---|
 | **Fig 1: Benchmark workflow** | hand-drawn (not script-generated) | static figure (deposited as `BiB_submission/figures/Figure1.png`) | — |
-| **Fig 2: Generalization map + donor CDF** | `make_figure2_landscape_verdict.py` | `figure2_landscape_verdict.{png,pdf,tiff}` | (a) 35-cell map (32 conditioned + 3 CINEMA-OT comparators) from `cross_cluster_headline.csv`; (b) CellOT donor CDF from `cellot_soskic_raw.csv` + `cellot_summary.csv` + `cellot_vs_floor_donor_paired.csv`, paired-Wilcoxon p in `headline_multiplicity_adjusted.csv` |
+| **Fig 2: Generalization map + donor CDF** | `make_figure2_landscape_verdict.py` | `figure2_landscape_verdict.{png,pdf,tiff}` | (a) 35-cell map (29 conditioned + 6 diagnostic comparators) from `cross_cluster_headline.csv`; (b) CellOT donor CDF from `cellot_soskic_raw.csv` + `cellot_summary.csv` + `cellot_vs_floor_donor_paired.csv`, paired-Wilcoxon p in `headline_multiplicity_adjusted.csv` |
 | **Fig 3: Immune blind-spot map** | `figure_immune_blindspot.py` | `figure_immune_blindspot.{png,pdf}` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv`, `immune_novelty/T2_per_program_AUCell_map.csv`, `immune_novelty/T3_per_lineage_predictability.csv`, `results/C3/program_null.csv`, `results/C5/results_raw.csv`, `multiseed_scgen_summary.csv` |
 
 ---
 
-## Supplementary figures (S1–S8, submitted) + additional release analyses (S9–S13)
+## Supplementary figures (submitted S1–S8) + additional release figures
 
-**S1–S8 are the submitted supplementary figures.** The deposited
-`BiB_submission/figures/SupplementaryFigure_S1..S8.png` carry the same content but are the
-journal-formatted renders (margin-normalized, exported to PNG/TIFF), so they are not byte-identical to
-the `results/_paper/` source figures.
-**S9–S13 below are additional analyses deposited as release provenance; they are NOT part of the
-submitted 8-figure supplement**; in the manuscript these analyses appear as Supplementary
-Notes/Tables, not as numbered supplementary figures. Each row: **S-number → generating script →
-backing data file**; every script and file named below is present in this release (verified).
+*Note: `BiB_submission/…` paths name files in the journal submission package, which is separate from this
+code archive; this release ships the regenerating scripts and the backing result files named below.*
 
-| S# | Content | Figure script (`scripts/`) | Output (`results/_paper/`) | Computed by → backing data (deposited) |
-|---|---|---|---|---|
-| **S1** | Method × split ranking heatmap (raw Pearson-Δ) | `figure_ranking.py` | `figure_ranking.{png,pdf}` | `results/{C1,C3,C4,C5}/results_raw.csv` |
-| **S2** | Within-family consistency + descriptive fit-matrix | `figure_within_family_fit.py` | `figure_within_family_fit.{png,pdf}` | `within_family_consistency.csv`, `descriptive_fit_matrix.csv`, `scpram_vs_cellot_donor_paired.csv`, `defensive_stats.json` |
-| **S3** | Perturbation + modality axes (degenerate / structural zeros) | `figure_perturbation.py` | `figure_perturbation.{png,pdf}` | `results/C3/results_raw.csv`, `results/C5/results_raw.csv`, `results/C4/cite_marker_recovery.csv` |
-| **S4** | PD-L1 assay-power + RNA-vs-surface decoupling | `figure_c4_pdl1_assay_power.py` | `figS_c4_pdl1_assay_power.{png,pdf}` | `c4_pdl1_assay_power.py` → `c4_pdl1_assay_power_summary.json`, `c4_surface_marker_CIs.csv`, `c4_rna_vs_surface_decoupling.csv` (from `results/C4/cite_marker_recovery.csv`) |
-| **S5** | Per-lineage / per-compound cell-context recovery | `figure_cellcontext.py` | `figure_cellcontext.{png,pdf}` | `results/C5/results_raw.csv`, `immune_novelty/T3_per_lineage_predictability.csv`, `results/C5/ifn_shuffle_null.csv` |
-| **S6** | Reliability / noise ceiling | `figure_reliability_ceiling.py` | `figure_reliability_ceiling.{png,pdf}` | `reliability_ceiling.py` → `immune_novelty/reliability_ceiling.csv` (+ `reliability_ceiling_perunit.json`); also reads `cross_cluster_headline.csv` |
-| **S7** | C3 unseen-gene predictability probe | `c3_predictability_analysis.py` (computes ranking **and** renders) | `figS_c3_predictability_probe.{png,pdf}` | `c3_predictability_probe.py` → `results/C3/predictability_probe_pergene.csv` (+ `predictability_probe_stats.json`); ranking written to `predictability_factor_ranking.csv` |
-| **S8** | C3 nearest-gene baseline | `figure_c3_nearest_gene.py` | `figS_c3_nearest_gene.{png,pdf}` | `c3_nearest_gene_baseline.py` → `results/C3/nearest_gene_baseline.csv`; summarized by `c3_nearest_gene_summary.py` → `c3_nearest_gene_summary.csv`; also reads `results/C3/results_raw.csv` |
-| **S9** | chemCPA chemistry-channel collapse | `figure_chemcpa_collapse.py` | `figure_chemcpa_collapse.{png,pdf}` | `chemcpa_collapse_analysis.py` → `chemcpa_collapse_arrays.npz` + `chemcpa_collapse_stats.json` |
-| **S10** | Program-recovery vs program-dimensionality | `figure_program_dimensionality.py` | `program_recovery_vs_dimensionality.{png,pdf}` | `program_recovery_vs_dimensionality.py` → `program_recovery_vs_dimensionality.csv` (+ `_corr.json`, `program_shift_signal.csv`); recovery from `immune_novelty/T2_per_program_AUCell_map.csv` |
-| **S11** | Unseen-cytokine LOCO (Human Cytokine Dictionary; the two conditioning regimes) | `figure_newdata_cytokine_loco.py` | `figS_newdata_cytokine_loco.{png,pdf}` | `newdata_cytokine_loco.py` → `results/newdata/cytokine_loco_per_held.csv`, `cytokine_loco_per_celltype.csv`, `cytokine_loco_summary.json` (+ `cytokine_loco_unscoreable.csv`, `cytokine_loco_README.md`) |
-| **S12** | Chen FOXP3 Perturb-icCITE-seq checkpoint replication (n = 2 surface readout) | `figure_chen_checkpoint_replication.py` | `figS_chen_checkpoint_replication.{png,pdf}` | `chen_checkpoint_replication.py` → `results/newdata/chen_cite_marker_recovery.csv`, `chen_checkpoint_replication_summary.json`; also reads `results/_paper/c4_surface_marker_CIs.csv` (Frangieh comparator) |
-| **S13** | CellOT donor learning curve (Soskic, donor-count grid) | `figure_cellot_donor_learning_curve.py` | `figS_cellot_donor_learning_curve.{png,pdf}` | `cellot_donor_learning_curve.py` (GPU runner; provenance) → `results/newdata/cellot_donor_learning_curve_seed{0,1}.csv` (+ merged `cellot_donor_learning_curve.csv`, `cellot_donor_learning_curve_summary.csv`) |
+**S1–S8 are the submitted supplementary figures** (journal submission `SupplementaryFigure_S1..S8.png`;
+this release regenerates them under `results/_paper/`, margin-normalized so not byte-identical). Each
+row: submitted S-number → figure script → backing data (all present in this release).
 
-**S13 GPU runner.** The per-seed learning-curve CSVs were produced by `scripts/cellot_donor_learning_curve.py`,
-launched on two GPUs by `scripts/launch_cellot_donor_learning_curve.sh` (override the CellOT-env python with
-`IVCBENCH_CELLOT_PY`). That runner needs a GPU, the CellOT conda env, and the raw Soskic data; it is included
-for provenance only. The **figure** (`figure_cellot_donor_learning_curve.py`) rebuilds from the deposited
-per-seed CSVs with no GPU.
+| S# | Content | Figure script (`scripts/`) | Computed by → backing data (deposited) |
+|---|---|---|---|
+| **S1** | Observed-effect reliability ceiling by task | `figure_reliability_ceiling.py` | `reliability_ceiling.py` → `immune_novelty/reliability_ceiling.csv`; also `cross_cluster_headline.csv` |
+| **S2** | Cell-context transfer detail (FP-ridge / type-I IFN) | `figure_cellcontext.py` | `results/C5/results_raw.csv`, `immune_novelty/T3_per_lineage_predictability.csv`, `results/C5/ifn_shuffle_null.csv` |
+| **S3** | Per-marker surface-protein recovery (Frangieh CITE; PD-1 vs PD-L1, RNA-vs-surface) | `figure_c4_pdl1_assay_power.py` | `c4_pdl1_assay_power.py` → `c4_surface_marker_CIs.csv`, `c4_rna_vs_surface_decoupling.csv` (from `results/C4/cite_marker_recovery.csv`) |
+| **S4** | Chen Perturb-icCITE-seq checkpoint replication (n = 2) | `figure_chen_checkpoint_replication.py` | `chen_checkpoint_replication.py` → `results/newdata/chen_cite_marker_recovery.csv` (+ Frangieh comparator `results/_paper/c4_surface_marker_CIs.csv`) |
+| **S5** | Program recovery vs program properties (magnitude / dimensionality) | `figure_program_dimensionality.py` | `program_recovery_vs_dimensionality.py` → `program_recovery_vs_dimensionality.csv`; recovery from `immune_novelty/T2_per_program_AUCell_map.csv` |
+| **S6** | CellOT donor learning curve (Soskic donor-count grid) | `figure_cellot_donor_learning_curve.py` | `results/newdata/cellot_donor_learning_curve.csv` (GPU runner = provenance; figure rebuilds GPU-free) |
+| **S7** | Nearest-training-gene prior on the unseen-gene axis | `figure_c3_nearest_gene.py` | `c3_nearest_gene_baseline.py` → `results/C3/nearest_gene_baseline.csv`; `c3_nearest_gene_summary.py` → `c3_nearest_gene_summary.csv`; also `results/C3/results_raw.csv` |
+| **S8** | Unseen-cytokine LOCO (Human Cytokine Dictionary; two conditioning regimes) | `figure_newdata_cytokine_loco.py` | `newdata_cytokine_loco.py` → `results/newdata/cytokine_loco_per_held.csv`, `cytokine_loco_per_celltype.csv` |
 
----
+**Additional release figures (provenance — NOT submitted supplementary figures).** Retained for
+provenance; in the manuscript their content appears in Supplementary Notes/Tables rather than as numbered
+figures: method×split ranking heatmap (`figure_ranking.py`), within-family consistency + fit-matrix
+(`figure_within_family_fit.py`), perturbation/modality degenerate-axis panels (`figure_perturbation.py`),
+C3 unseen-gene predictability probe (`c3_predictability_analysis.py`), and chemCPA chemistry-channel
+collapse (`figure_chemcpa_collapse.py`).
+
 
 ## Supplementary Tables (S1, S2a, S2b, S3–S12)
 
 Each Supplementary Table is published with the submission under the **deposited file name** shown
 (in `BiB_submission/supplementary/`) and is backed by the listed result file in this release. S1 and
-S2a are curated inventory tables (maintained in `scripts/datasets.csv` and `supp/results_supplementary.md`);
+S2a are curated inventory tables maintained from `scripts/datasets.csv` and the deposited S2a CSV;
 the rest are mechanically assembled from the deposited per-cluster leaderboards and immune-novelty tables.
 Most submitted tables are byte-identical to the backing file listed; S5, S7, S8, S10 and S11 are
 journal-formatted views of theirs (added or reordered columns, T1–T5 task labels, rounded display), so
 the values match but the files are not byte-identical.
 *(The supplementary **Figure** series in the sections above is independent of the table numbering: the
-submitted figures are S1–S8 (S9–S13 are additional release analyses, not submitted figures), while
+submitted figures are S1–S8 (additional release figures are provenance, not submitted), while
 Supplementary **Tables** are S1, S2a, S2b, S3–S12.)*
 
 | Table | Content | Deposited file (`BiB_submission/supplementary/`) | Backing data / script (`scripts/`) |
 |---|---|---|---|
 | **S1** | 21-dataset immune inventory (12 anchors + curation criteria) | `Supplementary_TableS1_extended_dataset_inventory.docx` | `scripts/datasets.csv` (curated manifest) |
-| **S2a** | Surveyed method + comparator inventory with benchmark applicability | `Supplementary_Table_S2a_method_survey.csv` | curated inventory (`datasets.csv` + `supp/results_supplementary.md`) |
-| **S2b** | Per-(model, task) headline census (35-cell Pearson-Δ vs floor: 32 conditioned + 3 CINEMA-OT comparators) | `Supplementary_Table_S2b_cross_cluster_headline.csv` | `cross_cluster_headline.csv` via `assemble_cross_cluster.py` |
+| **S2a** | Surveyed method + comparator inventory with benchmark applicability | `Supplementary_Table_S2a_method_survey.csv` | curated inventory (`scripts/datasets.csv` + deposited S2a CSV) |
+| **S2b** | Per-(model, split) headline census (35-cell Pearson-Δ vs floor: 29 conditioned + 6 diagnostic comparators) | `Supplementary_Table_S2b_cross_cluster_headline.csv` | `cross_cluster_headline.csv` via `assemble_cross_cluster.py` |
 | **S3** | Within-family verdict agreement + per-unit Spearman ρ | `Supplementary_Table_S3_within_family_consistency.csv` | `within_family_consistency.csv` |
 | **S4** | Descriptive fit-matrix (a-priori expectation vs observed beats-floor per family×task) | `Supplementary_Table_S4_descriptive_fit_matrix.csv` | `descriptive_fit_matrix.csv` via `assemble_fit_matrix.py` |
 | **S5** | Donor axis: CellOT vs floor, paired per-donor (n = 106; cell-mean gap +0.107 **and** matched-baseline gap +0.100 [CI]) | `Supplementary_Table_S5_cellot_vs_floor_donor_paired.csv` | `cellot_vs_floor_donor_paired.csv` via `scripts/c2_donor_paired.py` (per-donor bundle scores) |
@@ -119,32 +112,29 @@ Supplementary **Tables** are S1, S2a, S2b, S3–S12.)*
 | **S9** | Per-lineage predictability (cell-context advantage localization) | `Supplementary_Table_S9_per_lineage_predictability.csv` | `immune_novelty/T3_per_lineage_predictability.csv` via `c5_loct_expand.py` |
 | **S10** | Headline-survivor table after BH/Holm multiplicity correction (two pre-specified families) | `Supplementary_Table_S10_headline_multiplicity_adjusted.csv` | `headline_multiplicity.py` byte-reproduces `results/_paper/headline_multiplicity_adjusted.csv` (two-family BH/Holm; H4 FP-ridge BH=0.0625 does not survive). The deposited `BiB_submission/` S10 is the journal-formatted view of that table (reordered columns, rounded display, T-task labels). |
 | **S11** | Per-program AUCell recovery vs observed-shift magnitude (the r = +0.87 law) + dimensionality proxies | `Supplementary_Table_S11_program_recovery_vs_magnitude.csv` | `program_recovery_vs_dimensionality.csv` via `program_recovery_vs_dimensionality.py` |
-| **S12** | Distributional-fidelity axis: per-(task, split, model) energy distance + Pearson-Δ | `Supplementary_Table_S12_energy_distance.csv` | assembled from per-cluster `results/{C1,C3,C4,C5}/results_raw.csv` distributional columns |
+| **S12** | Distributional-fidelity axis: per-(task, split, model, modality) energy distance + Pearson-Δ | `Supplementary_Table_S12_energy_distance.csv` | `assemble_s12_energy_distance.py` from `results/{C1,C3,C4,C5}/results_raw.csv` |
 
 ---
 
-## New-data corroboration analyses (S11–S13)
+## New-data corroboration analyses (submitted figures S4, S6, S8)
 
-The three new-data supplementary figures extend the benchmark's central law
-(*conditioning helps cell/donor context, not unseen biology*) onto three independent datasets:
+Three new-data analyses extend the benchmark's central law (*conditioning helps cell/donor context, not
+unseen biology*) onto independent datasets; in the submission they are Supplementary Figures **S8, S4, S6**:
 
-- **S11: unseen-cytokine LOCO** (`newdata_cytokine_loco.py`): leave-one-cytokine-out over the Human
-  Cytokine Dictionary summary table (`data/human_cytokine_dict/hcd_mini.csv`, raw). It separates the
-  **two conditioning regimes**: annotation-only "truly novel" cytokines sit at/below the floor (the law
-  holds), while a cytokine observed in *other* celltypes transfers above it. Outputs in `results/newdata/`.
-- **S12: Chen checkpoint replication** (`chen_checkpoint_replication.py`): an n = 2 surface-protein
-  readout replication on the Chen FOXP3 Perturb-icCITE-seq data (`data/C3/chen`, access-controlled),
-  scored on the same surface-marker recovery metric as C4/Frangieh.
-- **S13: CellOT donor learning curve** (`cellot_donor_learning_curve.py`): the donor-count sweep
-  {8,16,32,64,96} on Soskic, two seeds on two GPUs, showing how the CellOT donor-axis win scales with the
-  number of training donors. The merged/summary CSVs are deposited; the figure rebuilds with no GPU.
+- **S8: unseen-cytokine LOCO** (`newdata_cytokine_loco.py`): leave-one-cytokine-out over the Human Cytokine
+  Dictionary summary table (derived from the Oesinghaus et al. 2025 resource; obtained separately, see above).
+  It separates the two conditioning regimes: annotation-only "truly novel" cytokines sit at/below the floor
+  (the law holds), while a cytokine observed in *other* cell types transfers above it. Outputs in `results/newdata/`.
+- **S4: Chen checkpoint replication** (`chen_checkpoint_replication.py`): an n = 2 surface-protein readout
+  replication on the Chen FOXP3 Perturb-icCITE-seq data (`data/C3/chen`, login-gated DDBJ/GEA), scored on the
+  same surface-marker recovery metric as C4/Frangieh.
+- **S6: CellOT donor learning curve** (`cellot_donor_learning_curve.py`): the donor-count sweep {8,16,32,64,96}
+  on Soskic, two seeds on two GPUs, showing how the CellOT donor-axis advantage scales with training-donor count.
+  The merged/summary CSVs are deposited; the figure rebuilds with no GPU.
 
-The analysis scripts (`newdata_cytokine_loco.py`, `chen_checkpoint_replication.py`,
-`cellot_donor_learning_curve.py`) read **raw** data and are included for provenance; the three figure
-scripts read only the deposited tables in `results/newdata/` (+ one Frangieh comparator in
-`results/_paper/`) and rebuild without raw data or a GPU.
+The analysis scripts read **raw** data and are provenance; the three figure scripts read only the deposited
+`results/newdata/` tables (+ one Frangieh comparator in `results/_paper/`) and rebuild without raw data or a GPU.
 
----
 
 ## Regenerating the prediction bundles by retraining (provenance)
 
@@ -152,7 +142,7 @@ This section documents how the deposited prediction bundles were produced; it is
 one-command reproduction path. The reproduction of record for the paper's numbers is the GPU-free bundle
 re-score described above. Everything above rebuilds with no GPU. The headline Pearson-Δ census and the bundle-sourced tables
 (S2b, S3, S4, S5, S7, S10) come from the deposited prediction bundles; the figures and the remaining
-tables (the S12 energy-distance table, the S9–S13 provenance analyses) are assembled from the deposited
+tables (the S12 energy-distance table, the additional release analyses) are assembled from the deposited
 result CSVs, not from the bundles. To regenerate the predictions themselves by retraining every model,
 you need the raw data and the per-family environments.
 

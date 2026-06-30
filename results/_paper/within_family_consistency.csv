@@ -6,9 +6,9 @@ C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Foundation,scFoundation+scGPT,"
 C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Graph,AttentionPert+GEARS,"[-0.1682, -0.1882]",0,2,agree,0.8999999999999998,
 C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Hybrid,PertAdapt+STATE,"[-0.3965, -0.4157]",0,2,agree,0.7,
 C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Latent,CPA+scGen,"[-0.3184, -0.2902]",0,2,agree,0.7,
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",Graph,AttentionPert+GEARS,"[0.0357, -0.0306]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 units); CellOT/scPRAM single-seed per split -> re-run for CI"
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",Latent,CPA+scGen,"[0.0625, 0.0841]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 units); CellOT/scPRAM single-seed per split -> re-run for CI"
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",OT,CellOT+scPRAM,"[0.1195, -0.1571]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 units); CellOT/scPRAM single-seed per split -> re-run for CI"
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",Graph,AttentionPert+GEARS,"[0.0357, -0.0306]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design"
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",Latent,CPA+scGen,"[0.0625, 0.0841]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design"
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",OT,CellOT+scPRAM,"[0.1195, -0.1571]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design"
 C5,small-mol/OP3,cell-context (LOCT),Latent,CPA+scGen,"[-0.1062, 0.0325]",0,2,agree,-1.0,
 C5,small-mol/OP3,unseen-compound,Chemistry,FP-ridge+chemCPA,"[0.0032, -0.0494]",0,2,agree,,
 C5,small-mol/OP3,unseen-compound,Latent,CPA+scGen,"[-0.0543, -0.0908]",0,2,agree,,

@@ -3,10 +3,11 @@
 EGA controlled-access approval typically takes **1–4 weeks** and is the single largest schedule risk
 for affected datasets. Public datasets can be downloaded independently while approval is pending.
 
+> **Soskic 2022 is NOT DAC-gated for this benchmark:** the scored donor-axis analysis uses the public processed CD4 activation h5ads from the Trynka-lab object store (106 paired donors); the EGA raw reads (EGAD00001008197) are controlled-access but are not required to reproduce the benchmark. The remaining genuine EGA-DAC dataset is the surveyed-only Cano-Gamez 2020.
+
 | Cluster | Dataset | Accession | What you predict / need it for |
 |---|---|---|---|
 | C1 | Cano-Gamez 2020 | **EGAS00001003215** | naive→memory CD4 state transfer (Axis 1) |
-| C2 | Soskic 2022 | **EGAD00001008197** | 119-donor LODO + temporal (the whole cluster) |
 
 ## Checklist (per dataset)
 
@@ -25,7 +26,6 @@ for affected datasets. Public datasets can be downloaded independently while app
 | Dataset | Applied (date) | Approved (date) | Downloaded | Notes |
 |---|---|---|---|---|
 | Cano-Gamez EGAS00001003215 | | | | |
-| Soskic EGAD00001008197 | | | | |
 
 ## Preprint / resource-stage (request from authors, not EGA)
 

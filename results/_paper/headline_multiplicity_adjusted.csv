@@ -1,5 +1,5 @@
 contrast,raw_p,BH_p,Holm_p,survives_FDR05,family,source,note
-H1_C1_cellcontext_scGen_vs_floor,0.460938,0.460938,0.460938,False,headline_floor,recomputed: Wilcoxon over 8 lineages from results/C1/results_raw.csv,"n=8 lineages, mean gap -0.0162, 3/8 positive (NEG result)"
+H1_C1_cellcontext_scGen_vs_floor,0.109375,0.109375,0.125,False,headline_floor,recomputed: Wilcoxon over 8 lineages from results/C1/results_raw.csv,"n=8 lineages, mean gap -0.0310, 2/8 positive (NEG result)"
 H2_C3_unseenPerturbation_bestcond_vs_floor,0.0625,0.0833333,0.125,False,headline_floor,recomputed: Wilcoxon over 5 datasets (pre-specified unit) from results/C3/results_raw.csv,"n=5 datasets, mean gap -0.1884, 0/5 positive (NEG result; defensive_stats boot_neg_frac=1.0)"
 H3_C4_modality_scGen_vs_floor,[MISSING],[MISSING],[MISSING],[MISSING],headline_floor,"[MISSING] no deposited/recomputable raw p (2 holdout cells, no biological-unit replicate; absent from defensive_stats.json and all C4 artifacts)","point gaps -0.150 / -0.129 (scGen below floor, both holdouts) but no p of record"
 H4_C5_cellcontext_FPridge_vs_floor,0.03125,0.0625,0.09375,False,headline_floor,recomputed: Wilcoxon over 6 fine lineages from results/C5/loct_fine6.csv,"n=6 lineages, mean gap +0.1192, 6/6 positive (POS result)"
