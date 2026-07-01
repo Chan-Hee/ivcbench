@@ -24,9 +24,9 @@ ANCHOR (exact, from Bai et al. 2025 + the official repo):
 HARD REQUIREMENT — official artifacts. A faithful published-anchor run needs ALL of:
   (1) the authors' exact gene-similarity mask  go_mask_19264.npz                    (OneDrive)
   (2) the 19264-gene preprocessed Adamson file (...withtotalcount + GEARS data_pyg) (OneDrive)
-  (3) the frozen scFoundation `cell` checkpoint                                      (LOCAL ✓)
-This script AUDITS for (1)+(2). If either is missing it prints READY=false with the exact blocker and
-exits 2 WITHOUT fabricating a metric. When the artifacts are supplied (paths via the env vars below) it
+  (3) the frozen scFoundation `cell` checkpoint
+This script AUDITS for (1)-(3). If any required artifact is missing it prints READY=false with the
+exact blocker and exits 2 WITHOUT fabricating a metric. When the artifacts are supplied (paths via the env vars below) it
 runs the published train/eval and compares to the baseline within tolerance, printing READY=true/false.
 
 ENV (only needed once artifacts are obtained):
@@ -43,8 +43,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Official artifacts obtained 2026-06-05 (downloaded from the PertAdapt OneDrive; see
-# data/pertadapt/official/PROVENANCE.md). These are the DEFAULTS the gate audits; env vars override.
+# Default local location for user-supplied official artifacts; the code release tracks only the
+# provenance/access stub at data/pertadapt/official/PROVENANCE.md. Env vars override these defaults.
 OFFICIAL_DIR = ROOT / "data/pertadapt/official"
 DEFAULT_GO_MASK = OFFICIAL_DIR / "go_mask_19264.npz"
 DEFAULT_ADAMSON_DIR = OFFICIAL_DIR            # contains gse90546_..._withtotalcount/

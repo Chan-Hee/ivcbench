@@ -197,13 +197,15 @@ def attach_deposited_ci(fm: pd.DataFrame) -> pd.DataFrame:
     ds = json.loads((PAPER / "defensive_stats.json").read_text())
     fm = fm.copy()
 
-    # (2) C4 -> PENDING (n<3 units, no deposited cluster CI)
+    # (2) C4 -> descriptive-only (n<3 units, no deposited cluster CI)
     c4mask = fm.cluster == "C4"
     fm.loc[c4mask, ["ci_low", "ci_high", "boot_pos_frac"]] = np.nan
     fm.loc[c4mask, "works"] = False
     fm.loc[c4mask, "recommendation"] = "simple-floor"
-    fm.loc[c4mask, "ci_source"] = ("PENDING: 2 modality folds (n<3 units) -> no cluster bootstrap; "
-                                   "flagged for marker-bootstrap re-run (within_family_consistency.md)")
+    fm.loc[c4mask, "ci_source"] = (
+        "Descriptive only: 2 modality folds (n<3 biological-unit replicates), no cluster bootstrap by "
+        "design; scGen and the conditioned models sit below the floor on both holdouts"
+    )
 
     # (1) INSERT the deposited C5 cell-context chemistry (FP-ridge) WIN row
     c5 = ds["C5_cellcontext"]
@@ -366,8 +368,9 @@ def main() -> int:
              "biological-unit cluster-bootstrap **CI_low > 0** on the headline response-direction "
              "metric; ties break toward the simple floor. The a-priori column is the pre-registered "
              "intuition the matrix confronts (conditioning expected to help context-transfer, not "
-             "unseen-perturbation), reported descriptively. Deposited data only — any cell without a "
-             "deposited/recomputable cluster bootstrap is marked PENDING, never fabricated.*\n",
+             "unseen-perturbation), reported descriptively. Deposited data only; cells without a "
+             "deposited/recomputable cluster bootstrap are labelled descriptive-only rather than "
+             "given fabricated intervals.*\n",
              "| cluster | task | split | family | floor | best-member gap | CI_low | CI_high | "
              "works (CI_low>0) | recommend | a-priori expect | observed | confrontation | CI source |",
              "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
@@ -387,9 +390,8 @@ def main() -> int:
         "members with cluster-bootstrap CI_low > 0).",
         "- The works cells are the deposited cluster-bootstrap WINs; on every other cell the rule "
         "**recommends the simple floor** (tie → simplicity).",
-        "- **C4 (modality, RNA) CI is PENDING**: only 2 modality folds (< 3 biological units) → no "
-        "cluster bootstrap is computable; flagged for a marker-bootstrap re-run "
-        "(`within_family_consistency.md`). No CI is fabricated for it.",
+        "- **C4 (modality, RNA) is descriptive-only**: only 2 modality folds (< 3 biological units), "
+        "so no cluster bootstrap is computed. No CI is fabricated for it.",
         "- **C2 donor**: the conditioned WIN belongs to the OT family (CellOT). By the rule the 'ot' "
         "family is treated as a floor/comparator namespace, so the per-family conditioned matrix scores "
         "the latent family (scGen/CPA) here — which does NOT beat the floor (CI_low < 0). The CellOT "

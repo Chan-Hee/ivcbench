@@ -164,7 +164,7 @@ def build():
             family_rho(r.cluster, r.split, r.models.split("+")) for r in cons.itertuples()]
         cons["flag"] = np.where(
             cons["cluster"] == "C4",
-            "C4: 2 modality folds only (rho undefined, <3 units); CellOT/scPRAM single-seed per split -> re-run for CI",
+            "C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design",
             "")
     return head, cons, len(df)
 

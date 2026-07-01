@@ -13,7 +13,8 @@ The two are not expected to match row-for-row.
 The deposited result tables under [`results/`](../results) are sufficient to reproduce every figure and
 Supplementary Table **without** downloading any raw data (see [`REPRODUCE.md`](../REPRODUCE.md)).
 
-`data/` itself is git-ignored except for this README.
+`data/` itself is git-ignored except for this README and the small PertAdapt provenance stub at
+`data/pertadapt/official/PROVENANCE.md`; raw data and model artifacts are not committed.
 
 ---
 

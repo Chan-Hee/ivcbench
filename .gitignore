@@ -1,6 +1,9 @@
 # ---- raw data & large scientific binaries (downloaded via scripts/, never committed) ----
 data/**
 !data/README.md
+!data/pertadapt/
+!data/pertadapt/official/
+!data/pertadapt/official/PROVENANCE.md
 outputs/
 *.h5ad
 *.h5

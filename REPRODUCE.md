@@ -115,6 +115,8 @@ Supplementary **Tables** are S1–S14.)*
 | **S10** | Donor axis: scPRAM vs CellOT, paired per-donor | embedded in `Supplementary_Material.docx` | `scpram_vs_cellot_donor_paired.csv` via `scripts/c2_donor_paired.py` (per-donor bundle scores) |
 | **S11** | Headline-survivor table after BH/Holm multiplicity correction (two pre-specified families) | embedded in `Supplementary_Material.docx` | `headline_multiplicity.py` byte-reproduces `results/_paper/headline_multiplicity_adjusted.csv` (two-family BH/Holm; H4 FP-ridge BH=0.0625 does not survive) |
 | **S12** | Per-program AUCell recovery vs observed-shift magnitude (the r = +0.87 law) + dimensionality proxies | embedded in `Supplementary_Material.docx` | `program_recovery_vs_dimensionality.csv` via `program_recovery_vs_dimensionality.py` |
+| **S13** | Per-dataset CRISPR leave-one-gene-out breakdown | embedded in `Supplementary_Material.docx` | `results/C3/results_raw.csv` and `results/_paper/cross_cluster_headline.csv`; summary helper `c3_nearest_gene_summary.py` writes `results/_paper/c3_nearest_gene_summary.csv` |
+| **S14** | OP3 Tanimoto-distance negative control | embedded in `Supplementary_Material.docx` | `results/C5/tanimoto_percompound.csv`; multiplicity row reproduced by `headline_multiplicity.py` |
 
 ---
 
@@ -164,6 +166,11 @@ matching `IVCBENCH_*_PY` exports). This is the scPerturBench-style artifact: it 
 was about 70 GB), so it is built once and hosted on Zenodo rather than in this repository, and it is separate
 from the small, verified, GPU-free eval image (`Containerfile`). `build/` is git-ignored.
 
+**Release packaging.** Do not zip a live working tree for code deposition: local `data/`, `build/`,
+`.venv/`, checkpoints, and training-image tarballs can be tens of gigabytes and are intentionally ignored.
+Package the code release from tracked files only, for example with `git archive`, and keep raw data and
+training-image artifacts as separate external deposits.
+
 **Per-family environments (built by hand).** Each model family has its own environment because the upstream
 implementations carry conflicting CUDA and PyTorch versions (they span CUDA 11.3 to 12.8); each environment
 carries its own CUDA runtime, so only a recent NVIDIA driver is needed.
@@ -181,7 +188,7 @@ model is in the header of its runner script under `scripts/`.
 | `scperturbench_eval` (+ `_jaxgpu` for the GPU path) | scGen, CINEMA-OT | `theislab/scgen`; CINEMA-OT via the scPerturBench eval harness |
 | `ivc-state` | STATE | Arc Institute **State** state-transition model (`scripts/state_*.py`) |
 | `scgpt` | scGPT, GEARS, AttentionPert | `bowang-lab/scGPT`, `snap-stanford/GEARS`, AttentionPert (`scripts/graph_frangieh.py`) |
-| `scfoundation` | scFoundation, PertAdapt | `biomap-research/scFoundation`; PertAdapt (Bai et al. 2025); official artifacts per `data/pertadapt/official/PROVENANCE.md` (`scripts/pertadapt_validate.py`) |
+| `scfoundation` | scFoundation, PertAdapt | `biomap-research/scFoundation`; PertAdapt (Bai et al. 2025); artifact requirements and access notes in `data/pertadapt/official/PROVENANCE.md` (`scripts/pertadapt_validate.py`) |
 
 Run each model family's runner script (`scripts/{cellot,scpram,state,cpa,chemcpa,graph,cinemaot,pertadapt}_*.py`,
 plus `scripts/run_cluster.py` for the core-runner models) in its own environment from the table above; each
