@@ -96,7 +96,8 @@ embedded and also deposited as a CSV. S1 and S2 are curated inventory tables mai
 `scripts/datasets.csv`; the rest are mechanically assembled from the deposited per-cluster leaderboards
 and immune-novelty tables. The per-dataset CRISPR breakdown (S13) and the Tanimoto-distance
 negative-control (S14) tables — placed at the end of the supplement — are backed by the deposited
-leave-one-gene-out leaderboard (`results/C3/`) and `results/C5/tanimoto_percompound.csv` respectively.
+leave-one-gene-out leaderboard (`results/C3/results_raw.csv`), `results/C5/tanimoto_percompound.csv`,
+and the chemCPA by-compound provenance table (`results/_paper/chemcpa_op3_unseen_compound_by_unit.csv`).
 *(The supplementary **Figure** series in the sections above is independent of the table numbering: the
 submitted figures are S1–S8 (additional release figures are provenance, not submitted), while
 Supplementary **Tables** are S1–S14.)*
@@ -116,7 +117,7 @@ Supplementary **Tables** are S1–S14.)*
 | **S11** | Headline-survivor table after BH/Holm multiplicity correction (two pre-specified families) | embedded in `Supplementary_Material.docx` | `headline_multiplicity.py` byte-reproduces `results/_paper/headline_multiplicity_adjusted.csv` (two-family BH/Holm; H4 FP-ridge BH=0.0625 does not survive) |
 | **S12** | Per-program AUCell recovery vs observed-shift magnitude (the r = +0.87 law) + dimensionality proxies | embedded in `Supplementary_Material.docx` | `program_recovery_vs_dimensionality.csv` via `program_recovery_vs_dimensionality.py` |
 | **S13** | Per-dataset CRISPR leave-one-gene-out breakdown | embedded in `Supplementary_Material.docx` | `results/C3/results_raw.csv` and `results/_paper/cross_cluster_headline.csv`; summary helper `c3_nearest_gene_summary.py` writes `results/_paper/c3_nearest_gene_summary.csv` |
-| **S14** | OP3 Tanimoto-distance negative control | embedded in `Supplementary_Material.docx` | `results/C5/tanimoto_percompound.csv`; multiplicity row reproduced by `headline_multiplicity.py` |
+| **S14** | OP3 Tanimoto-distance negative control | embedded in `Supplementary_Material.docx` | `results/C5/tanimoto_percompound.csv`; chemCPA per-compound values are in `results/_paper/chemcpa_op3_unseen_compound_by_unit.csv`; multiplicity row reproduced by `headline_multiplicity.py` |
 
 ---
 

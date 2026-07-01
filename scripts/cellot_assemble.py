@@ -42,6 +42,7 @@ def summarize(df, unit_col, dataset, split, applicability, seeds, downsampling_r
             pval = float(w.pvalue) if w is not None else float("nan")
         except Exception:
             pval = float("nan")
+        metric_seeds = ",".join(sorted(set(",".join(sub["seeds"].astype(str)).split(","))))
         verdict = ("CellOT beats primary baseline" if ci["lo"] > 0 else
                    "CellOT below primary baseline" if ci["hi"] < 0 else
                    "CellOT not distinguishable from primary baseline")
@@ -54,7 +55,7 @@ def summarize(df, unit_col, dataset, split, applicability, seeds, downsampling_r
             CI_low=round(ci["lo"], 4), CI_high=round(ci["hi"], 4),
             percent_positive_units=round(pct_pos, 1),
             p_value_if_applicable=(round(pval, 4) if pval == pval else ""),
-            seeds=seeds, downsampling_rule=downsampling_rule, verdict=verdict,
+            seeds=metric_seeds, downsampling_rule=downsampling_rule, verdict=verdict,
             integration_status=integration_status,
         ))
     return out

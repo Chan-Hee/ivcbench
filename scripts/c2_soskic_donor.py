@@ -178,7 +178,7 @@ def load_soskic_donor(cap_per_donor_cond=300):
 def lodo_spec(donor):
     return SplitSpec(name=f"C2_soskic_LODO_{donor}", cluster="C2", key_col="donor_id",
                      held_values=[donor], control_inference_only=True, strata_cols=["cell_type_coarse"],
-                     registry_task="C1_LODO",
+                     registry_task="C2_LODO",
                      note="held donor's 16h-stim hidden; its 0h cells are the inference input")
 
 
