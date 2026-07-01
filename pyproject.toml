@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ivcbench"
-version = "1.1.5"
+version = "1.1.6"
 description = "An immune-aware benchmark of perturbation-prediction generalization"
 requires-python = ">=3.10"
 dependencies = ["numpy", "scipy", "pandas", "scikit-learn", "pyyaml",

@@ -193,7 +193,7 @@ def main():
              style="italic", ha="right", va="top", zorder=3)
     axB.text(1.02, floor - 0.014, f"best simple\nbaseline = {floor:.2f}", color=C_FLOOR, fontsize=FS_TAG,
              ha="right", va="top", linespacing=1.0, zorder=5)
-    axB.text(THR + 0.018, floor + 0.058, "recovery\nthreshold 0.5", color=GREY_MID, fontsize=FS_MICRO,
+    axB.text(THR + 0.018, floor + 0.058, "program-recovery\ngate", color=GREY_MID, fontsize=FS_MICRO,
              ha="left", va="bottom", linespacing=1.0, zorder=2)
 
     gi = g.set_index("baseline")

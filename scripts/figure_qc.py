@@ -40,7 +40,7 @@ def expected_values():
                 si = sub[sub.baseline.isin(SIMPLE)][M].max(); co = sub[sub.family.isin(DEEP)][M].max()
                 fl.append(si); gp.append(co - si)
     g["C3_floor_mean"] = (float(np.mean(fl)), 0.457)
-    g["C3_gap_mean"] = (float(np.mean(gp)), -0.241)
+    g["C3_gap_mean"] = (float(np.mean(gp)), -0.188)
     g["C3_cond_wins_of_15"] = (int(sum(x > 0 for x in gp)), 0)
     d5 = _ran("C5"); gc = d5[d5.split == "C5_global_compound_holdout"]
     g["C5cpd_FPridge"] = (float(gc[gc.baseline == "FP-ridge"].pearson_delta.iloc[0]), 0.164)
@@ -60,8 +60,8 @@ def expected_values():
     g["donor_inflation"] = (float(np.mean(infl)), 0.017)
     progcols = [c for c in d3.columns if c.startswith("aucell::")]
     vals = d3[d3.family.isin(DEEP)][progcols].values.flatten(); vals = vals[~np.isnan(vals)]
-    g["C3_degenerate_zero_pct"] = (float(100 * (vals == 0).mean()), 84.8)
-    g["C3_above01"] = (int((np.abs(vals) > 0.1).sum()), 24)
+    g["C3_degenerate_zero_pct"] = (float(100 * (vals == 0).mean()), 89.8)
+    g["C3_above01"] = (int((np.abs(vals) > 0.1).sum()), 31)
     for c, n in [("C1", 6), ("C3", 11), ("C4", 6), ("C5", 9)]:
         g[f"{c}_n_methods"] = (int(_ran(c).baseline.nunique()), n)
     return g

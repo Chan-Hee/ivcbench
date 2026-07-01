@@ -6,7 +6,7 @@ r"""Figure 5 (Nature-grade) — the PERTURBATION and MODALITY axes.
     ~0 on unseen compounds (reproducing the prior) but ~-0.24 on the immune unseen-gene axis.
     (c) C4 modality: per-CITE-marker recovery (predicted vs observed knockout delta); PD-1 / HLA
     class I recovered, PD-L1 not. (d) Immune-program recovery on the unseen-gene axis is
-    degenerate-zero (88.7% exactly 0). Numbers from results_raw.csv + cite_marker_recovery.csv.
+    degenerate-zero (89.8% exactly 0). Numbers from results_raw.csv + cite_marker_recovery.csv.
 
 JEWEL DATA-MARK / NAVY-INK SYSTEM (one palette language across the plate):
     Structural NAVY ink is RESERVED for titles, rules, group-accent bars and brackets — it is never
