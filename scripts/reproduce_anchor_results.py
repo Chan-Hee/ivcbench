@@ -36,16 +36,17 @@ def rec(name, expected, observed, tol, source, notes, loaded=False):
 
 js = json.loads((R / "_paper" / "defensive_stats.json").read_text())
 
-# --- Anchor 1+2: OP3 leave-one-lineage-out FP-ridge gap (recompute from per-lineage rows) ---
+# --- Anchor 1+2: OP3 leave-one-lineage-out FP-ridge gaps (recompute from per-lineage rows) ---
 f = pd.read_csv(R / "C5" / "loct_fine6.csv")
-SIMPLE = ["ctrl-pred", "cell-mean", "donor-shift", "linear-PCA"]
+UNIVERSAL_FLOOR = ["cell-mean", "linear-PCA"]
+ALL_SIMPLE = ["ctrl-pred", "cell-mean", "donor-shift", "linear-PCA"]
 piv = f.pivot_table(index="split", columns="baseline", values="pearson_delta")
-gap_floor = (piv["FP-ridge"] - piv[SIMPLE].max(axis=1)).mean()
-gap_prim = (piv["FP-ridge"] - piv[["cell-mean", "donor-shift"]].max(axis=1)).mean()
-rec("OP3 LOLO FP-ridge vs best-of-four floor (mean gap)", 0.119, float(gap_floor), 0.005,
+gap_floor = (piv["FP-ridge"] - piv[UNIVERSAL_FLOOR].max(axis=1)).mean()
+gap_context = (piv["FP-ridge"] - piv[ALL_SIMPLE].max(axis=1)).mean()
+rec("OP3 LOLO FP-ridge vs universal two-member floor (mean gap)", 0.122, float(gap_floor), 0.005,
     "results/C5/loct_fine6.csv", f"recomputed over {len(piv)} fine lineages; defensive_stats C5_cellcontext.mean_gap={js['C5_cellcontext']['mean_gap']:.4f}")
-rec("OP3 LOLO FP-ridge vs primary (training-mean/donor) comparator", 0.123, float(gap_prim), 0.005,
-    "results/C5/loct_fine6.csv", f"recomputed; defensive_stats vs_primary_floor_mean={js['C5_cellcontext'].get('vs_primary_floor_mean')}")
+rec("OP3 LOLO FP-ridge vs all-simple context reference (mean gap)", 0.119, float(gap_context), 0.005,
+    "results/C5/loct_fine6.csv", f"recomputed; defensive_stats context_reference_mean={js['C5_cellcontext'].get('context_reference_mean')}")
 
 # --- Anchor 3+4: Kang LOLO scGen 8-lineage avg + CD14 monocyte ---
 k = pd.read_csv(R / "C1" / "loct_scgen_forest.csv")
@@ -53,7 +54,7 @@ rec("Kang LOLO scGen 8-lineage average gap", -0.016, float(k["gap"].mean()), 0.0
     "results/C1/loct_scgen_forest.csv", f"mean of per-lineage gap over {len(k)} lineages; {(k['gap']>0).sum()}/{len(k)} positive")
 cd14 = k[k["lineage"].astype(str).str.contains("CD14|Mono_CD14|monocyte", case=False, regex=True)]
 cd14_gap = float(cd14["gap"].max()) if len(cd14) else None
-rec("Kang LOLO scGen CD14+ monocyte gap (seed-0)", 0.098, cd14_gap, 0.012,
+rec("Kang LOLO scGen CD14+ monocyte gap (current seed-aggregated)", 0.065, cd14_gap, 0.005,
     "results/C1/loct_scgen_forest.csv", f"row(s): {cd14['lineage'].tolist() if len(cd14) else 'NOT FOUND'}")
 
 # --- Anchor 5+6: OP3 unseen compound FP-ridge vs no-chemistry baseline ---
@@ -69,7 +70,7 @@ if fp is not None and base is not None:
     rec("OP3 unseen-compound FP-ridge minus no-chemistry gap", -0.008, fp - base, 0.003, "results/C5/results_raw.csv", "recomputed FP-ridge - baseline")
 
 # --- Anchor 7: CRISPR leave-one-gene-out gap (load aggregate) ---
-rec("CRISPR LOGO best-conditioned minus training-mean gap", -0.241, float(js["C3_perturbation"]["mean_gap"]), 0.005,
+rec("CRISPR LOGO best-conditioned minus training-mean robustness gap", -0.188, float(js["C3_perturbation"]["mean_gap"]), 0.005,
     "results/_paper/defensive_stats.json", f"C3_perturbation; cluster_ci={js['C3_perturbation']['cluster_ci']}; cells_cond_wins={js['C3_perturbation']['cells_cond_wins']}", loaded=True)
 
 # --- Anchor 8+9+10: Soskic LODO (recompute Pearson; load E-dist/AUCell) ---

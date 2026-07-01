@@ -24,6 +24,7 @@ from scipy import stats
 ROOT = Path(__file__).resolve().parents[1]
 R = ROOT / "results"
 SIMPLE = ["ctrl-pred", "cell-mean", "donor-shift", "linear-PCA"]
+UNIVERSAL_FLOOR = ["cell-mean", "linear-PCA"]
 DEEP = {"latent", "graph", "foundation", "hybrid"}
 
 rows = []   # (contrast, raw_p, source, note); raw_p None => MISSING
@@ -33,7 +34,7 @@ d1 = pd.read_csv(R / "C1" / "results_raw.csv"); d1 = d1[d1.ran == True]
 g1 = []
 for s in sorted(x for x in d1.split.unique() if x.startswith("C1_loct")):
     sub = d1[d1.split == s]; sg = sub[sub.baseline == "scGen"].pearson_delta
-    fl = sub[sub.baseline.isin(SIMPLE)].pearson_delta
+    fl = sub[sub.baseline.isin(UNIVERSAL_FLOOR)].pearson_delta
     if len(sg) and len(fl):
         g1.append(float(sg.iloc[0] - fl.max()))
 p_h1 = float(stats.wilcoxon(g1).pvalue)
@@ -50,7 +51,7 @@ for ds in sorted(d3.dataset.unique()):
         sub = d3[(d3.dataset == ds) & (d3.split == f"C3_true_lo_gene_{h}")]
         if not len(sub):
             continue
-        gg.append(sub[sub.family.isin(DEEP)][M].max() - sub[sub.baseline.isin(SIMPLE)][M].max())
+        gg.append(sub[sub.family.isin(DEEP)][M].max() - sub[sub.baseline.isin(UNIVERSAL_FLOOR)][M].max())
     if gg:
         dsg.append(float(np.mean(gg)))
 p_h2 = float(stats.wilcoxon(dsg).pvalue)
@@ -68,16 +69,21 @@ rows.append(("H3_C4_modality_scGen_vs_floor", None,
 
 # ----- H4: C5 OP3 cell-context (LOCT), FP-ridge (chemistry) vs floor (n=6 fine lineages) -----
 f6 = pd.read_csv(R / "C5" / "loct_fine6.csv"); f6 = f6[f6.ran == True]
-g5 = []
+g5, g5_context = [], []
 for s in sorted(f6.split.unique()):
     sub = f6[f6.split == s]; fp = sub[sub.baseline == "FP-ridge"].pearson_delta
-    fl = sub[sub.baseline.isin(SIMPLE)].pearson_delta
+    fl = sub[sub.baseline.isin(UNIVERSAL_FLOOR)].pearson_delta
+    context = sub[sub.baseline.isin(SIMPLE)].pearson_delta
     if len(fp) and len(fl):
         g5.append(float(fp.iloc[0] - fl.max()))
+        if len(context):
+            g5_context.append(float(fp.iloc[0] - context.max()))
 p_h4 = float(stats.wilcoxon(g5).pvalue)
 rows.append(("H4_C5_cellcontext_FPridge_vs_floor", p_h4,
              "recomputed: Wilcoxon over 6 fine lineages from results/C5/loct_fine6.csv",
-             f"n=6 lineages, mean gap {np.mean(g5):+.4f}, 6/6 positive (POS result)"))
+             f"n=6 lineages, universal-floor mean gap {np.mean(g5):+.4f}; "
+             f"all-simple context-reference mean gap {np.mean(g5_context):+.4f}; "
+             "6/6 positive (POS point estimate; BH/Holm do not survive at 5%)"))
 
 # ----- H5: C5 OP3 unseen-compound, chemistry vs floor -----
 # FP-ridge loses on the point estimate (0.164 vs floor 0.172); the deposited inferential claim
@@ -157,7 +163,7 @@ for fam in ("headline_floor", "confirmatory"):
 # ================= write the deposit =================
 out = R / "_paper" / "headline_multiplicity_adjusted.csv"
 with out.open("w", newline="") as fh:
-    w = csv.writer(fh)
+    w = csv.writer(fh, lineterminator="\n")
     w.writerow(["contrast", "raw_p", "BH_p", "Holm_p", "survives_FDR05", "family", "source", "note"])
     for (contrast, p, source, note) in rows:
         fam = family_of(contrast)

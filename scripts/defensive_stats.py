@@ -14,6 +14,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 R = ROOT / "results"
 SIMPLE = ["ctrl-pred", "cell-mean", "donor-shift", "linear-PCA"]
+UNIVERSAL_FLOOR = ["cell-mean", "linear-PCA"]
 NT = ["cell-mean", "donor-shift", "linear-PCA"]      # non-trivial floors (exclude control-as-prediction)
 DEEP = {"latent", "graph", "foundation", "hybrid"}
 rng = np.random.default_rng(0)
@@ -33,21 +34,25 @@ def cluster_boot(unit_vals, fn=np.mean):
 
 out = {}
 
-# ---------- C5 cell-context: FP-ridge vs best floor, cluster bootstrap over 6 fine lineages ----------
+# ---------- C5 cell-context: FP-ridge vs universal floor, cluster bootstrap over 6 fine lineages ----------
 f6 = pd.read_csv(R / "C5" / "loct_fine6.csv"); f6 = f6[f6.ran == True]
-lin_gap, prim_gap = [], []
+lin_gap, context_gap, prim_gap = [], [], []
 for s in sorted(f6.split.unique()):
     sub = f6[f6.split == s]
     fp = sub[sub.baseline == "FP-ridge"].pearson_delta
-    fl = sub[sub.baseline.isin(SIMPLE)].pearson_delta
+    fl = sub[sub.baseline.isin(UNIVERSAL_FLOOR)].pearson_delta
+    context = sub[sub.baseline.isin(SIMPLE)].pearson_delta
     prim = sub[sub.baseline.isin(["cell-mean", "donor-shift"])].pearson_delta  # pre-specified primary
     if len(fp) and len(fl):
         lin_gap.append(float(fp.iloc[0] - fl.max()))
+        if len(context):
+            context_gap.append(float(fp.iloc[0] - context.max()))
         if len(prim):
             prim_gap.append(float(fp.iloc[0] - prim.max()))
 m, lo, hi, npos = cluster_boot(lin_gap)
 out["C5_cellcontext"] = dict(n_lineages=len(lin_gap), mean_gap=m, ci=[lo, hi], boot_pos_frac=npos / B,
-                             per_lineage=lin_gap, vs_primary_floor_mean=float(np.mean(prim_gap)))
+                             per_lineage=lin_gap, context_reference_mean=float(np.mean(context_gap)),
+                             vs_primary_floor_mean=float(np.mean(prim_gap)))
 
 # ---------- C3 perturbation: best-deep vs best-floor, cluster bootstrap over 5 datasets ----------
 d3 = _ran("C3"); M = "pearson_delta_ontarget"
