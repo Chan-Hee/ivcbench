@@ -237,19 +237,18 @@ def main():
                          fontsize=FS_TAG, ha="left", va="center", color=C_FLOOR)
 
     # the four conditioned methods: direct labels adjacent to their marks with SHORT, STRAIGHT,
-    # NON-CROSSING leaders. FP-ridge sits inside the quadrant (label to its lower-left); scGen / CPA /
-    # STATE are stacked at the right, each label placed at its OWN mark height so every leader is a
-    # plain short horizontal segment that never bends back across another.
+    # NON-CROSSING leaders. FP-ridge sits inside the quadrant (label to its lower-left); scGen is
+    # labelled at its own mark height. CPA and STATE sit almost on top of each other at the bottom-right
+    # (CPA ~0.79/0.05, STATE ~0.75/0.05), so their labels are split vertically — CPA ABOVE the cluster
+    # and STATE BELOW it — each with its OWN short leader back to its OWN marker so both read clearly.
     _leader(axB, gi.loc["FP-ridge", "ifn"], gi.loc["FP-ridge", "bulk"], THR - 0.024, 0.405,
             "FP-ridge", C_NAVY_DARK, ha="right", va="bottom", fs=FS_LABEL + 0.6, weight="bold")
     _leader(axB, gi.loc["scGen", "ifn"], gi.loc["scGen", "bulk"], 0.610, gi.loc["scGen", "bulk"],
             "scGen", C_NAVY_DARK, ha="right", va="center", fs=FS_LABEL, weight="bold")
-    _leader(axB, gi.loc["CPA", "ifn"], gi.loc["CPA", "bulk"] + yjit["CPA"], 0.905,
-            gi.loc["CPA", "bulk"] + yjit["CPA"],
-            "CPA", C_SLATE, ha="left", va="center", fs=FS_LABEL, weight="bold")
-    _leader(axB, gi.loc["STATE", "ifn"], gi.loc["STATE", "bulk"] + yjit["STATE"], 0.905,
-            gi.loc["STATE", "bulk"] + yjit["STATE"],
-            "STATE", C_SLATE, ha="left", va="center", fs=FS_LABEL, weight="bold")
+    _leader(axB, gi.loc["CPA", "ifn"], gi.loc["CPA", "bulk"] + yjit["CPA"], 0.905, 0.150,
+            "CPA", C_SLATE, ha="left", va="bottom", fs=FS_LABEL, weight="bold")
+    _leader(axB, gi.loc["STATE", "ifn"], gi.loc["STATE", "bulk"] + yjit["STATE"], 0.905, -0.038,
+            "STATE", C_SLATE, ha="left", va="top", fs=FS_LABEL, weight="bold")
 
     axB.set_xlabel(r"type-I IFN program recovery   (AUCell-$\Delta$ corr.)", fontsize=FS_AXLABEL, color=C_INK)
     axB.set_ylabel(r"bulk Pearson-$\Delta$   (higher better)", fontsize=FS_AXLABEL, color=C_INK)

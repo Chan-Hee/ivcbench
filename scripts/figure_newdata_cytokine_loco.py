@@ -64,16 +64,19 @@ def main():
 
     # ---- 2-row layout (was a single very-wide 1x3 row at 4.52:1, which scaled the axis and
     # cell-type labels down to illegibility in Word/PDF). Panel (b) carries 24 cell-type rows so it
-    # anchors the FULL-HEIGHT left column; panels (a) and (c) stack in the right column. The long
-    # methods footnote now lives in the figure CAPTION (Supplementary Fig. S11 caption), not in the
-    # figure, so the plate breathes. Target aspect ~2:1. No data value / colour / label changes.
+    # anchors the FULL-HEIGHT column; panels (a) and (c) stack in the other column. The plate is
+    # laid out so the on-page reading order runs a (top-left) -> b (right, full-height) -> c
+    # (bottom-left): the pooled-bars result (a) starts top-left, the tall per-celltype panel (b)
+    # spans the RIGHT column, and the two-regime scatter (c) closes bottom-left. The long methods
+    # footnote lives in the figure CAPTION (Supplementary Fig. S8 caption), not in the figure, so
+    # the plate breathes. Target aspect ~2:1. No data value / colour / label changes.
     fig = plt.figure(figsize=(10.2, 5.2))                       # ~1.96:1
-    gs = fig.add_gridspec(2, 2, width_ratios=[1.02, 1.0], height_ratios=[1.0, 1.0],
+    gs = fig.add_gridspec(2, 2, width_ratios=[1.0, 1.02], height_ratios=[1.0, 1.0],
                           wspace=0.46, hspace=0.62,
                           left=0.07, right=0.985, top=0.90, bottom=0.085)
-    axB = fig.add_subplot(gs[:, 0])     # per-celltype gap — tall, spans both rows (left column)
-    axA = fig.add_subplot(gs[0, 1])     # pooled bars — top-right
-    axC = fig.add_subplot(gs[1, 1])     # two conditioning regimes — bottom-right
+    axA = fig.add_subplot(gs[0, 0])     # pooled bars — top-left
+    axC = fig.add_subplot(gs[1, 0])     # two conditioning regimes — bottom-left
+    axB = fig.add_subplot(gs[:, 1])     # per-celltype gap — tall, spans both rows (right column)
 
     # ================= (a) pooled bars =================
     METHODS = [
