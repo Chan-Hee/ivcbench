@@ -30,7 +30,7 @@ distance from raw predictions requires re-running the model scripts with `IVCBEN
 which writes the larger per-cell bundles described in `predictions/COVERAGE.md`.
 
 **Final manuscript layout (binding).** The submission is **3 main figures + 8 supplementary figures
-(S1–S8) + 12 Supplementary Tables (S1–S12)**:
+(S1–S8) + 14 Supplementary Tables (S1–S14)**:
 
 - **Fig 1**: benchmark workflow schematic (hand-drawn; a static figure, not script-generated)
 - **Fig 2**: generalization map + CellOT donor CDF (`make_figure2_landscape_verdict.py`)
@@ -87,16 +87,19 @@ C3 unseen-gene predictability probe (`c3_predictability_analysis.py`), and chemC
 collapse (`figure_chemcpa_collapse.py`).
 
 
-## Supplementary Tables (S1–S12)
+## Supplementary Tables (S1–S14)
 
 Each Supplementary Table is published with the submission and backed by the listed result file in this
-release. Ten of the twelve tables are embedded in `Supplementary_Material.docx`; the descriptive
-fit-matrix (S3) and the energy-distance table (S8) are also deposited as machine-readable CSVs. S1 and
-S2 are curated inventory tables maintained from `scripts/datasets.csv`; the rest are mechanically
-assembled from the deposited per-cluster leaderboards and immune-novelty tables.
+release. Thirteen of the fourteen tables are embedded in `Supplementary_Material.docx`; the descriptive
+fit-matrix (S3) is provided only as a machine-readable CSV, and the energy-distance table (S8) is
+embedded and also deposited as a CSV. S1 and S2 are curated inventory tables maintained from
+`scripts/datasets.csv`; the rest are mechanically assembled from the deposited per-cluster leaderboards
+and immune-novelty tables. The per-dataset CRISPR breakdown (S13) and the Tanimoto-distance
+negative-control (S14) tables — placed at the end of the supplement — are backed by the deposited
+leave-one-gene-out leaderboard (`results/C3/`) and `results/C5/tanimoto_percompound.csv` respectively.
 *(The supplementary **Figure** series in the sections above is independent of the table numbering: the
 submitted figures are S1–S8 (additional release figures are provenance, not submitted), while
-Supplementary **Tables** are S1–S12.)*
+Supplementary **Tables** are S1–S14.)*
 
 | Table | Content | Journal supplement | Backing data / script (`scripts/`) |
 |---|---|---|---|
