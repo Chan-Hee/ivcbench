@@ -9,7 +9,7 @@ abstract: >-
   benchmark tests whether single-cell perturbation-prediction models generalize
   across the axes that matter for immunology (cell-context transfer, unseen
   perturbations, unseen donors, and readout modality) and whether they beat a
-  set of pre-registered simple baselines (the universal floor).
+  set of pre-specified simple baselines (the universal floor).
 authors:
   - family-names: Lee
     given-names: Chanhee
@@ -18,7 +18,7 @@ authors:
     given-names: Jae Yong
     affiliation: "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea"
 version: 1.1.6
-date-released: "2026-07-01"
+date-released: "2026-07-02"
 doi: 10.5281/zenodo.20756042
 identifiers:
   - type: doi

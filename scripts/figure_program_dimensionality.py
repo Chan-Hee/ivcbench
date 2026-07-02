@@ -24,6 +24,11 @@ DF = pd.read_csv(ROOT / "results/_paper/program_recovery_vs_dimensionality.csv")
 OUT = ROOT / "results/_paper/program_recovery_vs_dimensionality.png"
 
 
+def _u(s: str) -> str:
+    """True unicode minus on a preformatted numeric string (never touches hyphenated words)."""
+    return s.replace("-", "−")
+
+
 PROG_NAMES = {"type_I_IFN": "type-I IFN", "inflammatory_NFkB": "infl-NFκB",
               "effector_lymphocyte": "effector-lymph", "effector_cytokine": "effector-cyt",
               "TCR_activation": "TCR-act", "IL2_STAT5": "IL2-STAT5",
@@ -40,7 +45,9 @@ LABEL_PLACEMENT = {
         "effector_cytokine":   (0.470, 0.235, "left",  "center"),
         "proliferation":       (0.690, 0.088, "left",  "center"),
         "effector_lymphocyte": (0.905, 0.180, "right", "center"),
-        "TCR_activation":      (0.045, 0.215, "left",  "center"),
+        # TCR-act's old anchor (y=0.215) sat almost exactly on the near-flat regression line
+        # (line yfrac ~0.20-0.21 across this whole x-range) — raised clear of it.
+        "TCR_activation":      (0.045, 0.270, "left",  "center"),
         "IL2_STAT5":           (0.045, 0.125, "left",  "center"),
         "Treg_exhaustion":     (0.420, 0.055, "left",  "center"),
     },
@@ -49,9 +56,15 @@ LABEL_PLACEMENT = {
         "inflammatory_NFkB":   (0.360, 0.320, "left",  "center"),
         "effector_cytokine":   (0.360, 0.235, "left",  "center"),
         "effector_lymphocyte": (0.680, 0.160, "left",  "center"),
-        "proliferation":       (0.055, 0.235, "left",  "center"),
-        "IL2_STAT5":           (0.055, 0.160, "left",  "center"),
-        "TCR_activation":      (0.055, 0.090, "left",  "center"),
+        # prolif / IL2-STAT5 / TCR-act sit almost on top of one another in x (all <0.007 SD) and
+        # the regression line rises steeply through this corner. Right-aligning the labels (text
+        # grows LEFTWARD from the anchor) keeps every glyph on the left, upper side of the line
+        # instead of growing rightward into it; anchor x is staggered to roughly track each
+        # point's own x-order (prolif < IL2-STAT5 < TCR-act) so the three leaders fan out without
+        # a lower leader re-crossing a label sitting above it.
+        "proliferation":       (0.270, 0.340, "right", "center"),
+        "IL2_STAT5":           (0.190, 0.260, "right", "center"),
+        "TCR_activation":      (0.230, 0.185, "right", "center"),
         "Treg_exhaustion":     (0.235, 0.055, "left",  "center"),
     },
 }
@@ -107,7 +120,7 @@ def scatter_panel(ax, letter, title, sub, xcol, xlabel, df, law_text, stats_ha="
     ax.plot(xs, b * xs + a, color=NAVY, lw=1.4, ls="--", alpha=0.65, zorder=2)
     # stats box (right-anchored in panel a to clear the type-I IFN star; left-anchored in panel b)
     box_x = 0.965 if stats_ha == "right" else 0.035
-    ax.text(box_x, 0.97, f"Pearson r = {pr:+.2f} (p = {pp:.3f})\nSpearman ρ = {sr:+.2f} (p = {sp:.3f})\nn = {len(fit)} scored programs",
+    ax.text(box_x, 0.97, _u(f"Pearson r = {pr:+.2f} (p = {pp:.3f})\nSpearman ρ = {sr:+.2f} (p = {sp:.3f})\nn = {len(fit)} scored programs"),
             transform=ax.transAxes, fontsize=6.6, va="top", ha=stats_ha, color=INK,
             bbox=dict(boxstyle="round,pad=0.35", fc="white", ec=GREY_LITE, lw=0.6))
     ax.text(0.5, -0.205, law_text, transform=ax.transAxes, fontsize=6.4, va="top", ha="center",

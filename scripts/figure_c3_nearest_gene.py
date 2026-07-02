@@ -109,17 +109,20 @@ def main():
         xlab = m + 0.012 if m >= 0 else m - 0.012
         ha = "left" if m >= 0 else "right"
         axA.text(max(hi, m) + 0.015, y, _u(f"{m:.2f}"), va="center", ha="left",
-                 fontsize=6.8, color=INK)
+                 fontsize=6.8, color=INK)  # _u here IS correct: this is a formatted number, sign-sensitive
 
     axA.axvline(floor_m, color=NAVY_DARK, lw=1.1, ls="--", zorder=2)
     axA.text(floor_m + 0.012, len(rows) - 0.62, "cell-mean floor", rotation=90, va="top", ha="left",
              fontsize=6.2, color=NAVY_DARK, style="italic")
     axA.axvline(0, color="#bbb", lw=0.6, zorder=1)
+    # method names below are hyphenated COMPOUND WORDS (cell-mean, linear-PCA, co-expr, GO-Jaccard,
+    # etc.) — plain ASCII hyphens, never unicode-minus'd (that substitution is reserved for signed
+    # numbers/axis ticks; see figure_reliability_ceiling.py / FIGURE_DESIGN_STANDARDS.md).
     axA.set_yticks(yy)
-    axA.set_yticklabels([_u(r[1]) for r in rows], fontsize=7.2)
+    axA.set_yticklabels([r[1] for r in rows], fontsize=7.2)
     axA.set_ylim(-0.6, len(rows) - 0.4)
     axA.set_xlim(min(-0.05, min(r[5] for r in rows) - 0.03), 0.62)
-    axA.set_xlabel(_u("response-direction Pearson-Δ  (50% leave-one-gene-out, mean over 5 datasets)  ↑"),
+    axA.set_xlabel("response-direction Pearson-Δ  (50% leave-one-gene-out, mean over 5 datasets)  ↑",
                    fontsize=7.6)
     panel_title(axA, "a", "A nearest-gene prior also fails to beat the floor",
                 sub="every gene-side transfer sits below the simple cell-mean floor", x_letter=-0.40)
@@ -155,7 +158,7 @@ def main():
     axB.set_xlim(6, 54)
     axB.set_ylim(min(-0.05, axB.get_ylim()[0]), ytop)
     axB.set_xlabel("held-out target genes (%)", fontsize=7.6)
-    axB.set_ylabel(_u("mean Pearson-Δ across datasets  ↑"), fontsize=7.6)
+    axB.set_ylabel("mean Pearson-Δ across datasets  ↑", fontsize=7.6)
     panel_title(axB, "b", "Robustness to holdout fraction",
                 sub="floor leads at every holdout level", x_letter=-0.16)
     despine(axB)
@@ -165,12 +168,13 @@ def main():
     style_legend(leg)
 
     # two manually-wrapped footnote lines, centered under both panels (below the legend), so they
-    # never collide with the legend box or run off the figure edges.
+    # never collide with the legend box or run off the figure edges. Plain hyphens throughout —
+    # these are all compound words (co-expression-graph, downstream-only, etc.), not signed numbers.
     foot = [
-        _u("Nearest-gene priors predict a held gene's effect as the observed training effect of its single nearest "
-           "training gene, by co-expression-graph NN on control cells, or by GO-term Jaccard NN."),
-        _u("Scored on the identical downstream-only Pearson-Δ, splits and units as the deep models. "
-           "† CINEMA-OT is a perturbation-agnostic OT floor (not headline-ranked)."),
+        "Nearest-gene priors predict a held gene's effect as the observed training effect of its single nearest "
+        "training gene, by co-expression-graph NN on control cells, or by GO-term Jaccard NN.",
+        "Scored on the identical downstream-only Pearson-Δ, splits and units as the deep models. "
+        "† CINEMA-OT is a perturbation-agnostic OT floor (not headline-ranked).",
     ]
     fig.text(0.5, 0.052, foot[0], fontsize=5.9, color=GREY_MID, ha="center", va="bottom")
     fig.text(0.5, 0.018, foot[1], fontsize=5.9, color=GREY_MID, ha="center", va="bottom")

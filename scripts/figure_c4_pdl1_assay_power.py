@@ -152,13 +152,15 @@ def main():
     despine(axB)
     panel_title(axB, "b", "Assay-floor confound",
                 sub="near-zero markers match sign at chance")
-    # annotate the two checkpoints
-    for mk, lab, c, dy in [("CD274", "PD-L1", C_LIG, -0.06), ("CD279", "PD-1", C_REC, 0.04)]:
+    # annotate the two checkpoints. PD-L1's lowest point (sign_match_frac ~0.355) sits close to
+    # the panel floor (ylim=0.30), so its label is placed ABOVE the marker (not below, which used
+    # to push the text past the axis and clip it); PD-1 keeps its existing above offset.
+    for mk, lab, c, dy in [("CD274", "PD-L1", C_LIG, 0.05), ("CD279", "PD-1", C_REC, 0.04)]:
         rr = m[m.marker == mk].sort_values("held_frac_pct").iloc[0]
         axB.annotate(lab, xy=(rr.effect_sd_units, rr.sign_match_frac),
                      xytext=(rr.effect_sd_units + 0.06, rr.sign_match_frac + dy),
                      fontsize=6.6, fontweight="bold", color=c, va="center")
-    axB.text(0.96, 0.06, f"r = {fmt(r_eff)},  p = {p_eff:.0e}".replace("e-0", "e−0"),
+    axB.text(0.96, 0.06, f"r = {fmt(r_eff)},  p = {p_eff:.0e}".replace("e-", "e−"),
              transform=axB.transAxes, fontsize=6.6, color=NAVY_DARK, ha="right", va="bottom")
 
     # ============================ (c) RNA-vs-surface decoupling (CD274) ==========================
@@ -176,15 +178,17 @@ def main():
         for xc in (lo, hi):
             axC.plot([xc, xc], [yi - 0.13, yi + 0.13], color=col, lw=1.5, zorder=2)
         axC.plot(mean, yi, "o", color=col, ms=6.0, mec="white", mew=0.8, zorder=4)
-        axC.text(0.985, yi, f"z={fmt(zz,1)}", transform=axC.get_yaxis_transform(),
-                 fontsize=6.3, color=col, ha="right", va="center")
+        axC.text(0.995, yi, f"z={fmt(zz,1)}", transform=axC.get_yaxis_transform(),
+                 fontsize=6.3, color=col, ha="right", va="center", zorder=5)
     axC.set_yticks(yC)
     axC.set_yticklabels([r[0] for r in rows], fontsize=FS_LAB)
     for tick, r in zip(axC.get_yticklabels(), rows):
         tick.set_color(r[4]);
         if r[0].startswith("surface"): tick.set_fontweight("bold")
     axC.set_ylim(-0.7, len(rows) - 0.3)
-    axC.set_xlim(-0.10, 0.085)
+    # xlim right bound widened past the widest CI whisker (surface 25%, hi=0.079) so the
+    # per-row "z=" label (anchored near the right spine) never overprints the whisker tick.
+    axC.set_xlim(-0.10, 0.115)
     xc_t = [-0.08, -0.04, 0.0, 0.04]
     axC.set_xticks(xc_t)
     axC.set_xticklabels([_u(f"{x:.2f}") for x in xc_t], fontsize=FS_LAB)

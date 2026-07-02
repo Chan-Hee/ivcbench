@@ -6,9 +6,9 @@
 
 # --- core numerics ---
 numpy>=2.0,<3
-scipy>=1.17,<2
+scipy>=1.15,<2
 pandas>=2.3,<3
-scikit-learn>=1.8,<2
+scikit-learn>=1.7,<2
 
 # --- single-cell IO (real-data loaders) ---
 anndata>=0.12,<0.13

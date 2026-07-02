@@ -100,16 +100,19 @@ def main():
             axA.plot([lo, lo], [y - 0.12, y + 0.12], color=INK, lw=1.0, zorder=4)
             axA.plot([hi, hi], [y - 0.12, y + 0.12], color=INK, lw=1.0, zorder=4)
         axA.text(max(hi, m) + 0.012, y, _u(f"{m:.2f}"), va="center", ha="left",
-                 fontsize=7.0, color=INK)
+                 fontsize=7.0, color=INK)  # _u here IS correct: a formatted, sign-sensitive number
     axA.axvline(floor_m, color=NAVY_DARK, lw=1.1, ls="--", zorder=2)
     axA.text(floor_m + 0.008, len(rows) - 0.58, "floor", rotation=90, va="top", ha="left",
              fontsize=6.4, color=NAVY_DARK, style="italic")
     axA.axvline(0, color="#bbb", lw=0.6, zorder=1)
+    # method names + axis text below are compound words (cytokine-mean, feature-nearest,
+    # DE-profile-nearest, held-out, etc.) — plain ASCII hyphens; unicode-minus is reserved for
+    # signed numbers/axis ticks (see FIGURE_DESIGN_STANDARDS.md).
     axA.set_yticks(yy)
-    axA.set_yticklabels([_u(r[1]) for r in rows], fontsize=7.0)
+    axA.set_yticklabels([r[1] for r in rows], fontsize=7.0)
     axA.set_ylim(-0.55, len(rows) - 0.45)
     axA.set_xlim(-0.02, 0.42)
-    axA.set_xlabel(_u("response-direction Pearson  (held-out cytokine, mean over all held)  ↑"),
+    axA.set_xlabel("response-direction Pearson  (held-out cytokine, mean over all held)  ↑",
                    fontsize=7.4)
     panel_title(axA, "a", "Unseen-cytokine extrapolation",
                 sub=f"leave-one-cytokine-out, {summ['n_held_cytokine_instances']:,} held instances "
@@ -126,10 +129,12 @@ def main():
              alpha=0.9, zorder=3)
     axB.axvline(0, color=NAVY_DARK, lw=1.0, zorder=2)
     axB.set_yticks(yb)
-    axB.set_yticklabels([_u(c.replace("_", " ")) for c in pc["celltype"]], fontsize=6.0)
+    axB.set_yticklabels([c.replace("_", " ") for c in pc["celltype"]], fontsize=6.0)
     axB.set_ylim(-0.7, len(pc) - 0.3)
     n_pos = int((pc["gap"] > 0).sum())
-    axB.set_xlabel(_u("DE-profile-nearest − cytokine-mean floor  (Δ Pearson)  →"),
+    # "−" here is a real subtraction (DE-profile-nearest minus the floor); the two method names
+    # either side of it keep plain hyphens as compound words.
+    axB.set_xlabel("DE-profile-nearest − cytokine-mean floor  (Δ Pearson)  →",
                    fontsize=7.4)
     axB.text(0.98, 0.04, f"transfer beats floor in\n{n_pos}/{len(pc)} celltypes",
              transform=axB.transAxes, ha="right", va="bottom", fontsize=6.6,
@@ -159,10 +164,16 @@ def main():
                  arrowprops=dict(arrowstyle="-", color=NAVY_DARK, lw=0.6))
     axC.text(0.97, 0.97, "transfer escapes\nthe floor", transform=axC.transAxes, ha="right",
              va="top", fontsize=6.6, color=CONDITIONED_DARK, style="italic")
-    axC.text(0.03, 0.04, "annotation-only\nconditioning fails", transform=axC.transAxes,
-             ha="left", va="bottom", fontsize=6.6, color=CLAY_DARK, style="italic")
-    axC.set_xlabel(_u("feature-nearest − floor  (annotation only)"), fontsize=7.4)
-    axC.set_ylabel(_u("DE-profile-nearest − floor  (observed elsewhere)"), fontsize=7.4)
+    # The Plasmablast outlier sits at the extreme bottom-left corner of the panel (the widest
+    # gap in both x and y), exactly where this label used to anchor — text landed on top of the
+    # marker. Moved up and right, clear of the point, with a short leader back to it.
+    axC.annotate("annotation-only\nconditioning fails", xy=(g_ft.min(), g_de.min()),
+                 xytext=(0.15, 0.14), textcoords="axes fraction",
+                 ha="left", va="bottom", fontsize=6.6, color=CLAY_DARK, style="italic",
+                 arrowprops=dict(arrowstyle="-", color=CLAY_DARK, lw=0.6, alpha=0.7))
+    # same convention: real subtraction "−" between method and floor, plain hyphens within names.
+    axC.set_xlabel("feature-nearest − floor  (annotation only)", fontsize=7.4)
+    axC.set_ylabel("DE-profile-nearest − floor  (observed elsewhere)", fontsize=7.4)
     panel_title(axC, "c", "Two conditioning regimes",
                 sub="each point a celltype; marker size ~ held cytokines", x_letter=-0.22)
     despine(axC)

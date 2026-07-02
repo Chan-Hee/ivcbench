@@ -152,7 +152,7 @@ def main():
             tick.set_color(C_LIGAND); tick.set_fontweight("bold")
     axA.set_xlim(-0.62, 0.42)
     axA.set_ylim(-0.9, len(t1) - 0.4)
-    axA.set_xlabel(r"surface-protein response  (obs $\Delta$, CLR)", fontsize=FS_AXTITLE, color=C_INK)
+    axA.set_xlabel(r"surface-protein response  (obs $\Delta$, library-log)", fontsize=FS_AXTITLE, color=C_INK)
     xa = [-0.6, -0.4, -0.2, 0.0, 0.2, 0.4]
     axA.set_xticks(xa)
     axA.set_xticklabels([_fmt(t, 1) for t in xa], fontsize=FS_LAB)
@@ -492,7 +492,7 @@ def main():
     head(axD, "d", "Per-lineage advantage")
 
     out = RESULTS / "_paper" / "figure_immune_blindspot.png"
-    fig.savefig(out, dpi=400, bbox_inches="tight", pad_inches=0.10, facecolor="white")
+    fig.savefig(out, dpi=600, bbox_inches="tight", pad_inches=0.10, facecolor="white")
     fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.10, facecolor="white")
     plt.close(fig)
     print("wrote", out)
