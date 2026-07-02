@@ -24,7 +24,7 @@ Supplementary Table **without** downloading any raw data (see [`REPRODUCE.md`](.
 |---|---|---|---|---|---|---|
 | C1 | **Kang 2018** PBMC IFN-β | cytokine stimulation (cell-context, LOLO anchor) | GEO **GSE96583** | public | `download_kang.sh`, `download_public.sh` | `loaders/kang.py` |
 | C1 | **Oesinghaus** cytokine dictionary | cytokine stimulation | bioRxiv 2025.12.12.693897 (Parse + Allen `theislab/HumanCytokineDict`) | public portal | — (portal) | — |
-| C1 | **Human Cytokine Dictionary** summary table | pseudobulk-DE per (gene × celltype × cytokine); S11 unseen-cytokine LOCO | `theislab/HumanCytokineDict` (Parse + Allen, bioRxiv 2025.12.12.693897) | public portal | — (portal) → `data/human_cytokine_dict/hcd_mini.csv` | `scripts/newdata_cytokine_loco.py` |
+| C1 | **Human Cytokine Dictionary** summary table | pseudobulk-DE per (gene × celltype × cytokine); Supplementary Fig. S7 unseen-cytokine LOCO | `theislab/HumanCytokineDict` (Parse + Allen, bioRxiv 2025.12.12.693897) | public portal | — (portal) → `data/human_cytokine_dict/hcd_mini.csv` | `scripts/newdata_cytokine_loco.py` |
 | C1 | **Cano-Gamez** CD4⁺ effectorness | cytokine stimulation | EGA **EGAS00001003215** / EGAD00001005290 | DAC | — (EGA DAC; see `scripts/apply_ega_dac.md`) | — |
 | C2 | **Soskic 2022** CD4⁺ activation | donor/temporal (106-donor LODO anchor) | trynkalab processed h5ad; raw EGA **EGAD00001008197** | public (processed) | `download_soskic.sh` | `loaders/soskic.py` |
 | C3 | **Shifrut 2018** primary-T KO | CRISPR unseen-gene | GEO **GSE119450** | public | `download_public.sh` | `loaders/shifrut.py` |

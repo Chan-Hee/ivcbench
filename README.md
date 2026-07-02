@@ -134,7 +134,7 @@ model-family environment, and hardware to already be available.
   title     = {ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
   author    = {Lee, Chanhee and Ryu, Jae Yong},
   year      = {2026},
-  version   = {1.1.6},
+  version   = {1.1.7},
   doi       = {10.5281/zenodo.20756042},
   publisher = {Zenodo}
 }

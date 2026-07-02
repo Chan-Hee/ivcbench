@@ -72,12 +72,12 @@ present in this release).
 |---|---|---|---|
 | **S1** | Observed-effect reliability ceiling by task | `figure_reliability_ceiling.py` | `reliability_ceiling.py` → `immune_novelty/reliability_ceiling.csv`; also `cross_cluster_headline.csv` |
 | **S2** | Cell-context transfer detail (FP-ridge / type-I IFN) | `figure_cellcontext.py` | `results/C5/results_raw.csv`, `immune_novelty/T3_per_lineage_predictability.csv`, `results/C5/ifn_shuffle_null.csv` |
-| **S3** | Per-marker surface-protein recovery (Frangieh CITE; PD-1 vs PD-L1, RNA-vs-surface) | `figure_c4_pdl1_assay_power.py` | `c4_pdl1_assay_power.py` → `c4_surface_marker_CIs.csv`, `c4_rna_vs_surface_decoupling.csv` (from `results/C4/cite_marker_recovery.csv`) |
-| **S4** | Chen Perturb-icCITE-seq checkpoint replication (n = 2) | `figure_chen_checkpoint_replication.py` | `chen_checkpoint_replication.py` → `results/newdata/chen_cite_marker_recovery.csv` (+ Frangieh comparator `results/_paper/c4_surface_marker_CIs.csv`) |
-| **S5** | Program recovery vs program properties (magnitude / dimensionality) | `figure_program_dimensionality.py` | `program_recovery_vs_dimensionality.py` → `program_recovery_vs_dimensionality.csv`; recovery from `immune_novelty/T2_per_program_AUCell_map.csv` |
-| **S6** | CellOT donor learning curve (Soskic donor-count grid) | `figure_cellot_donor_learning_curve.py` | `results/newdata/cellot_donor_learning_curve.csv` (GPU runner = provenance; figure rebuilds GPU-free) |
-| **S7** | Nearest-training-gene prior on the unseen-gene axis | `figure_c3_nearest_gene.py` | `c3_nearest_gene_baseline.py` → `results/C3/nearest_gene_baseline.csv`; `c3_nearest_gene_summary.py` → `c3_nearest_gene_summary.csv`; also `results/C3/results_raw.csv` |
-| **S8** | Unseen-cytokine LOCO (Human Cytokine Dictionary; two conditioning regimes) | `figure_newdata_cytokine_loco.py` | `newdata_cytokine_loco.py` → `results/newdata/cytokine_loco_per_held.csv`, `cytokine_loco_per_celltype.csv` |
+| **S3** | Nearest-training-gene prior on the unseen-gene axis | `figure_c3_nearest_gene.py` | `c3_nearest_gene_baseline.py` → `results/C3/nearest_gene_baseline.csv`; `c3_nearest_gene_summary.py` → `c3_nearest_gene_summary.csv`; also `results/C3/results_raw.csv` |
+| **S4** | Per-marker surface-protein recovery (Frangieh CITE; PD-1 vs PD-L1, RNA-vs-surface) | `figure_c4_pdl1_assay_power.py` | `c4_pdl1_assay_power.py` → `c4_surface_marker_CIs.csv`, `c4_rna_vs_surface_decoupling.csv` (from `results/C4/cite_marker_recovery.csv`) |
+| **S5** | Chen Perturb-icCITE-seq checkpoint replication (n = 2) | `figure_chen_checkpoint_replication.py` | `chen_checkpoint_replication.py` → `results/newdata/chen_cite_marker_recovery.csv` (+ Frangieh comparator `results/_paper/c4_surface_marker_CIs.csv`) |
+| **S6** | Program recovery vs program properties (magnitude / dimensionality) | `figure_program_dimensionality.py` | `program_recovery_vs_dimensionality.py` → `program_recovery_vs_dimensionality.csv`; recovery from `immune_novelty/T2_per_program_AUCell_map.csv` |
+| **S7** | Unseen-cytokine LOCO (Human Cytokine Dictionary; two conditioning regimes) | `figure_newdata_cytokine_loco.py` | `newdata_cytokine_loco.py` → `results/newdata/cytokine_loco_per_held.csv`, `cytokine_loco_per_celltype.csv` |
+| **S8** | CellOT donor learning curve (Soskic donor-count grid) | `figure_cellot_donor_learning_curve.py` | `results/newdata/cellot_donor_learning_curve.csv` (GPU runner = provenance; figure rebuilds GPU-free) |
 
 **Additional release figures (provenance — NOT submitted supplementary figures).** Retained for
 provenance; in the manuscript their content appears in Supplementary Notes/Tables rather than as numbered
@@ -108,7 +108,7 @@ Supplementary **Tables** are S1–S14.)*
 |---|---|---|---|
 | **S1** | 21-dataset immune inventory (anchors + curation criteria) | embedded in `Supplementary_Material.docx` | `results/_paper/Supplementary_Table_S1_dataset_inventory.csv`; scored-dataset access manifest in `scripts/datasets.csv` |
 | **S2** | Surveyed method + comparator inventory with benchmark applicability | embedded in `Supplementary_Material.docx` | `results/_paper/Supplementary_Table_S2_method_inventory.csv` |
-| **S3** | Descriptive fit-matrix (a-priori expectation vs observed beats-floor per family×task) | `Supplementary_Table_S3_descriptive_fit_matrix.csv` | `descriptive_fit_matrix.csv` via `assemble_fit_matrix.py` |
+| **S3** | Descriptive fit-matrix (a-priori expectation vs observed beats-floor per family×task) | deposited CSV in this release (not embedded in the Word supplement): `results/_paper/Supplementary_Table_S3_descriptive_fit_matrix.csv` | `descriptive_fit_matrix.csv` via `assemble_fit_matrix.py` |
 | **S4** | Per-(model, split) headline census (35-cell Pearson-Δ vs floor: 29 conditioned + 6 diagnostic comparators) | embedded in `Supplementary_Material.docx` | `cross_cluster_headline.csv` via `assemble_cross_cluster.py` |
 | **S5** | OP3 fine-lineage cell-context transfer (FP-ridge vs the two universal-floor members and binding maximum, six fine OP3 lineages) | embedded in `Supplementary_Material.docx` | `Supplementary_Table_S5_op3_fine_lineage.csv` (FP-ridge per-lineage scores) |
 | **S6** | Per-surface-marker protein recovery (PD-1/PD-L1; effect-size vs sign-match) | embedded in `Supplementary_Material.docx` | `immune_novelty/T1_C4_per_marker_protein_recovery.csv` + `c4_surface_marker_CIs.csv` via `c4_per_marker.py` |
@@ -123,19 +123,19 @@ Supplementary **Tables** are S1–S14.)*
 
 ---
 
-## New-data corroboration analyses (submitted figures S4, S6, S8)
+## New-data corroboration analyses (submitted figures S5, S7, S8)
 
 Three new-data analyses extend the benchmark's central law (*conditioning helps cell/donor context, not
-unseen biology*) onto independent datasets; in the submission they are Supplementary Figures **S8, S4, S6**:
+unseen biology*) onto independent datasets; in the submission they are Supplementary Figures **S7, S5, S8**:
 
-- **S8: unseen-cytokine LOCO** (`newdata_cytokine_loco.py`): leave-one-cytokine-out over the Human Cytokine
+- **S7: unseen-cytokine LOCO** (`newdata_cytokine_loco.py`): leave-one-cytokine-out over the Human Cytokine
   Dictionary summary table (derived from the Oesinghaus et al. 2025 resource; obtained separately, see above).
   It separates the two conditioning regimes: annotation-only "truly novel" cytokines sit at/below the floor
   (the law holds), while a cytokine observed in *other* cell types transfers above it. Outputs in `results/newdata/`.
-- **S4: Chen checkpoint replication** (`chen_checkpoint_replication.py`): an n = 2 surface-protein readout
+- **S5: Chen checkpoint replication** (`chen_checkpoint_replication.py`): an n = 2 surface-protein readout
   replication on the Chen FOXP3 Perturb-icCITE-seq data (`data/C3/chen`, login-gated DDBJ/GEA), scored on the
   same surface-marker recovery metric as C4/Frangieh.
-- **S6: CellOT donor learning curve** (`cellot_donor_learning_curve.py`): the donor-count sweep {8,16,32,64,96}
+- **S8: CellOT donor learning curve** (`cellot_donor_learning_curve.py`): the donor-count sweep {8,16,32,64,96}
   on Soskic, two seeds on two GPUs, showing how the CellOT donor-axis advantage scales with training-donor count.
   The merged/summary CSVs are deposited; the figure rebuilds with no GPU.
 
