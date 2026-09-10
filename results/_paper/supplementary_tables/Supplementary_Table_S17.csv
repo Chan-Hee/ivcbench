@@ -1,7 +1,7 @@
-Scheme,Stratum,Held genes (n),Dataset arms,Median observed effect (L2),Median SNR,Binding floor,Best conditioned model,Best mean Pearson-Δ,Margin vs floor,Uncertainty,Genes below floor
-global effect quartiles,Q1,11,2,0.979,1.761,cell-mean,scGPT,0.324,−0.151,"[−0.173, −0.130]",11/11
-global effect quartiles,Q2,10,3,1.143,2.025,cell-mean,biolord,0.331,−0.123,"[−0.146, −0.100]",10/10
-global effect quartiles,Q3,11,3,1.510,2.913,cell-mean,biolord,0.413,−0.118,"[−0.148, −0.090]",11/11
-global effect quartiles,Q4,11,2,3.637,5.403,cell-mean,biolord,0.538,−0.014,"[−0.065, +0.059]",7/11
-within-dataset halves,weaker half,21,5,1.059,1.903,cell-mean,biolord,0.420,−0.125,range −0.213 to −0.024,20/21
-within-dataset halves,stronger half,22,5,1.689,3.070,cell-mean,PerturbNet,0.394,−0.059,range −0.230 to +0.117,20/22
+Scheme,Stratum,Held genes (n),Dataset arms,Dataset composition,Median observed effect (L2),Median SNR,Binding floor,Best conditioned model,Best mean Pearson-Δ,Margin vs floor,Uncertainty,Genes below floor,Single-model margin (biolord)
+global effect quartiles,Q1,11,2,chen:10; mccutcheon_CRISPRi:1,0.979,1.761,cell-mean,scGPT,0.324,−0.151,"[−0.173, −0.130]",11/11,−0.179
+global effect quartiles,Q2,10,3,chen:7; mccutcheon_CRISPRa:1; shifrut:2,1.143,2.025,cell-mean,biolord,0.331,−0.123,"[−0.146, −0.100]",10/10,−0.123
+global effect quartiles,Q3,11,3,chen:9; mccutcheon_CRISPRa:1; mccutcheon_CRISPRi:1,1.510,2.913,cell-mean,biolord,0.413,−0.118,"[−0.148, −0.090]",11/11,−0.118
+global effect quartiles,Q4,11,2,chen:4; schmidt:7,3.637,5.403,cell-mean,biolord,0.538,−0.014,"[−0.065, +0.059]",7/11,−0.014
+within-dataset halves,weaker half,21,5,chen:15; mccutcheon_CRISPRa:1; mccutcheon_CRISPRi:1; schmidt:3; shifrut:1,1.059,1.903,cell-mean,biolord,0.420,−0.125,range −0.213 to −0.024,20/21,−0.125
+within-dataset halves,stronger half,22,5,chen:15; mccutcheon_CRISPRa:1; mccutcheon_CRISPRi:1; schmidt:4; shifrut:1,1.689,3.070,cell-mean,PerturbNet,0.394,−0.059,range −0.230 to +0.117,20/22,−0.078

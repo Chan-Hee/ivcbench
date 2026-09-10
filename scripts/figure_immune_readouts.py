@@ -38,11 +38,11 @@ PROGRAMS = [
     "Treg_exhaustion",
 ]
 LABELS = [
-    "TCR\nactivation",
-    "IL2–\nSTAT5",
+    "TCR activation",
+    "IL2\u2013STAT5",
     "Proliferation",
-    "Effector",
-    "Treg/\nexhaustion",
+    "Effector cytokine",
+    "Treg / exhaustion",
 ]
 DATASETS = ["shifrut", "schmidt", "mccutcheon_CRISPRi", "mccutcheon_CRISPRa", "chen"]
 DS_LABELS = [
@@ -108,7 +108,7 @@ def protein_panel(ax):
     ax.set_yticks(
         range(len(frame)),
         [
-            str(a).split(" (")[0] + (" †" if m == "CD279" else "")
+            str(a).split(" (")[0]
             for a, m in zip(frame.alias, frame.marker)
         ],
     )
@@ -133,20 +133,20 @@ def protein_panel(ax):
                 mfc="white",
                 lw=0,
                 ms=3,
-                label="Constant training-mean prediction",
+                label="Cell-mean floor prediction",
             ),
         ],
         loc="lower left",
         bbox_to_anchor=(-0.05, -0.31),
         frameon=False,
-        fontsize=6,
+        fontsize=6.6,
     )
     ax.text(
         0,
         1.015,
         "Frangieh protein fit; 124 held KOs",
         transform=ax.transAxes,
-        fontsize=6,
+        fontsize=6.6,
     )
 
 
@@ -185,16 +185,16 @@ def op3_matrix(ax, frame):
             if np.isnan(v):
                 ax.text(j, i, note[(i, j)], ha="center", va="center", color=NAVY, fontsize=7)
             else:
-                label = f"{v:.2f}"
+                label = f"{v:.2f}".replace("-", "\u2212")
                 if (i, j) in note:
                     label += f"\n{note[(i, j)]}"
                 ax.text(j, i, label, ha="center", va="center",
                         color="white" if abs(v) > 0.65 else NAVY, fontsize=7)
-    ax.set_xticks(range(len(cols)), ["Type-I IFN", "NF-\u03baB", "Effector"])
+    ax.set_xticks(range(len(cols)), ["Type-I IFN", "NF-\u03baB", "Effector\n(lymphocyte)"])
     ax.set_yticks(
         range(len(OP3_MODELS)),
         [
-            x
+            x.replace("Biolord", "biolord")
             + (
                 " \u2020"
                 if x in ["scGPT", "scFoundation"]
@@ -208,10 +208,10 @@ def op3_matrix(ax, frame):
         0,
         -0.19,
         "Mean over the lineages where the score is defined;\nn/4 printed where fewer than four."
-        "\nNA-O: constant observed target; NA-P: constant\nprediction; never plotted as zero."
+        "\nNA-O: constant observed target; NA-P: constant\nprediction; NA: both, in different lineages.\nNever plotted as zero."
         "\n\u2020 Adapted   * Diagnostic comparator",
         transform=ax.transAxes,
-        fontsize=6,
+        fontsize=6.6,
         va="top",
     )
 
@@ -251,7 +251,7 @@ def t3_observability(ax, summary):
         for j in range(5):
             value = int(counts.iloc[i, j])
             label = (
-                "target\nconstant"
+                "constant"
                 if target_constant.iloc[i, j]
                 else f"{value}/{len(T3_MODELS)}"
             )
@@ -262,9 +262,11 @@ def t3_observability(ax, summary):
                 ha="center",
                 va="center",
                 color="white" if value > 4 else NAVY,
-                fontsize=6.2,
+                fontsize=5.6,
             )
-    ax.set_xticks(range(5), LABELS, fontsize=6)
+    # five program names do not fit side by side in a half-width panel
+    ax.set_xticks(range(5), LABELS, fontsize=6, rotation=30, ha="right",
+                  rotation_mode="anchor")
     ax.set_yticks(range(5), DS_LABELS, fontsize=6.5)
     ax.tick_params(length=0)
     ax.text(
@@ -273,7 +275,7 @@ def t3_observability(ax, summary):
         "Rows: dataset-arms (held-gene counts in parentheses).\n22/25 targets are"
         " constant; not evidence of model failure.",
         transform=ax.transAxes,
-        fontsize=6,
+        fontsize=6.6,
         va="top",
     )
 
@@ -317,7 +319,7 @@ def aggregation_panel(ax):
         1.015,
         "Schmidt: all 7 held targets; observed data only",
         transform=ax.transAxes,
-        fontsize=6,
+        fontsize=6.6,
     )
     ax.legend(
         loc="upper left", bbox_to_anchor=(-0.05, -0.31), fontsize=6, frameon=False
@@ -326,7 +328,7 @@ def aggregation_panel(ax):
 
 def figure3(summary, macro):
     """Compose the main readout argument; the full protein panel appears once."""
-    fig, axes = plt.subplots(2, 2, figsize=(8.2, 8.1))
+    fig, axes = plt.subplots(2, 2, figsize=(6.33, 7.07))  # 174 mm live area
     fig.subplots_adjust(
         left=0.14, right=0.98, top=0.95, bottom=0.13, wspace=0.85, hspace=0.78
     )
@@ -338,19 +340,12 @@ def figure3(summary, macro):
     title(axes[1, 0], "c", f"T3 estimability across {len(T3_MODELS)} methods")
     protein_panel(axes[1, 1])
     title(axes[1, 1], "d", "Checkpoint assay context")
-    fig.text(
-        0.015,
-        0.012,
-        "\u2020 Panel d: CD279 has low raw counts, so its normalized shift does not validate PD-1"
-        " recovery,\nand the panel scores the constant training-mean prediction rather than a model.",
-        fontsize=6,
-    )
     save(fig, "figure_immune_blindspot", tiff=True)
 
 
 def figure_s3(summary, units):
     """Supplementary Figure S3: matched OP3 lineage scores on two readouts."""
-    fig, axes = plt.subplots(1, 2, figsize=(8.8, 4.4))
+    fig, axes = plt.subplots(1, 2, figsize=(6.85, 3.9))
     fig.subplots_adjust(left=0.14, right=0.98, bottom=0.19, top=0.88, wspace=0.65)
     frame = summary[
         (summary.task_key == "T5c")
@@ -384,7 +379,8 @@ def figure_s3(summary, units):
                 style="italic",
             )
     for ax in axes:
-        ax.set_yticks(range(len(OP3_MODELS)), OP3_MODELS)
+        ax.set_yticks(range(len(OP3_MODELS)),
+                      [m.replace("Biolord", "biolord") for m in OP3_MODELS])
         ax.invert_yaxis()
     t5c = units[units.task_key == "T5c"]
     q = t5c.groupby("model").pearson_delta.mean()
@@ -392,10 +388,11 @@ def figure_s3(summary, units):
     # the binding floor is per lineage; one line at their mean puts some lineages on the wrong side
     per = t5c[t5c.model.isin(["cell-mean", "linear-PCA"])].groupby("unit").pearson_delta.max()
     axes[0].axvline(floor, color=GREY, ls="--", lw=1)
+    # the ticks used to sit at ymin=0.94, which is the top data row; give them their own band
+    axes[0].set_ylim(len(OP3_MODELS) - 0.4, -1.35)
     for unit, val in per.items():
-        axes[0].axvline(val, color=colors.get(unit, GREY), lw=0.9, alpha=0.55,
-                        ymin=0.94, ymax=1.0)
-    axes[0].text(0.99, 1.015, "thin ticks: per-lineage binding floor; dashed: their mean",
+        axes[0].plot([val, val], [-1.25, -0.95], color=colors.get(unit, GREY), lw=1.2)
+    axes[0].text(0.99, 1.02, "ticks above the panel: per-lineage binding floor; dashed: their mean",
                  transform=axes[0].transAxes, ha="right", fontsize=6, color=GREY)
     axes[0].set_xlabel("Gene-response pattern correlation (Pearson-Δ)")
     axes[1].set_xlabel("Type-I IFN program correlation across compounds")

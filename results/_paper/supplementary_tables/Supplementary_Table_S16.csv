@@ -4,14 +4,14 @@ CellFlow,"one NVIDIA L40, 48 GB",13,38.437,"refits the reported cells on T1, T2,
 biolord,"one NVIDIA L40, 48 GB",9,17.526,"refits the reported cells on T2, T3, T4, T5c, T5u"
 scGPT,"one NVIDIA L40, 48 GB",10,16.134,"refits the reported cells on T2, T4, T5c"
 PerturbNet,"one NVIDIA L40, 48 GB",4,6.483,"refits the reported cells on T3, T4, T5u"
-scFoundation,"one NVIDIA L40, 48 GB",8,3.935,refits the reported cells on T2
+scFoundation,"one NVIDIA L40, 48 GB",8,3.935,refits the reported cells on T2 (78 of 106 donor fits measured)
 CellOT,"one NVIDIA L40, 48 GB",2,1.948,refits the reported cells on T5c
 STATE,"one NVIDIA L40, 48 GB",2,0.984,refits the reported cells on T1
 scPRAM,"one NVIDIA L40, 48 GB",4,0.768,"refits the reported cells on T1, T5c"
 PRnet,"one NVIDIA L40, 48 GB",2,0.406,"refits the reported cells on T5c, T5u"
-Subtotal: refitting the reported panel,"one NVIDIA L40, 48 GB",54,86.621,the cells this revision executed; methods carried over unchanged from the original submission are not re-timed here
+Subtotal: refitting the reported panel,"one NVIDIA L40, 48 GB",54,86.621,"the cells this revision re-timed; methods carried over unchanged from the original submission are not re-timed here, so 24 of the 47 census cells are covered and a per-model row lists only the tasks its timed jobs produced"
 Matched donor learning curve,"one NVIDIA L40, 48 GB",50,5.688,the 5 x 10 donor grid behind Table S20 and Figure S8
 External donor cohorts,"one NVIDIA L40, 48 GB",2,5.011,the two additional leave-one-donor-out cohorts in Table S19
 Conditioned compound heads,"one NVIDIA L40, 48 GB",5,0.025,a disclosed comparison reported outside the panel
 Run and not carried,"one NVIDIA L40, 48 GB",63,99.170,"executions withdrawn from the panel or superseded, chiefly SCREEN and the protein readout sweep; their output appears in no reported table"
-Total recorded,"one NVIDIA L40, 48 GB",174,196.515,"every job this revision recorded, measured wall-clock and not extrapolated"
+Total recorded (GPU jobs),"one NVIDIA L40, 48 GB",174,196.515,"every GPU job re-timed for this revision, measured wall-clock and not extrapolated; the CPU replay row is separate and is not added in"

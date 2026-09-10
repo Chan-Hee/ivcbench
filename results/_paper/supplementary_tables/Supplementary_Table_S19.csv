@@ -11,5 +11,5 @@ Cano-Gamez,D1,800,0.928,0.944,0.944,0.944,cell-mean,−0.016,no
 Cano-Gamez,D2,800,0.919,0.922,0.918,0.922,cell-mean,−0.003,no
 Cano-Gamez,D3,800,0.909,0.922,0.914,0.922,cell-mean,−0.013,no
 Cano-Gamez,D4,800,0.889,0.915,0.913,0.915,cell-mean,−0.026,no
-"Kang IFN-β, 8 donors",summary (8/8 positive),,,,,,,+0.476,"[+0.440, +0.509]; Wilcoxon P = 0.008"
+"Kang IFN-β, 8 donors",summary (8/8 positive),,,,,,,+0.476,"[+0.440, +0.510]; Wilcoxon P = 0.008"
 "Cano-Gamez, 4 donors",summary (0/4 positive),,,,,,,−0.015,observed range −0.026 to −0.003; below the eight-unit minimum this study sets for interval reporting

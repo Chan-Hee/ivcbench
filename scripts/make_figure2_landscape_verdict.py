@@ -726,10 +726,10 @@ def draw_landscape(
             )
         )
         ax.scatter(
-            [x0 - 0.5 + 0.21],
-            [y + 0.5 - 0.21],
+            [x0 - 0.5 + 0.16],
+            [y + 0.5 - 0.16],
             marker="*",
-            s=54,
+            s=30,
             c=(WIN_RING if survives else "white"),
             edgecolors=WIN_DARK,
             linewidths=0.5 if survives else 0.9,
@@ -1036,6 +1036,7 @@ def main():
 
     set_pub_style()
     plt.rcParams["axes.unicode_minus"] = True
+    plt.rcParams["font.family"] = "DejaVu Sans"   # the rest of the figure set uses it
 
     import json
 
@@ -1182,17 +1183,17 @@ def main():
         ring_support[1],
         ring_support[2],
     )  # the two Kang clearances, computed above
+    # This block duplicated the legend and shrank to ~5.4 pt in production, so only its first
+    # wrapped line is drawn. Keeping the long paragraph and slicing [:1] published a sentence
+    # that stopped mid-clause ("...on that column, orange"), so the subtitle is now written to
+    # be one complete line and the wrap is asserted rather than truncated.
     sub_txt = (
-        f"{cen.model.nunique()} methods over {len(cen)} evaluations; columns are the"
-        " units each evaluation averages over. Blue beats the binding floor on that"
-        " column, orange falls below it. Four point estimates clear both floor members"
-        " at the split level. Only the donor contrast retains support in the final"
-        f" {int(mult.raw_p.notna().sum())}-comparison family (solid ring). Dashed rings"
-        " mark borderline FP-ridge and two exploratory Kang results, positive in"
-        f" {_t1['n_up']} of {_t1['n_unit']} lineages (Wilcoxon p = {_t1['p']:.2f} and"
-        f" {_t2['p']:.2f}). The unseen-perturbation block has none."
+        f"{cen.model.nunique()} methods and comparators over {len(cen)} evaluations;"
+        " blue clears that column's floor, orange falls below."
     )
-    n_sub = textwrap.wrap(sub_txt, width=118)
+    n_sub = textwrap.wrap(sub_txt, width=100)
+    if len(n_sub) != 1:
+        raise SystemExit(f'Figure 2 subtitle wraps to {len(n_sub)} lines: {sub_txt!r}')
     SUB_DY0, SUB_DY = 0.130, 0.108  # inches: first line, then line pitch
     sub_block = (
         SUB_DY0 + (len(n_sub) - 1) * SUB_DY + 0.07
@@ -1201,16 +1202,16 @@ def main():
     # ---- figure geometry (inches) ----
     xspan = (BOFF + (len(BLOCK_B) - 1) + 0.5 + 0.12) - GUT_LEFT
     yspan = (nM - 0.5 + YHEAD) - YFOOT
-    cell = 0.27  # inch per data unit (square cells)
+    cell = 0.215  # inch per data unit; 0.27 put the plate over the 174 x 234 mm live area
     land_w = cell * xspan
     land_h = cell * yspan
 
     m_left, m_right = 0.12, 0.16
     m_top = sub_block + 0.19  # the title sits above the subtitle block
-    legend_h = 1.16  # colorbar + two key rows + the role-key line
+    legend_h = 1.03  # colorbar + two key rows + the role-key line
     gap_a_leg = 0.14
-    gap_leg_b = 0.52
-    donor_h = 1.72
+    gap_leg_b = 0.34
+    donor_h = 1.44
     donor_xlab = 0.42
     m_bot = 0.30
 
@@ -1370,7 +1371,7 @@ def main():
             xt + lab_dx,
             yb,
             text,
-            fontsize=6.8,
+            fontsize=6.1,
             ha="left",
             va="center",
             color=GREY_MID,
@@ -1437,7 +1438,8 @@ def main():
     def _d_na(a):
         a.add_patch(Rectangle((0, 0), 1, 1, fc=NA_FC, ec=LEGEND_EC, lw=0.8))
 
-    kx0 = cb_x0 + cb_w + 0.045
+    SC = (7.74 / fig_w) * (6.1 / 6.8)   # gaps were tuned at 7.74 in and 6.8 pt
+    kx0 = cb_x0 + cb_w + 0.045 * SC
     kx = kx0
     _key(
         kx,
@@ -1445,22 +1447,22 @@ def main():
         _d_win,
         "clears both floor members and\nsurvives multiplicity correction",
     )
-    kx += lab_dx + 0.250
+    kx += lab_dx + 0.250 * SC
     _key(
         kx,
         band_top,
         _d_win_borderline,
         "point-estimate clearance,\nwithout statistical support",
     )
-    kx_top_end = kx + lab_dx + 0.250
+    kx_top_end = kx + lab_dx + 0.250 * SC
 
     kx = kx0
     _key(kx, band_mid, _d_adapt, "adapted interface")
-    kx += lab_dx + 0.130
+    kx += lab_dx + 0.130 * SC
     _key(kx, band_mid, _d_diag, "diagnostic comparator")
-    kx += lab_dx + 0.157
+    kx += lab_dx + 0.157 * SC
     _key(kx, band_mid, _d_na, "not evaluated")
-    kx_mid_end = kx + lab_dx + 0.110
+    kx_mid_end = kx + lab_dx + 0.110 * SC
 
     # Scientific role key; revision highlighting belongs in editable Word text.
     rx = cb_x0
@@ -1468,13 +1470,13 @@ def main():
         rx,
         band_role,
         "row accent:",
-        fontsize=6.8,
+        fontsize=6.1,
         ha="left",
         va="center",
         color=GREY_MID,
         fontstyle="italic",
     )
-    rx += 0.064
+    rx += 0.088 * SC          # clears "row accent:" at 6.1 pt; scales with the plate
     for role, name in ROLE_KEY:
         a = fig.add_axes([rx, band_role - swh / 2, sww, swh])
         a.set_xlim(0, 1)
@@ -1485,12 +1487,12 @@ def main():
             rx + lab_dx,
             band_role,
             name,
-            fontsize=6.8,
+            fontsize=6.1,
             ha="left",
             va="center",
             color=GREY_MID,
         )
-        rx += lab_dx + 0.013 + 0.0095 * len(name)
+        rx += lab_dx + (0.013 + 0.0095 * len(name)) * SC
 
     # ---- geometry assertions (content stays on-canvas; nothing overlaps) ----
     assert yA > 0, f"landscape axes underflow (yA={yA:.3f})"
