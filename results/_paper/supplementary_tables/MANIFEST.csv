@@ -1,6 +1,6 @@
 supplementary_table,file,data_rows,contents
 S1,Supplementary_Table_S1.csv,24,Curated dataset inventory
-S2,Supplementary_Table_S2.csv,31,Surveyed method inventory
+S2,Supplementary_Table_S2.csv,35,Surveyed method inventory
 S3,Supplementary_Table_S3.csv,32,A-priori descriptive fit matrix
 S4,Supplementary_Table_S4.csv,47,"Cross-cluster headline census, 47 evaluations, with status, uncertainty, detectable margin and verdict"
 S5,Supplementary_Table_S5.csv,6,OP3 fine-lineage sensitivity
