@@ -213,8 +213,8 @@ BLOCK_B = [
     ("C3·Shif", "T3", "CRISPR", "Shifrut"),
     # single-column tasks carry their dataset in the tick, since a one-column band shows only the
     # T-code (the T2 Soskic column follows the same rule in block A).
-    ("C4·RNA", "T4", "Frangieh", "Frangieh RNA"),
-    ("C5·cpd", "T5u", "OP3", "OP3 compound"),
+    ("C4·RNA", "T4", "Frangieh", "Frangieh"),
+    ("C5·cpd", "T5u", "OP3", "OP3"),
 ]
 AXIS_A = [("cell-context", 0, 11, "c"), ("donor", 12, 12, "r")]
 AXIS_B = [("unseen perturbation", 0, 6, "c")]
@@ -1209,7 +1209,10 @@ def main():
     m_left, m_right = 0.12, 0.16
     m_top = sub_block + 0.19  # the title sits above the subtitle block
     legend_h = 1.03  # colorbar + two key rows + the role-key line
-    gap_a_leg = 0.14
+    # The rotated column labels descend ~0.37 in below panel (a); at 0.14 they struck through
+    # the colorbar caption ("per column") and the right legend key ("point-estimate
+    # clearance,"). The band needs to clear the deepest label, not the axis.
+    gap_a_leg = 0.26
     gap_leg_b = 0.34
     donor_h = 1.44
     donor_xlab = 0.42
@@ -1340,8 +1343,7 @@ def main():
     fig.text(
         cb_x0,
         cb_y0 + cb_h + 0.008,
-        "cell fill = per-cell margin (Pearson-Δ): printed value − binding floor, per"
-        " column",
+        "cell fill = margin over that column’s binding floor (Pearson-Δ)",
         fontsize=7.0,
         ha="left",
         va="bottom",
