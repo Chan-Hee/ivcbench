@@ -1,0 +1,15 @@
+{
+  "task_key": "T5c",
+  "unit": "B",
+  "floor_bundle": "predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz",
+  "floor_sha256": "05ed4d198c5a1856d35473f8a7af90ebe90d3362d45c1709d2c3cd37bc6f5a18",
+  "observed_max_difference": 0.0,
+  "control_max_difference": 0.0,
+  "n_cells": 16080,
+  "n_controls": 360,
+  "n_strata": 141,
+  "n_genes": 2000,
+  "method": "mean per-cell AUCell-like score, top 5%; original argsort tie convention",
+  "targets": "exact census held observations; no model refitting",
+  "cache_sha256": "b228c9efc3e8704b90bb201d154deda0ff53c804222c3cf43eb2741049dee646"
+}

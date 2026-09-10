@@ -1,0 +1,15 @@
+{
+  "task_key": "T3",
+  "unit": "mccutcheon_CRISPRa",
+  "floor_bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "floor_sha256": "702aaf2cedf9ff74886f3ea3cfca745520166ebe6e8fea2b0a03074eb34f5af9",
+  "observed_max_difference": 0.0,
+  "control_max_difference": 0.0,
+  "n_cells": 1781,
+  "n_controls": 889,
+  "n_strata": 2,
+  "n_genes": 2000,
+  "method": "mean per-cell AUCell-like score, top 5%; original argsort tie convention",
+  "targets": "exact census held observations; no model refitting",
+  "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
+}

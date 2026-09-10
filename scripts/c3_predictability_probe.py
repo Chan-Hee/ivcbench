@@ -8,9 +8,8 @@ the ACTUAL deposited C3 data.
 Per-held-gene predictability is NOT deposited (results_raw.csv stores only the macro-average over
 the held-gene set). We recover it exactly by replaying the deterministic, GPU-free FLOOR baselines
 (cell-mean / donor-shift / linear-PCA), whose pearson_delta(...) returns a per_stratum dict. This is
-legitimate because the deposited macro-averages show NO heavy model beats the floor on any C3 cell
-(mean heavy-floor gap -0.031, 0/15) — so the floor's per-gene Pearson-Δ IS the achievable
-predictability ceiling for unseen genes, not merely a convenient proxy.
+useful as a descriptive floor-recovery probe. A floor's score is NOT an achievable
+predictability ceiling; failure by a finite model panel cannot establish such a bound.
 
 For each held gene g (across 5 datasets x 3 holdout fractions) we compute:
   predictability  = max over {cell-mean, donor-shift, linear-PCA} of per-stratum Pearson-Δ (downstream-only)
@@ -45,15 +44,28 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from ivcbench.clusters import c3  # noqa: E402
 from ivcbench.splits.builder import build_split  # noqa: E402
-from ivcbench.baselines.simple import CellMean, DonorShift, LinearPCA, CtrlPred  # noqa: E402
+from ivcbench.baselines.simple import (
+    CellMean,
+    DonorShift,
+    LinearPCA,
+    CtrlPred,
+)  # noqa: E402
 from ivcbench.metrics.response import _pearson  # noqa: E402
 
 LOADERS = {
-    "shifrut":            ("ivcbench.data.loaders.shifrut", "load", {}),
-    "schmidt":            ("ivcbench.data.loaders.schmidt", "load", {}),
-    "mccutcheon_CRISPRi": ("ivcbench.data.loaders.mccutcheon", "load", {"modality": "CRISPRi"}),
-    "mccutcheon_CRISPRa": ("ivcbench.data.loaders.mccutcheon", "load", {"modality": "CRISPRa"}),
-    "chen":               ("ivcbench.data.loaders.chen", "load", {}),
+    "shifrut": ("ivcbench.data.loaders.shifrut", "load", {}),
+    "schmidt": ("ivcbench.data.loaders.schmidt", "load", {}),
+    "mccutcheon_CRISPRi": (
+        "ivcbench.data.loaders.mccutcheon",
+        "load",
+        {"modality": "CRISPRi"},
+    ),
+    "mccutcheon_CRISPRa": (
+        "ivcbench.data.loaders.mccutcheon",
+        "load",
+        {"modality": "CRISPRa"},
+    ),
+    "chen": ("ivcbench.data.loaders.chen", "load", {}),
 }
 FRACS = [(0.10, "10"), (0.25, "25"), (0.50, "50")]
 GENE2GO_PATH = ROOT / "data/pertadapt/official/gene2go.pkl"
@@ -81,7 +93,7 @@ def process_dataset(ds, cs, gene2go):
     ctrl_X = X[ctrl_mask]
     # observed mean treated profile per perturbed gene (over ALL its treated cells, any context)
     obs_mean = {}
-    obs_sd = {}          # mean within-perturbation per-gene SD (cell-to-cell noise)
+    obs_sd = {}  # mean within-perturbation per-gene SD (cell-to-cell noise)
     n_cells = {}
     for g in genes:
         m = (pert == g) & (~is_ctrl)
@@ -134,7 +146,8 @@ def process_dataset(ds, cs, gene2go):
         # fit floor baselines once per split
         fitted = {}
         for B in (CellMean, DonorShift, LinearPCA, CtrlPred):
-            b = B(); b.fit(cs, split)
+            b = B()
+            b.fit(cs, split)
             fitted[b.name] = b.predict(cs, split)
 
         # per held gene: per-stratum predictability (downstream-only; exclude held target gene)
@@ -144,7 +157,7 @@ def process_dataset(ds, cs, gene2go):
         test_cells = X[split.test_idx]
         for g in held:
             stratum_label = spec.stratum_key({"perturbation": g})
-            sm = (test_strata == stratum_label)
+            sm = test_strata == stratum_label
             if sm.sum() == 0:
                 continue
             keep = np.ones(test_cells.shape[1], dtype=bool)
@@ -161,7 +174,11 @@ def process_dataset(ds, cs, gene2go):
             eff_vec = delta_obs[keep]
             effect_l2 = float(np.linalg.norm(eff_vec))
             sd = obs_sd.get(g, np.nan)
-            snr = float(effect_l2 / (sd * np.sqrt(keep.sum()))) if (sd and sd > 0) else np.nan
+            snr = (
+                float(effect_l2 / (sd * np.sqrt(keep.sum())))
+                if (sd and sd > 0)
+                else np.nan
+            )
             # simpler per-gene SNR: ||Δ|| / sd
             snr_raw = float(effect_l2 / sd) if (sd and sd > 0) else np.nan
 
@@ -173,10 +190,15 @@ def process_dataset(ds, cs, gene2go):
                 go_jaccard_nn = 1.0 - max(sims_go)
                 go_jaccard_k5 = 1.0 - float(np.mean(sorted(sims_go, reverse=True)[:5]))
             else:
-                go_jaccard_nn = np.nan; go_jaccard_k5 = np.nan
+                go_jaccard_nn = np.nan
+                go_jaccard_k5 = np.nan
 
             if g in coexpr:
-                cvals = [abs(coexpr[g].get(tg, np.nan)) for tg in train_genes if tg in coexpr[g] and tg != g]
+                cvals = [
+                    abs(coexpr[g].get(tg, np.nan))
+                    for tg in train_genes
+                    if tg in coexpr[g] and tg != g
+                ]
                 cvals = [c for c in cvals if not np.isnan(c)]
                 coexpr_nn = (1.0 - max(cvals)) if cvals else np.nan
             else:
@@ -195,22 +217,34 @@ def process_dataset(ds, cs, gene2go):
             else:
                 resp_overlap = np.nan
 
-            records.append(dict(
-                dataset=ds, hold=lbl, held_gene=g,
-                predictability=floor,
-                pd_cell_mean=preds["cell-mean"], pd_donor_shift=preds["donor-shift"],
-                pd_linear_pca=preds["linear-PCA"], pd_ctrl=preds["ctrl-pred"],
-                n_test_cells=n_cells.get(g, 0),
-                effect_l2=effect_l2, within_pert_sd=sd, snr=snr, snr_raw=snr_raw,
-                go_jaccard_nn=go_jaccard_nn, go_jaccard_k5=go_jaccard_k5,
-                coexpr_nn=coexpr_nn, resp_overlap=resp_overlap,
-                n_train_genes=len(train_genes),
-            ))
+            records.append(
+                dict(
+                    dataset=ds,
+                    hold=lbl,
+                    held_gene=g,
+                    predictability=floor,
+                    pd_cell_mean=preds["cell-mean"],
+                    pd_donor_shift=preds["donor-shift"],
+                    pd_linear_pca=preds["linear-PCA"],
+                    pd_ctrl=preds["ctrl-pred"],
+                    n_test_cells=n_cells.get(g, 0),
+                    effect_l2=effect_l2,
+                    within_pert_sd=sd,
+                    snr=snr,
+                    snr_raw=snr_raw,
+                    go_jaccard_nn=go_jaccard_nn,
+                    go_jaccard_k5=go_jaccard_k5,
+                    coexpr_nn=coexpr_nn,
+                    resp_overlap=resp_overlap,
+                    n_train_genes=len(train_genes),
+                )
+            )
     return records
 
 
 def main():
     import importlib
+
     gene2go_raw = pickle.load(open(GENE2GO_PATH, "rb"))
     gene2go = {k: set(v) for k, v in gene2go_raw.items()}
 

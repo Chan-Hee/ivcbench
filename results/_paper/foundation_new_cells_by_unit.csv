@@ -1,0 +1,9 @@
+model,cluster,column_key,unit,pearson_delta,status
+scGPT,C5,C5·B,B,-0.0249416859526247,adapted
+scGPT,C5,C5·Mono,Mono,0.0076493494545242,adapted
+scGPT,C5,C5·NK,NK,-0.0111403299147983,adapted
+scGPT,C5,C5·T_cells,T_cells,-0.00956072908325,adapted
+scFoundation,C5,C5·B,B,-0.0248869406187874,adapted
+scFoundation,C5,C5·Mono,Mono,0.0063602707548333,adapted
+scFoundation,C5,C5·NK,NK,-0.0104161122915374,adapted
+scFoundation,C5,C5·T_cells,T_cells,-0.0078049470302698,adapted

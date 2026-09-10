@@ -1,0 +1,38 @@
+{
+  "inputs": [
+    {
+      "condition": "0h",
+      "input_file": "restingCells_CD4only_HVGs_processed.h5ad",
+      "n_cells": 173793,
+      "n_genes": 796,
+      "raw_or_count_layer_present": false,
+      "median_gene_mean": -4.400217967222567e-05,
+      "median_gene_sd": 0.9995302113385657,
+      "minimum": -5.218212127685547,
+      "maximum": 10.0,
+      "negative_fraction": 0.880346729996209,
+      "fraction_at_upper_cap": 0.001643546832573043,
+      "sha256": "296ca954f969a31b0084f790b7fcdd3eb58afee4ae4cff1f8191271519a0a20f"
+    },
+    {
+      "condition": "16h",
+      "input_file": "stimulatedCells_highlyActiveCD4_16h_HVGs_processed.h5ad",
+      "n_cells": 124768,
+      "n_genes": 1437,
+      "raw_or_count_layer_present": false,
+      "median_gene_mean": -0.0008594502331170605,
+      "median_gene_sd": 0.9903525354466501,
+      "minimum": -11.721303939819336,
+      "maximum": 10.0,
+      "negative_fraction": 0.8410374024405023,
+      "fraction_at_upper_cap": 0.0010013909406672982,
+      "sha256": "8e5cb53d77bdea45961000b61aae1bf3bfc179a59f58d07be2327779bfa8b5b3"
+    }
+  ],
+  "source_methods": "https://www.nature.com/articles/s41588-022-01066-3",
+  "source_section": "Exploratory data analysis and removal of cellular contaminations; Identification of a lowly active T cell subpopulation",
+  "interpretation": "Supplied condition-group-processed, covariate-regressed/scaled HVG coordinates; not a common unregressed log-count space.",
+  "permitted_claim": "Conditional donor transfer in the supplied coordinates. Fold-local re-standardization checks only the benchmark-added affine step.",
+  "excluded_claim": "Strictly inductive from raw cells, absolute activation magnitude, or biological enrichment inferred from pooled T2 coordinates.",
+  "raw_access": "Source study raw scRNA-seq: EGA EGAD00001008197; genotype access is a different dataset."
+}

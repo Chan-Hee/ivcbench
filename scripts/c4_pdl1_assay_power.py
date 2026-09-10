@@ -66,18 +66,26 @@ for frac in (25, 50):
     pd1 = grab("CD279", frac)
     summary[f"frac{frac}"] = {
         "PD-L1_CD274": {
-            "obs_mean": float(pdl1["obsDelta_mean"]), "sd": float(pdl1["obsDelta_sd"]),
-            "sem": float(pdl1["sem"]), "ci": [float(pdl1["ci_lo"]), float(pdl1["ci_hi"])],
+            "obs_mean": float(pdl1["obsDelta_mean"]),
+            "sd": float(pdl1["obsDelta_sd"]),
+            "sem": float(pdl1["sem"]),
+            "ci": [float(pdl1["ci_lo"]), float(pdl1["ci_hi"])],
             "straddles_zero": bool(pdl1["straddles_zero"]),
-            "effect_sd_units": float(pdl1["effect_sd_units"]), "z_vs_zero": float(pdl1["z_vs_zero"]),
-            "sign_match_frac": float(pdl1["sign_match_frac"]), "n_held_KO": int(pdl1["n_held_KO"]),
+            "effect_sd_units": float(pdl1["effect_sd_units"]),
+            "z_vs_zero": float(pdl1["z_vs_zero"]),
+            "sign_match_frac": float(pdl1["sign_match_frac"]),
+            "n_held_KO": int(pdl1["n_held_KO"]),
         },
         "PD-1_CD279": {
-            "obs_mean": float(pd1["obsDelta_mean"]), "sd": float(pd1["obsDelta_sd"]),
-            "sem": float(pd1["sem"]), "ci": [float(pd1["ci_lo"]), float(pd1["ci_hi"])],
+            "obs_mean": float(pd1["obsDelta_mean"]),
+            "sd": float(pd1["obsDelta_sd"]),
+            "sem": float(pd1["sem"]),
+            "ci": [float(pd1["ci_lo"]), float(pd1["ci_hi"])],
             "straddles_zero": bool(pd1["straddles_zero"]),
-            "effect_sd_units": float(pd1["effect_sd_units"]), "z_vs_zero": float(pd1["z_vs_zero"]),
-            "sign_match_frac": float(pd1["sign_match_frac"]), "n_held_KO": int(pd1["n_held_KO"]),
+            "effect_sd_units": float(pd1["effect_sd_units"]),
+            "z_vs_zero": float(pd1["z_vs_zero"]),
+            "sign_match_frac": float(pd1["sign_match_frac"]),
+            "n_held_KO": int(pd1["n_held_KO"]),
         },
         "n_markers_total": int(len(sub)),
         "n_markers_straddle_zero": int(sub["straddles_zero"].sum()),
@@ -87,13 +95,16 @@ for frac in (25, 50):
 # Assay-floor confound: sign-match vs standardized effect size.
 # Pearson correlation across all markers (both fracs pooled) between |effect| and sign_match_frac.
 from scipy.stats import pearsonr
+
 m = rec.dropna(subset=["sign_match_frac"])
 r_eff, p_eff = pearsonr(m["effect_sd_units"], m["sign_match_frac"])
 # chance band: markers whose CI straddles zero -> sign match should sit near 0.5
 near_floor = rec[rec["straddles_zero"]]
 recovered = rec[~rec["straddles_zero"]]
 summary["assay_floor_confound"] = {
-    "pearson_effect_vs_signmatch": float(r_eff), "p": float(p_eff), "n": int(len(m)),
+    "pearson_effect_vs_signmatch": float(r_eff),
+    "p": float(p_eff),
+    "n": int(len(m)),
     "mean_signmatch_near_floor": float(near_floor["sign_match_frac"].mean()),
     "mean_signmatch_recovered": float(recovered["sign_match_frac"].mean()),
     "mean_effect_near_floor": float(near_floor["effect_sd_units"].mean()),
@@ -106,18 +117,30 @@ for frac in (25, 50):
     print(f"\n-- holdout {frac}% (n_held_KO={s['PD-L1_CD274']['n_held_KO']}) --")
     for nm in ("PD-L1_CD274", "PD-1_CD279"):
         d = s[nm]
-        print(f"  {nm:12s} Δ={d['obs_mean']:+.4f}  95%CI=[{d['ci'][0]:+.4f},{d['ci'][1]:+.4f}]"
-              f"  straddles0={d['straddles_zero']}  |eff|={d['effect_sd_units']:.3f}sd"
-              f"  z={d['z_vs_zero']:+.2f}  signmatch={d['sign_match_frac']:.3f}")
-    print(f"  markers w/ CI straddling 0 ({s['n_markers_straddle_zero']}/{s['n_markers_total']}):"
-          f" {s['markers_straddle_zero']}")
+        print(
+            f"  {nm:12s} Δ={d['obs_mean']:+.4f} "
+            f" 95%CI=[{d['ci'][0]:+.4f},{d['ci'][1]:+.4f}] "
+            f" straddles0={d['straddles_zero']}  |eff|={d['effect_sd_units']:.3f}sd "
+            f" z={d['z_vs_zero']:+.2f}  signmatch={d['sign_match_frac']:.3f}"
+        )
+    print(
+        "  markers w/ CI straddling 0"
+        f" ({s['n_markers_straddle_zero']}/{s['n_markers_total']}):"
+        f" {s['markers_straddle_zero']}"
+    )
 af = summary["assay_floor_confound"]
-print(f"\n  ASSAY-FLOOR CONFOUND: corr(|effect|, sign_match) = {af['pearson_effect_vs_signmatch']:.3f}"
-      f" (p={af['p']:.2e}, n={af['n']})")
-print(f"    near-floor markers: mean sign_match={af['mean_signmatch_near_floor']:.3f}"
-      f" at mean |eff|={af['mean_effect_near_floor']:.3f}sd")
-print(f"    recovered markers:  mean sign_match={af['mean_signmatch_recovered']:.3f}"
-      f" at mean |eff|={af['mean_effect_recovered']:.3f}sd")
+print(
+    "\n  ASSAY-FLOOR CONFOUND: corr(|effect|, sign_match) ="
+    f" {af['pearson_effect_vs_signmatch']:.3f} (p={af['p']:.2e}, n={af['n']})"
+)
+print(
+    f"    near-floor markers: mean sign_match={af['mean_signmatch_near_floor']:.3f}"
+    f" at mean |eff|={af['mean_effect_near_floor']:.3f}sd"
+)
+print(
+    f"    recovered markers:  mean sign_match={af['mean_signmatch_recovered']:.3f}"
+    f" at mean |eff|={af['mean_effect_recovered']:.3f}sd"
+)
 
 # ---------------------------------------------------------------------------------------------------
 # PART 2 — RNA-vs-surface decoupling on the SAME cells, IDENTICAL held-KO split
@@ -128,10 +151,25 @@ from ivcbench.splits.builder import build_split
 
 # surface markers that have an unambiguous RNA gene-symbol counterpart
 SURFACE_TO_GENE = {
-    "CD274": "CD274", "HLA_A": "HLA-A", "HLA_E": "HLA-E", "CD58": "CD58", "CD59": "CD59",
-    "CD47": "CD47", "CD119": "IFNGR1", "CD44": "CD44", "CD29": "ITGB1", "CD117": "KIT",
-    "CD9": "CD9", "CD61": "ITGB3", "CD49f": "ITGA6", "CD184": "CXCR4", "CD172a": "SIRPA",
-    "CD140a": "PDGFRA", "CD140b": "PDGFRB", "CD202b": "TEK", "CD309": "KDR",
+    "CD274": "CD274",
+    "HLA_A": "HLA-A",
+    "HLA_E": "HLA-E",
+    "CD58": "CD58",
+    "CD59": "CD59",
+    "CD47": "CD47",
+    "CD119": "IFNGR1",
+    "CD44": "CD44",
+    "CD29": "ITGB1",
+    "CD117": "KIT",
+    "CD9": "CD9",
+    "CD61": "ITGB3",
+    "CD49f": "ITGA6",
+    "CD184": "CXCR4",
+    "CD172a": "SIRPA",
+    "CD140a": "PDGFRA",
+    "CD140b": "PDGFRB",
+    "CD202b": "TEK",
+    "CD309": "KDR",
     # CD279 (PD-1) gene PDCD1 is a T-cell receptor, not expressed by melanoma -> handled separately
 }
 
@@ -154,12 +192,19 @@ def per_ko_deltas(cs, frac_label, frac):
     held = c4.held_ko_fraction(cs.uns["genes_perturbed"], frac, seed=0)
     spec = c4.modality_lo_ko(held, frac_label)
     sp_ = build_split(cs, spec)
-    ctrl_mean = (cs.X[sp_.inference_input_idx].mean(0) if len(sp_.inference_input_idx)
-                 else cs.X[sp_.train_idx[cs.obs.iloc[sp_.train_idx]["is_control"].to_numpy()]].mean(0))
+    ctrl_mean = (
+        cs.X[sp_.inference_input_idx].mean(0)
+        if len(sp_.inference_input_idx)
+        else cs.X[
+            sp_.train_idx[cs.obs.iloc[sp_.train_idx]["is_control"].to_numpy()]
+        ].mean(0)
+    )
     strata = sp_.test_strata
     test_X = cs.X[sp_.test_idx]
     uniq = np.unique(strata)
-    obs_delta = np.vstack([test_X[strata == s].mean(0) - ctrl_mean for s in uniq])  # (n_KO, n_feat)
+    obs_delta = np.vstack(
+        [test_X[strata == s].mean(0) - ctrl_mean for s in uniq]
+    )  # (n_KO, n_feat)
     return uniq, obs_delta, ctrl_mean
 
 
@@ -184,14 +229,21 @@ for frac, lbl in [(0.25, "25"), (0.50, "50")]:
         rn_mean, rn_sd = float(rn_d.mean()), float(rn_d.std())
         sp_sem, rn_sem = sp_sd / np.sqrt(n), rn_sd / np.sqrt(n)
         row = {
-            "held_frac_pct": fp, "surface_marker": surf, "rna_gene": gene, "n_held_KO": n,
-            "surf_mean": sp_mean, "surf_sd": sp_sd,
-            "surf_ci_lo": sp_mean - Z * sp_sem, "surf_ci_hi": sp_mean + Z * sp_sem,
-            "surf_straddles0": (sp_mean - Z * sp_sem <= 0 <= sp_mean + Z * sp_sem),
+            "held_frac_pct": fp,
+            "surface_marker": surf,
+            "rna_gene": gene,
+            "n_held_KO": n,
+            "surf_mean": sp_mean,
+            "surf_sd": sp_sd,
+            "surf_ci_lo": sp_mean - Z * sp_sem,
+            "surf_ci_hi": sp_mean + Z * sp_sem,
+            "surf_straddles0": sp_mean - Z * sp_sem <= 0 <= sp_mean + Z * sp_sem,
             "surf_z": sp_mean / sp_sem if sp_sem else np.nan,
-            "rna_mean": rn_mean, "rna_sd": rn_sd,
-            "rna_ci_lo": rn_mean - Z * rn_sem, "rna_ci_hi": rn_mean + Z * rn_sem,
-            "rna_straddles0": (rn_mean - Z * rn_sem <= 0 <= rn_mean + Z * rn_sem),
+            "rna_mean": rn_mean,
+            "rna_sd": rn_sd,
+            "rna_ci_lo": rn_mean - Z * rn_sem,
+            "rna_ci_hi": rn_mean + Z * rn_sem,
+            "rna_straddles0": rn_mean - Z * rn_sem <= 0 <= rn_mean + Z * rn_sem,
             "rna_z": rn_mean / rn_sem if rn_sem else np.nan,
             # paired across KOs: correlation of the two Δ vectors over the SAME held KOs
             "paired_pearson": float(np.corrcoef(sp_d, rn_d)[0, 1]),
@@ -199,13 +251,26 @@ for frac, lbl in [(0.25, "25"), (0.50, "50")]:
         decouple_rows.append(row)
 
     # focused CD274 print
-    cd = [r for r in decouple_rows if r["surface_marker"] == "CD274" and r["held_frac_pct"] == fp][0]
+    cd = [
+        r
+        for r in decouple_rows
+        if r["surface_marker"] == "CD274" and r["held_frac_pct"] == fp
+    ][0]
     print(f"\n-- holdout {fp}% (n_held_KO={n}) — CD274 (PD-L1) surface vs mRNA --")
-    print(f"   surface CD274 Δ = {cd['surf_mean']:+.4f}  95%CI=[{cd['surf_ci_lo']:+.4f},"
-          f"{cd['surf_ci_hi']:+.4f}]  straddles0={cd['surf_straddles0']}  z={cd['surf_z']:+.2f}")
-    print(f"   mRNA   CD274 Δ = {cd['rna_mean']:+.4f}  95%CI=[{cd['rna_ci_lo']:+.4f},"
-          f"{cd['rna_ci_hi']:+.4f}]  straddles0={cd['rna_straddles0']}  z={cd['rna_z']:+.2f}")
-    print(f"   paired Pearson(surface Δ, mRNA Δ) over the {n} held KOs = {cd['paired_pearson']:+.3f}")
+    print(
+        f"   surface CD274 Δ = {cd['surf_mean']:+.4f} "
+        f" 95%CI=[{cd['surf_ci_lo']:+.4f},{cd['surf_ci_hi']:+.4f}] "
+        f" straddles0={cd['surf_straddles0']}  z={cd['surf_z']:+.2f}"
+    )
+    print(
+        f"   mRNA   CD274 Δ = {cd['rna_mean']:+.4f} "
+        f" 95%CI=[{cd['rna_ci_lo']:+.4f},{cd['rna_ci_hi']:+.4f}] "
+        f" straddles0={cd['rna_straddles0']}  z={cd['rna_z']:+.2f}"
+    )
+    print(
+        f"   paired Pearson(surface Δ, mRNA Δ) over the {n} held KOs ="
+        f" {cd['paired_pearson']:+.3f}"
+    )
 
 dec = pd.DataFrame(decouple_rows)
 dec.to_csv(OUT_PAPER / "c4_rna_vs_surface_decoupling.csv", index=False)
@@ -230,9 +295,12 @@ for fp in (25, 50):
 print("\n=== PANEL-WIDE decoupling summary ===")
 for fp in (25, 50):
     p = panel_summary[f"frac{fp}"]
-    print(f"  {fp}%: of {p['n_markers_with_rna_match']} markers w/ RNA counterpart -> "
-          f"surface moves {p['n_surface_moves']}, mRNA moves {p['n_rna_moves']}, "
-          f"mRNA-only-decoupled {p['n_rna_only_decoupled']}: {p['rna_only_markers']}")
+    print(
+        f"  {fp}%: of {p['n_markers_with_rna_match']} markers w/ RNA counterpart -> "
+        f"surface moves {p['n_surface_moves']}, mRNA moves {p['n_rna_moves']}, "
+        f"mRNA-only-decoupled {p['n_rna_only_decoupled']}: {p['rna_only_markers']}"
+    )
+
 
 # dump combined summary json
 def _pyify(o):
@@ -248,11 +316,21 @@ def _pyify(o):
         return float(o)
     return o
 
+
 with open(OUT_PAPER / "c4_pdl1_assay_power_summary.json", "w") as fh:
-    json.dump(_pyify({"part1_surface_power": summary, "part2_decoupling": panel_summary,
-                      "cd274_decouple_rows": [r for r in decouple_rows
-                                              if r["surface_marker"] == "CD274"]}),
-              fh, indent=2)
+    json.dump(
+        _pyify(
+            {
+                "part1_surface_power": summary,
+                "part2_decoupling": panel_summary,
+                "cd274_decouple_rows": [
+                    r for r in decouple_rows if r["surface_marker"] == "CD274"
+                ],
+            }
+        ),
+        fh,
+        indent=2,
+    )
 print(f"\nWROTE: {OUT_PAPER/'c4_surface_marker_CIs.csv'}")
 print(f"WROTE: {OUT_PAPER/'c4_rna_vs_surface_decoupling.csv'}")
 print(f"WROTE: {OUT_PAPER/'c4_pdl1_assay_power_summary.json'}")

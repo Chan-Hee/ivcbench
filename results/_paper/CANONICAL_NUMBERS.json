@@ -1,0 +1,143 @@
+{
+  "census_cells": 47,
+  "status": {
+    "native": 34,
+    "adapted": 7,
+    "diagnostic": 6
+  },
+  "per_task": {
+    "T1": 8,
+    "T2": 9,
+    "T3": 7,
+    "T4": 7,
+    "T5u": 7,
+    "T5c": 9
+  },
+  "per_task_models": {
+    "T1": 8,
+    "T2": 9,
+    "T3": 6,
+    "T4": 6,
+    "T5u": 5,
+    "T5c": 7
+  },
+  "models": [
+    "AttentionPert",
+    "Biolord",
+    "CINEMA-OT",
+    "CPA",
+    "CellFlow",
+    "CellOT",
+    "FP-ridge",
+    "GEARS",
+    "PRnet",
+    "PertAdapt",
+    "PerturbNet",
+    "STATE",
+    "linear-shift-KOemb",
+    "scFoundation",
+    "scGPT",
+    "scGen",
+    "scPRAM"
+  ],
+  "n_models": 17,
+  "n_conditioned": 41,
+  "adapted_cells": [
+    "scFoundation @ T1",
+    "scGPT @ T1",
+    "PertAdapt @ T2",
+    "scFoundation @ T2",
+    "scGPT @ T2",
+    "scFoundation @ T5c",
+    "scGPT @ T5c"
+  ],
+  "clears_both": [
+    {
+      "task": "T1",
+      "model": "CellFlow",
+      "status": "native",
+      "pd": 0.7985
+    },
+    {
+      "task": "T1",
+      "model": "CellOT",
+      "status": "native",
+      "pd": 0.7865
+    },
+    {
+      "task": "T2",
+      "model": "CellOT",
+      "status": "native",
+      "pd": 0.3666
+    },
+    {
+      "task": "T5c",
+      "model": "FP-ridge",
+      "status": "diagnostic",
+      "pd": 0.3874
+    }
+  ],
+  "floors": {
+    "T1": {
+      "cell_mean": 0.5896,
+      "linear_PCA": 0.7803
+    },
+    "T2": {
+      "cell_mean": 0.2598,
+      "linear_PCA": 0.0362
+    },
+    "T3": {
+      "cell_mean": 0.4937,
+      "linear_PCA": 0.2966
+    },
+    "T4": {
+      "cell_mean": 0.6612,
+      "linear_PCA": 0.2833
+    },
+    "T5u": {
+      "cell_mean": 0.1722,
+      "linear_PCA": 0.1498
+    },
+    "T5c": {
+      "cell_mean": 0.025,
+      "linear_PCA": 0.2694
+    }
+  },
+  "submitted_cells": 35,
+  "new_models": [
+    "Biolord",
+    "CellFlow",
+    "PRnet",
+    "PerturbNet"
+  ],
+  "census_bundles": 1362,
+  "method_prediction_bundles": 1110,
+  "floor_prediction_bundles": 252,
+  "rescored_bundles": 1931,
+  "bundle_count_definition": "census_bundles counts only method and two-member-floor inputs listed in census_bundle_manifest.csv; rescored_bundles also includes preserved non-census references and sensitivity splits",
+  "execution_variants": [
+    {
+      "cluster": "C5",
+      "split": "unseen-compound",
+      "model": "CPA",
+      "execution_model": "chemCPA"
+    }
+  ],
+  "withdrawn_from_census": [
+    "SCREEN (all cells)",
+    "PertAdapt @ T3",
+    "scPRAM @ T4",
+    "scFoundation @ T3",
+    "scFoundation @ T4",
+    "STATE @ T4",
+    "STATE @ T3 (adata_real recovery error)",
+    "STATE @ T5c (adata_real recovery error)",
+    "STATE @ T5u (adata_real recovery error)",
+    "PerturbNet @ T5c",
+    "CPA @ T1 (latent-shift adaptation)",
+    "CPA @ T2 (latent-shift adaptation)",
+    "CPA @ T5c (fingerprint adaptation)",
+    "scGen @ T5c (fingerprint adaptation)",
+    "CellOT @ T4 (pooled-KO map without target-KO input)"
+  ]
+}

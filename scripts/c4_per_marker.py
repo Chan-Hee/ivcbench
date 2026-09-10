@@ -18,9 +18,16 @@ from ivcbench.splits.builder import build_split
 
 # pretty names for the CITE markers
 MARKER_ALIAS = {
-    "CD274": "PD-L1 (CD274)", "CD279": "PD-1 (CD279)", "HLA_A": "HLA-A (class I)",
-    "HLA_E": "HLA-E (class I)", "CD119": "IFNGR1 (CD119)", "CD58": "CD58 (LFA-3)",
-    "CD47": "CD47", "CD59": "CD59", "CD44": "CD44", "CD29": "CD29 (ITGB1)",
+    "CD274": "PD-L1 (CD274)",
+    "CD279": "PD-1 (CD279)",
+    "HLA_A": "HLA-A (class I)",
+    "HLA_E": "HLA-E (class I)",
+    "CD119": "IFNGR1 (CD119)",
+    "CD58": "CD58 (LFA-3)",
+    "CD47": "CD47",
+    "CD59": "CD59",
+    "CD44": "CD44",
+    "CD29": "CD29 (ITGB1)",
 }
 
 cs = load(modality="protein")
@@ -36,15 +43,21 @@ for frac, lbl in [(0.25, "25"), (0.50, "50")]:
     is_ctrl_tr = cs.obs.iloc[tr]["is_control"].to_numpy()
     # best-simple = cell-mean: predict every held KO with the training treated mean
     treated_mean = cs.X[tr[~is_ctrl_tr]].mean(0)
-    ctrl_mean = cs.X[sp.inference_input_idx].mean(0) if len(sp.inference_input_idx) else cs.X[tr[is_ctrl_tr]].mean(0)
-    pred_delta = treated_mean - ctrl_mean          # one global predicted Δ (cell-mean shift)
+    ctrl_mean = (
+        cs.X[sp.inference_input_idx].mean(0)
+        if len(sp.inference_input_idx)
+        else cs.X[tr[is_ctrl_tr]].mean(0)
+    )
+    pred_delta = treated_mean - ctrl_mean  # one global predicted Δ (cell-mean shift)
 
     # per held-KO observed Δ (test strata = held KO genes)
     strata = sp.test_strata
     test_X = cs.X[sp.test_idx]
     uniq = np.unique(strata)
-    obs_delta = np.vstack([test_X[strata == s].mean(0) - ctrl_mean for s in uniq])  # (n_held_KO, n_marker)
-    pred_delta_mat = np.tile(pred_delta, (len(uniq), 1))                            # cell-mean is constant
+    obs_delta = np.vstack(
+        [test_X[strata == s].mean(0) - ctrl_mean for s in uniq]
+    )  # (n_held_KO, n_marker)
+    pred_delta_mat = np.tile(pred_delta, (len(uniq), 1))  # cell-mean is constant
 
     # Per-marker recovery: cell-mean predicts ONE global Δ for every held KO. We report, per marker:
     #   obsΔ_mean = mean across held KOs of (treated - control)  [is the marker modulated by KO?]
@@ -53,15 +66,22 @@ for frac, lbl in [(0.25, "25"), (0.50, "50")]:
     #   r_acrossKO= Pearson of obs Δ vs the global predicted-direction proxy is degenerate (pred const),
     #               so we instead report whether obs Δ direction matches the predicted sign (sign-match
     #               frac across held KOs) — an honest per-marker readout given a constant predictor.
-    print(f"\n=== held {lbl}% ({len(uniq)} KO strata) — per-marker recovery (cell-mean shift) ===")
-    print(f"{'marker':18s} {'predΔ':>8s} {'obsΔ_mean':>10s} {'obsΔ_sd':>9s} {'|err|':>7s} {'signmatch':>9s}")
+    print(
+        f"\n=== held {lbl}% ({len(uniq)} KO strata) — per-marker recovery (cell-mean"
+        " shift) ==="
+    )
+    print(
+        f"{'marker':18s} {'predΔ':>8s} {'obsΔ_mean':>10s} {'obsΔ_sd':>9s} {'|err|':>7s} {'signmatch':>9s}"
+    )
     rows = []
     eps = 1e-9
     for j, mk in enumerate(markers):
         o = obs_delta[:, j]
         pj = float(pred_delta[j])
         err = abs(o.mean() - pj)
-        signmatch = float(np.mean(np.sign(o) == np.sign(pj))) if pj != 0 else float("nan")
+        signmatch = (
+            float(np.mean(np.sign(o) == np.sign(pj))) if pj != 0 else float("nan")
+        )
         rows.append((mk, pj, o.mean(), o.std(), err, signmatch))
     for mk, pj, om, osd, err, sm in sorted(rows, key=lambda x: -abs(x[3])):
         alias = MARKER_ALIAS.get(mk, mk)

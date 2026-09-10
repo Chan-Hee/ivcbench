@@ -1,0 +1,3 @@
+task_key,unit,stratum,n_treated,n_controls,n_scored_genes,partitions,seed,bundle_path,independent_control_r,shared_control_r,status
+T3,shifrut,perturbation=STAT6,572,3541,1998,100,1700736172,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__shifrut.npz,-0.002372595593586155,0.07059492105658688,estimable
+T3,shifrut,perturbation=MEF2D,1026,3541,1998,100,1700736172,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__shifrut.npz,0.05846565670161402,0.17973180818512632,estimable

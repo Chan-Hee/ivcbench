@@ -22,17 +22,32 @@ from assemble_cross_cluster import ROOT, score_all
 # results_raw file -> the bundle clusters that back it, plus the extra match key columns (besides
 # split + model) needed to land each bundle on a unique results_raw row.
 SPECS = [
-    ("results/C1/results_raw.csv", ["C1_LOCT"], []),               # C1 LOCT: (split, baseline)
-    ("results/C3/results_raw.csv", ["C3_LO_gene"], ["dataset"]),   # C3: (split, baseline, dataset)
-    ("results/C4/results_raw.csv", ["C4", "C4_Axis2"], ["RNA"]),   # C4: RNA arm only (bundles are RNA)
-    ("results/C5/results_raw.csv", ["C1_LOCT", "C5", "C5_unseen_cpd"], []),  # C5 LOCT + unseen-compound
+    ("results/C1/results_raw.csv", ["C1_LOCT"], []),  # C1 LOCT: (split, baseline)
+    (
+        "results/C3/results_raw.csv",
+        ["C3_LO_gene"],
+        ["dataset"],
+    ),  # C3: (split, baseline, dataset)
+    (
+        "results/C4/results_raw.csv",
+        ["C4", "C4_Axis2"],
+        ["RNA"],
+    ),  # C4: RNA arm only (bundles are RNA)
+    (
+        "results/C5/results_raw.csv",
+        ["C1_LOCT", "C5", "C5_unseen_cpd"],
+        [],
+    ),  # C5 LOCT + unseen-compound
 ]
 
 
 def _bundle_map(bdf, clusters, extra):
     m = {}
     for _, r in bdf[bdf["cluster"].isin(clusters)].iterrows():
-        key = [r["split"], r["model"]]
+        # The headline groups the native chemCPA execution under CPA/chemCPA.
+        # Historical raw results still name executions, not method groups: never
+        # overwrite an adapted CPA result with a differently executed chemCPA score.
+        key = [r["split"], r.get("execution_model", r["model"])]
         if "dataset" in extra:
             key.append(str(r.get("dataset", "")))
         m[tuple(key)] = float(r["pearson_delta"])
@@ -57,8 +72,18 @@ def _sync_results_raw(bdf, write=True):
             want = bm.get(tuple(key))
             # only re-derive cells that disagree at 4-decimal display precision (a real stochastic
             # drift), not the sub-display float32 round-trip on deterministic comparators.
-            if want is not None and round(float(r["pearson_delta"]), 4) != round(want, 4):
-                changed.append((rel, r.get("baseline"), r.get("split"), float(r["pearson_delta"]), want))
+            if want is not None and round(float(r["pearson_delta"]), 4) != round(
+                want, 4
+            ):
+                changed.append(
+                    (
+                        rel,
+                        r.get("baseline"),
+                        r.get("split"),
+                        float(r["pearson_delta"]),
+                        want,
+                    )
+                )
                 d.at[i, "pearson_delta"] = want
         if write:
             d.to_csv(path, index=False)
@@ -70,7 +95,9 @@ def _sync_soskic(bdf, write=True):
     path = os.path.join(ROOT, "results", "C2", "soskic_donor_axis.csv")
     if not os.path.exists(path):
         return []
-    sb = bdf[(bdf["cluster"] == "C2_LODO") & bdf["split"].str.startswith("C2_lodo")].copy()
+    sb = bdf[
+        (bdf["cluster"] == "C2_LODO") & bdf["split"].str.startswith("C2_lodo")
+    ].copy()
     sb["donor"] = sb["split"].str.replace("C2_lodo_", "", regex=False)
     bm = {(r["model"], r["donor"]): float(r["pearson_delta"]) for _, r in sb.iterrows()}
     d = pd.read_csv(path)
@@ -78,8 +105,15 @@ def _sync_soskic(bdf, write=True):
     for i, r in d.iterrows():
         want = bm.get((r.get("model"), str(r.get("donor"))))
         if want is not None and round(float(r["pearson_delta"]), 4) != round(want, 4):
-            changed.append(("soskic_donor_axis.csv", r.get("model"), str(r.get("donor")),
-                            float(r["pearson_delta"]), want))
+            changed.append(
+                (
+                    "soskic_donor_axis.csv",
+                    r.get("model"),
+                    str(r.get("donor")),
+                    float(r["pearson_delta"]),
+                    want,
+                )
+            )
             d.at[i, "pearson_delta"] = want
     if write:
         d.to_csv(path, index=False)
@@ -100,7 +134,10 @@ def main():
         print("results_raw already in sync with the bundles (0 cells changed).")
         return
     from collections import Counter
-    by_model = Counter(f"{c[0].split('/')[0] if '/' in c[0] else c[0]}:{c[1]}" for c in changed)
+
+    by_model = Counter(
+        f"{c[0].split('/')[0] if '/' in c[0] else c[0]}:{c[1]}" for c in changed
+    )
     print(f"re-derived {len(changed)} pearson_delta cells from the bundles:")
     for k, v in sorted(by_model.items()):
         print(f"  {k}: {v} cell(s)")

@@ -1,0 +1,676 @@
+task_key,unit,stratum,n_treated,n_controls,n_scored_genes,partitions,seed,bundle_path,independent_control_r,shared_control_r,status
+T5c,B,perturbation=Atorvastatin,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.22897308891669182,0.36099227228795827,estimable
+T5c,B,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.6539267666260845,0.7284455216736597,estimable
+T5c,B,perturbation=Topotecan,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2745435126480863,0.4006108895375181,estimable
+T5c,B,perturbation=BMS-265246,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.42454368913867024,0.531768950866633,estimable
+T5c,B,perturbation=AMD-070 (hydrochloride),120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.21487820788263984,0.3424402277351182,estimable
+T5c,B,perturbation=AT13387,114,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.7970923426149831,0.8430758290036319,estimable
+T5c,B,perturbation=Desloratadine,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.22365285490081657,0.35816760902423267,estimable
+T5c,B,perturbation=Ganetespib (STA-9090),120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.8166264082053207,0.859343426898747,estimable
+T5c,B,perturbation=O-Demethylated Adapalene,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3578040545246784,0.4752590165877579,estimable
+T5c,B,perturbation=BAY 87-2243,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.35774559960660973,0.47609319634292535,estimable
+T5c,B,perturbation=Ruxolitinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5709908631960735,0.660590115774313,estimable
+T5c,B,perturbation=Sgc-cbp30,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.17322769064332227,0.3121569378701478,estimable
+T5c,B,perturbation=PF-04691502,117,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5731074203573361,0.6570296405470364,estimable
+T5c,B,perturbation=Dactolisib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.7014658303274188,0.767584774055838,estimable
+T5c,B,perturbation=Alogliptin,118,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.24704108261310448,0.37537198562897367,estimable
+T5c,B,perturbation=Clomipramine,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.26702564119144656,0.3955538767413405,estimable
+T5c,B,perturbation=Protriptyline,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2317377109493962,0.3654813670066715,estimable
+T5c,B,perturbation=Phenylbutazone,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2030306003916378,0.3356133230324251,estimable
+T5c,B,perturbation=Pomalidomide,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.4807403395165447,0.5861369007463836,estimable
+T5c,B,perturbation=FK 866,112,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.33525388810442686,0.44574307044154937,estimable
+T5c,B,perturbation=Perhexiline,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5559116107688833,0.6441670460146318,estimable
+T5c,B,perturbation=BMS-536924,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5914599630142086,0.6769489762138029,estimable
+T5c,B,perturbation=Penfluridol,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2737982746862546,0.4021143294798353,estimable
+T5c,B,perturbation=Sunitinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.30977874206638484,0.42929701292979106,estimable
+T5c,B,perturbation=I-BET151,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5597361515347008,0.6517262838878701,estimable
+T5c,B,perturbation=K-02288,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.20497060306266582,0.33838266246065407,estimable
+T5c,B,perturbation=Dovitinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.34764763879679755,0.4688975183734672,estimable
+T5c,B,perturbation=Chlorpheniramine,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.20246793930982354,0.3332042391599168,estimable
+T5c,B,perturbation=UNII-BXU45ZH6LI,91,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.6586127556570535,0.7197048899869434,estimable
+T5c,B,perturbation=IKK Inhibitor VII,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.554141060816509,0.6472160449424265,estimable
+T5c,B,perturbation=Quizartinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.24367255825345335,0.3756710700533861,estimable
+T5c,B,perturbation=Tivozanib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3199478643387643,0.4382123328075187,estimable
+T5c,B,perturbation=Foretinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.4646053911323557,0.5695511773692905,estimable
+T5c,B,perturbation=BMS-777607,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.25095246101028357,0.3762093871660085,estimable
+T5c,B,perturbation=AVL-292,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.4400918824819232,0.5484199184394243,estimable
+T5c,B,perturbation=Scriptaid,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.61990158943797,0.7047496923714717,estimable
+T5c,B,perturbation=RVX-208,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2848912393678126,0.40735235673400766,estimable
+T5c,B,perturbation=Amiodarone,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.19717423818123958,0.33169558034376145,estimable
+T5c,B,perturbation=RN-486,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2619984727721839,0.392442743588024,estimable
+T5c,B,perturbation=Tamatinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.6044788993920069,0.6852623753367025,estimable
+T5c,B,perturbation=GW843682X,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2498679373459215,0.3808624402797577,estimable
+T5c,B,perturbation=Porcn Inhibitor III,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.313646016500283,0.4361035342076103,estimable
+T5c,B,perturbation=Navitoclax,50,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.4296506470400989,0.49278745078750574,estimable
+T5c,B,perturbation=BAY 61-3606,119,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5639972884354241,0.6502396967416061,estimable
+T5c,B,perturbation=Ketoconazole,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5274980633851745,0.6244973740668514,estimable
+T5c,B,perturbation=Isoniazid,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.21327184472688754,0.3473442061067478,estimable
+T5c,B,perturbation=PD-0325901,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.38183208390559775,0.4979539884171288,estimable
+T5c,B,perturbation=TIE2 Kinase Inhibitor,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2532450079561796,0.383134225741794,estimable
+T5c,B,perturbation=BMS-387032,5,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,,,fewer than six treated cells
+T5c,B,perturbation=TL_HRAS26,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.23467126196354152,0.36786157111631207,estimable
+T5c,B,perturbation=Methotrexate,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3452375184297209,0.46646326468007254,estimable
+T5c,B,perturbation=LY2090314,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5651942002145229,0.6587893676340155,estimable
+T5c,B,perturbation=Alvocidib,3,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,,,fewer than six treated cells
+T5c,B,perturbation=IMD-0354,104,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5957491919556496,0.6703032959713778,estimable
+T5c,B,perturbation=MK-5108,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.23539433251536335,0.36292244187749845,estimable
+T5c,B,perturbation=Ixabepilone,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.28389471211836065,0.4145468109505417,estimable
+T5c,B,perturbation=IN1451,81,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.8191674007049659,0.8476914100880828,estimable
+T5c,B,perturbation=Proscillaridin A;Proscillaridin-A,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.7711987716636439,0.8279303159542666,estimable
+T5c,B,perturbation=Palbociclib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2342022566301868,0.3673015183380477,estimable
+T5c,B,perturbation=Vardenafil,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.21572858039524792,0.3478740136347032,estimable
+T5c,B,perturbation=Disulfiram,110,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.23053185428481665,0.35348737308247197,estimable
+T5c,B,perturbation=Canertinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3079279331750733,0.43182727096398293,estimable
+T5c,B,perturbation=Lapatinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.30320578530669523,0.42929501547544757,estimable
+T5c,B,perturbation=Linagliptin,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2186097053020884,0.353342701156802,estimable
+T5c,B,perturbation=Raloxifene,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3792288393741666,0.495863222506147,estimable
+T5c,B,perturbation=Vorinostat,116,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.593319155998187,0.6824931348852493,estimable
+T5c,B,perturbation=Trametinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.4471403887627279,0.5520849679872881,estimable
+T5c,B,perturbation=Dasatinib,116,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.6094445504844888,0.68963147836663,estimable
+T5c,B,perturbation=Flutamide,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.30211963079487114,0.4265324535245841,estimable
+T5c,B,perturbation=Idelalisib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.43996346532483455,0.5481080855626338,estimable
+T5c,B,perturbation=Riociguat,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.16993850077079728,0.30709218196937704,estimable
+T5c,B,perturbation=Azacitidine,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3161511552569579,0.4429481321096372,estimable
+T5c,B,perturbation=TGX 221,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.4187317613736459,0.5317289255484003,estimable
+T5c,B,perturbation=CGM-097,118,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5302930859281388,0.6248574129671096,estimable
+T5c,B,perturbation=Clemastine,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.21582645496023636,0.3494706952093548,estimable
+T5c,B,perturbation=Imatinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.18795300662661854,0.32400183326843157,estimable
+T5c,B,perturbation=Tipifarnib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.28964897782268745,0.4168184311332922,estimable
+T5c,B,perturbation=RG7090,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3804568571107139,0.49433254603997817,estimable
+T5c,B,perturbation=CHIR-99021,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.45478544776641117,0.5657281552655082,estimable
+T5c,B,perturbation=TR-14035,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2781932978339146,0.404711826655811,estimable
+T5c,B,perturbation=Pitavastatin Calcium,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.6439832628000165,0.7228495510271584,estimable
+T5c,B,perturbation=SLx-2119,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.23642915307810403,0.3664669824275928,estimable
+T5c,B,perturbation=YK 4-279,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2979296687748971,0.4231196340146702,estimable
+T5c,B,perturbation=SCH-58261,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2846634785887198,0.41427790553608895,estimable
+T5c,B,perturbation=BX 912,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2824873368575928,0.4124847643438372,estimable
+T5c,B,perturbation=GLPG0634,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.45464936207301176,0.5571215266007067,estimable
+T5c,B,perturbation=Defactinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3219483208708415,0.4463767769520567,estimable
+T5c,B,perturbation=Nilotinib,113,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.4633930198980447,0.5633764181934666,estimable
+T5c,B,perturbation=ABT737,18,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2671211439407791,0.2964653168873566,estimable
+T5c,B,perturbation=Nefazodone,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.19253210059524212,0.3259394075641467,estimable
+T5c,B,perturbation=Buspirone,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.19958788927190974,0.33849648362909823,estimable
+T5c,B,perturbation=Colforsin,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.22857499523175842,0.36202811245934,estimable
+T5c,B,perturbation=Doxorubicin,112,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.7479442175683069,0.8060795164021595,estimable
+T5c,B,perturbation=Mubritinib (TAK 165),120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3279926227835692,0.44684524386975205,estimable
+T5c,B,perturbation=BI-D1870,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3358685639273954,0.45565668380770646,estimable
+T5c,B,perturbation=AT 7867,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.379592731625595,0.4960461388536405,estimable
+T5c,B,perturbation=PRT-062607,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5681205812772162,0.6571988966744159,estimable
+T5c,B,perturbation=STK219801,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2370542583941508,0.36632250768791896,estimable
+T5c,B,perturbation=Midostaurin,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3983757178929745,0.5100810960540404,estimable
+T5c,B,perturbation=PF-03814735,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.6369502863821489,0.7148304910691011,estimable
+T5c,B,perturbation=Vanoxerine,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.24970160564169902,0.3721797421886807,estimable
+T5c,B,perturbation=AZD3514,112,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.277810142217696,0.39967740328386275,estimable
+T5c,B,perturbation=OSI-930,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.18928437853240795,0.32331971846463714,estimable
+T5c,B,perturbation=AZ628,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.39619976762394626,0.510659675859176,estimable
+T5c,B,perturbation=TPCA-1,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.6099132676969536,0.6921429690946588,estimable
+T5c,B,perturbation=CEP-37440,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.21330431074418602,0.3483826836249883,estimable
+T5c,B,perturbation=Tivantinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.18884716572932153,0.32723386327030013,estimable
+T5c,B,perturbation=AZD4547,112,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.1992740454498555,0.32295205377082536,estimable
+T5c,B,perturbation=SB525334,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.4353277978580207,0.5428561174039438,estimable
+T5c,B,perturbation=HMN-214,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.46115744244103163,0.5680957904294754,estimable
+T5c,B,perturbation=GO-6976,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.381672405816647,0.49642656034298055,estimable
+T5c,B,perturbation=AZD-8330,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2726580223881955,0.4004814727359034,estimable
+T5c,B,perturbation=MGCD-265,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2723351657840826,0.39923484968268624,estimable
+T5c,B,perturbation=GSK256066,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.32909312084619,0.4490077649132425,estimable
+T5c,B,perturbation=Tosedostat,102,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.22289207198809152,0.34333155475751176,estimable
+T5c,B,perturbation=Prednisolone,119,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.6122263813825134,0.6917388430026499,estimable
+T5c,B,perturbation=HYDROXYUREA,97,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.24740470721472316,0.35237352017316076,estimable
+T5c,B,perturbation=Decitabine,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.25982142694039245,0.3883991729712229,estimable
+T5c,B,perturbation=CC-401,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3104717409466353,0.43318936727728014,estimable
+T5c,B,perturbation=Saracatinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5014262911098573,0.6006343904864359,estimable
+T5c,B,perturbation=Masitinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2596122656099048,0.38742693833047476,estimable
+T5c,B,perturbation=GSK-1070916,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.17230587149366575,0.30805905257143623,estimable
+T5c,B,perturbation=R428,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3721229417954608,0.4890114556233092,estimable
+T5c,B,perturbation=Colchicine,118,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5789474835608992,0.6660775454826385,estimable
+T5c,B,perturbation=Tacalcitol,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3596665923906211,0.47491574575760304,estimable
+T5c,B,perturbation=LDN 193189,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.2564478345669764,0.39014622700354806,estimable
+T5c,B,perturbation=Resminostat,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.5571669729574239,0.6537520354515826,estimable
+T5c,B,perturbation=RG7112,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.25570366350519713,0.387447411067351,estimable
+T5c,B,perturbation=Ricolinostat,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.11086014435317956,0.24933989338519255,estimable
+T5c,B,perturbation=Oxybenzone,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.24349658776058855,0.3743623959567881,estimable
+T5c,B,perturbation=ABT-199 (GDC-0199),30,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.387044317771682,0.43056385531259467,estimable
+T5c,B,perturbation=Selumetinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3112085174704212,0.43157619597143726,estimable
+T5c,B,perturbation=Cabozantinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.3474412620974896,0.46574175829472536,estimable
+T5c,B,perturbation=Crizotinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.4584611266589522,0.5637943182784197,estimable
+T5c,B,perturbation=Lamivudine,93,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.21841261569854073,0.32255226340055076,estimable
+T5c,B,perturbation=Ceritinib,119,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.20812774584694954,0.33772895793927643,estimable
+T5c,B,perturbation=Bosutinib,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.618385478273523,0.6982208199040443,estimable
+T5c,B,perturbation=Vandetanib,117,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.269566310028937,0.39260785562733985,estimable
+T5c,B,perturbation=Mometasone Furoate,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.716126023235085,0.7778852960200585,estimable
+T5c,B,perturbation=Clotrimazole,120,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,0.21878753594031874,0.34944029092048967,estimable
+T5c,B,perturbation=CGP 60474,4,360,2000,100,272965787,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz,,,fewer than six treated cells
+T5c,Mono,perturbation=Atorvastatin,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.3787249347824428,0.4882226024482163,estimable
+T5c,Mono,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,29,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6911741896330582,0.70886092112817,estimable
+T5c,Mono,perturbation=Topotecan,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6162045480931257,0.6888529056303742,estimable
+T5c,Mono,perturbation=BMS-265246,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6880678638783784,0.7524743839858681,estimable
+T5c,Mono,perturbation=AMD-070 (hydrochloride),120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.47697147804198503,0.5819109966726272,estimable
+T5c,Mono,perturbation=AT13387,12,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4955264557985143,0.5053866515011276,estimable
+T5c,Mono,perturbation=Desloratadine,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.545074459427487,0.6412372484447837,estimable
+T5c,Mono,perturbation=Ganetespib (STA-9090),29,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7006203719078843,0.7138644432818276,estimable
+T5c,Mono,perturbation=O-Demethylated Adapalene,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4925989151778908,0.5968223080773803,estimable
+T5c,Mono,perturbation=BAY 87-2243,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6814653929210353,0.7425704883278573,estimable
+T5c,Mono,perturbation=Ruxolitinib,94,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8527696420816221,0.8815026359004886,estimable
+T5c,Mono,perturbation=Sgc-cbp30,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.530320407180539,0.6244407472912024,estimable
+T5c,Mono,perturbation=PF-04691502,46,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7267505513841219,0.7438892162952384,estimable
+T5c,Mono,perturbation=Dactolisib,82,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.9048523391680712,0.9202305179874993,estimable
+T5c,Mono,perturbation=Alogliptin,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4332067149194215,0.5479136939361086,estimable
+T5c,Mono,perturbation=Clomipramine,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5042850684294085,0.6033642108060353,estimable
+T5c,Mono,perturbation=Protriptyline,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4148465202705773,0.5368769487825018,estimable
+T5c,Mono,perturbation=Phenylbutazone,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4553157361950683,0.5700438055321689,estimable
+T5c,Mono,perturbation=Pomalidomide,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5962740780613589,0.6807246567998277,estimable
+T5c,Mono,perturbation=FK 866,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5514791565179139,0.6426084486005295,estimable
+T5c,Mono,perturbation=Perhexiline,60,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5641190528227219,0.6127321258943145,estimable
+T5c,Mono,perturbation=BMS-536924,53,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6880272252344669,0.721844045527869,estimable
+T5c,Mono,perturbation=Penfluridol,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4158104862835322,0.5292780731896185,estimable
+T5c,Mono,perturbation=Sunitinib,118,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.3945323845569427,0.5042141667014984,estimable
+T5c,Mono,perturbation=I-BET151,114,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8224907958918116,0.8580994133162636,estimable
+T5c,Mono,perturbation=K-02288,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5755329733060679,0.6704524032689843,estimable
+T5c,Mono,perturbation=Dovitinib,115,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.51578216141455,0.6163542420067748,estimable
+T5c,Mono,perturbation=Chlorpheniramine,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.39935152760708853,0.5161038963438509,estimable
+T5c,Mono,perturbation=IKK Inhibitor VII,67,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8253017594428047,0.8539887932876691,estimable
+T5c,Mono,perturbation=Quizartinib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5384694843474541,0.6373370576105423,estimable
+T5c,Mono,perturbation=Tivozanib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.40656689877898095,0.5181328041324806,estimable
+T5c,Mono,perturbation=Foretinib,70,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5661019706338662,0.6198145803366113,estimable
+T5c,Mono,perturbation=BMS-777607,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5073818588505012,0.6080859073724616,estimable
+T5c,Mono,perturbation=AVL-292,106,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6704114521059672,0.7378361714299438,estimable
+T5c,Mono,perturbation=Scriptaid,90,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.77169153947249,0.8097882009780847,estimable
+T5c,Mono,perturbation=RVX-208,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5847155882206523,0.6679341765709793,estimable
+T5c,Mono,perturbation=Amiodarone,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.48482553017876545,0.59128791781888,estimable
+T5c,Mono,perturbation=RN-486,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4214953606243935,0.5277656205442122,estimable
+T5c,Mono,perturbation=Tamatinib,45,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.722310357377391,0.7441887983292683,estimable
+T5c,Mono,perturbation=GW843682X,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.43939872693960047,0.5552937485632863,estimable
+T5c,Mono,perturbation=Porcn Inhibitor III,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.554756372040728,0.6507049129186727,estimable
+T5c,Mono,perturbation=Navitoclax,119,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.49390042728310996,0.6018937785617531,estimable
+T5c,Mono,perturbation=BAY 61-3606,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8430694527291004,0.8730784030560848,estimable
+T5c,Mono,perturbation=Ketoconazole,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7497368059678259,0.8006261222278384,estimable
+T5c,Mono,perturbation=Isoniazid,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4082593425496252,0.5237389247329536,estimable
+T5c,Mono,perturbation=PD-0325901,109,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6800182184132515,0.7428371208836165,estimable
+T5c,Mono,perturbation=TIE2 Kinase Inhibitor,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4111579859460354,0.5213396995599233,estimable
+T5c,Mono,perturbation=TL_HRAS26,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4334784995642174,0.546405293001773,estimable
+T5c,Mono,perturbation=Methotrexate,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.48940563680547394,0.5825412198157016,estimable
+T5c,Mono,perturbation=LY2090314,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8405116641858537,0.8741920310061637,estimable
+T5c,Mono,perturbation=Alvocidib,1,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,,,fewer than six treated cells
+T5c,Mono,perturbation=IMD-0354,108,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7391370175950067,0.7872736873556785,estimable
+T5c,Mono,perturbation=MK-5108,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4322342040851118,0.5320304887177181,estimable
+T5c,Mono,perturbation=Ixabepilone,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5383160417444149,0.6402886757911123,estimable
+T5c,Mono,perturbation=IN1451,114,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.9429887676484053,0.9520813601485496,estimable
+T5c,Mono,perturbation=Proscillaridin A;Proscillaridin-A,103,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.9626415537833998,0.9700777857198493,estimable
+T5c,Mono,perturbation=Palbociclib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5670827150032978,0.6640369624257328,estimable
+T5c,Mono,perturbation=Vardenafil,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5459876160973339,0.6411489385567757,estimable
+T5c,Mono,perturbation=Disulfiram,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.45677508111496384,0.5694012730995377,estimable
+T5c,Mono,perturbation=Canertinib,100,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5985374445491458,0.6739736497101881,estimable
+T5c,Mono,perturbation=Lapatinib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.3267619568596516,0.4459303992094529,estimable
+T5c,Mono,perturbation=Linagliptin,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.43232540677283554,0.550275275015687,estimable
+T5c,Mono,perturbation=Raloxifene,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.47845729840088635,0.5794725286601814,estimable
+T5c,Mono,perturbation=Vorinostat,89,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7359621838658164,0.7783675209136893,estimable
+T5c,Mono,perturbation=Trametinib,106,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6997216170109573,0.757067586318043,estimable
+T5c,Mono,perturbation=Dasatinib,47,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7220555279448242,0.7411093368197733,estimable
+T5c,Mono,perturbation=Flutamide,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.3891924694153516,0.5053215424210874,estimable
+T5c,Mono,perturbation=Idelalisib,116,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5404240316017447,0.6299520513813238,estimable
+T5c,Mono,perturbation=Riociguat,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.39760138323479,0.509353923425474,estimable
+T5c,Mono,perturbation=Azacitidine,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4160033765572294,0.5275232628035993,estimable
+T5c,Mono,perturbation=TGX 221,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6015115937760641,0.6866134235371536,estimable
+T5c,Mono,perturbation=CGM-097,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5880034897215992,0.6691292619369098,estimable
+T5c,Mono,perturbation=Clemastine,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.41538069967096697,0.5225205332525986,estimable
+T5c,Mono,perturbation=Imatinib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.38233566203478775,0.5047239035434733,estimable
+T5c,Mono,perturbation=Tipifarnib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.48173060639652143,0.5824557046924803,estimable
+T5c,Mono,perturbation=RG7090,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4799935103096526,0.5702889906826554,estimable
+T5c,Mono,perturbation=CHIR-99021,113,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6185640251524267,0.6957074426846597,estimable
+T5c,Mono,perturbation=TR-14035,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.45301064890225184,0.5588809895220567,estimable
+T5c,Mono,perturbation=Pitavastatin Calcium,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.907861133908588,0.929014613825126,estimable
+T5c,Mono,perturbation=SLx-2119,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.3762702462544975,0.48785011557988933,estimable
+T5c,Mono,perturbation=YK 4-279,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.44731768906349345,0.546703891998902,estimable
+T5c,Mono,perturbation=SCH-58261,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.435595539075564,0.5423215343238522,estimable
+T5c,Mono,perturbation=BX 912,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5295787030450861,0.6265470206840851,estimable
+T5c,Mono,perturbation=GLPG0634,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6680700956491128,0.733321161801349,estimable
+T5c,Mono,perturbation=Defactinib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5817624881446827,0.6663053063468729,estimable
+T5c,Mono,perturbation=Nilotinib,102,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7044390968208298,0.7621285060514654,estimable
+T5c,Mono,perturbation=ABT737,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5422855474338428,0.6499851089861014,estimable
+T5c,Mono,perturbation=Nefazodone,109,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.31980164011578704,0.4294559443808877,estimable
+T5c,Mono,perturbation=Buspirone,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.39973239837268465,0.5123701287435973,estimable
+T5c,Mono,perturbation=Colforsin,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.43872366912455923,0.5550841243185396,estimable
+T5c,Mono,perturbation=Doxorubicin,119,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8994503722561238,0.9184935557851575,estimable
+T5c,Mono,perturbation=Mubritinib (TAK 165),120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5532146527392081,0.6271917708550485,estimable
+T5c,Mono,perturbation=BI-D1870,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5415520055504193,0.6268415721437994,estimable
+T5c,Mono,perturbation=AT 7867,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6128656762777936,0.6922497355777483,estimable
+T5c,Mono,perturbation=PRT-062607,74,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7432113253603936,0.7771318925774264,estimable
+T5c,Mono,perturbation=STK219801,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4063159101617845,0.5095146746496256,estimable
+T5c,Mono,perturbation=Midostaurin,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6586723897616296,0.7245034024090407,estimable
+T5c,Mono,perturbation=PF-03814735,101,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8760445238962502,0.8970980453044751,estimable
+T5c,Mono,perturbation=Vanoxerine,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.41036096608669886,0.5108773436334633,estimable
+T5c,Mono,perturbation=AZD3514,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4857672629546401,0.5796290886629722,estimable
+T5c,Mono,perturbation=OSI-930,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.43657324898862837,0.5452158854170057,estimable
+T5c,Mono,perturbation=AZ628,77,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5354879301240721,0.6019712323259475,estimable
+T5c,Mono,perturbation=TPCA-1,43,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7856688084586254,0.8059284852087727,estimable
+T5c,Mono,perturbation=CEP-37440,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4688389255227854,0.5667148322731638,estimable
+T5c,Mono,perturbation=Tivantinib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.43686533113966797,0.5470651440667398,estimable
+T5c,Mono,perturbation=AZD4547,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.36217068398875585,0.4761464423359821,estimable
+T5c,Mono,perturbation=SB525334,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6889685005663114,0.7592627248468502,estimable
+T5c,Mono,perturbation=HMN-214,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5412100705153725,0.632286301341689,estimable
+T5c,Mono,perturbation=GO-6976,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5857954829802039,0.665765628384011,estimable
+T5c,Mono,perturbation=AZD-8330,95,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6206705734248684,0.6856946100172813,estimable
+T5c,Mono,perturbation=MGCD-265,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4429765718755311,0.5413560985896555,estimable
+T5c,Mono,perturbation=GSK256066,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4998341860632997,0.588668709280262,estimable
+T5c,Mono,perturbation=Tosedostat,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5448813639077222,0.6368581546509067,estimable
+T5c,Mono,perturbation=Prednisolone,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6883919708944375,0.7490838752979802,estimable
+T5c,Mono,perturbation=HYDROXYUREA,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4565017204357965,0.5536251542653674,estimable
+T5c,Mono,perturbation=Decitabine,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.45657964946750673,0.5622692242197557,estimable
+T5c,Mono,perturbation=CC-401,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4972372184294713,0.5843477117348824,estimable
+T5c,Mono,perturbation=Saracatinib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7402943225162008,0.7959736602204049,estimable
+T5c,Mono,perturbation=Masitinib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5696048746632297,0.6620605500809943,estimable
+T5c,Mono,perturbation=GSK-1070916,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5413213532272964,0.6325464233749782,estimable
+T5c,Mono,perturbation=R428,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8514680381538146,0.8864361633175382,estimable
+T5c,Mono,perturbation=Colchicine,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8956876317740555,0.9144538191697097,estimable
+T5c,Mono,perturbation=Tacalcitol,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8614497233077034,0.8920643518373244,estimable
+T5c,Mono,perturbation=LDN 193189,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4093515509014344,0.5190468177889287,estimable
+T5c,Mono,perturbation=Resminostat,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.7759151517237133,0.8215208156712364,estimable
+T5c,Mono,perturbation=RG7112,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5278839289344582,0.625480760693869,estimable
+T5c,Mono,perturbation=Ricolinostat,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.410288927914056,0.5235910982332017,estimable
+T5c,Mono,perturbation=Oxybenzone,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.39912334306487696,0.5192038270142141,estimable
+T5c,Mono,perturbation=ABT-199 (GDC-0199),120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.3942485500395755,0.5192130296569892,estimable
+T5c,Mono,perturbation=Selumetinib,83,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5511840048627273,0.6104655724347169,estimable
+T5c,Mono,perturbation=Cabozantinib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4487858555477904,0.5555479803700449,estimable
+T5c,Mono,perturbation=Crizotinib,92,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.6328393966341396,0.694075869290771,estimable
+T5c,Mono,perturbation=Lamivudine,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5627680278743921,0.6543928386650599,estimable
+T5c,Mono,perturbation=Ceritinib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5728361784961106,0.6628873797956983,estimable
+T5c,Mono,perturbation=Bosutinib,86,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8021586347353563,0.8261817247438558,estimable
+T5c,Mono,perturbation=Vandetanib,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.5428523521848883,0.6402415203154135,estimable
+T5c,Mono,perturbation=Mometasone Furoate,118,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8554822095329319,0.8819568301954804,estimable
+T5c,Mono,perturbation=Clotrimazole,120,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.4999960791905429,0.599153161064669,estimable
+T5c,Mono,perturbation=UNII-BXU45ZH6LI,28,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,0.8089848335244119,0.8187988624668537,estimable
+T5c,Mono,perturbation=BMS-387032,1,360,2000,100,1719458592,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz,,,fewer than six treated cells
+T5c,NK,perturbation=Atorvastatin,104,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.17750771949642707,0.2966278428304902,estimable
+T5c,NK,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.42246465857182885,0.5315306810771585,estimable
+T5c,NK,perturbation=Topotecan,116,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3877883202527985,0.4980518152761975,estimable
+T5c,NK,perturbation=BMS-265246,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.38670482334705697,0.4984667300850727,estimable
+T5c,NK,perturbation=AMD-070 (hydrochloride),115,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.21010310245544356,0.33557321663060463,estimable
+T5c,NK,perturbation=AT13387,78,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.5479349778530116,0.6106060126434837,estimable
+T5c,NK,perturbation=Desloratadine,111,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.23287889066377201,0.35722379752982575,estimable
+T5c,NK,perturbation=Ganetespib (STA-9090),91,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.5876390279139858,0.6538276234651367,estimable
+T5c,NK,perturbation=O-Demethylated Adapalene,105,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.21099649803005305,0.33136317705657187,estimable
+T5c,NK,perturbation=BAY 87-2243,104,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.4116924758406085,0.5110443207032557,estimable
+T5c,NK,perturbation=Ruxolitinib,101,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2915043970216231,0.39714722895882587,estimable
+T5c,NK,perturbation=Sgc-cbp30,117,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.18095089164943334,0.30958329281926156,estimable
+T5c,NK,perturbation=PF-04691502,76,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3156246356449625,0.39536095186494313,estimable
+T5c,NK,perturbation=Dactolisib,114,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.587363282039234,0.670816721511532,estimable
+T5c,NK,perturbation=Alogliptin,119,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.20922359738084814,0.34329837254585027,estimable
+T5c,NK,perturbation=Clomipramine,111,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2393907675229332,0.3631473297713357,estimable
+T5c,NK,perturbation=Protriptyline,119,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2068604269457522,0.34002107965435646,estimable
+T5c,NK,perturbation=Phenylbutazone,109,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.1843022459101065,0.3065960261326145,estimable
+T5c,NK,perturbation=Pomalidomide,107,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.44538765163141286,0.5440246363395483,estimable
+T5c,NK,perturbation=FK 866,89,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3102596097835,0.4021782572798879,estimable
+T5c,NK,perturbation=Perhexiline,78,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.29927353735401796,0.3842103078418427,estimable
+T5c,NK,perturbation=BMS-536924,111,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3224831980737784,0.43389102875703034,estimable
+T5c,NK,perturbation=Penfluridol,102,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2561504063951843,0.3679668556408228,estimable
+T5c,NK,perturbation=Sunitinib,108,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.16574063512762083,0.28790533225315673,estimable
+T5c,NK,perturbation=I-BET151,83,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.45490007044008424,0.5329798196870356,estimable
+T5c,NK,perturbation=K-02288,114,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.17251187173022983,0.30460867707318146,estimable
+T5c,NK,perturbation=Dovitinib,93,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.259453662646097,0.36019813064997563,estimable
+T5c,NK,perturbation=Chlorpheniramine,104,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.19728117968923786,0.3151778841558005,estimable
+T5c,NK,perturbation=UNII-BXU45ZH6LI,3,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,,,fewer than six treated cells
+T5c,NK,perturbation=IKK Inhibitor VII,86,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.29268162845345846,0.38666175397356417,estimable
+T5c,NK,perturbation=Quizartinib,109,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.15650627628982505,0.2827789573342941,estimable
+T5c,NK,perturbation=Tivozanib,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.20529845425622043,0.3369336144117538,estimable
+T5c,NK,perturbation=Foretinib,93,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2848722105285043,0.3852139101880464,estimable
+T5c,NK,perturbation=BMS-777607,104,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.18587916639554472,0.30356822468659406,estimable
+T5c,NK,perturbation=AVL-292,115,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2655263329688031,0.388905443035639,estimable
+T5c,NK,perturbation=Scriptaid,107,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.5675540627032999,0.650394858995653,estimable
+T5c,NK,perturbation=RVX-208,104,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.21628140712178331,0.3309431578511141,estimable
+T5c,NK,perturbation=Amiodarone,105,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.19853637857565037,0.31744978172386484,estimable
+T5c,NK,perturbation=RN-486,96,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.16633171879607112,0.28129358423194106,estimable
+T5c,NK,perturbation=Tamatinib,87,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.35555288364188764,0.44376873655689136,estimable
+T5c,NK,perturbation=GW843682X,108,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.1698660384512178,0.29733503856638716,estimable
+T5c,NK,perturbation=Porcn Inhibitor III,108,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.32281005832721454,0.4354731387074184,estimable
+T5c,NK,perturbation=Navitoclax,69,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.18947954469124614,0.2759373969975683,estimable
+T5c,NK,perturbation=BAY 61-3606,84,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.39814314136599394,0.4795561293597963,estimable
+T5c,NK,perturbation=Ketoconazole,72,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.5957206855511259,0.6517037272942946,estimable
+T5c,NK,perturbation=Isoniazid,93,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.13052225035741513,0.24202503051937804,estimable
+T5c,NK,perturbation=PD-0325901,86,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3049872966349458,0.3980531767897956,estimable
+T5c,NK,perturbation=TIE2 Kinase Inhibitor,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.16175624176365308,0.2991263569464625,estimable
+T5c,NK,perturbation=CGP 60474,6,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.20723716152234092,0.2177182785242281,estimable
+T5c,NK,perturbation=BMS-387032,74,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.35114311099389944,0.4248534690545059,estimable
+T5c,NK,perturbation=TL_HRAS26,111,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.1538443730628323,0.280852990557073,estimable
+T5c,NK,perturbation=Methotrexate,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.318546686291099,0.4441626322082495,estimable
+T5c,NK,perturbation=LY2090314,110,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.6221067161170075,0.702376464429263,estimable
+T5c,NK,perturbation=Alvocidib,2,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,,,fewer than six treated cells
+T5c,NK,perturbation=IMD-0354,65,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.334937062190502,0.4047870534066786,estimable
+T5c,NK,perturbation=MK-5108,112,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2576478145442734,0.3776549830780999,estimable
+T5c,NK,perturbation=Ixabepilone,106,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.21721456786740168,0.33794259958877376,estimable
+T5c,NK,perturbation=IN1451,35,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.5545354218524127,0.5832878001200615,estimable
+T5c,NK,perturbation=Proscillaridin A;Proscillaridin-A,95,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.8320163312738066,0.8735744743908154,estimable
+T5c,NK,perturbation=Palbociclib,112,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.21817321655219846,0.3416188657890237,estimable
+T5c,NK,perturbation=Vardenafil,98,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2023784007406319,0.3137611053411058,estimable
+T5c,NK,perturbation=Disulfiram,101,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.20047384064600743,0.3160587433655759,estimable
+T5c,NK,perturbation=Canertinib,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.27776208708501987,0.4059627309152667,estimable
+T5c,NK,perturbation=Lapatinib,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2066589272880145,0.3416981320261269,estimable
+T5c,NK,perturbation=Linagliptin,118,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2486024513127474,0.3803483685963609,estimable
+T5c,NK,perturbation=Raloxifene,105,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3360948506136051,0.4409531980660516,estimable
+T5c,NK,perturbation=Vorinostat,87,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.4767186307516965,0.5599368941410834,estimable
+T5c,NK,perturbation=Trametinib,103,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.29667228649122324,0.40186052650321036,estimable
+T5c,NK,perturbation=Dasatinib,63,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2775248038923147,0.3466499908283207,estimable
+T5c,NK,perturbation=Flutamide,77,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.1576130155361178,0.24933990065360156,estimable
+T5c,NK,perturbation=Idelalisib,98,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2554076647838406,0.3608642808949106,estimable
+T5c,NK,perturbation=Riociguat,117,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.23043845717519293,0.357007985255925,estimable
+T5c,NK,perturbation=Azacitidine,108,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.15409310050520353,0.2798203282972678,estimable
+T5c,NK,perturbation=TGX 221,100,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.27769299087516247,0.38343985312401935,estimable
+T5c,NK,perturbation=CGM-097,84,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.48309593461690703,0.5605534023051959,estimable
+T5c,NK,perturbation=Clemastine,112,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2142914157570706,0.33523333918971965,estimable
+T5c,NK,perturbation=Imatinib,83,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.15631508747428358,0.25622811720310346,estimable
+T5c,NK,perturbation=Tipifarnib,108,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.22511600524986408,0.34521527016714715,estimable
+T5c,NK,perturbation=RG7090,102,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.33390688293420395,0.43548251986301323,estimable
+T5c,NK,perturbation=CHIR-99021,117,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3934593834728009,0.5070482810694298,estimable
+T5c,NK,perturbation=TR-14035,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.23201208815639532,0.36027097529078494,estimable
+T5c,NK,perturbation=Pitavastatin Calcium,112,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.7022211870624328,0.767405071639496,estimable
+T5c,NK,perturbation=SLx-2119,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.20490975823914795,0.3357902178979586,estimable
+T5c,NK,perturbation=YK 4-279,111,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.4045192642814265,0.510562898192681,estimable
+T5c,NK,perturbation=SCH-58261,94,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.20654591378143736,0.3155849752093041,estimable
+T5c,NK,perturbation=BX 912,93,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2381216777862034,0.3407214603479729,estimable
+T5c,NK,perturbation=GLPG0634,115,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3123631196213814,0.4259564378808048,estimable
+T5c,NK,perturbation=Defactinib,102,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.24108631951860182,0.3531998591527084,estimable
+T5c,NK,perturbation=Nilotinib,91,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2805285768494462,0.3765684449914409,estimable
+T5c,NK,perturbation=ABT737,54,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.16167081557176097,0.23090564685994977,estimable
+T5c,NK,perturbation=Nefazodone,91,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.171054707588811,0.27615759497965525,estimable
+T5c,NK,perturbation=Buspirone,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.16076012155292663,0.2928472321305195,estimable
+T5c,NK,perturbation=Colforsin,117,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.22911391754641208,0.3586157535078278,estimable
+T5c,NK,perturbation=Doxorubicin,102,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.4003580623640973,0.4990584507895288,estimable
+T5c,NK,perturbation=Mubritinib (TAK 165),99,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.37320382577752603,0.4673251347070929,estimable
+T5c,NK,perturbation=BI-D1870,78,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.24728438400626807,0.33400510504607034,estimable
+T5c,NK,perturbation=AT 7867,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.29656955349397585,0.41686820462002816,estimable
+T5c,NK,perturbation=PRT-062607,99,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2848769678431779,0.3881490072280039,estimable
+T5c,NK,perturbation=STK219801,106,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.1831572369174681,0.30138838279995217,estimable
+T5c,NK,perturbation=Midostaurin,102,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3011753505770298,0.4062710492908855,estimable
+T5c,NK,perturbation=PF-03814735,109,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3674340383276366,0.4738172613186078,estimable
+T5c,NK,perturbation=Vanoxerine,111,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.19580866389884477,0.3141325658682003,estimable
+T5c,NK,perturbation=AZD3514,99,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.20840427150740265,0.3181297117189108,estimable
+T5c,NK,perturbation=OSI-930,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.20574421343372074,0.34013758497532914,estimable
+T5c,NK,perturbation=AZ628,103,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2616423292904932,0.3722458440964563,estimable
+T5c,NK,perturbation=TPCA-1,88,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.37078355221028375,0.4582860549996941,estimable
+T5c,NK,perturbation=CEP-37440,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.19355192650667621,0.32478639977419305,estimable
+T5c,NK,perturbation=Tivantinib,92,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.11949402019891613,0.22974372659428371,estimable
+T5c,NK,perturbation=AZD4547,87,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.16785775274206538,0.2707286010225307,estimable
+T5c,NK,perturbation=SB525334,118,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.4117935524332967,0.5205091291107353,estimable
+T5c,NK,perturbation=HMN-214,111,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.4252576610303865,0.5289621727902812,estimable
+T5c,NK,perturbation=GO-6976,100,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3968687518383502,0.49549270971486065,estimable
+T5c,NK,perturbation=AZD-8330,117,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.332190880371796,0.4484613841576764,estimable
+T5c,NK,perturbation=MGCD-265,103,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.15000467195505557,0.2678519398834371,estimable
+T5c,NK,perturbation=GSK256066,113,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.41235788852172084,0.5133607141926441,estimable
+T5c,NK,perturbation=Tosedostat,87,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.18067574149523724,0.2811527521768527,estimable
+T5c,NK,perturbation=Prednisolone,101,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.5065456807751891,0.5902746216258926,estimable
+T5c,NK,perturbation=HYDROXYUREA,109,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.23330600189569922,0.35010180678769787,estimable
+T5c,NK,perturbation=Decitabine,102,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.16904823537174263,0.2898041964143135,estimable
+T5c,NK,perturbation=CC-401,106,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.25667590009021846,0.36930428516829217,estimable
+T5c,NK,perturbation=Saracatinib,116,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3304215713635562,0.44845900378550996,estimable
+T5c,NK,perturbation=Masitinib,117,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.24317051889078428,0.3688739130648822,estimable
+T5c,NK,perturbation=GSK-1070916,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.192038430169911,0.3249157971907792,estimable
+T5c,NK,perturbation=R428,69,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.22885687225226742,0.3075374180124023,estimable
+T5c,NK,perturbation=Colchicine,100,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2512814079748976,0.35814178457085455,estimable
+T5c,NK,perturbation=Tacalcitol,98,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.22340638122283007,0.3282007851812719,estimable
+T5c,NK,perturbation=LDN 193189,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.22817281453703217,0.361425342936946,estimable
+T5c,NK,perturbation=Resminostat,109,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.5155045573292312,0.6074251120608674,estimable
+T5c,NK,perturbation=RG7112,120,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.25550831349935044,0.3835323469395787,estimable
+T5c,NK,perturbation=Ricolinostat,100,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.16230202741456637,0.2809119648100471,estimable
+T5c,NK,perturbation=Oxybenzone,106,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.17775860825885523,0.2990514471045782,estimable
+T5c,NK,perturbation=ABT-199 (GDC-0199),105,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.21633571637982318,0.33522675072772395,estimable
+T5c,NK,perturbation=Selumetinib,92,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2584907644967282,0.35743704177043756,estimable
+T5c,NK,perturbation=Cabozantinib,112,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.28866001934337615,0.40776405396474497,estimable
+T5c,NK,perturbation=Crizotinib,98,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2534975740484994,0.3612884828654374,estimable
+T5c,NK,perturbation=Lamivudine,101,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.18429405096578186,0.3005925291136899,estimable
+T5c,NK,perturbation=Ceritinib,108,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.2596211602056615,0.37452282572857454,estimable
+T5c,NK,perturbation=Bosutinib,105,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.3521143828016621,0.4554328002556091,estimable
+T5c,NK,perturbation=Vandetanib,113,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.17510700015769143,0.30196555008060755,estimable
+T5c,NK,perturbation=Mometasone Furoate,78,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.4890837093989039,0.5578280895846944,estimable
+T5c,NK,perturbation=Clotrimazole,109,360,2000,100,1738617127,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz,0.21068646575277364,0.32861140011983525,estimable
+T5c,T_cells,perturbation=Atorvastatin,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2276311976181547,0.357637335814694,estimable
+T5c,T_cells,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.4938820902125504,0.5958289937582272,estimable
+T5c,T_cells,perturbation=Topotecan,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.26250257183058434,0.3875737594119459,estimable
+T5c,T_cells,perturbation=BMS-265246,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.39541585080852765,0.5040144517736803,estimable
+T5c,T_cells,perturbation=AMD-070 (hydrochloride),120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2249043379005146,0.35313216011402765,estimable
+T5c,T_cells,perturbation=AT13387,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.7081602255789791,0.773229081205715,estimable
+T5c,T_cells,perturbation=Desloratadine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.22447202355562396,0.3571462206077583,estimable
+T5c,T_cells,perturbation=Ganetespib (STA-9090),120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.7471896671174296,0.8064435232512182,estimable
+T5c,T_cells,perturbation=O-Demethylated Adapalene,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.20451519798601236,0.34198271560705534,estimable
+T5c,T_cells,perturbation=BAY 87-2243,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.499333688286686,0.6009598034070815,estimable
+T5c,T_cells,perturbation=Ruxolitinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3700910317633408,0.48766421153938966,estimable
+T5c,T_cells,perturbation=Sgc-cbp30,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.14622401203142504,0.2857455802482251,estimable
+T5c,T_cells,perturbation=PF-04691502,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.4022849244221463,0.5135040899344209,estimable
+T5c,T_cells,perturbation=Dactolisib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5656460712506803,0.6550007120183108,estimable
+T5c,T_cells,perturbation=Alogliptin,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.21386046378683915,0.34729131689150555,estimable
+T5c,T_cells,perturbation=Clomipramine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.24828618693607762,0.377908114579355,estimable
+T5c,T_cells,perturbation=Protriptyline,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.17625793623599964,0.31083127894428025,estimable
+T5c,T_cells,perturbation=Phenylbutazone,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.1793653363281774,0.31471023138185983,estimable
+T5c,T_cells,perturbation=Pomalidomide,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3934659650336582,0.5123928404887541,estimable
+T5c,T_cells,perturbation=FK 866,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.31040178897400583,0.4316577089523124,estimable
+T5c,T_cells,perturbation=Perhexiline,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.36654910824371884,0.4808948370789256,estimable
+T5c,T_cells,perturbation=BMS-536924,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.4062013979130485,0.5186756300614763,estimable
+T5c,T_cells,perturbation=Penfluridol,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.1866812158260129,0.32430819584398635,estimable
+T5c,T_cells,perturbation=Sunitinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2294747200469998,0.3577825691620014,estimable
+T5c,T_cells,perturbation=I-BET151,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5878982598390726,0.6755800306017002,estimable
+T5c,T_cells,perturbation=K-02288,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2049800322027172,0.33921091476131005,estimable
+T5c,T_cells,perturbation=Dovitinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.270110773832369,0.3995473894206257,estimable
+T5c,T_cells,perturbation=Chlorpheniramine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.18480687208012112,0.3163933711907483,estimable
+T5c,T_cells,perturbation=UNII-BXU45ZH6LI,85,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5311302132372999,0.5997931283359524,estimable
+T5c,T_cells,perturbation=IKK Inhibitor VII,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3888469999207254,0.5061152375202272,estimable
+T5c,T_cells,perturbation=Quizartinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.17279500061239278,0.3043305301790655,estimable
+T5c,T_cells,perturbation=Tivozanib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.21440630717043196,0.3474153563988661,estimable
+T5c,T_cells,perturbation=Foretinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2933334615802569,0.42114984050098153,estimable
+T5c,T_cells,perturbation=BMS-777607,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.23006778801081557,0.36046392834330204,estimable
+T5c,T_cells,perturbation=AVL-292,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2729590018213277,0.39902984539748204,estimable
+T5c,T_cells,perturbation=Scriptaid,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.544299177248185,0.6398658519400837,estimable
+T5c,T_cells,perturbation=RVX-208,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.244752009164817,0.37459515713509156,estimable
+T5c,T_cells,perturbation=Amiodarone,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.14331669903567082,0.2808666511423105,estimable
+T5c,T_cells,perturbation=RN-486,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.15787404959838156,0.29660364912191506,estimable
+T5c,T_cells,perturbation=Tamatinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.41959536272462006,0.5282397517533959,estimable
+T5c,T_cells,perturbation=GW843682X,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.238473857862428,0.37321024563708727,estimable
+T5c,T_cells,perturbation=Porcn Inhibitor III,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.23142893977521387,0.3605613506271749,estimable
+T5c,T_cells,perturbation=Navitoclax,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19428794096050367,0.3336264159298982,estimable
+T5c,T_cells,perturbation=BAY 61-3606,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5299510154440985,0.6202223397553998,estimable
+T5c,T_cells,perturbation=Ketoconazole,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5367781280958127,0.6325521563202592,estimable
+T5c,T_cells,perturbation=Isoniazid,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.18264039367495336,0.3214906497817772,estimable
+T5c,T_cells,perturbation=PD-0325901,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.34905468767242454,0.4683462209659384,estimable
+T5c,T_cells,perturbation=TIE2 Kinase Inhibitor,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.20445911065080075,0.33541953026582566,estimable
+T5c,T_cells,perturbation=CGP 60474,81,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.8565113252367208,0.8850317962357818,estimable
+T5c,T_cells,perturbation=BMS-387032,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5643698554623314,0.650291131069984,estimable
+T5c,T_cells,perturbation=TL_HRAS26,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2184150488538167,0.3529969772610187,estimable
+T5c,T_cells,perturbation=Methotrexate,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.30834358950609686,0.4311424892078238,estimable
+T5c,T_cells,perturbation=LY2090314,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.7058180613448479,0.7792207304329711,estimable
+T5c,T_cells,perturbation=Alvocidib,45,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.7158919359652579,0.7465402110285656,estimable
+T5c,T_cells,perturbation=IMD-0354,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5557348221801466,0.6458731171212804,estimable
+T5c,T_cells,perturbation=MK-5108,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19329521847073633,0.3259097563081413,estimable
+T5c,T_cells,perturbation=Ixabepilone,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2384496100614047,0.37535770797837964,estimable
+T5c,T_cells,perturbation=IN1451,105,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.8057409169946352,0.8446663031432897,estimable
+T5c,T_cells,perturbation=Proscillaridin A;Proscillaridin-A,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.7892931271429963,0.8430834342301439,estimable
+T5c,T_cells,perturbation=Palbociclib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.22888389627764752,0.35889773939292346,estimable
+T5c,T_cells,perturbation=Vardenafil,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19720125860564014,0.3309439392116167,estimable
+T5c,T_cells,perturbation=Disulfiram,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.21042646551774954,0.3457363271664602,estimable
+T5c,T_cells,perturbation=Canertinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2770033210114443,0.40415345901802546,estimable
+T5c,T_cells,perturbation=Lapatinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2092956789083348,0.3443828631676567,estimable
+T5c,T_cells,perturbation=Linagliptin,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19281346170682118,0.32872892748120774,estimable
+T5c,T_cells,perturbation=Raloxifene,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.26205056459917553,0.39159664120765814,estimable
+T5c,T_cells,perturbation=Vorinostat,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5225544607306648,0.6214526187859722,estimable
+T5c,T_cells,perturbation=Trametinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2308194960189445,0.3600542332322095,estimable
+T5c,T_cells,perturbation=Dasatinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.4393026891498789,0.5434438188166617,estimable
+T5c,T_cells,perturbation=Flutamide,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.21494856824244038,0.3498467383722992,estimable
+T5c,T_cells,perturbation=Idelalisib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3068796533245893,0.42975868211139007,estimable
+T5c,T_cells,perturbation=Riociguat,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.16991505558186323,0.3089357703158077,estimable
+T5c,T_cells,perturbation=Azacitidine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.22262088657404505,0.3534659751003457,estimable
+T5c,T_cells,perturbation=TGX 221,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.309061435354095,0.43223828150158583,estimable
+T5c,T_cells,perturbation=CGM-097,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.494770170358094,0.5948520720528642,estimable
+T5c,T_cells,perturbation=Clemastine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2703082632907293,0.3953174493941764,estimable
+T5c,T_cells,perturbation=Imatinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19929026623217813,0.33322103856537827,estimable
+T5c,T_cells,perturbation=Tipifarnib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.26488695096669274,0.3952627318655857,estimable
+T5c,T_cells,perturbation=RG7090,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2582457682503614,0.3803339207811052,estimable
+T5c,T_cells,perturbation=CHIR-99021,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.41215217946208765,0.5283192402109544,estimable
+T5c,T_cells,perturbation=TR-14035,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.25727344481030145,0.3841960200122304,estimable
+T5c,T_cells,perturbation=Pitavastatin Calcium,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5568025051330003,0.649341178277856,estimable
+T5c,T_cells,perturbation=SLx-2119,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.22345225808186558,0.35310681481842676,estimable
+T5c,T_cells,perturbation=YK 4-279,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.298355472600938,0.42319776124939684,estimable
+T5c,T_cells,perturbation=SCH-58261,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19576806692558876,0.32859500255971197,estimable
+T5c,T_cells,perturbation=BX 912,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3653387646337667,0.4811337585967335,estimable
+T5c,T_cells,perturbation=GLPG0634,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3343675360761281,0.44923266710270077,estimable
+T5c,T_cells,perturbation=Defactinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.23909103689759326,0.3692290896678964,estimable
+T5c,T_cells,perturbation=Nilotinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3635857681376239,0.4801401573190682,estimable
+T5c,T_cells,perturbation=ABT737,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.1717686990652975,0.31097951301151405,estimable
+T5c,T_cells,perturbation=Nefazodone,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.18757991534999108,0.31753228941439643,estimable
+T5c,T_cells,perturbation=Buspirone,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.17179904911083954,0.3045786649215738,estimable
+T5c,T_cells,perturbation=Colforsin,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.21805389158873228,0.34838378630929595,estimable
+T5c,T_cells,perturbation=Doxorubicin,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.4817547951765631,0.584771164996946,estimable
+T5c,T_cells,perturbation=Mubritinib (TAK 165),120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3496412741192617,0.4634663680203924,estimable
+T5c,T_cells,perturbation=BI-D1870,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.22957754156735327,0.36238357196888804,estimable
+T5c,T_cells,perturbation=AT 7867,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.31378747390134687,0.43602248100882224,estimable
+T5c,T_cells,perturbation=PRT-062607,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.35209607627805134,0.46806420273723076,estimable
+T5c,T_cells,perturbation=STK219801,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2504021683096286,0.377896189698418,estimable
+T5c,T_cells,perturbation=Midostaurin,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.37806224907654845,0.49279561036981695,estimable
+T5c,T_cells,perturbation=PF-03814735,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.4325600920889851,0.5391984635822351,estimable
+T5c,T_cells,perturbation=Vanoxerine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19013999079699262,0.32117898800172173,estimable
+T5c,T_cells,perturbation=AZD3514,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2017226300034618,0.33437300501041706,estimable
+T5c,T_cells,perturbation=OSI-930,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.16689678071041747,0.3026827436117971,estimable
+T5c,T_cells,perturbation=AZ628,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3141132180102097,0.4390657769894027,estimable
+T5c,T_cells,perturbation=TPCA-1,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3928296284042203,0.5031374273620132,estimable
+T5c,T_cells,perturbation=CEP-37440,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2279861335291424,0.35360680663668376,estimable
+T5c,T_cells,perturbation=Tivantinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.17615516349243596,0.31138676009039107,estimable
+T5c,T_cells,perturbation=AZD4547,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19680767547107839,0.32934687588558076,estimable
+T5c,T_cells,perturbation=SB525334,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.24138941770049804,0.36830429396965725,estimable
+T5c,T_cells,perturbation=HMN-214,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.39887066226735873,0.5107707553465155,estimable
+T5c,T_cells,perturbation=GO-6976,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3693668470232834,0.4841003344885754,estimable
+T5c,T_cells,perturbation=AZD-8330,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2619928773930922,0.38776979789125704,estimable
+T5c,T_cells,perturbation=MGCD-265,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.17973108045206965,0.31317622560853325,estimable
+T5c,T_cells,perturbation=GSK256066,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3004193319597742,0.418782576305383,estimable
+T5c,T_cells,perturbation=Tosedostat,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2482989331936091,0.3763272038082052,estimable
+T5c,T_cells,perturbation=Prednisolone,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5265853175201418,0.6204706376426832,estimable
+T5c,T_cells,perturbation=HYDROXYUREA,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.18465181533063946,0.31404432188602377,estimable
+T5c,T_cells,perturbation=Decitabine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.13210472557869013,0.2733235303227605,estimable
+T5c,T_cells,perturbation=CC-401,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.28597149970202884,0.4093774715067665,estimable
+T5c,T_cells,perturbation=Saracatinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.3306609419567309,0.4514303963850056,estimable
+T5c,T_cells,perturbation=Masitinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2119776065567671,0.34715925063309705,estimable
+T5c,T_cells,perturbation=GSK-1070916,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19217441793225842,0.32179483996558306,estimable
+T5c,T_cells,perturbation=R428,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2909640981147229,0.41483806937300066,estimable
+T5c,T_cells,perturbation=Colchicine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.35019763204181475,0.4686085623525578,estimable
+T5c,T_cells,perturbation=Tacalcitol,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2514336986781549,0.37632133095373627,estimable
+T5c,T_cells,perturbation=LDN 193189,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.20154325924605526,0.33394847764184404,estimable
+T5c,T_cells,perturbation=Resminostat,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.5244755833150222,0.6230775348734173,estimable
+T5c,T_cells,perturbation=RG7112,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.30616150752666316,0.4301356306030354,estimable
+T5c,T_cells,perturbation=Ricolinostat,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.12227121623603322,0.26151664643949785,estimable
+T5c,T_cells,perturbation=Oxybenzone,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.1994149537831535,0.3318569502730545,estimable
+T5c,T_cells,perturbation=ABT-199 (GDC-0199),120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.16434937932325583,0.30335967374940503,estimable
+T5c,T_cells,perturbation=Selumetinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.24270738699108618,0.3680405603683563,estimable
+T5c,T_cells,perturbation=Cabozantinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.22598244737913803,0.3572170827929007,estimable
+T5c,T_cells,perturbation=Crizotinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.38408383179163613,0.4976853342088588,estimable
+T5c,T_cells,perturbation=Lamivudine,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2023453024982442,0.33686537106923325,estimable
+T5c,T_cells,perturbation=Ceritinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.2621758179254758,0.39064561509193463,estimable
+T5c,T_cells,perturbation=Bosutinib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.405832291156469,0.5164118487607321,estimable
+T5c,T_cells,perturbation=Vandetanib,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.20460385364540742,0.3367518402385757,estimable
+T5c,T_cells,perturbation=Mometasone Furoate,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.594595532015923,0.6789365608706244,estimable
+T5c,T_cells,perturbation=Clotrimazole,120,360,2000,100,636778975,predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz,0.19750137288275155,0.32492672026754077,estimable
+T5u,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine|cell_type_coarse=Mono,29,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8502074156660473,0.8571002735753368,estimable
+T5u,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8753897350945362,0.884111133465052,estimable
+T5u,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine|cell_type_coarse=NK,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8570644464385699,0.8653094444645969,estimable
+T5u,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8529706757923998,0.86297491477618,estimable
+T5u,perturbation=Topotecan,perturbation=Topotecan|cell_type_coarse=NK,116,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8354444614593849,0.8450645365527183,estimable
+T5u,perturbation=Topotecan,perturbation=Topotecan|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8285548192066768,0.8400905646371456,estimable
+T5u,perturbation=Topotecan,perturbation=Topotecan|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.95489429073729,0.9621375123792497,estimable
+T5u,perturbation=Topotecan,perturbation=Topotecan|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7872320069982243,0.8011539893391959,estimable
+T5u,perturbation=Clomipramine,perturbation=Clomipramine|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8402501264902067,0.8513588352118172,estimable
+T5u,perturbation=Clomipramine,perturbation=Clomipramine|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9617443149656394,0.9687895411197246,estimable
+T5u,perturbation=Clomipramine,perturbation=Clomipramine|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8116620346612445,0.8242916520000378,estimable
+T5u,perturbation=Clomipramine,perturbation=Clomipramine|cell_type_coarse=NK,111,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8405911279948238,0.8494991723213832,estimable
+T5u,perturbation=Perhexiline,perturbation=Perhexiline|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8186205548470445,0.8301652763044126,estimable
+T5u,perturbation=Perhexiline,perturbation=Perhexiline|cell_type_coarse=Mono,60,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9266347319499019,0.933344469814622,estimable
+T5u,perturbation=Perhexiline,perturbation=Perhexiline|cell_type_coarse=NK,78,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7998041131343848,0.8076118827673768,estimable
+T5u,perturbation=Perhexiline,perturbation=Perhexiline|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8612485676693646,0.870532867946384,estimable
+T5u,perturbation=BMS-536924,perturbation=BMS-536924|cell_type_coarse=NK,111,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8477363898944033,0.8562440045888063,estimable
+T5u,perturbation=BMS-536924,perturbation=BMS-536924|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8677316025038593,0.876960522217592,estimable
+T5u,perturbation=BMS-536924,perturbation=BMS-536924|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8378298817838514,0.8489261852092939,estimable
+T5u,perturbation=BMS-536924,perturbation=BMS-536924|cell_type_coarse=Mono,53,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9254632100880302,0.9317421216352048,estimable
+T5u,perturbation=Tivozanib,perturbation=Tivozanib|cell_type_coarse=NK,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8395637913510063,0.8491737622659491,estimable
+T5u,perturbation=Tivozanib,perturbation=Tivozanib|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8063416834488162,0.8188371359557785,estimable
+T5u,perturbation=Tivozanib,perturbation=Tivozanib|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8457690925609183,0.8556657411711835,estimable
+T5u,perturbation=Tivozanib,perturbation=Tivozanib|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9603298165328694,0.9674192855877967,estimable
+T5u,perturbation=Navitoclax,perturbation=Navitoclax|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8086155459064517,0.8217778536859739,estimable
+T5u,perturbation=Navitoclax,perturbation=Navitoclax|cell_type_coarse=NK,69,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7700554422410459,0.778585904111181,estimable
+T5u,perturbation=Navitoclax,perturbation=Navitoclax|cell_type_coarse=B,50,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7532372263576136,0.7620905417395855,estimable
+T5u,perturbation=Navitoclax,perturbation=Navitoclax|cell_type_coarse=Mono,119,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9670883504268992,0.9735384697753756,estimable
+T5u,perturbation=TL_HRAS26,perturbation=TL_HRAS26|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9631676917017019,0.9700276654308714,estimable
+T5u,perturbation=TL_HRAS26,perturbation=TL_HRAS26|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8085647720904159,0.8214881824416005,estimable
+T5u,perturbation=TL_HRAS26,perturbation=TL_HRAS26|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.844280000427746,0.8549432933888867,estimable
+T5u,perturbation=TL_HRAS26,perturbation=TL_HRAS26|cell_type_coarse=NK,111,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8259694284134182,0.8358423776788836,estimable
+T5u,perturbation=LY2090314,perturbation=LY2090314|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8558066633741936,0.8664357307052647,estimable
+T5u,perturbation=LY2090314,perturbation=LY2090314|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8616029970309232,0.8728549464154942,estimable
+T5u,perturbation=LY2090314,perturbation=LY2090314|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9615330385609906,0.9675515569183094,estimable
+T5u,perturbation=LY2090314,perturbation=LY2090314|cell_type_coarse=NK,110,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.850591303008082,0.8598113156259227,estimable
+T5u,perturbation=IN1451,perturbation=IN1451|cell_type_coarse=Mono,114,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9625004658191025,0.966691967476386,estimable
+T5u,perturbation=IN1451,perturbation=IN1451|cell_type_coarse=B,81,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8496049918100698,0.8558955317263917,estimable
+T5u,perturbation=IN1451,perturbation=IN1451|cell_type_coarse=T cells,105,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8680210702523277,0.8757518429128262,estimable
+T5u,perturbation=IN1451,perturbation=IN1451|cell_type_coarse=NK,35,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.6643687360270981,0.6696667965917783,estimable
+T5u,perturbation=Proscillaridin A;Proscillaridin-A,perturbation=Proscillaridin A;Proscillaridin-A|cell_type_coarse=NK,95,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9003533880601146,0.9068619194531086,estimable
+T5u,perturbation=Proscillaridin A;Proscillaridin-A,perturbation=Proscillaridin A;Proscillaridin-A|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.903881251911203,0.9114483134924934,estimable
+T5u,perturbation=Proscillaridin A;Proscillaridin-A,perturbation=Proscillaridin A;Proscillaridin-A|cell_type_coarse=Mono,103,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9751687462228942,0.9788464270806834,estimable
+T5u,perturbation=Proscillaridin A;Proscillaridin-A,perturbation=Proscillaridin A;Proscillaridin-A|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8861242236374806,0.8951778886700674,estimable
+T5u,perturbation=Lapatinib,perturbation=Lapatinib|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8469223363020791,0.8574745270510802,estimable
+T5u,perturbation=Lapatinib,perturbation=Lapatinib|cell_type_coarse=NK,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8373487624556332,0.8472977789689443,estimable
+T5u,perturbation=Lapatinib,perturbation=Lapatinib|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8009884476912539,0.8142242187956681,estimable
+T5u,perturbation=Lapatinib,perturbation=Lapatinib|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9605976572369608,0.967585007671197,estimable
+T5u,perturbation=Vorinostat,perturbation=Vorinostat|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8293626886270025,0.8414378537638939,estimable
+T5u,perturbation=Vorinostat,perturbation=Vorinostat|cell_type_coarse=Mono,89,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9435226758768858,0.9508847784487865,estimable
+T5u,perturbation=Vorinostat,perturbation=Vorinostat|cell_type_coarse=B,116,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8580817305240862,0.8684660924523747,estimable
+T5u,perturbation=Vorinostat,perturbation=Vorinostat|cell_type_coarse=NK,87,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7878929931660592,0.7980813911552873,estimable
+T5u,perturbation=Pitavastatin Calcium,perturbation=Pitavastatin Calcium|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8035309777089042,0.8177387270845867,estimable
+T5u,perturbation=Pitavastatin Calcium,perturbation=Pitavastatin Calcium|cell_type_coarse=NK,112,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8555897723764302,0.8644969154741399,estimable
+T5u,perturbation=Pitavastatin Calcium,perturbation=Pitavastatin Calcium|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8700664272355034,0.8793959093356705,estimable
+T5u,perturbation=Pitavastatin Calcium,perturbation=Pitavastatin Calcium|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9709631972767154,0.9761270714878756,estimable
+T5u,perturbation=YK 4-279,perturbation=YK 4-279|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9600603116095863,0.9668280841166221,estimable
+T5u,perturbation=YK 4-279,perturbation=YK 4-279|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8335895483147198,0.8443977176353493,estimable
+T5u,perturbation=YK 4-279,perturbation=YK 4-279|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7598766484423035,0.7754777022883117,estimable
+T5u,perturbation=YK 4-279,perturbation=YK 4-279|cell_type_coarse=NK,111,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8388976479130408,0.8473051182810021,estimable
+T5u,perturbation=SCH-58261,perturbation=SCH-58261|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.793226232004105,0.8062676639852726,estimable
+T5u,perturbation=SCH-58261,perturbation=SCH-58261|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9616045035009193,0.968600570629155,estimable
+T5u,perturbation=SCH-58261,perturbation=SCH-58261|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8426144312170714,0.8538622948617032,estimable
+T5u,perturbation=SCH-58261,perturbation=SCH-58261|cell_type_coarse=NK,94,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8151385143720042,0.8239547761218237,estimable
+T5u,perturbation=AT 7867,perturbation=AT 7867|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8420854375335156,0.8528292465780183,estimable
+T5u,perturbation=AT 7867,perturbation=AT 7867|cell_type_coarse=NK,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8411325028250615,0.8504235685688054,estimable
+T5u,perturbation=AT 7867,perturbation=AT 7867|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9590059871359123,0.9660331090141111,estimable
+T5u,perturbation=AT 7867,perturbation=AT 7867|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7989134104164904,0.8126948311048892,estimable
+T5u,perturbation=PRT-062607,perturbation=PRT-062607|cell_type_coarse=Mono,74,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9353149921811414,0.9420733122378684,estimable
+T5u,perturbation=PRT-062607,perturbation=PRT-062607|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8224099079632485,0.8342373631988659,estimable
+T5u,perturbation=PRT-062607,perturbation=PRT-062607|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.860708279433139,0.8704488921754305,estimable
+T5u,perturbation=PRT-062607,perturbation=PRT-062607|cell_type_coarse=NK,99,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8298203576744821,0.8381494183114655,estimable
+T5u,perturbation=AZD3514,perturbation=AZD3514|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9569145782807476,0.9642369114690833,estimable
+T5u,perturbation=AZD3514,perturbation=AZD3514|cell_type_coarse=NK,99,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8091870041484759,0.8190692139692846,estimable
+T5u,perturbation=AZD3514,perturbation=AZD3514|cell_type_coarse=B,112,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8329785601210362,0.8439529011551324,estimable
+T5u,perturbation=AZD3514,perturbation=AZD3514|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.790376501250369,0.8045173251343072,estimable
+T5u,perturbation=HYDROXYUREA,perturbation=HYDROXYUREA|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9594027003988899,0.9661424106273188,estimable
+T5u,perturbation=HYDROXYUREA,perturbation=HYDROXYUREA|cell_type_coarse=NK,109,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8322797087987952,0.84115360714198,estimable
+T5u,perturbation=HYDROXYUREA,perturbation=HYDROXYUREA|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7864346470629345,0.79975804718247,estimable
+T5u,perturbation=HYDROXYUREA,perturbation=HYDROXYUREA|cell_type_coarse=B,97,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8103484029577112,0.8202592315342452,estimable
+T5u,perturbation=Masitinib,perturbation=Masitinib|cell_type_coarse=NK,117,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8424749062415938,0.8516891669584564,estimable
+T5u,perturbation=Masitinib,perturbation=Masitinib|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9649426878514059,0.9716054362821248,estimable
+T5u,perturbation=Masitinib,perturbation=Masitinib|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8030399910147361,0.8162668907673476,estimable
+T5u,perturbation=Masitinib,perturbation=Masitinib|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8392014638529441,0.8501172658405467,estimable
+T5u,perturbation=GSK-1070916,perturbation=GSK-1070916|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9639940704693204,0.9702961009985238,estimable
+T5u,perturbation=GSK-1070916,perturbation=GSK-1070916|cell_type_coarse=NK,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8420133985995867,0.851599971106113,estimable
+T5u,perturbation=GSK-1070916,perturbation=GSK-1070916|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8308362707458484,0.8418149972211875,estimable
+T5u,perturbation=GSK-1070916,perturbation=GSK-1070916|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.796377965042726,0.8102136224680498,estimable
+T5u,perturbation=Ricolinostat,perturbation=Ricolinostat|cell_type_coarse=NK,100,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8059258010187083,0.8157890141475092,estimable
+T5u,perturbation=Ricolinostat,perturbation=Ricolinostat|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9610791408646944,0.9680993684395929,estimable
+T5u,perturbation=Ricolinostat,perturbation=Ricolinostat|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7800484958857159,0.7942844050304413,estimable
+T5u,perturbation=Ricolinostat,perturbation=Ricolinostat|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8275376926457351,0.8390668321309588,estimable
+T5u,perturbation=ABT-199 (GDC-0199),perturbation=ABT-199 (GDC-0199)|cell_type_coarse=NK,105,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8307322386963502,0.8392795893610532,estimable
+T5u,perturbation=ABT-199 (GDC-0199),perturbation=ABT-199 (GDC-0199)|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9659518879889453,0.9726672698549074,estimable
+T5u,perturbation=ABT-199 (GDC-0199),perturbation=ABT-199 (GDC-0199)|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8012033689912187,0.8148073260442158,estimable
+T5u,perturbation=ABT-199 (GDC-0199),perturbation=ABT-199 (GDC-0199)|cell_type_coarse=B,30,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.6560932140625052,0.6643570502968433,estimable
+T5u,perturbation=Selumetinib,perturbation=Selumetinib|cell_type_coarse=Mono,83,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9415354077726508,0.9480887412495537,estimable
+T5u,perturbation=Selumetinib,perturbation=Selumetinib|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8326143452570964,0.8432282571877081,estimable
+T5u,perturbation=Selumetinib,perturbation=Selumetinib|cell_type_coarse=NK,92,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8184585498359559,0.8266286673784555,estimable
+T5u,perturbation=Selumetinib,perturbation=Selumetinib|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7921558381250684,0.8056311825323251,estimable
+T5u,perturbation=Cabozantinib,perturbation=Cabozantinib|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.768418111874679,0.7836775781225616,estimable
+T5u,perturbation=Cabozantinib,perturbation=Cabozantinib|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.83897540035242,0.8498445343741139,estimable
+T5u,perturbation=Cabozantinib,perturbation=Cabozantinib|cell_type_coarse=NK,112,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8338470950745944,0.8432773118320198,estimable
+T5u,perturbation=Cabozantinib,perturbation=Cabozantinib|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9585338166304722,0.9655422597605233,estimable
+T5u,perturbation=Mometasone Furoate,perturbation=Mometasone Furoate|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.837909874129021,0.848939442513303,estimable
+T5u,perturbation=Mometasone Furoate,perturbation=Mometasone Furoate|cell_type_coarse=Mono,118,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9528811833801345,0.9595154569390988,estimable
+T5u,perturbation=Mometasone Furoate,perturbation=Mometasone Furoate|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8604816580345966,0.8698121312912417,estimable
+T5u,perturbation=Mometasone Furoate,perturbation=Mometasone Furoate|cell_type_coarse=NK,78,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7963931042827522,0.804341974609641,estimable
+T5u,perturbation=Clotrimazole,perturbation=Clotrimazole|cell_type_coarse=Mono,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.9634796231925775,0.970146761977842,estimable
+T5u,perturbation=Clotrimazole,perturbation=Clotrimazole|cell_type_coarse=T cells,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.7744342041723844,0.7887363760675078,estimable
+T5u,perturbation=Clotrimazole,perturbation=Clotrimazole|cell_type_coarse=B,120,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8231182610219417,0.8349646784770797,estimable
+T5u,perturbation=Clotrimazole,perturbation=Clotrimazole|cell_type_coarse=NK,109,1440,2000,100,2900674341,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz,0.8335881831929427,0.8421964216034884,estimable

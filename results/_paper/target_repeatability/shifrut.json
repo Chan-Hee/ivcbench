@@ -1,0 +1,19 @@
+{
+  "dataset": "shifrut",
+  "inputs": [
+    {
+      "task_key": "T3",
+      "unit": "shifrut",
+      "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__shifrut.npz",
+      "sha256": "a4a1ba200f4663868c5942e65a50af411394e8a4dbfb134f29dbb56dee27e196",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "122fd1c0166769926e446b89b63049e339f8872135521cdc983521a0cf57d7f8",
+      "n_strata": 2,
+      "partitions": 100,
+      "independent_control_halves": true
+    }
+  ],
+  "elapsed_seconds": 46.642732340376824,
+  "scope": "cell-sampling repeatability on exact held targets, not biological replication or an accuracy bound"
+}

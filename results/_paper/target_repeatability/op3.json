@@ -1,0 +1,67 @@
+{
+  "dataset": "op3",
+  "inputs": [
+    {
+      "task_key": "T5c",
+      "unit": "B",
+      "bundle": "predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz",
+      "sha256": "05ed4d198c5a1856d35473f8a7af90ebe90d3362d45c1709d2c3cd37bc6f5a18",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 141,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T5c",
+      "unit": "Mono",
+      "bundle": "predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz",
+      "sha256": "1362e429ed22f8a116b4ca36284ea199869a00d3f79b436e7873f01a22d31190",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 140,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T5c",
+      "unit": "NK",
+      "bundle": "predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz",
+      "sha256": "2148618cbb8c2f67208f2b8fa277378aa409458479325c26da6dc020dbac0c12",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 141,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T5c",
+      "unit": "T_cells",
+      "bundle": "predictions/C5/C1_LOCT__cell-mean__C5_loct_T_cells.npz",
+      "sha256": "c9012c190f39abd7522b7908ec9bb96c8ff7929cd710f19db63a625bde481e58",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 141,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T5u",
+      "unit": "perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine",
+      "bundle": "predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz",
+      "sha256": "0f33f3611cdcae03ef9eb27c29898056686a7923fe48415ea8cdb4357a8c6445",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 112,
+      "partitions": 100,
+      "independent_control_halves": true
+    }
+  ],
+  "elapsed_seconds": 62.806749023962766,
+  "scope": "cell-sampling repeatability on exact held targets, not biological replication or an accuracy bound"
+}

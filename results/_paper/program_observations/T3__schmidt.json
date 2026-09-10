@@ -1,0 +1,15 @@
+{
+  "task_key": "T3",
+  "unit": "schmidt",
+  "floor_bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz",
+  "floor_sha256": "463a2154d4f8beb1f50fbc827e17c71c9cc7353d5f2159272c588e8ee8f258fd",
+  "observed_max_difference": 0.0,
+  "control_max_difference": 0.0,
+  "n_cells": 1851,
+  "n_controls": 300,
+  "n_strata": 7,
+  "n_genes": 2000,
+  "method": "mean per-cell AUCell-like score, top 5%; original argsort tie convention",
+  "targets": "exact census held observations; no model refitting",
+  "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
+}

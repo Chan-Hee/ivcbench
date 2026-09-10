@@ -1,0 +1,19 @@
+{
+  "dataset": "chen",
+  "inputs": [
+    {
+      "task_key": "T3",
+      "unit": "chen",
+      "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__chen.npz",
+      "sha256": "84e07c43666e7cf48c1358d177547ce800b088390c30ba213202128124d0494c",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "5fbd500a75bb5939cb19232f70d382d3699ab871c3086d89df357895533e822d",
+      "n_strata": 30,
+      "partitions": 100,
+      "independent_control_halves": true
+    }
+  ],
+  "elapsed_seconds": 775.1923439661041,
+  "scope": "cell-sampling repeatability on exact held targets, not biological replication or an accuracy bound"
+}

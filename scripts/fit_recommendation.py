@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-"""Mechanical implementation of PRE-REGISTRATION rule (5): the DESCRIPTIVE / EXPLORATORY
+"""Mechanical implementation of internal analysis-plan rule (5): the DESCRIPTIVE / EXPLORATORY
 fit-recommendation matrix.
 
 This is NOT a hypothesis test. It is a transparent, mechanical reading of a results table that, for each
-(task, model family), reports whether the family "works" under the pre-registered rule:
+(task, model family), reports whether the family "works" under the prespecified descriptive rule:
 
     A family WORKS on a task iff at least one of its models exceeds the UNIVERSAL SIMPLE FLOOR
     {cell-mean shift, linear-PCA shift} with a cluster-bootstrap CI_low > 0 on the headline
@@ -22,7 +22,9 @@ Output: the descriptive fit matrix as CSV (and JSON), one row per (cluster, spli
             (family name if it works, else "simple-floor"), and ci_source.
 
 No hardcoded numbers, no per-cluster special-casing of the verdict: the rule is applied identically to
-every (task, family). Governed by benchmark/PREREGISTRATION.md section (5). Deterministic (seeded).
+every (task, family). The governing design document is an internally prespecified, deposited analysis
+plan; the available repository history does not establish a formal public pre-result registration.
+Deterministic (seeded).
 """
 from __future__ import annotations
 
@@ -34,7 +36,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-# ---- pre-registered constants (PREREGISTRATION.md sections 2, 5) --------------------------------------
+# ---- internally prespecified constants (analysis-plan sections 2, 5) ---------------------------------
 UNIVERSAL_FLOOR = ["cell-mean", "linear-PCA"]          # section (2): THE universal simple floor
 CONTEXT_BASELINES = ["FP-ridge", "donor-shift"]        # context only, never the headline floor
 SANITY_BASELINES = ["ctrl-pred"]                       # degeneracy check, not a floor
@@ -149,7 +151,7 @@ def _per_row_ci_gap(rows: pd.DataFrame, fam_baselines: list[str], metric: str):
 def fit_matrix(df: pd.DataFrame, metric: str | None = None, unit_col_override: str | None = None,
                B: int = B_DEFAULT, seed: int = SEED_DEFAULT,
                include_context: bool = False) -> pd.DataFrame:
-    """Apply the pre-registered descriptive fit-recommendation rule to every (cluster, split, family)."""
+    """Apply the prespecified descriptive fit-recommendation rule to every (cluster, split, family)."""
     rng = np.random.default_rng(seed)
     df = _eligible(df)
     if "cluster" not in df.columns:

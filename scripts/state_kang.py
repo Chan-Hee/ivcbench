@@ -53,8 +53,23 @@ from ivcbench.baselines.heavy import env_python
 RUNNER = ROOT / "model_runners" / "state_c1_runner.py"
 STATE_ENV = "ivc-state"
 
-IFN_LIST = ["ISG15", "IFI6", "MX1", "MX2", "OAS1", "OAS2", "IFIT1", "IFIT3", "ISG20",
-            "STAT1", "IRF7", "IFI44", "IFI44L", "RSAD2", "USP18"]
+IFN_LIST = [
+    "ISG15",
+    "IFI6",
+    "MX1",
+    "MX2",
+    "OAS1",
+    "OAS2",
+    "IFIT1",
+    "IFIT3",
+    "ISG20",
+    "STAT1",
+    "IRF7",
+    "IFI44",
+    "IFI44L",
+    "RSAD2",
+    "USP18",
+]
 
 # anchor band (from the STATE-Soskic donor cell-axis run: 100% in [-0.10, 0.50], mean ~0.17)
 ANCHOR_LO, ANCHOR_HI = -0.10, 0.60
@@ -70,14 +85,17 @@ def lineages_for(cs):
 def baseline_preds(cs, sp):
     out = {}
     for B in (CtrlPred, CellMean, DonorShift, LinearPCA):
-        b = B(); b.fit(cs, sp, side_info=cs.side_info); out[b.name] = b.predict(cs, sp, side_info=cs.side_info)
+        b = B()
+        b.fit(cs, sp, side_info=cs.side_info)
+        out[b.name] = b.predict(cs, sp, side_info=cs.side_info)
     return out
 
 
 def run_state_on_split(cs, sp, seed, held_lineage, cuda_device, steps, smoke=False):
     """Build the leak-safe per-fold payload (held lineage = unit, donors = strata), shell the STATE-C1
     runner in the ivc-state env, and return {donor: predicted IFN-β profile (n_genes,)} for the held
-    lineage. The runner never sees the held lineage's IFN-β expression — only its control cells."""
+    lineage. The runner never sees the held lineage's IFN-β expression — only its control cells.
+    """
     tr = sp.train_idx
     is_ctrl_tr = cs.obs.iloc[tr]["is_control"].to_numpy().astype(bool)
     celltype_train = cs.obs.iloc[tr]["cell_type_coarse"].astype(str).to_numpy()
@@ -108,14 +126,34 @@ def run_state_on_split(cs, sp, seed, held_lineage, cuda_device, steps, smoke=Fal
             env["IVCBENCH_STATE_MAXCELLS"] = "1500"
         env["IVCBENCH_STATE_STEPS"] = str(steps)
         env["PYTHONHASHSEED"] = str(seed)
-        proc = subprocess.run([env_python(STATE_ENV), str(RUNNER), str(inp), str(out)],
-                              capture_output=True, text=True, timeout=7200, env=env)
+        proc = subprocess.run(
+            [env_python(STATE_ENV), str(RUNNER), str(inp), str(out)],
+            capture_output=True,
+            text=True,
+            timeout=7200,
+            env=env,
+        )
         if proc.returncode != 0 or not out.exists():
             err = proc.stderr or ""
-            key = [ln for ln in err.splitlines()
-                   if any(k in ln for k in ("Error", "Exception", "Traceback", "assert", "RuntimeError"))]
-            raise RuntimeError(f"STATE-C1 runner failed (rc={proc.returncode}):\n"
-                               + ("… " + key[-1] + "\n" if key else "") + err[-3500:])
+            key = [
+                ln
+                for ln in err.splitlines()
+                if any(
+                    k in ln
+                    for k in (
+                        "Error",
+                        "Exception",
+                        "Traceback",
+                        "assert",
+                        "RuntimeError",
+                    )
+                )
+            ]
+            raise RuntimeError(
+                f"STATE-C1 runner failed (rc={proc.returncode}):\n"
+                + ("… " + key[-1] + "\n" if key else "")
+                + err[-3500:]
+            )
         r = np.load(out, allow_pickle=True)
         by_donor = {}
         for k, v in zip(r["pred_perts"], r["pred_means"]):
@@ -126,7 +164,8 @@ def run_state_on_split(cs, sp, seed, held_lineage, cuda_device, steps, smoke=Fal
 
 def state_pred_cells(by_donor, test_strata, ctrl_mean):
     """Tile each held-donor predicted profile onto the test rows of that stratum (pearson_delta's
-    per-stratum mean is invariant to tiling); fall back to control mean for an unseen donor stratum."""
+    per-stratum mean is invariant to tiling); fall back to control mean for an unseen donor stratum.
+    """
     test_strata = np.asarray(test_strata)
     n_genes = len(ctrl_mean)
     pred = np.zeros((len(test_strata), n_genes), np.float32)
@@ -139,16 +178,38 @@ def state_pred_cells(by_donor, test_strata, ctrl_mean):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--lineages", nargs="*", default=None, help="subset of lineages (default all)")
+    ap.add_argument(
+        "--lineages", nargs="*", default=None, help="subset of lineages (default all)"
+    )
     ap.add_argument("--seeds", nargs="*", type=int, default=[0])
-    ap.add_argument("--steps", type=int, default=400, help="STATE max_steps (IVCBENCH_STATE_STEPS)")
-    ap.add_argument("--gpu", type=str, default=None, help="CUDA_VISIBLE_DEVICES for the STATE subprocess")
-    ap.add_argument("--smoke", action="store_true",
-                    help="tiny CPU-only 1-lineage path-proof (forces FORCE_CPU, tiny steps/caps)")
-    ap.add_argument("--anchor", action="store_true", default=True, help="enforce anchor gate (default on)")
+    ap.add_argument(
+        "--steps", type=int, default=400, help="STATE max_steps (IVCBENCH_STATE_STEPS)"
+    )
+    ap.add_argument(
+        "--gpu",
+        type=str,
+        default=None,
+        help="CUDA_VISIBLE_DEVICES for the STATE subprocess",
+    )
+    ap.add_argument(
+        "--smoke",
+        action="store_true",
+        help="tiny CPU-only 1-lineage path-proof (forces FORCE_CPU, tiny steps/caps)",
+    )
+    ap.add_argument(
+        "--anchor",
+        action="store_true",
+        default=True,
+        help="enforce anchor gate (default on)",
+    )
     ap.add_argument("--no-anchor", dest="anchor", action="store_false")
-    ap.add_argument("--out", default=str(ROOT / "outputs/additional_models/state_kang_raw.csv"))
-    ap.add_argument("--timing-out", default=str(ROOT / "outputs/additional_models/state_kang_timing.json"))
+    ap.add_argument(
+        "--out", default=str(ROOT / "outputs/additional_models/state_kang_raw.csv")
+    )
+    ap.add_argument(
+        "--timing-out",
+        default=str(ROOT / "outputs/additional_models/state_kang_timing.json"),
+    )
     args = ap.parse_args()
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
 
@@ -156,9 +217,14 @@ def main():
     gs_ifn = np.asarray(cs.gene_index(IFN_LIST), dtype=int)
     lins = args.lineages or lineages_for(cs)
     if args.smoke:
-        lins = lins[:1]; args.seeds = [0]; args.steps = min(args.steps, 6)
-    print(f"[kang-STATE] {cs.n_cells} cells x {cs.n_genes} genes; lineages={lins}; "
-          f"seeds={args.seeds}; steps={args.steps}; gpu={args.gpu}; smoke={args.smoke}", flush=True)
+        lins = lins[:1]
+        args.seeds = [0]
+        args.steps = min(args.steps, 6)
+    print(
+        f"[kang-STATE] {cs.n_cells} cells x {cs.n_genes} genes; lineages={lins}; "
+        f"seeds={args.seeds}; steps={args.steps}; gpu={args.gpu}; smoke={args.smoke}",
+        flush=True,
+    )
 
     rows, timing = [], []
     any_fail = False
@@ -171,49 +237,93 @@ def main():
         ctrl_idx = sp.inference_input_idx
         ctrl_X = cs.X[ctrl_idx]
         ctrl_mean = ctrl_X.mean(0)
-        ed_basis = cs.X[sp.train_idx]               # training-only PCA basis (leak-safe)
+        ed_basis = cs.X[sp.train_idx]  # training-only PCA basis (leak-safe)
         if len(ed_basis) > 5000:
-            ed_basis = ed_basis[np.random.default_rng(0).choice(len(ed_basis), 5000, replace=False)]
+            ed_basis = ed_basis[
+                np.random.default_rng(0).choice(len(ed_basis), 5000, replace=False)
+            ]
         ctrl_auc = float(aucell(ctrl_X, gs_ifn).mean())
 
         bpreds = baseline_preds(cs, sp)
+
         def b_pearson(name):
             p = bpreds[name]
-            return float(pearson_delta(p.pred_cells, test_X, p.control_mean, test_strata)["macro"])
+            return float(
+                pearson_delta(p.pred_cells, test_X, p.control_mean, test_strata)[
+                    "macro"
+                ]
+            )
+
         def b_edist(name):
             p = bpreds[name]
-            return float(e_distance(p.pred_cells, test_X, test_strata, fit_on=ed_basis)["macro"])
+            return float(
+                e_distance(p.pred_cells, test_X, test_strata, fit_on=ed_basis)["macro"]
+            )
+
         def b_aucell(name):
             p = bpreds[name]
             return float(aucell(p.pred_cells, gs_ifn).mean()) - ctrl_auc
+
         prim_pearson_name = max(("cell-mean", "donor-shift"), key=b_pearson)
         prim_edist_name = min(("cell-mean", "donor-shift"), key=b_edist)
-        bof_pearson = max(("ctrl-pred", "cell-mean", "donor-shift", "linear-PCA"), key=b_pearson)
+        bof_pearson = max(
+            ("ctrl-pred", "cell-mean", "donor-shift", "linear-PCA"), key=b_pearson
+        )
         obs_ifn = float(aucell(test_X, gs_ifn).mean()) - ctrl_auc
 
         # ---- STATE per seed (subprocess) ----
         seed_pearson, seed_edist, seed_aucell = [], [], []
         for seed in args.seeds:
             t0 = time.time()
-            by_donor = run_state_on_split(cs, sp, seed, lin, args.gpu, args.steps, smoke=args.smoke)
+            by_donor = run_state_on_split(
+                cs, sp, seed, lin, args.gpu, args.steps, smoke=args.smoke
+            )
             dt = time.time() - t0
             pred_cells = state_pred_cells(by_donor, test_strata, ctrl_mean)
-            pe = float(pearson_delta(pred_cells, test_X, ctrl_mean, test_strata)["macro"])
-            ed = float(e_distance(pred_cells, test_X, test_strata, fit_on=ed_basis)["macro"])
-            dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster=sp.spec.registry_task, model="STATE",
-                        split=sp.spec.name, pred_cells=pred_cells, test_cells=test_X, cell_strata=test_strata,
-                        control_mean=ctrl_mean, genes=cs.var_names, exclude_gene_idx=None,
-                        fit_on=ed_basis, n_pca=50)
+            pe = float(
+                pearson_delta(pred_cells, test_X, ctrl_mean, test_strata)["macro"]
+            )
+            ed = float(
+                e_distance(pred_cells, test_X, test_strata, fit_on=ed_basis)["macro"]
+            )
+            dump_bundle(
+                os.environ.get("IVCBENCH_PRED_DUMP"),
+                cluster=sp.spec.registry_task,
+                model="STATE",
+                split=sp.spec.name,
+                pred_cells=pred_cells,
+                test_cells=test_X,
+                cell_strata=test_strata,
+                control_mean=ctrl_mean,
+                genes=cs.var_names,
+                exclude_gene_idx=None,
+                fit_on=ed_basis,
+                n_pca=50,
+            )
             # IFN AUCell-Δ on the (tiled) predicted cloud vs control (same convention as the floor)
             au = float(aucell(pred_cells, gs_ifn).mean()) - ctrl_auc
-            seed_pearson.append(pe); seed_edist.append(ed); seed_aucell.append(au)
-            timing.append(dict(lineage=lin, seed=seed, sec=round(dt, 1),
-                               n_train=int(len(sp.train_idx)), n_test=int(len(sp.test_idx)),
-                               n_ctrl=int(len(ctrl_idx)), n_donors=int(len(by_donor))))
-            print(f"  [{lin} seed{seed}] {dt:.0f}s pearsonD={pe:.4f} eDist={ed:.4f} aucellD={au:+.4f}",
-                  flush=True)
+            seed_pearson.append(pe)
+            seed_edist.append(ed)
+            seed_aucell.append(au)
+            timing.append(
+                dict(
+                    lineage=lin,
+                    seed=seed,
+                    sec=round(dt, 1),
+                    n_train=int(len(sp.train_idx)),
+                    n_test=int(len(sp.test_idx)),
+                    n_ctrl=int(len(ctrl_idx)),
+                    n_donors=int(len(by_donor)),
+                )
+            )
+            print(
+                f"  [{lin} seed{seed}] {dt:.0f}s"
+                f" pearsonD={pe:.4f} eDist={ed:.4f} aucellD={au:+.4f}",
+                flush=True,
+            )
 
-        state_pe = float(np.mean(seed_pearson)); state_ed = float(np.mean(seed_edist))
+        state_pe = float(np.mean(seed_pearson))
+        state_ed = float(np.mean(seed_edist))
         state_au = float(np.mean(seed_aucell))
 
         # anchor gate on Pearson-Δ (cell-axis hybrid band)
@@ -225,12 +335,33 @@ def main():
             any_fail = True
 
         for metric, state_score, prim_name, prim_score, bof_name, bof_score, orient in [
-            ("pearson_delta", state_pe, prim_pearson_name, b_pearson(prim_pearson_name),
-             bof_pearson, b_pearson(bof_pearson), +1),
-            ("e_distance", state_ed, prim_edist_name, b_edist(prim_edist_name),
-             prim_edist_name, b_edist(prim_edist_name), -1),
-            ("aucell_ifn_delta", state_au, "cell-mean", b_aucell("cell-mean"),
-             "cell-mean", b_aucell("cell-mean"), None),
+            (
+                "pearson_delta",
+                state_pe,
+                prim_pearson_name,
+                b_pearson(prim_pearson_name),
+                bof_pearson,
+                b_pearson(bof_pearson),
+                +1,
+            ),
+            (
+                "e_distance",
+                state_ed,
+                prim_edist_name,
+                b_edist(prim_edist_name),
+                prim_edist_name,
+                b_edist(prim_edist_name),
+                -1,
+            ),
+            (
+                "aucell_ifn_delta",
+                state_au,
+                "cell-mean",
+                b_aucell("cell-mean"),
+                "cell-mean",
+                b_aucell("cell-mean"),
+                None,
+            ),
         ]:
             if metric == "aucell_ifn_delta":
                 delta_prim = abs(prim_score - obs_ifn) - abs(state_score - obs_ifn)
@@ -241,22 +372,44 @@ def main():
             else:
                 delta_prim = prim_score - state_score
                 delta_bof = bof_score - state_score
-            rows.append(dict(
-                lineage=lin, metric=metric, state_score=round(state_score, 4),
-                primary_baseline=prim_name, baseline_score=round(prim_score, 4),
-                delta_vs_primary=round(delta_prim, 4),
-                bestof4_baseline=bof_name, bestof4_score=round(bof_score, 4),
-                delta_vs_bestof4=round(delta_bof, 4),
-                obs_ifn_delta=(round(obs_ifn, 4) if metric == "aucell_ifn_delta" else ""),
-                anchor_pass=(anchor_pass if metric == "pearson_delta" else ""),
-                seed_scores=json.dumps([round(x, 4) for x in
-                                        (seed_pearson if metric == "pearson_delta" else
-                                         seed_edist if metric == "e_distance" else seed_aucell)]),
-                seeds=",".join(map(str, args.seeds)),
-                n_test=int(len(sp.test_idx)), n_ctrl=int(len(ctrl_idx)),
-                n_strata=int(len(np.unique(test_strata))), steps=int(args.steps),
-                leak_free=bool(audit["leak_free"]), smoke=bool(args.smoke),
-            ))
+            rows.append(
+                dict(
+                    lineage=lin,
+                    metric=metric,
+                    state_score=round(state_score, 4),
+                    primary_baseline=prim_name,
+                    baseline_score=round(prim_score, 4),
+                    delta_vs_primary=round(delta_prim, 4),
+                    bestof4_baseline=bof_name,
+                    bestof4_score=round(bof_score, 4),
+                    delta_vs_bestof4=round(delta_bof, 4),
+                    obs_ifn_delta=(
+                        round(obs_ifn, 4) if metric == "aucell_ifn_delta" else ""
+                    ),
+                    anchor_pass=(anchor_pass if metric == "pearson_delta" else ""),
+                    seed_scores=json.dumps(
+                        [
+                            round(x, 4)
+                            for x in (
+                                seed_pearson
+                                if metric == "pearson_delta"
+                                else (
+                                    seed_edist
+                                    if metric == "e_distance"
+                                    else seed_aucell
+                                )
+                            )
+                        ]
+                    ),
+                    seeds=",".join(map(str, args.seeds)),
+                    n_test=int(len(sp.test_idx)),
+                    n_ctrl=int(len(ctrl_idx)),
+                    n_strata=int(len(np.unique(test_strata))),
+                    steps=int(args.steps),
+                    leak_free=bool(audit["leak_free"]),
+                    smoke=bool(args.smoke),
+                )
+            )
         if not args.smoke:
             pd.DataFrame(rows).to_csv(args.out, index=False)
             json.dump(timing, open(args.timing_out, "w"), indent=2)
@@ -266,8 +419,11 @@ def main():
         pd.DataFrame(rows).to_csv(smoke_path, index=False)
         pe = [r for r in rows if r["metric"] == "pearson_delta"]
         ok = bool(pe and np.isfinite(pe[0]["state_score"]) and rows[0]["leak_free"])
-        print(f"\n[SMOKE] wrote {smoke_path}; path_ok={ok} "
-              f"(pearsonD={pe[0]['state_score'] if pe else 'NA'})", flush=True)
+        print(
+            f"\n[SMOKE] wrote {smoke_path}; path_ok={ok} "
+            f"(pearsonD={pe[0]['state_score'] if pe else 'NA'})",
+            flush=True,
+        )
         sys.exit(0 if ok else 1)
 
     print(f"\nWROTE {args.out} ({len(rows)} rows)", flush=True)
@@ -276,16 +432,33 @@ def main():
     if len(pe):
         sc = pe.state_score.astype(float)
         print("\n=== Kang Pearson-Δ STATE vs primary baseline ===")
-        print(pe[["lineage", "state_score", "primary_baseline", "baseline_score",
-                  "delta_vs_primary", "delta_vs_bestof4", "anchor_pass"]].to_string(index=False))
-        print(f"\nmean state_score = {sc.mean():+.4f} (min {sc.min():+.4f}, max {sc.max():+.4f}); "
-              f"mean delta_vs_primary = {pe.delta_vs_primary.mean():+.4f}; "
-              f"%positive = {100*(pe.delta_vs_primary>0).mean():.0f}%; "
-              f"finite={bool(np.isfinite(sc).all())}; "
-              f"%anchor_pass={100*pe.anchor_pass.mean():.0f}%")
+        print(
+            pe[
+                [
+                    "lineage",
+                    "state_score",
+                    "primary_baseline",
+                    "baseline_score",
+                    "delta_vs_primary",
+                    "delta_vs_bestof4",
+                    "anchor_pass",
+                ]
+            ].to_string(index=False)
+        )
+        print(
+            f"\nmean state_score = {sc.mean():+.4f} (min {sc.min():+.4f}, max"
+            f" {sc.max():+.4f}); mean delta_vs_primary ="
+            f" {pe.delta_vs_primary.mean():+.4f}; %positive ="
+            f" {100*(pe.delta_vs_primary>0).mean():.0f}%;"
+            f" finite={bool(np.isfinite(sc).all())};"
+            f" %anchor_pass={100*pe.anchor_pass.mean():.0f}%"
+        )
     if args.anchor and any_fail:
-        print("[ANCHOR] FAIL: ≥1 lineage outside the cell-axis hybrid band [-0.10, 0.60] or leak-inflated.",
-              flush=True)
+        print(
+            "[ANCHOR] FAIL: ≥1 lineage outside the cell-axis hybrid band [-0.10, 0.60]"
+            " or leak-inflated.",
+            flush=True,
+        )
         sys.exit(2)
     print("[ANCHOR] PASS (all run lineages finite and in band).", flush=True)
 

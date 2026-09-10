@@ -1,0 +1,19 @@
+{
+  "n_genes": 43,
+  "n_datasets": 5,
+  "models": [
+    "AttentionPert",
+    "Biolord",
+    "CellFlow",
+    "GEARS",
+    "PerturbNet",
+    "scGPT"
+  ],
+  "binding_floor": "cell-mean",
+  "fixed_model": "Biolord",
+  "fixed_model_genes_below": 39,
+  "no_conditioned_model_above": 36,
+  "fixed_floor_selection": "highest five-dataset census macro-average",
+  "bootstrap": "4,000 within-dataset gene resamples, seed 0; conditional on observed effect bins and selected member",
+  "limitation": "No dataset-level replication inference; observed-effect selection is noisy; neither statistic proves target learnability"
+}

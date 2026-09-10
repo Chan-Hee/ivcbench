@@ -1,0 +1,33 @@
+{
+  "seed": 0,
+  "n_eval_donors": 10,
+  "matched_fields": [
+    "donor",
+    "reference",
+    "available cells",
+    "test/control counts",
+    "gene-mask count"
+  ],
+  "reference": "stronger cell-mean/donor-shift member per donor, not the census universal floor",
+  "scgpt_configuration": "end-to-end fine-tuning, 10 epochs, at most 8,000 stimulated training cells; all grid points share this cap",
+  "uncertainty": "4,000 evaluation-donor bootstrap draws, seed 0; fitted models and training subset fixed",
+  "limitation": "one donor-subset seed; training subsets are not nested; does not exclude optimization or cell-budget effects",
+  "sources": [
+    {
+      "path": "results/newdata/cellot_donor_learning_curve.csv",
+      "sha256": "c9e7582a45b1d6ce4d25b75867f51bdafbbae081e092597c54bdd5620ec9c21d"
+    },
+    {
+      "path": "results/newdata/scgpt_donor_curve_shard0.csv",
+      "sha256": "07e13ca253f2923b67a063040e04c48a0a8461f7663ca50161ea83f3926ccb3b"
+    },
+    {
+      "path": "results/newdata/scgpt_donor_curve_shard1.csv",
+      "sha256": "78842643781bbd1a03786050825b4f14aa5573e0c9ae4828f375b813ba3fe803"
+    },
+    {
+      "path": "results/newdata/scgpt_donor_curve_shard2.csv",
+      "sha256": "7ff29b86e770f9a2b3ab18ac618e3efa1c886b923820deae645fed5b3b6fd767"
+    }
+  ]
+}

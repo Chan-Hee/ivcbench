@@ -1,0 +1,14 @@
+{
+  "family_size": 24,
+  "descriptive_cells": 23,
+  "positive_supported": [
+    "C2_donor_CellOT_vs_floor"
+  ],
+  "caveats": [
+    "post-review family, not publicly preregistered",
+    "floor selection and shared training folds are conditioned upon",
+    "T3 dataset-arms and T4 overlapping fractions are not independent replicates",
+    "historical four-/three-test families do not adjust the full current census",
+    "no Fisher combination of dependent OP3 lineage permutations"
+  ]
+}

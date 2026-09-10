@@ -1,0 +1,19 @@
+{
+  "dataset": "mccutcheon_CRISPRi",
+  "inputs": [
+    {
+      "task_key": "T3",
+      "unit": "mccutcheon_CRISPRi",
+      "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+      "sha256": "ef94ae4e7bf21fd89f5d4aa55720a829f6a87c48a41cc396a4c5c8ded2b484ae",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "9cac0074eb203ff05f1c581aa73003a674635d2d7545cf072e861fbba8ddf409",
+      "n_strata": 2,
+      "partitions": 100,
+      "independent_control_halves": true
+    }
+  ],
+  "elapsed_seconds": 74.45072156284004,
+  "scope": "cell-sampling repeatability on exact held targets, not biological replication or an accuracy bound"
+}

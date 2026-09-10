@@ -1,0 +1,8 @@
+task_key,unit,stratum,n_treated,n_controls,n_scored_genes,partitions,seed,bundle_path,independent_control_r,shared_control_r,status
+T3,schmidt,perturbation=LHX6,300,300,1993,100,83359794,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz,0.3299561139996963,0.603934590754651,estimable
+T3,schmidt,perturbation=APOL2,300,300,1993,100,83359794,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz,0.11308429283360125,0.43298088172816734,estimable
+T3,schmidt,perturbation=FOSL1,300,300,1993,100,83359794,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz,0.49766090040031474,0.7199535412332446,estimable
+T3,schmidt,perturbation=ALX4,300,300,1993,100,83359794,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz,0.6594677429623527,0.8128254970751937,estimable
+T3,schmidt,perturbation=INPPL1,300,300,1993,100,83359794,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz,0.40796394756118637,0.6408628263195371,estimable
+T3,schmidt,perturbation=EMP3,300,300,1993,100,83359794,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz,0.27222530896989255,0.5741890567991268,estimable
+T3,schmidt,perturbation=PRDM1,51,300,1993,100,83359794,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz,0.3746053017355963,0.429216264437077,estimable

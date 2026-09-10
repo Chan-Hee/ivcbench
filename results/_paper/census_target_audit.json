@@ -1,0 +1,13 @@
+{
+  "bundles_checked": 1372,
+  "paired_targets_controls_genes_masks": true,
+  "maximum_float32_difference": {
+    "obs_means": 9.5367431640625e-07,
+    "control_mean": 4.76837158203125e-07
+  },
+  "tolerance": {
+    "absolute": 0.0001,
+    "relative": 1e-05
+  },
+  "scope": "Evaluation inputs only; does not validate model fitting or biological generalizability"
+}

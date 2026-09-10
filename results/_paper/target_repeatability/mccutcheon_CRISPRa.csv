@@ -1,0 +1,3 @@
+task_key,unit,stratum,n_treated,n_controls,n_scored_genes,partitions,seed,bundle_path,independent_control_r,shared_control_r,status
+T3,mccutcheon_CRISPRa,perturbation=MYB,889,889,1998,100,4173038923,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz,0.11754042457054485,0.4310826395009915,estimable
+T3,mccutcheon_CRISPRa,perturbation=NR4A1,892,889,1998,100,4173038923,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz,0.5799127240622595,0.7645958388117678,estimable

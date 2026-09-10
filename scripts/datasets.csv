@@ -1,7 +1,7 @@
 cluster,dataset,accession,access,route,status
 C1,kang,GSE96583,public,GEO suppl (RAW.tar + batch tsne.df),downloaded
 C1,oesinghaus,bioRxiv-2025.12.12.693897,public,Parse Biosciences + Allen Institute portal (theislab/HumanCytokineDict); ~9.7M cells,portal-download
-C1,cano_gamez,EGAS00001003215,dac,EGA DAC (raw sc); EGAD00001005290,needs-DAC-email
+C1,cano_gamez,S-BSST2978,public,BioStudies S-BSST2978 (processed counts; CC0). EGAS00001003215/EGAD00001005290 gate the raw reads only,scored-in-revision
 C2,soskic,trynkalab-cog-bucket,public,trynkalab.cog.sanger.ac.uk processed h5ad (no DAC); raw EGAD00001008197,downloading
 C3,shifrut,GSE119450,public,GEO RAW.tar,downloaded
 C3,schmidt,GSE190604,public,GEO 10x mtx,downloaded

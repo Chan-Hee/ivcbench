@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
-"""Deposit consistency gate: the census must always equal what the bundles re-score to.
+"""Read-only consistency gate for the bundle-derived census and its provenance.
 
-Single source of truth = the deposited prediction bundles. `assemble_cross_cluster.build()`
-re-scores them (GPU-free) and assembles the 35-cell headline; this gate rebuilds that table
-from scratch and fails if the committed `results/_paper/cross_cluster_headline.csv` (or the
-within-family table) has drifted from it. Run by `make test`, so a hand-edited number, a stale
-bundle, or a metric change can never silently land a census the reader cannot reproduce.
-
-    python scripts/check_consistency.py        # exit 0 = consistent, 1 = drift (prints the cells)
-
-It checks three things: (1) every committed headline number equals the freshly re-scored value
-to 1e-9; (2) the prediction layer is exactly the expected size with no NaN; (3) the floor-clearing
-verdicts are intact.
+Rebuilds headline values, execution/status metadata, within-family summaries,
+the exact input manifest (including hashes), and canonical counts. Historical
+non-census files are distinguished from actual method/floor inputs. This checks
+reproducibility and internal consistency, not the scientific validity of a runner.
 """
 from __future__ import annotations
+
+from io import StringIO
+import json
 import os
 import sys
 
@@ -21,56 +17,119 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from assemble_cross_cluster import OUT, build  # noqa: E402
+from assemble_cross_cluster import (
+    OUT,
+    EXPECTED_CENSUS_CELLS,
+    build,
+    score_all,
+    census_bundle_manifest,
+    canonical_numbers,
+)
 
-EXPECTED_BUNDLES = 1465          # 1469 deposited .npz minus the 4 predictions/example format demos
-EXPECTED_CELLS = 35
-FLOOR_CLEARERS = {("C2", "CellOT"), ("C5", "FP-ridge")}  # the only two cells that beat both floors
-NUM_COLS = ["pearson_delta", "floor_cell_mean", "floor_linear_PCA", "floor_mean",
-            "delta_vs_floor_mean", "delta_vs_cell_mean", "delta_vs_linear_PCA"]
 KEY = ["cluster", "split", "model"]
+NUM_COLS = [
+    "pearson_delta",
+    "floor_cell_mean",
+    "floor_linear_PCA",
+    "floor_mean",
+    "delta_vs_floor_mean",
+    "delta_vs_cell_mean",
+    "delta_vs_linear_PCA",
+]
+
+
+def compare_frame(committed, fresh, key, label):
+    """Compare the complete CSV schema/content, including nonnumeric provenance."""
+    problems = []
+    if set(committed.columns) != set(fresh.columns):
+        return [
+            f"{label}: column mismatch {set(committed.columns) ^ set(fresh.columns)}"
+        ]
+    for name, frame in (("stored", committed), ("rebuilt", fresh)):
+        if frame.duplicated(key).any():
+            problems.append(f"{label}: duplicate {name} keys {key}")
+    if problems:
+        return problems
+    # Lists and missing string values must have the same representation as the
+    # actual deposited CSV, including the within-family delta vector column.
+    expected = pd.read_csv(StringIO(fresh.to_csv(index=False)))
+    actual = committed[expected.columns]
+    try:
+        pd.testing.assert_frame_equal(
+            actual.sort_values(key).reset_index(drop=True),
+            expected.sort_values(key).reset_index(drop=True),
+            check_dtype=False,
+            check_exact=False,
+            rtol=0,
+            atol=1e-9,
+        )
+    except AssertionError as exc:
+        problems.append(f"{label}: {exc}")
+    return problems
 
 
 def check():
     problems = []
-    fresh, cons, n_bundles = build()
+    scored = score_all()
+    fresh, cons, n_bundles = build(scored)
+    manifest = census_bundle_manifest(scored)
+    canon = canonical_numbers(fresh, scored, manifest)
+    from audit_census_targets import check_targets
+    from census_units import build_unit_scores, uncertainty_table
+    from assemble_fit_matrix import build_fit_matrix
 
-    # (2) prediction-layer size + no NaN
-    if n_bundles != EXPECTED_BUNDLES:
-        problems.append(f"bundle count {n_bundles} != expected {EXPECTED_BUNDLES}")
-    if len(fresh) != EXPECTED_CELLS:
-        problems.append(f"headline has {len(fresh)} cells != expected {EXPECTED_CELLS}")
-    if fresh["pearson_delta"].isna().any():
-        problems.append("NaN pearson_delta in freshly re-scored headline")
+    try:
+        check_targets(manifest)
+    except ValueError as exc:
+        problems.append(f"Paired target/reference audit: {exc}")
+    units = build_unit_scores(scored)
+    if len(fresh) != EXPECTED_CENSUS_CELLS:
+        problems.append(
+            f"headline has {len(fresh)} cells, expected {EXPECTED_CENSUS_CELLS}"
+        )
+    if not np.isfinite(fresh[NUM_COLS].to_numpy(dtype=float)).all():
+        problems.append("Non-finite headline score or floor value")
 
-    # (1) committed census must equal the freshly re-scored census, cell by cell
-    committed = pd.read_csv(os.path.join(OUT, "cross_cluster_headline.csv"))
-    m = committed.merge(fresh, on=KEY, suffixes=("_committed", "_fresh"), how="outer", indicator=True)
-    miss = m[m["_merge"] != "both"]
-    for _, r in miss.iterrows():
-        problems.append(f"roster mismatch: {r.cluster}/{r.split}/{r.model} only in {r._merge}")
-    both = m[m["_merge"] == "both"]
-    for col in NUM_COLS:
-        d = (both[f"{col}_committed"] - both[f"{col}_fresh"]).abs()
-        for i in both.index[d > 1e-9]:
-            r = both.loc[i]
-            problems.append(f"{r.cluster}/{r.split}/{r.model} {col}: "
-                            f"committed {r[f'{col}_committed']} != re-scored {r[f'{col}_fresh']}")
-    bad_verdict = both[both["beats_both_floor_members_committed"] != both["beats_both_floor_members_fresh"]]
-    for _, r in bad_verdict.iterrows():
-        problems.append(f"{r.cluster}/{r.split}/{r.model} floor verdict drifted")
+    tables = [
+        ("cross_cluster_headline.csv", fresh, KEY),
+        ("within_family_consistency.csv", cons, ["cluster", "split", "family"]),
+        ("census_bundle_manifest.csv", manifest, ["task", "model", "unit"]),
+        ("census_unit_scores.csv", units, ["task_key", "model", "unit"]),
+        ("census_uncertainty.csv", uncertainty_table(units), ["task_key", "model"]),
+        (
+            "descriptive_fit_matrix.csv",
+            build_fit_matrix(units),
+            ["task_key", "family", "role"],
+        ),
+    ]
+    for filename, rebuilt, key in tables:
+        table_path = os.path.join(OUT, filename)
+        if not os.path.isfile(table_path):
+            problems.append(f"Missing {filename}")
+            continue
+        problems.extend(compare_frame(pd.read_csv(table_path), rebuilt, key, filename))
 
-    # (3) the two headline floor-clearers are intact and unique
-    clearers = {(r.cluster, r.model) for _, r in fresh[fresh.beats_both_floor_members].iterrows()}
-    if clearers != FLOOR_CLEARERS:
-        problems.append(f"floor-clearing cells {sorted(clearers)} != expected {sorted(FLOOR_CLEARERS)}")
+    canonical_path = os.path.join(OUT, "CANONICAL_NUMBERS.json")
+    if not os.path.isfile(canonical_path):
+        problems.append("Missing CANONICAL_NUMBERS.json")
+    else:
+        with open(canonical_path) as handle:
+            stored = json.load(handle)
+        for key in stored.keys() | canon.keys():
+            if stored.get(key) != canon.get(key):
+                problems.append(
+                    f"CANONICAL_NUMBERS.json/{key}: stored {stored.get(key)!r} "
+                    f"!= rebuilt {canon.get(key)!r}"
+                )
 
-    # (4) the per-cluster results_raw.csv the figures read must agree with the bundles at display
-    # precision (scripts/sync_results_raw.py enforces this), guarding the figures from drifting.
+    # Raw result tables retain execution identities, not the CPA/chemCPA group
+    # label. The sync checker must not conflate these different experiments.
     from sync_results_raw import drift
-    for rel, model, key, old, new in drift():
-        problems.append(f"results_raw drift: {rel} {model} {key} = {old} != bundle {new:.4f}")
 
+    for rel, model, key, old, new in drift(scored):
+        problems.append(
+            f"results_raw drift: {rel} {model} {key} = {old} != bundle {new:.4f}"
+        )
     return problems, n_bundles, len(fresh)
 
 
@@ -78,12 +137,13 @@ def main():
     problems, n_bundles, n_cells = check()
     if problems:
         print("DEPOSIT CONSISTENCY: FAIL")
-        for p in problems:
-            print("  -", p)
-        print(f"\n{len(problems)} problem(s). The committed census no longer equals the bundle re-score.")
+        for problem in problems:
+            print("  -", problem)
         return 1
-    print(f"DEPOSIT CONSISTENCY: PASS  ({n_bundles} bundles re-scored -> {n_cells} census cells, "
-          "every number reproduces, floor verdicts intact)")
+    print(
+        f"DEPOSIT CONSISTENCY: PASS ({n_bundles} stored bundles re-scored; "
+        f"{n_cells} census cells; scores, metadata, manifest hashes and counts agree)"
+    )
     return 0
 
 

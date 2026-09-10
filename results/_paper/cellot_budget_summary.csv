@@ -1,0 +1,7 @@
+multiplier,ae_iterations,transport_iterations,training_donors,evaluation_donors,seeds,model_score,reference_score,margin,reference
+1,12000,8000,8,10,"0, 1",0.42962,0.213605,0.216015,per-donor stronger cell-mean/donor-shift; historical auxiliary reference
+1,12000,8000,96,10,"0, 1",0.35946500000000003,0.27270999999999995,0.08675500000000008,per-donor stronger cell-mean/donor-shift; historical auxiliary reference
+4,48000,32000,8,10,"0, 1",0.41285000000000005,0.213605,0.19924500000000006,per-donor stronger cell-mean/donor-shift; historical auxiliary reference
+4,48000,32000,96,10,"0, 1",0.36861,0.27270999999999995,0.09590000000000004,per-donor stronger cell-mean/donor-shift; historical auxiliary reference
+12,144000,96000,8,10,"0, 1",0.44736000000000004,0.213605,0.23375500000000005,per-donor stronger cell-mean/donor-shift; historical auxiliary reference
+12,144000,96000,96,10,"0, 1",0.30566499999999996,0.27270999999999995,0.03295500000000001,per-donor stronger cell-mean/donor-shift; historical auxiliary reference

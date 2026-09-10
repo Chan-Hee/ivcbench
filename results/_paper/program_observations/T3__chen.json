@@ -1,0 +1,15 @@
+{
+  "task_key": "T3",
+  "unit": "chen",
+  "floor_bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__chen.npz",
+  "floor_sha256": "84e07c43666e7cf48c1358d177547ce800b088390c30ba213202128124d0494c",
+  "observed_max_difference": 0.0,
+  "control_max_difference": 0.0,
+  "n_cells": 34240,
+  "n_controls": 3000,
+  "n_strata": 30,
+  "n_genes": 2000,
+  "method": "mean per-cell AUCell-like score, top 5%; original argsort tie convention",
+  "targets": "exact census held observations; no model refitting",
+  "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
+}

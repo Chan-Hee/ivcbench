@@ -1,0 +1,38 @@
+task_key,unit,program,n_strata,n_measured,mean_profile_score_sd,per_cell_score_sd,identity_corr,identity_status,identity_mae,aggregation_corr,aggregation_status,aggregation_mae
+T3,chen,IL2_STAT5,30,9,0.0023610929556309957,0.002449103852296826,1.0,estimable (descriptive),0.0,0.5719890568716735,estimable (descriptive),0.002854342350587539
+T3,chen,TCR_activation,30,9,0.00441968411560779,0.0033683030265187286,0.9999999999999998,estimable (descriptive),0.0,0.7205481803583029,estimable (descriptive),0.008203785395575997
+T3,chen,Treg_exhaustion,30,6,0.014128598088650454,0.0046219963146586305,1.0,estimable (descriptive),0.0,0.7687983281667083,estimable (descriptive),0.035801758885627165
+T3,chen,effector_cytokine,30,4,0.0,0.004511824563873845,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.05935643856301943
+T3,chen,proliferation,30,8,0.0,0.0009388949836619449,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.007685147206310107
+T3,mccutcheon_CRISPRa,IL2_STAT5,2,6,0.0,0.00010580130678732437,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.0016995980182970402
+T3,mccutcheon_CRISPRa,TCR_activation,2,3,0.0,0.0004052205077504325,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.0005659081011734519
+T3,mccutcheon_CRISPRa,Treg_exhaustion,2,5,0.0,4.33877940145374e-05,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.00042455371329704864
+T3,mccutcheon_CRISPRa,effector_cytokine,2,6,0.0,0.0020941594744603095,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.03732288088428408
+T3,mccutcheon_CRISPRa,proliferation,2,11,0.0,0.0002577592599131394,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.017265504877524228
+T3,mccutcheon_CRISPRi,IL2_STAT5,2,5,0.0,3.1496062992125945e-05,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.0009718785151856018
+T3,mccutcheon_CRISPRi,TCR_activation,2,3,0.0,0.00019310086239220092,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.00044806899137607794
+T3,mccutcheon_CRISPRi,Treg_exhaustion,2,5,0.0,2.0247469066366706e-05,,constant observed rank-program score,0.0,,constant predicted rank-program score,5.174353205849269e-05
+T3,mccutcheon_CRISPRi,effector_cytokine,2,6,0.0,4.9681289838770376e-05,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.029397262842144733
+T3,mccutcheon_CRISPRi,proliferation,2,11,0.0,0.0004207996727681766,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.015597198077513037
+T3,schmidt,IL2_STAT5,7,8,0.0,0.007107201589453208,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.022477415966386555
+T3,schmidt,TCR_activation,7,6,0.0,0.007881883882775489,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.02909117647058823
+T3,schmidt,Treg_exhaustion,7,3,0.0,0.024467307117848287,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.05520821661998132
+T3,schmidt,effector_cytokine,7,8,0.0,0.01333581342109114,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.057276925770308115
+T3,schmidt,proliferation,7,8,0.0,0.008833131500989164,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.0255812324929972
+T3,shifrut,IL2_STAT5,2,4,0.0,0.00031719437969438165,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.020006879694379698
+T3,shifrut,TCR_activation,2,4,0.0,0.0005185926403031664,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.00722750872421925
+T3,shifrut,Treg_exhaustion,2,5,0.0,0.0004206982101718948,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.005329789119262804
+T3,shifrut,effector_cytokine,2,7,0.0,0.0018391866418182232,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.006921604224235801
+T3,shifrut,proliferation,2,8,0.0,0.0006414068996305842,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.029242771422047738
+T5c,B,effector_lymphocyte,141,11,0.0,0.0025015168561638348,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.0029516977226392007
+T5c,B,inflammatory_NFkB,141,7,0.009843655870432054,0.007804660472786306,0.9999999999999998,estimable (descriptive),0.0,0.570595112671692,estimable (descriptive),0.0163592410837966
+T5c,B,type_I_IFN,141,20,0.041509444433335006,0.04590671828387976,1.0,estimable (descriptive),0.0,0.8350427035831384,estimable (descriptive),0.017504869281380443
+T5c,Mono,effector_lymphocyte,140,11,0.007736213860229866,0.01194372178844633,1.0,estimable (descriptive),0.0,0.7060595164245509,estimable (descriptive),0.009527008067250518
+T5c,Mono,inflammatory_NFkB,140,7,0.040546879763539566,0.03487977194908431,1.0,estimable (descriptive),0.0,0.8248610742498604,estimable (descriptive),0.044888936695726175
+T5c,Mono,type_I_IFN,140,20,0.02218947971909395,0.034225624530136785,1.0,estimable (descriptive),0.0,0.7068603863655989,estimable (descriptive),0.020314014116629434
+T5c,NK,effector_lymphocyte,141,11,0.06637406841630467,0.04677436635567391,0.9999999999999998,estimable (descriptive),0.0,0.8704182435649984,estimable (descriptive),0.17136656570560171
+T5c,NK,inflammatory_NFkB,141,7,0.013882072690286941,0.015112273510716033,0.9999999999999999,estimable (descriptive),0.0,0.8303107709269254,estimable (descriptive),0.01167209055937413
+T5c,NK,type_I_IFN,141,20,0.04827082172251798,0.05252221762830379,0.9999999999999999,estimable (descriptive),0.0,0.848134817175897,estimable (descriptive),0.03417758131135581
+T5c,T_cells,effector_lymphocyte,141,11,0.0,0.019590645369689248,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.0823438288561359
+T5c,T_cells,inflammatory_NFkB,141,7,0.0,0.007383837156096039,,constant observed rank-program score,0.0,,constant predicted rank-program score,0.008587748495773408
+T5c,T_cells,type_I_IFN,141,20,0.026511883862075914,0.04342387449028794,1.0,estimable (descriptive),0.0,0.7496187222589233,estimable (descriptive),0.0319422593295264

@@ -1,0 +1,33 @@
+{
+  "source_files": [
+    {
+      "path": "ivcbench/results/provenance_inputs/donor/raw/foundation/kang_lodo_per_seed.csv",
+      "sha256": "27b8d69a8a6ad8ba3e9ff7f83b79bec8a63dea08a698791b3049bdd6a0924c8b"
+    },
+    {
+      "path": "ivcbench/results/provenance_inputs/donor/raw/foundation/kang_lodo.csv",
+      "sha256": "f953d9cb0afed442721da3928957fd16183a108e7ef19c1936dd114895d6f72c"
+    },
+    {
+      "path": "ivcbench/results/provenance_inputs/donor/raw/foundation/cano_gamez_lodo_per_seed.csv",
+      "sha256": "cb89f7fec7c8a1ab2a0c75e582fe4545436f2c740d9a3a0a7d18160420594f79"
+    },
+    {
+      "path": "ivcbench/results/provenance_inputs/donor/raw/foundation/cano_gamez_lodo.csv",
+      "sha256": "ac7ca99d93cdb9c77b84ea3db6daf8399a2b6629833d3f2074d9522616db92ab"
+    },
+    {
+      "path": "ivcbench/results/provenance_inputs/donor/foldlocal_sensitivity.csv",
+      "sha256": "8abd6bdd73748ce65b645d641e8c0a0051d2d8373e5eaf8567675b04563d7c54"
+    },
+    {
+      "path": "ivcbench/results/_paper/cellot_soskic_raw.csv",
+      "sha256": "f5120c27a83ca02e3403867a2d7b25168007ecb29d64104b38154dd473cc058e"
+    }
+  ],
+  "external_cohorts": "two recorded scalar scores per donor; seed aggregation verified; cell outputs not retained",
+  "baseline_precision": "external floor members retained to four decimal places; model seed scores to six",
+  "inference": "conditional on fitted models; external and auxiliary checks outside the main census-test family",
+  "auxiliary": "three-seed scalar metrics with metric-specific context references, not mean-bundle energy-distance replay",
+  "standardization": "training-only scaling sensitivity; does not reselect upstream HVGs"
+}

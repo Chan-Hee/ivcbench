@@ -1,0 +1,31 @@
+{
+  "dataset": "frangieh",
+  "inputs": [
+    {
+      "task_key": "T4",
+      "unit": "C4_modality_lo_ko_25",
+      "bundle": "predictions/C4/C4_Axis2__cell-mean__C4_modality_lo_ko_25.npz",
+      "sha256": "1af67cbe93a7613b7168e7cdb99b53fd7cb33f2ad6849ef88489ca9e7a9abb5a",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "f7fed4893046175f04f40adf930b69e89698f1da3c1d122780b2bf6a619f2c0c",
+      "n_strata": 62,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T4",
+      "unit": "C4_modality_lo_ko_50",
+      "bundle": "predictions/C4/C4_Axis2__cell-mean__C4_modality_lo_ko_50.npz",
+      "sha256": "0a3cf3627979e22794fb8fca2fc1fad6b3cbdd56ce51048296ddb2736d2c47b6",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "6e897ce18423430b4143fdf717931c94bd09d427aa9e32ece220e1ddcc6df2ca",
+      "n_strata": 124,
+      "partitions": 100,
+      "independent_control_halves": true
+    }
+  ],
+  "elapsed_seconds": 28.718424681108445,
+  "scope": "cell-sampling repeatability on exact held targets, not biological replication or an accuracy bound"
+}

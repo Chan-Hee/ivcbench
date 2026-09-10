@@ -1,0 +1,9 @@
+dataset,modality,condition,marker,n_cells,present,source,mean,median,p95,positive_fraction
+Frangieh,protein,IFNγ,CD279,87590,True,data/C4/frangieh/FrangiehIzar2021_protein.h5ad,2.716405982418084,1.0,4.0,0.6188263500399589
+Frangieh,protein,IFNγ,CD274,87590,True,data/C4/frangieh/FrangiehIzar2021_protein.h5ad,32.98610571983103,18.0,74.0,0.9934809909807055
+Frangieh,protein,IFNγ,Rat_IgG2a,87590,True,data/C4/frangieh/FrangiehIzar2021_protein.h5ad,1.4281881493321156,1.0,4.0,0.6375385317958671
+Frangieh,protein,IFNγ,Mouse_IgG1,87590,True,data/C4/frangieh/FrangiehIzar2021_protein.h5ad,0.8571069756821555,0.0,2.0,0.31569813905697
+Frangieh,protein,IFNγ,Mouse_IgG2a,87590,True,data/C4/frangieh/FrangiehIzar2021_protein.h5ad,0.5834570156410549,0.0,2.0,0.37761159949765954
+Frangieh,protein,IFNγ,Mouse_IgG2b,87590,True,data/C4/frangieh/FrangiehIzar2021_protein.h5ad,0.4019636944856719,0.0,2.0,0.2621189633519808
+Frangieh,RNA,IFNγ,PDCD1,87590,False,data/C4/frangieh/FrangiehIzar2021_RNA.h5ad,,,,
+Frangieh,RNA,IFNγ,CD274,87590,True,data/C4/frangieh/FrangiehIzar2021_RNA.h5ad,0.39359515926475624,0.0,2.0,0.28568329718004337

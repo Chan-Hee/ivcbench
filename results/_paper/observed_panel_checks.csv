@@ -1,0 +1,14 @@
+panel,tag,dataset,n_genes,n_present,contrast,delta,z,analysis_unit,inference_scope
+type_i_ifn_C1,c1,kang,15,14,IFN-beta vs control,1.9289,21.7,pooled cells,descriptive only; cells are not independent biological replicates
+T_cell_activation,c2,soskic,14,4,16 h activation vs 0 h resting,-0.0122,-1.8,pooled cells,descriptive only; cells are not independent biological replicates
+type_II_IFN,c2,soskic,15,5,16 h activation vs 0 h resting,-0.0044,-0.6,pooled cells,descriptive only; cells are not independent biological replicates
+IL2_STAT5,c2,soskic,11,3,16 h activation vs 0 h resting,-0.0093,-1.2,pooled cells,descriptive only; cells are not independent biological replicates
+type_I_IFN,c2,soskic,25,3,16 h activation vs 0 h resting,0.0086,1.4,pooled cells,descriptive only; cells are not independent biological replicates
+TCR_activation,c3,shifrut,14,4,CRISPR KO vs control,0.0075,1.0,pooled cells,descriptive only; cells are not independent biological replicates
+IL2_STAT5,c3,shifrut,11,4,CRISPR KO vs control,0.009,1.3,pooled cells,descriptive only; cells are not independent biological replicates
+proliferation,c3,shifrut,11,8,CRISPR KO vs control,0.0088,1.8,pooled cells,descriptive only; cells are not independent biological replicates
+effector_cytokine,c3,shifrut,11,7,CRISPR KO vs control,-0.0069,-1.5,pooled cells,descriptive only; cells are not independent biological replicates
+Treg_exhaustion,c3,shifrut,11,5,CRISPR KO vs control,0.007,1.0,pooled cells,descriptive only; cells are not independent biological replicates
+inflammatory_NFkB,c5,op3,22,7,compound vs control,-0.0199,-0.2,pooled cells,descriptive only; cells are not independent biological replicates
+effector_lymphocyte,c5,op3,17,11,compound vs control,-0.0474,-2.0,pooled cells,descriptive only; cells are not independent biological replicates
+type_I_IFN,c5,op3,25,20,compound vs control,-0.062,-4.2,pooled cells,descriptive only; cells are not independent biological replicates

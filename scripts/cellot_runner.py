@@ -35,31 +35,117 @@ from cellot.losses.mmd import compute_scalar_mmd
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-IFN_GENES = ["ISG15", "IFI6", "MX1", "MX2", "OAS1", "OAS2", "IFIT1", "IFIT3", "ISG20",
-             "STAT1", "IRF7", "IFI44", "IFI44L", "RSAD2", "USP18"]
+IFN_GENES = [
+    "ISG15",
+    "IFI6",
+    "MX1",
+    "MX2",
+    "OAS1",
+    "OAS2",
+    "IFIT1",
+    "IFIT3",
+    "ISG20",
+    "STAT1",
+    "IRF7",
+    "IFI44",
+    "IFI44L",
+    "RSAD2",
+    "USP18",
+]
 SOSKIC_PROGRAMS = {
-    "T_cell_activation": ["CD69", "IL2RA", "CD40LG", "TNFRSF9", "NR4A1", "NR4A2", "NR4A3",
-                          "EGR1", "EGR2", "IRF4", "REL", "NFKBIA", "CD28", "TNFRSF4"],
-    "IL2_STAT5": ["IL2RA", "IL2RB", "IL2RG", "STAT5A", "STAT5B", "CISH", "SOCS1", "SOCS3",
-                  "BCL2", "MYC", "IL2"],
-    "type_I_IFN": ["ISG15", "IFI6", "MX1", "MX2", "OAS1", "OAS2", "OAS3", "OASL", "IFIT1",
-                   "IFIT2", "IFIT3", "IFITM1", "IFITM3", "ISG20", "IRF7", "STAT1", "STAT2",
-                   "RSAD2", "USP18", "IFI44", "IFI44L", "BST2", "XAF1", "HERC5", "LY6E"],
-    "type_II_IFN": ["IFNG", "STAT1", "IRF1", "CXCL9", "CXCL10", "CXCL11", "GBP1", "GBP2",
-                    "GBP5", "TAP1", "PSMB8", "PSMB9", "HLA-DRA", "HLA-DRB1", "SOCS1"],
+    "T_cell_activation": [
+        "CD69",
+        "IL2RA",
+        "CD40LG",
+        "TNFRSF9",
+        "NR4A1",
+        "NR4A2",
+        "NR4A3",
+        "EGR1",
+        "EGR2",
+        "IRF4",
+        "REL",
+        "NFKBIA",
+        "CD28",
+        "TNFRSF4",
+    ],
+    "IL2_STAT5": [
+        "IL2RA",
+        "IL2RB",
+        "IL2RG",
+        "STAT5A",
+        "STAT5B",
+        "CISH",
+        "SOCS1",
+        "SOCS3",
+        "BCL2",
+        "MYC",
+        "IL2",
+    ],
+    "type_I_IFN": [
+        "ISG15",
+        "IFI6",
+        "MX1",
+        "MX2",
+        "OAS1",
+        "OAS2",
+        "OAS3",
+        "OASL",
+        "IFIT1",
+        "IFIT2",
+        "IFIT3",
+        "IFITM1",
+        "IFITM3",
+        "ISG20",
+        "IRF7",
+        "STAT1",
+        "STAT2",
+        "RSAD2",
+        "USP18",
+        "IFI44",
+        "IFI44L",
+        "BST2",
+        "XAF1",
+        "HERC5",
+        "LY6E",
+    ],
+    "type_II_IFN": [
+        "IFNG",
+        "STAT1",
+        "IRF1",
+        "CXCL9",
+        "CXCL10",
+        "CXCL11",
+        "GBP1",
+        "GBP2",
+        "GBP5",
+        "TAP1",
+        "PSMB8",
+        "PSMB9",
+        "HLA-DRA",
+        "HLA-DRB1",
+        "SOCS1",
+    ],
 }
 
 
 def set_seed(seed):
-    random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
 
 # ---- scgen AutoEncoder (configs/models/scgen.yaml: hidden [512,512], lat 50, beta 0, lr 1e-3) -----
 def build_ae(input_dim):
-    return AutoEncoder(input_dim=input_dim, latent_dim=50, hidden_units=[512, 512],
-                       beta=0.0, dropout=0.0).to(DEVICE)
+    return AutoEncoder(
+        input_dim=input_dim,
+        latent_dim=50,
+        hidden_units=[512, 512],
+        beta=0.0,
+        dropout=0.0,
+    ).to(DEVICE)
 
 
 def train_ae(ae, X_train, n_iters, batch_size=256, lr=1e-3, weight_decay=1e-5):
@@ -75,27 +161,37 @@ def train_ae(ae, X_train, n_iters, batch_size=256, lr=1e-3, weight_decay=1e-5):
         loss = loss.mean()
         if torch.isnan(loss):
             raise ValueError("AE loss NaN")
-        loss.backward(); opt.step(); sched.step()
+        loss.backward()
+        opt.step()
+        sched.step()
     return ae
 
 
 @torch.no_grad()
 def ae_encode(ae, X):
     ae.eval()
-    return ae.encode(torch.tensor(np.asarray(X, np.float32), device=DEVICE)).cpu().numpy()
+    return (
+        ae.encode(torch.tensor(np.asarray(X, np.float32), device=DEVICE)).cpu().numpy()
+    )
 
 
 @torch.no_grad()
 def ae_decode(ae, Z):
     ae.eval()
-    return ae.decode(torch.tensor(np.asarray(Z, np.float32), device=DEVICE)).cpu().numpy()
+    return (
+        ae.decode(torch.tensor(np.asarray(Z, np.float32), device=DEVICE)).cpu().numpy()
+    )
 
 
 # ---- CellOT f/g ICNN (configs/models/cellot.yaml: hidden [64]*4, lr 1e-4 b(.5,.9), g.fnorm 1) -----
 def build_fg(latent_dim):
-    common = dict(input_dim=latent_dim, hidden_units=[64, 64, 64, 64], activation="LeakyReLU",
-                  softplus_W_kernels=False,
-                  kernel_init_fxn=lambda w: torch.nn.init.uniform_(w, b=0.1))
+    common = dict(
+        input_dim=latent_dim,
+        hidden_units=[64, 64, 64, 64],
+        activation="LeakyReLU",
+        softplus_W_kernels=False,
+        kernel_init_fxn=lambda w: torch.nn.init.uniform_(w, b=0.1),
+    )
     f = ICNN(fnorm_penalty=0, **common).to(DEVICE)
     g = ICNN(fnorm_penalty=1, **common).to(DEVICE)
     return f, g
@@ -104,14 +200,25 @@ def build_fg(latent_dim):
 def _sampler(Z, batch_size, seed):
     rng = np.random.default_rng(seed)
     Zt = torch.tensor(np.asarray(Z, np.float32), device=DEVICE)
-    n = Zt.shape[0]; bs = min(batch_size, n)
+    n = Zt.shape[0]
+    bs = min(batch_size, n)
     while True:
         idx = torch.as_tensor(rng.choice(n, bs, replace=(n < bs)), device=DEVICE)
         yield Zt[idx]
 
 
-def train_cellot_latent(f, g, Zsrc, Ztgt, n_iters, n_inner=10, batch_size=64,
-                        lr=1e-4, betas=(0.5, 0.9), eval_every=250):
+def train_cellot_latent(
+    f,
+    g,
+    Zsrc,
+    Ztgt,
+    n_iters,
+    n_inner=10,
+    batch_size=64,
+    lr=1e-4,
+    betas=(0.5, 0.9),
+    eval_every=250,
+):
     opt_f = torch.optim.Adam(f.parameters(), lr=lr, betas=betas)
     opt_g = torch.optim.Adam(g.parameters(), lr=lr, betas=betas)
     src_it, tgt_it = _sampler(Zsrc, batch_size, 1), _sampler(Ztgt, batch_size, 2)
@@ -125,24 +232,30 @@ def train_cellot_latent(f, g, Zsrc, Ztgt, n_iters, n_inner=10, batch_size=64,
             gl = compute_loss_g(f, g, source).mean()
             if (not g.softplus_W_kernels) and g.fnorm_penalty > 0:
                 gl = gl + g.penalize_w()
-            gl.backward(); opt_g.step()
+            gl.backward()
+            opt_g.step()
         source = next(src_it).requires_grad_(True)
         opt_f.zero_grad()
         fl = compute_loss_f(f, g, source, target).mean()
-        fl.backward(); opt_f.step()
+        fl.backward()
+        opt_f.step()
         if torch.isnan(gl) or torch.isnan(fl):
             raise ValueError("CellOT loss NaN")
         f.clamp_w()
         if step % eval_every == 0:
-            s = next(src_ev).requires_grad_(True); t = next(tgt_ev)
+            s = next(src_ev).requires_grad_(True)
+            t = next(tgt_ev)
             transport = g.transport(s).detach()
             mmd = compute_scalar_mmd(t.detach().cpu().numpy(), transport.cpu().numpy())
             if mmd < best_mmd:
                 best_mmd = mmd
-                best_state = ({k: v.detach().cpu().clone() for k, v in f.state_dict().items()},
-                              {k: v.detach().cpu().clone() for k, v in g.state_dict().items()})
+                best_state = (
+                    {k: v.detach().cpu().clone() for k, v in f.state_dict().items()},
+                    {k: v.detach().cpu().clone() for k, v in g.state_dict().items()},
+                )
     if best_state is not None:
-        f.load_state_dict(best_state[0]); g.load_state_dict(best_state[1])
+        f.load_state_dict(best_state[0])
+        g.load_state_dict(best_state[1])
     return f, g, float(best_mmd)
 
 
@@ -172,9 +285,34 @@ def run_cellot_on_split(cs, sp, seed, ae_iters, cellot_iters):
     return pred_genes, best_mmd
 
 
+def train_cellot_model(cs, train_idx, seed, ae_iters, cellot_iters):
+    """Train one CellOT model (AE + latent f/g) on an explicit training-cell subset.
+
+    Same procedure as `run_cellot_on_split`, but the training pool is given directly so that a single
+    trained model can be reused across several held-out units (used by the donor learning curve).
+    Returns (ae, g, best_latent_mmd).
+    """
+    set_seed(seed)
+    X = cs.X
+    tr = np.asarray(train_idx)
+    is_ctrl_tr = cs.obs.iloc[tr]["is_control"].to_numpy().astype(bool)
+    Xtr_ctrl, Xtr_treat, Xtr_all = X[tr[is_ctrl_tr]], X[tr[~is_ctrl_tr]], X[tr]
+    ae = train_ae(build_ae(X.shape[1]), Xtr_all, n_iters=ae_iters)
+    Zsrc, Ztgt = ae_encode(ae, Xtr_ctrl), ae_encode(ae, Xtr_treat)
+    f, g = build_fg(latent_dim=Zsrc.shape[1])
+    f, g, best_mmd = train_cellot_latent(f, g, Zsrc, Ztgt, n_iters=cellot_iters)
+    return ae, g, best_mmd
+
+
+def predict_cellot(ae, g, X_ctrl):
+    """Push control cells through a trained (ae, g) pair: encode -> transport -> decode."""
+    return ae_decode(ae, transport_latent(g, ae_encode(ae, X_ctrl)))
+
+
 def stratum_align(pred_cells, pred_strata, test_strata):
     """Tile per-stratum predicted cloud to match the test-row count per stratum (for pearson_delta,
-    whose per-stratum mean is invariant to tiling). For E-distance we pass the raw clouds instead."""
+    whose per-stratum mean is invariant to tiling). For E-distance we pass the raw clouds instead.
+    """
     pred_strata, test_strata = np.asarray(pred_strata), np.asarray(test_strata)
     aligned = np.zeros((len(test_strata), pred_cells.shape[1]), np.float32)
     for s in np.unique(test_strata):
@@ -190,6 +328,7 @@ def edist_clouds(pred_cells, pred_strata, test_cells, test_strata, fit_on, n_pca
     PCA basis = training cells (leak-safe, same as repo)."""
     from sklearn.decomposition import PCA
     from scipy.spatial.distance import cdist
+
     pred_strata, test_strata = np.asarray(pred_strata), np.asarray(test_strata)
     k = int(min(n_pca, fit_on.shape[0] - 1, fit_on.shape[1]))
     pca = PCA(n_components=max(2, k), random_state=0).fit(fit_on)

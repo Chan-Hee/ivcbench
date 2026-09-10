@@ -38,6 +38,7 @@ class LinearShiftKOEmb(BaselineAdapter):
     def fit(self, cs, split, side_info=None):
         from sklearn.decomposition import PCA
         from sklearn.linear_model import Ridge
+
         tr = split.train_idx
         obs = cs.obs.iloc[tr]
         is_ctrl = obs["is_control"].to_numpy()
@@ -49,7 +50,7 @@ class LinearShiftKOEmb(BaselineAdapter):
         ctrl_X = Xtr[is_ctrl]
         k = int(min(50, ctrl_X.shape[0] - 1, ctrl_X.shape[1]))
         gpca = PCA(n_components=max(2, k), random_state=0).fit(ctrl_X)
-        self.gene_emb = gpca.components_.T          # (n_feat, k)
+        self.gene_emb = gpca.components_.T  # (n_feat, k)
         self.gpos = gpos
         ctrl_mean = ctrl_X.mean(0)
         # per-train-KO shift in gene space, only for KO genes present as features (so they have an emb)
@@ -61,8 +62,9 @@ class LinearShiftKOEmb(BaselineAdapter):
                 continue
             D.append(Xtr[m].mean(0) - ctrl_mean)
             E.append(self.gene_emb[gpos[g]])
-        D = np.vstack(D); E = np.vstack(E)
-        self.reg = Ridge(alpha=1.0).fit(E, D)       # gene-emb -> gene-space shift
+        D = np.vstack(D)
+        E = np.vstack(E)
+        self.reg = Ridge(alpha=1.0).fit(E, D)  # gene-emb -> gene-space shift
         self.ctrl = self._control_mean(cs, split)
 
     def predict(self, cs, split, side_info=None) -> PredResult:
@@ -73,7 +75,7 @@ class LinearShiftKOEmb(BaselineAdapter):
                 shift = self.reg.predict(self.gene_emb[self.gpos[p]][None, :])[0]
                 preds.append(self.ctrl + shift)
             else:
-                preds.append(self.ctrl)             # no embedding -> fall back to control
+                preds.append(self.ctrl)  # no embedding -> fall back to control
         return PredResult(np.vstack(preds), self.ctrl)
 
 
@@ -92,24 +94,61 @@ def main():
         for frac, lbl in [(0.25, "25"), (0.50, "50")]:
             held = c4.held_ko_fraction(g, frac, seed=0)
             spec = c4.modality_lo_ko(held, lbl)
-            excl = list(spec.held_values)        # downstream_only=True -> exclude held KO genes
+            excl = list(
+                spec.held_values
+            )  # downstream_only=True -> exclude held KO genes
             for B in [LinearShiftKOEmb, ScGen]:
                 t0 = time.time()
                 adapter = B()
                 try:
-                    r = run_job(cs, spec, adapter, seed=0, exclude_genes=excl,
-                                adapted_implemented=True)
+                    r = run_job(
+                        cs,
+                        spec,
+                        adapter,
+                        seed=0,
+                        exclude_genes=excl,
+                        adapted_implemented=True,
+                    )
                 except Exception as e:  # noqa: BLE001
-                    r = {"baseline": adapter.name, "family": adapter.family, "split": spec.name,
-                         "action": "failed", "ran": False, "error": f"{type(e).__name__}: {e}"}
-                r.update(cluster="C4", dataset=ds_name, modality=mod_tag, elapsed_s=round(time.time() - t0, 1))
+                    r = {
+                        "baseline": adapter.name,
+                        "family": adapter.family,
+                        "split": spec.name,
+                        "action": "failed",
+                        "ran": False,
+                        "error": f"{type(e).__name__}: {e}",
+                    }
+                r.update(
+                    cluster="C4",
+                    dataset=ds_name,
+                    modality=mod_tag,
+                    elapsed_s=round(time.time() - t0, 1),
+                )
                 out_rows.append(r)
-                keep = {k: r.get(k) for k in ("baseline", "modality", "split", "action", "ran",
-                                              "leak_free", "n_train", "n_test", "pearson_delta",
-                                              "pearson_delta_ontarget", "pearson_delta_lo",
-                                              "pearson_delta_hi", "e_distance", "elapsed_s", "error")}
+                keep = {
+                    k: r.get(k)
+                    for k in (
+                        "baseline",
+                        "modality",
+                        "split",
+                        "action",
+                        "ran",
+                        "leak_free",
+                        "n_train",
+                        "n_test",
+                        "pearson_delta",
+                        "pearson_delta_ontarget",
+                        "pearson_delta_lo",
+                        "pearson_delta_hi",
+                        "e_distance",
+                        "elapsed_s",
+                        "error",
+                    )
+                }
                 print(json.dumps(keep), flush=True)
-    Path("results/C4/conditioned_rows.json").write_text(json.dumps(out_rows, indent=2, default=str))
+    Path("results/C4/conditioned_rows.json").write_text(
+        json.dumps(out_rows, indent=2, default=str)
+    )
     print("WROTE results/C4/conditioned_rows.json")
 
 

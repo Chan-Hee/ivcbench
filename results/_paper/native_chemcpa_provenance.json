@@ -1,0 +1,41 @@
+{
+  "method_group": "CPA/chemCPA",
+  "execution_model": "chemCPA",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "seed_aggregation": "mean prediction before scoring",
+  "covariate": "constant PBMC",
+  "held_compounds": 28,
+  "scored_strata": 112,
+  "genes": 2000,
+  "bundle_score": 0.11158957805986694,
+  "reconstructed_from_seeds_score": 0.11158957382348865,
+  "max_absolute_prediction_difference": 3.5762786865234375e-06,
+  "prediction_tolerance": 1e-05,
+  "training_performed_by_this_check": false,
+  "inputs": [
+    {
+      "path": "benchmark/outputs/additional_models/chemcpa_native_seed0.npz",
+      "sha256": "d8b2639f877bfd367c74b5161c0ca423444ffe0028ba3c8af87b91f9f79db5f2"
+    },
+    {
+      "path": "benchmark/outputs/additional_models/chemcpa_native_seed1.npz",
+      "sha256": "dc6003830f017e9d462624b52da84277af6036520fd95b4309fb0cbbad9c9eef"
+    },
+    {
+      "path": "benchmark/outputs/additional_models/chemcpa_native_seed2.npz",
+      "sha256": "c4e132a662f686d44356409023bd3a0333779a06ac7635512d82249e0c6c5875"
+    },
+    {
+      "path": "predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz",
+      "sha256": "45d5af4297800cdab8482cc173c242558c85b3684df25df6f930ca541df95d15"
+    },
+    {
+      "path": "scripts/chemcpa_native_op3.py",
+      "sha256": "98566b7ae332bf94f67317af529b2e94a943d61689081c275cb96000b1d51b92"
+    }
+  ]
+}

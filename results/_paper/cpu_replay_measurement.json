@@ -1,0 +1,12 @@
+{
+  "command": "python scripts/check_consistency.py",
+  "elapsed_seconds": 10.300319649279118,
+  "maximum_resident_MiB": 149.84375,
+  "stdout": "DEPOSIT CONSISTENCY: PASS (1931 stored bundles re-scored; 47 census cells; scores, metadata, manifest hashes and counts agree)\n",
+  "stderr": "",
+  "threads_available": 64,
+  "physical_cores": 32,
+  "cpu": "2 x Intel Xeon Silver 4314 @ 2.40 GHz",
+  "gpu_required": false,
+  "scope": "fresh re-scoring, matched-target checks, census, source hashes and uncertainty"
+}

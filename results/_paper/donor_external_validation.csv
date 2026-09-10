@@ -1,0 +1,13 @@
+held_donor,dataset,n_test,cellot,cell_mean,donor_shift,linear_pca,ctrl_pred,binding_floor,gap_vs_floor,floor_member,floor_score,margin,cohort,seeds
+101,kang,523,0.8065765,0.3316,0.3072,0.3069,0.006,0.3316,0.475,cell_mean,0.3316,0.4749765,kang,"0,1; scalar scores averaged within donor"
+1015,kang,530,0.8278335,0.3645,0.354,0.3543,-0.0166,0.3645,0.4633,cell_mean,0.3645,0.4633335,kang,"0,1; scalar scores averaged within donor"
+1016,kang,505,0.820654,0.296,0.2954,0.2953,-0.0141,0.296,0.5246,cell_mean,0.296,0.524654,kang,"0,1; scalar scores averaged within donor"
+1039,kang,315,0.7623095,0.3745,0.2976,0.2982,-0.0075,0.3745,0.3878,cell_mean,0.3745,0.3878095,kang,"0,1; scalar scores averaged within donor"
+107,kang,330,0.7697085,0.3417,0.2975,0.2979,0.0096,0.3417,0.428,cell_mean,0.3417,0.4280085,kang,"0,1; scalar scores averaged within donor"
+1244,kang,433,0.7951735,0.3296,0.3299,0.3306,0.0191,0.3306,0.4646,cell_mean,0.3296,0.4655735,kang,"0,1; scalar scores averaged within donor"
+1256,kang,529,0.833484,0.2842,0.2814,0.2822,-0.0106,0.2842,0.5493,cell_mean,0.2842,0.549284,kang,"0,1; scalar scores averaged within donor"
+1488,kang,526,0.8484385,0.3323,0.3184,0.3192,0.0051,0.3323,0.5162,cell_mean,0.3323,0.5161385000000001,kang,"0,1; scalar scores averaged within donor"
+D1,cano_gamez,800,0.927896,0.9441,0.9436,0.9437,0.0113,0.9441,-0.0162,cell_mean,0.9441,-0.016203999999999996,cano_gamez,"0,1; scalar scores averaged within donor"
+D2,cano_gamez,800,0.9193245,0.9224,0.918,0.9177,-0.0563,0.9224,-0.003,cell_mean,0.9224,-0.0030755000000000088,cano_gamez,"0,1; scalar scores averaged within donor"
+D3,cano_gamez,800,0.909357,0.9222,0.9138,0.9136,-0.0556,0.9222,-0.0129,cell_mean,0.9222,-0.012843000000000049,cano_gamez,"0,1; scalar scores averaged within donor"
+D4,cano_gamez,800,0.8886155,0.9146,0.9128,0.9128,-0.0437,0.9146,-0.026,cell_mean,0.9146,-0.025984499999999966,cano_gamez,"0,1; scalar scores averaged within donor"

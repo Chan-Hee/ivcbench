@@ -1,0 +1,30 @@
+{
+  "inputs": [
+    {
+      "path": "results/provenance_inputs/budget/lc_1x_deposited.csv",
+      "sha256": "c9e7582a45b1d6ce4d25b75867f51bdafbbae081e092597c54bdd5620ec9c21d"
+    },
+    {
+      "path": "results/provenance_inputs/budget/lc_1x_deposited.csv",
+      "sha256": "c9e7582a45b1d6ce4d25b75867f51bdafbbae081e092597c54bdd5620ec9c21d"
+    },
+    {
+      "path": "results/provenance_inputs/budget/lc8_4x.csv",
+      "sha256": "1db3414a9951667a7267dd72f1a3aed7a134333b3db2f4ddf660ec96a0705bcf"
+    },
+    {
+      "path": "results/provenance_inputs/budget/lc96_4x.csv",
+      "sha256": "7f58b60d4cd997e6b2df5435d799fe4630f574bc65022bdbc7b01ddf2b508101"
+    },
+    {
+      "path": "results/provenance_inputs/budget/lc8_12x.csv",
+      "sha256": "ace52ed595f57b12d0621e2358608af39a9cc48b7a549993bfcc2fb6f4566b3a"
+    },
+    {
+      "path": "results/provenance_inputs/budget/lc96_12x.csv",
+      "sha256": "60d325fd4edeb061ff93aefe302ec99d38062281e78d77778e71e32a1d1fa777"
+    }
+  ],
+  "aggregation": "equal-weight donor/seed scalar scores; ten donors and two seeds per row",
+  "inference": "descriptive sensitivity; not an optimization guarantee"
+}

@@ -1,0 +1,53 @@
+{
+  "sources": [
+    {
+      "path": "ivcbench/results/provenance_inputs/compute/cellot_soskic_shard0_timing.json",
+      "sha256": "e3d49afb6407c7b01a9b5523f3270fa532eedaf3e3590977bcf35a494b9d0c80"
+    },
+    {
+      "path": "ivcbench/results/provenance_inputs/compute/cellot_soskic_shard1_timing.json",
+      "sha256": "fa766817ee878762bcb7aec5c88b0a8693f7845f0539006234104f8ac1b58ea6"
+    },
+    {
+      "path": "ivcbench/results/provenance_inputs/compute/cellot_soskic_shard2_timing.json",
+      "sha256": "10efc264ce84949f2833fe5aae67558ce98302918bf89587ae3c42ffb1971d5e"
+    },
+    {
+      "path": "ivcbench/results/provenance_inputs/compute/cellot_soskic_shard3_timing.json",
+      "sha256": "6bcee7a7fdda4a2791d1fa56050570899afda8a7c808119a8f0c4472495dadbe"
+    },
+    {
+      "path": "ivcbench/results/provenance_inputs/compute/cellot_soskic_timing.json",
+      "sha256": "1ba86eb11112980fc3c0b61104e6c139425dafc813a31ba82103741be0102bb2"
+    },
+    {
+      "path": "ivcbench/outputs/additional_models/state_soskic_timing.json",
+      "sha256": "15d46abd2e2d3a584dbac342098d44e37ee5b03d9320a465b7611e6ecb167db2"
+    },
+    {
+      "path": "ivcbench/outputs/additional_models/scpram_soskic_timing.json",
+      "sha256": "b27b0db931d27ac89d281cc3f36706f6dea023c7d5a1497bff33a1612afcdedc"
+    },
+    {
+      "path": "ivcbench/results/provenance_inputs/compute/compute_job_ledger.csv",
+      "sha256": "26168ed8a0ca08586a73642def6109c50c3b686d2b0bc293fbaa17813d929c75"
+    },
+    {
+      "path": "ivcbench/results/newdata/scgpt_donor_curve_shard0_timing.json",
+      "sha256": "9cf2103d477b673af4bc625943c7a3238a5fbcb2190c83c2db315f82e4720ebb"
+    },
+    {
+      "path": "ivcbench/results/newdata/scgpt_donor_curve_shard1_timing.json",
+      "sha256": "4bc6b208bcc7bea11d4c653d7bcbb26ee2c8f73fa0e01e7cb86fb41f357636ab"
+    },
+    {
+      "path": "ivcbench/results/newdata/scgpt_donor_curve_shard2_timing.json",
+      "sha256": "27d795c8217df74c4dee4173ca142abec2524dd820a825a25bc29bf5e65c6bd7"
+    }
+  ],
+  "gpu_memory": "48-GB L40 worker configuration, not a measured minimum; no uniform peak-VRAM audit exists",
+  "time": "elapsed seconds, not utilization-integrated GPU-hours; parallel execution changes calendar time",
+  "completeness": "partial rerun estimates only; no defensible all-census retraining total",
+  "revision_ledger_elapsed_hours": 196.51805555555555,
+  "ledger_scope": "includes excluded/failed/repeated jobs and partial timings; not added to model-specific estimates"
+}

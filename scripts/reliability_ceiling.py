@@ -1,8 +1,8 @@
-"""Noise / reliability ceiling per benchmark cluster.
+"""Historical shared-control split-half response-repeatability analysis.
 
 For each cluster (C1 Kang, C2 Soskic, C3 CRISPR/Shifrut, C4 Frangieh, C5 OP3) we estimate how
-reliable the OBSERVED perturbation effect itself is — the ceiling any model could reach on the
-benchmark's own Axis-1 metric (Pearson-Delta of the effect vector across genes).
+repeatable the observed effect is conditional on one shared control estimate.
+The historical output filenames are retained; these are NOT prediction ceilings.
 
 METHOD (split-half pseudo-replicate reliability, matches metrics/response.pearson_delta):
   The benchmark scores a model by correlating, per evaluation UNIT (stratum), the predicted effect
@@ -12,12 +12,16 @@ METHOD (split-half pseudo-replicate reliability, matches metrics/response.pearso
   each half against the SAME control mean, and correlating the two halves across genes (exactly the
   benchmark's Pearson, centred across genes). That split-half r is a pseudo-replicate reliability of
   the observed effect. We repeat over many random partitions and average; macro-average over units to
-  get the cluster ceiling, with a unit-bootstrap 95% CI. Genes excluded from the benchmark's score
-  (C3/C4 downstream-only: the held KO target gene) are excluded here too.
+  obtain a contextual summary. The stored stratum-bootstrap intervals are descriptive,
+  not independent-dataset uncertainty. This is not the exact census estimand: T2 uses
+  all genes instead of its excluded-response-panel metric; T3 uses all Shifrut KOs
+  rather than five held-out datasets; T4/T5 include more than their held-out targets.
 
-  A Spearman-Brown full-length correction (2r/(1+r)) gives the reliability of the FULL-sample effect
-  (both halves pooled) — that is the true ceiling for a model that sees all the cells; we report both
-  the raw split-half (half-sample) and the SB-corrected (full-sample) values.
+  The Spearman-Brown transform 2r/(1+r) is reported as a descriptive statistic.
+  Its independent, parallel-error assumptions are not established: both halves
+  contain the same control-estimation error. Even under classical attenuation,
+  reliability is not itself the maximum correlation with a noisy target. No
+  model headroom, learnability or causal attribution follows from this statistic.
 
 ALL numbers come from the actual deposited data under benchmark/ via the real loaders. No fabrication.
 """

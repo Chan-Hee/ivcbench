@@ -40,10 +40,14 @@ warnings.filterwarnings("ignore")
 REPO = str(__import__("pathlib").Path(__file__).resolve().parents[1])
 sys.path.insert(0, os.path.join(REPO, "src"))
 
-DMSO_SMILES = "C[S+](C)[O-]"  # OP3 control = Dimethyl Sulfoxide canonical SMILES (from obs['SMILES'])
+DMSO_SMILES = (  # OP3 control = Dimethyl Sulfoxide canonical SMILES (from obs['SMILES'])
+    "C[S+](C)[O-]"
+)
 
 
-def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "constant") -> None:
+def main(
+    seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "constant"
+) -> None:
     # cov_mode: 'constant' -> single PBMC covariate + pooled control anchor (matches the deposited
     #   OP3 CPA/FP-ridge/cell-mean protocol so the Pearson-Δ is COMPARABLE to 0.172/0.164/0.159 and
     #   isolates the compound axis). 'celltype' -> cell_type covariate + per-lineage anchor (richer but
@@ -67,10 +71,12 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
     # ------------------------------------------------------------------ data + leak-safe split
     # SAME loader / HVG panel / fingerprint side-info as every deposited OP3 entrant -> comparable.
     cs = load()
-    held = _c5_held_compounds(cs)          # seed-0 ~20% compound holdout (the SAME held set as anchors)
+    held = _c5_held_compounds(
+        cs
+    )  # seed-0 ~20% compound holdout (the SAME held set as anchors)
     spec = c5.global_compound_holdout(held)
     split = build_split(cs, spec)
-    audit = audit_split(cs, split)         # hard leak gate (raises on violation)
+    audit = audit_split(cs, split)  # hard leak gate (raises on violation)
     facts["audit"] = audit
 
     obs = cs.obs.reset_index(drop=True)
@@ -88,7 +94,11 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
     smiles_map[CONTROL_TOKEN] = DMSO_SMILES
 
     # RDKit-parseability check for every held compound (pre-specified exclusion if any fails).
-    bad_held = [c for c in test_perts if c not in smiles_map or Chem.MolFromSmiles(smiles_map[c]) is None]
+    bad_held = [
+        c
+        for c in test_perts
+        if c not in smiles_map or Chem.MolFromSmiles(smiles_map[c]) is None
+    ]
     facts["held_without_parseable_smiles"] = bad_held
     test_perts = [c for c in test_perts if c not in bad_held]
 
@@ -96,7 +106,11 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
     train_perts_all = pert_all[train_idx]
     train_cpds = sorted(set(train_perts_all) - {CONTROL_TOKEN})
     # drop any train compound lacking a parseable SMILES (the embedding builder would crash on it)
-    bad_train = [c for c in train_cpds if c not in smiles_map or Chem.MolFromSmiles(smiles_map[c]) is None]
+    bad_train = [
+        c
+        for c in train_cpds
+        if c not in smiles_map or Chem.MolFromSmiles(smiles_map[c]) is None
+    ]
     facts["train_without_parseable_smiles"] = bad_train
     keep_train_cpd = set(train_cpds) - set(bad_train)
 
@@ -105,12 +119,18 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
     # validation = a held-out subset of TRAIN compounds (NEVER test compounds). 15% of train compounds.
     tc = sorted(keep_train_cpd)
     n_val = max(3, int(round(0.15 * len(tc))))
-    val_cpds = set(rng.choice(np.array(tc, dtype=object), size=min(n_val, len(tc)), replace=False).tolist())
+    val_cpds = set(
+        rng.choice(
+            np.array(tc, dtype=object), size=min(n_val, len(tc)), replace=False
+        ).tolist()
+    )
     facts["n_train_compounds"] = len(tc)
     facts["n_valid_compounds"] = len(val_cpds)
 
     ctrl_train_pos = train_idx[is_ctrl[train_idx]]
-    treat_train_pos = train_idx[(~is_ctrl[train_idx]) & np.isin(train_perts_all, list(keep_train_cpd))]
+    treat_train_pos = train_idx[
+        (~is_ctrl[train_idx]) & np.isin(train_perts_all, list(keep_train_cpd))
+    ]
 
     # cap training cells (stratified by compound) so the panel trains in time, like cpa_c5_runner.
     def _cap(pos, per):
@@ -123,23 +143,33 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
 
     n_groups = max(1, len(keep_train_cpd) + 1)
     per = max(4, max_cells // n_groups)
-    ctrl_keep = ctrl_train_pos if len(ctrl_train_pos) <= max_cells // 3 else rng.choice(
-        ctrl_train_pos, max_cells // 3, replace=False)
+    ctrl_keep = (
+        ctrl_train_pos
+        if len(ctrl_train_pos) <= max_cells // 3
+        else rng.choice(ctrl_train_pos, max_cells // 3, replace=False)
+    )
     treat_keep = _cap(treat_train_pos, per)
     train_keep = np.sort(np.concatenate([ctrl_keep, treat_keep]))
 
     # ood cells: the held test compounds' treated cells — included in the AnnData ONLY so the frozen
     # FP embedding has their rows. Capped (we never use their expression for anything but vocabulary).
     ood_pos = split.test_idx[np.isin(pert_all[split.test_idx], test_perts)]
-    ood_keep = ood_pos if len(ood_pos) <= max_cells // 2 else rng.choice(ood_pos, max_cells // 2, replace=False)
+    ood_keep = (
+        ood_pos
+        if len(ood_pos) <= max_cells // 2
+        else rng.choice(ood_pos, max_cells // 2, replace=False)
+    )
 
     all_pos = np.concatenate([train_keep, ood_keep])
     X = cs.X[all_pos].astype(np.float32)
     cond = np.where(is_ctrl[all_pos], CONTROL_TOKEN, pert_all[all_pos]).astype(object)
     # covariate: 'constant' uses a single PBMC bucket (deposited-comparable, isolates the compound axis);
     # 'celltype' uses the real lineage (not comparable to anchors — see cov_mode docstring).
-    ct = (np.array(["PBMC"] * len(all_pos), dtype=object) if cov_mode == "constant"
-          else ct_all[all_pos].astype(object))
+    ct = (
+        np.array(["PBMC"] * len(all_pos), dtype=object)
+        if cov_mode == "constant"
+        else ct_all[all_pos].astype(object)
+    )
 
     # split_key: train compounds -> 'train' (+ controls), val compounds -> 'valid', held -> 'ood'
     split_col = np.empty(len(all_pos), dtype=object)
@@ -155,7 +185,9 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
         else:
             split_col[i] = "train"
     # controls also seed the valid split a bit so the validation loss is well-defined
-    val_ctrl = rng.random(len(all_pos)) < 0.0  # keep controls in train; valid has treated val-cpd cells
+    val_ctrl = (
+        rng.random(len(all_pos)) < 0.0
+    )  # keep controls in train; valid has treated val-cpd cells
     split_col[(cond == CONTROL_TOKEN) & val_ctrl] = "valid"
 
     smiles_col = np.array([smiles_map[c] for c in cond], dtype=object)
@@ -166,13 +198,15 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
     adata.obs["SMILES"] = smiles_col.astype(str)
     adata.obs["cell_type"] = pd.Categorical(ct)
     adata.obs["split"] = pd.Categorical(split_col)
-    adata.obs["dose"] = 1.0  # dose NOT used as a conditioning axis (see manifest); flat dosage
+    adata.obs["dose"] = (
+        1.0  # dose NOT used as a conditioning axis (see manifest); flat dosage
+    )
 
     facts["n_train_cells"] = int((split_col == "train").sum())
     facts["n_valid_cells"] = int((split_col == "valid").sum())
     facts["n_ood_cells"] = int((split_col == "ood").sum())
     facts["cov_mode"] = cov_mode
-    facts["covariates"] = (["PBMC_constant"] if cov_mode == "constant" else ["cell_type"])
+    facts["covariates"] = ["PBMC_constant"] if cov_mode == "constant" else ["cell_type"]
     facts["dose_used"] = False
     facts["n_genes"] = len(genes)
 
@@ -201,13 +235,16 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
         n_latent=64,
         recon_loss="gauss",
     )
-    facts["use_rdkit_embeddings"] = bool(model.module.pert_network.use_rdkit
-                                         if hasattr(model.module, "pert_network") else True)
+    facts["use_rdkit_embeddings"] = bool(
+        model.module.pert_network.use_rdkit
+        if hasattr(model.module, "pert_network")
+        else True
+    )
 
     # confirm the frozen FP embedding (drug encoder NOT a learnable lookup -> a function of FP)
     try:
         emb = model.module.pert_network.pert_embedding
-        facts["drug_embedding_frozen"] = (not emb.weight.requires_grad)
+        facts["drug_embedding_frozen"] = not emb.weight.requires_grad
         facts["drug_embedding_dim"] = int(emb.weight.shape[1])
     except Exception as e:  # noqa: BLE001
         facts["drug_embedding_introspect_error"] = str(e)[:200]
@@ -221,7 +258,9 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
         plan_kwargs={"lr": 1e-3},
     )
     try:
-        facts["epoch_history_len"] = int(len(model.epoch_history)) if model.epoch_history is not None else None
+        facts["epoch_history_len"] = (
+            int(len(model.epoch_history)) if model.epoch_history is not None else None
+        )
     except Exception:  # noqa: BLE001
         pass
 
@@ -263,11 +302,15 @@ def main(seed: int, out_dir: str, max_cells: int, epochs: int, cov_mode: str = "
     Xp = np.vstack(blocks_X).astype(np.float32)
     pred_ad = ad.AnnData(Xp.copy())
     pred_ad.var_names = genes
-    pred_ad.obs["condition"] = pd.Categorical(blocks_cond,
-                                              categories=list(adata.obs["condition"].cat.categories))
-    pred_ad.obs["SMILES"] = np.array([smiles_map[c] for c in blocks_cond], dtype=object).astype(str)
-    pred_ad.obs["cell_type"] = pd.Categorical(blocks_ct,
-                                              categories=list(adata.obs["cell_type"].cat.categories))
+    pred_ad.obs["condition"] = pd.Categorical(
+        blocks_cond, categories=list(adata.obs["condition"].cat.categories)
+    )
+    pred_ad.obs["SMILES"] = np.array(
+        [smiles_map[c] for c in blocks_cond], dtype=object
+    ).astype(str)
+    pred_ad.obs["cell_type"] = pd.Categorical(
+        blocks_ct, categories=list(adata.obs["cell_type"].cat.categories)
+    )
     pred_ad.obs["dose"] = 1.0
     tags = np.array(blocks_tag, dtype=object)
 
@@ -314,18 +357,30 @@ def _smiles_map() -> dict:
     """compound name -> SMILES, read from the on-disk OP3 obs (backed)."""
     import anndata
     import pandas as pd
-    path = os.environ.get("IVCBENCH_OP3_PATH",
-                          os.path.join(REPO, "data/C5/op3/GSE279945_sc_counts_processed.h5ad"))
+
+    path = os.environ.get(
+        "IVCBENCH_OP3_PATH",
+        os.path.join(REPO, "data/C5/op3/GSE279945_sc_counts_processed.h5ad"),
+    )
     a = anndata.read_h5ad(path, backed="r")
     obs = a.obs
-    m = (obs[["sm_name", "SMILES"]].astype(str).drop_duplicates("sm_name")
-         .set_index("sm_name")["SMILES"].to_dict())
+    m = (
+        obs[["sm_name", "SMILES"]]
+        .astype(str)
+        .drop_duplicates("sm_name")
+        .set_index("sm_name")["SMILES"]
+        .to_dict()
+    )
     return {str(k): str(v) for k, v in m.items() if v not in ("nan", "None", "")}
 
 
 if __name__ == "__main__":
     seed = int(sys.argv[1]) if len(sys.argv) > 1 else 0
-    out_dir = sys.argv[2] if len(sys.argv) > 2 else os.path.join(REPO, "outputs/additional_models")
+    out_dir = (
+        sys.argv[2]
+        if len(sys.argv) > 2
+        else os.path.join(REPO, "outputs/additional_models")
+    )
     max_cells = int(sys.argv[3]) if len(sys.argv) > 3 else 60000
     epochs = int(sys.argv[4]) if len(sys.argv) > 4 else 60
     cov_mode = sys.argv[5] if len(sys.argv) > 5 else "constant"

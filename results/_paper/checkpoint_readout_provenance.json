@@ -1,0 +1,8 @@
+{
+  "frangieh": "IFN\u03b3 melanoma cells; RNA/protein fitted independently, not cross-modal prediction",
+  "chen": "surface panel from FOXP3-regulator screen; separate dataset and processing",
+  "normalization": "centered log1p = log1p(count) minus the across-marker cell mean; not claimed to be a universal ADT standard",
+  "statistical_scope": "intervals conditional on shared controls; overlapping holdouts not independent replications",
+  "interpretation": "neither interval crossing zero nor constant-shift sign matching establishes an assay detection limit or post-transcriptional mechanism",
+  "raw_rna_note": "PDCD1 absent from the supplied RNA feature list, not direct evidence of biological absence"
+}

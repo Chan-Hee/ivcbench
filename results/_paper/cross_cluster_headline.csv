@@ -1,36 +1,48 @@
-cluster,task,split,unit,n_unit,family,model,pearson_delta,floor_cell_mean,floor_linear_PCA,floor_mean,delta_vs_floor_mean,delta_vs_cell_mean,delta_vs_linear_PCA,beats_both_floor_members,beats_floor_mean
-C1,cytokine/Kang,cell-context (LOCT),lineage,8,Latent,CPA,0.7111,0.5896,0.7803,0.6849,0.0262,0.1215,-0.0692,False,True
-C1,cytokine/Kang,cell-context (LOCT),lineage,8,Latent,scGen,0.7497,0.5896,0.7803,0.6849,0.0647,0.1601,-0.0307,False,True
-C2,donor/Soskic,donor (LODO),donor,106,Latent,CPA,0.1934,0.2598,0.0362,0.148,0.0453,-0.0665,0.1571,False,True
-C2,donor/Soskic,donor (LODO),donor,106,OT,CellOT,0.3666,0.2598,0.0362,0.148,0.2186,0.1068,0.3304,True,True
-C2,donor/Soskic,donor (LODO),donor,106,Hybrid,STATE,0.183,0.2598,0.0362,0.148,0.035,-0.0768,0.1468,False,True
-C2,donor/Soskic,donor (LODO),donor,106,Latent,scGen,0.147,0.2598,0.0362,0.148,-0.001,-0.1128,0.1108,False,False
-C2,donor/Soskic,donor (LODO),donor,106,OT,scPRAM,0.1592,0.2598,0.0362,0.148,0.0111,-0.1006,0.1229,False,True
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,AttentionPert,0.2269,0.4937,0.2966,0.3952,-0.1682,-0.2668,-0.0697,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,OT,CINEMA-OT,0.4579,0.4937,0.2966,0.3952,0.0627,-0.0359,0.1613,False,True
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Latent,CPA,0.0767,0.4937,0.2966,0.3952,-0.3184,-0.417,-0.2198,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,GEARS,0.207,0.4937,0.2966,0.3952,-0.1882,-0.2867,-0.0896,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Hybrid,PertAdapt,-0.0014,0.4937,0.2966,0.3952,-0.3965,-0.4951,-0.2979,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Hybrid,STATE,-0.0206,0.4937,0.2966,0.3952,-0.4157,-0.5143,-0.3171,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Foundation,scFoundation,0.0437,0.4937,0.2966,0.3952,-0.3514,-0.45,-0.2528,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Foundation,scGPT,0.1654,0.4937,0.2966,0.3952,-0.2298,-0.3284,-0.1312,False,False
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Latent,scGen,0.1049,0.4937,0.2966,0.3952,-0.2902,-0.3888,-0.1916,False,False
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Graph,AttentionPert,0.5079,0.6612,0.2833,0.4723,0.0357,-0.1533,0.2246,False,True
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Latent,CPA,0.5348,0.6612,0.2833,0.4723,0.0625,-0.1265,0.2514,False,True
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,OT,CellOT,0.5917,0.6612,0.2833,0.4723,0.1195,-0.0695,0.3084,False,True
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Graph,GEARS,0.4417,0.6612,0.2833,0.4723,-0.0306,-0.2195,0.1584,False,False
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Hybrid,STATE,0.0254,0.6612,0.2833,0.4723,-0.4469,-0.6358,-0.2579,False,False
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Deterministic shift,linear-shift-KOemb,0.6177,0.6612,0.2833,0.4723,0.1454,-0.0436,0.3343,False,True
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Latent,scGen,0.5564,0.6612,0.2833,0.4723,0.0841,-0.1048,0.2731,False,True
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,OT,scPRAM,0.3152,0.6612,0.2833,0.4723,-0.1571,-0.346,0.0319,False,False
-C5,small-mol/OP3,unseen-compound,compound,28,OT,CINEMA-OT,0.1718,0.1722,0.1498,0.161,0.0108,-0.0004,0.022,False,True
-C5,small-mol/OP3,unseen-compound,compound,28,Latent,CPA,0.1067,0.1722,0.1498,0.161,-0.0543,-0.0655,-0.0431,False,False
-C5,small-mol/OP3,unseen-compound,compound,28,Chemistry,FP-ridge,0.1642,0.1722,0.1498,0.161,0.0032,-0.008,0.0144,False,True
-C5,small-mol/OP3,unseen-compound,compound,28,Hybrid,STATE,0.0045,0.1722,0.1498,0.161,-0.1565,-0.1677,-0.1453,False,False
-C5,small-mol/OP3,unseen-compound,compound,28,Latent,scGen,0.0702,0.1722,0.1498,0.161,-0.0908,-0.102,-0.0796,False,False
-C5,small-mol/OP3,unseen-compound,compound,28,Chemistry,chemCPA,0.1116,0.1722,0.1498,0.161,-0.0494,-0.0606,-0.0382,False,False
-C5,small-mol/OP3,cell-context (LOCT),lineage,4,OT,CINEMA-OT,0.2533,0.025,0.2694,0.1472,0.1061,0.2283,-0.0161,False,True
-C5,small-mol/OP3,cell-context (LOCT),lineage,4,Latent,CPA,0.041,0.025,0.2694,0.1472,-0.1062,0.0161,-0.2284,False,False
-C5,small-mol/OP3,cell-context (LOCT),lineage,4,Chemistry,FP-ridge,0.3874,0.025,0.2694,0.1472,0.2402,0.3625,0.118,True,True
-C5,small-mol/OP3,cell-context (LOCT),lineage,4,Hybrid,STATE,0.0601,0.025,0.2694,0.1472,-0.0871,0.0351,-0.2094,False,False
-C5,small-mol/OP3,cell-context (LOCT),lineage,4,Latent,scGen,0.1797,0.025,0.2694,0.1472,0.0325,0.1547,-0.0898,False,True
+cluster,task,split,unit,n_unit,family,model,pearson_delta,floor_cell_mean,floor_linear_PCA,binding_floor,floor_score,margin,floor_mean,delta_vs_floor_mean,delta_vs_cell_mean,delta_vs_linear_PCA,beats_both_floor_members,beats_floor_mean,status,execution_model
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,Latent,Biolord,0.5881,0.5896,0.7803,linear-PCA,0.7803,-0.1922,0.6849,-0.0968,-0.0014,-0.1922,False,False,native,Biolord
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,Flow,CellFlow,0.7985,0.5896,0.7803,linear-PCA,0.7803,0.0181,0.6849,0.1135,0.2089,0.0181,True,True,native,CellFlow
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,OT,CellOT,0.7865,0.5896,0.7803,linear-PCA,0.7803,0.0062,0.6849,0.1016,0.1969,0.0062,True,True,native,CellOT
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,Hybrid,STATE,0.7081,0.5896,0.7803,linear-PCA,0.7803,-0.0722,0.6849,0.0232,0.1186,-0.0722,False,True,native,STATE
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,Foundation,scFoundation,0.6773,0.5896,0.7803,linear-PCA,0.7803,-0.103,0.6849,-0.0076,0.0878,-0.103,False,False,adapted,scFoundation
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,Foundation,scGPT,0.5855,0.5896,0.7803,linear-PCA,0.7803,-0.1949,0.6849,-0.0995,-0.0041,-0.1949,False,False,adapted,scGPT
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,Latent,scGen,0.7497,0.5896,0.7803,linear-PCA,0.7803,-0.0307,0.6849,0.0647,0.1601,-0.0307,False,True,native,scGen
+C1,cytokine/Kang,cell-context (LOCT),lineage,8,OT,scPRAM,0.7507,0.5896,0.7803,linear-PCA,0.7803,-0.0296,0.6849,0.0658,0.1612,-0.0296,False,True,native,scPRAM
+C2,donor/Soskic,donor (LODO),donor,106,Latent,Biolord,0.0822,0.2598,0.0362,cell-mean,0.2598,-0.1777,0.148,-0.0659,-0.1777,0.0459,False,False,native,Biolord
+C2,donor/Soskic,donor (LODO),donor,106,Flow,CellFlow,0.2373,0.2598,0.0362,cell-mean,0.2598,-0.0225,0.148,0.0893,-0.0225,0.2011,False,True,native,CellFlow
+C2,donor/Soskic,donor (LODO),donor,106,OT,CellOT,0.3666,0.2598,0.0362,cell-mean,0.2598,0.1068,0.148,0.2186,0.1068,0.3304,True,True,native,CellOT
+C2,donor/Soskic,donor (LODO),donor,106,Hybrid,PertAdapt,0.2196,0.2598,0.0362,cell-mean,0.2598,-0.0402,0.148,0.0716,-0.0402,0.1834,False,True,adapted,PertAdapt
+C2,donor/Soskic,donor (LODO),donor,106,Hybrid,STATE,0.183,0.2598,0.0362,cell-mean,0.2598,-0.0768,0.148,0.035,-0.0768,0.1468,False,True,native,STATE
+C2,donor/Soskic,donor (LODO),donor,106,Foundation,scFoundation,0.1197,0.2598,0.0362,cell-mean,0.2598,-0.1401,0.148,-0.0283,-0.1401,0.0835,False,False,adapted,scFoundation
+C2,donor/Soskic,donor (LODO),donor,106,Foundation,scGPT,0.2501,0.2598,0.0362,cell-mean,0.2598,-0.0097,0.148,0.1021,-0.0097,0.2139,False,True,adapted,scGPT
+C2,donor/Soskic,donor (LODO),donor,106,Latent,scGen,0.147,0.2598,0.0362,cell-mean,0.2598,-0.1128,0.148,-0.001,-0.1128,0.1108,False,False,native,scGen
+C2,donor/Soskic,donor (LODO),donor,106,OT,scPRAM,0.1592,0.2598,0.0362,cell-mean,0.2598,-0.1006,0.148,0.0111,-0.1006,0.1229,False,True,native,scPRAM
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,AttentionPert,0.2269,0.4937,0.2966,cell-mean,0.4937,-0.2668,0.3952,-0.1682,-0.2668,-0.0697,False,False,native,AttentionPert
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Latent,Biolord,0.3941,0.4937,0.2966,cell-mean,0.4937,-0.0996,0.3952,-0.001,-0.0996,0.0975,False,False,native,Biolord
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,OT,CINEMA-OT,0.4579,0.4937,0.2966,cell-mean,0.4937,-0.0359,0.3952,0.0627,-0.0359,0.1613,False,True,diagnostic,CINEMA-OT
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Flow,CellFlow,0.321,0.4937,0.2966,cell-mean,0.4937,-0.1727,0.3952,-0.0742,-0.1727,0.0244,False,False,native,CellFlow
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Graph,GEARS,0.207,0.4937,0.2966,cell-mean,0.4937,-0.2867,0.3952,-0.1882,-0.2867,-0.0896,False,False,native,GEARS
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Flow,PerturbNet,0.3617,0.4937,0.2966,cell-mean,0.4937,-0.132,0.3952,-0.0335,-0.132,0.0651,False,False,native,PerturbNet
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,5,Foundation,scGPT,0.1654,0.4937,0.2966,cell-mean,0.4937,-0.3284,0.3952,-0.2298,-0.3284,-0.1312,False,False,native,scGPT
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Graph,AttentionPert,0.5079,0.6612,0.2833,cell-mean,0.6612,-0.1533,0.4723,0.0357,-0.1533,0.2246,False,True,native,AttentionPert
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Latent,Biolord,0.6128,0.6612,0.2833,cell-mean,0.6612,-0.0485,0.4723,0.1405,-0.0485,0.3294,False,True,native,Biolord
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Flow,CellFlow,0.4924,0.6612,0.2833,cell-mean,0.6612,-0.1689,0.4723,0.0201,-0.1689,0.209,False,True,native,CellFlow
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Graph,GEARS,0.4417,0.6612,0.2833,cell-mean,0.6612,-0.2195,0.4723,-0.0306,-0.2195,0.1584,False,False,native,GEARS
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Flow,PerturbNet,0.5981,0.6612,0.2833,cell-mean,0.6612,-0.0631,0.4723,0.1258,-0.0631,0.3148,False,True,native,PerturbNet
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Deterministic shift,linear-shift-KOemb,0.6177,0.6612,0.2833,cell-mean,0.6612,-0.0436,0.4723,0.1454,-0.0436,0.3343,False,True,diagnostic,linear-shift-KOemb
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,2,Foundation,scGPT,0.5568,0.6612,0.2833,cell-mean,0.6612,-0.1044,0.4723,0.0845,-0.1044,0.2735,False,True,native,scGPT
+C5,small-mol/OP3,unseen-compound,compound,28,Latent,Biolord,0.1267,0.1722,0.1498,cell-mean,0.1722,-0.0455,0.161,-0.0343,-0.0455,-0.0231,False,False,native,Biolord
+C5,small-mol/OP3,unseen-compound,compound,28,OT,CINEMA-OT,0.1718,0.1722,0.1498,cell-mean,0.1722,-0.0004,0.161,0.0108,-0.0004,0.022,False,True,diagnostic,CINEMA-OT
+C5,small-mol/OP3,unseen-compound,compound,28,Latent,CPA,0.1116,0.1722,0.1498,cell-mean,0.1722,-0.0606,0.161,-0.0494,-0.0606,-0.0382,False,False,native,chemCPA
+C5,small-mol/OP3,unseen-compound,compound,28,Flow,CellFlow,0.1661,0.1722,0.1498,cell-mean,0.1722,-0.0061,0.161,0.0051,-0.0061,0.0163,False,True,native,CellFlow
+C5,small-mol/OP3,unseen-compound,compound,28,Chemistry,FP-ridge,0.1642,0.1722,0.1498,cell-mean,0.1722,-0.008,0.161,0.0032,-0.008,0.0144,False,True,diagnostic,FP-ridge
+C5,small-mol/OP3,unseen-compound,compound,28,Chemistry,PRnet,0.1343,0.1722,0.1498,cell-mean,0.1722,-0.0379,0.161,-0.0267,-0.0379,-0.0155,False,False,native,PRnet
+C5,small-mol/OP3,unseen-compound,compound,28,Flow,PerturbNet,0.1615,0.1722,0.1498,cell-mean,0.1722,-0.0107,0.161,0.0005,-0.0107,0.0117,False,True,native,PerturbNet
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Latent,Biolord,0.0787,0.025,0.2694,linear-PCA,0.2694,-0.1907,0.1472,-0.0685,0.0537,-0.1907,False,False,native,Biolord
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,OT,CINEMA-OT,0.2533,0.025,0.2694,linear-PCA,0.2694,-0.0161,0.1472,0.1061,0.2283,-0.0161,False,True,diagnostic,CINEMA-OT
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Flow,CellFlow,0.1038,0.025,0.2694,linear-PCA,0.2694,-0.1656,0.1472,-0.0434,0.0788,-0.1656,False,False,native,CellFlow
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,OT,CellOT,0.1015,0.025,0.2694,linear-PCA,0.2694,-0.1679,0.1472,-0.0457,0.0765,-0.1679,False,False,native,CellOT
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Chemistry,FP-ridge,0.3874,0.025,0.2694,linear-PCA,0.2694,0.118,0.1472,0.2402,0.3625,0.118,True,True,diagnostic,FP-ridge
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Chemistry,PRnet,0.0944,0.025,0.2694,linear-PCA,0.2694,-0.175,0.1472,-0.0528,0.0695,-0.175,False,False,native,PRnet
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Foundation,scFoundation,0.0552,0.025,0.2694,linear-PCA,0.2694,-0.2143,0.1472,-0.0921,0.0302,-0.2143,False,False,adapted,scFoundation
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,Foundation,scGPT,0.0247,0.025,0.2694,linear-PCA,0.2694,-0.2447,0.1472,-0.1225,-0.0003,-0.2447,False,False,adapted,scGPT
+C5,small-mol/OP3,cell-context (LOCT),lineage,4,OT,scPRAM,-0.0087,0.025,0.2694,linear-PCA,0.2694,-0.2781,0.1472,-0.1559,-0.0337,-0.2781,False,False,native,scPRAM

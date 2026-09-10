@@ -1,0 +1,19 @@
+{
+  "dataset": "schmidt",
+  "inputs": [
+    {
+      "task_key": "T3",
+      "unit": "schmidt",
+      "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz",
+      "sha256": "463a2154d4f8beb1f50fbc827e17c71c9cc7353d5f2159272c588e8ee8f258fd",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "4113d7573d104e4e494d5553d83c821082572acfa1fd28523a9262899c65158e",
+      "n_strata": 7,
+      "partitions": 100,
+      "independent_control_halves": true
+    }
+  ],
+  "elapsed_seconds": 48.63751054694876,
+  "scope": "cell-sampling repeatability on exact held targets, not biological replication or an accuracy bound"
+}

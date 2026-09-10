@@ -1,0 +1,3 @@
+condition,input_file,n_cells,n_genes,raw_or_count_layer_present,median_gene_mean,median_gene_sd,minimum,maximum,negative_fraction,fraction_at_upper_cap,sha256
+0h,restingCells_CD4only_HVGs_processed.h5ad,173793,796,False,-4.400217967222567e-05,0.9995302113385657,-5.218212127685547,10.0,0.880346729996209,0.001643546832573043,296ca954f969a31b0084f790b7fcdd3eb58afee4ae4cff1f8191271519a0a20f
+16h,stimulatedCells_highlyActiveCD4_16h_HVGs_processed.h5ad,124768,1437,False,-0.0008594502331170605,0.9903525354466501,-11.721303939819336,10.0,0.8410374024405023,0.0010013909406672982,8e5cb53d77bdea45961000b61aae1bf3bfc179a59f58d07be2327779bfa8b5b3

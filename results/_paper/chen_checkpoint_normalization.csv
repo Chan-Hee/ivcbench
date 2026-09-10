@@ -1,0 +1,9 @@
+dataset,held_fraction,normalization,marker,mean,ci_lo,ci_hi,sign_match,n_held,interval_scope
+Chen,25,library-log,PD-1,-0.020610777661204338,-0.03817864553819188,-0.0030429097842167956,0.5945945945945946,74,historical normal interval over KOs; shared control fixed; unadjusted
+Chen,25,library-log,PD-L1,0.00892599206417799,-0.007218363749980285,0.025070347878336265,0.5,74,historical normal interval over KOs; shared control fixed; unadjusted
+Chen,25,centered log1p,PD-1,-0.06685228645801544,-0.09076908138590149,-0.04293549153012939,0.7432432432432432,74,historical normal interval over KOs; shared control fixed; unadjusted
+Chen,25,centered log1p,PD-L1,0.016767626628279686,0.00831872692431188,0.02521652633224749,0.6891891891891891,74,historical normal interval over KOs; shared control fixed; unadjusted
+Chen,50,library-log,PD-1,-0.012644222937524319,-0.024768750977046988,-0.0005196948980016498,0.5135135135135135,148,historical normal interval over KOs; shared control fixed; unadjusted
+Chen,50,library-log,PD-L1,0.004420713987201452,-0.00609720161443097,0.014938629588833874,0.47297297297297297,148,historical normal interval over KOs; shared control fixed; unadjusted
+Chen,50,centered log1p,PD-1,-0.05560492351651192,-0.07139602404943568,-0.039813822983588154,0.722972972972973,148,historical normal interval over KOs; shared control fixed; unadjusted
+Chen,50,centered log1p,PD-L1,0.014925051480531693,0.009280458320577684,0.0205696446404857,0.6756756756756757,148,historical normal interval over KOs; shared control fixed; unadjusted

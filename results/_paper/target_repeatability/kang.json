@@ -1,0 +1,103 @@
+{
+  "dataset": "kang",
+  "inputs": [
+    {
+      "task_key": "T1",
+      "unit": "B",
+      "bundle": "predictions/C1/C1_LOCT__cell-mean__C1_loct_B.npz",
+      "sha256": "1dd89d9d86fc9efdba7b41eb02315098c8480f5e8bbc52eed751e22f340a0283",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 8,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T1",
+      "unit": "CD4T",
+      "bundle": "predictions/C1/C1_LOCT__cell-mean__C1_loct_CD4T.npz",
+      "sha256": "e6302e5ba090e14502e8891aaf6d141d593d5df36df10b17d0e844aea2fd70ac",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 8,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T1",
+      "unit": "CD8T",
+      "bundle": "predictions/C1/C1_LOCT__cell-mean__C1_loct_CD8T.npz",
+      "sha256": "cd213a34f099dfc53a5b6581f16e0e206be49f113b409955c8364accb75d6a76",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 8,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T1",
+      "unit": "DC",
+      "bundle": "predictions/C1/C1_LOCT__cell-mean__C1_loct_DC.npz",
+      "sha256": "1595febc91f74d9ac43d67e690261308d6e1caf68c8ec4c2d74a9c7bfc975321",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 8,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T1",
+      "unit": "Mk",
+      "bundle": "predictions/C1/C1_LOCT__cell-mean__C1_loct_Mk.npz",
+      "sha256": "6db878f7752e93eca89f126be78f3363ec315852debad683b7d31eb9d1cd9ab5",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 8,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T1",
+      "unit": "Mono_CD14",
+      "bundle": "predictions/C1/C1_LOCT__cell-mean__C1_loct_Mono_CD14.npz",
+      "sha256": "14b03b6d3bd34f07fc256e9dcd0649deb8277c8396a17decab4918e6e843e097",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 8,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T1",
+      "unit": "Mono_FCGR3A",
+      "bundle": "predictions/C1/C1_LOCT__cell-mean__C1_loct_Mono_FCGR3A.npz",
+      "sha256": "35543436ba37c5b8fd052f3c3dfe4f586a51f5501d90a6cccff24c229ed6ffcb",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 8,
+      "partitions": 100,
+      "independent_control_halves": true
+    },
+    {
+      "task_key": "T1",
+      "unit": "NK",
+      "bundle": "predictions/C1/C1_LOCT__cell-mean__C1_loct_NK.npz",
+      "sha256": "a03a5b7da3c4c86970409903f477558aaea87f4ad9033001b2497fd33d63f491",
+      "observed_max_difference": 0.0,
+      "control_max_difference": 0.0,
+      "feature_mask_sha256": "236b232fb94678b33f7cfe5d9b11edf49949b02c5a5820277d2c7b6f65a12a55",
+      "n_strata": 8,
+      "partitions": 100,
+      "independent_control_halves": true
+    }
+  ],
+  "elapsed_seconds": 8.237111554015428,
+  "scope": "cell-sampling repeatability on exact held targets, not biological replication or an accuracy bound"
+}

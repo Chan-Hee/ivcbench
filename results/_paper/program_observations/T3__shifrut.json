@@ -1,0 +1,15 @@
+{
+  "task_key": "T3",
+  "unit": "shifrut",
+  "floor_bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__shifrut.npz",
+  "floor_sha256": "a4a1ba200f4663868c5942e65a50af411394e8a4dbfb134f29dbb56dee27e196",
+  "observed_max_difference": 0.0,
+  "control_max_difference": 0.0,
+  "n_cells": 1598,
+  "n_controls": 3541,
+  "n_strata": 2,
+  "n_genes": 2000,
+  "method": "mean per-cell AUCell-like score, top 5%; original argsort tie convention",
+  "targets": "exact census held observations; no model refitting",
+  "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
+}
