@@ -1,0 +1,15 @@
+Cohort,Held donor,Test cells (n),CellOT,Cell-mean floor,Linear-PCA floor,Binding floor,Binding member,Margin over binding floor,Clears both members
+Kang,101,523,0.807,0.332,0.307,0.332,cell-mean,+0.475,yes
+Kang,1015,530,0.828,0.365,0.354,0.365,cell-mean,+0.463,yes
+Kang,1016,505,0.821,0.296,0.295,0.296,cell-mean,+0.525,yes
+Kang,1039,315,0.762,0.375,0.298,0.375,cell-mean,+0.388,yes
+Kang,107,330,0.770,0.342,0.298,0.342,cell-mean,+0.428,yes
+Kang,1244,433,0.795,0.330,0.331,0.331,linear-PCA,+0.465,yes
+Kang,1256,529,0.833,0.284,0.282,0.284,cell-mean,+0.549,yes
+Kang,1488,526,0.848,0.332,0.319,0.332,cell-mean,+0.516,yes
+Cano-Gamez,D1,800,0.928,0.944,0.944,0.944,cell-mean,−0.016,no
+Cano-Gamez,D2,800,0.919,0.922,0.918,0.922,cell-mean,−0.003,no
+Cano-Gamez,D3,800,0.909,0.922,0.914,0.922,cell-mean,−0.013,no
+Cano-Gamez,D4,800,0.889,0.915,0.913,0.915,cell-mean,−0.026,no
+"Kang IFN-β, 8 donors",summary (8/8 positive),,,,,,,+0.476,"[+0.440, +0.509]; Wilcoxon P = 0.008"
+"Cano-Gamez, 4 donors",summary (0/4 positive),,,,,,,−0.015,observed range −0.026 to −0.003; below the eight-unit minimum this study sets for interval reporting

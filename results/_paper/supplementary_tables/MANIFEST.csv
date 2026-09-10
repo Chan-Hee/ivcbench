@@ -1,0 +1,26 @@
+supplementary_table,file,data_rows,contents
+S1,Supplementary_Table_S1.csv,24,Curated dataset inventory
+S2,Supplementary_Table_S2.csv,31,Surveyed method inventory
+S3,Supplementary_Table_S3.csv,32,A-priori descriptive fit matrix
+S4,Supplementary_Table_S4.csv,47,"Cross-cluster headline census, 47 evaluations, with status, uncertainty, detectable margin and verdict"
+S5,Supplementary_Table_S5.csv,6,OP3 fine-lineage sensitivity
+S6,Supplementary_Table_S6.csv,40,Per-marker surface-protein recovery (Frangieh)
+S7,Supplementary_Table_S7.csv,30,Per-program readout on the OP3 held-cell-type split
+S8,Supplementary_Table_S8.csv,312,Energy-distance summary
+S9,Supplementary_Table_S9.csv,1,"CellOT vs floor, paired per donor (T2)"
+S10,Supplementary_Table_S10.csv,1,"scPRAM vs CellOT, paired per donor"
+S11,Supplementary_Table_S11.csv,8,Pre-specified headline multiplicity family
+S12,Supplementary_Table_S12.csv,40,Per-program readout on the unseen-gene split
+S13,Supplementary_Table_S13.csv,5,Per-dataset CRISPR breakdown
+S14,Supplementary_Table_S14.csv,9,Tanimoto-distance negative control
+S15a,Supplementary_Table_S15a.csv,17,Model-by-task coverage matrix
+S15b,Supplementary_Table_S15b.csv,55,One reason for every cell the census does not report
+S15c,Supplementary_Table_S15c.csv,47,Training configuration of every executed cell
+S16,Supplementary_Table_S16.csv,16,"Compute cost, per model and per stage"
+S17,Supplementary_Table_S17.csv,6,Unseen-gene effect-size stratification
+S18,Supplementary_Table_S18.csv,14,Immune program definitions and observed-panel checks
+S19,Supplementary_Table_S19.csv,14,"Independent donor cohorts, per donor"
+S20,Supplementary_Table_S20.csv,5,"Matched donor learning curve, CellOT and fine-tuned scGPT"
+S21,Supplementary_Table_S21.csv,27,Chemical-representation sensitivity sweep
+S22,Supplementary_Table_S22.csv,11,Predicted-to-observed response norm and calibration slope
+S23,Supplementary_Table_S23.csv,24,"Panel-wide multiplicity family, 24 contrasts"

@@ -1,0 +1,41 @@
+Task,Model,Status,Program,Units estimable,Measured genes (n),Best estimable correlation,Median estimable correlation,Why the other units are not estimable,Observed program-shift SD (max)
+T3,AttentionPert,native,IL2_STAT5,1/5,4–9,−0.135,−0.135,4 observed target constant,0.002
+T3,AttentionPert,native,TCR_activation,1/5,3–9,−0.107,−0.107,4 observed target constant,0.004
+T3,AttentionPert,native,Treg_exhaustion,1/5,3–6,−0.062,−0.062,4 observed target constant,0.014
+T3,AttentionPert,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
+T3,AttentionPert,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
+T3,CellFlow,native,IL2_STAT5,1/5,4–9,−0.172,−0.172,4 observed target constant,0.002
+T3,CellFlow,native,TCR_activation,1/5,3–9,−0.048,−0.048,4 observed target constant,0.004
+T3,CellFlow,native,Treg_exhaustion,1/5,3–6,+0.012,+0.012,4 observed target constant,0.014
+T3,CellFlow,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
+T3,CellFlow,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
+T3,GEARS,native,IL2_STAT5,1/5,4–9,+0.287,+0.287,4 observed target constant,0.002
+T3,GEARS,native,TCR_activation,1/5,3–9,+0.374,+0.374,4 observed target constant,0.004
+T3,GEARS,native,Treg_exhaustion,1/5,3–6,+0.105,+0.105,4 observed target constant,0.014
+T3,GEARS,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
+T3,GEARS,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
+T3,PerturbNet,native,IL2_STAT5,1/5,4–9,−0.022,−0.022,4 observed target constant,0.002
+T3,PerturbNet,native,TCR_activation,1/5,3–9,+0.039,+0.039,4 observed target constant,0.004
+T3,PerturbNet,native,Treg_exhaustion,1/5,3–6,+0.005,+0.005,4 observed target constant,0.014
+T3,PerturbNet,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
+T3,PerturbNet,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
+T3,biolord,native,IL2_STAT5,1/5,4–9,+0.059,+0.059,4 observed target constant,0.002
+T3,biolord,native,TCR_activation,1/5,3–9,+0.137,+0.137,4 observed target constant,0.004
+T3,biolord,native,Treg_exhaustion,1/5,3–6,−0.080,−0.080,4 observed target constant,0.014
+T3,biolord,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
+T3,biolord,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
+T3,cell-mean,floor,IL2_STAT5,0/5,4–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.002
+T3,cell-mean,floor,TCR_activation,0/5,3–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.004
+T3,cell-mean,floor,Treg_exhaustion,0/5,3–6,undefined,undefined,4 observed target constant; 1 prediction constant,0.014
+T3,cell-mean,floor,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
+T3,cell-mean,floor,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
+T3,linear-PCA,floor,IL2_STAT5,0/5,4–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.002
+T3,linear-PCA,floor,TCR_activation,0/5,3–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.004
+T3,linear-PCA,floor,Treg_exhaustion,0/5,3–6,undefined,undefined,4 observed target constant; 1 prediction constant,0.014
+T3,linear-PCA,floor,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
+T3,linear-PCA,floor,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
+T3,scGPT,native,IL2_STAT5,0/5,4–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.002
+T3,scGPT,native,TCR_activation,1/5,3–9,+0.089,+0.089,4 observed target constant,0.004
+T3,scGPT,native,Treg_exhaustion,1/5,3–6,+0.392,+0.392,4 observed target constant,0.014
+T3,scGPT,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
+T3,scGPT,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
