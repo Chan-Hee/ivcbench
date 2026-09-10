@@ -1189,7 +1189,7 @@ def main():
     # be one complete line and the wrap is asserted rather than truncated.
     sub_txt = (
         f"{cen.model.nunique()} methods and comparators over {len(cen)} evaluations;"
-        " blue clears that column's floor, orange falls below."
+        " blue clears that column’s floor, orange falls below."
     )
     n_sub = textwrap.wrap(sub_txt, width=100)
     if len(n_sub) != 1:
