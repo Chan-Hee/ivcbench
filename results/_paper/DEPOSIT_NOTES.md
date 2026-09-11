@@ -17,3 +17,10 @@ Numbers in `supplementary_tables/` are printed at the precision the paper uses. 
 precision matters, read the analysis CSVs in this directory (`census_uncertainty.csv`,
 `census_unit_scores.csv`, `headline_multiplicity_adjusted.csv`, `matched_donor_curve_summary.csv`,
 `donor_validation_summary.csv`, `compute_evidence_summary.csv`).
+
+`panel_precision_attenuation.csv` carries one row per census evaluation (47) with a written
+`power_statement` and `attenuation_statement` for each, alongside the interval, the margin
+scale and the matched-mask split-half precision diagnostic they describe. It is the file
+Note S2 points at for the per-cell power and attenuation statements; `status` there is the
+census provenance label, which supersedes the older per-model summaries in this directory
+(`cellot_summary.csv` still carries the submitted `adapted` label for the donor split).
