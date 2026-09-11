@@ -326,6 +326,63 @@ def aggregation_panel(ax):
     )
 
 
+def magnitude_panel(ax):
+    """Direction is not magnitude.
+
+    The estimability grid this panel replaced spent a fifth of the figure saying one number
+    (22 of 25 targets constant), which the text states and Table S12 and Figure S6 carry in full.
+    The calibration result had no figure at all, although it is the sharpest thing the compound
+    axis shows: a model can point the right way and still be three times too large. Pearson-Delta
+    cannot see that, because it is invariant to the scale of the predicted shift.
+    """
+    src = PAPER / "supplementary_tables/Supplementary_Table_S22.csv"
+    d = pd.read_csv(src)
+    num = lambda c: pd.to_numeric(
+        d[c].astype(str).str.replace("\u2212", "-", regex=False), errors="coerce")
+    d["ratio"], d["slope"] = num("Predicted / observed response norm"), num("Calibration slope")
+
+    FACE = {"native": BLUE, "adapted": BLUE, "diagnostic": ROSE, "floor member": GREY}
+    ax.axvline(1.0, color=GREY, lw=0.7, ls=":", zorder=1)
+    ax.axhline(1.0, color=GREY, lw=0.7, ls=":", zorder=1)
+    ax.plot([1.0], [1.0], marker="+", ms=7, mew=1.2, color=NAVY, zorder=4)
+    ax.annotate("calibrated", (1.0, 1.0), textcoords="offset points", xytext=(6, -9),
+                fontsize=5.8, color=NAVY)
+
+    plotted = d[d.slope.notna() & d.ratio.notna()]
+    for _, r in plotted.iterrows():
+        adapted = r["Role"] == "adapted"
+        ax.scatter(r.ratio, r.slope, s=26, zorder=3,
+                   facecolor="white" if adapted else FACE.get(r["Role"], BLUE),
+                   edgecolor=FACE.get(r["Role"], BLUE), linewidths=0.9)
+    # the three understating entries sit close together against the left spine, so their labels
+    # go into the empty space to their right rather than off the axis
+    for name, dx, dy, ha in [("linear-PCA", 7, 2, "left"), ("CINEMA-OT", 0, -11, "center"),
+                             ("FP-ridge", 8, -1, "left"), ("PRnet", 6, 1, "left"),
+                             ("cell-mean", 0, -11, "center")]:
+        r = plotted[plotted.Entry == name]
+        if len(r):
+            ax.annotate(name, (r.ratio.iloc[0], r.slope.iloc[0]), textcoords="offset points",
+                        xytext=(dx, dy), fontsize=5.8, color=NAVY, ha=ha)
+
+    ax.set_xlim(-0.15, 3.35)
+    ax.set_ylim(-0.12, 1.12)
+    ax.set_xlabel("predicted / observed response norm", fontsize=6.6)
+    ax.set_ylabel("calibration slope", fontsize=6.6)
+    ax.tick_params(labelsize=6)
+    zero = d[d.slope.isna() & (d.ratio == 0)]
+    note = ("Six conditioned predictors overstate the response 1.5 to 3.0 times with slopes at or near\n"
+            "zero; the three that understate it keep slopes well above zero."
+            + (" scPRAM predicts no shift." if len(zero) else ""))
+    ax.legend(handles=[
+        Line2D([], [], marker="o", ls="", mfc=BLUE, mec=BLUE, ms=5, label="conditioned"),
+        Line2D([], [], marker="o", ls="", mfc="white", mec=BLUE, ms=5, label="adapted interface"),
+        Line2D([], [], marker="o", ls="", mfc=ROSE, mec=ROSE, ms=5, label="diagnostic"),
+        Line2D([], [], marker="o", ls="", mfc=GREY, mec=GREY, ms=5, label="floor member"),
+    ], loc="upper left", bbox_to_anchor=(-0.02, -0.20), ncol=2, fontsize=6,
+        frameon=False, handletextpad=0.3, columnspacing=1.1, labelspacing=0.25)
+    ax.text(0.0, -0.42, note, transform=ax.transAxes, va="top", fontsize=5.8, color=GREY)
+
+
 def figure3(summary, macro):
     """Compose the main readout argument; the full protein panel appears once."""
     fig, axes = plt.subplots(2, 2, figsize=(6.33, 7.07))  # 174 mm live area
@@ -336,8 +393,8 @@ def figure3(summary, macro):
     title(axes[0, 0], "a", "Aggregation changes the target")
     op3_matrix(axes[0, 1], summary)
     title(axes[0, 1], "b", "OP3 program concordance")
-    t3_observability(axes[1, 0], summary)
-    title(axes[1, 0], "c", f"T3 estimability across {len(T3_MODELS)} methods")
+    magnitude_panel(axes[1, 0])
+    title(axes[1, 0], "c", "Direction is not magnitude")
     protein_panel(axes[1, 1])
     title(axes[1, 1], "d", "Checkpoint assay context")
     save(fig, "figure_immune_blindspot", tiff=True)

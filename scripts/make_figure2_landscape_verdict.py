@@ -594,7 +594,7 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
 # LANDSCAPE DRAW
 # ============================================================================================
 NAME_X = -0.70
-BAR_X1, BAR_X0 = -3.40, -3.55
+BAR_X1, BAR_X0 = -3.80, -3.95  # clear of the longest name (CPA/chemCPA); GUT_LEFT is -4.95
 GUT_LEFT = -4.95
 BGAP = 0.95  # gap between block A and block B
 BOFF = 14.5 + BGAP + 0.5  # x of block B's first column centre
@@ -758,7 +758,7 @@ def draw_landscape(
                 "floor",
                 ha="right",
                 va="center",
-                fontsize=5.2,
+                fontsize=5.8,  # was 5.2, the smallest text in any main figure
                 color=SLATE_BAND,
                 style="italic",
                 clip_on=False,
@@ -824,7 +824,8 @@ def draw_landscape(
             elif span == 2:
                 lab, fs = f"{tcode} · {DSET_ABBR.get(dset, dset)}", 5.8
             else:
-                lab, fs = tcode, 6.6
+                # a one-column band is ~13.9 pt wide, which "T5u" overruns at 6.6 pt bold
+                lab, fs = tcode, 6.6 if len(tcode) <= 2 else 5.6
             ax.text(
                 (x0 + x1) / 2,
                 (band_lo + band_hi) / 2,
