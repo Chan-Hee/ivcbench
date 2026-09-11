@@ -5,6 +5,7 @@ Generates a CellSet with the same *structure* as Szałata/OP3 — PBMC lineages 
 side-info block (Morgan-like fingerprints where similar compounds share bits). Used to validate the
 end-to-end pipeline (split -> leak audit -> baselines -> metrics) with zero GPU and zero real data.
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -34,7 +35,9 @@ def make_op3_like(
     fingerprint = {}
     for c in compounds:
         base = scaffold_proto[cpd_scaffold[c]].copy()
-        flip = rng.random(fp_bits) < 0.05  # small per-compound perturbation of the scaffold
+        flip = (
+            rng.random(fp_bits) < 0.05
+        )  # small per-compound perturbation of the scaffold
         base[flip] = 1 - base[flip]
         fingerprint[c] = base
 
@@ -42,8 +45,12 @@ def make_op3_like(
     # each compound = a shared immunomodulatory axis (captured by mean-shift baselines) + a
     # compound-specific component (only chemistry-aware models can target it).
     shared_axis = rng.normal(0, 1.0, n_genes)
-    cpd_effect = {c: 0.6 * shared_axis + 0.8 * rng.normal(0, 1.0, n_genes) for c in compounds}
-    ct_modulation = {ct: rng.normal(1.0, 0.25, n_genes) for ct in CELL_TYPES}  # multiplicative
+    cpd_effect = {
+        c: 0.6 * shared_axis + 0.8 * rng.normal(0, 1.0, n_genes) for c in compounds
+    }
+    ct_modulation = {
+        ct: rng.normal(1.0, 0.25, n_genes) for ct in CELL_TYPES
+    }  # multiplicative
     ct_baseline = {ct: rng.normal(0, 1.0, n_genes) for ct in CELL_TYPES}
     donor_effect = {d: rng.normal(0, 0.3, n_genes) for d in DONORS}
 
@@ -54,7 +61,9 @@ def make_op3_like(
                 mu = ct_baseline[ct] + donor_effect[d]
                 if p != CONTROL_TOKEN:
                     mu = mu + cpd_effect[p] * ct_modulation[ct]
-                cells = rng.normal(mu, 0.5, size=(cells_per_group, n_genes)).astype(np.float32)
+                cells = rng.normal(mu, 0.5, size=(cells_per_group, n_genes)).astype(
+                    np.float32
+                )
                 X.append(cells)
                 for _ in range(cells_per_group):
                     rows.append(

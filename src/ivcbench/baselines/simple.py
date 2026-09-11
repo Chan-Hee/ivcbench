@@ -8,6 +8,7 @@ cell-mean/donor-shift is regime-dependent: when the perturbation signal lives in
 (e.g. synthetic fixtures, ev50≈90%) linear-PCA ≳ donor-shift; on real T-cell CRISPR where the top-50
 PCs hold only ~19% variance, PC-truncation discards real signal so linear-PCA < cell-mean ≈ donor-shift.
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -72,7 +73,7 @@ class LinearPCA(BaselineAdapter):
         # lies outside the top-k PCs riding on the shift. On real mean-heavy expression that residual
         # dominates (‖mean_‖ ≫ ‖shift‖) and collapses the delta-correlation to ~0. components_ rows
         # are orthonormal. See results/_qc/qc_C1C3C5_2026-05-26.md.
-        V = self.pca.components_                       # (k, n_genes)
+        V = self.pca.components_  # (k, n_genes)
         self.shift = V.T @ (V @ shift)
         self.ctrl = self._control_mean(cs, split)
 

@@ -5,6 +5,7 @@ seeds, per-(split, baseline, seed) status, leak-audit reports, data provenance,
 and metric configuration. Every generated figure, table, and report draft should
 trace back to a manifest entry.
 """
+
 from __future__ import annotations
 
 import json
@@ -32,8 +33,15 @@ def _pkg_versions() -> dict:
     return out
 
 
-def write_manifest(cluster: str, results_dir: Path, *, data_source: str, seeds: list[int],
-                   splits: list[dict], rows: list[dict]) -> Path:
+def write_manifest(
+    cluster: str,
+    results_dir: Path,
+    *,
+    data_source: str,
+    seeds: list[int],
+    splits: list[dict],
+    rows: list[dict],
+) -> Path:
     results_dir = Path(results_dir)
     results_dir.mkdir(parents=True, exist_ok=True)
     ran = [r for r in rows if r.get("ran")]
@@ -44,15 +52,28 @@ def write_manifest(cluster: str, results_dir: Path, *, data_source: str, seeds: 
         "python": sys.version.split()[0],
         "platform": platform.platform(),
         "packages": _pkg_versions(),
-        "data_source": data_source,        # "synthetic_c1_like" or real accession + sha256
+        "data_source": data_source,  # "synthetic_c1_like" or real accession + sha256
         "seeds": seeds,
-        "splits": splits,                  # name, registry_task, leak audit summary
+        "splits": splits,  # name, registry_task, leak audit summary
         "n_jobs": len(rows),
         "n_ran": len(ran),
         "n_leak_free": sum(1 for r in ran if r.get("leak_free")),
         "all_leak_free": all(r.get("leak_free") for r in ran) if ran else False,
-        "jobs": [{k: r.get(k) for k in ("split", "baseline", "seed", "action",
-                                        "headline_eligible", "ran", "leak_free")} for r in rows],
+        "jobs": [
+            {
+                k: r.get(k)
+                for k in (
+                    "split",
+                    "baseline",
+                    "seed",
+                    "action",
+                    "headline_eligible",
+                    "ran",
+                    "leak_free",
+                )
+            }
+            for r in rows
+        ],
     }
     path = results_dir / "manifest.json"
     path.write_text(json.dumps(manifest, indent=2))

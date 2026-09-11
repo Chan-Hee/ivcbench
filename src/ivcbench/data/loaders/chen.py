@@ -14,6 +14,7 @@ argmax over the guide-count matrix, then assemble across libraries onto a shared
 the unified preprocessing. Modality runs are classified by their feature table (no hard-coded run
 IDs), so the loader is robust to the SDRF ordering.
 """
+
 from __future__ import annotations
 
 import re
@@ -48,6 +49,7 @@ def _orient(counts, barcodes, names):
 def _libraries_from_sdrf(root: Path) -> dict[str, list[str]]:
     """{library -> [run accession, ...]} from the SDRF (Factor Value[library] / Comment[SRA_RUN])."""
     import csv
+
     rows = list(csv.reader(open(root / SDRF), delimiter="\t"))
     hdr = rows[0]
     ci = {h: i for i, h in enumerate(hdr)}
@@ -82,6 +84,7 @@ def _extract_run(root: Path, zf: zipfile.ZipFile, member: str) -> Path | None:
 def _classify(dirpath: Path) -> str:
     """gex / guide / other from the 10x features table."""
     import gzip
+
     feats = dirpath / "features.tsv.gz"
     names, gex = [], 0
     with gzip.open(feats, "rt") as fh:
@@ -92,13 +95,20 @@ def _classify(dirpath: Path) -> str:
                 gex += 1
     if gex > 10000:
         return "gex"
-    if 500 <= len(names) <= 2000 and sum(bool(re.search(r"_\d+$", n)) for n in names) > 0.6 * len(names):
+    if 500 <= len(names) <= 2000 and sum(
+        bool(re.search(r"_\d+$", n)) for n in names
+    ) > 0.6 * len(names):
         return "guide"
     return "other"
 
 
-def load(path: str | Path = "data/C3/chen", cfg: PreprocessConfig = PreprocessConfig(),
-         libraries: list[str] | None = None, subsample_per_gene: int = 200, seed: int = 0):
+def load(
+    path: str | Path = "data/C3/chen",
+    cfg: PreprocessConfig = PreprocessConfig(),
+    libraries: list[str] | None = None,
+    subsample_per_gene: int = 200,
+    seed: int = 0,
+):
     root = Path(path)
     rng = np.random.default_rng(seed)
     libs = _libraries_from_sdrf(root)
@@ -133,8 +143,10 @@ def load(path: str | Path = "data/C3/chen", cfg: PreprocessConfig = PreprocessCo
             # assign each guide-matrix cell its target gene by argmax over guide counts
             g_arg = np.asarray(g_counts.argmax(axis=1)).ravel()
             g_tot = np.asarray(g_counts.sum(axis=1)).ravel()
-            guide_gene = {b: (strip_trailing_index(g_names[a]) if t > 0 else None)
-                          for b, a, t in zip(g_bc, g_arg, g_tot)}
+            guide_gene = {
+                b: strip_trailing_index(g_names[a]) if t > 0 else None
+                for b, a, t in zip(g_bc, g_arg, g_tot)
+            }
 
             # keep GEX cells that have a confident guide call
             keep_rows, perts, is_ctrl = [], [], []
@@ -156,20 +168,36 @@ def load(path: str | Path = "data/C3/chen", cfg: PreprocessConfig = PreprocessCo
             sel = []
             for lab in pd.unique(perts):
                 idx = np.where(perts == lab)[0]
-                sel.append(idx if len(idx) <= subsample_per_gene
-                           else rng.choice(idx, subsample_per_gene, replace=False))
+                sel.append(
+                    idx
+                    if len(idx) <= subsample_per_gene
+                    else rng.choice(idx, subsample_per_gene, replace=False)
+                )
             sel = np.sort(np.concatenate(sel))
             rows = keep_rows[sel]
-            obs = pd.DataFrame({
-                "cell_type_coarse": "CD4T", "cell_type_fine": "CD4Tconv",
-                "perturbation": perts[sel], "condition": "Stim", "donor_id": "mixture",
-                "timepoint": "NA", "batch": lib, "is_control": is_ctrl[sel],
-            })
+            obs = pd.DataFrame(
+                {
+                    "cell_type_coarse": "CD4T",
+                    "cell_type_fine": "CD4Tconv",
+                    "perturbation": perts[sel],
+                    "condition": "Stim",
+                    "donor_id": "mixture",
+                    "timepoint": "NA",
+                    "batch": lib,
+                    "is_control": is_ctrl[sel],
+                }
+            )
             blocks.append(dict(counts=gex_counts[rows], genes=genes, obs=obs))
 
     if not blocks:
-        raise RuntimeError("chen: no libraries assembled (check the E-GEAD-648 zip path)")
-    cs = assemble(blocks, dataset="chen_E-GEAD-648", cfg=cfg,
-                  uns={"accession": "PRJDB16517 / E-GEAD-648", "modality_label": "KO"})
+        raise RuntimeError(
+            "chen: no libraries assembled (check the E-GEAD-648 zip path)"
+        )
+    cs = assemble(
+        blocks,
+        dataset="chen_E-GEAD-648",
+        cfg=cfg,
+        uns={"accession": "PRJDB16517 / E-GEAD-648", "modality_label": "KO"},
+    )
     cs.uns["genes_perturbed"] = sorted(set(cs.obs["perturbation"]) - {CONTROL_TOKEN})
     return cs

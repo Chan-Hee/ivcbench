@@ -4,6 +4,7 @@
 genes, per stratum, then macro-average. `exclude_genes` implements C3's downstream-only variant
 (drop the perturbed target gene so on-target knockdown does not inflate the score).
 """
+
 from __future__ import annotations
 
 import numpy as np

@@ -4,6 +4,7 @@ The production heavy-baseline wrappers live in ``ivcbench.baselines.heavy`` and
 ``model_runners/``. This module remains for older imports and makes unavailable
 adapters fail with a clear message instead of silently entering a benchmark run.
 """
+
 from __future__ import annotations
 
 from .base import BaselineAdapter, PredResult  # noqa: F401
@@ -68,4 +69,14 @@ class STATE(_Unimplemented):
     repo, conda_env = "STATE", "ivc-state"
 
 
-HEAVY_BASELINES = [ScGen, CPA, GEARS, AttentionPert, ScGPT, UCE, CellOT, CINEMAOT, STATE]
+HEAVY_BASELINES = [
+    ScGen,
+    CPA,
+    GEARS,
+    AttentionPert,
+    ScGPT,
+    UCE,
+    CellOT,
+    CINEMAOT,
+    STATE,
+]

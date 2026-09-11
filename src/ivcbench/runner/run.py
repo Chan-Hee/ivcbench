@@ -1,8 +1,10 @@
 """End-to-end execution of one (split, baseline) evaluation.
 
-Flow:  build split -> AUDIT (hard gate) -> applicability gating -> fit (train only) -> predict ->
-4-axis metrics. Returns a flat result row ready to concatenate into the per-cluster results table.
+Flow: applicability gate -> build and audit split -> fit -> predict -> score.
+Returns one raw-run row. Runtime eligibility is not final-panel admission, and
+the membership audit does not certify upstream preprocessing independence.
 """
+
 from __future__ import annotations
 
 import os
@@ -27,6 +29,8 @@ def run_job(
     adapter: BaselineAdapter,
     *,
     seed: int = 0,
+    # Compatibility argument; the authoritative side input is always cs.side_info.
+    side_info: dict | None = None,
     immune_program_genes: list[str] | None = None,
     immune_programs: dict[str, list[str]] | None = None,
     exclude_genes: list[str] | None = None,
@@ -37,12 +41,19 @@ def run_job(
     registry_task = spec.registry_task or spec.name
     action = decide(adapter.name, registry_task, adapted_implemented)
     if action is Action.SKIP:
-        return {"baseline": adapter.name, "split": spec.name, "action": action.value, "ran": False}
+        return {
+            "baseline": adapter.name,
+            "split": spec.name,
+            "action": action.value,
+            "ran": False,
+        }
 
     np.random.seed(seed)
 
     split = build_split(cs, spec)
-    audit = audit_split(cs, split)  # raises LeakError on any violation (leaks must NEVER be swallowed)
+    audit = audit_split(
+        cs, split
+    )  # raises LeakError on any violation (leaks must NEVER be swallowed)
 
     # A heavy baseline (own conda env / GPU) may fail at runtime; record it as `failed` per the
     # 4-status taxonomy instead of crashing the whole sweep. LeakError above is intentionally NOT
@@ -51,52 +62,89 @@ def run_job(
         adapter.fit(cs, split, side_info=cs.side_info)
         pred = adapter.predict(cs, split, side_info=cs.side_info)
     except Exception as e:  # noqa: BLE001
-        return {"baseline": adapter.name, "family": getattr(adapter, "family", "?"),
-                "split": spec.name, "registry_task": registry_task, "action": "failed",
-                "headline_eligible": False, "seed": seed, "ran": False,
-                "error": f"{type(e).__name__}: {str(e)[:200]}"}
+        return {
+            "baseline": adapter.name,
+            "family": getattr(adapter, "family", "?"),
+            "split": spec.name,
+            "registry_task": registry_task,
+            "action": "failed",
+            "headline_eligible": False,
+            "seed": seed,
+            "ran": False,
+            "error": f"{type(e).__name__}: {str(e)[:200]}",
+        }
 
     test_X = cs.X[split.test_idx]
     excl = cs.gene_index(exclude_genes) if exclude_genes else None
-    # response_gene_fn (C2 donor-LODO): leak-safe TRAINING-only response-gene panel. The Pearson-Δ is
-    # computed on the genes OUTSIDE that panel — i.e. the panel is EXCLUDED (the exact bespoke Soskic
-    # rule: pearson_delta(..., exclude_genes=response_genes)), so the strongly stimulation-driven
-    # response genes don't dominate the direction-recovery score. Selected from the train fold only
-    # (never seen by any model), so it is a metric choice, not a leak. n_response_genes is recorded.
+    # The C2 response panel is selected from training cells, then excluded from
+    # Pearson-Δ. This metric mask does not remove those genes from model inputs.
     n_response_genes = None
     if response_gene_fn is not None:
         rg = np.asarray(response_gene_fn(cs, split), dtype=int)
         n_response_genes = int(len(rg))
         excl = rg if excl is None else np.union1d(excl, rg)
-    resp = pearson_delta(pred.pred_cells, test_X, pred.control_mean, split.test_strata, excl)
-    # Secondary, on-target-inclusive Pearson-Δ (perturbed gene NOT excluded) — Supp Table S3.
+    resp = pearson_delta(
+        pred.pred_cells, test_X, pred.control_mean, split.test_strata, excl
+    )
+    # Secondary Pearson-Δ without the evaluation gene mask.
     # Equals the main score when no genes are excluded (non-downstream-only clusters).
-    resp_incl = (resp if excl is None
-                 else pearson_delta(pred.pred_cells, test_X, pred.control_mean, split.test_strata, None))
-    dist = e_distance(pred.pred_cells, test_X, split.test_strata, fit_on=cs.X[split.train_idx])
+    resp_incl = (
+        resp
+        if excl is None
+        else pearson_delta(
+            pred.pred_cells, test_X, pred.control_mean, split.test_strata, None
+        )
+    )
+    dist = e_distance(
+        pred.pred_cells, test_X, split.test_strata, fit_on=cs.X[split.train_idx]
+    )
 
     # Deposit this evaluation's PREDICTION BUNDLE if IVCBENCH_PRED_DUMP=<dir> is set, so a cluster re-run
     # materialises the model-output layer in the GPU-free reproduce_eval format (predictions -> metrics).
     # dump_bundle stores the EXACT scoring inputs + the train-cloud PCA basis and never raises.
     from ..eval.bundle import dump_bundle
-    dump_bundle(os.environ.get("IVCBENCH_PRED_DUMP"), cluster=registry_task, model=adapter.name, split=spec.name,
-                dataset=dataset,  # key the bundle filename per-dataset (C3 reuses one split across datasets)
-                pred_cells=pred.pred_cells, test_cells=test_X, cell_strata=split.test_strata,
-                control_mean=pred.control_mean, genes=cs.var_names, exclude_gene_idx=excl,
-                fit_on=cs.X[split.train_idx])
 
-    # Immune-program axis (Axis 3): dataset-aware, one AUCell-Δ correlation per program. The headline
-    # aucell_program_corr is the mean over programs; per-program values populate panel (b)/Supp S3.
-    ctrl_cells = cs.X[split.inference_input_idx] if len(split.inference_input_idx) else test_X
+    _bundle_path = dump_bundle(
+        os.environ.get("IVCBENCH_PRED_DUMP"),
+        cluster=registry_task,
+        model=adapter.name,
+        split=spec.name,
+        dataset=dataset,  # key the bundle filename per-dataset (C3 reuses one split across datasets)
+        pred_cells=pred.pred_cells,
+        test_cells=test_X,
+        cell_strata=split.test_strata,
+        control_mean=pred.control_mean,
+        genes=cs.var_names,
+        exclude_gene_idx=excl,
+        fit_on=cs.X[split.train_idx],
+    )
+
+    # Raw-run diagnostic: average per-cell rank scores within strata. The final
+    # T3/T5c analysis instead scores both population means symmetrically in
+    # scripts/immune_readout_audit.py; it does not reuse this auxiliary macro.
+    ctrl_idx = (
+        split.inference_input_idx
+        if len(split.inference_input_idx)
+        else np.asarray(split.train_idx)[
+            cs.obs.iloc[split.train_idx]["is_control"].to_numpy(bool)
+        ]
+    )
+    if not len(ctrl_idx):
+        raise ValueError(
+            "Immune-program scoring requires an inference or training control pool"
+        )
+    ctrl_cells = cs.X[ctrl_idx]
     progs = dict(immune_programs or {})
     if not progs and immune_program_genes:
         progs = {"program": immune_program_genes}
     prog_corrs: dict[str, float] = {}
     for pname, pgenes in progs.items():
         gs = cs.gene_index(pgenes)
-        prog_corrs[pname] = aucell_delta_corr(pred.pred_cells, test_X, ctrl_cells, gs,
-                                              split.test_strata)["corr"]
-    headline_prog = float(np.nanmean(list(prog_corrs.values()))) if prog_corrs else float("nan")
+        prog_corrs[pname] = aucell_delta_corr(
+            pred.pred_cells, test_X, ctrl_cells, gs, split.test_strata
+        )["corr"]
+    finite_programs = [v for v in prog_corrs.values() if np.isfinite(v)]
+    headline_prog = float(np.mean(finite_programs)) if finite_programs else float("nan")
 
     # Runner-level 95% bootstrap CI for THIS result row, resampling the per-stratum macro scores.
     # These are per-row descriptive CIs, NOT the final paper inferential CIs: the headline donor /
@@ -119,16 +167,25 @@ def run_job(
         "n_train": audit["n_train"],
         "n_test": audit["n_test"],
         "n_test_strata": audit["n_test_strata"],
-        "pearson_delta": resp["macro"],          # Axis 1, main (downstream-only) (↑)
+        "pearson_delta": resp["macro"],  # Axis 1, main (downstream-only) (↑)
         "pearson_delta_lo": resp_ci["lo"],
         "pearson_delta_hi": resp_ci["hi"],
-        "pearson_delta_ontarget": resp_incl["macro"],  # Axis 1, secondary (on-target-inclusive)
-        "e_distance": dist["macro"],             # Axis 2 (↓)
+        "pearson_delta_ontarget": resp_incl[
+            "macro"
+        ],  # Axis 1, secondary (on-target-inclusive)
+        "e_distance": dist["macro"],  # Axis 2 (↓)
         "e_distance_lo": dist_ci["lo"],
         "e_distance_hi": dist_ci["hi"],
-        "aucell_program_corr": headline_prog,    # Axis 3, mean over dataset-aware programs (↑)
+        "aucell_program_corr": (
+            headline_prog
+        ),  # Axis 3, mean over dataset-aware programs (↑)
     }
     if n_response_genes is not None:
-        row["n_response_genes"] = n_response_genes   # C2: size of the training-only response panel
-    row.update({f"aucell::{p}": v for p, v in prog_corrs.items()})  # per-program (panel b / Supp S3)
+        row["n_response_genes"] = (
+            n_response_genes  # C2: size of the training-only response panel
+        )
+    row.update({f"aucell::{p}": v for p, v in prog_corrs.items()})
+    # Carry the deposited bundle path so a caller can audit what was actually written -- the
+    # control-mean-collapse guard in scripts/run_obligation.py reads it.
+    row["pred_bundle"] = _bundle_path
     return row

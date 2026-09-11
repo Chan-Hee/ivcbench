@@ -39,8 +39,10 @@ from ivcbench.report.style import (  # noqa: E402
     NAVY,
     NAVY_DARK,
     SLATE_BAND,
-    INK,
-    GREY_MID,
+    INK_BODY,
+    INK_HEAD,
+    INK_NOTE,
+    MAIN_FS,
     LEGEND_EC,
 )
 from ivcbench.metrics.response import (
@@ -49,18 +51,18 @@ from ivcbench.metrics.response import (
 
 _MINUS = "−"  # true unicode minus
 
-# ---- typography ladder (one size per hierarchy level, judged at the displayed size) ----
-FS_PANEL_LETTER = 12.0  # panel letters a / b
-FS_PANEL_TITLE = (
-    9.6  # panel titles (a) and (b) — ONE size, left-aligned to a shared left edge
-)
-FS_SUBTITLE = 7.4  # interpretive subtitle / secondary annotation
-FS_AXIS_LABEL = (
-    7.6  # every axis label (landscape spine label + panel-b x/y/twin labels)
-)
-FS_CELL = 6.6  # in-cell Pearson-delta
-FS_NAME = 7.0  # model name in the gutter
-FS_TICK = 6.2  # column ticks
+# ---- typography ladder: the one shared by Figures 2 and 3 (ivcbench.report.style.MAIN_FS),
+# judged at the displayed size (the plate prints at ~6.2 in, so nominal ~= displayed) ----
+FS_PANEL_LETTER = MAIN_FS["letter"]  # panel letters a / b
+FS_PANEL_TITLE = MAIN_FS["title"]  # panel titles (a) and (b), one size, shared left edge
+FS_HEADER = MAIN_FS["header"]  # axis-group headers over the landscape
+FS_SUBTITLE = MAIN_FS["subtitle"]  # interpretive subtitle / secondary annotation
+FS_AXIS_LABEL = MAIN_FS["axis"]  # every axis label (landscape spine label + panel-b x/y)
+FS_CELL = MAIN_FS["tick"]  # in-cell Pearson-delta
+FS_NAME = MAIN_FS["name"]  # model name in the gutter; in-panel annotations
+FS_TICK = MAIN_FS["tick"]  # column ticks, panel-b ticks, colorbar ticks
+FS_KEY = MAIN_FS["key"]  # legend / key text
+FS_MICRO = MAIN_FS["micro"]  # floor flags, the narrowest band label
 
 
 # ============================================================================================
@@ -176,10 +178,10 @@ ROLE_COLOR = {
     ),  # teal         (diagnostic comparators: deterministic + CINEMA-OT)
     "baseline": "#868E96",  # neutral grey (universal floor + context baselines)
 }
-ROLE_KEY = [
-    ("baseline", "Baseline"),
-    ("conditioned", "Conditioned"),
-    ("diagnostic", "Diagnostic comparators"),
+ROLE_KEY = [  # lower-case, like the marker keys on the row above
+    ("baseline", "baseline"),
+    ("conditioned", "conditioned"),
+    ("diagnostic", "diagnostic comparators"),
 ]
 HOLLOW_ROWS = {
     "CINEMA-OT"
@@ -490,15 +492,15 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
     axB.bar(
         x, g, width=1.0, color=bar_colors, edgecolor=CELL_EC, linewidth=0.12, zorder=3
     )
-    axB.axhline(0.0, color=INK, lw=1.0, zorder=4)
+    axB.axhline(0.0, color=INK_BODY, lw=1.0, zorder=4)
     axB.text(
         n - 1.5,
         -0.016,
         "cell-mean floor",
         ha="right",
         va="top",
-        fontsize=7.0,
-        color=GREY_MID,
+        fontsize=FS_NAME,
+        color=INK_NOTE,
         style="italic",
         zorder=8,
         clip_on=False,
@@ -510,13 +512,13 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
     axB.set_xlabel(
         "donor (Soskic CD4 leave-one-donor-out), sorted by gap",
         fontsize=FS_AXIS_LABEL,
-        color=INK,
+        color=INK_BODY,
     )
     axB.set_ylabel(
-        "CellOT − cell-mean floor\n(Pearson-Δ)", fontsize=FS_AXIS_LABEL, color=INK
+        "CellOT − cell-mean floor\n(Pearson-Δ)", fontsize=FS_AXIS_LABEL, color=INK_BODY
     )
     despine(axB)
-    axB.tick_params(labelsize=7.0)
+    axB.tick_params(labelsize=FS_TICK, colors=INK_BODY)
 
     expo = int(np.floor(np.log10(pw)))
     mant = pw / (10**expo)
@@ -545,7 +547,7 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
                 va="top",
                 fontsize=11.0,
                 fontweight="bold",
-                color=NAVY_DARK,
+                color=INK_HEAD,
                 zorder=8,
             )
             y0 -= 0.115
@@ -558,7 +560,7 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
                 ha="left",
                 va="top",
                 fontsize=FS_SUBTITLE,
-                color=GREY_MID,
+                color=INK_NOTE,
                 zorder=8,
             )
             y0 -= 0.10
@@ -571,7 +573,7 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
                 ha="left",
                 va="top",
                 fontsize=FS_SUBTITLE,
-                color=INK,
+                color=INK_BODY,
                 zorder=8,
             )
             y0 -= 0.082
@@ -581,8 +583,8 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
         f"mean {fmt_signed(summ['mean'], 3)}",
         ha="center",
         va="bottom",
-        fontsize=7.0,
-        color=NAVY_DARK,
+        fontsize=FS_NAME,
+        color=INK_HEAD,
         fontweight="bold",
         zorder=8,
         transform=axB.get_yaxis_transform(),
@@ -636,7 +638,7 @@ def _draw_cell(ax, x, y, score, status, margin, mnorm, hollow=False):
             ha="center",
             va="center",
             fontsize=FS_CELL,
-            color=GREY_MID,
+            color=INK_NOTE,
             zorder=4,
         )
         return
@@ -662,7 +664,7 @@ def _draw_cell(ax, x, y, score, status, margin, mnorm, hollow=False):
         ha="center",
         va="center",
         fontsize=FS_CELL,
-        color="white" if dark else INK,
+        color="white" if dark else INK_BODY,
         zorder=4,
     )
     if status == "adapted":  # thin corner notch (upper-right), cell-bounded
@@ -747,7 +749,7 @@ def draw_landscape(
             ha="right",
             va="center",
             fontsize=FS_NAME,
-            color=INK,
+            color=INK_BODY,
             clip_on=False,
             zorder=6,
         )
@@ -758,8 +760,8 @@ def draw_landscape(
                 "floor",
                 ha="right",
                 va="center",
-                fontsize=5.8,  # was 5.2, the smallest text in any main figure
-                color=SLATE_BAND,
+                fontsize=FS_MICRO,  # the smallest text in any main figure
+                color=INK_NOTE,
                 style="italic",
                 clip_on=False,
                 zorder=6,
@@ -824,8 +826,9 @@ def draw_landscape(
             elif span == 2:
                 lab, fs = f"{tcode} · {DSET_ABBR.get(dset, dset)}", 5.8
             else:
-                # a one-column band is ~13.9 pt wide, which "T5u" overruns at 6.6 pt bold
-                lab, fs = tcode, 6.6 if len(tcode) <= 2 else 5.6
+                # a one-column band is ~13.9 pt wide, which "T5u" overruns at 6.6 pt bold;
+                # 5.8 pt is the plate-wide minimum and still fits (checked in the render)
+                lab, fs = tcode, 6.6 if len(tcode) <= 2 else FS_MICRO
             ax.text(
                 (x0 + x1) / 2,
                 (band_lo + band_hi) / 2,
@@ -849,7 +852,7 @@ def draw_landscape(
                 rotation=42,
                 rotation_mode="anchor",
                 fontsize=FS_TICK,
-                color="#222",
+                color=INK_BODY,
                 clip_on=False,
                 zorder=6,
             )
@@ -862,7 +865,7 @@ def draw_landscape(
             ax.plot(
                 [x0, x1],
                 [rule_y, rule_y],
-                color=NAVY_DARK,
+                color=INK_HEAD,
                 lw=1.5,
                 clip_on=False,
                 zorder=6,
@@ -879,9 +882,9 @@ def draw_landscape(
                 label,
                 ha=lha,
                 va="bottom",
-                fontsize=7.8,
+                fontsize=FS_HEADER,
                 fontweight="bold",
-                color=NAVY_DARK,
+                color=INK_HEAD,
                 clip_on=False,
                 zorder=6,
             )
@@ -1038,6 +1041,19 @@ def main():
     set_pub_style()
     plt.rcParams["axes.unicode_minus"] = True
     plt.rcParams["font.family"] = "DejaVu Sans"   # the rest of the figure set uses it
+    # matplotlib's default black must not leak into any text or axis chrome: text.color does not
+    # reach tick labels, spines or tick marks, so those are set explicitly to the body ink
+    plt.rcParams.update(
+        {
+            "text.color": INK_BODY,
+            "axes.labelcolor": INK_BODY,
+            "axes.edgecolor": INK_BODY,
+            "xtick.color": INK_BODY,
+            "ytick.color": INK_BODY,
+            "xtick.labelcolor": INK_BODY,
+            "ytick.labelcolor": INK_BODY,
+        }
+    )
 
     import json
 
@@ -1208,13 +1224,16 @@ def main():
     land_h = cell * yspan
 
     m_left, m_right = 0.12, 0.16
-    m_top = sub_block + 0.19  # the title sits above the subtitle block
+    # savefig.bbox is 'tight' in the shared rcParams, so the saved plate is the ink box plus
+    # pad, not figsize: trimming these margins does not shrink the file. The plate's 233.4 mm
+    # height is set by content, and the only lever on it is removing content.
+    m_top = sub_block + 0.19
     legend_h = 1.03  # colorbar + two key rows + the role-key line
     # The rotated column labels descend ~0.37 in below panel (a); at 0.14 they struck through
     # the colorbar caption ("per column") and the right legend key ("point-estimate
     # clearance,"). The band needs to clear the deepest label, not the axis.
-    gap_a_leg = 0.26
-    gap_leg_b = 0.34
+    gap_a_leg = 0.30  # +0.04 in for the unit ticks at the shared 6.6 pt tick size
+    gap_leg_b = 0.38
     donor_h = 1.44
     donor_xlab = 0.42
     m_bot = 0.30
@@ -1251,7 +1270,9 @@ def main():
     PTX = PLX + 0.024
     bbB = ax2b.get_position()
     a_base_y = yA + hA + sub_block / fig_h
-    b_base_y = bbB.y1 + 0.030
+    # 0.19 in above the donor axes (was 0.28): the role-key row of the legend strip sat only
+    # ~0.03 in above the panel letter
+    b_base_y = bbB.y1 + 0.19 / fig_h
 
     fig.text(
         PLX,
@@ -1261,7 +1282,7 @@ def main():
         fontweight="bold",
         ha="left",
         va="bottom",
-        color=INK,
+        color=INK_HEAD,
     )
     fig.text(
         PTX,
@@ -1272,7 +1293,7 @@ def main():
         va="bottom",
         fontsize=FS_PANEL_TITLE,
         fontweight="bold",
-        color=NAVY_DARK,
+        color=INK_HEAD,
     )
     sub_artists = [
         fig.text(
@@ -1282,12 +1303,12 @@ def main():
             ha="left",
             va="top",
             fontsize=FS_SUBTITLE,
-            color=GREY_MID,
+            color=INK_NOTE,
         )
         for i, line in enumerate(n_sub)
     ]
 
-    fig.text(
+    letter_b = fig.text(
         PLX,
         b_base_y,
         "b",
@@ -1295,7 +1316,7 @@ def main():
         fontweight="bold",
         ha="left",
         va="bottom",
-        color=INK,
+        color=INK_HEAD,
     )
     fig.text(
         PTX,
@@ -1305,7 +1326,7 @@ def main():
         fontweight="bold",
         ha="left",
         va="bottom",
-        color=NAVY_DARK,
+        color=INK_HEAD,
     )
     fig.text(
         0.008,
@@ -1315,7 +1336,7 @@ def main():
         ha="left",
         va="center",
         fontsize=FS_AXIS_LABEL,
-        color=GREY_MID,
+        color=INK_BODY,
     )
 
     # ================= legend strip between 2a and 2b =================
@@ -1324,7 +1345,7 @@ def main():
     band_mid = leg_y0 + (legend_h * 0.44) / fig_h  # cell-marker keys
     band_role = leg_y0 + (legend_h * 0.13) / fig_h  # scientific role accents only
 
-    cb_x0, cb_w, cb_h = cx_cells, 0.175, 0.011
+    cb_x0, cb_w, cb_h = cx_cells, 0.155, 0.011  # a touch narrower: the keys are 6.6 pt
     cb_y0 = band_top - cb_h / 2
     sm = plt.cm.ScalarMappable(cmap=DIV_CMAP, norm=mnorm)
     sm.set_array([mnorm.vmin, mnorm.vmax])
@@ -1332,7 +1353,7 @@ def main():
     cb = fig.colorbar(sm, cax=cax, orientation="horizontal")
     cb.set_ticks([mnorm.vmin, 0.0, mnorm.vmax])
     cb.set_ticklabels([_fmt(mnorm.vmin), ".00", "+" + _fmt(mnorm.vmax)])
-    cb.ax.tick_params(labelsize=6.6, length=0, pad=2)
+    cb.ax.tick_params(labelsize=FS_TICK, length=0, pad=2, colors=INK_BODY)
     cb.outline.set_visible(True)
     cb.outline.set_edgecolor(CELL_EC)
     cb.outline.set_linewidth(0.6)
@@ -1343,26 +1364,32 @@ def main():
         _tl[-1].set_ha("right")
     fig.text(
         cb_x0,
-        cb_y0 + cb_h + 0.008,
+        cb_y0 + cb_h + 0.010,
         "cell fill = margin over that column’s binding floor (Pearson-Δ)",
-        fontsize=7.0,
+        fontsize=FS_SUBTITLE,
         ha="left",
         va="bottom",
-        color=GREY_MID,
+        color=INK_NOTE,
     )
     sub_artist = fig.text(
         cb_x0,
         cb_y0 - 0.015,
         "blue = above the floor;  white = at the floor;  orange = below it",
-        fontsize=6.8,
+        fontsize=FS_KEY,
         ha="left",
         va="top",
-        color=GREY_MID,
+        color=INK_NOTE,
     )
 
     sww = 0.0125
     swh = sww * fig_w / fig_h
     lab_dx = sww + 0.007
+
+    key_artists = []  # every key label, so the right edge can be measured, not assumed
+    _rend0 = fig.canvas.get_renderer()
+
+    def _x1(artist):  # real right edge of a text artist, figure fraction
+        return artist.get_window_extent(_rend0).x1 / (fig_w * fig.dpi)
 
     def _key(xt, yb, draw, text):
         a = fig.add_axes([xt, yb - swh / 2, sww, swh])
@@ -1370,16 +1397,19 @@ def main():
         a.set_ylim(0, 1)
         a.axis("off")
         draw(a)
-        fig.text(
-            xt + lab_dx,
-            yb,
-            text,
-            fontsize=6.1,
-            ha="left",
-            va="center",
-            color=GREY_MID,
-            linespacing=1.15,
+        key_artists.append(
+            fig.text(
+                xt + lab_dx,
+                yb,
+                text,
+                fontsize=FS_KEY,
+                ha="left",
+                va="center",
+                color=INK_NOTE,
+                linespacing=1.15,
+            )
         )
+        return key_artists[-1]
 
     def _d_win(a):
         a.add_patch(
@@ -1441,61 +1471,61 @@ def main():
     def _d_na(a):
         a.add_patch(Rectangle((0, 0), 1, 1, fc=NA_FC, ec=LEGEND_EC, lw=0.8))
 
-    SC = (7.74 / fig_w) * (6.1 / 6.8)   # gaps were tuned at 7.74 in and 6.8 pt
-    kx0 = cb_x0 + cb_w + 0.045 * SC
-    kx = kx0
-    _key(
-        kx,
+    # Keys are placed by measurement: each key starts one KEY_GAP after the real right edge of
+    # the previous key's label, so the horizontal rhythm is even and the *_end values below are
+    # the real ink edges (they used to be nominal pitches tuned at another size and plate width).
+    KEY_GAP = 0.20 / fig_w  # inches -> figure fraction
+    kx0 = cb_x0 + cb_w + 0.30 / fig_w
+    t = _key(
+        kx0,
         band_top,
         _d_win,
         "clears both floor members and\nsurvives multiplicity correction",
     )
-    kx += lab_dx + 0.250 * SC
-    _key(
-        kx,
+    t = _key(
+        _x1(t) + KEY_GAP,
         band_top,
         _d_win_borderline,
         "point-estimate clearance,\nwithout statistical support",
     )
-    kx_top_end = kx + lab_dx + 0.250 * SC
+    kx_top_end = _x1(t)
 
-    kx = kx0
-    _key(kx, band_mid, _d_adapt, "adapted interface")
-    kx += lab_dx + 0.130 * SC
-    _key(kx, band_mid, _d_diag, "diagnostic comparator")
-    kx += lab_dx + 0.157 * SC
-    _key(kx, band_mid, _d_na, "not evaluated")
-    kx_mid_end = kx + lab_dx + 0.110 * SC
+    t = _key(kx0, band_mid, _d_adapt, "adapted interface")
+    t = _key(_x1(t) + KEY_GAP, band_mid, _d_diag, "diagnostic comparator")
+    t = _key(_x1(t) + KEY_GAP, band_mid, _d_na, "not evaluated")
+    kx_mid_end = _x1(t)
 
     # Scientific role key; revision highlighting belongs in editable Word text.
     rx = cb_x0
-    fig.text(
+    t = fig.text(
         rx,
         band_role,
         "row accent:",
-        fontsize=6.1,
+        fontsize=FS_KEY,
         ha="left",
         va="center",
-        color=GREY_MID,
+        color=INK_NOTE,
         fontstyle="italic",
     )
-    rx += 0.088 * SC          # clears "row accent:" at 6.1 pt; scales with the plate
+    rx = _x1(t) + KEY_GAP * 0.6  # the caption sits closer to its first swatch than keys do
     for role, name in ROLE_KEY:
         a = fig.add_axes([rx, band_role - swh / 2, sww, swh])
         a.set_xlim(0, 1)
         a.set_ylim(0, 1)
         a.axis("off")
         a.add_patch(Rectangle((0, 0), 1, 1, fc=ROLE_COLOR[role], ec="none"))
-        fig.text(
-            rx + lab_dx,
-            band_role,
-            name,
-            fontsize=6.1,
-            ha="left",
-            va="center",
-            color=GREY_MID,
+        key_artists.append(
+            fig.text(
+                rx + lab_dx,
+                band_role,
+                name,
+                fontsize=FS_KEY,
+                ha="left",
+                va="center",
+                color=INK_NOTE,
+            )
         )
-        rx += lab_dx + (0.013 + 0.0095 * len(name)) * SC
+        rx = _x1(key_artists[-1]) + KEY_GAP
 
     # ---- geometry assertions (content stays on-canvas; nothing overlaps) ----
     assert yA > 0, f"landscape axes underflow (yA={yA:.3f})"
@@ -1512,6 +1542,14 @@ def main():
     assert band_role + swh / 2 < band_mid - swh / 2, "role key crowds the marker keys"
     fig.canvas.draw()
     _rend = fig.canvas.get_renderer()
+    # the role-key row must clear the panel-b header by a visible margin (measured, in inches)
+    _role_bottom = min(
+        a.get_window_extent(_rend).y0 for a in key_artists[-len(ROLE_KEY):]
+    ) / fig.dpi
+    _b_top = letter_b.get_window_extent(_rend).y1 / fig.dpi
+    assert _role_bottom - _b_top > 0.08, (
+        f"role key row sits {_role_bottom - _b_top:.3f} in above the panel-b letter"
+    )
     sub_bottom = sub_artist.get_window_extent(_rend).y0 / (fig_h * fig.dpi)
     assert (
         sub_bottom > band_mid + swh / 2
@@ -1522,6 +1560,11 @@ def main():
         assert (
             _x1 < 0.995
         ), f"panel-a subtitle overhangs the plate ({_x1:.3f}); lower the textwrap width"
+    for _a in key_artists:  # the nominal kx_* ends above are proxies; this is the real ink
+        _x1 = _a.get_window_extent(_rend).x1 / (fig_w * fig.dpi)
+        assert (
+            _x1 < 0.995
+        ), f"legend key {_a.get_text()!r} overhangs the plate ({_x1:.3f})"
     assert (
         a_base_y - (SUB_DY0 + (len(n_sub) - 1) * SUB_DY) / fig_h > yA + hA
     ), "panel-a subtitle runs into the landscape"

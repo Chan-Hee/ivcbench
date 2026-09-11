@@ -11,6 +11,7 @@ perturbation = 'IFN-beta' (stim) / 'control' (ctrl), cell_type_coarse from `cell
 This is scGen's original benchmark dataset (cross-cell-type IFN-β response prediction), so C1-real is
 also a pipeline-validation anchor: a latent model that does well here is behaving as published.
 """
+
 from __future__ import annotations
 
 import gzip
@@ -27,9 +28,14 @@ from ..schema import CONTROL_TOKEN
 
 # Kang `cell` label -> coarse lineage token
 _CT_MAP = {
-    "CD4 T cells": "CD4T", "CD8 T cells": "CD8T", "CD14+ Monocytes": "Mono_CD14",
-    "FCGR3A+ Monocytes": "Mono_FCGR3A", "NK cells": "NK", "B cells": "B",
-    "Dendritic cells": "DC", "Megakaryocytes": "Mk",
+    "CD4 T cells": "CD4T",
+    "CD8 T cells": "CD8T",
+    "CD14+ Monocytes": "Mono_CD14",
+    "FCGR3A+ Monocytes": "Mono_FCGR3A",
+    "NK cells": "NK",
+    "B cells": "B",
+    "Dendritic cells": "DC",
+    "Megakaryocytes": "Mk",
 }
 _BATCH2_LANES = ["GSM2560248_2.1.mtx.gz", "GSM2560249_2.2.mtx.gz"]
 _BATCH2_BARCODES = ["GSM2560248_barcodes.tsv.gz", "GSM2560249_barcodes.tsv.gz"]
@@ -37,11 +43,16 @@ _BATCH2_BARCODES = ["GSM2560248_barcodes.tsv.gz", "GSM2560249_barcodes.tsv.gz"]
 
 def _read_mtx_genes_x_cells(fobj) -> sp.csr_matrix:
     from scipy.io import mmread
-    return sp.csr_matrix(mmread(fobj)).T.tocsr()        # → cells × genes
+
+    return sp.csr_matrix(mmread(fobj)).T.tocsr()  # → cells × genes
 
 
-def load(path: str | Path = "data/C1/kang", subsample_per_group: int = 80,
-         n_hvg: int = 2000, seed: int = 0) -> CellSet:  # noqa: F821
+def load(
+    path: str | Path = "data/C1/kang",
+    subsample_per_group: int = 80,
+    n_hvg: int = 2000,
+    seed: int = 0,
+) -> CellSet:  # noqa: F821
     path = Path(os.environ.get("IVCBENCH_KANG_PATH", str(path)))
     tar_p = path / "GSE96583_RAW.tar"
     genes_p = path / "GSE96583_batch2.genes.tsv.gz"
@@ -62,12 +73,16 @@ def load(path: str | Path = "data/C1/kang", subsample_per_group: int = 80,
     Xs, keys = [], []
     seen: set[str] = set()
     with tarfile.open(tar_p) as tar:
-        for lane_i, (mtx_name, bc_name) in enumerate(zip(_BATCH2_LANES, _BATCH2_BARCODES)):
+        for lane_i, (mtx_name, bc_name) in enumerate(
+            zip(_BATCH2_LANES, _BATCH2_BARCODES)
+        ):
             with gzip.open(tar.extractfile(mtx_name)) as fh:
-                X = _read_mtx_genes_x_cells(fh)          # cells × genes
+                X = _read_mtx_genes_x_cells(fh)  # cells × genes
             with gzip.open(tar.extractfile(bc_name), "rt") as fh:
                 bcs = [b.strip() for b in fh]
-            assert X.shape[0] == len(bcs), f"{mtx_name}: {X.shape[0]} cells vs {len(bcs)} barcodes"
+            assert X.shape[0] == len(
+                bcs
+            ), f"{mtx_name}: {X.shape[0]} cells vs {len(bcs)} barcodes"
             # reconstruct the published merged index: lane1 keeps '-1'; a lane2 barcode that already
             # appeared in lane1 gets an extra '1' ('-1'→'-11'), matching the tSNE-df convention.
             lane_keys = []
@@ -103,26 +118,45 @@ def load(path: str | Path = "data/C1/kang", subsample_per_group: int = 80,
     sel = []
     for _, g in pd.Series(pos).groupby(grp.to_numpy()):
         v = g.to_numpy()
-        sel.append(v if len(v) <= subsample_per_group else rng.choice(v, subsample_per_group, replace=False))
+        sel.append(
+            v
+            if len(v) <= subsample_per_group
+            else rng.choice(v, subsample_per_group, replace=False)
+        )
     idx = np.sort(np.concatenate(sel))
     X_all = X_all[idx]
     pert, ct, donor, is_ctrl = pert[idx], ct[idx], donor[idx], is_ctrl[idx]
 
-    obs_out = pd.DataFrame({
-        "cell_type_coarse": ct, "cell_type_fine": ct, "perturbation": pert,
-        "condition": np.where(is_ctrl, "ctrl", "IFN-beta"), "donor_id": donor,
-        "timepoint": "6h", "batch": donor, "is_control": is_ctrl,
-    })
+    obs_out = pd.DataFrame(
+        {
+            "cell_type_coarse": ct,
+            "cell_type_fine": ct,
+            "perturbation": pert,
+            "condition": np.where(is_ctrl, "ctrl", "IFN-beta"),
+            "donor_id": donor,
+            "timepoint": "6h",
+            "batch": donor,
+            "is_control": is_ctrl,
+        }
+    )
 
-    cs = preprocess(X_all, list(symbols), obs_out, side_info={},
-                    uns={"dataset": "kang_GSE96583", "accession": "GSE96583",
-                         "n_cells_total": int(X_all.shape[0]),
-                         "cytokines": ["IFN-beta"]},
-                    cfg=PreprocessConfig(n_hvg=n_hvg))
+    cs = preprocess(
+        X_all,
+        list(symbols),
+        obs_out,
+        side_info={},
+        uns={
+            "dataset": "kang_GSE96583",
+            "accession": "GSE96583",
+            "n_cells_total": int(X_all.shape[0]),
+            "cytokines": ["IFN-beta"],
+        },
+        cfg=PreprocessConfig(n_hvg=n_hvg),
+    )
     return cs
 
 
-if __name__ == "__main__":      # quick manual check
+if __name__ == "__main__":  # quick manual check
     cs = load()
     print("cells", cs.n_cells, "genes", cs.n_genes)
     print("cell types", sorted(set(cs.obs["cell_type_coarse"])))

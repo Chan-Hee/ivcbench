@@ -1,18 +1,15 @@
 """C2 (donor-generalization) — Soskic CD4-activation leave-one-donor-out (LODO).
 
-The Fig-1 OT-STRONG paired-stimulation DONOR axis: control = 0h resting, perturbed = 16h stimulated.
-Hold ONE donor's 16h cells out entirely; predict its stimulated response from its OWN 0h cells. Lineage
-(CD4 Naive/Memory) is a within-donor stratum. Leak-safe: the held donor's stim cells never enter
-train/val/norm/model-selection (control_inference_only) — enforced by audit_split.
+Control = 0 h resting; response = 16 h stimulated. A held donor's response is
+predicted from its own controls, with CD4 naive/memory lineage as a stratum.
+The supplied matrices are already condition-specifically residualized, scaled
+and clipped. The membership audit cannot undo that upstream processing.
 
-Re-wraps the leak-safe Soskic logic from scripts/c2_soskic_donor.py into the framework:
-  * response_gene_idx — training-only control-vs-stim response panel for the held-donor fold. Required
-    for evaluation but FORBIDDEN for model selection, so selected inside each fold from TRAINING donors
-    only and passed only to the metric (run_job's response_gene_fn hook). This is the framework-native
-    home of the bespoke leak-safe response-gene rule; it makes the C2 Pearson-Δ reproduce the bespoke
-    per-donor value.
-  * SOSKIC_PROGRAMS — the immune-program (AUCell Axis-3) vocabulary for activated CD4 T cells.
+``response_gene_idx`` implements the training-selected evaluation exclusion
+panel used by scripts/c2_soskic_donor.py. ``SOSKIC_PROGRAMS`` defines curated
+marker panels for auxiliary rank-score diagnostics in the supplied coordinates.
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -26,32 +23,99 @@ from ..splits.spec import SplitSpec
 # type-I IFN (from C1/C5), plus a compact type-II IFN module for activated CD4 T cells. run.py
 # intersects each set with the dataset HVG panel, so a program contributes only measured genes.
 SOSKIC_PROGRAMS: dict[str, list[str]] = {
-    "T_cell_activation": ["CD69", "IL2RA", "CD40LG", "TNFRSF9", "NR4A1", "NR4A2", "NR4A3",
-                          "EGR1", "EGR2", "IRF4", "REL", "NFKBIA", "CD28", "TNFRSF4"],
-    "IL2_STAT5": ["IL2RA", "IL2RB", "IL2RG", "STAT5A", "STAT5B", "CISH", "SOCS1", "SOCS3",
-                  "BCL2", "MYC", "IL2"],
-    "type_I_IFN": ["ISG15", "IFI6", "MX1", "MX2", "OAS1", "OAS2", "OAS3", "OASL", "IFIT1",
-                   "IFIT2", "IFIT3", "IFITM1", "IFITM3", "ISG20", "IRF7", "STAT1", "STAT2",
-                   "RSAD2", "USP18", "IFI44", "IFI44L", "BST2", "XAF1", "HERC5", "LY6E"],
-    "type_II_IFN": ["IFNG", "STAT1", "IRF1", "CXCL9", "CXCL10", "CXCL11", "GBP1", "GBP2",
-                    "GBP5", "TAP1", "PSMB8", "PSMB9", "HLA-DRA", "HLA-DRB1", "SOCS1"],
+    "T_cell_activation": [
+        "CD69",
+        "IL2RA",
+        "CD40LG",
+        "TNFRSF9",
+        "NR4A1",
+        "NR4A2",
+        "NR4A3",
+        "EGR1",
+        "EGR2",
+        "IRF4",
+        "REL",
+        "NFKBIA",
+        "CD28",
+        "TNFRSF4",
+    ],
+    "IL2_STAT5": [
+        "IL2RA",
+        "IL2RB",
+        "IL2RG",
+        "STAT5A",
+        "STAT5B",
+        "CISH",
+        "SOCS1",
+        "SOCS3",
+        "BCL2",
+        "MYC",
+        "IL2",
+    ],
+    "type_I_IFN": [
+        "ISG15",
+        "IFI6",
+        "MX1",
+        "MX2",
+        "OAS1",
+        "OAS2",
+        "OAS3",
+        "OASL",
+        "IFIT1",
+        "IFIT2",
+        "IFIT3",
+        "IFITM1",
+        "IFITM3",
+        "ISG20",
+        "IRF7",
+        "STAT1",
+        "STAT2",
+        "RSAD2",
+        "USP18",
+        "IFI44",
+        "IFI44L",
+        "BST2",
+        "XAF1",
+        "HERC5",
+        "LY6E",
+    ],
+    "type_II_IFN": [
+        "IFNG",
+        "STAT1",
+        "IRF1",
+        "CXCL9",
+        "CXCL10",
+        "CXCL11",
+        "GBP1",
+        "GBP2",
+        "GBP5",
+        "TAP1",
+        "PSMB8",
+        "PSMB9",
+        "HLA-DRA",
+        "HLA-DRB1",
+        "SOCS1",
+    ],
 }
 
 
 def donor_lodo(held_donor: str) -> SplitSpec:
-    """DONOR axis — leave-one-donor-out: hold out one donor's 16h-stimulated cells entirely, predict
-    its response from that donor's own 0h control cells. Leak-proof (the honest measure). Cell-axis
-    applicability pattern (no perturbation-side rep needed); registry_task=C2_LODO."""
+    """Hold out one donor's stimulated response and supply its resting controls."""
     return SplitSpec(
         name=f"C2_lodo_{held_donor}",
         cluster="C2",
         key_col="donor_id",
         held_values=[held_donor],
         control_inference_only=True,
-        strata_cols=["cell_type_coarse"],            # CD4 Naive/Memory → ≥2 strata → CI + AUCell-Δ defined
+        strata_cols=[
+            "cell_type_coarse"
+        ],  # naive/memory; count alone does not ensure estimability
         registry_task="C2_LODO",
-        note=("held donor's 16h-stim cells hidden from train/val/norm/model-selection; only its 0h "
-              "control cells are inference input (control_inference_only); scored per lineage stratum."),
+        note=(
+            "held donor's 16h cells are absent from training; its 0h controls are"
+            " inference input; scored per lineage in supplied residualized coordinates"
+            " with shared upstream processing."
+        ),
     )
 
 
@@ -70,7 +134,9 @@ def _bh_qvalues(pvals: np.ndarray) -> np.ndarray:
     return q
 
 
-def response_gene_idx(cs: CellSet, split: Split, max_genes: int = 200, min_genes: int = 50) -> np.ndarray:
+def response_gene_idx(
+    cs: CellSet, split: Split, max_genes: int = 200, min_genes: int = 50
+) -> np.ndarray:
     """Training-only control-vs-stim response genes for the held-donor fold (leak-safe).
 
     These genes are EXCLUDED from the C2 Pearson-Δ metric (run_job feeds them to pearson_delta's

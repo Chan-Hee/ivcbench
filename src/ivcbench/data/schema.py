@@ -3,6 +3,7 @@
 Decoupling the in-memory container from AnnData keeps the split/audit/metric core testable
 without scanpy/anndata installed. Real loaders (data/loaders/*.py) read .h5ad and emit a CellSet.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -14,16 +15,18 @@ import pandas as pd
 # Canonical obs columns. Loaders fill what applies; absent axes use the sentinel "NA".
 OBS_COLUMNS = [
     "cell_type_coarse",  # e.g. CD4T / CD8T / B / NK / Mono  (C1 LOCT, C5 LOCT axis)
-    "cell_type_fine",    # sub-lineage (C1 within-Oesinghaus resolution)
-    "perturbation",      # cytokine / gene / compound label; control => the control token
-    "condition",         # free-form experimental condition (cocktail, activation, etc.)
-    "donor_id",          # C2 LODO axis; C5 blocking factor
-    "timepoint",         # C2 temporal axis (0h/16h/40h/5d); "NA" if not time-resolved
-    "batch",             # plate / replicate / sequencing batch
-    "is_control",        # bool: control/vehicle cell (DMSO, PBS, 0h, NTC...) — never a held-out drug
+    "cell_type_fine",  # sub-lineage (C1 within-Oesinghaus resolution)
+    "perturbation",  # cytokine / gene / compound label; control => the control token
+    "condition",  # free-form experimental condition (cocktail, activation, etc.)
+    "donor_id",  # C2 LODO axis; C5 blocking factor
+    "timepoint",  # C2 temporal axis (0h/16h/40h/5d); "NA" if not time-resolved
+    "batch",  # plate / replicate / sequencing batch
+    "is_control",  # bool: control/vehicle cell (DMSO, PBS, 0h, NTC...) — never a held-out drug
 ]
 
-CONTROL_TOKEN = "control"  # value of `perturbation` for control cells (DMSO/PBS/NTC mapped here)
+CONTROL_TOKEN = (  # value of `perturbation` for control cells (DMSO/PBS/NTC mapped here)
+    "control"
+)
 
 
 @dataclass
@@ -78,7 +81,7 @@ def validate_cellset(cs: CellSet) -> None:
     # control cells must carry the control token in `perturbation`
     ctrl = cs.obs["is_control"].to_numpy()
     pert = cs.obs["perturbation"].to_numpy()
-    assert (pert[ctrl] == CONTROL_TOKEN).all(), (
-        "every is_control cell must have perturbation == CONTROL_TOKEN"
-    )
+    assert (
+        pert[ctrl] == CONTROL_TOKEN
+    ).all(), "every is_control cell must have perturbation == CONTROL_TOKEN"
     assert not np.isnan(cs.X).any(), "X contains NaN"

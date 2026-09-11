@@ -7,6 +7,7 @@ correlations, excluded CPA/scGen drug entries, or response-amplitude claims.
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 import numpy as np
 import matplotlib.transforms as mtransforms
@@ -16,6 +17,11 @@ from matplotlib.lines import Line2D
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "results/_paper"
+sys.path.insert(0, str(ROOT / "src"))
+from ivcbench.report.style import INK_BODY, INK_HEAD, INK_NOTE, MAIN_FS  # noqa: E402
+
+# data-mark colours only (points, lines, intervals); every piece of text takes the shared ink
+# ladder from ivcbench.report.style so Figures 2 and 3 print the inks Figure 1 prints
 NAVY, BLUE, GREY, ROSE = "#17324d", "#287fba", "#84909a", "#b34e68"
 T3_MODELS = ["AttentionPert", "Biolord", "CellFlow", "GEARS", "PerturbNet", "scGPT"]
 # CINEMA-OT is a census entry on this split, but no per-lineage program readout was deposited for
@@ -58,25 +64,126 @@ def style():
     plt.rcParams.update(
         {
             "font.family": "DejaVu Sans",
-            "font.size": 7,
-            "axes.labelsize": 7,
-            "axes.titlesize": 8,
+            "font.size": MAIN_FS["tick"],
+            "axes.labelsize": MAIN_FS["axis"],
+            "axes.titlesize": MAIN_FS["title"],
+            "xtick.labelsize": MAIN_FS["tick"],
+            "ytick.labelsize": MAIN_FS["tick"],
+            "legend.fontsize": MAIN_FS["key"],
             "axes.spines.top": False,
             "axes.spines.right": False,
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
-            "axes.titlecolor": NAVY,
-            "text.color": NAVY,
+            # the shared text-ink ladder. text.color never reaches tick labels, spines or tick
+            # marks (they printed matplotlib black before), so those are set explicitly.
+            "text.color": INK_BODY,
+            "axes.labelcolor": INK_BODY,
+            "axes.titlecolor": INK_HEAD,
+            "axes.edgecolor": INK_BODY,
+            "xtick.color": INK_BODY,
+            "ytick.color": INK_BODY,
+            "xtick.labelcolor": INK_BODY,
+            "ytick.labelcolor": INK_BODY,
+            "legend.labelcolor": INK_NOTE,
             "axes.unicode_minus": True,
         }
     )
 
 
-def title(ax, letter, text):
-    ax.set_title(f"{letter}  {text}", loc="left", fontweight="bold", pad=12)
+# panel-header geometry (inches), matching Figure 2: a standalone bold letter on the panel's
+# outer left edge, the bold title 0.15 in to its right, one grey subtitle line under the title
+TITLE_DX = 0.15  # title left edge, right of the letter's left edge
+SUB_DY = 0.09  # subtitle baseline above the axes top
+TITLE_PITCH = 0.205  # title baseline above the subtitle baseline (Figure 2's pitch)
+TITLE_DY_NOSUB = 0.17  # title baseline above the axes top when there is no subtitle
+
+
+def title(ax, letter, text, sub=None):
+    """Queue a panel header; it is drawn by _place_titles once the tick labels exist, so the
+    letters of one column all sit on the column's outermost left edge (the widest tick-label
+    set decides it) and share one x, as the letters of Figure 2 do."""
+    ax.figure.__dict__.setdefault("_panel_titles", []).append((ax, letter, text, sub))
+
+
+def _place_titles(fig):
+    items = fig.__dict__.pop("_panel_titles", [])
+    if not items:
+        return
+    fig.canvas.draw()
+    rend = fig.canvas.get_renderer()
+    to_in = fig.dpi_scale_trans.inverted()
+    left = {ax: ax.get_tightbbox(rend).transformed(to_in).x0 for ax, *_ in items}
+    cols: dict = {}
+    for ax in left:
+        cols.setdefault(round(ax.get_position().x0, 3), []).append(ax)
+    for axs in cols.values():
+        x = min(left[a] for a in axs)
+        for a in axs:
+            left[a] = x
+    for ax, letter, text, sub in items:
+        base = mtransforms.blended_transform_factory(fig.dpi_scale_trans, ax.transAxes)
+        y_title = SUB_DY + TITLE_PITCH if sub else TITLE_DY_NOSUB
+        tr = mtransforms.offset_copy(base, fig=fig, x=0, y=y_title, units="inches")
+        kw = dict(ha="left", va="baseline", color=INK_HEAD, fontweight="bold")
+        fig.text(left[ax], 1.0, letter, transform=tr, fontsize=MAIN_FS["letter"], **kw)
+        fig.text(left[ax] + TITLE_DX, 1.0, text, transform=tr, fontsize=MAIN_FS["title"], **kw)
+        if sub:
+            tr = mtransforms.offset_copy(base, fig=fig, x=0, y=SUB_DY, units="inches")
+            fig.text(left[ax] + TITLE_DX, 1.0, sub, transform=tr, fontsize=MAIN_FS["subtitle"],
+                     ha="left", va="baseline", color=INK_NOTE)
+
+
+def _keys_below(fig, rows, gap=0.10):
+    """One key per panel, under its x-axis, its left edge on the axes' left edge; the keys of
+    one panel row share one top edge (the row's deepest tick label or axis label decides it).
+    A str in place of handles is drawn as a plain text key."""
+    fig.canvas.draw()
+    rend = fig.canvas.get_renderer()
+    to_in = fig.dpi_scale_trans.inverted()
+    fh = fig.get_size_inches()[1]
+    for row in rows:
+        bottom = min(ax.get_tightbbox(rend).transformed(to_in).y0 for ax, *_ in row)
+        y = (bottom - gap) / fh
+        for ax, handles, kw in row:
+            x = ax.get_position().x0
+            if isinstance(handles, str):
+                fig.text(x, y, handles, fontsize=MAIN_FS["key"], color=INK_NOTE, ha="left",
+                         va="top")
+            else:
+                ax.legend(handles=handles, loc="upper left", bbox_to_anchor=(x, y),
+                          bbox_transform=fig.transFigure, frameon=False, borderpad=0,
+                          borderaxespad=0, handletextpad=0.5, labelspacing=0.35, **kw)
+
+
+def _assert_layout(fig):
+    """Geometry proof: no text block leaves the canvas, and no panel's header, axes (with its
+    tick labels) or key overlaps another panel's."""
+    fig.canvas.draw()
+    rend = fig.canvas.get_renderer()
+    fw, fh = fig.get_size_inches()
+    to_in = fig.dpi_scale_trans.inverted()
+    blocks = []  # (name, bbox, owner); an axes' tight bbox already contains its own legend
+    for t in fig.texts:
+        bb = t.get_window_extent(rend).transformed(to_in)
+        assert bb.x0 > -0.02 and bb.y0 > -0.02 and bb.x1 < fw + 0.55 and bb.y1 < fh + 0.55, (
+            f"text {t.get_text()[:30]!r} leaves the canvas: {bb}")
+        blocks.append((t.get_text()[:30], bb, None))
+    for ax in fig.axes:
+        blocks.append(("axes", ax.get_tightbbox(rend).transformed(to_in), ax))
+        if ax.get_legend() is not None:
+            blocks.append(
+                ("legend", ax.get_legend().get_window_extent(rend).transformed(to_in), ax)
+            )
+    for i, (na, a, oa) in enumerate(blocks):
+        for nb, b, ob in blocks[i + 1:]:
+            if oa is not None and oa is ob:
+                continue
+            hit = a.x0 < b.x1 and b.x0 < a.x1 and a.y0 < b.y1 and b.y0 < a.y1
+            assert not hit, f"layout collision: {na!r} overlaps {nb!r}"
 
 
 def save(fig, stem, tiff=False):
+    _place_titles(fig)
     fig.savefig(
         PAPER / (stem + ".png"), dpi=350, bbox_inches="tight", facecolor="white"
     )
@@ -113,41 +220,13 @@ def protein_panel(ax):
         ],
     )
     ax.axvline(0, color=GREY, lw=0.6)
-    ax.set_xlabel("Protein shift (library-log units)")
-    ax.legend(
-        handles=[
-            Line2D(
-                [],
-                [],
-                color=GREY,
-                marker="o",
-                lw=1,
-                ms=3,
-                label="Observed ± conditional 95% interval",
-            ),
-            Line2D(
-                [],
-                [],
-                color=GREY,
-                marker="D",
-                mfc="white",
-                lw=0,
-                ms=3,
-                label="Cell-mean floor prediction",
-            ),
-        ],
-        loc="lower left",
-        bbox_to_anchor=(-0.05, -0.31),
-        frameon=False,
-        fontsize=6.6,
-    )
-    ax.text(
-        0,
-        1.015,
-        "Frangieh protein fit; 124 held KOs",
-        transform=ax.transAxes,
-        fontsize=6.6,
-    )
+    ax.set_xlabel("protein shift (library-log units)")
+    return [  # the key, drawn under the panel by _keys_below
+        Line2D([], [], color=GREY, marker="o", lw=1, ms=3,
+               label="observed ± conditional 95% interval"),
+        Line2D([], [], color=GREY, marker="D", mfc="white", lw=0, ms=3,
+               label="cell-mean floor prediction"),
+    ]
 
 
 def op3_matrix(ax, frame):
@@ -179,17 +258,19 @@ def op3_matrix(ax, frame):
                                 else "NA-P" if why == {"constant predicted rank-program score"}
                                 else "NA")
     ax.imshow(np.ma.masked_invalid(matrix), cmap=cmap, vmin=-1, vmax=1, aspect="auto")
+    fs = MAIN_FS["tick"]  # in-cell values, the size Figure 2 prints its cells at
     for i in range(len(OP3_MODELS)):
         for j in range(len(cols)):
             v = matrix[i, j]
             if np.isnan(v):
-                ax.text(j, i, note[(i, j)], ha="center", va="center", color=NAVY, fontsize=7)
+                ax.text(j, i, note[(i, j)], ha="center", va="center", color=INK_BODY,
+                        fontsize=fs)
             else:
                 label = f"{v:.2f}".replace("-", "\u2212")
                 if (i, j) in note:
                     label += f"\n{note[(i, j)]}"
                 ax.text(j, i, label, ha="center", va="center",
-                        color="white" if abs(v) > 0.65 else NAVY, fontsize=7)
+                        color="white" if abs(v) > 0.65 else INK_BODY, fontsize=fs)
     ax.set_xticks(range(len(cols)), ["Type-I IFN", "NF-\u03baB", "Effector\n(lymphocyte)"])
     ax.set_yticks(
         range(len(OP3_MODELS)),
@@ -202,18 +283,13 @@ def op3_matrix(ax, frame):
             )
             for x in OP3_MODELS
         ],
+        fontsize=MAIN_FS["name"],  # the model roster, at the size Figure 2 prints its rows
     )
     ax.tick_params(length=0)
-    ax.text(
-        0,
-        -0.19,
-        "Mean over the lineages where the score is defined;\nn/4 printed where fewer than four."
-        "\nNA-O: constant observed target; NA-P: constant\nprediction; NA: both, in different lineages.\nNever plotted as zero."
-        "\n\u2020 Adapted   * Diagnostic comparator",
-        transform=ax.transAxes,
-        fontsize=6.6,
-        va="top",
-    )
+    # The six-line footnote that used to sit here (mean over estimable lineages, the NA codes,
+    # "never plotted as zero") is carried by the subtitle and the figure legend; only the
+    # symbol key for the row labels stays on the plate.
+    return "\u2020 adapted interface     * diagnostic comparator"
 
 
 def t3_observability(ax, summary):
@@ -289,41 +365,31 @@ def aggregation_panel(ax):
         & (scores.model == "cell-mean")
     ].sort_values("stratum")
     x = np.arange(len(frame))
-    ax.plot(
+    (mean_profile,) = ax.plot(
         x,
         frame.observed_program_score,
         "o-",
         color=NAVY,
         ms=4,
-        label="Score of observed mean profile",
+        label="rank score of the observed mean profile",  # the legend's wording
     )
-    ax.plot(
+    (per_cell,) = ax.plot(
         x,
         frame.observed_per_cell_score_mean,
         "s--",
         color=ROSE,
         ms=4,
-        label="Mean observed per-cell score",
+        label="mean of the per-cell scores",
     )
     ax.set_xticks(
         x,
         frame.stratum.str.replace("perturbation=", "", regex=False),
         rotation=45,
         ha="right",
-        fontsize=6.5,
     )
     ax.set_ylabel("TCR-activation rank score")
     ax.set_ylim(bottom=-0.002)
-    ax.text(
-        0,
-        1.015,
-        "Schmidt: all 7 held targets; observed data only",
-        transform=ax.transAxes,
-        fontsize=6.6,
-    )
-    ax.legend(
-        loc="upper left", bbox_to_anchor=(-0.05, -0.31), fontsize=6, frameon=False
-    )
+    return [mean_profile, per_cell]
 
 
 def magnitude_panel(ax):
@@ -345,8 +411,9 @@ def magnitude_panel(ax):
     ax.axvline(1.0, color=GREY, lw=0.7, ls=":", zorder=1)
     ax.axhline(1.0, color=GREY, lw=0.7, ls=":", zorder=1)
     ax.plot([1.0], [1.0], marker="+", ms=7, mew=1.2, color=NAVY, zorder=4)
+    fs = MAIN_FS["tick"]  # in-panel annotations
     ax.annotate("calibrated", (1.0, 1.0), textcoords="offset points", xytext=(6, -9),
-                fontsize=5.8, color=NAVY)
+                fontsize=fs, color=INK_BODY)
 
     plotted = d[d.slope.notna() & d.ratio.notna()]
     for _, r in plotted.iterrows():
@@ -355,48 +422,55 @@ def magnitude_panel(ax):
                    facecolor="white" if adapted else FACE.get(r["Role"], BLUE),
                    edgecolor=FACE.get(r["Role"], BLUE), linewidths=0.9)
     # the three understating entries sit close together against the left spine, so their labels
-    # go into the empty space to their right rather than off the axis
-    for name, dx, dy, ha in [("linear-PCA", 7, 2, "left"), ("CINEMA-OT", 0, -11, "center"),
+    # go into the empty space around them rather than off the axis; a white halo keeps the one
+    # that has to cross the dotted x = 1 guide (FP-ridge) legible
+    halo = dict(boxstyle="square,pad=0.12", fc="white", ec="none")
+    for name, dx, dy, ha in [("linear-PCA", 0, 7, "center"), ("CINEMA-OT", 0, -11, "center"),
                              ("FP-ridge", 8, -1, "left"), ("PRnet", 6, 1, "left"),
                              ("cell-mean", 0, -11, "center")]:
         r = plotted[plotted.Entry == name]
         if len(r):
             ax.annotate(name, (r.ratio.iloc[0], r.slope.iloc[0]), textcoords="offset points",
-                        xytext=(dx, dy), fontsize=5.8, color=NAVY, ha=ha)
+                        xytext=(dx, dy), fontsize=fs, color=INK_BODY, ha=ha,
+                        bbox=halo, zorder=5)
 
     ax.set_xlim(-0.15, 3.35)
     ax.set_ylim(-0.12, 1.12)
-    ax.set_xlabel("predicted / observed response norm", fontsize=6.6)
-    ax.set_ylabel("calibration slope", fontsize=6.6)
-    ax.tick_params(labelsize=6)
-    zero = d[d.slope.isna() & (d.ratio == 0)]
-    note = ("Six conditioned predictors overstate the response 1.5 to 3.0 times with slopes at or near\n"
-            "zero; the three that understate it keep slopes well above zero."
-            + (" scPRAM predicts no shift." if len(zero) else ""))
-    ax.legend(handles=[
+    ax.set_xlabel("predicted / observed response norm")
+    ax.set_ylabel("calibration slope")
+    # The reading of the panel (six conditioned predictors overstate the response 1.5-3.0x with
+    # slopes near zero; the three that understate it keep slopes well above zero; scPRAM
+    # predicts no shift) is prose for the Results and the legend, not for the plate.
+    return [  # the colour key, drawn under the panel by _keys_below
         Line2D([], [], marker="o", ls="", mfc=BLUE, mec=BLUE, ms=5, label="conditioned"),
         Line2D([], [], marker="o", ls="", mfc="white", mec=BLUE, ms=5, label="adapted interface"),
         Line2D([], [], marker="o", ls="", mfc=ROSE, mec=ROSE, ms=5, label="diagnostic"),
         Line2D([], [], marker="o", ls="", mfc=GREY, mec=GREY, ms=5, label="floor member"),
-    ], loc="upper left", bbox_to_anchor=(-0.02, -0.20), ncol=2, fontsize=6,
-        frameon=False, handletextpad=0.3, columnspacing=1.1, labelspacing=0.25)
-    ax.text(0.0, -0.42, note, transform=ax.transAxes, va="top", fontsize=5.8, color=GREY)
+    ]
 
 
 def figure3(summary, macro):
     """Compose the main readout argument; the full protein panel appears once."""
     fig, axes = plt.subplots(2, 2, figsize=(6.33, 7.07))  # 174 mm live area
     fig.subplots_adjust(
-        left=0.14, right=0.98, top=0.95, bottom=0.13, wspace=0.85, hspace=0.78
+        left=0.14, right=0.98, top=0.95, bottom=0.13, wspace=0.72, hspace=0.62
     )
-    aggregation_panel(axes[0, 0])
-    title(axes[0, 0], "a", "Aggregation changes the target")
-    op3_matrix(axes[0, 1], summary)
-    title(axes[0, 1], "b", "OP3 program concordance")
-    magnitude_panel(axes[1, 0])
-    title(axes[1, 0], "c", "Direction is not magnitude")
-    protein_panel(axes[1, 1])
-    title(axes[1, 1], "d", "Checkpoint assay context")
+    (a, b), (c, d) = axes
+    key_a = aggregation_panel(a)
+    title(a, "a", "Aggregation changes the target",
+          "Schmidt: all 7 held targets; observed data only")
+    key_b = op3_matrix(b, summary)
+    title(b, "b", "OP3 program concordance", "OP3 held cell types; n/4 = estimable lineages")
+    key_c = magnitude_panel(c)
+    title(c, "c", "Direction is not magnitude", "OP3 held cell types; four coarse lineages")
+    key_d = protein_panel(d)
+    title(d, "d", "Checkpoint assay context", "Frangieh protein fit; 124 held KOs")
+    _place_titles(fig)
+    _keys_below(fig, [
+        [(a, key_a, {}), (b, key_b, {})],
+        [(c, key_c, dict(ncol=2, columnspacing=1.2)), (d, key_d, {})],
+    ])
+    _assert_layout(fig)
     save(fig, "figure_immune_blindspot", tiff=True)
 
 
@@ -520,7 +594,7 @@ def figure_s5():
         title(ax, letter, norm)
     axes[0].invert_yaxis()
     fig.suptitle(
-        "Chen checkpoint readouts depend on normalization", fontsize=10, color=NAVY
+        "Chen checkpoint readouts depend on normalization", fontsize=10, color=INK_HEAD
     )
     save(fig, "figS_chen_checkpoint_replication")
 

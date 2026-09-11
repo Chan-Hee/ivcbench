@@ -1,9 +1,13 @@
-"""Unified preprocessing — the SAME pipeline for every cluster (C1–C5).
+"""Shared preprocessing used by the RNA count-matrix loaders.
 
-Keeping preprocessing identical across clusters is what makes the benchmark comparable and the paper's
-Methods a single statement. Every loader ends by calling `preprocess()`; nothing reimplements
-normalization or HVG selection. (See CONVENTIONS.md.)
+These operations precede held-out split construction: variance-based feature
+selection therefore uses all selected cells, including held responses. CRISPR
+target identities are also retained in the feature panel. This is a common,
+partly transductive input space, not a strictly training-only preprocessing
+pipeline. Soskic uses separately supplied processed panels and their 381-gene
+intersection; protein analyses have their own transformations.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -17,15 +21,17 @@ from .schema import CONTROL_TOKEN, CellSet
 
 @dataclass(frozen=True)
 class PreprocessConfig:
-    n_hvg: int = 2000            # highly-variable genes kept (shared across clusters)
-    target_sum: float = 1e4      # library-size normalization target
+    n_hvg: int = 2000  # highly-variable genes kept (shared across clusters)
+    target_sum: float = 1e4  # library-size normalization target
     log1p: bool = True
     min_genes_per_cell: int = 200
     min_cells_per_gene: int = 3
     seed: int = 0
 
 
-def library_log_normalize(X: sp.csr_matrix, target_sum: float, log1p: bool) -> sp.csr_matrix:
+def library_log_normalize(
+    X: sp.csr_matrix, target_sum: float, log1p: bool
+) -> sp.csr_matrix:
     X = X.tocsr().astype(np.float32)
     lib = np.asarray(X.sum(1)).ravel()
     lib[lib == 0] = 1.0
@@ -38,10 +44,11 @@ def library_log_normalize(X: sp.csr_matrix, target_sum: float, log1p: bool) -> s
 def select_hvg(Xlogn: sp.csr_matrix, n_hvg: int, force_idx=None) -> np.ndarray:
     """Top-variance genes, but ALWAYS retain `force_idx` (the perturbed target genes). Gene-side
     models (GEARS/scGPT/…) and the response metric require the perturbed gene to be in the panel, so
-    forced genes are kept and the remaining slots filled by variance (panel size stays ~n_hvg)."""
+    forced genes are kept and the remaining slots filled by variance (panel size stays ~n_hvg).
+    """
     mean = np.asarray(Xlogn.mean(0)).ravel()
     sqmean = np.asarray(Xlogn.multiply(Xlogn).mean(0)).ravel()
-    var = sqmean - mean ** 2
+    var = sqmean - mean**2
     k = min(n_hvg, Xlogn.shape[1])
     force = sorted(set(int(i) for i in (force_idx or [])))
     chosen = set(force)
@@ -53,9 +60,15 @@ def select_hvg(Xlogn: sp.csr_matrix, n_hvg: int, force_idx=None) -> np.ndarray:
     return idx
 
 
-def preprocess(counts: sp.spmatrix, var_names, obs: pd.DataFrame, *,
-               side_info: dict | None = None, uns: dict | None = None,
-               cfg: PreprocessConfig = PreprocessConfig()) -> CellSet:
+def preprocess(
+    counts: sp.spmatrix,
+    var_names,
+    obs: pd.DataFrame,
+    *,
+    side_info: dict | None = None,
+    uns: dict | None = None,
+    cfg: PreprocessConfig = PreprocessConfig(),
+) -> CellSet:
     """Raw counts (cells x genes) + obs -> QC-filtered, log-normalized, HVG-reduced CellSet."""
     X = counts.tocsr().astype(np.float32)
     var_names = list(var_names)
@@ -71,11 +84,20 @@ def preprocess(counts: sp.spmatrix, var_names, obs: pd.DataFrame, *,
 
     Xn = library_log_normalize(X, cfg.target_sum, cfg.log1p)
     # force the perturbed target genes into the panel (gene-side models / response metric need them)
-    pert = set(obs["perturbation"].astype(str)) - {CONTROL_TOKEN} if "perturbation" in obs else set()
+    pert = (
+        set(obs["perturbation"].astype(str)) - {CONTROL_TOKEN}
+        if "perturbation" in obs
+        else set()
+    )
     force_idx = [i for i, g in enumerate(var_names) if g in pert]
     hvg = select_hvg(Xn, cfg.n_hvg, force_idx=force_idx)
     Xd = np.asarray(Xn[:, hvg].todense(), dtype=np.float32)
     var_hvg = [var_names[i] for i in hvg]
 
-    return CellSet(X=Xd, obs=obs.reset_index(drop=True), var_names=var_hvg,
-                   side_info=side_info or {}, uns={**(uns or {}), "preprocess": cfg.__dict__})
+    return CellSet(
+        X=Xd,
+        obs=obs.reset_index(drop=True),
+        var_names=var_hvg,
+        side_info=side_info or {},
+        uns={**(uns or {}), "preprocess": cfg.__dict__},
+    )

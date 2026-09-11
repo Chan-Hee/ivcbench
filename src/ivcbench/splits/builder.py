@@ -1,4 +1,5 @@
 """Build train / test / inference-input index sets from a SplitSpec."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -13,9 +14,11 @@ from .spec import SplitSpec
 class Split:
     spec: SplitSpec
     train_idx: np.ndarray
-    test_idx: np.ndarray            # held-out group's TREATED cells (the prediction target)
-    inference_input_idx: np.ndarray  # control/context cells the model is allowed to see at inference
-    test_strata: np.ndarray         # stratum label per test cell (for macro-averaging)
+    test_idx: np.ndarray  # held-out group's TREATED cells (the prediction target)
+    inference_input_idx: (
+        np.ndarray
+    )  # control/context cells the model is allowed to see at inference
+    test_strata: np.ndarray  # stratum label per test cell (for macro-averaging)
 
 
 def build_split(cs: CellSet, spec: SplitSpec) -> Split:

@@ -1,4 +1,5 @@
 """Axis 2 — Distributional (energy distance) in PCA-50 space. Lower is better."""
+
 from __future__ import annotations
 
 import numpy as np

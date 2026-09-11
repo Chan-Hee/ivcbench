@@ -1,12 +1,10 @@
-"""C4 (complex-context) — Axis-2: RNA → targeted-protein modality generalization (Frangieh 2021).
+"""C4: held-KO RNA prediction and separate within-protein marker checks.
 
-Axis 1 (in vitro → in vivo, Belk/Zhou) is data-access-pending (preprint-stage author resources) and is
-deferred. Axis 2 runs here: the SAME leave-one-KO-gene-out split is evaluated on the matched RNA and
-24→20-marker CITE readouts of the identical cells, so the modality axis (transcriptome vs surface
-proteome recoverability of an unseen KO) is read off the per-modality leaderboards + per-protein
-difficulty. Leak-safe by construction (held KO's cells removed from train; predicted from non-targeting
-control + the training-mean shift).
+Frangieh's RNA and 20-marker surface readouts are fitted within their respective
+modalities. No RNA-to-protein predictor or cross-modal transfer is evaluated.
+Held KOs are excluded from fitting, but upstream feature processing is shared.
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -27,11 +25,13 @@ def modality_lo_ko(held_genes, frac_label: str = "50") -> SplitSpec:
         cluster="C4",
         key_col="perturbation",
         held_values=list(held_genes),
-        control_inference_only=False,            # unseen KO: predict from control + train-mean shift
+        control_inference_only=False,  # unseen KO: predict from control + train-mean shift
         inference_context_cols=["condition"],
         strata_cols=["perturbation"],
         registry_task="C4_Axis2",
-        note=("held KO gene's cells removed from train/val/norm/model-selection; predicted from the "
-              "non-targeting control baseline. Evaluated identically on the matched RNA and protein "
-              "(CITE) readouts of the same cells → modality-recoverability comparison."),
+        note=(
+            "held KO gene's cells removed from fitting/validation; upstream processing"
+            " shared. Non-targeting controls provide the baseline. RNA and protein fits"
+            " are separate; this split does not define RNA-to-protein prediction."
+        ),
     )

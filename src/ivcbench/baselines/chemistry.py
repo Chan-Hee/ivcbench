@@ -6,6 +6,7 @@ shift onto the fingerprint, so it can predict a never-seen compound's effect fro
 exactly what vanilla label-conditioned baselines cannot. It stands in for the chemCPA/CPA family as
 the applicable chemistry model until the full latent stacks are wired behind the same interface.
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -39,7 +40,9 @@ class FPRidge(BaselineAdapter):
             feats.append(fps[p])
             targets.append(delta)
         if feats:
-            self.ridge = Ridge(alpha=self.alpha).fit(np.asarray(feats), np.asarray(targets))
+            self.ridge = Ridge(alpha=self.alpha).fit(
+                np.asarray(feats), np.asarray(targets)
+            )
 
     def predict(self, cs, split, side_info=None) -> PredResult:
         fps = (side_info or {}).get("fingerprint", {})
@@ -49,7 +52,9 @@ class FPRidge(BaselineAdapter):
         for i, p in enumerate(perts):
             fp = fps.get(p)
             if fp is None or self.ridge is None:
-                pred[i] = ctrl  # no chemistry available -> falls back to control (floor)
+                pred[i] = (
+                    ctrl  # no chemistry available -> falls back to control (floor)
+                )
             else:
                 pred[i] = ctrl + self.ridge.predict(fp[None, :])[0]
         return PredResult(pred, ctrl)
