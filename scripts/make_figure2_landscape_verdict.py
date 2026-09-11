@@ -594,7 +594,7 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
 # LANDSCAPE DRAW
 # ============================================================================================
 NAME_X = -0.70
-BAR_X1, BAR_X0 = -3.80, -3.95  # clear of the longest name (CPA/chemCPA); GUT_LEFT is -4.95
+BAR_X1, BAR_X0 = -4.30, -4.45  # the longest name (CPA/chemCPA) needs room to breathe here
 GUT_LEFT = -4.95
 BGAP = 0.95  # gap between block A and block B
 BOFF = 14.5 + BGAP + 0.5  # x of block B's first column centre
