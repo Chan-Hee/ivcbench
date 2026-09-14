@@ -76,24 +76,39 @@ FAMILY = {
 #                  branch, so all five datasets collided on one filename. Their per-dataset
 #                  replacements are deposited; keeping the stale file made the macro-average count six
 #                  units and double-count one dataset.
+# Artifact-KIND rules: a different readout or conditioning variant, not a withdrawn run. These
+# stay patterns because any future run producing that artifact kind is excluded for the same reason.
 _NON_CENSUS_BUNDLE = (
     os.sep + "example" + os.sep,
     os.sep + "_withdrawn" + os.sep,
     "__op3_fcond.npz",
     "__frangieh_protein.npz",
-    # These historical CPA/scGen drug runs use an author-written fingerprint-to-latent
-    # regression. They are preserved on disk, but excluded under the author's native-only
-    # rule for task-specific methods. The unseen-compound CPA entry uses native chemCPA.
-    "__CPA__C5_loct_",
-    "__scGen__C5_loct_",
-    "__CPA__C5_global_compound_holdout.npz",
-    # CPAC1 adds a training-population latent_after mean difference instead of
-    # using CPA's learned perturbation embedding. This is an author-written
-    # inference adaptation on both context tasks and is excluded by the same rule.
-    "__CPA__C1_loct_",
-    "__CPA__C2_soskic_LODO_",
-    "__CPA__C2_lodo_",
 )
+
+
+def _withdrawn_bundles():
+    """Runs withdrawn under the interface rule, keyed by EXACT path (and recorded sha256).
+
+    This replaced a model-specific filename denylist ("__CPA__C1_loct_", "__scGen__C5_loct_", ...).
+    That denylist excluded by model and split, so a NEW native CPA or scGen run on the same split
+    matched the same pattern and would have been dropped silently — which is exactly the coverage
+    the native-coverage plan orders us to restore. Keying on the path admits a new run automatically
+    while the historical bundles stay excluded by name, and results/_paper/withdrawn_bundles.csv
+    records why each one was withdrawn.
+    """
+    import csv as _csv
+    path = os.path.join(ROOT, "results", "_paper", "withdrawn_bundles.csv")
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            "withdrawn_bundles.csv is missing; refusing to run with no withdrawal registry"
+        )
+    with open(path, encoding="utf-8") as fh:
+        return {r["bundle_path"] for r in _csv.DictReader(fh)}
+
+
+_WITHDRAWN = _withdrawn_bundles()
+
+
 _STALE_UNTAGGED_C3 = {
     f"C3_LO_gene__{m}__C3_true_lo_gene_10.npz"
     for m in ("Biolord", "CellFlow", "PerturbNet")
@@ -131,6 +146,7 @@ def eligible_bundle(path):
     if (
         any(token in str(path) for token in _NON_CENSUS_BUNDLE)
         or path.name in _STALE_UNTAGGED_C3
+        or os.path.relpath(str(path), ROOT) in _WITHDRAWN
     ):
         return False
     if path.parent == Path(ROOT) / "predictions" and path.name.startswith(
