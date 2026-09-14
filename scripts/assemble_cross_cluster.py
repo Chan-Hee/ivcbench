@@ -21,6 +21,8 @@ the model->scheme assignment is disjoint, so unioning the C2 clusters recovers e
 its own bundle. The donor index is normalised across the two schemes for the within-family rho.
 """
 from __future__ import annotations
+
+import _env_guard  # noqa: F401  (fails fast on the stale package copy)
 import glob
 import hashlib
 import json

@@ -9,6 +9,8 @@ intervals condition on that selection and on the recorded fitted predictions.
 """
 from __future__ import annotations
 
+import _env_guard  # noqa: F401  (fails fast on the stale package copy)
+
 import json
 from pathlib import Path
 

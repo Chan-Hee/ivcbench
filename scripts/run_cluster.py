@@ -9,6 +9,8 @@ but contain run notes only. The final panel and manuscript have separate builder
 """
 from __future__ import annotations
 
+import _env_guard  # noqa: F401  (fails fast on the stale package copy)
+
 import argparse
 import json
 import queue

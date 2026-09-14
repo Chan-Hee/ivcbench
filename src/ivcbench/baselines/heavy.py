@@ -29,6 +29,28 @@ _CONDA_ROOT = Path(os.environ.get("CONDA_ROOT", str(Path.home() / "miniconda3"))
 _RUNNER_DIR = Path(__file__).resolve().parents[3] / "model_runners"
 
 
+def _assert_runner_dir():
+    """Fail loudly when the imported package and its runner tree are the stale copy.
+
+    Two trees exist: ivcbench/ (42 runners, current) and benchmark/ (20 runners, kept as historical
+    evidence). benchmark/.venv installs ivcbench editable from benchmark/src, so running any entry
+    point with that interpreter silently resolves _RUNNER_DIR to benchmark/model_runners: the
+    STATE output-selection fix is absent there, the newer runners do not exist at all, and a
+    re-run reproduces the historical numbers exactly. That cost a full round of GPU jobs before it
+    was noticed, so it is now an error rather than a silent fallback.
+    """
+    marker = _RUNNER_DIR / "state_output.py"
+    if not marker.exists():
+        raise RuntimeError(
+            f"Stale runner tree: {_RUNNER_DIR} has no state_output.py, so this is the historical "
+            f"benchmark/ copy. Run with ivcbench/.venv/bin/python (or set PYTHONPATH to "
+            f"ivcbench/src) so the current runners are used."
+        )
+
+
+_assert_runner_dir()
+
+
 def env_python(env: str) -> str:
     """Interpreter for a conda env; overridable via $IVCBENCH_<ENV>_PYTHON (upper, '-'→'_')."""
     override = os.environ.get(f"IVCBENCH_{env.upper().replace('-', '_')}_PYTHON")
@@ -127,9 +149,16 @@ class SubprocessAdapter(BaselineAdapter):
                 payload["fingerprint_vals"] = np.asarray(vals, dtype=np.float32)
         return payload
 
+    def runner_for(self, split):
+        """Which runner this split needs. A cluster roster is shared by every split in the cluster,
+        so an adapter written for one held axis was being invoked on the other; C5's compound-axis
+        scGen runner ran on the held-LINEAGE split and its cell had to be withdrawn as non-native.
+        Subclasses that publish one operation per held axis override this."""
+        return self.runner
+
     def _invoke(self, cs, split, side_info, test_perts_override=None):
         """Run the model in its own env and return {perturbation label -> predicted profile}."""
-        runner = _RUNNER_DIR / self.runner
+        runner = _RUNNER_DIR / self.runner_for(split)
         if not runner.exists():
             raise NotImplementedError(f"{self.name}: runner {runner} not found.")
         with tempfile.TemporaryDirectory() as td:
@@ -368,8 +397,16 @@ class ScGen(SubprocessAdapter):
 
 
 class ScGenC5(SubprocessAdapter):
-    """scGen adapted to C5: latent δ regressed on the compound Morgan fingerprint (adapted* on
-    C5_unseen_cpd). name='scGen' → registry status for C5; distinct C5 runner."""
+    """scGen on C5. The held axis decides which published operation applies.
+
+    Held LINEAGE (C5_loct_*): every scored compound is present in the training lineages, which is
+    scGen's own setting — a condition key seen in training, decoded on the held group's own control
+    cells. NATIVE, via scgen_c5_loct_runner.py.
+
+    Held COMPOUND (C5_global_compound_holdout): the molecule never appears in training, so reaching
+    it needs a fingerprint-to-latent-shift regression that published scGen does not contain. That
+    cell is not native and is not carried in the census.
+    """
 
     name, family, gpu = "scGen", "latent", True
     conda_env, runner, requires_compound_side = (
@@ -377,6 +414,10 @@ class ScGenC5(SubprocessAdapter):
         "scgen_c5_runner.py",
         True,
     )
+
+    def runner_for(self, split):
+        name = getattr(getattr(split, "spec", None), "name", "") or ""
+        return "scgen_c5_loct_runner.py" if name.startswith("C5_loct") else self.runner
 
 
 class ScGenC1(SubprocessAdapter):
