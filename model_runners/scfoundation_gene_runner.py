@@ -347,10 +347,16 @@ def main(in_path: str, out_path: str) -> None:
                 idx = torch.as_tensor(missing, device=x.device, dtype=torch.long)
                 got = self._encode(x.index_select(0, idx))
                 for j, i in enumerate(missing):
-                    self._cache[keys[i]] = got[j].detach()
+                    # Keep the table in HOST memory. On the device it is ~4 MB a row and 1.2 GB
+                    # for 300, which on top of the 119M-parameter encoder and its activations put
+                    # three concurrent units over a 47 GB card: T3 u4 died of CUDA OOM in epoch 1
+                    # trying to allocate 12 MB. Moving it off the device costs a host-to-device
+                    # copy per batch, which is nothing beside the forward it replaces.
+                    self._cache[keys[i]] = got[j].detach().to("cpu", non_blocking=True)
                 self._misses += len(missing)
             self._hits += len(keys) - len(missing)
-            return torch.stack([self._cache[k] for k in keys]).contiguous()
+            return torch.stack([self._cache[k].to(x.device, non_blocking=True)
+                                for k in keys]).contiguous()
 
     input_hash = _sha(Path(in_path))[:16]
     condition_hash = hashlib.sha256("\0".join(requested).encode()).hexdigest()[:12]
