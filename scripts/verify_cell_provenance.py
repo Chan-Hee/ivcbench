@@ -57,7 +57,13 @@ def main() -> None:
             p, os.path.getmtime(p),
         ))
 
-    problems = []
+    # A SHARDED cell is completed by several jobs that start minutes apart on purpose, and each
+    # writes its own units. Comparing every bundle of the cell against ONE shard's stamp calls the
+    # units its siblings wrote "older than the job" -- STATE T2 has eight shards spread over
+    # thirteen minutes and every one of them flagged the other seven's output. The run that matters
+    # is the whole shard set, so the bound is the EARLIEST stamp among the jobs credited with the
+    # cell. build_cell_ledger.py already treats a shard set as one unit of completion; this did not.
+    by_cell = {}
     for r in csv.DictReader(open(a.manifest)):
         if r.get("complete") != "yes":
             continue
@@ -68,12 +74,21 @@ def main() -> None:
             t0 = float(t0p.read_text())
         except Exception:
             continue
-        cl = CEN_CLUSTER.get(r["task"], ())
-        mine = [b for b in bundles if b[0] in cl and b[1] == r["model"]
+        key = (r["model"], r["task"])
+        cur = by_cell.get(key)
+        if cur is None or t0 < cur[0]:
+            by_cell[key] = (t0, r["job"], set())
+        by_cell[key][2].add(r["job"])
+
+    problems = []
+    for (model, task), (t0, job, jobs) in sorted(by_cell.items()):
+        cl = CEN_CLUSTER.get(task, ())
+        mine = [b for b in bundles if b[0] in cl and b[1] == model
                 and Path(b[2]).parent.resolve() == Path(dump).resolve()]
         stale = [b for b in mine if b[3] < t0]
         if stale:
-            problems.append((r["job"], r["model"], r["task"], len(stale), len(mine),
+            label = job if len(jobs) == 1 else f"{len(jobs)} shards, earliest {job}"
+            problems.append((label, model, task, len(stale), len(mine),
                              sorted(Path(b[2]).name for b in stale)[:4]))
 
     print(f"verify_cell_provenance: {len(problems)} cell(s) hold bundles older than the job that "
