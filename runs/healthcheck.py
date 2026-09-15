@@ -93,6 +93,19 @@ def _cellot_lineage(job: str) -> str | None:
     return lineages[i] if i < len(lineages) else None
 
 
+def _cpu_seconds(pids) -> int:
+    """utime+stime of the job's descendants, in seconds."""
+    hz = os.sysconf("SC_CLK_TCK")
+    total = 0
+    for pid in pids:
+        try:
+            f = Path(f"/proc/{pid}/stat").read_text()
+            rest = f[f.rindex(")") + 2:].split()
+            total += (int(rest[11]) + int(rest[12])) // hz
+        except Exception:
+            continue
+    return total
+
 def progress_signal(job: str) -> tuple[str, int]:
     """A number that must go up while the job is healthy, plus how it was measured.
 
@@ -135,7 +148,11 @@ def progress_signal(job: str) -> tuple[str, int]:
                 if best is None or sz > bytes_:
                     best, bytes_ = f, sz
         if best is not None:
-            return ("runner log bytes", bytes_)
+            # PerturbNet's cINN phase prints nothing for over an hour while it trains, so log
+            # bytes alone reported a healthy job as STALLED. Add the runner's CPU seconds: the
+            # sum rises whenever EITHER the log grows or the process computes, and only a job
+            # that is doing neither can hold it flat.
+            return ("runner log bytes + CPU seconds", bytes_ + _cpu_seconds(mine))
     # No runner log (the job started before the adapter teed stderr) and no unit counter. The job
     # log is then just its header, which never changes -- reporting that as a stall is wrong: the
     # signal is missing, not the progress. Fall back to the runner process's CPU SECONDS, which
