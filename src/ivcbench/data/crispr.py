@@ -128,13 +128,29 @@ def assemble(
     Each block: {counts (cells x genes csr), genes (list), obs (DataFrame with the 8 schema cols)}.
     """
     common = sorted(set.intersection(*[set(b["genes"]) for b in blocks]))
-    pos = {g: i for i, g in enumerate(common)}
     mats, obs_parts = [], []
-    for b in blocks:
-        idx = np.array([b["genes"].index(g) for g in common])
+    # `blocks` is consumed as it is read, and the caller never touches it again (chen, shifrut,
+    # mccutcheon and schmidt all pass it straight into this call). chen ships fifteen libraries at
+    # the full 36,601-gene width, about 1.5e9 nonzeros in total; holding the originals while the
+    # column-sliced copies and then the vstack accumulate put three copies of that on the heap at
+    # once. Its unit reached 91 GB in fifty minutes, still inside the loader, and was killed
+    # before the runner had started.
+    while blocks:
+        b = blocks.pop(0)
+        # b["genes"].index(g) inside a comprehension over `common` is a linear scan per gene:
+        # 36,600 squared per block, about 2e10 over chen's fifteen libraries. setdefault keeps the
+        # FIRST position for a repeated symbol, which is what list.index returned -- 10x feature
+        # files do repeat symbols, so building the map the other way round would silently pick a
+        # different column.
+        where: dict[str, int] = {}
+        for i, g in enumerate(b["genes"]):
+            where.setdefault(g, i)
+        idx = np.fromiter((where[g] for g in common), dtype=np.int64, count=len(common))
         mats.append(b["counts"][:, idx])
         obs_parts.append(b["obs"])
+        del b, where, idx
     counts = sp.vstack(mats).tocsr()
+    del mats
     obs = pd.concat(obs_parts, ignore_index=True)
     obs["is_control"] = obs["is_control"].astype(bool)
     return preprocess(
