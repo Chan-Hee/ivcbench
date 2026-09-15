@@ -12,7 +12,11 @@ set -u
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 POLL="${POLL:-60}"
 . "$DIR/env.sh" 2>/dev/null || true   # so IVCBENCH_JOBS_PER_GPU reaches preflight
-FREE_MB="${FREE_MB:-20000}"   # a GPU counts as free below this many MiB in use
+# How much room a new job needs on the card, in MiB. This used to be read the other way round --
+# "the card is free while it USES less than 20 GB" -- which made sense at one or two jobs a card and
+# stopped making sense at four: GPU 0 sat at 35.6 of 46 GB and was refused although 10.4 GB were
+# free, while a PerturbNet shard measures 5.5 GB. Ask for headroom instead.
+NEED_MB="${NEED_MB:-9000}"
 
 gpu_used() { nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i "$1" 2>/dev/null || echo 99999; }
 
@@ -72,8 +76,10 @@ while true; do
       *" $gpu "*) continue;;          # reserved card: this job waits for an unreserved one
     esac
     used=$(gpu_used "$gpu")
-    if [ "$used" -lt "$FREE_MB" ]; then
-      echo "$(date -u +%FT%TZ) dispatch $id -> gpu $gpu (used ${used}MiB)"
+    total=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits -i "$gpu" 2>/dev/null || echo 0)
+    free=$(( total - used ))
+    if [ "$free" -ge "$NEED_MB" ]; then
+      echo "$(date -u +%FT%TZ) dispatch $id -> gpu $gpu (free ${free}MiB of ${total})"
       "$DIR/launch.sh" "$id" "$cmd"
       sleep 20
       # Restart the pass from the top of the queue after every launch. Without this the queue is
