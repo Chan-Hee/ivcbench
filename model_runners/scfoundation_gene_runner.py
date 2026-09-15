@@ -450,11 +450,19 @@ def main(in_path: str, out_path: str) -> None:
             shutil.copyfile(graph, data_dir / "train/go.csv")
             _log(f"[graph] supplied native GO graph={graph} sha256={_sha(Path(graph))}")
         else:
-            panel = sorted({normalized_train[i] for i in row_ids if not is_ctrl[i]}
-                           | set(targets.values()))
-            edges = _write_panel_go_graph(panel, gene2go, data_dir / "train/go.csv")
+            # NOT `panel`: that name is bound at the top of main() to the released 19,264-gene
+            # checkpoint panel, and PanelMappedEncoder._encode closes over it to size the
+            # canonical input row. Rebinding it here silently narrowed that row to the 235
+            # perturbation genes and every scatter index ran off the end -- a CUDA device-side
+            # assert on the first training batch.
+            # targets carries None for a label whose symbol did not resolve; those are already
+            # in `reasons` and never reach the graph, so guard them here exactly as the
+            # held/training overlap assertion above does.
+            pert_vocab = sorted({normalized_train[i] for i in row_ids if not is_ctrl[i]}
+                                | {g for g in targets.values() if g is not None})
+            edges = _write_panel_go_graph(pert_vocab, gene2go, data_dir / "train/go.csv")
             _log(f"[graph] built this panel's GO graph from {gene2go_path}: "
-                 f"perturbation_vocabulary={len(panel)} edges_above_0.1={edges}")
+                 f"perturbation_vocabulary={len(pert_vocab)} edges_above_0.1={edges}")
         model = GEARS(pert_data, device=device)
         # `sub`, not `normalized`: the AnnData handed to GEARS carries only the genes the released
         # checkpoint can represent. Comparing against the full 2,000-gene panel made this assertion
