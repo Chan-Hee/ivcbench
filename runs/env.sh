@@ -14,7 +14,33 @@ export IVCBENCH_ATTNPERT_SRC="/data1/home/chlee/projects/scPerturBench/image_roo
 # training, which is many small kernels, went from 18 s/epoch to 7 min/epoch. Small-kernel jobs
 # degrade far worse than the job count under time-slicing, so the third slot cost more than it
 # bought. dispatch.sh's FREE_MB gate still guards memory on top of this.
-export IVCBENCH_JOBS_PER_GPU=2
+# Raised from 2 on 2026-09-15 after the heavy scFoundation batch-2 jobs were killed. What
+# is left is light: a STATE donor shard holds 1.9 GB and spends the gap between donors on
+# the CPU, CellOT at 2000 iters holds 2.4 GB. With three of these per card the GPUs read
+# 11-13% SM and 2-4 GB of 46. The old 2 came from a chemCPA measurement and does not
+# describe this mix. Re-measure when PertAdapt lands.
+# Cap the BLAS thread pools. Unset, numpy/torch size them to the CORE COUNT (64), so eleven
+# concurrent jobs each asked for 64 threads: 118 runnable threads time-slicing 64 cores, load 140,
+# and roughly a 2x slowdown for the same ~20 cores of real work. These jobs are GPU-bound with a
+# small CPU tail (building the per-donor AnnData, scoring), so four threads each is ample and
+# thirteen slots then ask for 52 threads rather than 832.
+export OMP_NUM_THREADS=4
+export MKL_NUM_THREADS=4
+export OPENBLAS_NUM_THREADS=4
+export NUMEXPR_NUM_THREADS=4
+
+# Cards handed to a single long job and kept out of the dispatcher's reach. scFoundation T3/T4
+# is the slow, uncertain cell: at the published batch a unit needs 9,090 optimizer steps through a
+# frozen foundation encoder and holds 41 GB. Giving it one card lets it run to completion at its
+# own pace while the other three finish CellOT, PertAdapt and PerturbNet. Space-separated indices;
+# empty means nothing is reserved.
+export IVCBENCH_RESERVED_GPUS="1"
+
+export IVCBENCH_JOBS_PER_GPU=3
+# GPU 0 currently carries only light jobs (CellOT at 2000 iters, STATE donor shards that
+# fork per donor and leave CPU gaps) and measured 23.5% SM while the other three sat at
+# 96-99%. Raise this one card only. Drop it back to 2 if a heavy job lands there.
+export IVCBENCH_JOBS_PER_GPU_0=4
 export IVCBENCH_GENE2GO="/data1/home/chlee/projects/single_cell_fm/scFoundation/GEARS/data/gene2go.pkl"
 
 # Where a run DEPOSITS its prediction bundle. Without this dump_bundle is a silent no-op: every

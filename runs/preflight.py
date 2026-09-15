@@ -212,7 +212,17 @@ def main() -> None:
             # These L40s hold 46-49 GB and the jobs here occupy 2-10 GB, so one job per card leaves
             # most of the machine idle. Allow a few per card; dispatch.sh's memory-headroom check is
             # what actually guards against oversubscription.
-            limit = int(os.environ.get("IVCBENCH_JOBS_PER_GPU", "2"))
+            # The global limit was measured on a heavy job (chemCPA went 18 s -> 7 min per epoch
+            # at three per card), but it is the wrong number for a card carrying only light ones.
+            # Measured 2026-09-15: GPU 0 held CellOT at 2000 iters plus a STATE donor shard and
+            # averaged 23.5% SM over 30 s (28 of 30 samples under 50%) while GPUs 1-3 sat at
+            # 96-99%. IVCBENCH_JOBS_PER_GPU_<n> raises the limit for one card without touching the
+            # others; dispatch.sh's memory-headroom check still guards oversubscription.
+            if want_gpu in os.environ.get("IVCBENCH_RESERVED_GPUS", "").split():
+                fail("gpu reserved", f"GPU {want_gpu} is reserved for a single long job "
+                                     f"(IVCBENCH_RESERVED_GPUS); pick another card")
+            limit = int(os.environ.get(f"IVCBENCH_JOBS_PER_GPU_{want_gpu}",
+                                       os.environ.get("IVCBENCH_JOBS_PER_GPU", "2")))
             if len(on_gpu) >= limit:
                 fail("gpu busy", f"GPU {want_gpu} already runs {len(on_gpu)} job(s) "
                                  f"({', '.join(on_gpu)}); limit {limit}")

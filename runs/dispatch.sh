@@ -41,6 +41,7 @@ while true; do
     # the per-GPU job limit in preflight.py still decides whether it may start.
     best=""; best_used=999999
     for g in 0 1 2 3; do
+      case " ${IVCBENCH_RESERVED_GPUS:-} " in *" $g "*) continue;; esac
       u=$(gpu_used "$g")
       n=$(grep -l RUNNING "$DIR"/*.status 2>/dev/null | while read -r f; do
             b=$(basename "$f" .status)
@@ -55,6 +56,9 @@ while true; do
       echo "$(date -u +%FT%TZ) rebalance $id: gpu $gpu -> $best"
       gpu="$best"
     fi
+    case " ${IVCBENCH_RESERVED_GPUS:-} " in
+      *" $gpu "*) continue;;          # reserved card: this job waits for an unreserved one
+    esac
     used=$(gpu_used "$gpu")
     if [ "$used" -lt "$FREE_MB" ]; then
       echo "$(date -u +%FT%TZ) dispatch $id -> gpu $gpu (used ${used}MiB)"

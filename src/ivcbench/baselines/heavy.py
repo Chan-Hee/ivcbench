@@ -172,13 +172,44 @@ class SubprocessAdapter(BaselineAdapter):
             env = os.environ.copy()
             if self.cuda_device is not None:
                 env["CUDA_VISIBLE_DEVICES"] = str(self.cuda_device)
-            proc = subprocess.run(
-                [env_python(self.conda_env), str(runner), str(inp), str(out)],
-                capture_output=True,
-                text=True,
-                timeout=self.timeout_s,
-                env=env,
-            )
+            # capture_output buffers the runner's stderr in a pipe that is only readable once the
+            # process exits, so a long run is invisible until it succeeds or times out. That is how
+            # three scFoundation units burned 4, 4.4 and 8 GPU-hours each before anyone could see
+            # that batch_size=2 was the reason. Tee stderr to a file instead: the same text still
+            # reaches proc.stderr for the error paths below, and it is readable WHILE the job runs.
+            _ld = os.environ.get("IVCBENCH_RUNNER_LOG_DIR")
+            # repo root: .../ivcbench/src/ivcbench/baselines/heavy.py -> parents[3]
+            log_dir = Path(_ld) if _ld else Path(__file__).resolve().parents[3] / "logs" / "runners"
+            try:
+                log_dir.mkdir(parents=True, exist_ok=True)
+                live = log_dir / f"{self.name.replace('/', '-')}_{Path(runner).stem}_{os.getpid()}.log"
+                fh = live.open("a", buffering=1)
+            except Exception:                      # never let logging stop a run
+                fh, live = None, None
+            try:
+                if fh is not None:
+                    fh.write(f"\n=== {self.name} :: {Path(runner).name} :: pid {os.getpid()} ===\n")
+                proc = subprocess.run(
+                    [env_python(self.conda_env), str(runner), str(inp), str(out)],
+                    stdout=subprocess.PIPE,
+                    stderr=fh if fh is not None else subprocess.PIPE,
+                    text=True,
+                    timeout=self.timeout_s,
+                    env=env,
+                )
+                if fh is not None:
+                    fh.flush()
+                    # the error paths below read proc.stderr, so give them the file's contents
+                    proc = subprocess.CompletedProcess(
+                        proc.args, proc.returncode, proc.stdout,
+                        live.read_text(errors="replace")[-20000:] if live.exists() else "")
+            except subprocess.TimeoutExpired:
+                if fh is not None:
+                    fh.write(f"=== TIMED OUT after {self.timeout_s}s ===\n"); fh.flush()
+                raise
+            finally:
+                if fh is not None:
+                    fh.close()
             if proc.returncode != 0 or not out.exists():
                 err = proc.stderr or ""
                 key = [
