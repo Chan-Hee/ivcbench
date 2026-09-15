@@ -405,13 +405,22 @@ def main(in_path: str, out_path: str) -> None:
         pert_data.get_dataloader(batch_size=batch_size, test_batch_size=batch_size)
         assert len(pert_data.dataloader["train_loader"]) > 0 and len(pert_data.dataloader["val_loader"]) > 0
         graph = os.environ.get("IVCBENCH_SCF_GENE_GO_GRAPH")
-        default_graph = asset_gears_dir / "data/adamson/go.csv"
         if graph:
             shutil.copyfile(graph, data_dir / "train/go.csv")
             _log(f"[graph] supplied native GO graph={graph} sha256={_sha(Path(graph))}")
-        elif gene2go_path.resolve() == (asset_gears_dir / "data/gene2go.pkl").resolve() and default_graph.is_file():
-            shutil.copyfile(default_graph, data_dir / "train/go.csv")
-            _log(f"[graph] upstream native GO graph={default_graph} sha256={_sha(default_graph)}")
+        else:
+            # Upstream builds this graph from THIS dataset's own perturbation list -- gears.py:166
+            # passes gene_list=self.pert_list into get_go_auto (utils.py:88), which reuses a go.csv
+            # only when one is already sitting in the data directory. Copying the released
+            # data/adamson/go.csv in here handed the Adamson K562 screen's graph to a melanoma
+            # knockout panel: 35 of the 62 held Frangieh targets are absent from Adamson's
+            # perturbation set, so they came out as isolated nodes, were declined for having no
+            # non-self edges, and the cell was then refused for being 60% control mean. That was
+            # the graph's gene set, not the data. Leave the directory empty and let GEARS build the
+            # panel's own graph from the gene2go copied in above -- what a new dataset gets
+            # upstream, and no download, since the pickle is already local.
+            _log("[graph] no go.csv supplied; GEARS builds this panel's own GO graph from "
+                 f"{gene2go_path}")
         model = GEARS(pert_data, device=device)
         # `sub`, not `normalized`: the AnnData handed to GEARS carries only the genes the released
         # checkpoint can represent. Comparing against the full 2,000-gene panel made this assertion
@@ -424,6 +433,10 @@ def main(in_path: str, out_path: str) -> None:
         del metadata
         model.model_initialize(hidden_size=hidden, model_type="maeautobin", bin_set="autobin_resolution_append",
                                load_path=str(checkpoint), finetune_method="frozen", mode="v1", highres=0)
+        built = data_dir / "train/go.csv"
+        assert built.is_file(), "GEARS did not produce a GO graph for this panel"
+        _log(f"[graph] GO graph in use sha256={_sha(built)} "
+             f"edges={sum(1 for _ in built.open()) - 1}")
         edges = model.config["G_go"].detach().cpu().numpy()
         weights = model.config["G_go_weight"].detach().cpu().numpy()
         assert edges.shape[0] == 2 and edges.shape[1] == len(weights)
