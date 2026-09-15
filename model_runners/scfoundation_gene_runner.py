@@ -119,6 +119,47 @@ def _symbol_lookup(table: Path):
     return resolve
 
 
+def _write_panel_go_graph(panel, gene2go, out: Path) -> int:
+    """Upstream's get_go_auto, computed over THIS panel's perturbation vocabulary.
+
+    GEARS' perturbation vocabulary is the entire gene2go universe -- pertdata.py:43 sets
+    pert_names = np.unique(list(gene2go.keys())), 67,832 genes -- and gears.py:166 hands that
+    same list to get_go_auto. Letting it build therefore means 67,832 squared Jaccards, which
+    the progress bar puts at fifty hours; that is why upstream ships a precomputed go.csv per
+    dataset rather than building one. But the shipped GEARS/data/adamson/go.csv carries only
+    3,735 distinct genes and not one of this panel's held targets, so reusing it leaves every
+    held target an isolated node with an untrained random embedding, which the caller then
+    declines as not gene-side transfer.
+
+    So compute the same quantity over the genes this unit actually perturbs: the identical
+    formula (Jaccard over GO terms, keep above 0.1, self-edges included, both directions), on
+    the only vocabulary that is ever referenced. Every other node stays isolated inside
+    GeneSimNetwork exactly as it would upstream, and none of them is named by a condition.
+    """
+    sets = {g: set(gene2go.get(g, ()) or ()) for g in panel}
+    rows = []
+    for a in panel:
+        sa = sets[a]
+        if not sa:
+            continue
+        for b in panel:
+            sb = sets[b]
+            if not sb:
+                continue
+            shared = len(sa & sb)
+            if not shared:
+                continue
+            score = shared / len(sa | sb)
+            if score > 0.1:
+                rows.append((a, b, score))
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with out.open("w") as handle:
+        handle.write("source,target,importance\n")
+        for a, b, score in rows:
+            handle.write(f"{a},{b},{score}\n")
+    return len(rows)
+
+
 def _row_hashes(matrix: np.ndarray) -> set[bytes]:
     return {hashlib.sha256(np.ascontiguousarray(row).tobytes()).digest() for row in matrix}
 
@@ -409,18 +450,11 @@ def main(in_path: str, out_path: str) -> None:
             shutil.copyfile(graph, data_dir / "train/go.csv")
             _log(f"[graph] supplied native GO graph={graph} sha256={_sha(Path(graph))}")
         else:
-            # Upstream builds this graph from THIS dataset's own perturbation list -- gears.py:166
-            # passes gene_list=self.pert_list into get_go_auto (utils.py:88), which reuses a go.csv
-            # only when one is already sitting in the data directory. Copying the released
-            # data/adamson/go.csv in here handed the Adamson K562 screen's graph to a melanoma
-            # knockout panel: 35 of the 62 held Frangieh targets are absent from Adamson's
-            # perturbation set, so they came out as isolated nodes, were declined for having no
-            # non-self edges, and the cell was then refused for being 60% control mean. That was
-            # the graph's gene set, not the data. Leave the directory empty and let GEARS build the
-            # panel's own graph from the gene2go copied in above -- what a new dataset gets
-            # upstream, and no download, since the pickle is already local.
-            _log("[graph] no go.csv supplied; GEARS builds this panel's own GO graph from "
-                 f"{gene2go_path}")
+            panel = sorted({normalized_train[i] for i in row_ids if not is_ctrl[i]}
+                           | set(targets.values()))
+            edges = _write_panel_go_graph(panel, gene2go, data_dir / "train/go.csv")
+            _log(f"[graph] built this panel's GO graph from {gene2go_path}: "
+                 f"perturbation_vocabulary={len(panel)} edges_above_0.1={edges}")
         model = GEARS(pert_data, device=device)
         # `sub`, not `normalized`: the AnnData handed to GEARS carries only the genes the released
         # checkpoint can represent. Comparing against the full 2,000-gene panel made this assertion
