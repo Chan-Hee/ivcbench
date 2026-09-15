@@ -59,12 +59,22 @@ def main() -> None:
     rows = list(csv.DictReader(open(REG))) if REG.exists() else []
     already = {r["bundle_path"] for r in rows}
 
+    # Only a bundle the census could have READ can be superseded by a re-run. predictions/ also
+    # holds directories the census never reads -- _diagnostic (the STATE T2 runs quarantined for a
+    # fit-contract violation), _validate (single-unit checks), _withdrawn and example -- and
+    # registering those here would put a wrong REASON in withdrawn_bundles.csv, which is a
+    # reviewer-facing record: a quarantined run would be described as "superseded by the re-run"
+    # rather than by the violation that actually withdrew it.
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from assemble_cross_cluster import eligible_bundle
+
     added, missing = [], []
     for new in sorted(NEW.glob("*.npz")):
         old = [
             p
             for p in ROOT.joinpath("predictions").rglob(new.name)
-            if p != new and NEW not in p.parents
+            if p != new and NEW not in p.parents and eligible_bundle(p)
         ]
         if not old:
             missing.append(new.name)          # a genuinely new cell; nothing to supersede
