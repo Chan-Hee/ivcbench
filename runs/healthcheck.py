@@ -139,6 +139,41 @@ def progress_signal(job: str) -> tuple[str, int]:
     return ("job log bytes", log.stat().st_size if log.exists() else 0)
 
 
+def orphan_runners() -> list[tuple[str, int, float]]:
+    """Runner processes that no RUNNING job accounts for.
+
+    A job detached from the dispatcher -- scFoundation was orphaned deliberately, to drop a
+    wall-clock bound without losing the 85 minutes already spent -- has no .status file, so the
+    loop above cannot see it. That is precisely the job most likely to sit unnoticed, so find it
+    by process instead: name, pid, and minutes of CPU time consumed (which only rises while it
+    actually computes, unlike elapsed time).
+    """
+    out = []
+    try:
+        ps = subprocess.run(["ps", "-eo", "pid,etimes,times,args"], capture_output=True,
+                            text=True, timeout=30).stdout.splitlines()[1:]
+    except Exception:
+        return out
+    tracked = set()
+    for job in running_jobs():
+        tracked |= _descendant_pids(job)
+    for line in ps:
+        parts = line.split(None, 3)
+        if len(parts) < 4 or "model_runners/" not in parts[3]:
+            continue
+        args = parts[3]
+        # a grep or ps whose own command line mentions the path is not a runner
+        if "python" not in args.split()[0] or any(
+            t in args for t in ("grep", "pgrep", "healthcheck.py", "ps -eo")):
+            continue
+        pid = int(parts[0])
+        if pid in tracked:
+            continue
+        name = re.search(r"model_runners/(\S+?\.py)", parts[3])
+        out.append((name.group(1) if name else "runner", pid, int(parts[2]) / 60.0))
+    return out
+
+
 def gpu_busy() -> dict[int, int]:
     try:
         out = subprocess.run(["nvidia-smi", "--query-gpu=index,utilization.gpu",
@@ -213,6 +248,24 @@ def main() -> int:
         else:
             cur[job] = {"value": val, "since": now, "how": how}
             lines.append(f"  {job}: {how}={val} advancing")
+    # detached runners: track CPU-SECONDS, not wall time -- a hung process keeps its elapsed
+    # time rising while its cpu time stands still, which is the signature we want.
+    for name, pid, cpumin in orphan_runners():
+        key = f"orphan:{pid}"
+        was = seen.get(key)
+        val = int(cpumin)
+        if was and was["value"] == val:
+            quiet = (now - was["since"]) / 60
+            cur[key] = {"value": val, "since": was["since"], "how": "cpu-minutes"}
+            if quiet >= 30:
+                alarms.append(f"STALLED {name} pid {pid} (no dispatcher job): CPU time stuck at "
+                              f"{val} min for {quiet:.0f} min of wall clock")
+            else:
+                lines.append(f"  {name} pid {pid}: cpu-minutes={val} (quiet {quiet:.0f}m)")
+        else:
+            cur[key] = {"value": val, "since": now, "how": "cpu-minutes"}
+            lines.append(f"  {name} pid {pid}: cpu-minutes={val} advancing (detached)")
+
     util = gpu_busy()
     idle = [g for g, u in util.items() if u < 5]
     if idle and cur:
