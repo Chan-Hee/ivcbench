@@ -1,0 +1,3 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+scGPT,foundation,C4_modality_lo_ko_25,run_headline,True,True,10700,3576,62,0.5917629573301897,0.54254882580946,0.635681664382953,6.381156693862523,,,25
+scGPT,foundation,C4_modality_lo_ko_50,run_headline,True,True,7232,7044,124,0.546546905125138,0.5176963483557941,0.5715059277517084,6.478101017193321,,,50

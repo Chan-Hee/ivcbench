@@ -57,13 +57,15 @@ def main(in_path: str, out_path: str) -> None:
     genes = [str(g) for g in d["genes"]]
     is_ctrl = d["is_control_train"].astype(bool)
     celltype_train = np.array([str(c) for c in d["celltype_train"]], dtype=object)
-    X_ctrl_inf = d["X_ctrl_inf"].astype(np.float32)            # held donor's OWN 0h cells
+    X_ctrl_inf = d["X_ctrl_inf"].astype(np.float32)  # held donor's OWN 0h cells
     celltype_inf = np.array([str(c) for c in d["celltype_inf"]], dtype=object)
     held_label = str(d["held_label"])
     if X.shape[0] == 0:
         raise RuntimeError("scPRAM-soskic: empty training payload")
     if is_ctrl.sum() == 0 or (~is_ctrl).sum() == 0:
-        raise RuntimeError("scPRAM-soskic: need both 0h (control) and 16h (stim) training cells")
+        raise RuntimeError(
+            "scPRAM-soskic: need both 0h (control) and 16h (stim) training cells"
+        )
     if X_ctrl_inf.shape[0] == 0:
         raise RuntimeError("scPRAM-soskic: no held-donor 0h cells (inference input)")
 
@@ -73,10 +75,17 @@ def main(in_path: str, out_path: str) -> None:
     # donor's 0h cells (each lineage as its own '<lineage>__HELD' token, control only) ------------
     held_tokens = {l: f"{l}__HELD" for l in inf_lineages}
     X_all = np.vstack([X, X_ctrl_inf]).astype(np.float32)
-    cond = np.concatenate([np.where(is_ctrl, CTRL, STIM),
-                           np.full(X_ctrl_inf.shape[0], CTRL)]).astype(str)
-    ctype = np.concatenate([celltype_train.astype(str),
-                            np.array([held_tokens[str(l)] for l in celltype_inf], dtype=object).astype(str)])
+    cond = np.concatenate(
+        [np.where(is_ctrl, CTRL, STIM), np.full(X_ctrl_inf.shape[0], CTRL)]
+    ).astype(str)
+    ctype = np.concatenate(
+        [
+            celltype_train.astype(str),
+            np.array([held_tokens[str(l)] for l in celltype_inf], dtype=object).astype(
+                str
+            ),
+        ]
+    )
 
     adata = ad.AnnData(X_all.copy())
     adata.var_names = genes
@@ -92,39 +101,58 @@ def main(in_path: str, out_path: str) -> None:
     }
 
     # train ONLY on the training-donor cells (held tokens carry no 16h cell anywhere → leak-safe).
-    train_for_fit = adata[~adata.obs["cell_type"].isin(list(held_tokens.values()))].copy()
+    train_for_fit = adata[
+        ~adata.obs["cell_type"].isin(list(held_tokens.values()))
+    ].copy()
 
     model = models.SCPRAM(input_dim=adata.n_vars, device=device)
     model = model.to(model.device)
-    print(f"[scPRAM-soskic] {held_label}: train cells={train_for_fit.n_obs} "
-          f"lineages={sorted(set(celltype_train))} held-lineages={inf_lineages} epochs={epochs}",
-          flush=True)
+    print(
+        f"[scPRAM-soskic] {held_label}: train cells={train_for_fit.n_obs} "
+        f"lineages={sorted(set(celltype_train))} held-lineages={inf_lineages} epochs={epochs}",
+        flush=True,
+    )
     model.train_SCPRAM(train_for_fit, epochs=epochs)
 
     ctrl_full_mean = X[is_ctrl].mean(0).astype(np.float32)
-    pred_perts, pred_means = [], []
+    pred_perts, pred_means, declined = [], [], []
     for lin in inf_lineages:
         tok = held_tokens[lin]
         n_held = int((adata.obs["cell_type"].values == tok).sum())
         if n_held == 0:
             continue
         try:
-            pred = model.predict(train_adata=adata, cell_to_pred=tok, key_dic=key_dic, ratio=ratio)
+            pred = model.predict(
+                train_adata=adata, cell_to_pred=tok, key_dic=key_dic, ratio=ratio
+            )
             P = pred.X
             P = P.toarray() if hasattr(P, "toarray") else np.asarray(P)
             prof = P.mean(0).astype(np.float32)
             if not np.all(np.isfinite(prof)):
                 raise ValueError("non-finite prediction")
-        except Exception as e:                                 # degenerate lineage → control fallback
-            print(f"[scPRAM-soskic] {held_label}::{lin} predict fallback ({e})", flush=True)
+        except Exception as e:
+            # A failed predict used to return the control profile, which downstream is
+            # indistinguishable from a real prediction of "no response" and scores as one.
+            # Keep the array shape but flag the unit so the caller can decline it.
+            print(
+                f"[decline] scPRAM-soskic {held_label}::{lin}: predict failed ({e})",
+                flush=True,
+            )
             prof = ctrl_full_mean.copy()
+            declined.append(True)
+        else:
+            declined.append(False)
         pred_perts.append(f"{held_label}::{lin}")
         pred_means.append(prof.astype(np.float32))
 
     if not pred_perts:
         raise RuntimeError("scPRAM-soskic: no held-donor lineages to predict")
-    np.savez(out_path, pred_perts=np.array(pred_perts, dtype=object),
-             pred_means=np.vstack(pred_means).astype(np.float32))
+    np.savez(
+        out_path,
+        pred_perts=np.array(pred_perts, dtype=object),
+        pred_means=np.vstack(pred_means).astype(np.float32),
+        pred_declined=np.asarray(declined, dtype=bool),
+    )
 
 
 if __name__ == "__main__":

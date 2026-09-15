@@ -1,0 +1,5 @@
+dataset,held_donor,n_test,cellot,cell_mean,donor_shift,linear_pca,ctrl_pred,binding_floor,gap_vs_floor
+cano_gamez,D1,800,0.9279,0.9441,0.9436,0.9437,0.0113,0.9441,-0.0162
+cano_gamez,D2,800,0.9193,0.9224,0.918,0.9177,-0.0563,0.9224,-0.003
+cano_gamez,D3,800,0.9094,0.9222,0.9138,0.9136,-0.0556,0.9222,-0.0129
+cano_gamez,D4,800,0.8886,0.9146,0.9128,0.9128,-0.0437,0.9146,-0.026

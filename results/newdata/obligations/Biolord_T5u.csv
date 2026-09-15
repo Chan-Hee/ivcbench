@@ -1,0 +1,2 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+Biolord,latent,C5_global_compound_holdout,run_floor,True,True,51181,12333,112,0.12667516079506771,0.09025171043925054,0.159251292810846,19.95924899375004,,,compounds

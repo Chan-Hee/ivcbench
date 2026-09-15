@@ -1,0 +1,4 @@
+n_train_donors,seed,eval_donor,metric,scgpt_score,primary_baseline,baseline_score,delta_vs_primary,best_mmd,n_train_cells,n_test,n_ctrl,n_response_genes,fit_sec
+96,0,D353,pearson_delta,0.2689,cell-mean,0.2691,-0.0002,,110147,583,600,74,1877.4
+96,0,D353,e_distance,6.5273,donor-shift,6.4852,-0.0421,,110147,583,600,74,1877.4
+96,0,D353,aucell_delta_score,-0.0197,donor-shift,-0.0333,0.0136,,110147,583,600,74,1877.4

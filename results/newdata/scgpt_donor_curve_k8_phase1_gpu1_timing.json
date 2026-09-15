@@ -1,0 +1,37 @@
+[
+  {
+    "n_train_donors": 8,
+    "seed": 0,
+    "eval_donor": "D364",
+    "sec": 255.9,
+    "n_train_cells": 9600
+  },
+  {
+    "n_train_donors": 8,
+    "seed": 0,
+    "eval_donor": "D411",
+    "sec": 264.7,
+    "n_train_cells": 9600
+  },
+  {
+    "n_train_donors": 8,
+    "seed": 0,
+    "eval_donor": "D429",
+    "sec": 267.4,
+    "n_train_cells": 9600
+  },
+  {
+    "n_train_donors": 8,
+    "seed": 0,
+    "eval_donor": "D454",
+    "sec": 263.7,
+    "n_train_cells": 9600
+  },
+  {
+    "n_train_donors": 8,
+    "seed": 0,
+    "eval_donor": "D484",
+    "sec": 286.3,
+    "n_train_cells": 9600
+  }
+]

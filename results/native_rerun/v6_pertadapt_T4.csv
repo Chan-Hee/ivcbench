@@ -1,0 +1,3 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PertAdapt,hybrid,C4_modality_lo_ko_25,declined,False,True,10700,3576,62,,-0.02192614306048766,-0.012440410037564261,6.5530420052299805,,"100% of held strata were returned as the control mean; the score would be the ctrl-pred floor, not a prediction",25
+PertAdapt,hybrid,C4_modality_lo_ko_50,declined,False,True,7232,7044,124,,-0.022931079673186774,-0.01462083768592186,6.585740596395306,,"100% of held strata were returned as the control mean; the score would be the ctrl-pred floor, not a prediction",50

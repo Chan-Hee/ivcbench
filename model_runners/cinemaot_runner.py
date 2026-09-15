@@ -26,7 +26,9 @@ import warnings
 import numpy as np
 
 warnings.filterwarnings("ignore")
-os.environ.setdefault("JAX_PLATFORMS", "cpu")   # env JAX is CPU-only; keep ott-jax off the GPU
+os.environ.setdefault(
+    "JAX_PLATFORMS", "cpu"
+)  # env JAX is CPU-only; keep ott-jax off the GPU
 
 
 def main(in_path: str, out_path: str) -> None:
@@ -35,7 +37,9 @@ def main(in_path: str, out_path: str) -> None:
     from pertpy.tools import Cinemaot
 
     n_pca = int(os.environ.get("IVCBENCH_CINEMAOT_DIM", "20"))
-    cap = int(os.environ.get("IVCBENCH_CINEMAOT_MAXCELLS", "4000"))  # per arm; OT is O(n^2) memory
+    cap = int(
+        os.environ.get("IVCBENCH_CINEMAOT_MAXCELLS", "4000")
+    )  # per arm; OT is O(n^2) memory
 
     d = np.load(in_path, allow_pickle=True)
     X = d["X_train"].astype(np.float32)
@@ -49,7 +53,9 @@ def main(in_path: str, out_path: str) -> None:
     ctrl_idx = np.where(is_ctrl)[0]
     treat_idx = np.where(~is_ctrl)[0]
     if len(ctrl_idx) < 5 or len(treat_idx) < 5:
-        raise RuntimeError("CINEMA-OT floor: too few control/treated training cells for OT matching")
+        raise RuntimeError(
+            "CINEMA-OT floor: too few control/treated training cells for OT matching"
+        )
     if len(ctrl_idx) > cap:
         ctrl_idx = rng.choice(ctrl_idx, cap, replace=False)
     if len(treat_idx) > cap:
@@ -59,29 +65,50 @@ def main(in_path: str, out_path: str) -> None:
     Xc, Xt = X[ctrl_idx], X[treat_idx]
     adata = ad.AnnData(np.vstack([Xc, Xt]).astype(np.float32))
     adata.var_names = genes
-    adata.obs["perturbation"] = (["control"] * len(ctrl_idx) + ["treated"] * len(treat_idx))
+    adata.obs["perturbation"] = ["control"] * len(ctrl_idx) + ["treated"] * len(
+        treat_idx
+    )
     adata.obs["perturbation"] = adata.obs["perturbation"].astype("category")
 
     dim = int(min(n_pca, adata.n_obs - 1, adata.n_vars - 1))
     sc.pp.pca(adata, n_comps=max(2, dim))
 
     model = Cinemaot()
-    de = model.causaleffect(adata, pert_key="perturbation", control="control",
-                            use_rep="X_pca", dim=max(2, dim), thres=0.15, smoothness=1e-4,
-                            eps=1e-3, solver="Sinkhorn")
-    eff = de.X.toarray() if hasattr(de.X, "toarray") else np.asarray(de.X)  # (n_treated, n_genes)
+    de = model.causaleffect(
+        adata,
+        pert_key="perturbation",
+        control="control",
+        use_rep="X_pca",
+        dim=max(2, dim),
+        thres=0.15,
+        smoothness=1e-4,
+        eps=1e-3,
+        solver="Sinkhorn",
+    )
+    eff = (
+        de.X.toarray() if hasattr(de.X, "toarray") else np.asarray(de.X)
+    )  # (n_treated, n_genes)
     if eff.ndim != 2 or eff.shape[1] != len(genes):
-        raise RuntimeError(f"CINEMA-OT floor: unexpected effect shape {eff.shape} (n_genes={len(genes)})")
-    global_effect = np.nanmean(eff, axis=0).astype(np.float32)         # (n_genes,) global OT shift
+        raise RuntimeError(
+            "CINEMA-OT floor: unexpected effect shape"
+            f" {eff.shape} (n_genes={len(genes)})"
+        )
+    global_effect = np.nanmean(eff, axis=0).astype(
+        np.float32
+    )  # (n_genes,) global OT shift
 
     ctrl_mean = X_ctrl_inf.mean(0).astype(np.float32)
-    pred_profile = (ctrl_mean + global_effect).astype(np.float32)      # perturbation-agnostic floor
+    pred_profile = (ctrl_mean + global_effect).astype(
+        np.float32
+    )  # perturbation-agnostic floor
 
-    pred_perts = [g for g in test_perts]                               # same profile for every held gene
+    pred_perts = [g for g in test_perts]  # same profile for every held gene
     if not pred_perts:
         raise RuntimeError("CINEMA-OT floor: no held genes to predict")
     pred_means = np.tile(pred_profile, (len(pred_perts), 1)).astype(np.float32)
-    np.savez(out_path, pred_perts=np.array(pred_perts, dtype=object), pred_means=pred_means)
+    np.savez(
+        out_path, pred_perts=np.array(pred_perts, dtype=object), pred_means=pred_means
+    )
 
 
 if __name__ == "__main__":

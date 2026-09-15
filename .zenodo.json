@@ -1,11 +1,17 @@
 {
   "upload_type": "software",
   "title": "ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization",
-  "version": "v1.1.7",
-  "description": "<p>Code, deposited result tables, and figure scripts for the manuscript <b>\"Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization\"</b> (Lee &amp; Ryu; manuscript under review).</p><p>The benchmark evaluates whether single-cell perturbation-prediction models (foundation, latent/compositional, prior-graph, optimal-transport, and hybrid families) generalize across the axes that matter for immunology (cell-context transfer, unseen perturbations, unseen donors, and readout modality) and whether they beat a set of pre-specified simple baselines (the <i>universal floor</i>). The contribution is evaluation methodology, not a new model. This archive contains the GPU-free benchmark core (leak-safe split builder and leak auditor, applicability registry, the three immune-aware metrics, cluster-bootstrap statistics, and the runner), the figure and analysis scripts, the dataset download scripts, the deposited paper-level result tables that reproduce every figure and supplementary table without re-running any model, and a layer of compact per-stratum prediction bundles that recompute the per-(model, task) response-direction scores GPU-free for all 35 census cells (including the donor-axis headline).</p>",
+  "version": "1.2.2",
+  "description": "<p>Revision package v1.2.2 for Toward Immune Virtual Cells (Lee and Ryu; BIB-26-1553). The panel contains 47 evaluations: 35 native, six adapted and six diagnostic. This editorially polished snapshot preserves the validated scientific results, symmetric mean-profile program targets, identity controls, target-matched repeatability and comparison-specific precision statements. CPU replay verifies Pearson-delta from 1,362 selected mean bundles; it does not reconstruct cell distributions or retrain models. Native chemCPA supplies the held-compound CPA/chemCPA result. Non-native CPA/scGen and wrongly recovered STATE T3/T4/T5 executions remain excluded; STATE T1/T2 remain. Soskic results concern supplied residualized coordinates. Source data, figures, document builders and execution provenance accompany the package.</p>",
   "creators": [
-    { "name": "Lee, Chanhee", "affiliation": "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea" },
-    { "name": "Ryu, Jae Yong", "affiliation": "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea" }
+    {
+      "name": "Lee, Chanhee",
+      "affiliation": "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea"
+    },
+    {
+      "name": "Ryu, Jae Yong",
+      "affiliation": "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea"
+    }
   ],
   "license": "MIT",
   "access_right": "open",

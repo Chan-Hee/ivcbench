@@ -13,6 +13,8 @@ is the predicted perturbed profile, averaged over controls and scattered back in
 
 Model dir (vocab.json/config.json/best_model.pt) from $IVCBENCH_SCGPT_MODEL_DIR.
 Epochs/seq-len/cell-cap via $IVCBENCH_SCGPT_{EPOCHS,SEQLEN,MAXCELLS}.
+Per-epoch mean training MSE goes to stderr, and to $IVCBENCH_SCGPT_TRACE as JSONL if set.
+Neither changes the optimisation: the loss is read with .detach() and no RNG is consumed.
 """
 from __future__ import annotations
 
@@ -27,10 +29,14 @@ import numpy as np
 def _model_dir() -> Path:
     p = os.environ.get("IVCBENCH_SCGPT_MODEL_DIR")
     if not p:
-        raise FileNotFoundError("set $IVCBENCH_SCGPT_MODEL_DIR to the scGPT_human checkpoint directory")
+        raise FileNotFoundError(
+            "set $IVCBENCH_SCGPT_MODEL_DIR to the scGPT_human checkpoint directory"
+        )
     d = Path(p)
     if not (d / "vocab.json").exists():
-        raise FileNotFoundError(f"scGPT model dir {d} missing vocab.json (set $IVCBENCH_SCGPT_MODEL_DIR)")
+        raise FileNotFoundError(
+            f"scGPT model dir {d} missing vocab.json (set $IVCBENCH_SCGPT_MODEL_DIR)"
+        )
     return d
 
 
@@ -64,16 +70,40 @@ def main(in_path: str, out_path: str) -> None:
         if tok not in vocab:
             vocab.append_token(tok)
     vocab.set_default_index(vocab["<pad>"])
-    gene_ids_all = np.array([vocab[g] if g in vocab else vocab["<pad>"] for g in genes], dtype=np.int64)
+    # Resolve withdrawn HGNC symbols against the checkpoint's vocabulary before the lookup. A
+    # literal lookup declined TMEM173 -- this vocab spells it STING1 -- so that row fell back to the
+    # control mean and was scored as a prediction. The gene keeps its column and its panel identity;
+    # only the token id it is read through changes. Renames and true misses are both printed: a
+    # silent rename is as hard to audit as a silent decline.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from gene_alias import report as _alias_report, resolve as _alias_resolve
+
+    _renamed, _missing = _alias_report(genes, vocab)
+    if _renamed:
+        print(
+            "[alias] "
+            + ", ".join(f"{k}->{v}" for k, v in sorted(_renamed.items())),
+            flush=True,
+        )
+    gene_ids_all = np.array(
+        [
+            vocab[_alias_resolve(g, vocab)] if _alias_resolve(g, vocab) else vocab["<pad>"]
+            for g in genes
+        ],
+        dtype=np.int64,
+    )
     valid = np.where(gene_ids_all != vocab["<pad>"])[0]
-    train_pert_genes = sorted({p for p in pert_train[~is_ctrl]} if (~is_ctrl).any() else set())
+    train_pert_genes = sorted(
+        {p for p in pert_train[~is_ctrl]} if (~is_ctrl).any() else set()
+    )
     forced = [genes.index(g) for g in train_pert_genes if g in vocab and g in genes]
     var = X[:, valid].var(0)
     ranked = valid[np.argsort(var)[::-1]]
     sel, seen = [], set()
     for i in list(forced) + ranked.tolist():
         if i not in seen:
-            sel.append(i); seen.add(i)
+            sel.append(i)
+            seen.add(i)
         if len(sel) >= seqlen:
             break
     sel = np.array(sel, dtype=np.int64)
@@ -91,13 +121,17 @@ def main(in_path: str, out_path: str) -> None:
             for cond_gene in train_pert_genes:
                 if cond_gene not in pos_of:
                     continue
-                block = X[(~is_ctrl) & (pert_train == cond_gene)][:, sel].astype(np.float32)
+                block = X[(~is_ctrl) & (pert_train == cond_gene)][:, sel].astype(
+                    np.float32
+                )
                 pp = pos_of[cond_gene]
                 for row in block:
                     self.s.append((row, pp))
             if max_cells and len(self.s) > max_cells:
                 rng = np.random.default_rng(0)
-                self.s = [self.s[i] for i in rng.choice(len(self.s), max_cells, replace=False)]
+                self.s = [
+                    self.s[i] for i in rng.choice(len(self.s), max_cells, replace=False)
+                ]
             self.seed = seed
 
         def __len__(self):
@@ -106,65 +140,133 @@ def main(in_path: str, out_path: str) -> None:
         def __getitem__(self, i):
             target, pp = self.s[i]
             inp = ctrl_pool[(i + self.seed) % len(ctrl_pool)]
-            flags = np.zeros(len(sel), dtype=np.int64); flags[pp] = 1
-            return (gene_ids, torch.tensor(inp), torch.tensor(target), torch.tensor(flags))
+            flags = np.zeros(len(sel), dtype=np.int64)
+            flags[pp] = 1
+            return (
+                gene_ids,
+                torch.tensor(inp),
+                torch.tensor(target),
+                torch.tensor(flags),
+            )
 
     def collate(b):
-        return (torch.stack([x[0] for x in b]), torch.stack([x[1] for x in b]),
-                torch.stack([x[2] for x in b]), torch.stack([x[3] for x in b]))
+        return (
+            torch.stack([x[0] for x in b]),
+            torch.stack([x[1] for x in b]),
+            torch.stack([x[2] for x in b]),
+            torch.stack([x[3] for x in b]),
+        )
 
     cfg = json.load(open(md / "config.json"))
     model = TransformerGenerator(
-        ntoken=len(vocab), d_model=cfg["embsize"], nhead=cfg["nhead"], d_hid=cfg["d_hid"],
-        nlayers=cfg["nlayers"], nlayers_cls=3, n_cls=1, vocab=vocab,
-        dropout=cfg.get("dropout", 0.1), pad_token="<pad>", pad_value=0, pert_pad_id=2,
-        use_fast_transformer=False)
-    model = load_pretrained(model, torch.load(md / "best_model.pt", map_location="cpu"), verbose=False)
+        ntoken=len(vocab),
+        d_model=cfg["embsize"],
+        nhead=cfg["nhead"],
+        d_hid=cfg["d_hid"],
+        nlayers=cfg["nlayers"],
+        nlayers_cls=3,
+        n_cls=1,
+        vocab=vocab,
+        dropout=cfg.get("dropout", 0.1),
+        pad_token="<pad>",
+        pad_value=0,
+        pert_pad_id=2,
+        use_fast_transformer=False,
+    )
+    model = load_pretrained(
+        model, torch.load(md / "best_model.pt", map_location="cpu"), verbose=False
+    )
     model.to(device)
 
     ds = PertDS()
     if len(ds) == 0:
-        raise RuntimeError("scGPT: no trainable perturbations in the selected-gene panel")
-    loader = DataLoader(ds, batch_size=8, shuffle=True, num_workers=0, collate_fn=collate)
+        raise RuntimeError(
+            "scGPT: no trainable perturbations in the selected-gene panel"
+        )
+    loader = DataLoader(
+        ds, batch_size=8, shuffle=True, num_workers=0, collate_fn=collate
+    )
     opt = torch.optim.AdamW(model.parameters(), lr=1e-4)
     scaler = torch.amp.GradScaler("cuda")
     model.train()
-    for _ in range(epochs):
+    trace = os.environ.get("IVCBENCH_SCGPT_TRACE", "")
+    for ep in range(1, epochs + 1):
+        ep_loss, ep_n = 0.0, 0
         for gid, inp, tgt, fl in loader:
-            gid, inp, tgt, fl = gid.to(device), inp.to(device), tgt.to(device), fl.to(device)
+            gid, inp, tgt, fl = (
+                gid.to(device),
+                inp.to(device),
+                tgt.to(device),
+                fl.to(device),
+            )
             mask = torch.zeros_like(inp, dtype=torch.bool, device=device)
             opt.zero_grad()
             with torch.amp.autocast("cuda"):
-                out = model(gid, inp, fl, src_key_padding_mask=mask, CLS=False, CCE=False, MVC=False, ECS=False)
+                out = model(
+                    gid,
+                    inp,
+                    fl,
+                    src_key_padding_mask=mask,
+                    CLS=False,
+                    CCE=False,
+                    MVC=False,
+                    ECS=False,
+                )
                 loss = F.mse_loss(out["mlm_output"], tgt)
-            scaler.scale(loss).backward(); scaler.unscale_(opt)
+            scaler.scale(loss).backward()
+            scaler.unscale_(opt)
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-            scaler.step(opt); scaler.update()
+            scaler.step(opt)
+            scaler.update()
+            ep_loss += float(loss.detach()) * gid.shape[0]
+            ep_n += int(gid.shape[0])
+        mean_loss = ep_loss / max(ep_n, 1)
+        print(f"[scgpt] epoch {ep}/{epochs} train_mse={mean_loss:.6f}", file=sys.stderr, flush=True)
+        if trace:  # append-only; one JSON object per epoch, so a killed run still leaves a curve
+            with open(trace, "a") as fh:
+                fh.write(json.dumps({"epoch": ep, "epochs": epochs, "train_mse": mean_loss,
+                                     "n_train_cells": ep_n, "in_path": in_path}) + "\n")
 
     # ---- predict each held gene: control cells + flag at that gene → mean perturbed profile ----
     model.eval()
     n_ctrl = min(256, ctrl_pool.shape[0])
     base = torch.tensor(ctrl_pool[:n_ctrl], dtype=torch.float32, device=device)
     gid_b = gene_ids.to(device).unsqueeze(0).repeat(n_ctrl, 1)
-    ctrl_full_mean = (X[is_ctrl].mean(0) if is_ctrl.any() else X_ctrl_inf.mean(0)).astype(np.float32)
+    ctrl_full_mean = (
+        X[is_ctrl].mean(0) if is_ctrl.any() else X_ctrl_inf.mean(0)
+    ).astype(np.float32)
     pred_perts, pred_means = [], []
     with torch.no_grad():
         for g in test_perts:
             if g not in pos_of:
                 continue
-            fl = torch.zeros((n_ctrl, len(sel)), dtype=torch.long, device=device); fl[:, pos_of[g]] = 1
+            fl = torch.zeros((n_ctrl, len(sel)), dtype=torch.long, device=device)
+            fl[:, pos_of[g]] = 1
             mask = torch.zeros_like(base, dtype=torch.bool, device=device)
             with torch.amp.autocast("cuda"):
-                out = model(gid_b, base, fl, src_key_padding_mask=mask, CLS=False, CCE=False, MVC=False, ECS=False)
+                out = model(
+                    gid_b,
+                    base,
+                    fl,
+                    src_key_padding_mask=mask,
+                    CLS=False,
+                    CCE=False,
+                    MVC=False,
+                    ECS=False,
+                )
             prof_sel = out["mlm_output"].float().mean(0).cpu().numpy()
             full = ctrl_full_mean.copy()
-            full[sel] = prof_sel                      # scatter modelled genes; others keep control mean
-            pred_perts.append(g); pred_means.append(full.astype(np.float32))
+            full[sel] = prof_sel  # scatter modelled genes; others keep control mean
+            pred_perts.append(g)
+            pred_means.append(full.astype(np.float32))
 
     if not pred_perts:
         raise RuntimeError("scGPT: no held genes were in the modelled panel/vocab")
-    np.savez(out_path, pred_perts=np.array(pred_perts, dtype=object),
-             pred_means=np.vstack(pred_means).astype(np.float32))
+    np.savez(
+        out_path,
+        pred_perts=np.array(pred_perts, dtype=object),
+        pred_means=np.vstack(pred_means).astype(np.float32),
+    )
 
 
 if __name__ == "__main__":

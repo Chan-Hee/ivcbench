@@ -1,0 +1,314 @@
+B	START compounds=141 ae_iters=12000 ot_iters_per_compound=8000
+B	[1/141] 5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine n=269 mmd=0.03209
+B	[2/141] ABT-199 (GDC-0199) n=345 mmd=0.02753
+B	[3/141] ABT737 n=294 mmd=0.02779
+B	[4/141] AMD-070 (hydrochloride) n=355 mmd=0.02760
+NK	START compounds=141 ae_iters=12000 ot_iters_per_compound=8000
+B	[5/141] AT 7867 n=360 mmd=0.02837
+NK	[1/141] 5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine n=269 mmd=0.02999
+B	[6/141] AT13387 n=210 mmd=0.03057
+NK	[2/141] ABT-199 (GDC-0199) n=270 mmd=0.02860
+B	[7/141] AVL-292 n=341 mmd=0.02805
+Mono	START compounds=140 ae_iters=12000 ot_iters_per_compound=2000
+T cells	START compounds=141 ae_iters=12000 ot_iters_per_compound=8000
+Mono	[1/140] 5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine n=360 mmd=0.02979
+Mono	[2/140] ABT-199 (GDC-0199) n=255 mmd=0.03022
+Mono	[3/140] ABT737 n=192 mmd=0.02974
+Mono	[4/140] AMD-070 (hydrochloride) n=355 mmd=0.02944
+Mono	[5/140] AT 7867 n=360 mmd=0.02981
+Mono	[6/140] AT13387 n=312 mmd=0.02978
+Mono	[7/140] AVL-292 n=355 mmd=0.03131
+Mono	[8/140] AZ628 n=343 mmd=0.03048
+Mono	[9/140] AZD-8330 n=357 mmd=0.03009
+Mono	[10/140] AZD3514 n=331 mmd=0.02972
+Mono	[11/140] AZD4547 n=319 mmd=0.02967
+Mono	[12/140] Alogliptin n=357 mmd=0.02962
+Mono	[13/140] Alvocidib n=50 mmd=0.04477
+Mono	[14/140] Amiodarone n=345 mmd=0.03102
+Mono	[15/140] Atorvastatin n=344 mmd=0.03132
+Mono	[16/140] Azacitidine n=348 mmd=0.03295
+Mono	[17/140] BAY 61-3606 n=323 mmd=0.03022
+Mono	[18/140] BAY 87-2243 n=344 mmd=0.02983
+Mono	[19/140] BI-D1870 n=318 mmd=0.03103
+Mono	[20/140] BMS-265246 n=360 mmd=0.03065
+Mono	[21/140] BMS-387032 n=199 mmd=0.03012
+Mono	[22/140] BMS-536924 n=351 mmd=0.03125
+Mono	[23/140] BMS-777607 n=344 mmd=0.03079
+Mono	[24/140] BX 912 n=333 mmd=0.02863
+Mono	[25/140] Bosutinib n=345 mmd=0.03200
+Mono	[26/140] Buspirone n=360 mmd=0.03025
+Mono	[27/140] CC-401 n=346 mmd=0.02985
+Mono	[28/140] CEP-37440 n=360 mmd=0.02952
+Mono	[29/140] CGM-097 n=322 mmd=0.03035
+Mono	[30/140] CHIR-99021 n=357 mmd=0.03035
+Mono	[31/140] Cabozantinib n=352 mmd=0.02949
+Mono	[32/140] Canertinib n=360 mmd=0.03002
+Mono	[33/140] Ceritinib n=347 mmd=0.02909
+Mono	[34/140] Chlorpheniramine n=344 mmd=0.02930
+Mono	[35/140] Clemastine n=352 mmd=0.02963
+Mono	[36/140] Clomipramine n=351 mmd=0.03122
+Mono	[37/140] Clotrimazole n=349 mmd=0.03025
+Mono	[38/140] Colchicine n=338 mmd=0.03196
+Mono	[39/140] Colforsin n=357 mmd=0.03180
+Mono	[40/140] Crizotinib n=338 mmd=0.02965
+Mono	[41/140] Dactolisib n=354 mmd=0.02991
+Mono	[42/140] Dasatinib n=299 mmd=0.02876
+Mono	[43/140] Decitabine n=342 mmd=0.03149
+Mono	[44/140] Defactinib n=342 mmd=0.03102
+Mono	[45/140] Desloratadine n=351 mmd=0.02993
+Mono	[46/140] Disulfiram n=331 mmd=0.03011
+Mono	[47/140] Dovitinib n=333 mmd=0.03019
+Mono	[48/140] Doxorubicin n=334 mmd=0.02940
+Mono	[49/140] FK 866 n=321 mmd=0.03007
+Mono	[50/140] Flutamide n=317 mmd=0.03085
+Mono	[51/140] Foretinib n=333 mmd=0.03002
+Mono	[52/140] GLPG0634 n=355 mmd=0.02991
+Mono	[53/140] GO-6976 n=340 mmd=0.03040
+Mono	[54/140] GSK-1070916 n=360 mmd=0.03022
+Mono	[55/140] GSK256066 n=353 mmd=0.03030
+Mono	[56/140] GW843682X n=348 mmd=0.03003
+Mono	[57/140] Ganetespib (STA-9090) n=331 mmd=0.02889
+Mono	[58/140] HMN-214 n=351 mmd=0.02993
+Mono	[59/140] HYDROXYUREA n=326 mmd=0.02921
+Mono	[60/140] I-BET151 n=323 mmd=0.03079
+B	START compounds=141 ae_iters=12000 ot_iters_per_compound=2000
+Mono	[61/140] IKK Inhibitor VII n=326 mmd=0.02980
+NK	START compounds=141 ae_iters=12000 ot_iters_per_compound=2000
+B	[1/141] 5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine n=269 mmd=0.03375
+Mono	[62/140] IMD-0354 n=289 mmd=0.03104
+B	[2/141] ABT-199 (GDC-0199) n=345 mmd=0.03058
+Mono	[63/140] IN1451 n=221 mmd=0.02840
+NK	[1/141] 5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine n=269 mmd=0.03323
+B	[3/141] ABT737 n=294 mmd=0.02918
+Mono	[64/140] Idelalisib n=338 mmd=0.03089
+NK	[2/141] ABT-199 (GDC-0199) n=270 mmd=0.02860
+B	[4/141] AMD-070 (hydrochloride) n=355 mmd=0.03069
+Mono	[65/140] Imatinib n=323 mmd=0.02976
+NK	[3/141] ABT737 n=258 mmd=0.03019
+B	[5/141] AT 7867 n=360 mmd=0.02977
+Mono	[66/140] Isoniazid n=333 mmd=0.03054
+B	[6/141] AT13387 n=210 mmd=0.03186
+NK	[4/141] AMD-070 (hydrochloride) n=360 mmd=0.03008
+Mono	[67/140] Ixabepilone n=346 mmd=0.03212
+B	[7/141] AVL-292 n=341 mmd=0.02938
+Mono	[68/140] K-02288 n=354 mmd=0.02984
+NK	[5/141] AT 7867 n=360 mmd=0.03104
+B	[8/141] AZ628 n=300 mmd=0.03037
+Mono	[69/140] Ketoconazole n=312 mmd=0.02962
+NK	[6/141] AT13387 n=246 mmd=0.03229
+B	[9/141] AZD-8330 n=332 mmd=0.03091
+Mono	[70/140] LDN 193189 n=360 mmd=0.03024
+NK	[7/141] AVL-292 n=346 mmd=0.02967
+B	[10/141] AZD3514 n=339 mmd=0.02927
+Mono	[71/140] LY2090314 n=350 mmd=0.02953
+B	[11/141] AZD4547 n=327 mmd=0.03073
+NK	[8/141] AZ628 n=317 mmd=0.03062
+Mono	[72/140] Lamivudine n=314 mmd=0.03007
+B	[12/141] Alogliptin n=359 mmd=0.02978
+Mono	[73/140] Lapatinib n=360 mmd=0.03058
+NK	[9/141] AZD-8330 n=335 mmd=0.03019
+B	[13/141] Alvocidib n=48 mmd=0.05328
+Mono	[74/140] Linagliptin n=358 mmd=0.02936
+NK	[10/141] AZD3514 n=352 mmd=0.03046
+B	[14/141] Amiodarone n=345 mmd=0.02978
+Mono	[75/140] MGCD-265 n=343 mmd=0.03037
+NK	[11/141] AZD4547 n=352 mmd=0.02967
+B	[15/141] Atorvastatin n=344 mmd=0.02979
+Mono	[76/140] MK-5108 n=352 mmd=0.03183
+B	[16/141] Azacitidine n=348 mmd=0.03053
+NK	[12/141] Alogliptin n=358 mmd=0.02969
+Mono	[77/140] Masitinib n=357 mmd=0.02966
+B	[17/141] BAY 61-3606 n=324 mmd=0.02996
+NK	[13/141] Alvocidib n=49 mmd=0.04872
+Mono	[78/140] Methotrexate n=360 mmd=0.02975
+B	[18/141] BAY 87-2243 n=344 mmd=0.02954
+Mono	[79/140] Midostaurin n=342 mmd=0.02871
+NK	[14/141] Amiodarone n=360 mmd=0.03051
+B	[19/141] BI-D1870 n=318 mmd=0.03228
+Mono	[80/140] Mometasone Furoate n=318 mmd=0.02965
+B	[20/141] BMS-265246 n=360 mmd=0.03030
+NK	[15/141] Atorvastatin n=360 mmd=0.03024
+Mono	[81/140] Mubritinib (TAK 165) n=339 mmd=0.03061
+B	[21/141] BMS-387032 n=195 mmd=0.03360
+NK	[16/141] Azacitidine n=360 mmd=0.03074
+Mono	[82/140] Navitoclax n=239 mmd=0.02978
+B	[22/141] BMS-536924 n=284 mmd=0.03453
+NK	[17/141] BAY 61-3606 n=359 mmd=0.03087
+Mono	[83/140] Nefazodone n=331 mmd=0.02953
+B	[23/141] BMS-777607 n=344 mmd=0.03104
+Mono	[84/140] Nilotinib n=324 mmd=0.03016
+NK	[18/141] BAY 87-2243 n=360 mmd=0.02983
+B	[24/141] BX 912 n=333 mmd=0.02947
+Mono	[85/140] O-Demethylated Adapalene n=345 mmd=0.03019
+B	[25/141] Bosutinib n=311 mmd=0.03176
+NK	[19/141] BI-D1870 n=360 mmd=0.02966
+Mono	[86/140] OSI-930 n=360 mmd=0.02953
+B	[26/141] Buspirone n=360 mmd=0.03017
+NK	[20/141] BMS-265246 n=360 mmd=0.03085
+Mono	[87/140] Oxybenzone n=346 mmd=0.03007
+B	[27/141] CC-401 n=346 mmd=0.03186
+NK	[21/141] BMS-387032 n=126 mmd=0.03293
+T cells	START compounds=141 ae_iters=12000 ot_iters_per_compound=2000
+Mono	[88/140] PD-0325901 n=326 mmd=0.02973
+B	[28/141] CEP-37440 n=360 mmd=0.03005
+NK	[22/141] BMS-536924 n=293 mmd=0.03341
+B	[29/141] CGM-097 n=324 mmd=0.02980
+Mono	[89/140] PF-03814735 n=349 mmd=0.02925
+T cells	[1/141] 5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine n=269 mmd=0.03206
+B	[30/141] CGP 60474 n=87 mmd=0.06629
+Mono	[90/140] PF-04691502 n=313 mmd=0.03039
+NK	[23/141] BMS-777607 n=360 mmd=0.03073
+B	[31/141] CHIR-99021 n=350 mmd=0.03003
+T cells	[2/141] ABT-199 (GDC-0199) n=255 mmd=0.02862
+Mono	[91/140] PRT-062607 n=339 mmd=0.03061
+NK	[24/141] BX 912 n=360 mmd=0.03196
+B	[32/141] Cabozantinib n=352 mmd=0.03161
+Mono	[92/140] Palbociclib n=352 mmd=0.02987
+T cells	[3/141] ABT737 n=192 mmd=0.02850
+NK	[25/141] Bosutinib n=326 mmd=0.03167
+B	[33/141] Canertinib n=340 mmd=0.03057
+Mono	[93/140] Penfluridol n=342 mmd=0.03151
+T cells	[4/141] AMD-070 (hydrochloride) n=355 mmd=0.03087
+B	[34/141] Ceritinib n=348 mmd=0.03048
+NK	[26/141] Buspirone n=360 mmd=0.02954
+Mono	[94/140] Perhexiline n=318 mmd=0.02883
+T cells	[5/141] AT 7867 n=360 mmd=0.03157
+B	[35/141] Chlorpheniramine n=344 mmd=0.03021
+Mono	[95/140] Phenylbutazone n=349 mmd=0.03113
+NK	[27/141] CC-401 n=360 mmd=0.03104
+B	[36/141] Clemastine n=352 mmd=0.03203
+T cells	[6/141] AT13387 n=204 mmd=0.03164
+Mono	[96/140] Pitavastatin Calcium n=352 mmd=0.03046
+NK	[28/141] CEP-37440 n=360 mmd=0.02980
+B	[37/141] Clomipramine n=351 mmd=0.02942
+T cells	[7/141] AVL-292 n=341 mmd=0.02945
+Mono	[97/140] Pomalidomide n=347 mmd=0.03001
+NK	[29/141] CGM-097 n=358 mmd=0.03058
+B	[38/141] Clotrimazole n=349 mmd=0.03072
+Mono	[98/140] Porcn Inhibitor III n=348 mmd=0.02988
+T cells	[8/141] AZ628 n=300 mmd=0.03120
+B	[39/141] Colchicine n=340 mmd=0.03102
+NK	[30/141] CGP 60474 n=85 mmd=0.04335
+Mono	[99/140] Prednisolone n=340 mmd=0.03003
+T cells	[9/141] AZD-8330 n=332 mmd=0.03197
+B	[40/141] Colforsin n=357 mmd=0.03100
+NK	[31/141] CHIR-99021 n=353 mmd=0.03021
+Mono	[100/140] Proscillaridin A;Proscillaridin-A n=335 mmd=0.02998
+B	[41/141] Crizotinib n=310 mmd=0.02974
+T cells	[10/141] AZD3514 n=331 mmd=0.02996
+Mono	[101/140] Protriptyline n=359 mmd=0.03045
+NK	[32/141] Cabozantinib n=360 mmd=0.03102
+B	[42/141] Dactolisib n=316 mmd=0.03146
+T cells	[11/141] AZD4547 n=319 mmd=0.02959
+Mono	[102/140] Quizartinib n=349 mmd=0.03137
+B	[43/141] Dasatinib n=230 mmd=0.03235
+NK	[33/141] Canertinib n=340 mmd=0.03073
+T cells	[12/141] Alogliptin n=357 mmd=0.02891
+Mono	[103/140] R428 n=309 mmd=0.03029
+B	[44/141] Decitabine n=342 mmd=0.02924
+NK	[34/141] Ceritinib n=359 mmd=0.03088
+T cells	[13/141] Amiodarone n=345 mmd=0.03103
+Mono	[104/140] RG7090 n=342 mmd=0.02955
+B	[45/141] Defactinib n=342 mmd=0.03131
+NK	[35/141] Chlorpheniramine n=360 mmd=0.03074
+Mono	[105/140] RG7112 n=360 mmd=0.02955
+T cells	[14/141] Atorvastatin n=344 mmd=0.02996
+B	[46/141] Desloratadine n=351 mmd=0.03190
+Mono	[106/140] RN-486 n=336 mmd=0.03059
+NK	[36/141] Clemastine n=360 mmd=0.03082
+B	[47/141] Disulfiram n=341 mmd=0.03048
+T cells	[15/141] Azacitidine n=348 mmd=0.02946
+Mono	[107/140] RVX-208 n=344 mmd=0.03055
+NK	[37/141] Clomipramine n=360 mmd=0.03117
+B	[48/141] Dovitinib n=328 mmd=0.02899
+T cells	[16/141] BAY 61-3606 n=323 mmd=0.02933
+Mono	[108/140] Raloxifene n=345 mmd=0.02988
+B	[49/141] Doxorubicin n=341 mmd=0.03150
+NK	[38/141] Clotrimazole n=360 mmd=0.03221
+T cells	[17/141] BAY 87-2243 n=344 mmd=0.02899
+Mono	[109/140] Resminostat n=349 mmd=0.03105
+B	[50/141] FK 866 n=329 mmd=0.02958
+NK	[39/141] Colchicine n=358 mmd=0.03241
+T cells	[18/141] BI-D1870 n=318 mmd=0.02975
+Mono	[110/140] Ricolinostat n=340 mmd=0.03050
+B	[51/141] Flutamide n=317 mmd=0.03005
+NK	[40/141] Colforsin n=360 mmd=0.03102
+Mono	[111/140] Riociguat n=357 mmd=0.03009
+T cells	[19/141] BMS-265246 n=360 mmd=0.03026
+B	[52/141] Foretinib n=283 mmd=0.03001
+Mono	[112/140] Ruxolitinib n=341 mmd=0.03117
+B	[53/141] GLPG0634 n=355 mmd=0.02992
+NK	[41/141] Crizotinib n=332 mmd=0.03111
+T cells	[20/141] BMS-387032 n=80 mmd=0.02954
+Mono	[113/140] SB525334 n=358 mmd=0.03019
+B	[54/141] GO-6976 n=340 mmd=0.02987
+NK	[42/141] Dactolisib n=322 mmd=0.03316
+T cells	[21/141] BMS-536924 n=284 mmd=0.03297
+Mono	[114/140] SCH-58261 n=334 mmd=0.03058
+B	[55/141] GSK-1070916 n=360 mmd=0.02987
+NK	[43/141] Dasatinib n=283 mmd=0.03310
+T cells	[22/141] BMS-777607 n=344 mmd=0.03022
+Mono	[115/140] SLx-2119 n=360 mmd=0.03064
+B	[56/141] GSK256066 n=353 mmd=0.02969
+NK	[44/141] Decitabine n=360 mmd=0.03108
+T cells	[23/141] BX 912 n=333 mmd=0.03223
+Mono	[116/140] STK219801 n=346 mmd=0.02998
+B	[57/141] GW843682X n=348 mmd=0.02957
+B	[58/141] Ganetespib (STA-9090) n=240 mmd=0.03276
+Mono	[117/140] Saracatinib n=356 mmd=0.03053
+NK	[45/141] Defactinib n=360 mmd=0.03073
+T cells	[24/141] Bosutinib n=311 mmd=0.03071
+B	[59/141] HMN-214 n=351 mmd=0.03038
+Mono	[118/140] Scriptaid n=347 mmd=0.02986
+NK	[46/141] Desloratadine n=360 mmd=0.03173
+T cells	[25/141] Buspirone n=360 mmd=0.03123
+B	[60/141] HYDROXYUREA n=349 mmd=0.02911
+Mono	[119/140] Selumetinib n=332 mmd=0.02935
+NK	[47/141] Disulfiram n=350 mmd=0.03077
+T cells	[26/141] CC-401 n=346 mmd=0.03262
+B	[61/141] I-BET151 n=317 mmd=0.02950
+Mono	[120/140] Sgc-cbp30 n=357 mmd=0.02994
+NK	[48/141] Dovitinib n=355 mmd=0.02975
+T cells	[27/141] CEP-37440 n=360 mmd=0.03071
+B	[62/141] IKK Inhibitor VII n=273 mmd=0.02999
+Mono	[121/140] Sunitinib n=348 mmd=0.02931
+B	[63/141] IMD-0354 n=293 mmd=0.02980
+NK	[49/141] Doxorubicin n=351 mmd=0.03059
+T cells	[28/141] CGM-097 n=322 mmd=0.03018
+Mono	[122/140] TGX 221 n=340 mmd=0.02975
+B	[64/141] IN1451 n=254 mmd=0.02954
+Mono	[123/140] TIE2 Kinase Inhibitor n=360 mmd=0.03044
+NK	[50/141] FK 866 n=352 mmd=0.03083
+T cells	[29/141] CGP 60474 n=10 mmd=0.18871
+B	[65/141] Idelalisib n=334 mmd=0.03070
+Mono	[124/140] TL_HRAS26 n=351 mmd=0.03071
+NK	[51/141] Flutamide n=360 mmd=0.03122
+T cells	[30/141] CHIR-99021 n=350 mmd=0.03135
+B	[66/141] Imatinib n=323 mmd=0.03177
+Mono	[125/140] TPCA-1 n=328 mmd=0.03062
+NK	[52/141] Foretinib n=310 mmd=0.03197
+T cells	[31/141] Cabozantinib n=352 mmd=0.02982
+B	[67/141] Isoniazid n=333 mmd=0.03036
+Mono	[126/140] TR-14035 n=360 mmd=0.03018
+B	[68/141] Ixabepilone n=346 mmd=0.02853
+NK	[53/141] GLPG0634 n=360 mmd=0.02932
+T cells	[32/141] Canertinib n=340 mmd=0.02986
+Mono	[127/140] Tacalcitol n=338 mmd=0.03026
+B	[69/141] K-02288 n=354 mmd=0.03292
+NK	[54/141] GO-6976 n=360 mmd=0.02969
+T cells	[33/141] Ceritinib n=347 mmd=0.03022
+Mono	[128/140] Tamatinib n=327 mmd=0.03068
+B	[70/141] Ketoconazole n=312 mmd=0.02923
+Mono	[129/140] Tipifarnib n=348 mmd=0.03091
+NK	[55/141] GSK-1070916 n=360 mmd=0.03050
+T cells	[34/141] Chlorpheniramine n=344 mmd=0.03148
+B	[71/141] LDN 193189 n=360 mmd=0.03034
+Mono	[130/140] Tivantinib n=332 mmd=0.03161
+NK	[56/141] GSK256066 n=360 mmd=0.03059
+T cells	[35/141] Clemastine n=352 mmd=0.03295
+B	[72/141] LY2090314 n=350 mmd=0.02936
+Mono	[131/140] Tivozanib n=360 mmd=0.02981
+NK	[57/141] GW843682X n=360 mmd=0.03118
+B	[73/141] Lamivudine n=341 mmd=0.03067
+T cells	[36/141] Clomipramine n=351 mmd=0.02929
+Mono	[132/140] Topotecan n=356 mmd=0.02996

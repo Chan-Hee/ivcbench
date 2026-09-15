@@ -281,7 +281,20 @@ def main():
     make_fig = {"C1": c1_figure, "C3": c3_figure, "C4": c4_figure, "C5": c5_figure}.get(
         args.cluster, cluster_figure
     )
-    fig = make_fig(df, args.cluster, out / "figure.png")
+    # The figure here is a RUN NOTE -- this module's own docstring says the manuscript panels have
+    # separate builders. It must never fail a scored run: with --only <model> the cluster panel has
+    # nothing to draw for the other models and dies on an empty sequence, discarding a completed
+    # cell whose results.csv and prediction bundles are already on disk. Twice now a valid STATE T3
+    # run was marked FAILED for exactly this.
+    try:
+        fig = make_fig(df, args.cluster, out / "figure.png")
+    except Exception as exc:  # noqa: BLE001 -- a run-note figure is not worth losing a run over
+        fig = None
+        print(
+            f"[figure] run-note figure skipped ({type(exc).__name__}: {exc}); "
+            "scored results and prediction bundles are unaffected",
+            flush=True,
+        )
     draft = write_draft(
         args.cluster, agg, data_source, out / f"draft_{args.cluster}.md"
     )
@@ -311,7 +324,8 @@ def main():
     show = [c for c in ["dataset", "split", "baseline"] if c in agg.columns] + METRICS
     print(agg[show].round(3).to_string(index=False))
     print(
-        f"\nresults  : {out}/  ->  results.csv  manifest.json  {fig.name} (+.pdf) "
+        f"\nresults  : {out}/  ->  results.csv  manifest.json  "
+        f"{fig.name + ' (+.pdf) ' if fig is not None else '(run-note figure skipped) '}"
         f" {draft.name}  {docx.name}"
     )
     print(

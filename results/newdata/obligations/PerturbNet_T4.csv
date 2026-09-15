@@ -1,0 +1,3 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PerturbNet,generative,C4_modality_lo_ko_25,run_headline,True,True,10700,3576,62,0.6111099047646407,0.5737093461286877,0.6431340693826637,6.707964486297591,,,25
+PerturbNet,generative,C4_modality_lo_ko_50,run_headline,True,True,7232,7044,124,0.5851416217816633,0.5534438764067149,0.6130346235952475,6.641190848798485,,,50

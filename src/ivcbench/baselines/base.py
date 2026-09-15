@@ -27,6 +27,10 @@ class PredResult:
     control_mean: (
         np.ndarray
     )  # (n_genes,) control baseline state (for Pearson-Δ / E-dist deltas)
+    # (n_test,) True where the model returned NO profile for that test cell's perturbation and the
+    # row therefore holds the control baseline. Such a row recovers no direction and scores 0; what
+    # must never happen is that it passes as a prediction. None = every row is a real prediction.
+    declined: np.ndarray | None = None
 
 
 class BaselineAdapter(ABC):

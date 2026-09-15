@@ -1,1 +1,1 @@
-.venv/bin/python scripts/run_cluster.py --cluster C3 --real --only STATE --seeds 0 --gpus 3 --outdir results/native_rerun/v2_state_C3
+env CUDA_VISIBLE_DEVICES=1 .venv/bin/python scripts/run_cluster.py --cluster C3 --real --only STATE --seeds 0 --outdir results/native_rerun/v3_state_C3

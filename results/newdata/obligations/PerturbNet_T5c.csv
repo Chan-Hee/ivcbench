@@ -1,0 +1,5 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PerturbNet,generative,C5_loct_B,run_adapted,True,True,47074,16080,141,0.12261998574109087,0.10195109026091866,0.1452754413818029,11.235738481219126,,,B
+PerturbNet,generative,C5_loct_Mono,run_adapted,True,True,48011,15143,140,0.10441955426576896,0.08800846790001741,0.1203058260223848,10.713715918140046,,,Mono
+PerturbNet,generative,C5_loct_NK,run_adapted,True,True,49059,14095,141,0.2222477469514025,0.20934600262565817,0.2363930780295256,7.692023149407624,,,NK
+PerturbNet,generative,C5_loct_T_cells,run_adapted,True,True,46398,16756,141,0.14733415370264605,0.1313675957465169,0.16549059250573145,10.319943303700983,,,T cells

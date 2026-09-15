@@ -80,10 +80,20 @@ FAMILY = {
 #                  units and double-count one dataset.
 # Artifact-KIND rules: a different readout or conditioning variant, not a withdrawn run. These
 # stay patterns because any future run producing that artifact kind is excluded for the same reason.
+# Artifact-KIND rules only. `__op3_fcond.npz` used to sit here, when the compound-conditioned
+# foundation head was a side evaluation. It is now the T5c foundation cell itself -- both scGPT and
+# scFoundation, uniformly -- and the pooled C1-adapter bundles it replaces are withdrawn by exact
+# path+sha256 in results/_paper/withdrawn_bundles.csv, which is where a decision about a SPECIFIC
+# execution belongs.
 _NON_CENSUS_BUNDLE = (
     os.sep + "example" + os.sep,
     os.sep + "_withdrawn" + os.sep,
-    "__op3_fcond.npz",
+    # Runs kept as evidence but not as results. _diagnostic holds the STATE T2 bundles produced
+    # before the training/inference split (the held donor's controls entered the train subset);
+    # _validate holds the short single-unit checks a runner must pass before its full run is
+    # queued. Both live under predictions/, so without this they would be scored as census cells.
+    os.sep + "_diagnostic" + os.sep,
+    os.sep + "_validate" + os.sep,
     "__frangieh_protein.npz",
 )
 
@@ -97,6 +107,11 @@ def _withdrawn_bundles():
     the native-coverage plan orders us to restore. Keying on the path admits a new run automatically
     while the historical bundles stay excluded by name, and results/_paper/withdrawn_bundles.csv
     records why each one was withdrawn.
+
+    A withdrawal names a SPECIFIC EXECUTION, not a filename. A re-run that writes to the same path
+    is a different artifact -- different bytes, different sha256 -- and must be admitted, or fixing
+    a cell in place would silently delete it from the census. So the sha is checked too: the entry
+    excludes the file only while its content is still the withdrawn one.
     """
     import csv as _csv
     path = os.path.join(ROOT, "results", "_paper", "withdrawn_bundles.csv")
@@ -105,7 +120,25 @@ def _withdrawn_bundles():
             "withdrawn_bundles.csv is missing; refusing to run with no withdrawal registry"
         )
     with open(path, encoding="utf-8") as fh:
-        return {r["bundle_path"] for r in _csv.DictReader(fh)}
+        return {r["bundle_path"]: (r.get("sha256") or "").strip() for r in _csv.DictReader(fh)}
+
+
+def _is_withdrawn(path):
+    """True only if this file is still the exact execution that was withdrawn."""
+    import hashlib
+
+    rel = os.path.relpath(str(path), ROOT)
+    want = _WITHDRAWN.get(rel)
+    if want is None:
+        return False
+    if not want:
+        return True          # legacy entry with no recorded sha: keep excluding by path
+    try:
+        with open(path, "rb") as fh:
+            got = hashlib.sha256(fh.read()).hexdigest()
+    except OSError:
+        return True
+    return got == want
 
 
 _WITHDRAWN = _withdrawn_bundles()
@@ -148,7 +181,7 @@ def eligible_bundle(path):
     if (
         any(token in str(path) for token in _NON_CENSUS_BUNDLE)
         or path.name in _STALE_UNTAGGED_C3
-        or os.path.relpath(str(path), ROOT) in _WITHDRAWN
+        or _is_withdrawn(path)
     ):
         return False
     if path.parent == Path(ROOT) / "predictions" and path.name.startswith(
@@ -178,7 +211,8 @@ def score_all():
 # ---------------- task-cell definitions (which bundles -> which census cell) ------------------------
 # each cell: the bundle clusters it draws from, the split it is defined on, how to read the biological
 # unit (for the macro-average and the within-family rho), and the PUBLISHED roster of conditioned
-# models reported for that cell. The roster fixes the final 47-entry panel;
+# models reported for that cell. The roster fixes the final 56-entry panel (revision_claude/NATIVE_102_FINAL_REVIEW.md;
+# verify_census_closure.py fails the build if it drifts from cell_ledger.csv);
 # values are sourced from the bundles. Stored but out-of-panel executions do not
 # become model evidence merely because their numeric bundle can be read.
 CELLS = [
@@ -193,9 +227,10 @@ CELLS = [
         match=lambda s: s.startswith("C1_loct"),
         unit_of=lambda r: r["split"].replace("C1_loct_", ""),
         roster=[
-            "Biolord",
+            "CPA",
             "CellFlow",
             "CellOT",
+            "PerturbNet",
             "STATE",
             "scFoundation",
             "scGPT",
@@ -216,10 +251,10 @@ CELLS = [
         .replace("C2_soskic_LODO_", "")
         .replace("C2_lodo_", ""),
         roster=[
-            "Biolord",
+            "CPA",
             "CellFlow",
             "CellOT",
-            "PertAdapt",
+            "PerturbNet",
             "STATE",
             "scFoundation",
             "scGPT",
@@ -240,10 +275,13 @@ CELLS = [
         roster=[
             "AttentionPert",
             "Biolord",
-            "CINEMA-OT",
             "CellFlow",
             "GEARS",
+            "PertAdapt",
             "PerturbNet",
+            "STATE",
+            "linear-shift-KOemb",
+            "scFoundation",
             "scGPT",
         ],
     ),
@@ -262,8 +300,11 @@ CELLS = [
             "Biolord",
             "CellFlow",
             "GEARS",
+            "PertAdapt",
             "PerturbNet",
+            "STATE",
             "linear-shift-KOemb",
+            "scFoundation",
             "scGPT",
         ],
     ),
@@ -279,12 +320,12 @@ CELLS = [
         unit_of=lambda r: r["split"],
         roster=[
             "Biolord",
-            "CINEMA-OT",
             "CPA",
             "CellFlow",
             "FP-ridge",
             "PRnet",
             "PerturbNet",
+            "STATE",
         ],
     ),
     dict(
@@ -302,14 +343,16 @@ CELLS = [
         match=lambda s: s.startswith("C5_loct"),
         unit_of=lambda r: r["split"].replace("C5_loct_", ""),
         roster=[
-            "Biolord",
-            "CINEMA-OT",
+            "CPA",
             "CellFlow",
             "CellOT",
             "FP-ridge",
             "PRnet",
+            "PerturbNet",
+            "STATE",
             "scFoundation",
             "scGPT",
+            "scGen",
             "scPRAM",
         ],
     ),
@@ -375,16 +418,11 @@ STATUS_DEFINITION = {
 # canonical roster/status resolver prevents Table S2, Table S4 and Table S15
 # from independently inventing (and drifting on) the meaning of "adapted".
 AUTHOR_WRITTEN_INTERFACE = {
-    ("C2", "donor (LODO)", "PertAdapt"): (
-        "Yes — a study-written PertAdapt-inspired T2 head uses pooled frozen "
-        "scFoundation cell embeddings, a learned stimulation token and lineage "
-        "embedding, a binary GO co-membership mask and a shared decoder anchored "
-        "to the training control mean. It reconstructs stimulated training cells "
-        "from their own embeddings, then receives held-donor control embeddings "
-        "at inference. This is not the published control-to-perturbed training "
-        "operation or GEARS gene-condition encoder; its score does not establish "
-        "native PertAdapt performance."
-    ),
+    # PertAdapt x T2 was an adapted cell in the submitted panel. The final ruling excludes it --
+    # anti-CD3/CD28 stimulation has no node in the perturbation graph the published adapter
+    # conditions on, and the interface carries no donor slot -- so it is no longer a census cell and
+    # its disclosure text belongs to Supplementary Table S15b, not here. Leaving it made the
+    # adapted-set equality check below fail.
     ("C1", "cell-context (LOCT)", "scFoundation"): (
         "Yes — the author-written T1 interface estimates a "
         "training-lineage latent shift and trains an MLP "
@@ -422,8 +460,12 @@ AUTHOR_WRITTEN_INTERFACE = {
     ),
 }
 
-EXPECTED_CENSUS_CELLS = 47
-EXPECTED_STATUS_COUNTS = {"native": 34, "adapted": 7, "diagnostic": 6}
+# These guard the assembled census against a silent change of shape. They were left at the
+# submitted 47-cell panel when the CELLS rosters were moved to 56, which aborts the assembler --
+# retyping a roster in one place and a count in another is exactly how they drift, so
+# verify_census_closure.py now checks these two constants against cell_ledger.csv as well.
+EXPECTED_CENSUS_CELLS = 56
+EXPECTED_STATUS_COUNTS = {"native": 46, "adapted": 6, "diagnostic": 4}
 
 
 def cell_status(cluster, split, model):
@@ -638,9 +680,22 @@ def census_bundle_manifest(scored):
         selected["unit"] = selected.apply(cell["unit_of"], axis=1)
         duplicate = selected.duplicated(["model", "unit"], keep=False)
         if duplicate.any():
+            dup = selected.loc[duplicate, ["model", "unit", "bundle_path"]]
+            rerun = dup[dup["bundle_path"].str.contains("v2_native")]
+            hint = ""
+            if len(rerun):
+                hint = (
+                    "\n\nA native re-run deposits under the same filename as the bundle it "
+                    "replaces, so both are visible here. Resolve it explicitly, never by picking "
+                    "one silently:\n"
+                    "    python scripts/supersede_reruns.py            # report\n"
+                    "    python scripts/supersede_reruns.py --apply    # withdraw the superseded "
+                    "bundles by path+sha256\n"
+                    "(--apply refuses while any job is still RUNNING.)"
+                )
             raise ValueError(
                 f"Ambiguous census input for {task}: "
-                f"{selected.loc[duplicate, ['model', 'unit', 'bundle_path']].to_dict('records')}"
+                f"{dup.to_dict('records')}{hint}"
             )
         expected_units = 1 if task == "T5u" else cell["n_unit"]
         for model in cell["roster"] + ["cell-mean", "linear-PCA"]:

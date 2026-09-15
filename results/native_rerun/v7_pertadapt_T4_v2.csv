@@ -1,0 +1,3 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PertAdapt,hybrid,C4_modality_lo_ko_25,failed,False,,,,,,,,,"TimeoutExpired: Command '['/data1/home/chlee/miniconda3/envs/scfoundation/bin/python', '/data1/home/chlee/projects/immune virtual cell/ivcbench/model_runners/pertadapt_c3_runner.py', '/tmp/tmpazd3tzat/in.npz', '/tmp/",,25
+PertAdapt,hybrid,C4_modality_lo_ko_50,failed,False,,,,,,,,,"TimeoutExpired: Command '['/data1/home/chlee/miniconda3/envs/scfoundation/bin/python', '/data1/home/chlee/projects/immune virtual cell/ivcbench/model_runners/pertadapt_c3_runner.py', '/tmp/tmpevewtvsf/in.npz', '/tmp/",,50

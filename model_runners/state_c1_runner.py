@@ -53,19 +53,23 @@ def main(in_path: str, out_path: str) -> None:
     X = d["X_train"].astype(np.float32)
     genes = [str(g) for g in d["genes"]]
     is_ctrl = d["is_control_train"].astype(bool)
-    celltype_train = np.array([str(c) for c in d["celltype_train"]], dtype=object)   # lineage
-    gem_train = np.array([str(g) for g in d["gem_train"]], dtype=object)             # donor
-    X_ctrl_inf = d["X_ctrl_inf"].astype(np.float32)                                  # held lineage's controls
+    celltype_train = np.array(
+        [str(c) for c in d["celltype_train"]], dtype=object
+    )  # lineage
+    gem_train = np.array([str(g) for g in d["gem_train"]], dtype=object)  # donor
+    X_ctrl_inf = d["X_ctrl_inf"].astype(np.float32)  # held lineage's controls
     celltype_inf = np.array([str(c) for c in d["celltype_inf"]], dtype=object)
     gem_inf = np.array([str(g) for g in d["gem_inf"]], dtype=object)
     held_lineage = str(d["held_lineage"])
-    STIM = "stim"                                          # single shared (seen) cytokine label
+    STIM = "stim"  # single shared (seen) cytokine label
 
     # stratified cap on training cells (keep each (stim/ctrl × lineage) representative)
     if X.shape[0] > max_cells:
         rng0 = np.random.default_rng(0)
-        labels = np.char.add(np.where(is_ctrl, "control", STIM).astype(str),
-                             np.char.add("|", celltype_train.astype(str)))
+        labels = np.char.add(
+            np.where(is_ctrl, "control", STIM).astype(str),
+            np.char.add("|", celltype_train.astype(str)),
+        )
         keep = []
         for lab, cnt in zip(*np.unique(labels, return_counts=True)):
             idx = np.where(labels == lab)[0]
@@ -122,8 +126,10 @@ def main(in_path: str, out_path: str) -> None:
 
     # EMPTY-STRONG side rep: one shared constant feature for the single stim label (no per-lineage signal)
     fdim = 8
-    feats = {STIM: torch.ones(fdim, dtype=torch.float32),
-             "control": torch.zeros(fdim, dtype=torch.float32)}
+    feats = {
+        STIM: torch.ones(fdim, dtype=torch.float32),
+        "control": torch.zeros(fdim, dtype=torch.float32),
+    }
     fpath = work / "pert_features.pt"
     torch.save(feats, fpath)
 
@@ -131,35 +137,80 @@ def main(in_path: str, out_path: str) -> None:
     # UNLISTED (training) lineage becomes a regular training cell type (its control + `stim` cells train).
     # [zeroshot] routes the HELD lineage's `stim` cells (= its re-tagged controls, the test query) to
     # `test`; the held lineage's controls go to a train-observational subset. Real IFN-β never trains.
-    lines = ['[datasets]', f'ds = "{h5}"', '', '[training]', 'ds = "train"', '',
-             '[zeroshot]', f'"ds.{held_lineage}" = "test"']
+    lines = [
+        "[datasets]",
+        f'ds = "{h5}"',
+        "",
+        "[training]",
+        'ds = "train"',
+        "",
+        "[zeroshot]",
+        f'"ds.{held_lineage}" = "test"',
+    ]
     (work / "data.toml").write_text("\n".join(lines))
 
     out_dir = work / "run"
-    common = [f"data.kwargs.toml_config_path={work / 'data.toml'}", "data.kwargs.pert_col=gene",
-              "data.kwargs.control_pert=control", "data.kwargs.cell_type_key=cell_type",
-              "data.kwargs.batch_col=gem_group", f"data.kwargs.perturbation_features_file={fpath}",
-              "data.kwargs.embed_key=null", "data.kwargs.output_space=all"]
-    train_cmd = [state_py, "-m", "state", "tx", "train", "data=perturbation", "model=state_sm",
-                 f"training.max_steps={epochs_steps}", "training.val_freq=100000",
-                 "training.ckpt_every_n_steps=100000", f"output_dir={out_dir}", "name=ivc", *common]
-    r = subprocess.run(train_cmd, capture_output=True, text=True, timeout=5400, cwd=work)
+    common = [
+        f"data.kwargs.toml_config_path={work / 'data.toml'}",
+        "data.kwargs.pert_col=gene",
+        "data.kwargs.control_pert=control",
+        "data.kwargs.cell_type_key=cell_type",
+        "data.kwargs.batch_col=gem_group",
+        f"data.kwargs.perturbation_features_file={fpath}",
+        "data.kwargs.embed_key=null",
+        "data.kwargs.output_space=all",
+    ]
+    train_cmd = [
+        state_py,
+        "-m",
+        "state",
+        "tx",
+        "train",
+        "data=perturbation",
+        "model=state_sm",
+        f"training.max_steps={epochs_steps}",
+        "training.val_freq=100000",
+        "training.ckpt_every_n_steps=100000",
+        f"output_dir={out_dir}",
+        "name=ivc",
+        *common,
+    ]
+    r = subprocess.run(
+        train_cmd, capture_output=True, text=True, timeout=5400, cwd=work
+    )
     if r.returncode != 0:
         raise RuntimeError("state tx train failed:\n" + r.stderr[-3500:])
 
-    pred_cmd = [state_py, "-m", "state", "tx", "predict", "--output-dir", str(out_dir / "ivc"),
-                "--profile", "anndata", "--predict-only"]
+    pred_cmd = [
+        state_py,
+        "-m",
+        "state",
+        "tx",
+        "predict",
+        "--output-dir",
+        str(out_dir / "ivc"),
+        "--profile",
+        "anndata",
+        "--predict-only",
+    ]
     r = subprocess.run(pred_cmd, capture_output=True, text=True, timeout=3600, cwd=work)
     if r.returncode != 0:
         raise RuntimeError("state tx predict failed:\n" + r.stderr[-3500:])
 
-    preds = sorted(Path(out_dir).rglob("adata_pred.h5ad")) or sorted(Path(out_dir).rglob("*.h5ad"))
-    if not preds:
-        raise RuntimeError("STATE-C1: no prediction h5ad produced")
-    pa = ad.read_h5ad(str(preds[-1]))
+    from state_output import prediction_path
+
+    pa = ad.read_h5ad(str(prediction_path(out_dir)))
     pX = pa.X.toarray() if sparse.issparse(pa.X) else np.asarray(pa.X)
-    pg = pa.obs["gene"].astype(str).to_numpy() if "gene" in pa.obs else pa.obs.iloc[:, 0].astype(str).to_numpy()
-    pgem = pa.obs["gem_group"].astype(str).to_numpy() if "gem_group" in pa.obs else np.array(["?"] * len(pg))
+    pg = (
+        pa.obs["gene"].astype(str).to_numpy()
+        if "gene" in pa.obs
+        else pa.obs.iloc[:, 0].astype(str).to_numpy()
+    )
+    pgem = (
+        pa.obs["gem_group"].astype(str).to_numpy()
+        if "gem_group" in pa.obs
+        else np.array(["?"] * len(pg))
+    )
 
     # one predicted profile per (stim × donor); key = 'stim::<donor>' (donor = the C1-LOCT eval stratum)
     pred_perts, pred_means = [], []
@@ -167,12 +218,15 @@ def main(in_path: str, out_path: str) -> None:
         m = (pg == STIM) & (pgem == don)
         if m.sum():
             pred_perts.append(f"{STIM}::{don}")
-            pred_means.append(pX[m].mean(0)[:len(genes)].astype(np.float32))
+            pred_means.append(pX[m].mean(0)[: len(genes)].astype(np.float32))
     shutil.rmtree(work, ignore_errors=True)
     if not pred_perts:
         raise RuntimeError("STATE-C1: no held-lineage predictions recovered")
-    np.savez(out_path, pred_perts=np.array(pred_perts, dtype=object),
-             pred_means=np.vstack(pred_means).astype(np.float32))
+    np.savez(
+        out_path,
+        pred_perts=np.array(pred_perts, dtype=object),
+        pred_means=np.vstack(pred_means).astype(np.float32),
+    )
 
 
 if __name__ == "__main__":

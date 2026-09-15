@@ -25,11 +25,19 @@ from ivcbench.baselines.heavy import (
     BiolordC1,
     BiolordC5,
     CellOTC1,
+    StateC1Split,
+    CINEMAOTC1,
+    CPAC1,
+    PertAdaptC3,
+    PerturbNetC1,
+    ScFoundationGene,
+    CellOTC5,
     CPAchem,
     CINEMAOT,
     PerturbNetC5,
     CellFlowC5,
     PRnetC5,
+    StateC5cSplit,
 )
 from ivcbench.baselines.heavy import CellFlowC1, CellFlowGene
 from ivcbench.baselines.heavy import PerturbNetC3
@@ -69,10 +77,14 @@ ADAPTER = {
     ("SCREEN", "T5c"): ScreenC1,
     ("scPRAM", "T1"): ScPRAM,
     ("scPRAM", "T5c"): ScPRAM,
-    ("STATE", "T1"): StateC1,
+    # F-06a: the split-dataset path. StateC1 let the held unit's controls reach the fit.
+    ("STATE", "T1"): StateC1Split,
+    ("STATE", "T5c"): StateC5cSplit,
     ("PertAdapt", "T1"): PertAdaptC1,
     ("PertAdapt", "T5c"): PertAdaptC1,
-    ("PertAdapt", "T4"): PertAdapt,
+    # F-03: the public graph adapter, not the historical local head (which returned the control
+    # for every unseen target and produced action=declined on both T4 folds).
+    ("PertAdapt", "T4"): PertAdaptC3,
     ("Biolord", "T2"): BiolordC1,
     # C5 (OP3 compounds) goes through the NATIVE compound runner: the RDKit chemistry vector is
     # biolord's own ordered attribute (published sci-Plex 3 setting), so one adapter covers both
@@ -95,9 +107,20 @@ ADAPTER = {
     ("CellFlow", "T5u"): CellFlowC5,
     ("PRnet", "T5c"): PRnetC5,
     ("PRnet", "T5u"): PRnetC5,
-    ("CellOT", "T5c"): CellOTC1,
+    # T5c goes to the per-compound runner: the C1 adapter's pooled map was broadcast to every
+    # compound, which is not CellOT's published operation. T1/T2 keep the pooled entry point,
+    # where the treatment really is a single seen stimulus.
+    ("CellOT", "T5c"): CellOTC5,
     # PerturbNet: native on the unseen-compound split (its own published experiment),
     # adapted on the held-lineage split via the model's counterfactual generate_zprime.
+    # cells opened by the delegated runners; each is an N cell in the plan's table
+    ("PerturbNet", "T1"): PerturbNetC1,
+    ("PerturbNet", "T2"): PerturbNetC1,
+    ("PertAdapt", "T3"): PertAdaptC3,
+    ("scFoundation", "T3"): ScFoundationGene,
+    ("scFoundation", "T4"): ScFoundationGene,
+    ("CPA", "T1"): CPAC1,
+    ("CPA", "T2"): CPAC1,
     ("PerturbNet", "T5u"): PerturbNetC5,
     ("PerturbNet", "T5c"): PerturbNetC5,
     # PerturbNet on the GENETIC axis: the held gene is represented by the frozen pretrained
@@ -106,7 +129,10 @@ ADAPTER = {
     # unseen-perturbation protocol. One profile per held gene (pred_key_is_group stays False).
     ("PerturbNet", "T3"): PerturbNetC3,
     ("PerturbNet", "T4"): PerturbNetC3,
-    ("chemCPA", "T5c"): CPAchem,
+    ("chemCPA", "T5c"): CPAchem,   # historical fingerprint->latent Ridge; NOT the native T5c cell
+    # F-04: the native T5c cell. Seen compounds + held lineage -> the public categorical
+    # CPA.predict path, one query per compound against the held lineage's own controls.
+    ("CPA", "T5c"): CPAC1,
     # MAP (Nat Mach Intell 2026): SMILES + a frozen MAP-KG knowledge encoder. T5u is its
     # published unprofiled-drug regime; T5c has no published analogue (its OP3 cell-context
     # experiment holds drug x cell-type PAIRS). The runner's leak gate refuses T5u while the
@@ -114,8 +140,11 @@ ADAPTER = {
     ("MAP", "T5c"): MAPC5,
     ("MAP", "T5u"): MAPC5,
     # perturbation-agnostic distributional comparator: defined wherever control and treated clouds exist
-    ("CINEMA-OT", "T1"): CINEMAOT,
-    ("CINEMA-OT", "T2"): CINEMAOT,
+    # T1/T2 use the published per-condition call; the pooled diagnostic stays on the
+    # unseen-entity tasks, where a perturbation-agnostic reduction is what is intended.
+    ("CINEMA-OT", "T1"): CINEMAOTC1,
+    ("CINEMA-OT", "T2"): CINEMAOTC1,
+    ("CINEMA-OT", "T5c"): CINEMAOTC1,
     ("CINEMA-OT", "T4"): CINEMAOT,
     # in-process, CPU only: regresses the per-perturbation shift on a control-only-PCA gene embedding
     ("linear-shift-KOemb", "T3"): LinearShiftKOEmb,
@@ -149,6 +178,12 @@ ADAPTER = {
     ("CellFlow", "T2"): CellFlowC1,
     ("CellFlow", "T3"): CellFlowGene,
     ("CellFlow", "T4"): CellFlowGene,
+    # The remaining unseen-KO cells of the reported panel. Their deposited bundles exist but carry
+    # the B2/B3 control-fallback rows, so they are re-run under the corrected code through the same
+    # gene-side runners that produced them.
+    ("scGPT", "T4"): ScGPT,
+    ("GEARS", "T4"): GEARS,
+    ("AttentionPert", "T4"): AttentionPert,
     ("CellFlow", "T4p"): CellFlowGene,
     # R2-1 compound-conditioned foundation heads. Registered under their OWN model key so
     # nothing that already resolves ("scGPT","T5u") / ("scGPT","T5c") changes; the adapter's
@@ -159,7 +194,8 @@ ADAPTER = {
     # SAME split as T5c; it carries a `dataset` key so its deposited bundle sits BESIDE --
     # never on top of -- the C1-adapter T5c bundles, which are a different evaluation.
     ("scFoundation-fcond", "T5u"): ScFoundationC5Cond,
-    ("scFoundation-fcond", "T5c_cond"): ScFoundationC5Cond,
+    # same key as scGPT-fcond: the two foundation models are treated identically on this cell.
+    ("scFoundation-fcond", "T5c"): ScFoundationC5Cond,
 }
 
 

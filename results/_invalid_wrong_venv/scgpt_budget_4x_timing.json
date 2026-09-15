@@ -1,0 +1,30 @@
+[
+  {
+    "n_train_donors": 96,
+    "seed": 0,
+    "eval_donor": "D353",
+    "sec": 1621.7,
+    "n_train_cells": 110147
+  },
+  {
+    "n_train_donors": 96,
+    "seed": 0,
+    "eval_donor": "D364",
+    "sec": 1608.2,
+    "n_train_cells": 110147
+  },
+  {
+    "n_train_donors": 96,
+    "seed": 0,
+    "eval_donor": "D397",
+    "sec": 1628.2,
+    "n_train_cells": 110147
+  },
+  {
+    "n_train_donors": 96,
+    "seed": 0,
+    "eval_donor": "D411",
+    "sec": 1589.8,
+    "n_train_cells": 110147
+  }
+]

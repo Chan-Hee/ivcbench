@@ -1,0 +1,5 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+scGPT,foundation,C5_loct_B,run_floor,True,True,47074,16080,141,0.3783233594574556,0.3546083082648383,0.4024459073210943,6.375203541875672,,,B
+scGPT,foundation,C5_loct_Mono,run_floor,True,True,48011,15143,140,0.27795762894675136,0.2564638263013746,0.2998333596464779,5.47836756497839,,,Mono
+scGPT,foundation,C5_loct_NK,run_floor,True,True,49059,14095,141,0.34910542348809276,0.3281618645084454,0.3715414805205684,6.4653631480073015,,,NK
+scGPT,foundation,C5_loct_T_cells,run_floor,True,True,46398,16756,141,0.3815612960474711,0.3588927176853655,0.4063775820987867,6.289118490669936,,,T cells

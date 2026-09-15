@@ -1,0 +1,91 @@
+{
+  "cluster": "C5",
+  "generated_utc": "2026-09-14T06:19:34+00:00",
+  "git_commit": "e31e2ed051d9177f4c6b7c7ed795659ae22bea65",
+  "python": "3.10.13",
+  "platform": "Linux-5.15.0-139-generic-x86_64-with-glibc2.31",
+  "packages": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.9"
+  },
+  "data_source": "op3_GSE279945",
+  "seeds": [
+    0
+  ],
+  "splits": [
+    {
+      "name": "C5_global_compound_holdout",
+      "registry_task": "C5_unseen_cpd"
+    },
+    {
+      "name": "C5_loct_B",
+      "registry_task": "C5_LOCT"
+    },
+    {
+      "name": "C5_loct_Mono",
+      "registry_task": "C5_LOCT"
+    },
+    {
+      "name": "C5_loct_NK",
+      "registry_task": "C5_LOCT"
+    },
+    {
+      "name": "C5_loct_T_cells",
+      "registry_task": "C5_LOCT"
+    }
+  ],
+  "n_jobs": 5,
+  "n_ran": 5,
+  "n_leak_free": 5,
+  "all_leak_free": true,
+  "jobs": [
+    {
+      "split": "C5_global_compound_holdout",
+      "baseline": "scGen",
+      "seed": 0,
+      "action": "run_floor",
+      "headline_eligible": false,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C5_loct_B",
+      "baseline": "scGen",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C5_loct_Mono",
+      "baseline": "scGen",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C5_loct_NK",
+      "baseline": "scGen",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C5_loct_T_cells",
+      "baseline": "scGen",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    }
+  ]
+}

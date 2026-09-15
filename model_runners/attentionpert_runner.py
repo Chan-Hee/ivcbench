@@ -27,7 +27,9 @@ import numpy as np
 
 ATTN_SRC = os.environ.get("IVCBENCH_ATTNPERT_SRC")
 if not ATTN_SRC:
-    raise FileNotFoundError("set $IVCBENCH_ATTNPERT_SRC to the AttentionPert source directory")
+    raise FileNotFoundError(
+        "set $IVCBENCH_ATTNPERT_SRC to the AttentionPert source directory"
+    )
 sys.path.insert(0, ATTN_SRC)
 
 
@@ -39,13 +41,20 @@ def _gene2vec(genes, work):
         next(f)
         for ln in f:
             p = ln.rstrip("\n").split(" ")
-            v = np.array([float(x) for x in p[1:-1]] if p[-1] == "" else [float(x) for x in p[1:]])
+            v = np.array(
+                [float(x) for x in p[1:-1]]
+                if p[-1] == ""
+                else [float(x) for x in p[1:]]
+            )
             d[p[0]] = v
             vecs.append(v)
     vecs = np.array(vecs)
     mean, cov = vecs.mean(0), np.cov(vecs.T)
     rng = np.random.default_rng(0)
-    out = np.array([d[g] if g in d else rng.multivariate_normal(mean, cov) for g in genes], dtype=np.float32)
+    out = np.array(
+        [d[g] if g in d else rng.multivariate_normal(mean, cov) for g in genes],
+        dtype=np.float32,
+    )
     np.save(work / "data" / "train" / "gene2vec.npy", out)
     return out
 
@@ -89,7 +98,9 @@ def main(in_path: str, out_path: str) -> None:
         sel = np.sort(np.concatenate(keep))
         X, pert_train, is_ctrl = X[sel], pert_train[sel], is_ctrl[sel]
 
-    cond = np.where(is_ctrl, "ctrl", np.array([f"{p}+ctrl" for p in pert_train], dtype=object)).astype(str)
+    cond = np.where(
+        is_ctrl, "ctrl", np.array([f"{p}+ctrl" for p in pert_train], dtype=object)
+    ).astype(str)
 
     adata = ad.AnnData(sparse.csr_matrix(X))
     adata.var_names = genes
@@ -117,30 +128,60 @@ def main(in_path: str, out_path: str) -> None:
         pert_data.get_dataloader(batch_size=128, test_batch_size=128)
         _gene2vec(list(pert_data.gene_names), work)
 
-        model = ATTNPERT_RECORD_TRAIN(pert_data, device=device, weight_bias_track=False,
-                                      proj_name="attnpert", exp_name="ivc")
+        model = ATTNPERT_RECORD_TRAIN(
+            pert_data,
+            device=device,
+            weight_bias_track=False,
+            proj_name="attnpert",
+            exp_name="ivc",
+        )
         model.model_initialize(
-            hidden_size=64, model_class=PL_PW_non_add_Model,
-            gene2vec_args={"gene2vec_file": str(work / "data" / "train" / "gene2vec.npy")},
-            pert_local_min_weight=0.75, pert_local_conv_K=1, pert_weight_heads=2,
-            pert_weight_head_dim=64, pert_weight_act="softmax", non_add_beta=5e-2,
-            record_pred=False, exp_name="ivc")
+            hidden_size=64,
+            model_class=PL_PW_non_add_Model,
+            gene2vec_args={
+                "gene2vec_file": str(work / "data" / "train" / "gene2vec.npy")
+            },
+            pert_local_min_weight=0.75,
+            pert_local_conv_K=1,
+            pert_weight_heads=2,
+            pert_weight_head_dim=64,
+            pert_weight_act="softmax",
+            non_add_beta=5e-2,
+            record_pred=False,
+            exp_name="ivc",
+        )
         model.train(epochs=epochs, valid_every=max(1, epochs))
 
-        net = model.best_model if getattr(model, "best_model", None) is not None else model.model
+        net = (
+            model.best_model
+            if getattr(model, "best_model", None) is not None
+            else model.model
+        )
         net.eval().to(device)
         gene_names = list(pert_data.gene_names)
         gpos = {g: i for i, g in enumerate(gene_names)}
         n_full = len(gene_names)
-        ctrl_X = np.asarray(pert_data.ctrl_adata.X.todense() if sparse.issparse(pert_data.ctrl_adata.X)
-                            else pert_data.ctrl_adata.X, dtype=np.float32)
+        ctrl_X = np.asarray(
+            (
+                pert_data.ctrl_adata.X.todense()
+                if sparse.issparse(pert_data.ctrl_adata.X)
+                else pert_data.ctrl_adata.X
+            ),
+            dtype=np.float32,
+        )
         n_ctrl = min(128, ctrl_X.shape[0])
-        base = ctrl_X[np.random.default_rng(0).choice(ctrl_X.shape[0], n_ctrl, replace=False)]
+        base = ctrl_X[
+            np.random.default_rng(0).choice(ctrl_X.shape[0], n_ctrl, replace=False)
+        ]
 
         def cell_graph(expr_row, pidx):
-            pf = np.zeros(n_full, np.float32); pf[pidx] = 1
-            fm = torch.Tensor(np.concatenate([expr_row[None, :], pf[None, :]])).T  # (n_genes, 2)
+            pf = np.zeros(n_full, np.float32)
+            pf[pidx] = 1
+            fm = torch.Tensor(
+                np.concatenate([expr_row[None, :], pf[None, :]])
+            ).T  # (n_genes, 2)
             from torch_geometric.data import Data
+
             return Data(x=fm, pert=f"g+ctrl", de_idx=[-1] * 20)
 
         pred_perts, pred_means = [], []
@@ -153,15 +194,18 @@ def main(in_path: str, out_path: str) -> None:
                 p = net(batch)
                 p = p[:, :n_full] if p.dim() == 2 else p
                 pred_perts.append(g)
-                pred_means.append(np.asarray(p.cpu(), np.float32).mean(0)[:len(genes)])
+                pred_means.append(np.asarray(p.cpu(), np.float32).mean(0)[: len(genes)])
     finally:
         os.chdir(cwd)
         shutil.rmtree(work, ignore_errors=True)
 
     if not pred_perts:
         raise RuntimeError("AttentionPert: no held genes in the gene panel to predict")
-    np.savez(out_path, pred_perts=np.array(pred_perts, dtype=object),
-             pred_means=np.vstack(pred_means).astype(np.float32))
+    np.savez(
+        out_path,
+        pred_perts=np.array(pred_perts, dtype=object),
+        pred_means=np.vstack(pred_means).astype(np.float32),
+    )
 
 
 if __name__ == "__main__":

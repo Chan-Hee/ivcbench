@@ -1,0 +1,3 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+CellFlow,flow,C4_modality_lo_ko_25,run_headline,True,True,10700,3576,62,0.07591268887382842,0.04262159288477814,0.10803144011879333,3.340466469128221,,,25
+CellFlow,flow,C4_modality_lo_ko_50,run_headline,True,True,7232,7044,124,0.16625938991520314,0.14220948853621998,0.19219186041887187,3.3295072227774463,,,50

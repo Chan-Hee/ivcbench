@@ -1,0 +1,16 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PertAdapt,hybrid,C3_true_lo_gene_10,failed,False,,,,,,,,,"RuntimeError: PertAdapt runner failed (rc=1):
+… RuntimeError: shape mismatch: value tensor of shape [4, 2000] cannot be broadcast to indexing result of shape [4, 1941]
+6461, 286640, 286648, 286827, 286867, 287003, ",,chen
+PertAdapt,hybrid,C3_true_lo_gene_10,failed,False,,,,,,,,,"RuntimeError: PertAdapt runner failed (rc=1):
+… RuntimeError: shape mismatch: value tensor of shape [4, 2000] cannot be broadcast to indexing result of shape [4, 1946]
+, 15550, 15554, 15556, 15558, 15562, 15563, 15",,mccutcheon_CRISPRa
+PertAdapt,hybrid,C3_true_lo_gene_10,failed,False,,,,,,,,,"RuntimeError: PertAdapt runner failed (rc=1):
+… RuntimeError: shape mismatch: value tensor of shape [4, 2000] cannot be broadcast to indexing result of shape [4, 1942]
+ 17984, 17986, 17992, 17993, 17994, 18002, 180",,mccutcheon_CRISPRi
+PertAdapt,hybrid,C3_true_lo_gene_10,failed,False,,,,,,,,,"RuntimeError: PertAdapt runner failed (rc=1):
+… RuntimeError: shape mismatch: value tensor of shape [4, 2000] cannot be broadcast to indexing result of shape [4, 1951]
+8591, 18597, 18608, 18611, 18613, 18614, 18616",,schmidt
+PertAdapt,hybrid,C3_true_lo_gene_10,failed,False,,,,,,,,,"RuntimeError: PertAdapt runner failed (rc=1):
+… RuntimeError: shape mismatch: value tensor of shape [4, 2000] cannot be broadcast to indexing result of shape [4, 1969]
+23267, 23273, 23277, 23278, 23280, 23284, 2328",,shifrut

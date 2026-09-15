@@ -23,19 +23,34 @@ from ivcbench.report.style import INK_BODY, INK_HEAD, INK_NOTE, MAIN_FS  # noqa:
 # data-mark colours only (points, lines, intervals); every piece of text takes the shared ink
 # ladder from ivcbench.report.style so Figures 2 and 3 print the inks Figure 1 prints
 NAVY, BLUE, GREY, ROSE = "#17324d", "#287fba", "#84909a", "#b34e68"
-T3_MODELS = ["AttentionPert", "Biolord", "CellFlow", "GEARS", "PerturbNet", "scGPT"]
-# CINEMA-OT is a census entry on this split, but no per-lineage program readout was deposited for
-# it, so it cannot be scored here; both legends say so rather than drawing an empty row.
-OP3_MODELS = [
-    "FP-ridge",
-    "Biolord",
-    "CellFlow",
-    "CellOT",
-    "PRnet",
-    "scPRAM",
-    "scFoundation",
-    "scGPT",
-]
+# The rosters are DERIVED from the readout table, never typed here. A hand-typed roster is how
+# Figure 2 once plotted 24 of 35 census cells without anything failing: the list simply stopped
+# being the census. immune_readout_audit.py is itself census-driven (it reads census_unit_scores.csv),
+# so a model that entered the census and has a per-lineage readout appears here automatically, and
+# roster_note() states in the caption which census cells could not be drawn and why.
+# CINEMA-OT is a census entry on these splits with no per-lineage program readout deposited, so it
+# cannot be scored here; it is named in that note rather than drawn as an empty row.
+_ORDER = ["FP-ridge", "linear-shift-KOemb", "Biolord", "CPA", "CellFlow", "CellOT", "GEARS",
+          "PRnet", "PertAdapt", "PerturbNet", "STATE", "AttentionPert", "scGen", "scPRAM",
+          "scFoundation", "scGPT"]
+_REFERENCES = {"cell-mean", "linear-PCA", "ctrl-pred", "donor-shift"}
+
+
+def _roster(summary, units, task_key):
+    """Models this figure draws for a task: a CENSUS cell on that task WITH a deposited readout.
+
+    Both halves are needed. Without the readout half the plate has empty rows; without the census
+    half it draws a cell the panel does not report -- biolord has an OP3 readout but is a T5u
+    census entry, not a T5c one, and the hand-typed roster drew it under the T5c heading.
+    """
+    have = set(summary[summary.task_key == task_key].model) - _REFERENCES
+    have &= set(units[units.task_key == task_key].model)
+    known = [m for m in _ORDER if m in have]
+    return known + sorted(have - set(known))      # anything new still gets drawn, at the end
+
+
+T3_MODELS: list[str] = []
+OP3_MODELS: list[str] = []
 PROGRAMS = [
     "TCR_activation",
     "IL2_STAT5",
@@ -613,6 +628,17 @@ def main(argv=None):
         summary = pd.read_csv(PAPER / "immune_readout_summary.csv")
         macro = pd.read_csv(PAPER / "immune_readout_op3_macro.csv")
         units = pd.read_csv(PAPER / "census_unit_scores.csv")
+        global T3_MODELS, OP3_MODELS
+        T3_MODELS = _roster(summary, units, "T3")
+        OP3_MODELS = _roster(summary, units, "T5c")
+        # Say out loud which census cells this figure cannot draw. Silence here is what let
+        # Figure 2 ship missing eleven of thirty-five cells; the caption has to carry this.
+        for tk, drawn in (("T3", T3_MODELS), ("T5c", OP3_MODELS)):
+            cen = set(units[units.task_key == tk].model) - _REFERENCES
+            missing = sorted(cen - set(drawn))
+            print(f"[Figure 3] {tk}: drawing {len(drawn)} of {len(cen)} census cells"
+                  + (f"; NO per-lineage readout deposited for {', '.join(missing)}"
+                     if missing else "; every census cell drawn"))
     for figure in args.figures:
         if figure == "3":
             figure3(summary, macro)

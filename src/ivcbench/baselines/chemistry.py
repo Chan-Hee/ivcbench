@@ -49,12 +49,24 @@ class FPRidge(BaselineAdapter):
         ctrl = self._control_mean(cs, split)
         perts = cs.obs.iloc[split.test_idx]["perturbation"].to_numpy()
         pred = np.empty((len(perts), cs.n_genes), dtype=np.float32)
+        # A compound with no fingerprint keeps the control mean. That is shape-compatible with a
+        # real prediction and scores as a confident "no response" unless it is flagged, so record
+        # it: the score convention does not change, but the row is no longer counted as a
+        # prediction the model made.
+        declined = np.zeros(len(perts), dtype=bool)
         for i, p in enumerate(perts):
             fp = fps.get(p)
             if fp is None or self.ridge is None:
-                pred[i] = (
-                    ctrl  # no chemistry available -> falls back to control (floor)
-                )
+                pred[i] = ctrl
+                declined[i] = True
             else:
                 pred[i] = ctrl + self.ridge.predict(fp[None, :])[0]
-        return PredResult(pred, ctrl)
+        if declined.any():
+            miss = sorted({str(p) for p, d in zip(perts, declined) if d})
+            print(
+                f"[decline] FP-ridge: {declined.sum()}/{len(declined)} test rows have no "
+                f"fingerprint and keep the control mean: {miss[:8]}"
+                + (" ..." if len(miss) > 8 else ""),
+                flush=True,
+            )
+        return PredResult(pred, ctrl, declined=declined)

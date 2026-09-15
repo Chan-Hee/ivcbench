@@ -17,13 +17,12 @@ authors:
   - family-names: Ryu
     given-names: Jae Yong
     affiliation: "School of Systems Biomedical Science, Soongsil University, Seoul, Republic of Korea"
-version: 1.1.7
-date-released: "2026-07-02"
+version: 1.2.3
 doi: 10.5281/zenodo.20756042
 identifiers:
   - type: doi
     value: 10.5281/zenodo.20756042
-    description: "Zenodo concept DOI (all versions; resolves to the latest release)"
+    description: "Project all-versions DOI; not a version-specific identifier for this submitted revision snapshot"
 license: MIT
 repository-code: "https://github.com/Chan-Hee/ivcbench"
 url: "https://github.com/Chan-Hee/ivcbench"
@@ -35,6 +34,9 @@ keywords:
   - generalization
   - optimal transport
   - immune-aware evaluation
+  - CRISPR
+  - drug response prediction
+  - foundation models
 preferred-citation:
   type: unpublished
   title: "Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization"

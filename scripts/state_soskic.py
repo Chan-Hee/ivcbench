@@ -51,7 +51,12 @@ from c2_soskic_donor import (
     SOSKIC_PROGRAMS,
 )
 
-RUNNER = ROOT / "model_runners" / "state_soskic_runner.py"
+# The split runner keeps the fit to train_idx: state_soskic_runner.py put the held donor's own 0 h
+# cells into the SAME AnnData as the training cells, and cell_load's fewshot route hands every
+# control of the lineage to the train subset. Set IVCBENCH_STATE_SOSKIC_RUNNER to run the old one
+# for comparison; its results are kept as diagnostics, not as the reported value.
+RUNNER = ROOT / "model_runners" / os.environ.get(
+    "IVCBENCH_STATE_SOSKIC_RUNNER", "state_soskic_split_runner.py")
 STATE_ENV = "ivc-state"
 
 
@@ -101,6 +106,13 @@ def run_state_on_split(cs, sp, seed, held_donor, cuda_device, steps):
             timeout=7200,
             env=env,
         )
+        # The runner's own diagnostics -- the coordinate shift it applied, whether that shift
+        # pushes the data past state's [0, 14] clip, the per-(donor, lineage) basal pool -- are on
+        # stdout, which capture_output swallows on SUCCESS. They are the lines that explain a
+        # score, so surface them.
+        for _ln in (proc.stdout or "").splitlines():
+            if _ln.startswith("[STATE-soskic]"):
+                print("   " + _ln, flush=True)
         if proc.returncode != 0 or not out.exists():
             err = proc.stderr or ""
             key = [
@@ -124,25 +136,38 @@ def run_state_on_split(cs, sp, seed, held_donor, cuda_device, steps):
             )
         r = np.load(out, allow_pickle=True)
         # keys are '<held_label>::<lineage>' -> recover lineage
-        by_lineage = {}
-        for k, v in zip(r["pred_perts"], r["pred_means"]):
+        dec = (np.asarray(r["pred_declined"], dtype=bool) if "pred_declined" in r.files
+               else np.zeros(len(r["pred_perts"]), dtype=bool))
+        by_lineage, declined_lineages = {}, set()
+        for i, (k, v) in enumerate(zip(r["pred_perts"], r["pred_means"])):
             lineage = str(k).split("::", 1)[-1]
             by_lineage[lineage] = np.asarray(v, np.float32)
-    return by_lineage
+            if dec[i]:
+                declined_lineages.add(lineage)
+    return by_lineage, declined_lineages
 
 
-def state_pred_cells(by_lineage, test_strata, ctrl_mean):
+def state_pred_cells(by_lineage, test_strata, ctrl_mean, declined_lineages=()):
+    """-> (per-cell prediction, per-cell declined mask).
+
+    A lineage the runner never returned, or returned and flagged, keeps the control mean so the
+    array shape holds -- and is FLAGGED. An unflagged control profile is scored as a confident
+    "this donor does not respond", which is not what happened.
+    """
     """Tile each held-lineage predicted profile onto the test rows of that stratum (pearson_delta's
     per-stratum mean is invariant to tiling); fall back to control mean for an unseen lineage.
     """
     test_strata = np.asarray(test_strata)
     n_genes = len(ctrl_mean)
     pred = np.zeros((len(test_strata), n_genes), np.float32)
+    declined = np.zeros(len(test_strata), dtype=bool)
     for s in np.unique(test_strata):
         lineage = str(s).split("=", 1)[-1]
-        prof = by_lineage.get(lineage, ctrl_mean)
-        pred[test_strata == s] = prof
-    return pred
+        rows = test_strata == s
+        pred[rows] = by_lineage.get(lineage, ctrl_mean)
+        if lineage not in by_lineage or lineage in declined_lineages:
+            declined[rows] = True
+    return pred, declined
 
 
 def main():
@@ -260,9 +285,15 @@ def main():
         s_pe, s_ed, s_au = [], [], []
         for seed in args.seeds:
             t0 = time.time()
-            by_lineage = run_state_on_split(cs, sp, seed, d, args.gpu, args.steps)
+            by_lineage, declined_lineages = run_state_on_split(cs, sp, seed, d, args.gpu, args.steps)
             dt = time.time() - t0
-            pred_aligned = state_pred_cells(by_lineage, test_strata, ctrl_mean)
+            pred_aligned, declined = state_pred_cells(
+                by_lineage, test_strata, ctrl_mean, declined_lineages
+            )
+            if declined.any():
+                print(f"   [decline] STATE {sp.spec.name}: {declined.sum()}/{len(declined)} test "
+                      f"cells keep the control mean (lineages: {sorted(declined_lineages)})",
+                      flush=True)
             pe = float(
                 pearson_delta(pred_aligned, test_X, ctrl_mean, test_strata, rg)["macro"]
             )
@@ -278,6 +309,7 @@ def main():
                 model="STATE",
                 split=sp.spec.name,
                 pred_cells=pred_aligned,
+                declined=declined,
                 test_cells=test_X,
                 cell_strata=test_strata,
                 control_mean=ctrl_mean,

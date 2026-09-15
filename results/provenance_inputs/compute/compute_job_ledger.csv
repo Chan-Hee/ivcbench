@@ -1,0 +1,175 @@
+wave,model,task,sec,hours,source,note
+1 admission sweep,AttentionPert,T4p,76.0,0.021,raw/admission/sweep.log,rc=0
+1 admission sweep,AttentionPert,T4p,90.0,0.025,raw/admission/sweep.log,rc=0
+1 admission sweep,Biolord,T2,25529.0,7.091,raw/admission/sweep.log,rc=0
+1 admission sweep,Biolord,T5c,1482.0,0.412,raw/admission/sweep.log,rc=0
+1 admission sweep,Biolord,T5u,446.0,0.124,raw/admission/sweep.log,rc=0
+1 admission sweep,CINEMA-OT,T1,188.0,0.052,raw/admission/sweep.log,rc=0
+1 admission sweep,CINEMA-OT,T2,2203.0,0.612,raw/admission/sweep.log,rc=0
+1 admission sweep,CINEMA-OT,T4,80.0,0.022,raw/admission/sweep.log,rc=0
+1 admission sweep,CINEMA-OT,T4p,34.0,0.009,raw/admission/sweep.log,rc=0
+1 admission sweep,CINEMA-OT,T4p,32.0,0.009,raw/admission/sweep.log,rc=0
+1 admission sweep,CPA,T4p,2422.0,0.673,raw/admission/sweep.log,rc=0
+1 admission sweep,CellOT,T4p,1485.0,0.412,raw/admission/sweep.log,rc=0
+1 admission sweep,CellOT,T5c,2770.0,0.769,raw/admission/sweep.log,rc=0
+1 admission sweep,CellOT,T5u,976.0,0.271,raw/admission/sweep.log,rc=0
+1 admission sweep,PertAdapt,T1,667.0,0.185,raw/admission/sweep.log,rc=0
+1 admission sweep,PertAdapt,T4,603.0,0.168,raw/admission/sweep.log,rc=0
+1 admission sweep,PertAdapt,T4p,643.0,0.179,raw/admission/sweep.log,rc=0
+1 admission sweep,PertAdapt,T5c,772.0,0.214,raw/admission/sweep.log,rc=0
+1 admission sweep,PertAdapt,T5u,444.0,0.123,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T1,3790.0,1.053,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 0),14375.0,3.993,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 0),14993.0,4.165,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 1),7221.0,2.006,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 1),14998.0,4.166,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 2),7234.0,2.009,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 2),13500.0,3.75,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 3),14085.0,3.913,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 3),13631.0,3.786,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 4),14380.0,3.994,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 4),13624.0,3.784,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 5),26393.0,7.331,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 5),13939.0,3.872,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 6),7071.0,1.964,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 6),13612.0,3.781,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 7),7155.0,1.988,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T2 (chunk 7),13639.0,3.789,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T5c,2730.0,0.758,raw/admission/sweep.log,rc=0
+1 admission sweep,SCREEN,T5u,1122.0,0.312,raw/admission/sweep.log,rc=0
+1 admission sweep,STATE,T1,1640.0,0.456,raw/admission/sweep.log,rc=0
+1 admission sweep,STATE,T4p,248.0,0.069,raw/admission/sweep.log,rc=0
+1 admission sweep,STATE,T4p,254.0,0.071,raw/admission/sweep.log,rc=0
+1 admission sweep,chemCPA,T5c,9961.0,2.767,raw/admission/sweep.log,rc=0
+1 admission sweep,linear-shift-KOemb,T4p,3.0,0.001,raw/admission/sweep.log,rc=0
+1 admission sweep,scFoundation,T4p,293.0,0.081,raw/admission/sweep.log,rc=0
+1 admission sweep,scFoundation,T4p,302.0,0.084,raw/admission/sweep.log,rc=0
+1 admission sweep,scFoundation,T5u,484.0,0.134,raw/admission/sweep.log,rc=0
+1 admission sweep,scGPT,T4p,57.0,0.016,raw/admission/sweep.log,rc=0
+1 admission sweep,scGPT,T4p,60.0,0.017,raw/admission/sweep.log,rc=0
+1 admission sweep,scGPT,T5u,1199.0,0.333,raw/admission/sweep.log,rc=0
+1 admission sweep,scGen,T4p,92.0,0.026,raw/admission/sweep.log,rc=0
+1 admission sweep,scGen,T4p,100.0,0.028,raw/admission/sweep.log,rc=0
+1 admission sweep,scPRAM,T1,284.0,0.079,raw/admission/sweep.log,rc=0
+1 admission sweep,scPRAM,T4p,102.0,0.028,raw/admission/sweep.log,rc=0
+1 admission sweep,scPRAM,T4p,85.0,0.024,raw/admission/sweep.log,rc=0
+1 admission sweep,scPRAM,T5c,926.0,0.257,raw/admission/sweep.log,rc=0
+1 admission sweep,scPRAM,T5u,286.0,0.079,raw/admission/sweep.log,rc=0
+10 conditioned head,scFoundation,T5 conditioned head,14.0,0.004,outputs/fcond/scFoundation/runner_T5c_B_seed1.log,head-selection seconds recorded in the log; encoder passes not separately timed
+10 conditioned head,scFoundation,T5 conditioned head,61.0,0.017,outputs/fcond/scFoundation/runner_T5c_cond.log,head-selection seconds recorded in the log; encoder passes not separately timed
+10 conditioned head,scFoundation,T5 conditioned head,15.0,0.004,outputs/fcond/scFoundation/runner_T5u.log,head-selection seconds recorded in the log; encoder passes not separately timed
+10 conditioned head,scFoundation,T5 conditioned head,0.0,0.0,outputs/fcond/scFoundation/runner_smoke.log,head-selection seconds recorded in the log; encoder passes not separately timed
+10 conditioned head,scFoundation,T5 conditioned head,0.0,0.0,outputs/fcond/scFoundation/runner_smoke_t5u.log,head-selection seconds recorded in the log; encoder passes not separately timed
+2 foundation,CellOT,R1-1 Cano-Gamez LODO,6077.0,1.688,raw/foundation/cano_gamez_lodo.log,"8 units, per-unit seconds summed"
+2 foundation,CellOT,R1-1 Kang LODO,11963.0,3.323,raw/foundation/kang_lodo.log,"16 units, per-unit seconds summed"
+2 foundation,scFoundation,T2,1808.0,0.502,raw/foundation/c2_scf_0.log,"10 units, per-unit seconds summed"
+2 foundation,scFoundation,T2,1910.0,0.531,raw/foundation/c2_scf_1.log,"11 units, per-unit seconds summed"
+2 foundation,scFoundation,T2,1645.0,0.457,raw/foundation/c2_scf_2.log,"9 units, per-unit seconds summed"
+2 foundation,scFoundation,T2,1846.0,0.513,raw/foundation/c2_scf_3.log,"10 units, per-unit seconds summed"
+2 foundation,scFoundation,T2,1646.0,0.457,raw/foundation/c2_scf_4.log,"9 units, per-unit seconds summed"
+2 foundation,scFoundation,T2,1840.0,0.511,raw/foundation/c2_scf_5.log,"10 units, per-unit seconds summed"
+2 foundation,scFoundation,T2,1656.0,0.46,raw/foundation/c2_scf_6.log,"9 units, per-unit seconds summed"
+2 foundation,scFoundation,T2,1814.0,0.504,raw/foundation/c2_scf_7.log,"10 units, per-unit seconds summed"
+2 foundation,scFoundation,T4,535.0,0.149,raw/foundation/c4_scf.log,"2 units, per-unit seconds summed"
+2 foundation,scGPT,T2,7129.0,1.98,raw/foundation/c2_scgpt_0.log,"14 units, per-unit seconds summed"
+2 foundation,scGPT,T2,6727.0,1.869,raw/foundation/c2_scgpt_1.log,"14 units, per-unit seconds summed"
+2 foundation,scGPT,T2,6409.0,1.78,raw/foundation/c2_scgpt_2.log,"13 units, per-unit seconds summed"
+2 foundation,scGPT,T2,6335.0,1.76,raw/foundation/c2_scgpt_3.log,"13 units, per-unit seconds summed"
+2 foundation,scGPT,T2,6650.0,1.847,raw/foundation/c2_scgpt_4.log,"13 units, per-unit seconds summed"
+2 foundation,scGPT,T2,6344.0,1.762,raw/foundation/c2_scgpt_5.log,"13 units, per-unit seconds summed"
+2 foundation,scGPT,T2,6437.0,1.788,raw/foundation/c2_scgpt_6.log,"13 units, per-unit seconds summed"
+2 foundation,scGPT,T2,6337.0,1.76,raw/foundation/c2_scgpt_7.log,"13 units, per-unit seconds summed"
+2 foundation,scGPT,T4,1983.0,0.551,raw/foundation/c4_scgpt.log,"2 units, per-unit seconds summed"
+2 foundation,scGPT,T5c,3734.0,1.037,raw/foundation/c5_scgpt.log,"4 units, per-unit seconds summed"
+3 obligation wave 1,Biolord,T5c,4907.0,1.363,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,Biolord,T5u,1125.0,0.312,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,CellFlow,T5c,6504.0,1.807,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,CellFlow,T5u,1416.0,0.393,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,CellOT,T5c,4244.0,1.179,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,PRnet,T5c,994.0,0.276,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,PRnet,T5u,468.0,0.13,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,SCREEN,T1,4246.0,1.179,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,STATE,T1,1901.0,0.528,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,chemCPA,T5c,11907.0,3.308,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,scFoundation,T5u,244.0,0.068,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,scGPT,T5u,234.0,0.065,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,scPRAM,T1,357.0,0.099,scratchpad/full/PROGRESS.log,rc=0
+3 obligation wave 1,scPRAM,T5c,1200.0,0.333,scratchpad/full/PROGRESS.log,rc=0
+4 obligation wave 2,Biolord,T2,25361.0,7.045,scratchpad/w2/PROGRESS.log,rc=0
+4 obligation wave 2,Biolord,T3,2798.0,0.777,scratchpad/w2/PROGRESS.log,rc=0
+4 obligation wave 2,Biolord,T4,96.0,0.027,scratchpad/w2/PROGRESS.log,rc=0
+4 obligation wave 2,CellFlow,T1,7939.0,2.205,scratchpad/w2/PROGRESS.log,rc=0
+4 obligation wave 2,CellFlow,T2,8128.0,2.258,scratchpad/w2/PROGRESS.log,rc=143
+4 obligation wave 2,CellFlow,T3,7191.0,1.998,scratchpad/w2/PROGRESS.log,rc=0
+4 obligation wave 2,CellFlow,T4,2568.0,0.713,scratchpad/w2/PROGRESS.log,rc=0
+4 obligation wave 2,CellFlow,T4p,2152.0,0.598,scratchpad/w2/PROGRESS.log,rc=0
+4 obligation wave 2,PerturbNet,T3,12098.0,3.361,scratchpad/w2/PROGRESS.log,rc=0
+4 obligation wave 2,PerturbNet,T4,1073.0,0.298,scratchpad/w2/PROGRESS.log,rc=0
+4 obligation wave 2,SCREEN,T2,13706.0,3.807,scratchpad/w2/PROGRESS.log,rc=143
+5 obligation wave 3,CellFlow,T2 (chunk 0/6),16150.0,4.486,scratchpad/w3/PROGRESS.log,rc=0
+5 obligation wave 3,CellFlow,T2 (chunk 1/6),16370.0,4.547,scratchpad/w3/PROGRESS.log,rc=0
+5 obligation wave 3,CellFlow,T2 (chunk 2/6),16085.0,4.468,scratchpad/w3/PROGRESS.log,rc=0
+5 obligation wave 3,CellFlow,T2 (chunk 3/6),18461.0,5.128,scratchpad/w3/PROGRESS.log,rc=0
+5 obligation wave 3,CellFlow,T2 (chunk 4/6),17570.0,4.881,scratchpad/w3/PROGRESS.log,rc=0
+5 obligation wave 3,CellFlow,T2 (chunk 5/6),14520.0,4.033,scratchpad/w3/PROGRESS.log,rc=0
+5 obligation wave 3,SCREEN,T2 (chunk 0/4),22434.0,6.232,scratchpad/w3/PROGRESS.log,rc=143
+5 obligation wave 3,SCREEN,T2 (chunk 1/4),22253.0,6.181,scratchpad/w3/PROGRESS.log,rc=143
+5 obligation wave 3,SCREEN,T2 (chunk 2/4),19725.0,5.479,scratchpad/w3/PROGRESS.log,rc=143
+5 obligation wave 3,SCREEN,T2 (chunk 3/4),8086.0,2.246,scratchpad/w3/PROGRESS.log,rc=143
+6 obligation wave 4,Biolord,T3,1351.0,0.375,scratchpad/w4/PROGRESS.log,rc=0
+6 obligation wave 4,CellFlow,T3,5473.0,1.52,scratchpad/w4/PROGRESS.log,rc=0
+6 obligation wave 4,PerturbNet,T3,7370.0,2.047,scratchpad/w4/PROGRESS.log,rc=0
+7 obligation wave 5,scFoundation,T5u,42.0,0.012,scratchpad/w5/PROGRESS.log,rc=0
+7 obligation wave 5,scGPT,T5u,992.0,0.276,scratchpad/w5/PROGRESS.log,rc=0
+8 obligation wave 6,PerturbNet,T5c,8722.0,2.423,scratchpad/w6/PROGRESS.log,rc=0
+8 obligation wave 6,PerturbNet,T5u,2799.0,0.777,scratchpad/w6/PROGRESS.log,rc=0
+9 scGPT donor curve,scGPT,T2 learning curve k=16,447.1,0.124,scgpt_donor_curve_shard0_timing.json,"eval donor D353, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=16,451.0,0.125,scgpt_donor_curve_shard0_timing.json,"eval donor D411, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=16,426.9,0.119,scgpt_donor_curve_shard0_timing.json,"eval donor D431, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=16,440.3,0.122,scgpt_donor_curve_shard0_timing.json,"eval donor D484, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=16,412.0,0.114,scgpt_donor_curve_shard1_timing.json,"eval donor D364, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=16,406.1,0.113,scgpt_donor_curve_shard1_timing.json,"eval donor D424, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=16,411.2,0.114,scgpt_donor_curve_shard1_timing.json,"eval donor D454, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=16,430.4,0.12,scgpt_donor_curve_shard2_timing.json,"eval donor D397, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=16,414.2,0.115,scgpt_donor_curve_shard2_timing.json,"eval donor D429, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=16,417.9,0.116,scgpt_donor_curve_shard2_timing.json,"eval donor D483, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,422.6,0.117,scgpt_donor_curve_shard0_timing.json,"eval donor D353, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,429.0,0.119,scgpt_donor_curve_shard0_timing.json,"eval donor D411, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,430.6,0.12,scgpt_donor_curve_shard0_timing.json,"eval donor D431, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,404.4,0.112,scgpt_donor_curve_shard0_timing.json,"eval donor D484, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,408.4,0.113,scgpt_donor_curve_shard1_timing.json,"eval donor D364, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,455.6,0.127,scgpt_donor_curve_shard1_timing.json,"eval donor D424, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,445.1,0.124,scgpt_donor_curve_shard1_timing.json,"eval donor D454, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,403.8,0.112,scgpt_donor_curve_shard2_timing.json,"eval donor D397, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,427.9,0.119,scgpt_donor_curve_shard2_timing.json,"eval donor D429, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=32,425.0,0.118,scgpt_donor_curve_shard2_timing.json,"eval donor D483, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,405.7,0.113,scgpt_donor_curve_shard0_timing.json,"eval donor D353, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,609.3,0.169,scgpt_donor_curve_shard0_timing.json,"eval donor D411, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,529.2,0.147,scgpt_donor_curve_shard0_timing.json,"eval donor D431, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,468.7,0.13,scgpt_donor_curve_shard0_timing.json,"eval donor D484, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,402.8,0.112,scgpt_donor_curve_shard1_timing.json,"eval donor D364, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,396.4,0.11,scgpt_donor_curve_shard1_timing.json,"eval donor D424, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,411.7,0.114,scgpt_donor_curve_shard1_timing.json,"eval donor D454, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,420.3,0.117,scgpt_donor_curve_shard2_timing.json,"eval donor D397, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,418.7,0.116,scgpt_donor_curve_shard2_timing.json,"eval donor D429, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=64,408.9,0.114,scgpt_donor_curve_shard2_timing.json,"eval donor D483, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,255.9,0.071,scgpt_donor_curve_k8_phase1_gpu1_timing.json,"eval donor D364, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,264.7,0.074,scgpt_donor_curve_k8_phase1_gpu1_timing.json,"eval donor D411, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,267.4,0.074,scgpt_donor_curve_k8_phase1_gpu1_timing.json,"eval donor D429, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,263.7,0.073,scgpt_donor_curve_k8_phase1_gpu1_timing.json,"eval donor D454, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,286.3,0.08,scgpt_donor_curve_k8_phase1_gpu1_timing.json,"eval donor D484, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,270.9,0.075,scgpt_donor_curve_shard0_timing.json,"eval donor D353, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,261.3,0.073,scgpt_donor_curve_shard0_timing.json,"eval donor D431, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,261.8,0.073,scgpt_donor_curve_shard1_timing.json,"eval donor D424, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,263.3,0.073,scgpt_donor_curve_shard2_timing.json,"eval donor D397, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=8,247.2,0.069,scgpt_donor_curve_shard2_timing.json,"eval donor D483, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,425.3,0.118,scgpt_donor_curve_k96_costanchor_timing.json,"eval donor D483, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,496.0,0.138,scgpt_donor_curve_shard0_timing.json,"eval donor D353, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,444.3,0.123,scgpt_donor_curve_shard0_timing.json,"eval donor D411, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,480.3,0.133,scgpt_donor_curve_shard0_timing.json,"eval donor D431, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,459.3,0.128,scgpt_donor_curve_shard0_timing.json,"eval donor D484, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,430.0,0.119,scgpt_donor_curve_shard1_timing.json,"eval donor D364, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,587.3,0.163,scgpt_donor_curve_shard1_timing.json,"eval donor D424, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,531.7,0.148,scgpt_donor_curve_shard1_timing.json,"eval donor D454, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,439.9,0.122,scgpt_donor_curve_shard2_timing.json,"eval donor D397, seed 0"
+9 scGPT donor curve,scGPT,T2 learning curve k=96,562.2,0.156,scgpt_donor_curve_shard2_timing.json,"eval donor D429, seed 0"

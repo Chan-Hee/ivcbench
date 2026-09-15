@@ -1,0 +1,5 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PertAdapt,hybrid,C4_modality_lo_ko_25,failed,False,,,,,,,,,"RuntimeError: PertAdapt runner failed (rc=1):
+… FileNotFoundError: [Errno 2] No such file or directory: '/data1/home/chlee/projects/immune virtual cell/benchmark/vendor/pertadapt_repo/scFoundation/model/OS_scRNA_ge",,25
+PertAdapt,hybrid,C4_modality_lo_ko_50,failed,False,,,,,,,,,"RuntimeError: PertAdapt runner failed (rc=1):
+… FileNotFoundError: [Errno 2] No such file or directory: '/data1/home/chlee/projects/immune virtual cell/benchmark/vendor/pertadapt_repo/scFoundation/model/OS_scRNA_ge",,50

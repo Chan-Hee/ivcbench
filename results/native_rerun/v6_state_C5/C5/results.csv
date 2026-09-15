@@ -1,0 +1,6 @@
+cluster,dataset,modality,split,baseline,family,action,headline_eligible,registry_task,pearson_delta,pearson_delta_ontarget,e_distance,aucell_program_corr,aucell::type_I_IFN,aucell::inflammatory_NFkB,aucell::effector_lymphocyte,ran
+C5,op3_GSE279945,,C5_global_compound_holdout,STATE,hybrid,run_floor,False,C5_unseen_cpd,0.11502123626246649,0.11502123626246649,19.647513000368683,,,,,True
+C5,op3_GSE279945,,C5_loct_B,STATE,hybrid,run_headline,True,C5_LOCT,0.033350672902867,0.033350672902867,15.377128085052059,-0.01812816604044405,-0.01812816604044405,,,True
+C5,op3_GSE279945,,C5_loct_Mono,STATE,hybrid,run_headline,True,C5_LOCT,0.0053248476653583775,0.0053248476653583775,33.38850236700654,0.042875804565953815,0.042875804565953815,,,True
+C5,op3_GSE279945,,C5_loct_NK,STATE,hybrid,run_headline,True,C5_LOCT,-0.03970019469137834,-0.03970019469137834,22.682415592397646,0.03907270889224133,0.03907270889224133,,,True
+C5,op3_GSE279945,,C5_loct_T_cells,STATE,hybrid,run_headline,True,C5_LOCT,-0.04718115374970395,-0.04718115374970395,16.441459236538417,0.02102097552186868,0.02102097552186868,,,True

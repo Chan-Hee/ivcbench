@@ -54,29 +54,52 @@ def main(in_path: str, out_path: str) -> None:
     if X.shape[0] > cap:
         rng = np.random.default_rng(0)
         per = max(2, cap // max(1, len(set(cond))))
-        keep = np.sort(np.concatenate(
-            [(lambda ci: ci if len(ci) <= per else rng.choice(ci, per, replace=False))(np.where(cond == c)[0])
-             for c in set(cond)]))
+        keep = np.sort(
+            np.concatenate(
+                [
+                    (
+                        lambda ci: (
+                            ci if len(ci) <= per else rng.choice(ci, per, replace=False)
+                        )
+                    )(np.where(cond == c)[0])
+                    for c in set(cond)
+                ]
+            )
+        )
         X, cond, is_ctrl = X[keep], cond[keep], is_ctrl[keep]
     adata = ad.AnnData(X.copy())
     adata.var_names = genes
     adata.obs["condition"] = cond
     adata.obs["cell_type"] = "Tcell"
 
-    cpa.CPA.setup_anndata(adata, perturbation_key="condition", control_group="ctrl",
-                          is_count_data=False, categorical_covariate_keys=["cell_type"],
-                          max_comb_len=1)
+    cpa.CPA.setup_anndata(
+        adata,
+        perturbation_key="condition",
+        control_group="ctrl",
+        is_count_data=False,
+        categorical_covariate_keys=["cell_type"],
+        max_comb_len=1,
+    )
     model = cpa.CPA(adata, n_latent=64, recon_loss="gauss")
-    model.train(max_epochs=epochs, batch_size=256, early_stopping_patience=8,
-                use_gpu=torch.cuda.is_available(), plan_kwargs={"lr": 1e-3})
+    model.train(
+        max_epochs=epochs,
+        batch_size=256,
+        early_stopping_patience=8,
+        use_gpu=torch.cuda.is_available(),
+        plan_kwargs={"lr": 1e-3},
+    )
 
     # full latent z per cell (the latent CPA.generative consumes)
     lat = model.get_latent_representation(adata)
-    z_all = np.asarray(lat["latent_after"].X if "latent_after" in lat else
-                       lat[list(lat)[-1]].X, dtype=np.float32)
+    z_all = np.asarray(
+        lat["latent_after"].X if "latent_after" in lat else lat[list(lat)[-1]].X,
+        dtype=np.float32,
+    )
     z_ctrl = z_all[cond == "ctrl"].mean(0)
 
-    train_genes = [g for g in pd.unique(cond[cond != "ctrl"]) if g in gene_pos]  # from capped cond
+    train_genes = [
+        g for g in pd.unique(cond[cond != "ctrl"]) if g in gene_pos
+    ]  # from capped cond
     D, E = [], []
     for g in train_genes:
         zg = z_all[cond == g]
@@ -85,12 +108,16 @@ def main(in_path: str, out_path: str) -> None:
         D.append(zg.mean(0) - z_ctrl)
         E.append(gene_emb[gene_pos[g]])
     if len(D) < 3:
-        raise RuntimeError("CPA: too few train-gene deltas to regress the gene-side map")
+        raise RuntimeError(
+            "CPA: too few train-gene deltas to regress the gene-side map"
+        )
     reg = Ridge(alpha=1.0).fit(np.vstack(E), np.vstack(D))
 
     # decode (z_ctrl + δ_held) via CPA's generative head, anchored on control cells
     n_dec = min(256, int((cond == "ctrl").sum()))
-    z_cd = torch.tensor(z_all[cond == "ctrl"][:n_dec], dtype=torch.float32, device=model.device)
+    z_cd = torch.tensor(
+        z_all[cond == "ctrl"][:n_dec], dtype=torch.float32, device=model.device
+    )
     gen = model.module.generative
 
     pred_perts, pred_means = [], []
@@ -98,19 +125,29 @@ def main(in_path: str, out_path: str) -> None:
         for g in test_perts:
             if g not in gene_pos:
                 continue
-            delta = torch.tensor(reg.predict(gene_emb[gene_pos[g]][None, :])[0],
-                                 dtype=torch.float32, device=model.device)
+            delta = torch.tensor(
+                reg.predict(gene_emb[gene_pos[g]][None, :])[0],
+                dtype=torch.float32,
+                device=model.device,
+            )
             out = gen(z_cd + delta[None, :])
             px = out["px"] if isinstance(out, dict) else out
-            px = px.mean if hasattr(px, "mean") and not isinstance(px, np.ndarray) else px
+            px = (
+                px.mean
+                if hasattr(px, "mean") and not isinstance(px, np.ndarray)
+                else px
+            )
             px = np.asarray(px.cpu() if hasattr(px, "cpu") else px, dtype=np.float32)
             pred_perts.append(g)
             pred_means.append(px.mean(0).astype(np.float32))
 
     if not pred_perts:
         raise RuntimeError("CPA: no held genes in the panel to predict")
-    np.savez(out_path, pred_perts=np.array(pred_perts, dtype=object),
-             pred_means=np.vstack(pred_means).astype(np.float32))
+    np.savez(
+        out_path,
+        pred_perts=np.array(pred_perts, dtype=object),
+        pred_means=np.vstack(pred_means).astype(np.float32),
+    )
 
 
 if __name__ == "__main__":

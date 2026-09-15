@@ -1,0 +1,3 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+Biolord,latent,C4_modality_lo_ko_25,run_headline,True,True,10700,3576,62,0.6264579315339366,0.6076347020484747,0.6422391867445361,6.466278113536777,,,25
+Biolord,latent,C4_modality_lo_ko_50,run_headline,True,True,7232,7044,124,0.5990873065686995,0.5844414697359166,0.612808623411242,6.630605759862096,,,50

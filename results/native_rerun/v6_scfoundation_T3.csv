@@ -1,0 +1,2 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+scFoundation,foundation,C3_true_lo_gene_10,failed,False,,,,,,,,,"TimeoutExpired: Command '['/data1/home/chlee/miniconda3/envs/scfoundation/bin/python', '/data1/home/chlee/projects/immune virtual cell/ivcbench/model_runners/scfoundation_gene_runner.py', '/tmp/tmp9u88fmi7/in.npz', '",,chen

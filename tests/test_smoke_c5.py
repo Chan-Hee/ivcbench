@@ -1,4 +1,5 @@
 """End-to-end smoke test — the GPU-free proof that the C5 "1패스" pipeline is sound."""
+
 import numpy as np
 
 from ivcbench.baselines.simple import SIMPLE_BASELINES
@@ -12,8 +13,10 @@ def _run_all(spec):
     cs = make_op3_like(seed=0)
     validate_cellset(cs)
     program = cs.uns["immune_program"]["immunomod_moa"]
-    return {B().name: run_job(cs, spec, B(), seed=0, immune_program_genes=program)
-            for B in SIMPLE_BASELINES}
+    return {
+        B().name: run_job(cs, spec, B(), seed=0, immune_program_genes=program)
+        for B in SIMPLE_BASELINES
+    }
 
 
 def test_loct_pipeline_runs_and_audits():

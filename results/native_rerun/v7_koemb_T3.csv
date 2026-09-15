@@ -1,0 +1,6 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+linear-shift-KOemb,latent,C3_true_lo_gene_10,run_headline,True,True,301574,34240,30,0.5092374629699151,0.4535940336902517,0.5609005752428562,7.507179115549459,,,chen
+linear-shift-KOemb,latent,C3_true_lo_gene_10,run_headline,True,True,15908,1781,2,0.594022600871558,0.5821433196495963,0.6059018820935197,7.5601667523435765,,,mccutcheon_CRISPRa
+linear-shift-KOemb,latent,C3_true_lo_gene_10,run_headline,True,True,18320,1778,2,0.42966942648605255,0.33592617030249977,0.5234126826696054,7.611010718603685,,,mccutcheon_CRISPRi
+linear-shift-KOemb,latent,C3_true_lo_gene_10,run_headline,True,True,19418,1851,7,0.4544857357908751,0.2815804211154788,0.6059765023086783,10.07997774597092,,,schmidt
+linear-shift-KOemb,latent,C3_true_lo_gene_10,run_headline,True,True,23496,1598,2,0.4423634461829729,0.4243262390819736,0.4604006532839722,7.455020399893549,,,shifrut

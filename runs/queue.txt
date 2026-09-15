@@ -1,0 +1,80 @@
+# job-id	gpu	command	needs
+# Re-runs with the B3 float64 fix AND IVCBENCH_PRED_DUMP set. Every run before 06:41 UTC
+# used pre-fix code and deposited NO bundle, so none of them could enter the census.
+# Ordered cheap -> expensive so an interruption costs the least.
+v2_scpram_T1	1	.venv/bin/python scripts/run_obligation.py --model scPRAM --task T1 --gpu 1 --out results/native_rerun/v6_scpram_T1.csv	
+v2_state_C4	1	env IVCBENCH_C4_ONLY=STATE CUDA_VISIBLE_DEVICES=1 .venv/bin/python scripts/run_c4_conditioned.py	v2_scpram_T1
+v2_koemb_C4	3	env IVCBENCH_C4_ONLY=linear-shift-KOemb CUDA_VISIBLE_DEVICES=3 .venv/bin/python scripts/run_c4_conditioned.py	v2_pertadapt_T4
+v2_scpram_T5c	1	.venv/bin/python scripts/run_obligation.py --model scPRAM --task T5c --gpu 1 --out results/native_rerun/v6_scpram_T5c.csv	v2_state_C4
+v2_scgen_C5	3	env CUDA_VISIBLE_DEVICES=3 .venv/bin/python scripts/run_cluster.py --cluster C5 --real --only scGen --seeds 0 --outdir results/native_rerun/v6_scgen_C5	v2_koemb_C4
+v2_state_C5	1	env CUDA_VISIBLE_DEVICES=1 .venv/bin/python scripts/run_cluster.py --cluster C5 --real --only STATE --seeds 0 --outdir results/native_rerun/v6_state_C5	v2_scpram_T5c
+v2_state_C3	3	env CUDA_VISIBLE_DEVICES=3 .venv/bin/python scripts/run_cluster.py --cluster C3 --real --only STATE --seeds 0 --outdir results/native_rerun/v6_state_C3	v2_scgen_C5
+v2_perturbnet_T5c	0	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T5c --gpu 0 --out results/native_rerun/v6_perturbnet_T5c.csv	
+v2_chemcpa_T5c	2	.venv/bin/python scripts/run_obligation.py --model chemCPA --task T5c --gpu 2 --out results/native_rerun/v6_chemcpa_T5c.csv	
+cellot_T5c	1	.venv/bin/python scripts/run_obligation.py --model CellOT --task T5c --gpu 1 --out results/native_rerun/v6_cellot_T5c.csv	v2_state_C5
+koemb_T3_v2	3	.venv/bin/python scripts/run_obligation.py --model linear-shift-KOemb --task T3 --gpu 3 --out results/native_rerun/v6_koemb_T3_v2.csv	v2_state_C3
+cellflow_T4	0	.venv/bin/python scripts/run_obligation.py --model CellFlow --task T4 --gpu 0 --out results/native_rerun/v6_cellflow_T4.csv	v2_perturbnet_T5c
+perturbnet_T4	2	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T4 --gpu 2 --out results/native_rerun/v6_perturbnet_T4.csv	v2_chemcpa_T5c
+perturbnet_T5u	0	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T5u --gpu 0 --out results/native_rerun/v6_perturbnet_T5u.csv	cellflow_T4
+cellflow_T3	2	.venv/bin/python scripts/run_obligation.py --model CellFlow --task T3 --gpu 2 --out results/native_rerun/v6_cellflow_T3.csv	perturbnet_T4
+perturbnet_T3	3	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T3 --gpu 3 --out results/native_rerun/v6_perturbnet_T3.csv	koemb_T3_v2
+scfoundation_T4	2	.venv/bin/python scripts/run_obligation.py --model scFoundation --task T4 --gpu 2 --out results/native_rerun/v6_scfoundation_T4.csv	cellflow_T3
+scfoundation_T3	0	.venv/bin/python scripts/run_obligation.py --model scFoundation --task T3 --gpu 0 --out results/native_rerun/v6_scfoundation_T3.csv	perturbnet_T5u
+cpa_T1	1	.venv/bin/python scripts/run_obligation.py --model CPA --task T1 --gpu 1 --out results/native_rerun/v7_cpa_T1.csv	
+cpa_T2	2	.venv/bin/python scripts/run_obligation.py --model CPA --task T2 --gpu 2 --out results/native_rerun/v7_cpa_T2.csv	
+cpa_T5c	3	.venv/bin/python scripts/run_obligation.py --model CPA --task T5c --gpu 3 --out results/native_rerun/v7_cpa_T5c.csv	
+pertadapt_T4_v2	0	.venv/bin/python scripts/run_obligation.py --model PertAdapt --task T4 --gpu 0 --out results/native_rerun/v7_pertadapt_T4_v2.csv	
+pertadapt_T3_v2	1	.venv/bin/python scripts/run_obligation.py --model PertAdapt --task T3 --gpu 1 --out results/native_rerun/v7_pertadapt_T3.csv	
+gears_T4	3	.venv/bin/python scripts/run_obligation.py --model GEARS --task T4 --gpu 3 --out results/native_rerun/v7_gears_T4.csv	
+perturbnet_T1	3	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T1 --gpu 3 --out results/native_rerun/v6_perturbnet_T1.csv	
+perturbnet_T2	3	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T2 --gpu 3 --out results/native_rerun/v6_perturbnet_T2.csv	
+scgpt_T4	0	.venv/bin/python scripts/run_obligation.py --model scGPT --task T4 --gpu 0 --out results/native_rerun/v6_scgpt_T4.csv	
+attnpert_T4	1	.venv/bin/python scripts/run_obligation.py --model AttentionPert --task T4 --gpu 1 --out results/native_rerun/v7_attnpert_T4.csv	
+state_T1_split	2	.venv/bin/python scripts/run_obligation.py --model STATE --task T1 --gpu 2 --out results/native_rerun/v7_state_T1.csv	
+chemcpa_T5u_shim	0	env CUDA_VISIBLE_DEVICES=0 bash runs/chemcpa_t5u_shim.sh	
+state_T5c_split	1	.venv/bin/python scripts/run_obligation.py --model STATE --task T5c --gpu 1 --out results/native_rerun/v7_state_T5c.csv	
+cellot_T5c_u0	0	.venv/bin/python scripts/run_obligation.py --model CellOT --task T5c --chunk 0 4 --gpu 0 --out results/native_rerun/v7_cellot_T5c_u0.csv	
+cellot_T5c_u1	1	env IVCBENCH_CELLOT_ITERS_PER_CPD=2000 .venv/bin/python scripts/run_obligation.py --model CellOT --task T5c --chunk 1 4 --gpu 1 --out results/native_rerun/v7_cellot_T5c_u1.csv	
+cellot_T5c_u2	2	.venv/bin/python scripts/run_obligation.py --model CellOT --task T5c --chunk 2 4 --gpu 2 --out results/native_rerun/v7_cellot_T5c_u2.csv	
+cellot_T5c_u3	3	.venv/bin/python scripts/run_obligation.py --model CellOT --task T5c --chunk 3 4 --gpu 3 --out results/native_rerun/v7_cellot_T5c_u3.csv	
+scf_T3_u2	2	.venv/bin/python scripts/run_obligation.py --model scFoundation --task T3 --chunk 2 5 --gpu 2 --out results/native_rerun/v7_scfoundation_T3_u2.csv	
+scf_T3_u3	3	.venv/bin/python scripts/run_obligation.py --model scFoundation --task T3 --chunk 3 5 --gpu 3 --out results/native_rerun/v7_scfoundation_T3_u3.csv	
+state_T2b_5	1	.venv/bin/python scripts/state_soskic.py --chunk 5 8 --gpu 1 --out outputs/native_rerun/state_soskic_v2_shard5.csv --timing-out outputs/native_rerun/state_soskic_v2_timing5.json	
+scf_T3_u0	0	.venv/bin/python scripts/run_obligation.py --model scFoundation --task T3 --chunk 0 5 --gpu 0 --out results/native_rerun/v7_scfoundation_T3_u0.csv	
+scf_T4_u1	3	.venv/bin/python scripts/run_obligation.py --model scFoundation --task T4 --chunk 1 2 --gpu 3 --out results/native_rerun/v7_scfoundation_T4_u1.csv	
+state_T2b_2	2	.venv/bin/python scripts/state_soskic.py --chunk 2 8 --gpu 2 --out outputs/native_rerun/state_soskic_v2_shard2.csv --timing-out outputs/native_rerun/state_soskic_v2_timing2.json	
+cellot_T5c_b0	0	env IVCBENCH_CELLOT_ITERS_PER_CPD=2000 .venv/bin/python scripts/run_obligation.py --model CellOT --task T5c --chunk 0 4 --gpu 0 --out results/native_rerun/v7_cellot_T5c_b0.csv	
+cellot_T5c_b2	2	env IVCBENCH_CELLOT_ITERS_PER_CPD=2000 .venv/bin/python scripts/run_obligation.py --model CellOT --task T5c --chunk 2 4 --gpu 2 --out results/native_rerun/v7_cellot_T5c_b2.csv	
+cellot_T5c_b3	3	env IVCBENCH_CELLOT_ITERS_PER_CPD=2000 .venv/bin/python scripts/run_obligation.py --model CellOT --task T5c --chunk 3 4 --gpu 3 --out results/native_rerun/v7_cellot_T5c_b3.csv	
+state_T2b_0	0	.venv/bin/python scripts/state_soskic.py --chunk 0 8 --gpu 0 --out outputs/native_rerun/state_soskic_v2_shard0.csv --timing-out outputs/native_rerun/state_soskic_v2_timing0.json	
+state_T2b_1	1	.venv/bin/python scripts/state_soskic.py --chunk 1 8 --gpu 1 --out outputs/native_rerun/state_soskic_v2_shard1.csv --timing-out outputs/native_rerun/state_soskic_v2_timing1.json	
+state_T2b_3	3	.venv/bin/python scripts/state_soskic.py --chunk 3 8 --gpu 3 --out outputs/native_rerun/state_soskic_v2_shard3.csv --timing-out outputs/native_rerun/state_soskic_v2_timing3.json	
+state_T2b_4	0	.venv/bin/python scripts/state_soskic.py --chunk 4 8 --gpu 0 --out outputs/native_rerun/state_soskic_v2_shard4.csv --timing-out outputs/native_rerun/state_soskic_v2_timing4.json	
+state_T2b_6	2	.venv/bin/python scripts/state_soskic.py --chunk 6 8 --gpu 2 --out outputs/native_rerun/state_soskic_v2_shard6.csv --timing-out outputs/native_rerun/state_soskic_v2_timing6.json	
+state_T2b_7	3	.venv/bin/python scripts/state_soskic.py --chunk 7 8 --gpu 3 --out outputs/native_rerun/state_soskic_v2_shard7.csv --timing-out outputs/native_rerun/state_soskic_v2_timing7.json	
+state_T2c_0	0	env IVCBENCH_STATE_SOSKIC_RUNNER=state_soskic_split_runner.py .venv/bin/python scripts/state_soskic.py --chunk 0 8 --gpu 0 --out outputs/native_rerun/state_soskic_v3_shard0.csv --timing-out outputs/native_rerun/state_soskic_v3_timing0.json	
+state_T2c_1	1	env IVCBENCH_STATE_SOSKIC_RUNNER=state_soskic_split_runner.py .venv/bin/python scripts/state_soskic.py --chunk 1 8 --gpu 1 --out outputs/native_rerun/state_soskic_v3_shard1.csv --timing-out outputs/native_rerun/state_soskic_v3_timing1.json	
+state_T2c_2	2	env IVCBENCH_STATE_SOSKIC_RUNNER=state_soskic_split_runner.py .venv/bin/python scripts/state_soskic.py --chunk 2 8 --gpu 2 --out outputs/native_rerun/state_soskic_v3_shard2.csv --timing-out outputs/native_rerun/state_soskic_v3_timing2.json	
+state_T2c_3	3	env IVCBENCH_STATE_SOSKIC_RUNNER=state_soskic_split_runner.py .venv/bin/python scripts/state_soskic.py --chunk 3 8 --gpu 3 --out outputs/native_rerun/state_soskic_v3_shard3.csv --timing-out outputs/native_rerun/state_soskic_v3_timing3.json	
+state_T2c_4	0	env IVCBENCH_STATE_SOSKIC_RUNNER=state_soskic_split_runner.py .venv/bin/python scripts/state_soskic.py --chunk 4 8 --gpu 0 --out outputs/native_rerun/state_soskic_v3_shard4.csv --timing-out outputs/native_rerun/state_soskic_v3_timing4.json	
+state_T2c_5	1	env IVCBENCH_STATE_SOSKIC_RUNNER=state_soskic_split_runner.py .venv/bin/python scripts/state_soskic.py --chunk 5 8 --gpu 1 --out outputs/native_rerun/state_soskic_v3_shard5.csv --timing-out outputs/native_rerun/state_soskic_v3_timing5.json	
+state_T2c_6	2	env IVCBENCH_STATE_SOSKIC_RUNNER=state_soskic_split_runner.py .venv/bin/python scripts/state_soskic.py --chunk 6 8 --gpu 2 --out outputs/native_rerun/state_soskic_v3_shard6.csv --timing-out outputs/native_rerun/state_soskic_v3_timing6.json	
+state_T2c_7	3	env IVCBENCH_STATE_SOSKIC_RUNNER=state_soskic_split_runner.py .venv/bin/python scripts/state_soskic.py --chunk 7 8 --gpu 3 --out outputs/native_rerun/state_soskic_v3_shard7.csv --timing-out outputs/native_rerun/state_soskic_v3_timing7.json	
+pn_T2_u0	0	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T2 --chunk 0 8 --gpu 0 --out results/native_rerun/v7_perturbnet_T2_u0.csv	
+pn_T2_u1	1	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T2 --chunk 1 8 --gpu 1 --out results/native_rerun/v7_perturbnet_T2_u1.csv	
+pn_T2_u2	2	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T2 --chunk 2 8 --gpu 2 --out results/native_rerun/v7_perturbnet_T2_u2.csv	
+pn_T2_u3	3	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T2 --chunk 3 8 --gpu 3 --out results/native_rerun/v7_perturbnet_T2_u3.csv	
+pn_T2_u4	0	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T2 --chunk 4 8 --gpu 0 --out results/native_rerun/v7_perturbnet_T2_u4.csv	
+pn_T2_u5	1	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T2 --chunk 5 8 --gpu 1 --out results/native_rerun/v7_perturbnet_T2_u5.csv	
+pn_T2_u6	2	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T2 --chunk 6 8 --gpu 2 --out results/native_rerun/v7_perturbnet_T2_u6.csv	
+pn_T2_u7	3	.venv/bin/python scripts/run_obligation.py --model PerturbNet --task T2 --chunk 7 8 --gpu 3 --out results/native_rerun/v7_perturbnet_T2_u7.csv	
+pa_T3_u0	0	.venv/bin/python scripts/run_obligation.py --model PertAdapt --task T3 --chunk 0 5 --gpu 0 --out results/native_rerun/v8_pertadapt_T3_u0.csv	
+pa_T3_u1	1	.venv/bin/python scripts/run_obligation.py --model PertAdapt --task T3 --chunk 1 5 --gpu 1 --out results/native_rerun/v8_pertadapt_T3_u1.csv	
+pa_T3_u2	2	.venv/bin/python scripts/run_obligation.py --model PertAdapt --task T3 --chunk 2 5 --gpu 2 --out results/native_rerun/v8_pertadapt_T3_u2.csv	
+pa_T3_u3	3	.venv/bin/python scripts/run_obligation.py --model PertAdapt --task T3 --chunk 3 5 --gpu 3 --out results/native_rerun/v8_pertadapt_T3_u3.csv	
+pa_T3_u4	0	.venv/bin/python scripts/run_obligation.py --model PertAdapt --task T3 --chunk 4 5 --gpu 0 --out results/native_rerun/v8_pertadapt_T3_u4.csv	
+pa_T4_u0	2	.venv/bin/python scripts/run_obligation.py --model PertAdapt --task T4 --chunk 0 2 --gpu 2 --out results/native_rerun/v8_pertadapt_T4_u0.csv	
+pa_T4_u1	3	.venv/bin/python scripts/run_obligation.py --model PertAdapt --task T4 --chunk 1 2 --gpu 3 --out results/native_rerun/v8_pertadapt_T4_u1.csv	
+scf_T3_u1	1	.venv/bin/python scripts/run_obligation.py --model scFoundation --task T3 --chunk 1 5 --gpu 1 --out results/native_rerun/v7_scfoundation_T3_u1.csv	
+scf_T3_u4	0	.venv/bin/python scripts/run_obligation.py --model scFoundation --task T3 --chunk 4 5 --gpu 0 --out results/native_rerun/v7_scfoundation_T3_u4.csv	
+scf_T4_u0	2	.venv/bin/python scripts/run_obligation.py --model scFoundation --task T4 --chunk 0 2 --gpu 2 --out results/native_rerun/v7_scfoundation_T4_u0.csv	

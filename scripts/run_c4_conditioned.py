@@ -23,7 +23,7 @@ os.environ.setdefault("IVCBENCH_SCGEN_EPOCHS", "40")
 from ivcbench.data.loaders.frangieh import load
 from ivcbench.clusters import c4
 from ivcbench.runner.run import run_job
-from ivcbench.baselines.heavy import ScGen
+from ivcbench.baselines.heavy import STATE, ScGen
 from ivcbench.baselines.base import BaselineAdapter, PredResult
 from ivcbench.splits.builder import build_split
 
@@ -69,14 +69,46 @@ class LinearShiftKOEmb(BaselineAdapter):
 
     def predict(self, cs, split, side_info=None) -> PredResult:
         test_perts = cs.obs.iloc[split.test_idx]["perturbation"].to_numpy().astype(str)
-        preds = []
+        preds, declined = [], []
         for p in test_perts:
             if p in self.gpos:
                 shift = self.reg.predict(self.gene_emb[self.gpos[p]][None, :])[0]
                 preds.append(self.ctrl + shift)
+                declined.append(False)
             else:
-                preds.append(self.ctrl)  # no embedding -> fall back to control
-        return PredResult(np.vstack(preds), self.ctrl)
+                # No embedding for this knockout, so there is nothing to regress from. Keep the
+                # control mean for shape but flag it -- an unflagged control is scored as a real
+                # prediction of "this knockout does nothing".
+                preds.append(self.ctrl)
+                declined.append(True)
+        declined = np.asarray(declined, dtype=bool)
+        if declined.any():
+            miss = sorted({p for p, d in zip(test_perts, declined) if d})
+            print(
+                f"[decline] linear-shift-KOemb: {declined.sum()}/{len(declined)} test rows have "
+                f"no gene embedding and keep the control mean: {miss}",
+                flush=True,
+            )
+        return PredResult(np.vstack(preds), self.ctrl, declined=declined)
+
+
+# The T4 conditioned roster lives here, not in the C4 cluster spec (whose baselines list is
+# SIMPLE_BASELINES only). STATE is added because its published interface takes a continuous
+# perturbation feature and the held knockout is a gene symbol, so T4 is a native cell for it;
+# --only lets a single model be re-run without recomputing the others.
+_ALL_MODELS = {"linear-shift-KOemb": LinearShiftKOEmb, "scGen": ScGen, "STATE": STATE}
+
+
+def _selected_models():
+    want = os.environ.get("IVCBENCH_C4_ONLY", "").strip()
+    if not want:
+        return [LinearShiftKOEmb, ScGen]          # the historical default roster
+    out = []
+    for name in [w.strip() for w in want.split(",") if w.strip()]:
+        if name not in _ALL_MODELS:
+            raise SystemExit(f"unknown model {name!r}; known: {sorted(_ALL_MODELS)}")
+        out.append(_ALL_MODELS[name])
+    return out
 
 
 def main():
@@ -97,7 +129,7 @@ def main():
             excl = list(
                 spec.held_values
             )  # downstream_only=True -> exclude held KO genes
-            for B in [LinearShiftKOEmb, ScGen]:
+            for B in _selected_models():
                 t0 = time.time()
                 adapter = B()
                 try:
@@ -141,15 +173,36 @@ def main():
                         "pearson_delta_lo",
                         "pearson_delta_hi",
                         "e_distance",
+                        # How much of this number is a real prediction. The protein-CITE arm
+                        # deposits no bundle, so without these two keys a 99%-declined row and a
+                        # fully-predicted row are indistinguishable in this file.
+                        "n_declined_cells",
+                        "frac_declined",
                         "elapsed_s",
                         "error",
                     )
                 }
                 print(json.dumps(keep), flush=True)
-    Path("results/C4/conditioned_rows.json").write_text(
-        json.dumps(out_rows, indent=2, default=str)
+    # IVCBENCH_C4_ONLY runs one model, so writing out_rows wholesale DELETES the rows every other
+    # model left here. That already happened: a STATE-only re-run left this file holding STATE and
+    # nothing else. Merge on (model, split) instead -- a re-run replaces its own rows and leaves
+    # the rest of the file alone.
+    dest = Path("results/C4/conditioned_rows.json")
+    merged = []
+    if dest.exists():
+        try:
+            merged = json.loads(dest.read_text())
+        except Exception:
+            merged = []
+    def _key(r):
+        return (str(r.get("baseline") or r.get("model")), str(r.get("split")))
+    fresh = {_key(r) for r in out_rows}
+    merged = [r for r in merged if _key(r) not in fresh] + out_rows
+    dest.write_text(json.dumps(merged, indent=2, default=str))
+    print(
+        f"WROTE results/C4/conditioned_rows.json "
+        f"({len(out_rows)} row(s) from this run, {len(merged)} total)"
     )
-    print("WROTE results/C4/conditioned_rows.json")
 
 
 if __name__ == "__main__":

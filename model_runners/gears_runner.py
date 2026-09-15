@@ -32,8 +32,10 @@ def _gene2go_path() -> str:
     cand = here / "data" / "_assets" / "gears" / "gene2go_all.pkl"
     if cand.exists():
         return str(cand)
-    raise FileNotFoundError("gene2go_all.pkl not found; set $IVCBENCH_GENE2GO "
-                            "(see model_runners/README.md).")
+    raise FileNotFoundError(
+        "gene2go_all.pkl not found; set $IVCBENCH_GENE2GO "
+        "(see model_runners/README.md)."
+    )
 
 
 def main(in_path: str, out_path: str) -> None:
@@ -59,7 +61,9 @@ def main(in_path: str, out_path: str) -> None:
     X, pert_train, is_ctrl = X[ok], pert_train[ok], is_ctrl[ok]
 
     # ---- build the GEARS-format AnnData from the leak-safe training cells ----
-    cond = np.where(is_ctrl, "ctrl", np.array([f"{p}+ctrl" for p in pert_train], dtype=object))
+    cond = np.where(
+        is_ctrl, "ctrl", np.array([f"{p}+ctrl" for p in pert_train], dtype=object)
+    )
     # GEARS builds a per-cell graph → cap training cells (stratified by condition) for tractability
     cap = int(os.environ.get("IVCBENCH_GEARS_MAX_CELLS", "40000"))
     if X.shape[0] > cap:
@@ -82,6 +86,35 @@ def main(in_path: str, out_path: str) -> None:
     data_dir = work / "data"
     data_dir.mkdir(parents=True)
     shutil.copy(_gene2go_path(), data_dir / "gene2go_all.pkl")
+    # GEARS downloads gene2go.pkl from Harvard Dataverse when it is absent
+    # (gears/utils.py:94-97). With no outbound network the download writes the HTML error page to
+    # that filename and the next load dies with "invalid load key, '<'". Place the local copy so no
+    # download is attempted; a stale HTML file from an earlier attempt is replaced.
+    _g2g = data_dir / "gene2go.pkl"
+    shutil.copy(_gene2go_path(), _g2g)
+    print(f"[assets] gene2go pre-placed at {_g2g} (no network fetch)", flush=True)
+
+    # F-05: at PREDICTION time the released helper writes the flag as
+    #     pert_feats[abs(p)] = np.sign(p)            (gears/utils.py:272)
+    # so a target at gene index 0 gets sign(0) = 0 and the model, which selects flag == 1
+    # (gears/model.py:126-127), sees no perturbation. The Frangieh T4 panel begins with A2M, which
+    # is itself a held target. The TRAINING path is unaffected -- pertdata.py:263 already writes a
+    # literal 1 -- so this is an inference-only repair and no model needs retraining.
+    import gears.utils as _gu
+    from torch_geometric.data import Data as _PyGData
+
+    def _create_cell_graph_for_prediction(X, pert_idx, pert_gene):
+        feats = np.zeros(len(X))
+        for _p in pert_idx:
+            if _p is None or int(_p) < 0:
+                continue                      # -1 marks "no perturbation", as upstream intends
+            feats[int(abs(_p))] = 1.0         # the authors' own training-side convention
+        mat = torch.Tensor(np.vstack([X, feats])).T
+        return _PyGData(x=mat, pert=pert_gene)
+
+    _gu.create_cell_graph_for_prediction = _create_cell_graph_for_prediction
+    print("[F-05] inference perturbation flag set to 1 for every requested target, index 0 "
+          "included (training path already used 1)", flush=True)
     seed = 1
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -100,7 +133,9 @@ def main(in_path: str, out_path: str) -> None:
         model.train(epochs=int(os.environ.get("IVCBENCH_GEARS_EPOCHS", "15")))
 
         # GEARS can only perturb genes in its gene2go ∩ HVG universe
-        perturbable = set(getattr(model, "pert_list", []) or getattr(pert_data, "pert_names", []))
+        perturbable = set(
+            getattr(model, "pert_list", []) or getattr(pert_data, "pert_names", [])
+        )
         gene_pos = {g: i for i, g in enumerate(genes)}
         pred_perts, pred_means = [], []
         for g in test_perts:
@@ -120,9 +155,14 @@ def main(in_path: str, out_path: str) -> None:
         shutil.rmtree(work, ignore_errors=True)
 
     if not pred_perts:
-        raise RuntimeError("GEARS predicted no held genes (none in gene2go ∩ HVG universe).")
-    np.savez(out_path, pred_perts=np.array(pred_perts, dtype=object),
-             pred_means=np.vstack(pred_means).astype(np.float32))
+        raise RuntimeError(
+            "GEARS predicted no held genes (none in gene2go ∩ HVG universe)."
+        )
+    np.savez(
+        out_path,
+        pred_perts=np.array(pred_perts, dtype=object),
+        pred_means=np.vstack(pred_means).astype(np.float32),
+    )
 
 
 if __name__ == "__main__":

@@ -173,6 +173,21 @@ def main():
         "--timing-out",
         default=str(ROOT / "results/newdata/scgpt_donor_learning_curve_timing.json"),
     )
+    ap.add_argument(
+        "--eval-epochs",
+        default="",
+        help=(
+            "comma-separated epoch numbers at which to ALSO score the model, e.g. '5,10,15,20'. "
+            "One fine-tune per unit produces every point, so the epoch curve is matched on donor, "
+            "seed, subset draw AND batch order -- the only thing that varies is how long it trained. "
+            "Rows carry epochs_at_eval; the final-epoch row is the ordinary deposited-path row."
+        ),
+    )
+    ap.add_argument(
+        "--ckpt-dir",
+        default=None,
+        help="where the runner writes checkpoint predictions (default: <out>.ckpt/)",
+    )
     ap.add_argument("--skip-existing", action="store_true")
     args = ap.parse_args()
 
@@ -217,6 +232,20 @@ def main():
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    eval_epochs = sorted({int(x) for x in args.eval_epochs.replace(",", " ").split()})
+    if eval_epochs:
+        if max(eval_epochs) > args.epochs:
+            raise SystemExit(
+                f"--eval-epochs {eval_epochs} asks for a checkpoint past --epochs {args.epochs}"
+            )
+        ckpt_dir = Path(args.ckpt_dir or (str(out_path) + ".ckpt"))
+        ckpt_dir.mkdir(parents=True, exist_ok=True)
+        os.environ["IVCBENCH_SCGPT_EVAL_EPOCHS"] = ",".join(str(e) for e in eval_epochs)
+        os.environ["IVCBENCH_SCGPT_CKPT_DIR"] = str(ckpt_dir)
+        print(f"[epoch-curve] checkpoints at {eval_epochs} -> {ckpt_dir}", flush=True)
+    else:
+        ckpt_dir = None
+        os.environ.pop("IVCBENCH_SCGPT_EVAL_EPOCHS", None)
     rows, timing = [], []
     done = set()  # (grid_size, seed, eval_donor)
     if args.skip_existing and out_path.exists():
@@ -273,6 +302,8 @@ def main():
 
                 # ---- scGPT: end-to-end fine-tune from the pretrained checkpoint, one per split ----
                 tA = time.time()
+                tag = f"k{k}_s{seed}_{ed}"
+                os.environ["IVCBENCH_SCGPT_CKPT_TAG"] = tag
                 adapter = ScGPTC1()
                 if args.gpu is not None:
                     adapter.cuda_device = str(args.gpu)
@@ -366,6 +397,8 @@ def main():
                             n_ctrl=int(len(ctrl_idx)),
                             n_response_genes=int(len(rg)),
                             fit_sec=round(dt, 1),
+                            epochs=int(args.epochs),
+                            epochs_at_eval=int(args.epochs),
                         )
                     )
                 timing.append(
@@ -384,6 +417,72 @@ def main():
                     f"(vs {prim_pe} pe={b_pe[prim_pe]:.4f} margin={sg_pe-b_pe[prim_pe]:+.4f})",
                     flush=True,
                 )
+                # ---- epoch curve: score each mid-training checkpoint of THIS SAME fine-tune ----
+                for ep_at in eval_epochs:
+                    if ep_at == args.epochs:
+                        continue  # the final epoch is the deposited-path row written above
+                    ck = ckpt_dir / f"{tag}__ep{ep_at}.npz"
+                    if not ck.exists():
+                        raise RuntimeError(
+                            f"--eval-epochs asked for epoch {ep_at} but no {ck} was written. "
+                            "The runner file comes from ivcbench/model_runners/ (only the "
+                            "interpreter comes from the 'scgpt' conda env), so the usual cause "
+                            "is a model_runners/scgpt_c1_runner.py without checkpoint support -- "
+                            "check that it reads IVCBENCH_SCGPT_EVAL_EPOCHS."
+                        )
+                    _z = np.load(ck, allow_pickle=True)
+                    # ScGPTC1 sets pred_key_is_group: one profile for the held unit, tiled over
+                    # the test cells -- the same construction SubprocessAdapter.predict() makes.
+                    _prof = np.asarray(_z["pred_means"], dtype=np.float32).mean(0)
+                    _cells = np.repeat(_prof[None, :], len(sp.test_idx), axis=0)
+                    c_pe = float(
+                        pearson_delta(_cells, test_X, ctrl_mean, test_strata, rg)["macro"]
+                    )
+                    c_ed = float(
+                        e_distance(_cells, test_X, test_strata, fit_on=ed_basis)["macro"]
+                    )
+                    c_au = program_delta_mae(
+                        _cells, test_X, ctrl_X, test_strata, ctrl_strat_str, cs
+                    )["aucell_delta_score"]
+                    for metric, cscore, pname, pscore in [
+                        ("pearson_delta", c_pe, prim_pe, b_pe[prim_pe]),
+                        ("e_distance", c_ed, prim_ed, b_ed[prim_ed]),
+                        ("aucell_delta_score", c_au, prim_au, b_au[prim_au]),
+                    ]:
+                        delta = (
+                            pscore - cscore if metric == "e_distance" else cscore - pscore
+                        )
+                        ok = (cscore == cscore) and (pscore == pscore)
+                        rows.append(
+                            dict(
+                                n_train_donors=int(k),
+                                seed=int(seed),
+                                eval_donor=str(ed),
+                                metric=metric,
+                                scgpt_score=(
+                                    round(cscore, 4) if cscore == cscore else ""
+                                ),
+                                primary_baseline=pname,
+                                baseline_score=(
+                                    round(pscore, 4) if pscore == pscore else ""
+                                ),
+                                delta_vs_primary=(round(delta, 4) if ok else ""),
+                                best_mmd="",
+                                n_train_cells=int(len(sp.train_idx)),
+                                n_test=int(len(sp.test_idx)),
+                                n_ctrl=int(len(ctrl_idx)),
+                                n_response_genes=int(len(rg)),
+                                fit_sec="",  # this row shares the unit's single fine-tune
+                                epochs=int(args.epochs),
+                                epochs_at_eval=int(ep_at),
+                            )
+                        )
+                    print(
+                        f"    [ep{ep_at:>3}] pearsonD={c_pe:.4f} "
+                        f"(vs {prim_pe} {b_pe[prim_pe]:.4f}, margin={c_pe-b_pe[prim_pe]:+.4f})",
+                        flush=True,
+                    )
+
                 # checkpoint after every eval donor so the job is fully resumable
                 pd.DataFrame(rows).to_csv(out_path, index=False)
                 json.dump(timing, open(args.timing_out, "w"), indent=2)
@@ -396,6 +495,11 @@ def main():
     df.to_csv(out_path, index=False)
     print(f"\nWROTE {out_path} ({len(df)} rows)", flush=True)
     pe = df[(df.metric == "pearson_delta") & (df.delta_vs_primary != "")].copy()
+    if eval_epochs and "epochs_at_eval" in pe.columns:
+        # The deposited-path curve is the FINAL-epoch row. Mid-training checkpoints are extra rows
+        # on the same (k, seed, donor); averaging them in would print a number that is neither the
+        # deposited curve nor any single training length.
+        pe = pe[pe.epochs_at_eval.astype(int) == int(args.epochs)]
     if len(pe):
         pe["delta_vs_primary"] = pe["delta_vs_primary"].astype(float)
         pe["scgpt_score"] = pe["scgpt_score"].astype(float)
@@ -406,8 +510,28 @@ def main():
             delta=("delta_vs_primary", "mean"),
             n=("delta_vs_primary", "size"),
         )
-        print("\nLearning curve (pearson_delta, mean over eval donors x seeds):")
+        label = (
+            f" at the final epoch ({args.epochs})" if eval_epochs else ""
+        )
+        print(
+            f"\nLearning curve (pearson_delta, mean over eval donors x seeds){label}:"
+        )
         print(g.to_string())
+        if eval_epochs:
+            ep = df[(df.metric == "pearson_delta") & (df.scgpt_score != "")].copy()
+            ep["scgpt_score"] = ep["scgpt_score"].astype(float)
+            ep["baseline_score"] = ep["baseline_score"].astype(float)
+            piv = ep.pivot_table(
+                index="epochs_at_eval", columns="eval_donor", values="scgpt_score"
+            ).dropna(axis=0, how="any")  # only epochs every scored donor reached
+            if len(piv):
+                fl = ep.groupby("eval_donor").baseline_score.first().mean()
+                print(
+                    f"\nEpoch curve (pearson_delta, mean over {piv.shape[1]} donor(s); "
+                    f"donor-matched floor {fl:.4f}):"
+                )
+                for e, v in piv.mean(1).items():
+                    print(f"  epochs={int(e):>3}  {v:.4f}  vs floor {v - fl:+.4f}")
 
 
 if __name__ == "__main__":

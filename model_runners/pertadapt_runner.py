@@ -45,26 +45,38 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "vendor"))   # make `pertadapt` importable
+for _v in (ROOT / "vendor", ROOT.parent / "benchmark" / "vendor"):
+    if _v.is_dir():
+        sys.path.insert(0, str(_v))  # vendored pertadapt (see UPSTREAM_COMMIT.txt)
+        break  # make `pertadapt` importable
 
 
 def _scf_dir() -> Path:
     p = os.environ.get("IVCBENCH_SCFOUNDATION_DIR")
     if not p:
-        raise FileNotFoundError("set $IVCBENCH_SCFOUNDATION_DIR to the scFoundation source directory")
+        raise FileNotFoundError(
+            "set $IVCBENCH_SCFOUNDATION_DIR to the scFoundation source directory"
+        )
     d = Path(p)
     if not (d / "load.py").exists():
-        raise FileNotFoundError(f"scFoundation source dir {d} missing load.py (set $IVCBENCH_SCFOUNDATION_DIR)")
+        raise FileNotFoundError(
+            f"scFoundation source dir {d} missing load.py (set"
+            " $IVCBENCH_SCFOUNDATION_DIR)"
+        )
     return d
 
 
 def _ckpt_path() -> Path:
     p = os.environ.get("IVCBENCH_SCFOUNDATION_CKPT")
     if not p:
-        raise FileNotFoundError("set $IVCBENCH_SCFOUNDATION_CKPT to the scFoundation checkpoint")
+        raise FileNotFoundError(
+            "set $IVCBENCH_SCFOUNDATION_CKPT to the scFoundation checkpoint"
+        )
     c = Path(p)
     if not c.exists():
-        raise FileNotFoundError(f"scFoundation checkpoint {c} not found (set $IVCBENCH_SCFOUNDATION_CKPT)")
+        raise FileNotFoundError(
+            f"scFoundation checkpoint {c} not found (set $IVCBENCH_SCFOUNDATION_CKPT)"
+        )
     return c
 
 
@@ -74,7 +86,12 @@ def main(in_path: str, out_path: str) -> None:
     import torch.nn.functional as F
     import pandas as pd
 
-    from pertadapt import GOMaskedPertAdapter, loss_adapt, additive_go_mask, load_gene2go
+    from pertadapt import (
+        GOMaskedPertAdapter,
+        loss_adapt,
+        additive_go_mask,
+        load_gene2go,
+    )
 
     scf_dir = _scf_dir()
     sys.path.insert(0, str(scf_dir))
@@ -86,10 +103,14 @@ def main(in_path: str, out_path: str) -> None:
 
     epochs = int(os.environ.get("IVCBENCH_PA_EPOCHS", "15"))
     max_cells = int(os.environ.get("IVCBENCH_PA_MAXCELLS", "6000"))
-    n_resp_req = int(os.environ.get("IVCBENCH_PA_NRESP", "256"))   # response/gene-axis panel (mask is NxN)
+    n_resp_req = int(
+        os.environ.get("IVCBENCH_PA_NRESP", "256")
+    )  # response/gene-axis panel (mask is NxN)
     d_model = int(os.environ.get("IVCBENCH_PA_DMODEL", "128"))
-    nhead = int(os.environ.get("IVCBENCH_PA_NHEAD", "8"))          # scFoundation decoder heads
-    n_de = int(os.environ.get("IVCBENCH_PA_NDE", "20"))            # top-DE per pert for loss_adapt
+    nhead = int(os.environ.get("IVCBENCH_PA_NHEAD", "8"))  # scFoundation decoder heads
+    n_de = int(
+        os.environ.get("IVCBENCH_PA_NDE", "20")
+    )  # top-DE per pert for loss_adapt
     min_shared = int(os.environ.get("IVCBENCH_PA_GO_MIN_SHARED", "1"))
     highres = os.environ.get("IVCBENCH_SCF_HIGHRES", "t4")
 
@@ -105,9 +126,13 @@ def main(in_path: str, out_path: str) -> None:
     if X.shape[0] == 0:
         raise RuntimeError("PertAdapt: empty training payload")
 
-    train_pert_genes = sorted({p for p in pert_train[~is_ctrl]}) if (~is_ctrl).any() else []
+    train_pert_genes = (
+        sorted({p for p in pert_train[~is_ctrl]}) if (~is_ctrl).any() else []
+    )
     if not train_pert_genes:
-        raise RuntimeError("PertAdapt: no perturbed training cells (cannot learn the adapter)")
+        raise RuntimeError(
+            "PertAdapt: no perturbed training cells (cannot learn the adapter)"
+        )
     pert_pos = {g: i for i, g in enumerate(train_pert_genes)}
     n_cond = len(train_pert_genes)
 
@@ -122,12 +147,16 @@ def main(in_path: str, out_path: str) -> None:
     resp_idx = np.argsort(var)[::-1][:n_resp]
     resp_genes = [genes[i] for i in resp_idx]
     resp_mean = X[:, resp_idx].mean(0).astype(np.float32)
-    ctrl_resp_mean = ctrl_pool[:, resp_idx].mean(0).astype(np.float32)  # control anchor on the panel
+    ctrl_resp_mean = (
+        ctrl_pool[:, resp_idx].mean(0).astype(np.float32)
+    )  # control anchor on the panel
 
     # ------------------------------------------ GO gene-similarity mask over the response panel
     # (reconstructed from the local full gene2go; see vendor/pertadapt/build_go_mask.py provenance note)
     gene2go = load_gene2go(os.environ.get("IVCBENCH_GENE2GO"))
-    go_mask = additive_go_mask(resp_genes, gene2go, min_shared=min_shared)   # (n_resp, n_resp) 0/-inf
+    go_mask = additive_go_mask(
+        resp_genes, gene2go, min_shared=min_shared
+    )  # (n_resp, n_resp) 0/-inf
     dens = float(np.isfinite(go_mask).mean())
     go_mask_t = torch.from_numpy(go_mask).to(device)
 
@@ -135,7 +164,9 @@ def main(in_path: str, out_path: str) -> None:
     model, cfg = load_model_frommmf(str(_ckpt_path()), "cell")
     model.eval().to(device)
     pad_id = cfg["pad_token_id"]
-    gidx = pd.read_csv(scf_dir / "OS_scRNA_gene_index.19264.tsv", header=0, delimiter="\t")
+    gidx = pd.read_csv(
+        scf_dir / "OS_scRNA_gene_index.19264.tsv", header=0, delimiter="\t"
+    )
     scf_genes = list(gidx["gene_name"])
     scf_pos = {g: i for i, g in enumerate(scf_genes)}
     n_scf = len(scf_genes)
@@ -150,8 +181,11 @@ def main(in_path: str, out_path: str) -> None:
             full[hvg_to_scf[have]] = r[have]
             total = float(np.expm1(full).sum()) + 1.0
             hi = float(highres[1:]) if highres[0] == "t" else 4.0
-            gx = torch.tensor(full.tolist() + [hi, np.log10(total)], dtype=torch.float32,
-                              device=device).unsqueeze(0)
+            gx = torch.tensor(
+                full.tolist() + [hi, np.log10(total)],
+                dtype=torch.float32,
+                device=device,
+            ).unsqueeze(0)
             gids = torch.arange(n_scf + 2, device=device).repeat(gx.shape[0], 1)
             vl = gx > 0
             xx, xpad = gatherData(gx, vl, pad_id)
@@ -159,9 +193,15 @@ def main(in_path: str, out_path: str) -> None:
             e = model.token_emb(torch.unsqueeze(xx, 2).float(), output_weight=0)
             e = e + model.pos_emb(pos)
             g = model.encoder(e, xpad)
-            emb = torch.concat([g[:, -1, :], g[:, -2, :],
-                                torch.max(g[:, :-2, :], dim=1)[0],
-                                torch.mean(g[:, :-2, :], dim=1)], axis=1)
+            emb = torch.concat(
+                [
+                    g[:, -1, :],
+                    g[:, -2, :],
+                    torch.max(g[:, :-2, :], dim=1)[0],
+                    torch.mean(g[:, :-2, :], dim=1),
+                ],
+                axis=1,
+            )
             out.append(emb.float().cpu().numpy()[0])
         return np.vstack(out).astype(np.float32)
 
@@ -169,7 +209,9 @@ def main(in_path: str, out_path: str) -> None:
     pert_mask = (~is_ctrl) & np.array([p in pert_pos for p in pert_train])
     pert_rows = np.where(pert_mask)[0]
     if len(pert_rows) == 0:
-        raise RuntimeError("PertAdapt: no usable perturbed training cells in the condition vocab")
+        raise RuntimeError(
+            "PertAdapt: no usable perturbed training cells in the condition vocab"
+        )
     if len(pert_rows) > max_cells:
         rng = np.random.default_rng(0)
         pert_rows = np.sort(rng.choice(pert_rows, max_cells, replace=False))
@@ -182,39 +224,58 @@ def main(in_path: str, out_path: str) -> None:
         if gr.sum() == 0:
             continue
         delta = np.abs(Xr[gr].mean(0) - ctrl_resp_mean)
-        de_idx_by_pert[g] = np.argsort(delta)[::-1][:min(n_de, n_resp)].tolist()
+        de_idx_by_pert[g] = np.argsort(delta)[::-1][: min(n_de, n_resp)].tolist()
 
-    emb_dim = 4 * cfg["encoder"]["hidden_dim"]   # 3072 for the released cell ckpt
-    print(f"[PertAdapt] train cells={X.shape[0]} perturbed-used={len(pert_rows)} conds={n_cond} "
-          f"resp_genes={n_resp} d_model={d_model} nhead={nhead} GO-mask-density={dens:.3%} epochs={epochs}",
-          flush=True)
+    emb_dim = 4 * cfg["encoder"]["hidden_dim"]  # 3072 for the released cell ckpt
+    print(
+        "[PertAdapt] train"
+        f" cells={X.shape[0]} perturbed-used={len(pert_rows)} conds={n_cond} "
+        f"resp_genes={n_resp} d_model={d_model} nhead={nhead} GO-mask-density={dens:.3%} epochs={epochs}",
+        flush=True,
+    )
 
-    emb_train = embed(X[pert_rows])              # (N, 3072) frozen cell context
-    Y_train = Xr[pert_rows].astype(np.float32)   # (N, n_resp) true response profile
-    cond_train = np.array([pert_pos[pert_train[ri]] for ri in pert_rows], dtype=np.int64)
+    emb_train = embed(X[pert_rows])  # (N, 3072) frozen cell context
+    Y_train = Xr[pert_rows].astype(np.float32)  # (N, n_resp) true response profile
+    cond_train = np.array(
+        [pert_pos[pert_train[ri]] for ri in pert_rows], dtype=np.int64
+    )
     pert_labels_train = np.array([pert_train[ri] for ri in pert_rows], dtype=object)
 
     # ------------------------------------------ PertAdapt model (the only trainable part)
     class PertAdaptHead(nn.Module):
         def __init__(self):
             super().__init__()
-            self.ctx_proj = nn.Linear(emb_dim, d_model)             # frozen cell ctx → shared per-gene base
-            self.gene_emb = nn.Embedding(n_resp, d_model)           # learned gene-token (per-gene identity)
-            self.pert_emb = nn.Embedding(n_cond, d_model)           # learned pert emb (GO-GNN analogue)
-            self.pert_mlp = nn.Sequential(nn.Linear(d_model, d_model), nn.ReLU(), nn.Linear(d_model, d_model))
-            self.adapter = GOMaskedPertAdapter(d_model, nhead, go_mask_t)   # PertAdapt novelty #1
-            self.out = nn.Linear(d_model, 1)                        # gene-wise Δ head
+            self.ctx_proj = nn.Linear(
+                emb_dim, d_model
+            )  # frozen cell ctx → shared per-gene base
+            self.gene_emb = nn.Embedding(
+                n_resp, d_model
+            )  # learned gene-token (per-gene identity)
+            self.pert_emb = nn.Embedding(
+                n_cond, d_model
+            )  # learned pert emb (GO-GNN analogue)
+            self.pert_mlp = nn.Sequential(
+                nn.Linear(d_model, d_model), nn.ReLU(), nn.Linear(d_model, d_model)
+            )
+            self.adapter = GOMaskedPertAdapter(
+                d_model, nhead, go_mask_t
+            )  # PertAdapt novelty #1
+            self.out = nn.Linear(d_model, 1)  # gene-wise Δ head
             gi = torch.arange(n_resp)
             self.register_buffer("gene_ids", gi, persistent=False)
 
         def forward(self, cell_ctx, cond_idx):
             B = cell_ctx.shape[0]
-            base = self.ctx_proj(cell_ctx).unsqueeze(1)             # (B,1,D) shared frozen context
-            gene = self.gene_emb(self.gene_ids).unsqueeze(0)        # (1,N,D) per-gene identity
-            exp_enc = base + gene                                   # (B,N,D) per-gene exp encodings
-            pert = self.pert_mlp(self.pert_emb(cond_idx)).unsqueeze(1)  # (B,1,D) pooled pert encoding
-            adapted = self.adapter(exp_enc, pert)                   # (B,N,D) GO-masked attention
-            delta = self.out(adapted).squeeze(-1)                   # (B,N) predicted Δ from control
+            base = self.ctx_proj(cell_ctx).unsqueeze(1)  # (B,1,D) shared frozen context
+            gene = self.gene_emb(self.gene_ids).unsqueeze(
+                0
+            )  # (1,N,D) per-gene identity
+            exp_enc = base + gene  # (B,N,D) per-gene exp encodings
+            pert = self.pert_mlp(self.pert_emb(cond_idx)).unsqueeze(
+                1
+            )  # (B,1,D) pooled pert encoding
+            adapted = self.adapter(exp_enc, pert)  # (B,N,D) GO-masked attention
+            delta = self.out(adapted).squeeze(-1)  # (B,N) predicted Δ from control
             return delta
 
     head = PertAdaptHead().to(device)
@@ -232,33 +293,46 @@ def main(in_path: str, out_path: str) -> None:
         perm = rng.permutation(n)
         tot = 0.0
         for s in range(0, n, bs):
-            b = perm[s:s + bs]
+            b = perm[s : s + bs]
             opt.zero_grad()
-            delta = head(emb_t[b], cond_t[b])               # (B,N)
-            pred = ctrl_resp_t.unsqueeze(0) + delta         # add control anchor → predicted profile
+            delta = head(emb_t[b], cond_t[b])  # (B,N)
+            pred = (
+                ctrl_resp_t.unsqueeze(0) + delta
+            )  # add control anchor → predicted profile
             yb = Y_t[b]
-            loss = loss_adapt(pred, yb, pert_labels_train[b], de_idx_by_pert)   # PertAdapt novelty #2
+            loss = loss_adapt(
+                pred, yb, pert_labels_train[b], de_idx_by_pert
+            )  # PertAdapt novelty #2
             loss.backward()
             torch.nn.utils.clip_grad_norm_(head.parameters(), 1.0)
             opt.step()
             tot += float(loss) * len(b)
         if ep == 0 or ep == epochs - 1:
-            print(f"[PertAdapt] epoch {ep} loss_adapt={tot / max(1, n):.5f}", flush=True)
+            print(
+                f"[PertAdapt] epoch {ep} loss_adapt={tot / max(1, n):.5f}", flush=True
+            )
 
     # ------------------------------------------ predict each held gene
     head.eval()
     n_ctrl = min(int(os.environ.get("IVCBENCH_PA_PREDCTRL", "128")), ctrl_pool.shape[0])
-    sel = (np.random.default_rng(0).choice(ctrl_pool.shape[0], n_ctrl, replace=False)
-           if ctrl_pool.shape[0] > n_ctrl else np.arange(ctrl_pool.shape[0]))
-    emb_ctrl = torch.tensor(embed(ctrl_pool[sel]), device=device)   # (n_ctrl, 3072)
+    sel = (
+        np.random.default_rng(0).choice(ctrl_pool.shape[0], n_ctrl, replace=False)
+        if ctrl_pool.shape[0] > n_ctrl
+        else np.arange(ctrl_pool.shape[0])
+    )
+    emb_ctrl = torch.tensor(embed(ctrl_pool[sel]), device=device)  # (n_ctrl, 3072)
 
     pred_perts, pred_means = [], []
     with torch.no_grad():
         for g in test_perts:
             if g in pert_pos:
-                cond = torch.full((emb_ctrl.shape[0],), pert_pos[g], dtype=torch.long, device=device)
-                delta = head(emb_ctrl, cond)                # (n_ctrl, N)
-                prof_resp = (ctrl_resp_t.unsqueeze(0) + delta).mean(0).float().cpu().numpy()
+                cond = torch.full(
+                    (emb_ctrl.shape[0],), pert_pos[g], dtype=torch.long, device=device
+                )
+                delta = head(emb_ctrl, cond)  # (n_ctrl, N)
+                prof_resp = (
+                    (ctrl_resp_t.unsqueeze(0) + delta).mean(0).float().cpu().numpy()
+                )
             else:
                 # held gene absent from the train condition vocab → no learned column; emit the control
                 # response profile on the panel (still a real, leak-safe output; never the held expression).
@@ -270,8 +344,11 @@ def main(in_path: str, out_path: str) -> None:
 
     if not pred_perts:
         raise RuntimeError("PertAdapt: no held genes to predict")
-    np.savez(out_path, pred_perts=np.array(pred_perts, dtype=object),
-             pred_means=np.vstack(pred_means).astype(np.float32))
+    np.savez(
+        out_path,
+        pred_perts=np.array(pred_perts, dtype=object),
+        pred_means=np.vstack(pred_means).astype(np.float32),
+    )
 
 
 if __name__ == "__main__":

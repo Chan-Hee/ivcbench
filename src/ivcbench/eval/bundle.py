@@ -84,13 +84,31 @@ def _cells_to_means(kw):
     out = dict(
         control_mean=kw["control_mean"],
         genes=kw["genes"],
-        pred_means=np.array([pred[sid == s].mean(0) for s in strata]),
-        obs_means=np.array([test[sid == s].mean(0) for s in strata]),
+        # float64 accumulation, then store float32 -- see metrics/response.py. Accumulating in
+        # float32 bakes a spurious response into the DEPOSITED array, where no later re-score can
+        # remove it: a stratum whose prediction is one profile repeated n times must collapse back
+        # to that profile exactly.
+        pred_means=np.array(
+            [pred[sid == s].mean(0, dtype=np.float64) for s in strata], dtype=np.float32
+        ),
+        obs_means=np.array(
+            [test[sid == s].mean(0, dtype=np.float64) for s in strata], dtype=np.float32
+        ),
         strata=strata,
     )
     if kw.get("exclude_gene_idx") is not None:
         out["exclude_gene_idx"] = kw["exclude_gene_idx"]
+    # Coverage provenance (B2): which strata hold the control baseline because the model returned
+    # no profile for them. Without this the deposited array cannot be told apart from a prediction.
+    dec = kw.get("declined")
+    if dec is not None:
+        dec = np.asarray(dec, dtype=bool)
+        out["declined_strata"] = np.array(
+            [s for s in strata if dec[sid == s].all()], dtype=object
+        )
+        out["n_declined_cells"] = np.int64(int(dec.sum()))
     drop = {
+        "declined",
         "pred_cells",
         "test_cells",
         "cell_strata",
@@ -130,6 +148,12 @@ def dump_bundle(out_dir, *, cluster, model, split, **kw):
             os.path.join(out_dir, fn), cluster=cluster, model=model, split=split, **kw
         )
     except Exception:  # noqa: BLE001 — never let prediction-dumping break the run
+        # Swallowing the error is right for a scored run, and it also means a cell can finish,
+        # report a value, pass postflight and deposit NOTHING -- which is how chemCPA T5u came back
+        # with a score and no bundle for the census to read. IVCBENCH_PRED_DUMP_STRICT=1 re-raises
+        # so the cause is visible.
+        if os.environ.get("IVCBENCH_PRED_DUMP_STRICT") == "1":
+            raise
         return None
 
 

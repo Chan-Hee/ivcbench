@@ -1,151 +1,76 @@
 # ivcbench
 
-An immune-aware benchmark for testing whether single-cell perturbation-prediction
-models generalize across immune contexts, unseen perturbations, unseen donors,
-and readout modalities.
+Revision package v1.2.3 for **Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization**, by Chanhee Lee and Jae Yong Ryu (BIB-26-1553).
 
-ivcbench accompanies **Toward Immune Virtual Cells: An Immune-Aware Benchmark of
-Perturbation-Prediction Generalization** by Chanhee Lee and Jae Yong Ryu. This
-repository contains benchmark code, deposited prediction bundles, result tables,
-and figure scripts. It evaluates existing models; it does not introduce a new
-model.
+This is an evaluation of existing methods, not a new prediction model. The final panel contains **56 model-by-task evaluations: 46 native, six adapted and four diagnostic**, spanning 16 of the 17 method/comparator groups surveyed. The six reported settings have 9 / 9 / 10 / 10 / 11 / 7 entries for T1 / T2 / T3 / T4 / T5c / T5u.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20756042-1682D4)](https://doi.org/10.5281/zenodo.20756042)
+| Setting | Held-out axis |
+|---|---|
+| T1 | Cell lineage, Kang IFN-β |
+| T2 | Donor, Soskic CD4 activation |
+| T3 | Target gene, five primary-T CRISPR dataset-arms |
+| T4 | Target gene, Frangieh IFNγ melanoma RNA |
+| T5c | Cell lineage, OP3 seen compounds |
+| T5u | Compound, OP3 |
 
-![Benchmark framework](results/_paper/Figure1.png)
+Only native CPA/scGen executions are counted. The CPA/chemCPA T5u entry uses native chemCPA with chemical conditioning, not the old adapted CPA head. STATE T3/T4/T5 executions are excluded after a wrong-output-file recovery audit; they are not evidence about STATE prediction quality. STATE T1/T2 remain. See [EXECUTION_AUDIT.md](EXECUTION_AUDIT.md) and the machine-readable interface records.
 
-## What You Can Reproduce
-
-The primary public reproduction path is GPU-free. It re-scores the deposited
-prediction bundles, rebuilds the 35-cell headline census, and checks the result
-against the committed paper tables.
-
-```bash
-podman build -t ivcbench .
-podman run --rm ivcbench
-```
-
-`docker` can be used in place of `podman`; because the build file is named
-`Containerfile`, pass it explicitly with Docker: `docker build -f Containerfile -t ivcbench .`.
-
-Without a container:
+## Reproduce without a GPU
 
 ```bash
 make setup
 make reproduce
+make test
 ```
 
-The consistency gate prints `DEPOSIT CONSISTENCY: PASS` when the deposited
-bundles reproduce the committed headline numbers.
+The default path re-scores the **1,362 selected mean-profile bundles** (1,110 model and 252 simple-reference inputs), then checks the 47-entry panel, 1,605 analysis-unit rows, paired targets, source hashes and uncertainty. Success prints `DEPOSIT CONSISTENCY: PASS`. Historical/reference bundles outside this panel are retained for traceability; the default manifest does not treat them as native-model evidence.
 
-This path covers the 35 model-by-task Pearson-delta census and the floor-clearance
-verdicts used for the main conclusions. The deposited bundles are compact
-per-stratum mean bundles, so they reproduce Pearson-Δ exactly but do not contain
-the per-cell prediction clouds required to recompute energy distance. The
-distributional-fidelity axis is reproduced from the deposited result tables
-(`results/*/results_raw.csv` and Supplementary Table S8); regenerating it from
-raw predictions requires the larger per-cell bundle/retraining path described in
-[REPRODUCE.md](REPRODUCE.md) and [predictions/COVERAGE.md](predictions/COVERAGE.md).
-The GPU-free path does not retrain the original models or download raw
-single-cell data.
+Four point estimates exceed the task-fixed stronger cell-mean/linear-PCA reference. Only CellOT T2 has a positive margin supported by the conditional interval and the 24-comparison BH/Holm family. The three other positive estimates remain descriptive or uncertain. No included conditioned method clears the task-level reference on unseen genes or compounds. These are results for the recorded implementations and inputs, not universal statements about a model family.
 
-## Main Results
+T2 evaluates the supplied condition-specific covariate-regressed, scaled and clipped Soskic matrices, not unregressed activation expression. Training-only additional scaling does not undo this source processing. All tasks remain conditional on shared upstream feature selection. The input audit and source-method provenance are retained in `results/_paper/soskic_input_space*`.
 
-The benchmark asks whether methods beat simple, pre-specified floor baselines
-on five immune perturbation tasks:
+T3/T5c program scoring is symmetric: the same rank function is applied to predicted and observed mean expression. The identity predictor has zero error for all 37 targets and correlation one for the 12 variable targets; 22/25 T3 targets are constant, not evidence of model failure. Exact-held-target repeatability uses disjoint treated/control halves and the stored gene masks. It diagnoses cell-sampling stability, not a prediction ceiling. These corrections do not change the primary Pearson-Δ panel.
 
-| Task | Generalization question |
-|---|---|
-| T1 | Cell-context transfer under cytokine stimulation |
-| T2 | Donor-held-out CD4+ activation |
-| T3 | Unseen-gene CRISPR perturbations |
-| T4 | Complex immune checkpoint and modality stress tests |
-| T5 | Small-molecule perturbations and cell-context transfer |
+```bash
+make census       # panel, analysis units and common multiplicity family
+make summaries    # donor, effect-size, chemistry, program and cost summaries
+make figures      # three main and five supplementary figures
+```
 
-Headline artifacts:
+See [REPRODUCE.md](REPRODUCE.md) for scopes and limits. Mean bundles do not retain per-cell prediction clouds or a training PCA basis; they cannot recompute energy distance. Raw-data fitting is a separate, model-environment-dependent workflow, not a one-command promise.
 
-- [cross_cluster_headline.csv](results/_paper/cross_cluster_headline.csv)
-- [cross_cluster_headline.md](results/_paper/cross_cluster_headline.md)
-- [descriptive_fit_matrix.csv](results/_paper/descriptive_fit_matrix.csv)
-- [predictions/COVERAGE.md](predictions/COVERAGE.md)
-
-In brief, most conditioned models do not clear the simple floor baselines. Two
-model-by-task cells do: CellOT on the Soskic donor-held-out task and an FP-ridge
-chemistry prior on the OP3 cell-context task. The unseen-perturbation settings
-are largely negative, including the unseen-gene CRISPR tasks and the
-unseen-compound setting.
-
-## Repository Map
+## Package map
 
 | Path | Purpose |
 |---|---|
-| `src/ivcbench/` | Core package: schemas, loaders, split construction, leak audit, metrics, baselines, and runners. |
-| `predictions/` | Deposited compact prediction bundles used by the GPU-free Pearson-Δ reproduction path. |
-| `results/` | Paper-level result tables and generated figures. |
-| `scripts/` | Reproduction, figure, download, and retraining/provenance scripts. |
-| `model_runners/` | Thin wrappers for model-family environments used during retraining. |
-| `data/README.md` | Dataset accessions, access notes, and raw-data layout. |
-| `REPRODUCE.md` | Detailed reproduction and retraining guide. |
+| `src/ivcbench/` | Split construction, scoring, loaders and benchmark interfaces |
+| `predictions/` | Mean profiles; selection documented in [COVERAGE.md](predictions/COVERAGE.md) |
+| `results/_paper/` | Current panel, full-precision analytical summaries and figures |
+| `results/provenance_inputs/` | Preserved scalar/timing inputs for auxiliary analyses |
+| `scripts/` | Re-scoring, summaries, figures and provenance tools |
+| `model_runners/` | Model-family execution interfaces; separate environments required |
+| `submission/` | Document source and frozen editorial metadata, in the submission archive |
+| `source_data/` | One source per final table panel, in the submission archive |
+| [data/README.md](data/README.md) | Dataset accessions and access conditions |
+| [ANALYSIS_SCOPE.md](ANALYSIS_SCOPE.md) | Analysis units, conditional inference and review-stage scope |
 
-## Data
+For code navigation, begin with `eval/bundle.py` for stored-profile scoring,
+`scripts/census_units.py` for paired inference, and `scripts/immune_readout_audit.py`
+for symmetric program scores and target validation. Raw fitting enters through
+`runner/run.py` and task-specific scripts. Its `report/` outputs are diagnostic
+run notes, not another manuscript; only `submission/` builds the submitted text.
 
-Raw data are not distributed in this repository. Public datasets can be fetched
-with:
+Figure colors encode scientific quantities only. Clean and revision-highlighted documents use identical artwork; revision blue is confined to editable Word text, tables and captions.
 
-```bash
-make data
-bash scripts/download_all.sh --list
-```
+Development formatting uses Black 25.1.0 with the configuration in
+`pyproject.toml` (`pip install -e '.[dev]'`). Formatting does not change retained
+predictions or statistical outputs. Model-family environments remain separate.
 
-Some source datasets require login or data-access approval. See
-[data/README.md](data/README.md) and [scripts/datasets.csv](scripts/datasets.csv)
-for the per-dataset accessions, access status, and loaders.
+## Version and availability
 
-The deposited prediction bundles under `predictions/` are sufficient for the
-GPU-free headline Pearson-Δ reproduction path. Distributional-fidelity tables are
-deposited under `results/` and are not recomputed from the compact bundles.
+This exact package accompanies the revision. Its file checksums identify the submitted snapshot. The [project repository](https://github.com/Chan-Hee/ivcbench) and [all-versions archive DOI](https://doi.org/10.5281/zenodo.20756042) also contain earlier versions; those versions do not reproduce this revised 56-entry panel. The concept DOI is not a version-specific identifier for an unpublished revision snapshot.
 
-## Common Commands
-
-```bash
-make test            # leak-audit and smoke tests
-make reproduce       # GPU-free bundle re-scoring plus consistency gate
-make reproduce-eval  # write reproduced_results.csv from prediction bundles
-make data            # download public raw datasets
-make train MODEL=cellot ARGS=--dry-run
-```
-
-Retraining commands are provenance tools. They expect the required raw data,
-model-family environment, and hardware to already be available.
-
-## Citation
-
-```bibtex
-@unpublished{Lee2026ImmuneVirtualCell,
-  title  = {Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
-  author = {Lee, Chanhee and Ryu, Jae Yong},
-  year   = {2026},
-  note   = {Manuscript under review}
-}
-
-@software{ivcbench,
-  title     = {ivcbench: An Immune-Aware Benchmark of Perturbation-Prediction Generalization},
-  author    = {Lee, Chanhee and Ryu, Jae Yong},
-  year      = {2026},
-  version   = {1.1.7},
-  doi       = {10.5281/zenodo.20756042},
-  publisher = {Zenodo}
-}
-```
-
-GitHub also reads citation metadata from [CITATION.cff](CITATION.cff).
-
-## License
-
-The code is released under the [MIT license](LICENSE). Dataset-specific terms
-remain with the original data providers.
+Please cite the manuscript and identify the package version/checksum used. Citation metadata are in [CITATION.cff](CITATION.cff). Original project code is under the [MIT license](LICENSE); this does not relicense third-party-derived material. The study-local PertAdapt extraction has separate [attribution and redistribution notes](vendor/pertadapt/README.md). Original dataset and model terms remain applicable; no public release of this revision has been performed.
 
 ## Funding
 

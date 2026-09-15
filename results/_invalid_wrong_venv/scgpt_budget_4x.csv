@@ -1,0 +1,13 @@
+n_train_donors,seed,eval_donor,metric,scgpt_score,primary_baseline,baseline_score,delta_vs_primary,best_mmd,n_train_cells,n_test,n_ctrl,n_response_genes,fit_sec
+96,0,D353,pearson_delta,0.2689,cell-mean,0.2691,-0.0002,,110147,583,600,74,1621.7
+96,0,D353,e_distance,6.5273,donor-shift,6.4852,-0.0421,,110147,583,600,74,1621.7
+96,0,D353,aucell_delta_score,-0.0197,donor-shift,-0.0333,0.0136,,110147,583,600,74,1621.7
+96,0,D364,pearson_delta,0.2268,cell-mean,0.2365,-0.0097,,110147,484,600,74,1608.2
+96,0,D364,e_distance,5.4063,donor-shift,5.3297,-0.0765,,110147,484,600,74,1608.2
+96,0,D364,aucell_delta_score,-0.0157,donor-shift,-0.0157,0.0,,110147,484,600,74,1608.2
+96,0,D397,pearson_delta,0.2769,cell-mean,0.2951,-0.0182,,110147,600,600,74,1628.2
+96,0,D397,e_distance,5.1876,cell-mean,5.1722,-0.0154,,110147,600,600,74,1628.2
+96,0,D397,aucell_delta_score,-0.0244,donor-shift,-0.0244,0.0,,110147,600,600,74,1628.2
+96,0,D411,pearson_delta,0.1694,cell-mean,0.1822,-0.0128,,110147,600,600,74,1589.8
+96,0,D411,e_distance,5.0203,donor-shift,4.8529,-0.1674,,110147,600,600,74,1589.8
+96,0,D411,aucell_delta_score,-0.0223,donor-shift,-0.0223,0.0,,110147,600,600,74,1589.8

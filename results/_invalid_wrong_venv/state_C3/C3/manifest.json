@@ -1,0 +1,173 @@
+{
+  "cluster": "C3",
+  "generated_utc": "2026-09-14T04:15:32+00:00",
+  "git_commit": "50ec5a8b30ce9f69d7ace44ee21f5d51ea537d72",
+  "python": "3.13.12",
+  "platform": "Linux-5.15.0-139-generic-x86_64-with-glibc2.31",
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sklearn": "1.8.0",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.9"
+  },
+  "data_source": "multi: shifrut, schmidt, mccutcheon_CRISPRi, mccutcheon_CRISPRa, chen",
+  "seeds": [
+    0
+  ],
+  "splits": [
+    {
+      "name": "C3_true_lo_gene_10",
+      "registry_task": "C3_LO_gene"
+    },
+    {
+      "name": "C3_true_lo_gene_25",
+      "registry_task": "C3_LO_gene"
+    },
+    {
+      "name": "C3_true_lo_gene_50",
+      "registry_task": "C3_LO_gene"
+    }
+  ],
+  "n_jobs": 15,
+  "n_ran": 15,
+  "n_leak_free": 15,
+  "all_leak_free": true,
+  "jobs": [
+    {
+      "split": "C3_true_lo_gene_10",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_25",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_50",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_10",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_25",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_50",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_10",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_25",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_50",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_10",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_25",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_50",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_10",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_25",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    },
+    {
+      "split": "C3_true_lo_gene_50",
+      "baseline": "STATE",
+      "seed": 0,
+      "action": "run_headline",
+      "headline_eligible": true,
+      "ran": true,
+      "leak_free": true
+    }
+  ]
+}

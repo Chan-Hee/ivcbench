@@ -1,4 +1,5 @@
 """The leak auditor is the v5 guardrail — these tests pin its contract."""
+
 import numpy as np
 import pytest
 

@@ -1,0 +1,2 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+scGPT,foundation,C5_global_compound_holdout,run_floor,True,True,51181,12333,112,0.16047865912384754,0.13800726459823115,0.18252793919340807,19.651617645875483,,,compounds

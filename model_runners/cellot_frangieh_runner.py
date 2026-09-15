@@ -37,17 +37,23 @@ def main(in_path: str, out_path: str) -> None:
     X = d["X_train"].astype(np.float32)
     is_ctrl = d["is_control_train"].astype(bool)
     X_ctrl_inf = d["X_ctrl_inf"].astype(np.float32)
-    ae_iters = int(d["ae_iters"]); cellot_iters = int(d["cellot_iters"])
-    seed = int(d["seed"]); cap = int(d["cap"]) if "cap" in d else 4000
+    ae_iters = int(d["ae_iters"])
+    cellot_iters = int(d["cellot_iters"])
+    seed = int(d["seed"])
+    cap = int(d["cap"]) if "cap" in d else 4000
 
     if is_ctrl.sum() < 5 or (~is_ctrl).sum() < 5:
-        raise RuntimeError("CellOT-Frangieh: need >=5 control and >=5 treated (pooled-KO) train cells")
+        raise RuntimeError(
+            "CellOT-Frangieh: need >=5 control and >=5 treated (pooled-KO) train cells"
+        )
     if X_ctrl_inf.shape[0] == 0:
-        raise RuntimeError("CellOT-Frangieh: no held-group control cells (inference input) to push")
+        raise RuntimeError(
+            "CellOT-Frangieh: no held-group control cells (inference input) to push"
+        )
 
     R.set_seed(seed)
     Xtr_ctrl = X[is_ctrl]
-    Xtr_treat = X[~is_ctrl]                       # pooled training KO cells = the OT "treated" target
+    Xtr_treat = X[~is_ctrl]  # pooled training KO cells = the OT "treated" target
     Xtr_all = X
     # honor the per-arm OT cell cap (OT is O(n^2) in the MMD model-selection; the sampler batches, but
     # cap the encoded source/target clouds to keep latent OT tractable on big panels).
@@ -65,12 +71,16 @@ def main(in_path: str, out_path: str) -> None:
     # so cap the OT batch size at the smaller arm (the control source) — otherwise the source sampler
     # yields min(64, n_ctrl) and the target yields 64, which mismatches. Default 64 when both arms are big.
     bs = int(min(64, Zsrc.shape[0], Ztgt.shape[0]))
-    f, g, best_mmd = R.train_cellot_latent(f, g, Zsrc, Ztgt, n_iters=cellot_iters, batch_size=bs)
+    f, g, best_mmd = R.train_cellot_latent(
+        f, g, Zsrc, Ztgt, n_iters=cellot_iters, batch_size=bs
+    )
     Zpush = R.transport_latent(g, R.ae_encode(ae, X_ctrl_inf))
     pred_genes = R.ae_decode(ae, Zpush).astype(np.float32)
 
     if not np.all(np.isfinite(pred_genes)):
-        raise RuntimeError("CellOT-Frangieh: predicted profile contains non-finite values")
+        raise RuntimeError(
+            "CellOT-Frangieh: predicted profile contains non-finite values"
+        )
     np.savez(out_path, pred_genes=pred_genes, best_mmd=np.float32(best_mmd))
 
 

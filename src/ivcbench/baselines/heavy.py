@@ -228,19 +228,69 @@ class SubprocessAdapter(BaselineAdapter):
                 f"{self.name}: the runner returned no predicted profiles."
             )
         if self.pred_key_is_group:
-            # held-GROUP runners key their output by the held unit (e.g. 'stim::<donor>'), not by the
-            # test cells' perturbation label: one predicted perturbed profile for the held group.
-            prof = np.mean(
-                np.vstack(
-                    [
-                        np.asarray(v, dtype=np.float32).ravel()[None, :]
-                        for v in pred_by_pert.values()
-                    ]
-                ),
-                axis=0,
-            )
+            # Held-GROUP runners key their output by the held unit, not by the test cells'
+            # perturbation label. When the runner produced ONE profile that is the whole
+            # prediction and it is tiled over the test cells.
+            #
+            # When it produced SEVERAL, they are keyed '<held unit>::<stratum value>' -- STATE
+            # emits 'stim::1256' against the stratum 'donor_id=1256', PertAdapt 'D348::CD4_Naive'
+            # against 'cell_type_coarse=CD4_Naive'. Averaging those together used to discard the
+            # keying: neither profile survived, and the model was scored on a blend it never
+            # predicted. Map them onto their own strata instead.
+            profiles = {k: np.asarray(v, dtype=np.float32).ravel() for k, v in pred_by_pert.items()}
+            n_strata = len(set(map(str, np.asarray(split.test_strata))))
+            if len(profiles) == 1:
+                prof = next(iter(profiles.values()))
+                # One profile tiled over every test cell is correct only when the split HAS one
+                # stratum -- the held unit is the prediction. When the split has several and the
+                # runner returned one, the other strata were not predicted, and tiling marks them
+                # declined=False, i.e. certifies a prediction the model never made. That is how a
+                # pooled map came to be reported per compound.
+                if n_strata > 1:
+                    raise RuntimeError(
+                        f"{self.name}: the runner returned ONE profile for a split with "
+                        f"{n_strata} strata. Tiling it would score {n_strata - 1} strata on a "
+                        "prediction that was never made. Fix the runner's keying, or have it "
+                        "decline the strata it cannot produce."
+                    )
+                return PredResult(
+                    np.repeat(prof[None, :], len(test_perts), axis=0),
+                    self.ctrl,
+                    declined=np.zeros(len(test_perts), dtype=bool),
+                )
+            strata = np.asarray(split.test_strata).astype(str)
+            # stratum labels are spelled 'field=value'; the runner keys on the value alone
+            by_value = {}
+            for k, v in profiles.items():
+                by_value.setdefault(k.split("::")[-1], v)
+            rows, declined = [], []
+            unmatched = set()
+            for st in strata:
+                value = st.split("=", 1)[1] if "=" in st else st
+                prof = by_value.get(value)
+                if prof is None:
+                    unmatched.add(st)
+                    rows.append(self.ctrl)
+                    declined.append(True)
+                else:
+                    rows.append(prof)
+                    declined.append(False)
+            if len(unmatched) == len(set(strata)):
+                raise RuntimeError(
+                    f"{self.name}: the runner returned {len(profiles)} keyed profiles "
+                    f"{sorted(profiles)[:4]} but none matched a test stratum "
+                    f"{sorted(set(strata))[:4]}; averaging them would score a blend the model "
+                    "never predicted."
+                )
+            if unmatched:
+                print(
+                    f"[decline] {self.name}: {len(unmatched)} of {len(set(strata))} strata had no "
+                    f"keyed profile: {', '.join(sorted(unmatched)[:8])}",
+                    file=sys.stderr,
+                    flush=True,
+                )
             return PredResult(
-                np.repeat(prof[None, :], len(test_perts), axis=0), self.ctrl
+                np.vstack(rows), self.ctrl, declined=np.asarray(declined, dtype=bool)
             )
         matched = sum(p in pred_by_pert for p in test_perts)
         if matched == 0:
@@ -252,10 +302,25 @@ class SubprocessAdapter(BaselineAdapter):
                 f" keys {sorted(pred_by_pert)[:4]}; the prediction would be the control"
                 " mean."
             )
-        # a label with no predicted profile keeps the control mean, which is the defined behaviour for
-        # an unseen-label task where the runner declines a target
+        # A label with no predicted profile keeps the control mean. That is a legitimate outcome --
+        # a model may not support a target -- but it is NOT a prediction, and it used to be
+        # indistinguishable from one: the audit found declined rows scored as real responses in
+        # T3/T4/T5u. Record which rows they are, and say so on stderr, so the deposited bundle and
+        # the census carry the coverage instead of hiding it.
+        declined = np.array([p not in pred_by_pert for p in test_perts], dtype=bool)
+        missing = sorted({p for p in test_perts if p not in pred_by_pert})
+        if missing:
+            print(
+                f"[decline] {self.name}: {len(missing)} of "
+                f"{len(set(test_perts))} requested perturbations returned no profile "
+                f"({declined.sum()}/{len(declined)} test rows fall back to the control mean): "
+                + ", ".join(missing[:12])
+                + (" ..." if len(missing) > 12 else ""),
+                file=sys.stderr,
+                flush=True,
+            )
         pred = np.vstack([pred_by_pert.get(p, self.ctrl) for p in test_perts])
-        return PredResult(pred, self.ctrl)
+        return PredResult(pred, self.ctrl, declined=declined)
 
 
 class GEARS(SubprocessAdapter):
@@ -428,6 +493,97 @@ class ScGenC1(SubprocessAdapter):
     conda_env, runner = "scperturbench_eval", "scgen_c1_runner.py"
 
 
+class CINEMAOTC1(SubprocessAdapter):
+    """CINEMA-OT on a held-GROUP split through its PUBLISHED per-condition call.
+
+    The existing `CINEMAOT` adapter runs a perturbation-agnostic reduction, which is the intended
+    diagnostic on the unseen-entity tasks but is not the published operation on T1/T2, where the
+    stimulus is seen and the held axis is a group. Here `expr_label` selects the condition and the
+    control-indexed return supplies the barycentric counterfactual directly."""
+
+    name, family, gpu = "CINEMA-OT", "ot", False
+    conda_env, runner = "scperturbench_eval", "cinemaot_c1_runner.py"
+    timeout_s = 14400
+
+
+class StateC1Split(SubprocessAdapter):
+    """STATE on a held-GROUP split with the fitting set and the inference set kept apart.
+
+    `StateC1` builds one AnnData and routes the held cell type through [zeroshot]; the installed
+    loader then folds that cell type's observational cells into the fit
+    (cell_load/.../perturbation_dataloader.py:909-916). No held response is exposed, but the fit is
+    then not train_idx. This adapter trains on a training-only dataset and supplies the held unit's
+    own controls to `state tx predict --toml`, which the released CLI supports directly."""
+
+    name, family, gpu = "STATE", "hybrid", True
+    conda_env, runner = "ivc-state", "state_c1_split_runner.py"
+    pred_key_is_group = True
+    timeout_s = 14400
+
+
+class StateC5cSplit(SubprocessAdapter):
+    """STATE on the held-LINEAGE compound split (T5c), fitting set and inference set kept apart.
+
+    `STATEc5` serves the unseen-COMPOUND split and is handed the same payload shape here, so on T5c
+    it puts the SEEN compounds into the fewshot `test` list -- which cell_load then withholds from
+    training (perturbation_dataloader.py:768-787), turning a lineage holdout into a compound-label
+    holdout. It also collapses obs['cell_type'] to a constant and draws the query cells from the
+    training control pool instead of the held lineage's own. This adapter trains on the training
+    lineages with every compound present and predicts from the held lineage's own controls through
+    `state tx predict --toml`. See model_runners/state_c5c_split_runner.py."""
+
+    name, family, gpu = "STATE", "hybrid", True
+    conda_env, runner = "ivc-state", "state_c5c_split_runner.py"
+    requires_compound_side = True
+    pred_key_is_group = False
+    timeout_s = 14400
+
+
+class PerturbNetC1(SubprocessAdapter):
+    """PerturbNet on a held-GROUP split (T1 lineage, T2 donor) through the authors' CATEGORICAL
+    conditioning variant and the released cINN. The held axis is a group and the stimulus is seen,
+    so no unseen-entity encoder (ChemicalVAE / GenotypeVAE) is required -- the held unit's identity
+    is carried by its own control cells. Keyed by the requested perturbation label, so the adapter
+    matches labels rather than averaging one group profile."""
+
+    name, family, gpu = "PerturbNet", "generative", True
+    conda_env, runner = "ivc-perturbnet", "perturbnet_c1_runner.py"
+    timeout_s = 14400
+
+
+class PertAdaptC3(SubprocessAdapter):
+    """PertAdapt on the unseen-gene split through the PUBLISHED graph path (the same backbone and
+    GO mask the T4 runner uses), rather than the author-written head that produced the withdrawn
+    T2 cell."""
+
+    name, family, gpu = "PertAdapt", "hybrid", True
+    # the same env the T4 PertAdapt adapter uses: this runner shares the frozen scFoundation
+    # backbone, and `scgpt` lacks omegaconf / local_attention.
+    conda_env, runner = "scfoundation", "pertadapt_c3_runner.py"
+    # 8 h, not 4, and run sharded. Both T4 units stopped at exactly 14,401 s with ran=False and no
+    # bundle; on T3 the largest dataset (chen) finished at 15,280 s total, i.e. just inside. A
+    # budget a unit only just fits is a budget that reports a timeout as a model limitation the
+    # next time the machine is busier.
+    timeout_s = 28800
+
+
+class ScFoundationGene(SubprocessAdapter):
+    """scFoundation on the unseen-gene / unseen-KO splits through its RELEASED GEARS pathway, which
+    is the operation the plan specifies for these cells -- not an author-written task head."""
+
+    name, family, gpu = "scFoundation", "foundation", True
+    # `scgpt` is missing omegaconf and local_attention, which scFoundation's released GEARS path
+    # imports; `scfoundation` has both and is the env the other scFoundation adapters use.
+    conda_env, runner = "scfoundation", "scfoundation_gene_runner.py"
+    # 8 h, not 4. A unit is a 15-epoch GEARS-style head on the frozen 19,264-gene encoder at batch
+    # size 2; alone it fits in four hours, but with two other jobs on the card it gets about a third
+    # of the SM and does not. Both T3 and T4 spent four hours per unit and returned
+    # TimeoutExpired with ran=False and no bundle -- a timeout that reads in the CSV exactly like a
+    # model that cannot do the task. Run these sharded (--chunk i n, one unit each) so the budget
+    # covers one unit rather than a whole sweep.
+    timeout_s = 28800
+
+
 class CPAC1(SubprocessAdapter):
     """CPA for C1 cytokine-response: classic latent δ-arithmetic (seen cytokine, held cell type)."""
 
@@ -489,6 +645,25 @@ class CellOT(SubprocessAdapter):
                 f" predictor. Missing labels: {sorted(unseen)[:5]}"
             )
         return super().fit(cs, split, side_info)
+
+
+class CellOTC5(CellOT):
+    """CellOT on the held-lineage COMPOUND split (T5c) — ONE TRANSPORT PER COMPOUND.
+
+    `CellOTC1` pools every treated cell into one target cloud, which is correct where the treatment
+    is a single seen stimulus but collapses the ~141 OP3 compounds into one profile that carries no
+    compound-specific information. CellOT's published operation is a map between a control cloud and
+    ONE treated cloud, so the native use on this split is one map per compound; the unconditional
+    autoencoder is shared, only the f/g potentials are fitted per compound.
+
+    pred_key_is_group is FALSE here: the runner returns real per-perturbation keys, so the adapter
+    must match them to the test labels rather than average them into one profile.
+    """
+
+    name, family, gpu = "CellOT", "ot", True
+    conda_env, runner, requires_gene_side = "cellot", "cellot_c5_runner.py", False
+    pred_key_is_group = False
+    timeout_s = 86400  # one transport per compound; see the runner's budget note
 
 
 class CellOTC1(CellOT):

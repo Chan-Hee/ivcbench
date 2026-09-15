@@ -72,7 +72,9 @@ def main(in_path: str, out_path: str) -> None:
     # leak-safe gene embedding (control-only PCA gene-loadings) — also covers held genes
     ctrl_X = X[is_ctrl] if is_ctrl.any() else X_ctrl_inf
     k = int(min(n_emb, ctrl_X.shape[0] - 1, ctrl_X.shape[1]))
-    gene_emb = PCA(n_components=max(2, k), random_state=0).fit(ctrl_X).components_.T  # (n_genes, k)
+    gene_emb = (
+        PCA(n_components=max(2, k), random_state=0).fit(ctrl_X).components_.T
+    )  # (n_genes, k)
 
     work = Path(tempfile.mkdtemp(prefix="state_"))
     # build held-gene "test" cells from controls tagged with the held gene (STATE predicts the test
@@ -81,13 +83,16 @@ def main(in_path: str, out_path: str) -> None:
     pred_genes = [g for g in test_perts if g in gpos]
 
     # AnnData: train cells (control + train-gene perts) + control cells re-tagged as held genes (test arm)
-    blocks_X, blocks_pert = [X], [np.where(is_ctrl, "control", pert_train).astype(object)]
+    blocks_X, blocks_pert = [X], [
+        np.where(is_ctrl, "control", pert_train).astype(object)
+    ]
     ctrl_pool = X[is_ctrl] if is_ctrl.any() else X_ctrl_inf
     rng = np.random.default_rng(0)
     per_test = min(200, ctrl_pool.shape[0])
-    for g in pred_genes:                          # held-gene query cells = controls tagged g (test arm)
+    for g in pred_genes:  # held-gene query cells = controls tagged g (test arm)
         idx = rng.choice(ctrl_pool.shape[0], per_test, replace=False)
-        blocks_X.append(ctrl_pool[idx]); blocks_pert.append(np.array([g] * per_test, dtype=object))
+        blocks_X.append(ctrl_pool[idx])
+        blocks_pert.append(np.array([g] * per_test, dtype=object))
     Xall = np.vstack(blocks_X).astype(np.float32)
     pert_all = np.concatenate(blocks_pert)
     adata = ad.AnnData(sparse.csr_matrix(Xall))
@@ -95,55 +100,103 @@ def main(in_path: str, out_path: str) -> None:
     adata.obs["gene"] = pert_all
     adata.obs["cell_type"] = "Tcell"
     adata.obs["gem_group"] = "b0"
-    h5 = work / "schmidt.h5ad"; adata.write_h5ad(h5)
+    h5 = work / "schmidt.h5ad"
+    adata.write_h5ad(h5)
 
-    feats = {g: torch.tensor(gene_emb[gpos[g]], dtype=torch.float32) for g in (train_genes + pred_genes)}
+    feats = {
+        g: torch.tensor(gene_emb[gpos[g]], dtype=torch.float32)
+        for g in (train_genes + pred_genes)
+    }
     feats["control"] = torch.zeros(gene_emb.shape[1], dtype=torch.float32)
-    fpath = work / "pert_features.pt"; torch.save(feats, fpath)
+    fpath = work / "pert_features.pt"
+    torch.save(feats, fpath)
 
     toml = work / "data.toml"
-    tl = ['[datasets]', f'ds = "{h5}"', '', '[fewshot]', '[fewshot."ds.Tcell"]',
-          'train = [' + ", ".join(f'"{g}"' for g in train_genes) + ']',
-          'test = [' + ", ".join(f'"{g}"' for g in pred_genes) + ']']
+    tl = [
+        "[datasets]",
+        f'ds = "{h5}"',
+        "",
+        "[fewshot]",
+        '[fewshot."ds.Tcell"]',
+        "train = [" + ", ".join(f'"{g}"' for g in train_genes) + "]",
+        "test = [" + ", ".join(f'"{g}"' for g in pred_genes) + "]",
+    ]
     toml.write_text("\n".join(tl))
     out_dir = work / "run"
 
-    common = [f"data.kwargs.toml_config_path={toml}", "data.kwargs.pert_col=gene",
-              "data.kwargs.control_pert=control", "data.kwargs.cell_type_key=cell_type",
-              "data.kwargs.batch_col=gem_group", f"data.kwargs.perturbation_features_file={fpath}",
-              "data.kwargs.embed_key=null", "data.kwargs.output_space=all"]
-    train_cmd = [state_py, "-m", "state", "tx", "train", "data=perturbation", "model=state_sm",
-                 f"training.max_steps={epochs_steps}", "training.val_freq=100000", "training.ckpt_every_n_steps=100000",
-                 f"output_dir={out_dir}", "name=ivc", *common]
-    r = subprocess.run(train_cmd, capture_output=True, text=True, timeout=5400, cwd=work)
+    common = [
+        f"data.kwargs.toml_config_path={toml}",
+        "data.kwargs.pert_col=gene",
+        "data.kwargs.control_pert=control",
+        "data.kwargs.cell_type_key=cell_type",
+        "data.kwargs.batch_col=gem_group",
+        f"data.kwargs.perturbation_features_file={fpath}",
+        "data.kwargs.embed_key=null",
+        "data.kwargs.output_space=all",
+    ]
+    train_cmd = [
+        state_py,
+        "-m",
+        "state",
+        "tx",
+        "train",
+        "data=perturbation",
+        "model=state_sm",
+        f"training.max_steps={epochs_steps}",
+        "training.val_freq=100000",
+        "training.ckpt_every_n_steps=100000",
+        f"output_dir={out_dir}",
+        "name=ivc",
+        *common,
+    ]
+    r = subprocess.run(
+        train_cmd, capture_output=True, text=True, timeout=5400, cwd=work
+    )
     if r.returncode != 0:
         raise RuntimeError("state tx train failed:\n" + r.stderr[-3500:])
 
     # --predict-only: emit the prediction anndata and SKIP arc-state's internal MetricsEvaluator
     # (its cell-eval API mismatch crashes the eval step, which we don't need — we score ourselves).
-    pred_cmd = [state_py, "-m", "state", "tx", "predict", "--output-dir", str(out_dir / "ivc"),
-                "--profile", "anndata", "--predict-only"]
+    pred_cmd = [
+        state_py,
+        "-m",
+        "state",
+        "tx",
+        "predict",
+        "--output-dir",
+        str(out_dir / "ivc"),
+        "--profile",
+        "anndata",
+        "--predict-only",
+    ]
     r = subprocess.run(pred_cmd, capture_output=True, text=True, timeout=3600, cwd=work)
     if r.returncode != 0:
         raise RuntimeError("state tx predict failed:\n" + r.stderr[-3500:])
 
     # locate the predicted anndata and aggregate per held gene
-    preds = sorted(Path(out_dir).rglob("*.h5ad"))
-    if not preds:
-        raise RuntimeError("STATE: no prediction h5ad produced")
-    pa = ad.read_h5ad(str(preds[-1]))
+    from state_output import prediction_path
+
+    pa = ad.read_h5ad(str(prediction_path(out_dir)))
     pX = pa.X.toarray() if sparse.issparse(pa.X) else np.asarray(pa.X)
-    pg = pa.obs["gene"].astype(str).to_numpy() if "gene" in pa.obs else pa.obs.iloc[:, 0].astype(str).to_numpy()
+    pg = (
+        pa.obs["gene"].astype(str).to_numpy()
+        if "gene" in pa.obs
+        else pa.obs.iloc[:, 0].astype(str).to_numpy()
+    )
     pred_perts, pred_means = [], []
     for g in pred_genes:
         m = pg == g
         if m.sum():
-            pred_perts.append(g); pred_means.append(pX[m].mean(0)[:len(genes)].astype(np.float32))
+            pred_perts.append(g)
+            pred_means.append(pX[m].mean(0)[: len(genes)].astype(np.float32))
     shutil.rmtree(work, ignore_errors=True)
     if not pred_perts:
         raise RuntimeError("STATE: no held-gene predictions recovered")
-    np.savez(out_path, pred_perts=np.array(pred_perts, dtype=object),
-             pred_means=np.vstack(pred_means).astype(np.float32))
+    np.savez(
+        out_path,
+        pred_perts=np.array(pred_perts, dtype=object),
+        pred_means=np.vstack(pred_means).astype(np.float32),
+    )
 
 
 if __name__ == "__main__":

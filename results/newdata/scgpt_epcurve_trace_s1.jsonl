@@ -1,0 +1,9 @@
+{"tag": "k96_s0_D431", "epoch": 1, "epochs": 20, "train_mse": 1.0312651697397233, "n_train_cells": 8000}
+{"tag": "k96_s0_D431", "epoch": 2, "epochs": 20, "train_mse": 1.0303195506930352, "n_train_cells": 8000}
+{"tag": "k96_s0_D431", "epoch": 3, "epochs": 20, "train_mse": 1.0301925263404845, "n_train_cells": 8000}
+{"tag": "k96_s0_D431", "epoch": 4, "epochs": 20, "train_mse": 1.030172677397728, "n_train_cells": 8000}
+{"tag": "k96_s0_D431", "epoch": 5, "epochs": 20, "train_mse": 1.0302002044916152, "n_train_cells": 8000}
+{"tag": "k96_s0_D431", "epoch": 6, "epochs": 20, "train_mse": 1.030166106760502, "n_train_cells": 8000}
+{"tag": "k96_s0_D431", "epoch": 7, "epochs": 20, "train_mse": 1.0301035725176335, "n_train_cells": 8000}
+{"tag": "k96_s0_D431", "epoch": 8, "epochs": 20, "train_mse": 1.0301144569516183, "n_train_cells": 8000}
+{"tag": "k96_s0_D431", "epoch": 9, "epochs": 20, "train_mse": 1.0301364307403564, "n_train_cells": 8000}

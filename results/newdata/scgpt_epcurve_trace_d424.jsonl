@@ -1,0 +1,5 @@
+{"tag": "k96_s0_D424", "epoch": 1, "epochs": 20, "train_mse": 1.0312651697397233, "n_train_cells": 8000}
+{"tag": "k96_s0_D424", "epoch": 2, "epochs": 20, "train_mse": 1.0303195506930352, "n_train_cells": 8000}
+{"tag": "k96_s0_D424", "epoch": 3, "epochs": 20, "train_mse": 1.0301925263404845, "n_train_cells": 8000}
+{"tag": "k96_s0_D424", "epoch": 4, "epochs": 20, "train_mse": 1.030172677397728, "n_train_cells": 8000}
+{"tag": "k96_s0_D424", "epoch": 5, "epochs": 20, "train_mse": 1.0302002044916152, "n_train_cells": 8000}

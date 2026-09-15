@@ -115,19 +115,37 @@ def run_scpram_on_split(cs, sp, seed, held_donor, cuda_device, epochs, ratio):
                 + err[-3500:]
             )
         r = np.load(out, allow_pickle=True)
-        by_lineage = {}
-        for k, v in zip(r["pred_perts"], r["pred_means"]):
-            by_lineage[str(k).split("::", 1)[-1]] = np.asarray(v, np.float32)
-    return by_lineage
+        dec = (
+            np.asarray(r["pred_declined"], dtype=bool)
+            if "pred_declined" in r.files
+            else np.zeros(len(r["pred_perts"]), dtype=bool)
+        )
+        by_lineage, declined_lineages = {}, set()
+        for i, (k, v) in enumerate(zip(r["pred_perts"], r["pred_means"])):
+            lin = str(k).split("::", 1)[-1]
+            by_lineage[lin] = np.asarray(v, np.float32)
+            if dec[i]:
+                declined_lineages.add(lin)
+    return by_lineage, declined_lineages
 
 
-def scpram_pred_cells(by_lineage, test_strata, ctrl_mean):
+def scpram_pred_cells(by_lineage, test_strata, ctrl_mean, declined_lineages=()):
+    """Return the per-cell prediction and a per-cell declined mask.
+
+    A lineage the runner never predicted, or predicted and failed on, keeps the control mean so
+    the array shape holds -- but it is flagged, because a control profile scored as a prediction
+    reads as a real "no response" call.
+    """
     test_strata = np.asarray(test_strata)
     pred = np.zeros((len(test_strata), len(ctrl_mean)), np.float32)
+    declined = np.zeros(len(test_strata), dtype=bool)
     for s in np.unique(test_strata):
         lineage = str(s).split("=", 1)[-1]
-        pred[test_strata == s] = by_lineage.get(lineage, ctrl_mean)
-    return pred
+        rows = test_strata == s
+        pred[rows] = by_lineage.get(lineage, ctrl_mean)
+        if lineage not in by_lineage or lineage in declined_lineages:
+            declined[rows] = True
+    return pred, declined
 
 
 def main():
@@ -237,11 +255,20 @@ def main():
         s_pe, s_ed, s_au = [], [], []
         for seed in args.seeds:
             t0 = time.time()
-            by_lineage = run_scpram_on_split(
+            by_lineage, declined_lineages = run_scpram_on_split(
                 cs, sp, seed, dnr, args.gpu, args.epochs, args.ratio
             )
             dt = time.time() - t0
-            pred_aligned = scpram_pred_cells(by_lineage, test_strata, ctrl_mean)
+            pred_aligned, declined = scpram_pred_cells(
+                by_lineage, test_strata, ctrl_mean, declined_lineages
+            )
+            if declined.any():
+                print(
+                    f"[decline] scPRAM {sp.spec.name}: "
+                    f"{declined.sum()}/{len(declined)} test cells fall back to the control mean "
+                    f"(lineages: {sorted(declined_lineages)})",
+                    flush=True,
+                )
             pe = float(
                 pearson_delta(pred_aligned, test_X, ctrl_mean, test_strata, rg)["macro"]
             )
@@ -264,6 +291,7 @@ def main():
                 exclude_gene_idx=rg,
                 fit_on=ed_basis,
                 n_pca=50,
+                declined=declined,
             )
             s_pe.append(pe)
             s_ed.append(ed)

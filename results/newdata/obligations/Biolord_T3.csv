@@ -1,0 +1,6 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+Biolord,latent,C3_true_lo_gene_10,run_headline,True,True,301574,34240,30,0.3782527707517147,0.32718887948120634,0.43189435605580595,7.6674545228621875,,,chen
+Biolord,latent,C3_true_lo_gene_10,run_headline,True,True,15908,1781,2,0.4567718505859375,0.4134097695350647,0.5001339316368103,7.574836094929763,,,mccutcheon_CRISPRa
+Biolord,latent,C3_true_lo_gene_10,run_headline,True,True,18320,1778,2,0.32005998492240906,0.30598828196525574,0.3341316878795624,8.021730909234403,,,mccutcheon_CRISPRi
+Biolord,latent,C3_true_lo_gene_10,run_headline,True,True,19418,1851,7,0.4981262470994677,0.3988211052758353,0.5863674197878156,10.073610528846613,,,schmidt
+Biolord,latent,C3_true_lo_gene_10,run_headline,True,True,23496,1598,2,0.31735722720623016,0.3102302849292755,0.3244841694831848,7.528042937261485,,,shifrut

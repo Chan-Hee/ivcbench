@@ -35,6 +35,10 @@ import warnings
 
 import numpy as np
 
+import sys
+from pathlib import Path as _P
+sys.path.insert(0, str(_P(__file__).resolve().parent))
+
 warnings.filterwarnings("ignore")
 
 REPO = str(__import__("pathlib").Path(__file__).resolve().parents[1])
@@ -225,6 +229,16 @@ def main(
         categorical_covariate_keys=["cell_type"],
         max_comb_len=1,
     )
+    # cpa-tools 0.8.8 leaves the chemical projection (pert_network.pert_transformation) out of
+    # every optimizer group, so with use_rdkit_embeddings=True chemistry reaches the decoder through
+    # a FIXED RANDOM linear map. See scripts/cpa_optimizer_shim.py for the evidence and the fix; it
+    # patches in-process and leaves site-packages untouched.
+    from cpa_optimizer_shim import install as _install_cpa_shim, verify as _verify_cpa_shim
+
+    facts["cpa_optimizer_upstream"] = _verify_cpa_shim()
+    facts["cpa_optimizer_shim"] = _install_cpa_shim()
+    print(f"[chemcpa] {facts['cpa_optimizer_shim']}", flush=True)
+
     model = cpa.CPA(
         adata,
         split_key="split",

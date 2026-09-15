@@ -139,8 +139,11 @@ FAM_ROWS = [
     ("flow", ["CellFlow"]),
     ("chemistry", ["FP-ridge"]),
     ("shift", ["linear-shift-KOemb"]),
-    ("comparator", ["CINEMA-OT"]),
 ]
+# CINEMA-OT is gone from FAM_ROWS, not forgotten: all six of its cells are excluded under this
+# revision's interface rule, so it contributes no census row. The grid asserts that the drawn
+# roster equals the census roster exactly (see the roster rule below), so leaving it here would
+# refuse to build. It stays in the surveyed panel (Table 2, S15a) with its reasons in S15b.
 MODEL_SHORT = {
     # biolord is styled lowercase by its authors; the census stores the capitalised key.
     "Biolord": "biolord",
@@ -175,7 +178,7 @@ ROLE_COLOR = {
     ),  # vivid blue   (learned conditioned models, the verdict subjects)
     "diagnostic": (
         "#0CA678"
-    ),  # teal         (diagnostic comparators: deterministic + CINEMA-OT)
+    ),  # teal         (diagnostic comparators: FP-ridge, linear-shift-KOemb)
     "baseline": "#868E96",  # neutral grey (universal floor + context baselines)
 }
 ROLE_KEY = [  # lower-case, like the marker keys on the row above
@@ -183,9 +186,10 @@ ROLE_KEY = [  # lower-case, like the marker keys on the row above
     ("conditioned", "conditioned"),
     ("diagnostic", "diagnostic comparators"),
 ]
-HOLLOW_ROWS = {
-    "CINEMA-OT"
-}  # perturbation-agnostic reference -> hollow (no margin fill)
+# Hollow marked a perturbation-agnostic reference row, which was CINEMA-OT alone. Its six cells
+# are excluded under this revision's interface rule, so no row is drawn hollow now and the caption
+# must not promise one. The drawing path is kept for the next such comparator.
+HOLLOW_ROWS: set[str] = set()
 FLOOR_ROWS = {
     "cell-mean",
     "linear-PCA",

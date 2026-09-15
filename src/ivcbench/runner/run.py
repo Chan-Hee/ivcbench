@@ -117,6 +117,7 @@ def run_job(
         genes=cs.var_names,
         exclude_gene_idx=excl,
         fit_on=cs.X[split.train_idx],
+        declined=getattr(pred, "declined", None),
     )
 
     # Raw-run diagnostic: average per-cell rank scores within strata. The final
@@ -188,4 +189,15 @@ def run_job(
     # Carry the deposited bundle path so a caller can audit what was actually written -- the
     # control-mean-collapse guard in scripts/run_obligation.py reads it.
     row["pred_bundle"] = _bundle_path
+    # A decline is a REFUSAL to predict, not a prediction of "this perturbation does nothing".
+    # It has to survive in the RESULT ROW, not only in the bundle. The C4 protein-CITE arm dumps
+    # no bundle at all -- scripts/run_c4_conditioned.py drops IVCBENCH_PRED_DUMP there so the
+    # protein run cannot overwrite the RNA bundle the census reads -- so on that arm the bundle
+    # was the only record of a decline and there was no bundle. Measured case: linear-shift-KOemb
+    # declines 6984 of 7044 protein rows, i.e. 99.1% of its reported protein number is the control
+    # mean, and nothing downstream could see that.
+    _dec = getattr(pred, "declined", None)
+    _n_dec = int(np.asarray(_dec, dtype=bool).sum()) if _dec is not None else 0
+    row["n_declined_cells"] = _n_dec
+    row["frac_declined"] = round(_n_dec / max(1, int(len(split.test_strata))), 6)
     return row

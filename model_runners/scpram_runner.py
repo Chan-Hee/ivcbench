@@ -40,9 +40,10 @@ import numpy as np
 
 warnings.filterwarnings("ignore")
 
-HELD = "__HELD__"          # cell-type token for the held unit (control cells only enter as this token)
+HELD = (  # cell-type token for the held unit (control cells only enter as this token)
+    "__HELD__"
+)
 CTRL = "ctrl"
-STIM = "stim"
 
 
 def main(in_path: str, out_path: str) -> None:
@@ -63,30 +64,42 @@ def main(in_path: str, out_path: str) -> None:
     X = d["X_train"].astype(np.float32)
     genes = [str(g) for g in d["genes"]]
     is_ctrl = d["is_control_train"].astype(bool)
-    X_ctrl_inf = d["X_ctrl_inf"].astype(np.float32)            # held unit's OWN control cells
+    X_ctrl_inf = d["X_ctrl_inf"].astype(np.float32)  # held unit's OWN control cells
     test_perts = sorted({str(p) for p in d["test_perts"]} - {"control"})
     if not test_perts:
         raise RuntimeError("scPRAM: no non-control test perturbation label")
-    stim_label = test_perts[0]                                 # single SEEN perturbation (e.g. IFN-beta)
+    pert_train = np.asarray([str(p) for p in d["pert_train"]])
     if X.shape[0] == 0:
         raise RuntimeError("scPRAM: empty training payload")
     if is_ctrl.sum() == 0 or (~is_ctrl).sum() == 0:
-        raise RuntimeError("scPRAM: need both control and stimulated cells in the train fold")
+        raise RuntimeError(
+            "scPRAM: need both control and stimulated cells in the train fold"
+        )
     if X_ctrl_inf.shape[0] == 0:
-        raise RuntimeError("scPRAM: no held-unit control cells (inference input) to predict from")
+        raise RuntimeError(
+            "scPRAM: no held-unit control cells (inference input) to predict from"
+        )
 
     # ---- build the scPRAM AnnData: train fold + the held unit's control cells -------------------
     # Reference cell types (everything in the train fold) get a single shared token so the ctrl->stim
     # delta is learned across them; the held unit is a DISTINCT cell type carrying ONLY control cells.
     X_all = np.vstack([X, X_ctrl_inf]).astype(np.float32)
-    cond = np.concatenate([np.where(is_ctrl, CTRL, STIM),
-                           np.full(X_ctrl_inf.shape[0], CTRL)]).astype(str)
+    # The condition key must name the ACTUAL perturbation. Collapsing every treated cell into one
+    # STIM token made predict() select a single pooled reference population, so one profile was
+    # emitted under the alphabetically first label and every other held perturbation fell through to
+    # the wrapper's control-mean fill: on OP3 cell-context that was 140 of 141 compounds. On a
+    # single-stimulus split (Kang, Soskic) there is exactly one treated label, so this is identical
+    # to the old behaviour.
+    cond = np.concatenate(
+        [np.where(is_ctrl, CTRL, pert_train), np.full(X_ctrl_inf.shape[0], CTRL)]
+    ).astype(str)
     # Spread the reference cells over a few pseudo cell types so scPRAM's per-cell-type delta loop has
     # >1 reference group (it iterates reference cell types != held). A single 'REF' token also works
     # (delta computed over all non-held ctrl/stim); we keep one REF token for fidelity to the paired
     # cross-cell-type setting where the held unit transfers a globally-learned shift.
-    ctype = np.concatenate([np.full(X.shape[0], "REF"),
-                            np.full(X_ctrl_inf.shape[0], HELD)]).astype(str)
+    ctype = np.concatenate(
+        [np.full(X.shape[0], "REF"), np.full(X_ctrl_inf.shape[0], HELD)]
+    ).astype(str)
 
     adata = ad.AnnData(X_all.copy())
     adata.var_names = genes
@@ -97,7 +110,7 @@ def main(in_path: str, out_path: str) -> None:
         "condition_key": "condition",
         "cell_type_key": "cell_type",
         "ctrl_key": CTRL,
-        "stim_key": STIM,
+        # stim_key is supplied per call below; no default, so a pooled token cannot slip back in
         "pred_key": "predict",
     }
 
@@ -112,16 +125,41 @@ def main(in_path: str, out_path: str) -> None:
     # predict the held unit's stimulated state from its OWN control cells. predict() pulls the held
     # control cells from `adata` (cell_type==HELD & condition==ctrl) and the ctrl->stim delta from the
     # reference cell types (cell_type!=HELD); the held stim expression is never available.
-    pred = model.predict(train_adata=adata, cell_to_pred=HELD, key_dic=key_dic, ratio=ratio)
-    P = pred.X
-    P = P.toarray() if hasattr(P, "toarray") else np.asarray(P)
-    profile = P.mean(0).astype(np.float32)
+    # One call per requested perturbation, each selecting its own reference treated population
+    # through the published stim_key. The VAE is trained once; only predict() is re-entered.
+    labels, profiles, unsupported = [], [], []
+    for cpd in test_perts:
+        if int((cond == cpd).sum()) == 0:
+            unsupported.append(cpd)          # never observed in the training fold
+            continue
+        pred = model.predict(
+            train_adata=adata,
+            cell_to_pred=HELD,
+            key_dic=dict(key_dic, stim_key=cpd),
+            ratio=ratio,
+        )
+        P = pred.X
+        P = P.toarray() if hasattr(P, "toarray") else np.asarray(P)
+        profile = P.mean(0).astype(np.float32)
+        if not np.all(np.isfinite(profile)):
+            raise RuntimeError(f"scPRAM: non-finite predicted profile for {cpd!r}")
+        labels.append(cpd)
+        profiles.append(profile)
 
-    if not np.all(np.isfinite(profile)):
-        raise RuntimeError("scPRAM: predicted profile contains non-finite values")
-
-    np.savez(out_path, pred_perts=np.array([stim_label], dtype=object),
-             pred_means=profile[None, :].astype(np.float32))
+    if not labels:
+        raise RuntimeError(
+            "scPRAM: none of the requested perturbations has treated cells in the training fold"
+        )
+    print(
+        f"[scPRAM] predicted {len(labels)}/{len(test_perts)} requested perturbations"
+        + (f"; {len(unsupported)} absent from the training fold" if unsupported else ""),
+        flush=True,
+    )
+    np.savez(
+        out_path,
+        pred_perts=np.array(labels, dtype=object),
+        pred_means=np.vstack(profiles).astype(np.float32),
+    )
 
 
 if __name__ == "__main__":

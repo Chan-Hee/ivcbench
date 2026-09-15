@@ -1,0 +1,9 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+AttentionPert,graph,C4_modality_lo_ko_25,failed,False,,,,,,,,,"RuntimeError: AttentionPert runner failed (rc=1):
+… FileNotFoundError: set $IVCBENCH_ATTNPERT_SRC to the AttentionPert source directory
+Traceback (most recent call last):
+  File ""/data1/home/chlee/projects/immune v",,25
+AttentionPert,graph,C4_modality_lo_ko_50,failed,False,,,,,,,,,"RuntimeError: AttentionPert runner failed (rc=1):
+… FileNotFoundError: set $IVCBENCH_ATTNPERT_SRC to the AttentionPert source directory
+Traceback (most recent call last):
+  File ""/data1/home/chlee/projects/immune v",,50

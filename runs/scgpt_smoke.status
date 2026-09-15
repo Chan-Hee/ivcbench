@@ -1,0 +1,1 @@
+CANCELLED superseded: the real epoch-curve run validates the same plumbing at its first checkpoint (~1 epoch in), and the smoke test was holding a free GPU

@@ -1,0 +1,11 @@
+B	START compounds=141 ae_iters=12000 ot_iters_per_compound=8000
+B	[1/141] 5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine n=269 mmd=0.03209
+B	[2/141] ABT-199 (GDC-0199) n=345 mmd=0.02753
+B	[3/141] ABT737 n=294 mmd=0.02779
+B	[4/141] AMD-070 (hydrochloride) n=355 mmd=0.02760
+NK	START compounds=141 ae_iters=12000 ot_iters_per_compound=8000
+B	[5/141] AT 7867 n=360 mmd=0.02837
+NK	[1/141] 5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine n=269 mmd=0.02999
+B	[6/141] AT13387 n=210 mmd=0.03057
+NK	[2/141] ABT-199 (GDC-0199) n=270 mmd=0.02860
+B	[7/141] AVL-292 n=341 mmd=0.02805

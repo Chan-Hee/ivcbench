@@ -1,0 +1,9 @@
+[
+  {
+    "n_train_donors": 96,
+    "seed": 0,
+    "eval_donor": "D353",
+    "sec": 1877.4,
+    "n_train_cells": 110147
+  }
+]

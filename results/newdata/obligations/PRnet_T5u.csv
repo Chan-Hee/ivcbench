@@ -1,0 +1,2 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PRnet,generative,C5_global_compound_holdout,run_headline,True,True,51181,12333,112,0.13430073509724544,0.10922908041746789,0.15866878956481478,19.64178203926523,,,compounds

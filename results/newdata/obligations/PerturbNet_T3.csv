@@ -1,0 +1,6 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PerturbNet,generative,C3_true_lo_gene_10,run_headline,True,True,301574,34240,30,0.32013531811535356,0.25895149162660047,0.37758237731953465,7.72503563474764,,,chen
+PerturbNet,generative,C3_true_lo_gene_10,run_headline,True,True,15908,1781,2,0.42572416365146637,0.3431806266307831,0.5082677006721497,7.789378473180841,,,mccutcheon_CRISPRa
+PerturbNet,generative,C3_true_lo_gene_10,run_headline,True,True,18320,1778,2,0.28888699412345886,0.18274787068367004,0.3950261175632477,7.848703099406766,,,mccutcheon_CRISPRi
+PerturbNet,generative,C3_true_lo_gene_10,run_headline,True,True,19418,1851,7,0.46126893162727356,0.3505062460899353,0.5567505718341895,10.22989064997213,,,schmidt
+PerturbNet,generative,C3_true_lo_gene_10,run_headline,True,True,23496,1598,2,0.3124497979879379,0.3047597110271454,0.32013988494873047,7.545937027877963,,,shifrut

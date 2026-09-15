@@ -1,72 +1,23 @@
-# Heavy-baseline model runners
+# Model-family execution interfaces
 
-Each file here is a standalone script run **inside a pinned conda env** (not the GPU-free core
-`.venv`) by `ivcbench.baselines.heavy.SubprocessAdapter`. The adapter serialises a leak-safe payload
-and calls:
+These scripts run inside their model-family environments, separately from the CPU evaluation environment. `ivcbench.baselines.heavy.SubprocessAdapter` serializes the model input and invokes the corresponding runner.
 
-```
-<env_python> model_runners/<model>_runner.py  <in.npz>  <out.npz>
+```text
+<model_env_python> model_runners/<runner>.py <input.npz> <output.npz>
 ```
 
-## Env map (existing envs, discovered 2026-05-26)
-| runner | conda env | key package |
-|---|---|---|
-| `gears_runner.py` | `scgpt` | cell-gears 0.0.2 (+ torch-geometric) |
-| `scgpt_runner.py` | `scgpt` | scgpt 0.2.4 |
-| `attentionpert_runner.py` | `scgpt` | (torch-geometric) |
-| `uce_runner.py` | `scgpt` | UCE weights |
-| `scgen_runner.py` | `scperturbench_eval` | pertpy 0.10 → `pt.tl.Scgen` |
-| `cpa_runner.py` | `scperturbench_eval` | cpa |
-| `cinemaot_runner.py` | `scperturbench_eval` | pertpy → `pt.tl.Cinemaot` |
-| `cellot_runner.py` | `scperturbench_eval` | cellot repo |
-| `scpram_runner.py` / `scpram_soskic_runner.py` | `ivc-scpram` | scpram 0.0.3 (`--no-deps` on the ivc-cpa torch2.0/cu117 stack) — 2nd conditioned OT model (Kang C1 LOCT / Soskic C2 LODO) |
-| `state_runner.py` | `scfoundation` | arc state |
+The typical payload contains training expression/conditions, inference controls, gene identities and held-target labels. The ordinary prediction interface must not receive held treated expression; any transductive diagnostic operation or upstream shared feature processing is identified separately. Mean outputs are paired with observed targets in the evaluation layer.
 
-## Input payload (`in.npz`, allow_pickle)
-- `X_train` (n_train, n_genes) float32 — training expression (log-normalized HVG)
-- `is_control_train` (n_train,) bool
-- `pert_train` (n_train,) str — perturbation label per training cell (target gene; `control` for NTC)
-- `X_ctrl_inf` (n_ctrl, n_genes) float32 — control cells the model may see at inference (the Δ baseline)
-- `genes` (n_genes,) str
-- `test_perts` (n_test,) str — held-out perturbation label per test cell (LABELS ONLY; never expression)
-- `gene_embedding_keys` / `gene_embedding_vals` — optional gene-side representation (for `adapted` models)
+Native/adapted/diagnostic status belongs to an **executed model–task operation**, not to the filename or model family. The final 47-entry panel and all omissions are documented in Table 2, Supplementary Table S3 and `source_data/model_task_interfaces.csv`. Folder membership alone is not evidence that a runner is evaluated.
 
-## Output (`out.npz`)
-- `pred_perts` (k,) str — the held perturbations predicted
-- `pred_means` (k, n_genes) float32 — predicted post-perturbation mean profile per held perturbation
+Important execution distinctions:
 
-The adapter tiles `pred_means` onto the test cells by `test_perts`, then the GPU-free core scores the
-four axes. The runner must NOT receive or read held-out treated expression — the leak boundary holds
-on the model side too.
+- Native scGen T1/T2 remain. Historical CPA context and CPA/scGen fingerprint-to-latent interfaces are excluded under the native-only rule.
+- Native chemCPA T5u uses `scripts/chemcpa_native_op3.py`, cpa-tools 0.8.8, molecular embeddings and the counterfactual prediction call; its existing three-seed mean profiles supply the reported CPA/chemCPA result.
+- STATE T3/T4/T5 historically recovered `adata_real.h5ad` rather than model predictions. Those saved results are excluded. The corrected shared selector now requires exactly one `adata_pred.h5ad`; fixing source does not repair old results. Separate T1/T2 runners selected the correct prediction artifact.
+- scFoundation genetic executions lacking a held-target-specific input and the pooled CellOT genetic map are excluded by their executed operation, not by a low-variance threshold.
+- PertAdapt T2 is a study-written adaptation, not the published genetic predictor. It reconstructs stimulated profiles from their own frozen pooled cell embeddings, then takes held-control embeddings at inference. The stimulation/lineage inputs, binary GO mask and shared decoder differ from the published operation. Its exact local modules are in `vendor/pertadapt/` in the submission archive, with provenance and separate attribution; see `vendor/pertadapt/README.md` there. The T3 execution remains excluded.
 
-## Support assets
-- **gene2go (GEARS/AttentionPert)**: `$IVCBENCH_GENE2GO` or `benchmark/data/_assets/gears/gene2go_all.pkl`
-  (the canonical GEARS gene2go_all.pkl, 9.46 MB). Seed it once from the GEARS dataverse, or copy from a
-  prior GEARS run. The runner copies it into each per-run PertData dir so cell-gears does not try to
-  download it.
-- **Perturbed genes must be in the HVG panel** for any gene-side model: `data/preprocess.py` force-keeps
-  the perturbed target genes (`select_hvg(..., force_idx=...)`) — required so GEARS `get_pert_idx` can
-  locate the perturbed gene.
-- Tune epochs via `$IVCBENCH_GEARS_EPOCHS` (default 15; smoke tests use 2).
+Historical/excluded interfaces remain as compact source-level audit evidence, not an invitation to count their saved outputs in the panel. See [EXECUTION_AUDIT.md](../EXECUTION_AUDIT.md).
 
-## Status (2026-05-27)
-3 heavy models proven end-to-end (leak-safe, sane Pearson-Δ vs floors on Schmidt 50% LO-gene):
-- **GEARS** (`gears_runner.py`, scgpt env) — 0.254. In the C3 roster; full sweep QC-GREEN.
-- **scGPT** (`scgpt_runner.py`, scgpt env, pretrained `$IVCBENCH_SCGPT_MODEL_DIR`) — 0.064 @2ep (more epochs ↑).
-- **scGen** (`scgen_runner.py`, scperturbench_eval env) — 0.251 (`adapted`: latent-δ on control-only PCA
-  gene-embedding → decode `module.as_bound().generative`). Needs `train(accelerator="cpu")` (CPU-only JAX).
-
-All three sit below cell-mean (0.549) → the O1 finding (gene-side models don't beat the mean-shift on
-focused primary-T panels) holds across graph/foundation/latent families.
-
-### Remaining roster (each a focused build)
-- **CPA** — dedicated env `ivc-cpa`: `conda create -n ivc-cpa python=3.10` + `pip install cpa-tools` +
-  `pip install 'pyarrow<17'` (ray 2.9 needs the old pyarrow PyExtensionType). Do NOT install into
-  scperturbench_eval (cpa-tools downgrades torch/scvi/anndata and breaks scGen). DECODE PATH FOUND:
-  `cpa._module.CPAModule.generative(z, library)` takes a single latent like scGen → reuse the scGen
-  adapted template (latent-δ regression on gene-embedding; get z+library via get_latent_representation /
-  module.inference).
-- **AttentionPert** — graph; `attnpert` (no setup.py → sys.path the source dir) needs per-dataset
-  `gene2vec.npy` (gen from `gene2vec_dim_200_iter_9_w2v.txt`, Gaussian fallback) + a leak-safe-by-
-  construction predict (its test-loader design does not fit cleanly — needs design).
-- **UCE / STATE** — external weight downloads (UCE ckpt; arc-state) not present locally.
+Model environments have incompatible Python, neural-framework and package requirements. Configure the runner paths, pretrained checkpoints and side inputs for the relevant original environment. Checkpoints and raw cell data are not redistributed. The exact recorded optimizer, trainable components and budget are in `source_data/Table_S3.csv`; unrecorded seeds or dependencies are not inferred. No all-model training command or universal VRAM minimum is claimed.

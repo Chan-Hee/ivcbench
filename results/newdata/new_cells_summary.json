@@ -1,0 +1,82 @@
+{
+ "Biolord_T2": {
+  "units": 106,
+  "pearson_delta": 0.074
+ },
+ "Biolord_T3": {
+  "units": 5,
+  "pearson_delta": 0.3941
+ },
+ "Biolord_T4": {
+  "units": 2,
+  "pearson_delta": 0.6128
+ },
+ "Biolord_T5c": {
+  "units": 4,
+  "pearson_delta": 0.0787
+ },
+ "Biolord_T5u": {
+  "units": 1,
+  "pearson_delta": 0.1267
+ },
+ "CellFlow_T1": {
+  "units": 8,
+  "pearson_delta": 0.7985
+ },
+ "CellFlow_T2": {
+  "units": 115,
+  "pearson_delta": 0.2144
+ },
+ "CellFlow_T3": {
+  "units": 5,
+  "pearson_delta": 0.321
+ },
+ "CellFlow_T4": {
+  "units": 2,
+  "pearson_delta": 0.4924
+ },
+ "CellFlow_T5c": {
+  "units": 4,
+  "pearson_delta": 0.1038
+ },
+ "CellFlow_T5u": {
+  "units": 1,
+  "pearson_delta": 0.1661
+ },
+ "CellOT_T5c": {
+  "units": 4,
+  "pearson_delta": 0.1015
+ },
+ "PRnet_T5c": {
+  "units": 4,
+  "pearson_delta": 0.0944
+ },
+ "PRnet_T5u": {
+  "units": 1,
+  "pearson_delta": 0.1343
+ },
+ "PerturbNet_T3": {
+  "units": 5,
+  "pearson_delta": 0.3617
+ },
+ "PerturbNet_T4": {
+  "units": 2,
+  "pearson_delta": 0.5981
+ },
+ "STATE_T1": {
+  "units": 8,
+  "pearson_delta": 0.7081
+ },
+ "chemCPA_T5c": {
+  "units": 4,
+  "pearson_delta": 0.041
+ },
+ "scPRAM_T1": {
+  "units": 8,
+  "pearson_delta": 0.7507
+ },
+ "scPRAM_T5c": {
+  "units": 4,
+  "pearson_delta": -0.0087
+ }
+}
