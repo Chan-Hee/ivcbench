@@ -27,10 +27,25 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNS = ROOT / "runs"
 STATE = RUNS / ".healthcheck.json"
 DEPOSIT = Path(os.environ.get("IVCBENCH_PRED_DUMP", ROOT / "predictions/v2_native"))
-# A job may legitimately be quiet for a while: one STATE donor is ~6 min, one CellOT compound
-# ~1.5 min, one PertAdapt epoch several minutes. Well past any of those, and past the slowest
-# single step we have measured, is 45 minutes.
-STALL_MIN = int(os.environ.get("IVCBENCH_STALL_MIN", "45"))
+# How long a job may legitimately be quiet is a property of the job, not of the machine. One
+# STATE donor is ~6 min and one CellOT compound ~1.5 min, but ONE PERTURBNET DONOR IS 53 MIN and a
+# scFoundation unit prints nothing between epochs that can take longer still. A single global
+# threshold would cry wolf on exactly the two longest jobs, and an alarm that fires on healthy runs
+# is worse than no alarm: it trains you to ignore the real one.
+STALL_MIN_DEFAULT = int(os.environ.get("IVCBENCH_STALL_MIN", "45"))
+STALL_MIN_BY_JOB = {
+    "pn_": 90,      # PerturbNet T2: 53 min per donor measured, so 90 is comfortably past one
+    "perturbnet": 90,
+    "scf_": 120,    # scFoundation at the published batch: 9,090 steps through a frozen encoder
+    "cellot": 60,   # 2000 iters per compound, and it slows under CPU contention
+}
+
+
+def stall_minutes(job: str) -> int:
+    for pre, val in STALL_MIN_BY_JOB.items():
+        if job.startswith(pre):
+            return val
+    return STALL_MIN_DEFAULT
 
 
 def running_jobs():
@@ -189,8 +204,10 @@ def main() -> int:
         if was and was["value"] == val:
             quiet = (now - was["since"]) / 60
             cur[job] = {"value": val, "since": was["since"], "how": how}
-            if quiet >= STALL_MIN:
-                alarms.append(f"STALLED {job}: {how} stuck at {val} for {quiet:.0f} min")
+            limit = stall_minutes(job)
+            if quiet >= limit:
+                alarms.append(f"STALLED {job}: {how} stuck at {val} for {quiet:.0f} min "
+                              f"(limit {limit}m)")
             else:
                 lines.append(f"  {job}: {how}={val} (quiet {quiet:.0f}m)")
         else:
@@ -213,4 +230,12 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except BrokenPipeError:
+        # piping into head closes stdout early; that is not a health problem
+        try:
+            sys.stdout.close()
+        except Exception:
+            pass
+        sys.exit(0)
