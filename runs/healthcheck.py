@@ -136,6 +136,20 @@ def progress_signal(job: str) -> tuple[str, int]:
                     best, bytes_ = f, sz
         if best is not None:
             return ("runner log bytes", bytes_)
+    # No runner log (the job started before the adapter teed stderr) and no unit counter. The job
+    # log is then just its header, which never changes -- reporting that as a stall is wrong: the
+    # signal is missing, not the progress. Fall back to the runner process's CPU SECONDS, which
+    # rise only while it actually computes. pa_T3_u0 sat at 46 bytes for 48 minutes while its
+    # runner burned 3,411 s of CPU at 124%.
+    if mine:
+        best = 0
+        for pid in mine:
+            try:
+                best = max(best, int(Path(f"/proc/{pid}/stat").read_text().split()[13]))
+            except Exception:
+                continue
+        if best:
+            return ("runner cpu-ticks", best)
     return ("job log bytes", log.stat().st_size if log.exists() else 0)
 
 
@@ -241,8 +255,12 @@ def main() -> int:
             cur[job] = {"value": val, "since": was["since"], "how": how}
             limit = stall_minutes(job)
             if quiet >= limit:
-                alarms.append(f"STALLED {job}: {how} stuck at {val} for {quiet:.0f} min "
-                              f"(limit {limit}m)")
+                kind = "UNOBSERVABLE" if how == "job log bytes" else "STALLED"
+                note = ("" if kind == "STALLED" else
+                        " -- this job predates the stderr tee, so there is no progress signal; "
+                        "check its runner's CPU time by hand before acting")
+                alarms.append(f"{kind} {job}: {how} stuck at {val} for {quiet:.0f} min "
+                              f"(limit {limit}m){note}")
             else:
                 lines.append(f"  {job}: {how}={val} (quiet {quiet:.0f}m)")
         else:
