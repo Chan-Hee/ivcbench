@@ -104,6 +104,49 @@ def main() -> int:
     ap.add_argument("--record", default="results/_paper/panel_mask_migration.json")
     args = ap.parse_args()
 
+    if args.apply:
+        # supersede_reruns.py refuses the same way, and for the same reason. A job that started
+        # before run_job carried the mask deposits an UNMASKED bundle when it finishes. Migrate
+        # while those are in flight and they overwrite their own bundles afterwards, leaving
+        # scFoundation and PertAdapt as the only unmasked models among masked peers -- the exact
+        # two cells section 247 is about, scored on genes they cannot predict while everything
+        # they are compared against is not. Worse than not masking at all.
+        running = sorted(
+            f.name[:-7]
+            for f in Path("runs").glob("*.status")
+            if f.read_text().startswith("RUNNING")
+        )
+        # Status files only cover jobs the dispatcher launched. Units driven by hand -- the
+        # scFoundation re-runs are started from a screen session and write no status file --
+        # would slip straight past that check, so look for the processes themselves too.
+        live = []
+        for entry in Path("/proc").iterdir():
+            if not entry.name.isdigit():
+                continue
+            try:
+                argv = (entry / "cmdline").read_bytes().decode("utf8", "replace")
+            except OSError:
+                continue
+            # Match argv ELEMENTS, not the joined string: a shell wrapper whose single argument
+            # happens to quote the command would otherwise register as a live run. One did,
+            # transiently, and an unnecessary refusal is a real cost when the migration has a
+            # narrow window between the last job finishing and the assembler.
+            bits = argv.split("\x00")
+            if not any(b.endswith("run_obligation.py") for b in bits):
+                continue
+            if "--model" not in bits or "--task" not in bits:
+                continue
+            model = bits[bits.index("--model") + 1]
+            task = bits[bits.index("--task") + 1]
+            live.append(f"{model}@{task}(pid {entry.name})")
+        if running or live:
+            raise SystemExit(
+                "refusing to migrate while work is still depositing.\n"
+                + (f"  RUNNING status files: {', '.join(running)}\n" if running else "")
+                + (f"  live run_obligation: {', '.join(sorted(set(live)))}\n" if live else "")
+                + "They deposit unmasked bundles when they finish. Wait for them."
+            )
+
     paths = targets()
     print(f"{len(paths)} candidate bundle(s)")
     log, changed, already = [], 0, 0

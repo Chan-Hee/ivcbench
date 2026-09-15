@@ -241,7 +241,7 @@ def units_and_spec(task):
         for frac, lbl in [(0.25, "25"), (0.50, "50")]:
             held = c4.held_ko_fraction(g, frac, seed=0)
             out.append((lbl, c4.modality_lo_ko(held, lbl)))
-        return cs, out, None, {"exclude_from_spec": True, "panel_mask": True}
+        return cs, out, None, {"exclude_from_spec": True}
     if task == "T3":
         # the unseen-gene cell spans five CRISPR datasets, each its own CellSet; the held genes are
         # the same 10% fraction the census uses, drawn per dataset with seed 0
@@ -255,7 +255,7 @@ def units_and_spec(task):
             ("schmidt", lambda: schmidt.load()),
             ("shifrut", lambda: shifrut.load()),
         ]
-        return "MULTI", [(n, f) for n, f in srcs], None, {"c3": True, "panel_mask": True}
+        return "MULTI", [(n, f) for n, f in srcs], None, {"c3": True}
     if task == "T5u":
         from ivcbench.data.loaders import op3 as op3mod
         from ivcbench.clusters.c5 import C5_PROGRAMS
@@ -358,30 +358,6 @@ def main():
             rk["response_gene_fn"] = kw["response_gene_fn"]
         if kw.get("exclude_from_spec") or kw.get("c3"):
             rk["exclude_genes"] = list(spec.held_values)
-        if kw.get("panel_mask"):
-            # NATIVE_102_FINAL_REVIEW.md section 247 rules on scFoundation T3/T4 and PertAdapt
-            # T3/T4: padding output genes the model did not predict with the control mean has to
-            # go, and its allowed column names the replacement -- "a common evaluation mask over
-            # the genes actually output". Genes absent from the released
-            # OS_scRNA_gene_index.19264.tsv have no input embedding and no output column in
-            # either checkpoint-based model, so neither can predict them. That is a property of
-            # the PANEL, so the mask is added to the task's exclusion set and every model on the
-            # cell -- both floor members included -- is scored on the same genes. Measured on the
-            # deposited bundles it moves T3 by +0.001 to +0.013 and T4 by -0.001 to -0.028, the
-            # floors move with them, and no verdict changes.
-            from ivcbench.eval.panel_mask import unrepresentable
-
-            blind = unrepresentable(cs.var_names)
-            if blind:
-                rk["exclude_genes"] = sorted(
-                    set(rk.get("exclude_genes", [])) | set(blind)
-                )
-                print(
-                    f"[panel-mask] {len(blind)} of {len(cs.var_names)} panel genes are outside "
-                    f"the released checkpoint vocabulary and are excluded from the metric for "
-                    f"every model on this cell",
-                    flush=True,
-                )
         if kw.get("dataset"):
             rk["dataset"] = kw[
                 "dataset"

@@ -23,6 +23,18 @@ from ..splits.spec import SplitSpec
 from .gating import Action, decide
 
 
+def _panel_masked(spec, dataset) -> bool:
+    """Do the genes outside the released checkpoint vocabulary come out of this cell's metric?
+
+    Only where a checkpoint-bound model is on the roster: the unseen-gene and unseen-knockout
+    splits. The Frangieh protein readout shares the C4 split name but carries a 20-marker panel
+    that no such model is scored on, so masking it would drop genes for no reason.
+    """
+    if dataset == "frangieh_protein":
+        return False
+    name = str(getattr(spec, "name", "") or "")
+    return name.startswith("C3_true_lo_gene") or name.startswith("C4_modality_lo_ko")
+
 def run_job(
     cs: CellSet,
     spec: SplitSpec,
@@ -83,6 +95,23 @@ def run_job(
         rg = np.asarray(response_gene_fn(cs, split), dtype=int)
         n_response_genes = int(len(rg))
         excl = rg if excl is None else np.union1d(excl, rg)
+    # The panel mask belongs to the CELL, so it is applied here rather than in a driver.
+    # NATIVE_102_FINAL_REVIEW.md section 247 rules that padding output genes a model did not
+    # predict with the control mean has to go, and offers "a common evaluation mask over the genes
+    # actually output" in its place. Common is the load-bearing word: if one model on a cell is
+    # scored on 2,000 genes and another on 1,946, the comparison is gone. Twelve scripts call
+    # run_job -- run_cluster, run_c4_conditioned, foundation_c4_modality, graph_frangieh,
+    # state_frangieh, cpa_frangieh, cinemaot_frangieh and the rest -- and run_obligation.py, where
+    # this first went, cannot even produce the two floor members or four of the ten T3 roster
+    # models. A mask enforced in one writer of twelve is a property of that writer, not of the
+    # panel. Here every caller inherits it.
+    if _panel_masked(spec, dataset):
+        from ivcbench.eval.panel_mask import unrepresentable
+
+        blind = unrepresentable(cs.var_names)
+        if blind:
+            idx = cs.gene_index(blind)
+            excl = idx if excl is None else np.union1d(excl, idx)
     resp = pearson_delta(
         pred.pred_cells, test_X, pred.control_mean, split.test_strata, excl
     )
