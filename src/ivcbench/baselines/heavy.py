@@ -73,10 +73,25 @@ class SubprocessAdapter(BaselineAdapter):
     requires_compound_side: bool = (
         False  # True for C5 chemistry models: need side_info['fingerprint']
     )
+    # A fixed ceiling has to survive the WORST contention the box will see, not the best. Two
+    # PertAdapt T3 units died at epoch 11 and 10 of 15 against an 8 h ceiling after slowing from
+    # 27 to 46 minutes an epoch when sixteen PerturbNet shards came up alongside them -- seven
+    # hours of training thrown away for a limit, not a defect. $IVCBENCH_TIMEOUT_SCALE multiplies
+    # every adapter's budget so a loaded box can be given headroom without editing each class.
     timeout_s: int = 3600
     cuda_device: str | None = (
         None  # set by the parallel dispatcher to pin this job's GPU
     )
+
+    def _budget(self) -> int:
+        """timeout_s scaled by $IVCBENCH_TIMEOUT_SCALE (default 1.0), read at call time."""
+        import os as _os
+
+        try:
+            scale = float(_os.environ.get("IVCBENCH_TIMEOUT_SCALE", "1"))
+        except ValueError:
+            scale = 1.0
+        return int(self.timeout_s * max(scale, 1.0))
 
     def fit(self, cs, split, side_info=None):
         # Training happens inside the runner (own env/GPU); here we just hold the leak-safe context.
@@ -194,7 +209,7 @@ class SubprocessAdapter(BaselineAdapter):
                     stdout=subprocess.PIPE,
                     stderr=fh if fh is not None else subprocess.PIPE,
                     text=True,
-                    timeout=self.timeout_s,
+                    timeout=self._budget(),
                     env=env,
                 )
                 if fh is not None:
@@ -205,7 +220,7 @@ class SubprocessAdapter(BaselineAdapter):
                         live.read_text(errors="replace")[-20000:] if live.exists() else "")
             except subprocess.TimeoutExpired:
                 if fh is not None:
-                    fh.write(f"=== TIMED OUT after {self.timeout_s}s ===\n"); fh.flush()
+                    fh.write(f"=== TIMED OUT after {self._budget()}s ===\n"); fh.flush()
                 raise
             finally:
                 if fh is not None:
