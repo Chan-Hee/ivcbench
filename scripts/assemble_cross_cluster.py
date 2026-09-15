@@ -194,6 +194,56 @@ def eligible_bundle(path):
     return True
 
 
+def assert_uniform_metric_mask(df):
+    """Every model on a unit must be scored on the same genes, or the cell is not a comparison.
+
+    NATIVE_102_FINAL_REVIEW.md section 247 replaces control-padding on the unseen-gene and
+    unseen-knockout cells with a common evaluation mask, and the word that carries the weight is
+    common: a model scored on 1,974 genes against floors scored on 2,000 is worse than no mask at
+    all. The mask reaches a bundle two ways -- run_job writes it for runs started after it landed,
+    and scripts/apply_panel_mask.py adds it to everything deposited earlier. If that migration has
+    not been run, a cell arrives here half masked, and nothing downstream would notice: the scores
+    are all finite and all plausible.
+
+    This is the check that notices. It compares exclude_gene_idx across the bundles of one unit
+    and refuses to assemble when they disagree.
+    """
+    import numpy as np
+
+    bad = []
+    for (cluster, split, dataset), grp in df.groupby(["cluster", "split", "dataset"], dropna=False):
+        if not (str(split).startswith("C3_true_lo_gene") or str(split).startswith("C4_modality_lo_ko")):
+            continue
+        if str(dataset) == "frangieh_protein":
+            continue
+        seen = {}
+        for _, row in grp.iterrows():
+            path = os.path.join(ROOT, row["bundle_path"])
+            try:
+                d = np.load(path, allow_pickle=True)
+            except Exception:
+                continue
+            excl = (
+                tuple(sorted(np.asarray(d["exclude_gene_idx"], int).tolist()))
+                if "exclude_gene_idx" in d.files
+                else ()
+            )
+            seen.setdefault(excl, []).append(row["model"])
+        if len(seen) > 1:
+            groups = " | ".join(
+                f"{len(k)} excluded: {', '.join(sorted(v))}" for k, v in sorted(seen.items(), key=lambda x: -len(x[0]))
+            )
+            bad.append(f"  {cluster} {split} {dataset or ''}: {groups}")
+    if bad:
+        raise SystemExit(
+            "Refusing to assemble: the models on a unit are not scored on the same genes.\n"
+            + "\n".join(bad)
+            + "\n\nRun scripts/apply_panel_mask.py --apply first (cascade step 4b). It is the "
+            "migration that brings bundles deposited before the mask existed up to the same "
+            "exclusion set."
+        )
+
+
 def score_all():
     files = sorted(
         f
@@ -558,6 +608,7 @@ def build(scored=None):
     """Re-score the bundles and assemble (headline, within-family) DataFrames in memory."""
     census_metadata_rows()  # fail fast if roster/status/interface metadata has drifted
     df = score_all() if scored is None else scored
+    assert_uniform_metric_mask(df)
 
     # ---------------- HEADLINE TABLE: family delta vs universal floor ----------------
     long_by_cell = {}
