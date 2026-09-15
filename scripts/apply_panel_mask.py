@@ -1,0 +1,146 @@
+#!/usr/bin/env python
+"""Add the common panel mask to T3/T4 bundles that were deposited before the task carried it.
+
+NATIVE_102_FINAL_REVIEW.md section 247 rules on scFoundation T3/T4 and PertAdapt T3/T4: padding
+output genes the model did not predict with the control mean has to go, and its allowed column
+names the replacement -- "a common evaluation mask over the genes actually output". Genes absent
+from the released OS_scRNA_gene_index.19264.tsv have no input embedding and no output column in
+either checkpoint-based model, so neither can predict them.
+
+That is a property of the PANEL, not of a model, so the same genes are removed for every model on
+the cell and for both floor members. scripts/run_obligation.py folds the mask into the task's
+exclusion set, so runs started after that change carry it already. This script is for the bundles
+deposited before it, and for runs that were already in flight when it landed.
+
+The edit is additive and idempotent: it unions the mask indices into `exclude_gene_idx` and
+touches nothing else. Writing it into the bundle rather than applying it at scoring time is what
+keeps ivcbench.eval.bundle.score_bundle self-contained -- the GPU-free reproduction path
+(scripts/reproduce_eval.py) scores from the deposit alone and must not need the released
+vocabulary to do it.
+
+Scope: the 2,000-gene RNA panels of the unseen-gene and unseen-knockout splits. The Frangieh
+protein readout is excluded -- no checkpoint-based model is scored on it, so masking its
+20-marker panel would remove genes for no reason.
+
+    python scripts/apply_panel_mask.py              # report only
+    python scripts/apply_panel_mask.py --apply      # rewrite, verifying every bundle
+"""
+
+from __future__ import annotations
+
+import argparse
+import glob
+import hashlib
+import json
+import os
+import re
+import sys
+from pathlib import Path
+
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from ivcbench.eval.bundle import score_bundle  # noqa: E402
+from ivcbench.eval.panel_mask import unrepresentable  # noqa: E402
+
+SPLIT_RE = re.compile(r"^(C3_LO_gene|C4_Axis2|C4)__")
+PANEL = 2000
+
+
+def _sha(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def targets() -> list[Path]:
+    out = []
+    for p in sorted(glob.glob("predictions/**/*.npz", recursive=True)):
+        name = os.path.basename(p)
+        if not SPLIT_RE.match(name) or "frangieh_protein" in name:
+            continue
+        try:
+            d = np.load(p, allow_pickle=True)
+        except Exception:
+            continue
+        if "genes" not in d.files or "pred_means" not in d.files:
+            continue
+        if len(np.asarray(d["genes"])) != PANEL:
+            continue
+        out.append(Path(p))
+    return out
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--apply", action="store_true", help="rewrite the bundles")
+    ap.add_argument("--record", default="results/_paper/panel_mask_migration.json")
+    args = ap.parse_args()
+
+    paths = targets()
+    print(f"{len(paths)} candidate bundle(s)")
+    log, changed, already = [], 0, 0
+    for path in paths:
+        d = np.load(path, allow_pickle=True)
+        genes = [str(g) for g in np.asarray(d["genes"])]
+        blind = unrepresentable(genes)
+        if not blind:
+            continue
+        pos = {g: i for i, g in enumerate(genes)}
+        mask = np.array(sorted(pos[g] for g in blind), dtype=int)
+        base = (
+            np.asarray(d["exclude_gene_idx"], int)
+            if "exclude_gene_idx" in d.files
+            else np.array([], int)
+        )
+        merged = np.union1d(base, mask)
+        if merged.size == base.size and np.array_equal(np.sort(base), merged):
+            already += 1
+            continue
+
+        before = score_bundle(str(path))["pearson_delta"]
+        entry = {
+            "bundle": str(path),
+            "sha256_before": _sha(path),
+            "excluded_before": int(base.size),
+            "panel_mask_genes": int(mask.size),
+            "excluded_after": int(merged.size),
+            "pearson_delta_before": before,
+        }
+        if args.apply:
+            payload = {k: d[k] for k in d.files}
+            payload["exclude_gene_idx"] = merged
+            # np.savez appends ".npz" to any path that does not already end in it, so a
+            # ".npz.tmp" name silently became ".npz.tmp.npz" and the replace below failed.
+            # Handing it an open file keeps the name exactly as given.
+            tmp = path.with_name(path.name + ".tmp")
+            with tmp.open("wb") as handle:
+                np.savez(handle, **payload)
+            os.replace(tmp, path)
+            after = score_bundle(str(path))["pearson_delta"]
+            check = np.asarray(np.load(path, allow_pickle=True)["exclude_gene_idx"], int)
+            assert np.array_equal(np.sort(check), merged), f"{path}: mask did not persist"
+            entry["sha256_after"] = _sha(path)
+            entry["pearson_delta_after"] = after
+        changed += 1
+        log.append(entry)
+
+    verb = "rewrote" if args.apply else "would rewrite"
+    print(f"{verb} {changed}; {already} already carried the mask")
+    if args.apply and log:
+        out = Path(args.record)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(log, indent=1))
+        moves = [e["pearson_delta_after"] - e["pearson_delta_before"] for e in log]
+        print(f"score moved by {min(moves):+.4f} to {max(moves):+.4f}; record in {out}")
+    elif log:
+        print(f"  example: {log[0]['bundle']} "
+              f"(+{log[0]['panel_mask_genes']} genes to the metric mask)")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
