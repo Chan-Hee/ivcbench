@@ -39,7 +39,11 @@ while true; do
     # The queue names a GPU, but a card that is full while another sits idle should not hold a job
     # back. Pick the emptiest card that is under the memory bar and rewrite the command to match --
     # the per-GPU job limit in preflight.py still decides whether it may start.
-    best=""; best_used=999999
+    # Initialise above ANY rank this loop can produce. It used to be 999999, which happened to sit
+    # above the old "n * 100000 + memory" but below the free-slot formula below -- so every card
+    # failed the comparison, best stayed empty, no rebalance happened, and the job went to whatever
+    # card the queue named. That stalled the PerturbNet shards behind a full GPU 2.
+    best=""; best_used=99999999
     for g in 0 1 2 3; do
       case " ${IVCBENCH_RESERVED_GPUS:-} " in *" $g "*) continue;; esac
       u=$(gpu_used "$g")
@@ -47,8 +51,16 @@ while true; do
             b=$(basename "$f" .status)
             [ -f "$DIR/$b.cmd" ] && grep -qE -- "--gpu $g|CUDA_VISIBLE_DEVICES=$g|--gpus $g" "$DIR/$b.cmd" && echo x
           done | wc -l)
-      # rank by job count first, memory second
-      rank=$(( n * 100000 + u ))
+      # Rank by FREE SLOTS, not by job count. The cards no longer share one limit
+      # (IVCBENCH_JOBS_PER_GPU_<n>), so "three jobs" means a free slot on a card whose limit is
+      # four and no free slot on a card whose limit is three. Ranking on the count alone sent
+      # pn_T2_u1 to GPU 2 at 3/3 over and over while GPU 0 sat at 3/4, and because the loop
+      # attempts one job per pass the whole queue stalled behind it.
+      eval "lim=\${IVCBENCH_JOBS_PER_GPU_$g:-\${IVCBENCH_JOBS_PER_GPU:-2}}"
+      free=$(( lim - n ))
+      [ "$free" -le 0 ] && continue          # no room on this card
+      # most free slots first; break ties on the emptier card
+      rank=$(( (100 - free) * 100000 + u ))
       if [ "$rank" -lt "$best_used" ]; then best_used=$rank; best=$g; fi
     done
     if [ -n "$best" ] && [ "$best" != "$gpu" ]; then
