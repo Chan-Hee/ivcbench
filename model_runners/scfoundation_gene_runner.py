@@ -477,12 +477,20 @@ def main(in_path: str, out_path: str) -> None:
                 assert hashlib.sha256(np.ascontiguousarray(basal).tobytes()).digest() in own_control_hashes, "native inference graph basal is not an X_ctrl_inf row"
             _log(f"[basal-slot] {label}: {len(graphs)} native graph inputs verified against X_ctrl_inf")
             loader = DataLoader(graphs, batch_size=batch_size, shuffle=False)
-            total = np.zeros(len(genes), dtype=np.float64)
+            # The model emits the checkpoint-REPRESENTABLE panel (`sub`, supported.size genes),
+            # which the scatter below re-expands to the full panel -- so demanding len(genes) here
+            # contradicted that handling and the accumulator was the wrong width too. Both are
+            # the same full-panel-versus-supported-panel confusion as the basal hashes; that one
+            # only surfaced first because it runs a few lines earlier.
+            width = int(supported.size)
+            total = np.zeros(width, dtype=np.float64)
             count = 0
             with torch.no_grad():
                 for batch in loader:
                     pred = model.best_model(batch.to(device)).detach().cpu().numpy()
-                    assert pred.ndim == 2 and pred.shape[1] == len(genes) and np.isfinite(pred).all()
+                    assert pred.ndim == 2 and np.isfinite(pred).all(), "non-finite prediction"
+                    assert pred.shape[1] == width, (
+                        f"model returned {pred.shape[1]} columns; the representable panel is {width}")
                     total += pred.sum(axis=0, dtype=np.float64)
                     count += len(pred)
             assert count > 0
