@@ -350,8 +350,14 @@ def main(in_path: str, out_path: str) -> None:
     if supported.size == 0:
         reject("no output gene of this panel is in the released checkpoint vocabulary")
     positions = np.asarray([backbone_pos[canonical[i]] for i in supported], dtype=np.int64)
-    _log(f"[panel] modelled={supported.size}/{len(canonical)} genes; "
-         f"{len(canonical) - supported.size} keep the control baseline")
+    # These columns do NOT keep the control baseline, which is what this line used to claim:
+    # :437-439 fills only the supported positions of the encoder output and leaves the rest at a
+    # zero embedding, and :519-520 then averages the whole decoded width. The sibling
+    # scfoundation_gene_runner.py does re-attach the control mean, so the two runners were
+    # describing themselves identically while behaving differently. Say what is written.
+    _log(f"[panel] modelled={supported.size}/{len(canonical)} genes; the remaining "
+         f"{len(canonical) - supported.size} are decoded from a zero embedding, so they carry a "
+         f"per-gene constant that does not depend on the perturbation")
     # The GO mask must cover the FULL evaluation panel, because the attention it gates is sized by
     # num_genes. Supported genes keep their released GO relations; a gene the checkpoint does not
     # carry gets only its own diagonal, so it attends to nothing and nothing attends to it.

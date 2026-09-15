@@ -284,8 +284,12 @@ def main(in_path: str, out_path: str) -> None:
                  for p in requested}, ctrl_mean)
         return
     if unsupported:
+        # "keep the control baseline" read like a property of the data; it is a padding policy
+        # this runner applies, and NATIVE_102_FINAL_REVIEW.md section 247 rules that padding
+        # unpredicted output genes with the control is not acceptable under the native standard.
+        # Naming it makes the choice visible in the run log rather than implied.
         _log(f"[panel] modelled={supported.size}/{len(genes)} genes; "
-             f"{len(unsupported)} keep the control baseline: "
+             f"{len(unsupported)} are PADDED with the control mean by this runner: "
              + ",".join(unsupported[:20]) + (" ..." if len(unsupported) > 20 else ""))
     indices = np.array([panel_pos[g] for g in sub], dtype=np.int64)
     assert np.array_equal(np.asarray(panel)[indices], np.asarray(sub)), "canonical gene-position mismatch"
