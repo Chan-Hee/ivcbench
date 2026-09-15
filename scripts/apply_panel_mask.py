@@ -22,6 +22,13 @@ Scope: the 2,000-gene RNA panels of the unseen-gene and unseen-knockout splits. 
 protein readout is excluded -- no checkpoint-based model is scored on it, so masking its
 20-marker panel would remove genes for no reason.
 
+ORDERING MATTERS. Rewriting a bundle updates its mtime, and
+scripts/verify_cell_provenance.py --strict decides whether a bundle is newer than the job that
+produced it by comparing exactly that. Run this AFTER the provenance check and after
+supersede_reruns.py, and before assemble_cross_cluster.py, which regenerates
+census_bundle_manifest.csv with the post-rewrite checksums. CENSUS_56_CASCADE.md fixes it at
+step 4b for this reason.
+
     python scripts/apply_panel_mask.py              # report only
     python scripts/apply_panel_mask.py --apply      # rewrite, verifying every bundle
 """
@@ -46,6 +53,11 @@ from ivcbench.eval.panel_mask import unrepresentable  # noqa: E402
 
 SPLIT_RE = re.compile(r"^(C3_LO_gene|C4_Axis2|C4)__")
 PANEL = 2000
+# A bundle that has been withdrawn is evidence of a decision, pinned in withdrawn_bundles.csv by
+# exact path AND sha256. Rewriting one would leave that record pointing at a checksum no file has.
+# Directories kept as evidence rather than as results are skipped for the same reason.
+WITHDRAWN_LIST = Path("results/_paper/withdrawn_bundles.csv")
+EVIDENCE_DIRS = ("_withdrawn", "_diagnostic", "example", "_invalid")
 
 
 def _sha(path: Path) -> str:
@@ -56,11 +68,23 @@ def _sha(path: Path) -> str:
     return h.hexdigest()
 
 
+def _withdrawn() -> set[str]:
+    if not WITHDRAWN_LIST.is_file():
+        return set()
+    import csv
+
+    with WITHDRAWN_LIST.open() as handle:
+        return {row["bundle_path"] for row in csv.DictReader(handle)}
+
+
 def targets() -> list[Path]:
+    withdrawn = _withdrawn()
     out = []
     for p in sorted(glob.glob("predictions/**/*.npz", recursive=True)):
         name = os.path.basename(p)
         if not SPLIT_RE.match(name) or "frangieh_protein" in name:
+            continue
+        if p in withdrawn or any(os.sep + d + os.sep in os.sep + p for d in EVIDENCE_DIRS):
             continue
         try:
             d = np.load(p, allow_pickle=True)
