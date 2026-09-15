@@ -358,6 +358,13 @@ def main():
             rk["response_gene_fn"] = kw["response_gene_fn"]
         if kw.get("exclude_from_spec") or kw.get("c3"):
             rk["exclude_genes"] = list(spec.held_values)
+        if a.model == "chemCPA" and not kw.get("dataset"):
+            # CPAchem carries name="CPA", the same as CPAC1 (heavy.py:633,647), and the bundle
+            # stem is built from the model name -- so this historical fingerprint-to-latent Ridge
+            # route writes to the same filename as the native CPA T5c cell and would overwrite it.
+            # The route is kept only to identify old artifacts and is excluded from the census, so
+            # give it a dataset key and let the collision stop being possible rather than dormant.
+            rk["dataset"] = "fp_ridge_historical"
         if kw.get("dataset"):
             rk["dataset"] = kw[
                 "dataset"
