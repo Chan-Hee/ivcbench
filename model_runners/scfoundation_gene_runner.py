@@ -302,19 +302,55 @@ def main(in_path: str, out_path: str) -> None:
         _log(f"[source] {source} sha256={_sha(source)}")
 
     class PanelMappedEncoder(torch.nn.Module):
-        """Only reindex input/output; every weight belongs to released MAE."""
+        """Only reindex input/output; every weight belongs to released MAE.
+
+        MEMOISED (IVCBENCH_SCF_GENE_CACHE=0 turns it off). The released encoder is loaded with
+        finetune_method='frozen', which sets requires_grad=False on its parameters and calls
+        .eval() on it every epoch, so for a given input row its output is a CONSTANT of this run.
+        GEARS nonetheless calls it inside every training step and again inside its per-epoch
+        evaluate(train_loader), and the rows it sees are control cells: measured on the live
+        schmidt unit, 19,418 training graphs carry exactly 300 DISTINCT encoder inputs, so the
+        15-epoch run performs ~609,000 forwards of 300 different things. Memoising on the exact
+        input bytes turns that into 300.
+
+        What this does NOT touch: the held gene enters through the GO graph
+        (create_cell_graph_dataset_for_prediction(target, ..., model.pert_list)), never through
+        this encoder, which only ever sees expression rows. Weights, batch composition, shuffling
+        and the RNG stream are untouched; only the provenance of `emb` changes. A row that is not
+        in the table -- inference uses the HELD unit's own controls, which training never saw --
+        is computed exactly as before, never approximated by a neighbour.
+        """
         def __init__(self, native):
             super().__init__()
             self.native = native
             self.register_buffer("gene_positions", torch.as_tensor(indices, dtype=torch.long))
+            self._cache = {}
+            self._hits = 0
+            self._misses = 0
+            self._on = os.environ.get("IVCBENCH_SCF_GENE_CACHE", "1") != "0"
 
-        def forward(self, x):
+        def _encode(self, x):
             canonical = x.new_zeros((len(x), len(panel) + 1))
             canonical[:, self.gene_positions] = x[:, :-1]
             canonical[:, -1] = x[:, -1]
             encoded = self.native(canonical)
             assert encoded.shape[1] >= len(panel), "released MAE omitted canonical gene embeddings"
             return encoded.index_select(1, self.gene_positions).contiguous()
+
+        def forward(self, x):
+            if not self._on:
+                return self._encode(x)
+            keys = [hashlib.sha256(np.ascontiguousarray(r).tobytes()).digest()
+                    for r in x.detach().cpu().numpy()]
+            missing = [i for i, k in enumerate(keys) if k not in self._cache]
+            if missing:
+                idx = torch.as_tensor(missing, device=x.device, dtype=torch.long)
+                got = self._encode(x.index_select(0, idx))
+                for j, i in enumerate(missing):
+                    self._cache[keys[i]] = got[j].detach()
+                self._misses += len(missing)
+            self._hits += len(keys) - len(missing)
+            return torch.stack([self._cache[k] for k in keys]).contiguous()
 
     input_hash = _sha(Path(in_path))[:16]
     condition_hash = hashlib.sha256("\0".join(requested).encode()).hexdigest()[:12]
@@ -414,7 +450,14 @@ def main(in_path: str, out_path: str) -> None:
         pred_cap = int(os.environ.get("IVCBENCH_SCF_GENE_PREDCTRL", "300"))
         n_ctrl = min(pred_cap, len(infer)) if pred_cap else len(infer)
         _log(f"[inference] basal=X_ctrl_inf own_control_rows={len(infer)} native_control_draws={n_ctrl}")
-        own_control_hashes = _row_hashes(infer)
+        # Hash the SAME projection the graphs are built from. own_controls is infer[:, supported]
+        # -- the checkpoint-representable panel -- while this hashed the full-width rows, so the
+        # assertion below compared a 1,946-gene basal against 2,000-gene hashes and could only
+        # pass when every gene happened to be representable. It never fired before because no unit
+        # in this campaign had reached inference: all three earlier attempts timed out in training.
+        # The leak guarantee is unchanged: the basal must still be one of the held unit's own
+        # control rows, now compared in the space the graph actually carries.
+        own_control_hashes = _row_hashes(infer[:, supported])
         labels, profiles = [], []
         for label in requested:
             if label in reasons:
