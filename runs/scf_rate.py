@@ -18,6 +18,8 @@ if os.path.exists(STATE):
 now, cur, out = time.time(), {}, []
 for f in glob.glob("logs/runners/scFoundation*.log"):
     pid = re.search(r"_(\d+)\.log$", f).group(1)
+    if not os.path.exists(f"/proc/{pid}"):
+        continue                    # finished unit: its log stops changing and would print 100% forever
     txt = open(f, errors="replace").read()
     hits = re.findall(r"Epoch (\d+) Step (\d+)", txt)
     if not hits:
