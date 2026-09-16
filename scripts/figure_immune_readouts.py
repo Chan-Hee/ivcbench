@@ -199,10 +199,13 @@ def _assert_layout(fig):
 
 def save(fig, stem, tiff=False):
     _place_titles(fig)
+    # tight's default 0.1 in pad left this plate 0.086 in from the trim at the bottom
     fig.savefig(
-        PAPER / (stem + ".png"), dpi=350, bbox_inches="tight", facecolor="white"
+        PAPER / (stem + ".png"), dpi=350, bbox_inches="tight", pad_inches=0.14,
+        facecolor="white"
     )
-    fig.savefig(PAPER / (stem + ".pdf"), bbox_inches="tight", facecolor="white")
+    fig.savefig(PAPER / (stem + ".pdf"), bbox_inches="tight", pad_inches=0.14,
+                facecolor="white")
     if tiff:
         fig.savefig(
             PAPER / (stem + ".tiff"),

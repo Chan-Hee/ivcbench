@@ -339,6 +339,10 @@ def set_pub_style() -> None:
             "figure.dpi": 150,
             "savefig.dpi": 350,
             "savefig.bbox": "tight",
+            # tight's default 0.1 in pad is measured from the ARTIST box, and a rotated tick or a
+            # descender can still land 0.06 in from the trim. 0.14 in keeps every plate at or
+            # above the 0.10 in the journal's artwork check wants.
+            "savefig.pad_inches": 0.14,
             "font.family": "sans-serif",
             # Arial/Helvetica if present, else Liberation Sans (Arial-metric-compatible) / Nimbus Sans
             "font.sans-serif": [

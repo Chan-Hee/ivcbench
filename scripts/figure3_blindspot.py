@@ -46,6 +46,9 @@ plt.rcParams.update({
     "legend.fontsize": MAIN_FS["key"],
     "axes.titleweight": "bold", "axes.spines.top": False, "axes.spines.right": False,
     "pdf.fonttype": 42, "ps.fonttype": 42, "axes.unicode_minus": True, "savefig.facecolor": "white",
+    # This plate is authored AT the 174 mm live width, so the pad cannot grow: a 0.14 in pad
+    # took it to 175.4 mm. The bottom clearance comes from lifting the footnote instead.
+    "savefig.bbox": "tight", "savefig.pad_inches": 0.10,
     "text.color": INK_BODY, "axes.labelcolor": INK_BODY, "axes.titlecolor": INK_HEAD,
     "axes.edgecolor": INK_BODY, "xtick.color": INK_BODY, "ytick.color": INK_BODY,
     "xtick.labelcolor": INK_BODY, "ytick.labelcolor": INK_BODY, "legend.labelcolor": INK_NOTE,
@@ -210,7 +213,9 @@ def program_scatter(ax):
            "scFoundation": (9, -3, "left"), "CellOT": (0, 9, "center"),
            "scGen": (9, -3, "left"), "CellFlow": (9, -3, "left"),
            "scPRAM": (0, 9, "center"), "PerturbNet": (0, -11, "center"),
-           "PRnet": (9, -3, "left")}
+           # to the right of its dot, "PRnet" ended 0.078 in from the CellFlow marker against
+           # 0.063 in from its own; to the left the panel is empty as far as the axis.
+           "PRnet": (-9, -3, "right")}
     for model, corr, pd_ in entries:
         dx, dy, ha = OFF.get(model, (8, 3, "left"))
         ax.annotate(model, (corr, pd_), xytext=(dx, dy), textcoords="offset points",
@@ -219,7 +224,10 @@ def program_scatter(ax):
     ax.set(xlim=(0.42, 0.95), ylim=(0, 0.48), xlabel="Type-I IFN program concordance",
            ylabel="Response-direction Pearson-\u0394")
     # inside the axes, clear of the y-axis label and of every point
-    ax.text(0.432, floor + 0.014, "Transcriptome reference " + fmt(floor), color=INK, fontsize=MAIN_FS["name"])
+    # the caption calls this line "that split's binding universal floor"; the panel called it a
+    # transcriptome reference, a term that appears nowhere else in the package
+    ax.text(0.432, floor + 0.014, "Binding universal floor " + fmt(floor), color=INK,
+            fontsize=MAIN_FS["name"])
     tidy(ax)
 
 
@@ -294,7 +302,8 @@ def main() -> None:
     lineage_panel(axes[3]); label(axes[3], "d", "Prediction varies by lineage")
     fig.text(0.015, 0.978, "Immune readouts retain distinct marker, program and lineage information",
              fontsize=MAIN_FS["title"], color=NAVY, fontweight="bold", va="top")
-    fig.text(0.155, 0.012,
+    # 0.012 of a 6.7 in plate put the footnote's descenders 0.063 in from the trim
+    fig.text(0.155, 0.022,
              "Protein reference is fitted within modality. Undefined program correlations are not "
              "zero recovery.\nLocal point advantages do not establish task-wide or "
              "multiplicity-adjusted support.", fontsize=MAIN_FS["micro"], color=INK)
