@@ -1,0 +1,2432 @@
+[
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "fbb42e83a40a0e9f908eaaf9b80f2416a83aef87bc9d30dbf1a97425149d30c6",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.20839530722189695,
+  "sha256_after": "bc65e78f8231feeb7fdf692f1e8d9fc87ff8f42304557e10f3e5ede0f63dc7cd",
+  "pearson_delta_after": 0.20630010311741107
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "772fb8a66b6247d171b1df90f39d41eeb6d034332e44cb955595f049b6f4f44d",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.3213628227840932,
+  "sha256_after": "fd3060bf6f9ffd6a834d7b51e84e86de5dddaf6452e55b52ac4183dc1fa7944f",
+  "pearson_delta_after": 0.32017612002680884
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "5bf112b7181f7c6e2f20ab8d5705fe0623e83a0db447eb0665b02313df0a27c1",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.12994650951309258,
+  "sha256_after": "78396648e2080b3720f95d205b4ede06a8c6ad0913e61ffc600366a9c12a8a63",
+  "pearson_delta_after": 0.12873712777736873
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "fd89905ea7573c18056997975a23a235ec3f736503d63db2d96efa02c4d7e643",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.33042956173805177,
+  "sha256_after": "4cc76871bfb6b91fe05c89a07bd69fa802bc31ddb16100198de7e2b65214b3f6",
+  "pearson_delta_after": 0.3761022574160742
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "2f6fcd8a41757d15d8b350b357778112da93280c90334d493129d64c747f0a01",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.14438642419024977,
+  "sha256_after": "7c959ebb07fc47d68e1fa0b58d33ba405c8154c60ace52edcf2eba44f70af8a7",
+  "pearson_delta_after": 0.14655158122501935
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "763c19c397785c5599a377e10fadeb498a0d55fe1ec10a744968b17e406aa138",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.19196851479757657,
+  "sha256_after": "70247fc2af09fcc15b9d8e9efea172cbaaa42d43ddd517f0f547ea3baa6ad382",
+  "pearson_delta_after": 0.19123467209335923
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "add3de8d9f3892e48ee4f23ae5fa8b25741a1725b6231bc024e2aa497f2c54a3",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.19349468350998586,
+  "sha256_after": "d5b673c02da7f6f1569a1415de3d85c5e6677834e449bda77ab8bce29a04b8be",
+  "pearson_delta_after": 0.19728313682523105
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "bf139eb37fe74cb002c5211a50be0f6cdaabfd28552601a505fa59beb7cfbdf8",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.1428647268383153,
+  "sha256_after": "58b6d967424143e665d4e5c95b4ced144a95ffc3778ba404b869ed72fbf32b55",
+  "pearson_delta_after": 0.13884605693940788
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "4c1cd3975e5f628ff2236ddc8c27da14106453f8d80d809d9ba31161c238f74e",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.29688954529511835,
+  "sha256_after": "6a1d071013a2fa6aedab891330965e440ce5f89019e030b834c341aaa6c2d4b0",
+  "pearson_delta_after": 0.32682774936481307
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "b503e39f081d16db06f8920d0d3f4bfe4937960ba0982526e5ccd53e58cd2d75",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": 0.05519028319167209,
+  "sha256_after": "c2e0276f60ba226c2ec4c32bd5ba4f8b8ff4dcd8737dfb7a339be6cd5b0a00f0",
+  "pearson_delta_after": 0.06100554563522866
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "7b8dfabaf2c8d4912db5b79e595ab08923a9d724b8aa5450c283da2d9b023aa6",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.1939715558226816,
+  "sha256_after": "ac197f2e2b428dab05b92630c1b52a40c5e4ea4ecc09f37edad5daa630d04bb1",
+  "pearson_delta_after": 0.19322503068761046
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "38a8fbe41e528e815374d567cac6bef507d6ce1c9bb2f5bfe08d3ef018f283b8",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.21011532314784012,
+  "sha256_after": "cc33b45b6bd527127339c16ef26bd87dce68020d365c8d55c7d28ca4e6e7012f",
+  "pearson_delta_after": 0.21095118474862665
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "bcc8fdaabea8fad50791171943c078de328681e86cb55b43b2fa45a38bed80a1",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.16324687986726424,
+  "sha256_after": "44f1bf231547721d29d777b494b4501df1cb017cae41c0bd273e72d00cee4b20",
+  "pearson_delta_after": 0.16333327490715252
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "104a26e76d01f736a79dc2baa519840691b01a1a0518e8647b0a3dfe26ded0c2",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.28038121016786355,
+  "sha256_after": "408c000571812ded19dbd9268738ffd9045b8af418f8870d2ee89d09264be5c1",
+  "pearson_delta_after": 0.3163385938859448
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "ee2d06055b252158c42bd8608966d3f2abce9e962ff2e2df6833c781d18aec08",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": 0.03719495737590228,
+  "sha256_after": "28f39bffa9a3a8de9127a64e7ec8c0d82887314f9e2dec2070a874f0809f9e8e",
+  "pearson_delta_after": 0.038563398090928305
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "90dcb2cc37c3b7c95351d0e376d356e96e82e80279ef2da8637c88b78d05d144",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.46259645241556996,
+  "sha256_after": "c9367dd20ca06e76b6668337186eeee66b6984850b94dcc222ae099061160d25",
+  "pearson_delta_after": 0.46305001159974307
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "fb10755a42f56f68055edc7eb06630ad71dce421879df1a141184eec4595d686",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.5529154511849891,
+  "sha256_after": "b23304b95a9eb69472b05fecd00de98ab69f19634f28d2a00dd44f6673f23f62",
+  "pearson_delta_after": 0.5548423302191093
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "ba835ea3ba18155ea041b04306f656ea0efb0be2e2b9e6a49f5f511bc5f5e5bc",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.4333195174180829,
+  "sha256_after": "13bac0c3dcf06212e937d45d720e3cedc16b1c70668bf09494dad8cef42dd42d",
+  "pearson_delta_after": 0.43298096383132634
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "a9357f189ba229e0bc7b24136c31d6c3b14161afe7ac35762f4aef5ed5862f33",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.45310440733265656,
+  "sha256_after": "b4b6809c533809d2fd7b8a94e83ce3756cea52c323019f36e80753fe00a199dd",
+  "pearson_delta_after": 0.4881335722283275
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "d9076290ebb730bd064a40232f19fc7549f4e2e45c7df28d21c92d445a30765b",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.38738776694625804,
+  "sha256_after": "785e208836742e7910802a4d915fd2f811e5aa975cc7e0a014517dc2c0224079",
+  "pearson_delta_after": 0.39334203793368183
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "aba9554087f5e7881dfa20a0f5ed376e9e3e0342d3e4ded8ae58d6e554ee1b7f",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.4629964701343188,
+  "sha256_after": "79d96651061d8e5ec0c30ce5e89ece4ff833e79d8c0c5ba0aabfc0afb4f0168c",
+  "pearson_delta_after": 0.46356471979450753
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "f294b07c3b826e8906b7b3d3f60da2a3abd9cda249cf04dcbbd8546c5fa5b2cb",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.4023667898762629,
+  "sha256_after": "19fc7aedc6571818135a27ec77f88170a9ace62327f7a81d18574df034a9ae08",
+  "pearson_delta_after": 0.40323166198302257
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "c0ee406e96745093630d1d4350af385357b8ff1c29ec955958f27f715c908529",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.28457391793086806,
+  "sha256_after": "95970edcdc52c39fb2280961939e31360fd577920e193438e14dd6806cb372fd",
+  "pearson_delta_after": 0.2870340705954018
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "22d85ccabe38ada1ac3b365f5df2a9ede489c02fa55583a31e5aa0d702210b21",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.4789104486850767,
+  "sha256_after": "9542893a49e73745f5e2fb8852b334c4859c869e9a886eb3631d13d13fcc1a16",
+  "pearson_delta_after": 0.5108513657925016
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "933044f1fd1d41a7e250592d14403443161b6fc6c4847c459c6ea4247ea85b62",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": 0.3939568661800627,
+  "sha256_after": "f7ee8ecd3664738e25d9e22decde55d66a79b83a29e9a0704845fcf9a6c4ebe7",
+  "pearson_delta_after": 0.394454149666733
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "16f3a0887017e89ff3db99d7b4c21c71bcf1ebfb1da42bc901c7b309a28101ce",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.4243428615228219,
+  "sha256_after": "785da341ffd9b38b1418837083e3db29e068e0a31e416d1de0d04409890c5d2d",
+  "pearson_delta_after": 0.4258187149140633
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "7e8718456357dedb3cef7efb28826aa9dfb4ba87fdc7f57556c42706cca5c201",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.485152375429102,
+  "sha256_after": "6854131db01163419e36c8090bbdf559cab96f366810527f1e87e8b0802420ed",
+  "pearson_delta_after": 0.4859737360503405
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "d656362da227b05859750aec635acad4808a2b9ba962093da29d3a3ce63cee88",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.3819680219806431,
+  "sha256_after": "48b71dab14cb48b574b0fe89446b15794455ce7be1aae1230ed4ab91852028ab",
+  "pearson_delta_after": 0.38205706199345185
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "69699ecec58b8445a10ceec5d437782a8601ca316b189d23c4491cee74fb30e2",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.5438286188844105,
+  "sha256_after": "96e8c990a17c59d5d875b7eabb435b9d3d83b8aa7c2229a856a7dec4a1b128bc",
+  "pearson_delta_after": 0.5671993438316183
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "b24bd2bc6bbef2dd4eb419c333d8fac2c4ebeea6f0b143e7953f4525d3a56544",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": 0.3520656994982546,
+  "sha256_after": "91c0bc047d04448a3021e5608634c240b3712b6523881b43392859c7ece969d2",
+  "pearson_delta_after": 0.3530114502534644
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "c30d66c96e23f58c96805aedf92ca6c50614933630f377f214246b5411ab186d",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.23462159146235712,
+  "sha256_after": "53745d7e7bbc62593de0856d2136b75bd790e38523cd8c366d143936c80fdca9",
+  "pearson_delta_after": 0.23620341444813153
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "e2478eb7325b87ea486a44a92b845aec89b4a0c92d7afa88867e490ac07539a9",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.07492042858266365,
+  "sha256_after": "04e4df70ddc93327c82f6d888b512142299c07e323ec55cd568db4794c2e5bd8",
+  "pearson_delta_after": 0.0742325995949631
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "36097202caa901bac6b61bc1014cedd7670e3f175bb54929b81a9df312826a02",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.03193265813986326,
+  "sha256_after": "3204a954af64196bac4d2fada013fbd1f21357a2de6bacae0e457944fa575f86",
+  "pearson_delta_after": 0.02786692924056301
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "575838356af743739c9d4c8e9b7c9475fb09d8733f298d5381bf9a9c67e60c2d",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.25419293482137806,
+  "sha256_after": "e24bef952eb91eb2c7b376c2fc55d1ebef90227c71d4d0c3283e2e9428b66efa",
+  "pearson_delta_after": 0.2642683327161251
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "f353025829437f62c7b90426dc4094c088f1def1c586165cf3ab6d87264de0d5",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": -0.21193968552732165,
+  "sha256_after": "209fabfdd2631c279423808f397bca215f841750f8773fe00fd1655e1a7e660c",
+  "pearson_delta_after": -0.21308761371196772
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "70f3491b92b0eec14b998ad3e382e7f340389c0e6f238353d8814a2510da5ab8",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.3021879982638716,
+  "sha256_after": "cfe6edf36618b748bcde3755a4296dcca420b1ed06b5efd758cb36de687bcdd3",
+  "pearson_delta_after": 0.3060000745274275
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "6488ac387cc730167a5a22cec0f1160b1ca8975271c360329013814105ed422e",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": -0.09288223310783474,
+  "sha256_after": "7fbb9512d71e4c1fe0c00083e9ac02bd14b003e38815d47f155e917e8dd84576",
+  "pearson_delta_after": -0.09264136359488172
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "92fc7fc7c9423984116023dd3d0efbf80d1f4ebc1374f284ff6be83cacbdaf3c",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.05003118226487666,
+  "sha256_after": "d4f68c7558721c76bc1e1b16de8204f07ad0c381ff0ece3333009b161620c37f",
+  "pearson_delta_after": 0.056207693965531845
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "ac3db72c47712f2a5f032ed328208400ffe47dc504d2b00e1d994ec121dfc29b",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.2371795618729543,
+  "sha256_after": "a458f4819e85a8812dfa7583141e1f35435e0586432baedeb997cdc02cba483b",
+  "pearson_delta_after": 0.2466259878472893
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "66ea3777910cab92bc17429a577a640aca3d0d5780424e33cd3760267e5933d2",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": -0.2998859580889911,
+  "sha256_after": "e1d5c2b7d60ddce02f8c73fb84888fecd6c9d4041826d2914c39b3308dcdb628",
+  "pearson_delta_after": -0.29803112468901344
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "ef0d6a30e4e3386d4c56c3bdb990e511512876943682ed0c90debea556dcf6a6",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.2303626450535411,
+  "sha256_after": "a9f007e130b07489e0f4f4bdb13898c8eddd286ab5e3d6a3d5a0e5a7b0859585",
+  "pearson_delta_after": 0.23302462096057805
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "22a2bee2ec844899bd3548b95dfba4618004dfa012e5bbd8aaa56bf9356e72a6",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": -0.046036815424799725,
+  "sha256_after": "20d49fc3f8cbc1988786a4e68703fa71922570293155bdcf1d8c850327570664",
+  "pearson_delta_after": -0.046958986813584035
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "00807fce852765d39cac0a28e9516212fbea8f2c4345053d7572d383ffbdcc85",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.14324957184948908,
+  "sha256_after": "a5629e24b009ce00a5d937a2463da53f82547b48ea633820676e92a36436fbef",
+  "pearson_delta_after": 0.1437534784048663
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "5453aa592bd8af36aed72fa569651dcf4a3d94ac9e6392fc3d095bde5e241941",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.34573385110405996,
+  "sha256_after": "a4fb506174bc6fd331ff6507c58cdada9ca016d448b912adfb58ed35ef920f04",
+  "pearson_delta_after": 0.3631298334572305
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__CPA__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "559ae69dd79c66971bd0c978e33a3af44fd2708d8ffb90c74e1d018b33cf1516",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": -0.20728143362563278,
+  "sha256_after": "dafa77312fff87f8fd5391973ab074fefa28ab4aa970dccfa891e5213c0554be",
+  "pearson_delta_after": -0.20601610159686956
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "2a1463f105d6c1ac31ab92dc4c169e17ecc9bd0d0260761a8b0c776d0a7e5f2b",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.19766963594569145,
+  "sha256_after": "b6f493d5d384c87652d3dd8a4c0cd953065a03e8ba1616e82a149c90575f24c9",
+  "pearson_delta_after": 0.19320916756655931
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "05a7cbaa35c7fd0570d913f16aa246452bd0cfe55560884ade9d43c8fa2becca",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.3339466236849527,
+  "sha256_after": "23685081a7362f52646135d356c2682207718bfa14c1adc7e240bacfed0004e3",
+  "pearson_delta_after": 0.3395100076042519
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "cf6e318215c32a1ae2743beff178d3a9d4bb85c3f2832eee55455d28ba59dc49",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.009893987374978236,
+  "sha256_after": "2159bc30a8536cb751b33b9a229c758b1103e481a3742a3ac3e0761ae7adc66c",
+  "pearson_delta_after": 0.00678436909732745
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "46126fbac8c06bad92881bd649511c1dc92d4d9d6c9fb9033720ea3784fdb495",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.3185476623563565,
+  "sha256_after": "15e00bcfea31bf4430c7eb8e72ae9fa3ea47fa4de619cac8c0790b5a5704aa3e",
+  "pearson_delta_after": 0.35033423727024215
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "69eecd529047404cd018c13b3cebeaf0c3ff99643912a374b030c64d797b878d",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.17491535125388885,
+  "sha256_after": "208c6813a750a88e69c2bd0c973474066434e0f74a868b6b2a8c20c891690e25",
+  "pearson_delta_after": 0.1745993705098823
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "c752dc3e6ff479317f23f3ed8c8ff83f351a1fd415bbfe266c2c241040179113",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.22688084822070267,
+  "sha256_after": "a4f54dd107c6add6310690d518fbef2cbae64d1cd9818f19c08a29534b3f5c85",
+  "pearson_delta_after": 0.22505622935165565
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "380c8812a8f63a8bb2b7ed770c387c7449f03a4472b2fc98625de5043892144e",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.12423714921529455,
+  "sha256_after": "a2e92e1bfead5a49a0b40f24f2138f02da32335c8c7c21627ac658a3e93bda02",
+  "pearson_delta_after": 0.1253669298152131
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "ef4449eb6f58346a0ea8c8bfb9f7c5be238e3ddfaec1272346dc1416553ae195",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.1873996772953902,
+  "sha256_after": "5183e7761b8df412c063bcbdc903d2b993ffbfbd6a32f94139594d7fd1317084",
+  "pearson_delta_after": 0.19071689458769905
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "800c130d44a1b91dbbfda22a5d6fca93ecef6f4d84010dd255b891d2f143379e",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.2535961345339013,
+  "sha256_after": "bffe71e529c541c529e187973dfcaaa7c9f6dd440ce6494553ca90607fe2544f",
+  "pearson_delta_after": 0.27305857964756197
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "ec7729d173fec4c88bcdac66d9563f9876798744262d25baf8a79ffef22842af",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": 0.13058654050846624,
+  "sha256_after": "c06089215b4993a9b386f00d56d1b87e06101ca19d057d55a1133eb1aa4e4899",
+  "pearson_delta_after": 0.12848091830574704
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "a37d2427f991db99b46919a542b49b2f7136a355d874c3d5fddab5f45d89e1d2",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.24048241387524605,
+  "sha256_after": "b9ed7c955e0c84b6389f696b431f51234014d349f852febbd58708727c8b7031",
+  "pearson_delta_after": 0.2382803849542406
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "fa20ab8cdd71cc0866dfd23e2baaa0edf0cd726645f9e0a3f9f00ea677baad60",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": -0.012193628575252177,
+  "sha256_after": "e5bb2cc56d8b36559fe23b990d50118ff308d4b57c2fd62760b02f3cbfd18aac",
+  "pearson_delta_after": -0.0123478896199121
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "1b7118caafef502dc091875ca972e1db2447995074cd5a6f82ec45b2c1d61502",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.10206298364416257,
+  "sha256_after": "83ea164cd4fd97b5daf9d683720c521fed2c0b9aef9c58f746a66ce8c29fd692",
+  "pearson_delta_after": 0.10261145043076715
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "d72102ebf6d9d3cff445071c166a34aa07965801dc3d0ae98f7a8a686931eb15",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.15273273632099904,
+  "sha256_after": "ce528dbeeafa66bdd6ae76d7212ec6b22f3811b3bac4ea01902e53caf9f16a1e",
+  "pearson_delta_after": 0.16003052131480924
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "56af4c6c1c0bf45de5fd12bfc9383c0ce46e67bfc82ce9eb47cdd7f187261d23",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": 0.03507919310592138,
+  "sha256_after": "7919c6318d9f2871c7bbb0b658ef7f44081aa06d9b1a080f0d87e5909226be46",
+  "pearson_delta_after": 0.03713775722287073
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "b2eeba181c65358001e68428eebeb342d3fc790d8c33b9623e740a09817a5adf",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.00291621592344339,
+  "sha256_after": "8926440899cda68af403ed80ddc7c1cf10a850824628c3acb943a15a48d5527c",
+  "pearson_delta_after": -0.00040027582102108414
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "2c4cbbc20fd011204cedfb3d3eba793f215499d0be46a4eda3377198f7e7b8e0",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": -0.024809401489290447,
+  "sha256_after": "448a520720868f1e09c2d60c31e5760d7b307847cff01f0902794703a2ba9ea7",
+  "pearson_delta_after": -0.02443416428012629
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "1a1f4fa3e7b8aa722103e55e6993ebda7c13af2d33d8144812e87d6c193dec9f",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.01570796871499437,
+  "sha256_after": "e4728d986abe0a121b35f1dc0ba5f4a2afe060a7b1b50994137bed97d10deb5a",
+  "pearson_delta_after": 0.016933816339639786
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "0b900b87da15230043b1627f05d0f3333de9307a1bbadb943bc210ce213931f6",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.012080445693975676,
+  "sha256_after": "8aa7a121e70335c39dad8fd1eb9eec1bdac15ac1249c262b8f5ac61b4e0b096c",
+  "pearson_delta_after": 0.006845207318520513
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "9c06c161db7b63d7115671b97e797123070bec11fa1389cc4c7596f7798ce4ec",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": -0.020267267028469097,
+  "sha256_after": "abc49112e2ce302eb9ecf8b4a877a84b28354193c08919e4b5217aad41deca15",
+  "pearson_delta_after": -0.022106701255824642
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "9feebbd070ef32cb366411a42147e414a628f5e494602a3009a85f0ebe28c1c3",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.0024266398697673467,
+  "sha256_after": "98434deb3afdc9fc6514083b3e7c92b360ce34ad12c7dc0fafb8fc4d3c4e79f6",
+  "pearson_delta_after": -0.0021480686079220187
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "e6fc3114e467554a03d407402d31c19a363cd0ee0593c885e624c703ed77e43f",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": -0.026870762808616347,
+  "sha256_after": "c5114f6085770762489d1085c4437c9d49ea987caf256d94ab36f4fcef324a1f",
+  "pearson_delta_after": -0.027566179538690547
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "ec5dcaa199e8d475ddd3a0ae5693a29024c5c7f9c2c4e575d5e01bdcfacfd34f",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.00785680417215158,
+  "sha256_after": "bada03c30ef4d61c38073721a38d711ae06eca7c046c125f9fbdaacea4481d9f",
+  "pearson_delta_after": 0.009460027056709765
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "097963843ec2a9b6e345fd81fac7e1bd2f9573fd810fcf0d2f6515984518e2a6",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.01258664900037646,
+  "sha256_after": "b2cd46585c2ed36f91cd1087eb26c2efdde8c956756089e7d98d4126f6c60260",
+  "pearson_delta_after": 0.005884707050060371
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__PertAdapt__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "3ab95f22c773ba5f4811dbde327c6701668aca5a7198025a938317c7c878d992",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": -0.003412414081611897,
+  "sha256_after": "69e6f7e2d6e90472fbd72c373648dc3619461b4fd012cb011adce62a3d4a6f65",
+  "pearson_delta_after": -0.007280421953534141
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "84e07c43666e7cf48c1358d177547ce800b088390c30ba213202128124d0494c",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.5161272861419791,
+  "sha256_after": "22cbca9a493646abe7273efc2a202159ec963b76143a88ddf53a7ede0a83f2aa",
+  "pearson_delta_after": 0.5165414816363149
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "702aaf2cedf9ff74886f3ea3cfca745520166ebe6e8fea2b0a03074eb34f5af9",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.5917022210811875,
+  "sha256_after": "1530b0540fa068ec2fd9e30664ef987e7f1fc392173d8a4db7cb998a5cd12d6f",
+  "pearson_delta_after": 0.5939835283886649
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "ef94ae4e7bf21fd89f5d4aa55720a829f6a87c48a41cc396a4c5c8ded2b484ae",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.4568211452495244,
+  "sha256_after": "ed8c02abfde67ce88945847fec42721003822dd3fdf7e0108ac4a4a70a33de7c",
+  "pearson_delta_after": 0.4568569338722511
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "463a2154d4f8beb1f50fbc827e17c71c9cc7353d5f2159272c588e8ee8f258fd",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.45579178267895043,
+  "sha256_after": "2037970ec52109206d415524976bbe70a0ae9f19e8e8b18656c6b3a5e86a0350",
+  "pearson_delta_after": 0.49086681803084137
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "a4a1ba200f4663868c5942e65a50af411394e8a4dbfb134f29dbb56dee27e196",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.44821560011367867,
+  "sha256_after": "dc2100bcf43fece1f5eef73ca612b17b19227c6567a6581f188fe1f1d49993de",
+  "pearson_delta_after": 0.451803269057297
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "4e5e433467060ef8dae8f406e06b54b9e7e4ea3200f3ca43efbae2ac0af5373e",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.5185321032544916,
+  "sha256_after": "e51ff6b70d983078ce806e1e4c3c7ff0aef8c1ecda024ca3430a0fa51ea6a141",
+  "pearson_delta_after": 0.5200888140030008
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "1a9d1621f0eb6b56b6e94b3e79806e1a727aca6b7604dfe9be0bafa7d230706f",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.4020695605690538,
+  "sha256_after": "7a8d6f352a3a89da11b01efaefd2951a1e5fdc4148ce70ab4ae7ddae7b5def76",
+  "pearson_delta_after": 0.4024768984246718
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "fd16baa2e154fb9557b4e660fd92071a930451bb6e783bd70f4f582960c84184",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.2967725452657164,
+  "sha256_after": "ad3341c34ab1d27284b1d3d7a5cb293bfa31c2cd1344e75c4250a5aedeb665bc",
+  "pearson_delta_after": 0.29942853907855627
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "15971d68d5bf61f622144e29558700cfeb4eb4fb006eaf272be199ca7e987695",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.48521539316605444,
+  "sha256_after": "c397ef0e85a9b4f9c5b5eb7d36b24fc905dfe926d0430ac509b1f0fb7ead1dbb",
+  "pearson_delta_after": 0.5173802282632931
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "b0dfa9bfac76f8a8a1ea6f81e29839bd4af4baefa5b673cd0c86747c86ba0378",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": 0.45106051380790246,
+  "sha256_after": "c5067f1e22c278427ff790b67263506d8e10bfea7969678859672d32b3c40a8c",
+  "pearson_delta_after": 0.4525437842261105
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "8931010daeaacc6d11087bb6543bc36b8370bd8eaf2a1f6d5fba782e0317ce27",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.5130437830359843,
+  "sha256_after": "27a9c1b1f1af156ae962e927f4aeb173b6cad1ee7580f482f2058e7a88ed78d8",
+  "pearson_delta_after": 0.5142801274990768
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "a707bfa46580e07471afa70f5db3c598b443fd09806b21414fcc3ac49c9a5562",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.4939591271721264,
+  "sha256_after": "bd1a8135d72adfc173d8db3395635139d024e8b37630360e2b24ed870af8fb04",
+  "pearson_delta_after": 0.4945615013355087
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "13c089fcdfcc0ab3b8d6fc5e199132d3de108c462f8e636639bbffbf86c7a6fb",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.3997994536109455,
+  "sha256_after": "083b6702803bef389ca93e774a5b14adfa543a32587b53aba68c190e86a56d03",
+  "pearson_delta_after": 0.4004748710858354
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "3aa6ac69782964c769131f9987d2683eeae7df345fcd0793b579aadebd91ef9e",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.5486551659815655,
+  "sha256_after": "bf6bbf410be3fa92bac4bd25c942a329497d3ba4a49cdc06dc733a8aa9856987",
+  "pearson_delta_after": 0.5727902506573821
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "2ab6ac0b11058ac59723c64970746ed406b717ec678370069f5b0e11682827df",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": 0.38815538931263904,
+  "sha256_after": "45be8e7dca3daacb24108ec3004f0b12189f393f205a397251a5311da88c4c42",
+  "pearson_delta_after": 0.3905003471369429
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "12dcd44f564a378caf5d2e4956c997741b37d061dde9b50e1bba68d03d59a327",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": -0.006789500844122608,
+  "sha256_after": "678307b45e1ddfc1ddc7326b078a63b572fef75708402e6f92f5713b34be5dcf",
+  "pearson_delta_after": -0.011961015887429116
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "87e84cfd9933d07a997617a49b8103ad61789cf243dcf0677aafa8458e2a7eb0",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.005016088591265583,
+  "sha256_after": "b5471de8b69382f566fff6af6c80d16a62b3aaf5f6fb805291bd5c6a3712f9f0",
+  "pearson_delta_after": 0.0035201936077676106
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "cda27dc0fd2928fbc48ce16f5120340c2ca60612084ae03197b489817f1dd003",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": -0.01613022091261359,
+  "sha256_after": "50fb1ba0f84605386da724cd7ab279a0340a37e82f25865b03996784fd95f3d3",
+  "pearson_delta_after": -0.019751275092932702
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "db6495e85457101f521c8972b7d67b26c2ba53ef72de95cdf362fa3414beb4cc",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.0019506572981906022,
+  "sha256_after": "ca3b723fac1d2aa796e71369615d5269a67b79d002cfa2fe68d7db295b38e897",
+  "pearson_delta_after": 0.0006895502070412235
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "42179b8849e1a078d37b17901dfd67b22547b00c720a79aecc775500664e3bc5",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.0053055948270129645,
+  "sha256_after": "00f01b02cbbe811ca122f4fa670987af586cc407e09efe57508ce71cd7f334dc",
+  "pearson_delta_after": -0.0015178508378313402
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "447890e2315541f495e909ed92625791a1e9c4f6d2ad0feaf6aa848b7c20c5c7",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.001907121750986785,
+  "sha256_after": "c1c57abd37096d376d676395b9f47494d57da21e41c22c492125529acce2a2af",
+  "pearson_delta_after": -0.0014926012761397203
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "4725e9eaaba18a78af250d93b9bfd04aad0823103dd497ee5c36f5a7ea2a9c6b",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": -0.02871712606173893,
+  "sha256_after": "7d8fb9826526cae342dd9508fc1f3a74fa98247da2bb0cc6fb7564a8cd8e97e3",
+  "pearson_delta_after": -0.028252411680360256
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "c91f293eeceadd93ec25b9b4141618c3380aa0e71ac07c4d82e1baa493ada40d",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.017960568589166993,
+  "sha256_after": "0ee61709926d3d43037d11955de6bcbfc7a02426a615a1a1a763a2256ce7da02",
+  "pearson_delta_after": 0.01919979291337294
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "43d1f0595def071804f411c26d10f90b75185813ed17435f213f4cce1c20ba0e",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.01313092410622855,
+  "sha256_after": "b79e068c52a63af7ce35c971b87f64f706b507927f89b46aef3f279e327eeba9",
+  "pearson_delta_after": 0.008505394593114467
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "338924db56268419ccd6d0b4f451a0ead731ad884ea2d8d0292088de9026f4e3",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": -0.021153002459695983,
+  "sha256_after": "f6b572c0f17506a86a684c1f6058736fe1c7467af6cdc5d7870c0aa195a33a31",
+  "pearson_delta_after": -0.02270020481776519
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "add0fc50ae04be0a08ae1986139e5b764e8839a06500d061c7d254d96eaca998",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.001652142114181198,
+  "sha256_after": "48ef74e7a1b4eb5416cfe32d9df413a53fc33863787817674acfa38c4546eae9",
+  "pearson_delta_after": -0.002950089233160164
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "9a8e1d155e9bf6dc7ace0e7734fb39a1cdc080bb0be8058a9031836b103d32ab",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": -0.030555631457293786,
+  "sha256_after": "95313f3b37f5a6c4f2064386e101db7d8ffb62c3ab563d2cbd5050288696d730",
+  "pearson_delta_after": -0.031204353315436594
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "aa16887b77b048fd080cabfa6188ee98b74a48da60765086bf7cbf1cfedefcde",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.008249066974041,
+  "sha256_after": "92cbf61a5ed0a4397967e1d41a6c836c3bcd093ed259af79c4f041cb82cdd2d0",
+  "pearson_delta_after": 0.00982758772091079
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "4617f6eb9f4ae2a7d31136792a2b0442135310b12f250f09198aaa120b72ddef",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.013863938240285574,
+  "sha256_after": "61c759243547b99d7cfa412914bd64734588fe598f7e856937f4263d78329381",
+  "pearson_delta_after": 0.007791070567915765
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__ctrl-pred__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "fe2c704cd579796de79fe38eb286b72aadf7de40dbde33fc3006e5bb8d87cd92",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": -0.0026612313079394352,
+  "sha256_after": "427b78936321fc3b6a28b7bc0e45c4325e0594a9f9ba1372659e9c65b1d93de3",
+  "pearson_delta_after": -0.006338058315030955
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "307d0658aaaaa15247da1ce9fd68744bbff48c9cc19ff171a6214877916a5c9e",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.5161272861419907,
+  "sha256_after": "d96baa713171511e5d66ea541b7ded403e972cf971482c559b1c12983e1a20aa",
+  "pearson_delta_after": 0.5165414816363267
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "140b573fca7b41af25d206539e11075e24ae82b96fdace04e5069852cc3a6e7a",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.5917022210811875,
+  "sha256_after": "49cbc5ea9fd3dbeec74184c46e84c966416b34f2bf8f1c79b1128c85b7b94c0e",
+  "pearson_delta_after": 0.5939835283886649
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "d6cc0acf4c59644b28ecda3352329af242bd16c567eaf700c66bc94ed0e0f5e0",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.4568211452495244,
+  "sha256_after": "c9b905483460834f7c09a3fcc2610dd7f0389a0b84174ca82c9d145da9d66954",
+  "pearson_delta_after": 0.4568569338722511
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "3ecec7c287f0b000697e40a8280f2c07e38564b6c48d55f84af8e6aa882528c2",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.45579178267895043,
+  "sha256_after": "25a598ff1cd7cab45cf82fbce23b939620252ef4839f9882ee095a47d0f46664",
+  "pearson_delta_after": 0.49086681803084137
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "af6bd2789c53d9292c9b1f93d77cfa9cf60873db2e9b18e84a3100f29239c18d",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.44821560011367867,
+  "sha256_after": "4b383cf40b116231585fc4ab79148d23c0e1b696850d9506fbba4b638c37ed9b",
+  "pearson_delta_after": 0.451803269057297
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "fc3d610ab3488eef8c31b3c8cd111439d6a77004628bce671079ceaae6ea391c",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.5185321032544916,
+  "sha256_after": "19b39eb5e3869c1a521b5540e6ea2817d8e87024f7fb443cbf98d9b69efe2d47",
+  "pearson_delta_after": 0.5200888140030008
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "b9cba4b93ba77d919cc243a214fa161e990456da514f8da8e20f0ee394022b7e",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.4020695605690538,
+  "sha256_after": "fc65a2e259f4589dc7de7d887529eb536d6867c5b7e8bfe8e8be5fbb91952f51",
+  "pearson_delta_after": 0.4024768984246718
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "193fc9332c6fe244f59c4611ba8fc5ab92db5725ec484545544a27791eb104ab",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.2967725452657164,
+  "sha256_after": "e4f5b1b277b74e9b136a4d91674af95829e304546d7278599ced70f5c9879965",
+  "pearson_delta_after": 0.29942853907855627
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "e42913880631c5c049ebba2eac9feb0c38aa8d76048b9f803ccaf571614c6bc9",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.48521539316605444,
+  "sha256_after": "a3c90f3a3a303e4bead3acfd2097b5a02ea6479878754fc867d21f78a5957d53",
+  "pearson_delta_after": 0.5173802282632931
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "a5e73e0ce8520a87c81e45f5f9ceef1f718072904b398f5e61c6a2abcca6a1fd",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": 0.45106051380790246,
+  "sha256_after": "b63057b7f9f2f070d661e65b3d30e3e6c58935c5b7db2c8361c6833d7ebd21ba",
+  "pearson_delta_after": 0.4525437842261105
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "0f3ca79acd644a6acf26264e1c4d25c20f579ca5e187618e84266751fd76c5b3",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.5130437830359843,
+  "sha256_after": "e24d590a1f4ede66f1fc42b26b97e4e67fdb59b67798b55ddc46c1e5fabc4b73",
+  "pearson_delta_after": 0.5142801274990768
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "804af4a94e280f7a1ed80321afbc84de83a5c2e8b99141db2b38fbf346de1e33",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.4939591271721264,
+  "sha256_after": "d22fde1439570d8dab970923b0c175c023a670900d28f033754ae82588eb2706",
+  "pearson_delta_after": 0.4945615013355087
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "6ff8374bc5db6b25ccdc07f260c8a72572cce59317e4e25e71881d1438af52bb",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.3997994536109455,
+  "sha256_after": "555a24c2508feb5ea155cc184657b6b2cbd5262006e6530544817225f6e33e88",
+  "pearson_delta_after": 0.4004748710858354
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "42deeb137fe553e4f799c6cb53f67eecd052a50c5c752381bb98b775bba5b98b",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.5486551659815655,
+  "sha256_after": "b8853ef2d5ca7cb9169e3c9b874b9bed531a9f08c213e959fa63bf7972aa994d",
+  "pearson_delta_after": 0.5727902506573821
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__donor-shift__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "0d6e78c819699c90eaa7f45936125b37a57731ffd9214d8307e996aefa060579",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": 0.38815538931263904,
+  "sha256_after": "670f172e736b5959fd895e05389778b10da094c84f78a8c46fd3ca931fdcafa9",
+  "pearson_delta_after": 0.3905003471369429
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "6a0d6245217af0ddcd89051d1ca04b99f0494dbdd8a12d2bacbd8921a11d0024",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.3918871493165301,
+  "sha256_after": "04eb5e74d3da959d3ec1ff53d199a42d847e1490aa32adfd07fe0ef8fa169ca0",
+  "pearson_delta_after": 0.389627628172583
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "a1c9ffcccf5a975e2207b2ff4d655d7973de50e4fc55d752cc684925b44def95",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.4486456095219666,
+  "sha256_after": "86f7b49e29aa2124ef9d6491090d53ee9951f2c54dc9e27509c46147a9cdcd1f",
+  "pearson_delta_after": 0.45009299588993307
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "c3386eefba89fa3005fd979606d8ea3e3077ce2f4be3d63292e4aeffb7c5975b",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.0858271501634954,
+  "sha256_after": "9622d855cd7f9681269d94105deba8f0042583db6b9ed214b3a27570c48373fc",
+  "pearson_delta_after": 0.08376816682106045
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "9595126f4370a3f7b809ce2ec63317911810fe5e78120406fd51d6b55e1b1ee2",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.271160287009302,
+  "sha256_after": "8088fdca340c7420a71524385deda3f23e7fc6f6f9b04b9716a6b35987b548eb",
+  "pearson_delta_after": 0.2960190049241712
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "72beda45336fb7583c240294ab2c37d5029cb9ade7dcef9b99232b20fd94559c",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.28534475476922894,
+  "sha256_after": "711a66dc8ba8443a9acacf58693352be40cf5687841d4232771313a1594b6cd3",
+  "pearson_delta_after": 0.28646434028818885
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "491d7b29dd64a36dd7525c592ad3da9456907d5b495bcaf2a16ab2edbdc49a4e",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.417047568877126,
+  "sha256_after": "4805872c0b92a271fa3bfa0d034c323170e8f132e4d4bc06ebadef7bed7270fe",
+  "pearson_delta_after": 0.41620679992586157
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "01d3a5d0b9957b0d1ab71d207abf5139299dcdd81fc6688ef43dc9f10af44806",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.26773162428431035,
+  "sha256_after": "e9ce3909a3a8ea5b8f4761aefcbccbe0abbf3ce06b84aac950358a4cedd3513e",
+  "pearson_delta_after": 0.2671339659538451
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "a50526708394163ac10108e92cd4d600888e194f429296c2dc73bdb4d14a1df2",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.025892139170574674,
+  "sha256_after": "c49ea76ed5fb25248039a13a00d331d8684e3daa6be83838dde09424099ff933",
+  "pearson_delta_after": 0.021474822986563002
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "00defde0ead7948438978226d44cd287bd37b9e57dc559334101b37cd287e6fe",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.3429275475779628,
+  "sha256_after": "c7c70127f2dcd1f87acfcb2c45361d651dc031872a9677c3652731b6c8c21669",
+  "pearson_delta_after": 0.36421730709346006
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "7dd6d2a4cc838dd855fe7e0ed09cc18563077f8f016b7e9baf90e1cd07d5f6fe",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": 0.3048060794385909,
+  "sha256_after": "c578b2db446795c00ec25cbe3d06371ff4b8bdc2842e721fe13811bd85d5ce87",
+  "pearson_delta_after": 0.30580322508550994
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "9a9a911c9d5c4e676351184ba595bd5cd8cdaa59ab45102b3ec23b790f6695a0",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.40924274314234294,
+  "sha256_after": "2795df3050c3d4ae0e7f8fe9fdc1a000bb5215001a5b325388c9b5cdc3cae457",
+  "pearson_delta_after": 0.4080156774339898
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "b02aaa7833e290ca8e0327060045e1e4d2c1b910ddb5b069934e2c2db688e66b",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.39713026682365454,
+  "sha256_after": "5367539913961d325554e49bfbdb0eb458dcd9475b5c2c976c9199ada0518985",
+  "pearson_delta_after": 0.3970121715945339
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "102479df97bb9de9db49184de790bd7960e9fce694ec0263371623f832cbe6c6",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.1251530084698038,
+  "sha256_after": "4c63292185fe53e6e17740c3237618ae4704cf2434f9e47b48c87b3deadc7357",
+  "pearson_delta_after": 0.12292786637393445
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "972a766228904ed7a19a17f0ce42e58dc64f1afc59b55bbc2de2c419d3f20725",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.3924138836962647,
+  "sha256_after": "25d0060e7100715b07eab2503f044116dc551ed8fa7f76b5ce500bc2c3b0f9b4",
+  "pearson_delta_after": 0.40052571826807404
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "41b1733814053aa4e3496e820a3ae28148581d8ffabd43a18fc996d936259f5a",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": 0.2367766413896458,
+  "sha256_after": "137fab1f276d5f194f181d5dd47bd66df25b1f5279cf4225b50023d4cd3b22ee",
+  "pearson_delta_after": 0.23922624105279536
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "648fec02c5433dcb3de47ca1adabae262f7103ed4393cdf5ebf803c544789413",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": -0.057440879043124345,
+  "sha256_after": "4e89da17f7506f1e992baa58cc5f2c89808bb836db2624aec1c87427817cbfee",
+  "pearson_delta_after": -0.0561936632730185
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "4fd2b492b3a9771c3e505ea9f8c374f8ad3cfe54486088659f1f9435980661c5",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.0049995737508814805,
+  "sha256_after": "8b40a424265a1f21198f8be90835c0495429dcf9d5ec601ba854bea10a361188",
+  "pearson_delta_after": 0.004280377925340073
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "6155838b5a70237eb65eed760f4e78d15c0772ad9901cc11022ad4b731305fef",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.05520649644932141,
+  "sha256_after": "7055b6b796164762541dd41a1c5cad452672ee9b7ebcb5cd845950b950b8475a",
+  "pearson_delta_after": 0.05853956924037094
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "c02c4375bd4143934cacaabf6ce6baaa75ffadcdbf34c1235ab9cd2fdacf3b9f",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.07895469365103225,
+  "sha256_after": "8fcde670ce788844345f4daa4812523ffe4197cc32ddfaf46be27343e1c3e212",
+  "pearson_delta_after": 0.09040532046096766
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "7d963d5e96a662b4602a1a3956dd58891a6543ca15fc53ecf737683fddc01431",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": -0.050799474745853,
+  "sha256_after": "be6d891da6113d48eab9aa17425e091aa268266bff867a5d687ca0adeb9a1aac",
+  "pearson_delta_after": -0.05075801851535324
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "03468a596dbf68b8d94648f4e07f8101ca0fa87c971152a9b290d505a5368284",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": -0.04849585611071343,
+  "sha256_after": "6ee3836727851c34708869104ffbc75ab84ca8028189dc6fe9e877105105f015",
+  "pearson_delta_after": -0.04417182451817547
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "8195fa91f8045f0c354fbcd36826a4b0601063a6c521386a5132b58ddde6ca6f",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.05924220341593773,
+  "sha256_after": "600cb5c3d52eb6dccf0a8c6360b0c4d228ae783d2475ff5ed86a7feb8eca02e1",
+  "pearson_delta_after": 0.05770141303593898
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "445969f306dccce447c6d9d387225aeb6632de0930672bd9d145b06459abcb48",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.046325913799743594,
+  "sha256_after": "d9fbd309810c0065cd802da76e40a269e7b226f64176ab51e9e62497f5dee8ea",
+  "pearson_delta_after": 0.03708738653006286
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "1dfb84ea955bee2caaee1320baac7023930a3f31734fb6882b1cf9724b6f7d50",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.17498566270018562,
+  "sha256_after": "25b7c27932852ab28e2fa81dddbcd08adee2a79d87d5aaac67790e44e35422a9",
+  "pearson_delta_after": 0.20785387606733396
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scFoundation__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "e7d0549d281f80f83530e942e90e17c6813dfedc4300eadd5924f85dfe9e7a58",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": -0.008241263118509687,
+  "sha256_after": "1f7c7821766f28908409d3bd6ce12693b29038d484093ecb6df2cfb45a089503",
+  "pearson_delta_after": -0.005901995990732578
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "5e18b93c4a96db03dbab1463a4d05a3589d8d41a14d824ed1ce486610d7e6a08",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.3859064820746299,
+  "sha256_after": "1ff9d9b7f916cb0bd2ef580cf68b2c79452ed2217a595ea8a2d0d4d88cb08fe6",
+  "pearson_delta_after": 0.3876211829423824
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "d870919deafaa2b2b9cd65a55ae5b99e166ab9aabc663cd384730955bfef1cb4",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.33149455281183393,
+  "sha256_after": "3bf97fa6f7c736eabb7f5162f8272fd13ef4925acd8a3c49026459c8e5bb15f1",
+  "pearson_delta_after": 0.3340238455479416
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "9198970a52eeb57c80b203c2275f1896180cb5b8a36df0276b24d464c009d2f7",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.0027788405187689214,
+  "sha256_after": "e5e227f1ec028f5b29c36927c6d14dbeacfe064062b3d60a6cd21ea99d36c039",
+  "pearson_delta_after": 0.0038209638484298647
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "71510a0d434ef8a3d088de8f821801b5043b94a459709f681ebee450d56067e0",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.2808351362850464,
+  "sha256_after": "a054af3bbe730150ef4a8759ff67b3f72a70b505af43625c075737fff9ff797f",
+  "pearson_delta_after": 0.2916060660764714
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "81ca48c8beb30cdab8fd8b5e4ae1dac5d697e5c97302fa19e3f38f9d0c72a483",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": -0.17425221994690682,
+  "sha256_after": "e1767f7cf1c77436f0939f983d9f1b5924428ab71d370ed392584df157ebf4f3",
+  "pearson_delta_after": -0.17297155597493938
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "75d78d814b2ad3f9e6f3bbe93ff34ae76f3a59c66f8617ddad5307776d6a39bd",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.3419588709797659,
+  "sha256_after": "315a9ace9fc3fceec1b787b3e00ba7967f6304f6fa2c0e90a6bdc19996fdd162",
+  "pearson_delta_after": 0.3423722127875106
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "1a14baa91286afcdf7c8d164b7ee440656e117b645a9e982b424aa4a00b967a7",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.2005118512192047,
+  "sha256_after": "7066432c881a5705ced59a96357ed36e11e481b6d933b1860ba5965e81df63bb",
+  "pearson_delta_after": 0.20340520453294728
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "1c89b9e8d58733c8f310ea263b23aa9cfa0d0f046932563fc6c93b8538b8b703",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.12582037408410307,
+  "sha256_after": "dd4fd00cf4f9032cc016ffbc452ddad68c8effe896b518429aff36ca26221229",
+  "pearson_delta_after": 0.1276492882078012
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "047d68592e7f950456bd3475381a04ea2c6bb2a1bb56e597d339b5541cc23a6f",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.3913938603351829,
+  "sha256_after": "3f436233f5ab647bc360a3f1f5f8a3139147e3c2d2b97b830c0a3a4130cae71e",
+  "pearson_delta_after": 0.41825617688269195
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "9c7ca77d7d859cc6649df6972f473b2e84a44499fb43c26b26d05c289527b995",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": -0.12681108700983706,
+  "sha256_after": "c227048258644a697cb902dbed17252bed6b2279936fd17a4d5ee0fe2fd72245",
+  "pearson_delta_after": -0.12731964681280458
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "40d32d893a44b269c295181ca7f8f5491d2156a902b763d0eae99bd938a971c7",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.39384264095728627,
+  "sha256_after": "be8d6039fcf8b74412037ace7fc0814c038d07f5b9daa2efa51f689ad2e76735",
+  "pearson_delta_after": 0.3926572140204176
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "99d1b1e73dd0f9bb1767789e30ada8db6949307d23f50a21ccc36b17c16ef0c8",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.2293606348567482,
+  "sha256_after": "1dcbfa89c7f521946063360b709d3dacef2b0887f04c753941b7ca2215b0c932",
+  "pearson_delta_after": 0.23223663096043343
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "b8fd3ec964d4fc054a097ce8a5e9f1cb13132e304a81d04d4fcb9ba26c471094",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.1777828384107247,
+  "sha256_after": "6d0cd6420b926a21633bc2a75cf0b03185f7ce31639fc65555668a32d73b838a",
+  "pearson_delta_after": 0.1787235146759768
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "5993a6d62ec1c3663e0b334746da36710e748a2e2f9ca199907a193ad764081a",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.32854456264476145,
+  "sha256_after": "18ebc72a0974c7bfc989695c3e7817b5dc75a6beef68326c204ce9c0b6dbdaae",
+  "pearson_delta_after": 0.3484355266343163
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "ed73f84558130ce2cdd2efddac65e3609352c17a8b26acfb1ded12ec6d6cef87",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": 0.16795152962716858,
+  "sha256_after": "f5668f105479ee99bb3c1a50a2a9c293d9112d53dabe274f9bc6f8623f9ddf66",
+  "pearson_delta_after": 0.17328340440967896
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "2c69e335918330756fd8e9eb070b1a6c5bbd051b086f955ce17b751dbb551a71",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.33792776528394447,
+  "sha256_after": "cfcd73259e034be8c51641321663bd611e979f4331dbec7840be50441e1a6d36",
+  "pearson_delta_after": 0.34114366300627824
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "91bd09594e83bcdb961381d129e8be0e1b0e6cbddcc8740d9f4a35941f30cec0",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.1944822240774198,
+  "sha256_after": "87d3df5bf9bbc818281d2ea8a3c0d12984df3d4d17eae86df56d458068e7a9d8",
+  "pearson_delta_after": 0.19251938188376033
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "c05f49b000a2f6713ca9c8f2e4472828ce7b97acd93fcfd1b8097d8e1e89941e",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.0156143365798454,
+  "sha256_after": "ef9f1dcda4ba9dda9970790da41f16ea1dc1780a2fee3451d1610a2ac89dd5a2",
+  "pearson_delta_after": 0.01711315561423847
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "3e53e463392242c581a8f14eeef49790d52f4587676d266c1957e8b528135d5d",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.1843713270933527,
+  "sha256_after": "b3485c41d4706aaeae7d4951fda7a98e0715806beb9559751e77ae5e5375d66a",
+  "pearson_delta_after": 0.19068771652888689
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "167b2c5c1c2796bd0bb5a81a0fc385bacc73429c03226829527fe7212e93d15f",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": -0.20775812176400055,
+  "sha256_after": "b202ae77a48689151a1b3bdc14e0c7654bb7c06c8fb7e24d0f71b7cc3a49bd90",
+  "pearson_delta_after": -0.20808116282153186
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "31bc7c30edc34483b3522250f29101d4dfc2598133926b4d20c05f843edb8e47",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.3288289860784226,
+  "sha256_after": "a8b993eb60228b1df3d72dd8c429eedfb22f0dd6cfe65111d286d26e7f62485d",
+  "pearson_delta_after": 0.33484857383575595
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "9fc3a06ea6c29b522ebf33b1ef18c17b2134be5a1bd9a694bc0b39f9110f9cb5",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": -0.003216670699061989,
+  "sha256_after": "897531b98e8501b8694ebe5c4d6a3b9f21be2e85a6d67def443eaedf461460bf",
+  "pearson_delta_after": -0.0016758741958883272
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "1f7cf95c595b4879bbb958f65ea5f3db4a78bf1ae4e4a39802215d7d6e7f7ae6",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": -0.0021687978919676405,
+  "sha256_after": "77cccb3ad023990cc3a8445d65e9bfed4fffdeb3a865942628360deed77aeb09",
+  "pearson_delta_after": 0.0018470174963633155
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "b9237ccdc902026578b0774d63afead0298bab5a122a451570a197cca427193b",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.10922352808024119,
+  "sha256_after": "4fee61f7221ef2fd28c4ed12ae6809195b772ce0fea43bc047bf1cbefd8bd210",
+  "pearson_delta_after": 0.11182814708719303
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "296c93e2c59618e0e80122dc2948fd06d05f5ef0e8af9e0252f5e9c2a492a022",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": -0.306662971770889,
+  "sha256_after": "1fc844f57d0c609e2e21812514b8f3eb9f0dcf5c58c50906679c31c117c8a91a",
+  "pearson_delta_after": -0.3041071277938558
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "a848eb630fa752472f0caa78d249e8edb1d8b3dd5dd44e6a4442fa147d6845ad",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.1685476067056851,
+  "sha256_after": "802f77517c4f9010c7ef3b01d02090ca0fcaaa50c8061755cfc732e214ac76fe",
+  "pearson_delta_after": 0.18258109238696169
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "8f22ae03352940688d6756513753dd6c89487b68106ade5bd7c64d0aafc0e082",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.1513105859506924,
+  "sha256_after": "6487367b4149b0875d3753cb87becb23b8006eeca74b16ebda4e2220daf229d9",
+  "pearson_delta_after": 0.1530813719916402
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "6971c18f42a6bd0164b183f583f9086a5c9a30e9e3c674b61098e066d0079fae",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.04275179982880394,
+  "sha256_after": "5fc1ef7d3190ea2100dd78dabcbf4aae67bfa8cc2f29658576d79d36686376d0",
+  "pearson_delta_after": 0.043491051682935926
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "c679a78633401276ea99164394ffe7cf0d09ce95b3a88d00f5b614e1ddcce900",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.17388201629347694,
+  "sha256_after": "1074e8447d319da6bf4473b3c87787bf4e3029ae9d6120e6abb759d7e8126d6c",
+  "pearson_delta_after": 0.1841379550011671
+ },
+ {
+  "bundle": "predictions/C3/C3_LO_gene__scGen__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "2a40d5d6e0aab29839ed8bfb2ac1e3ecc20e64202ccdefe7b2a268439cfc8bb8",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": -0.2201022004850251,
+  "sha256_after": "2fd4924bd20b16d1c0c76bfe4f9f287fd3a68e2a020252e755b5013f485585e6",
+  "pearson_delta_after": -0.2185275192625566
+ },
+ {
+  "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10.npz",
+  "sha256_before": "e80f68f080738f95143e21f9b511135b0ff437b70c7808b81a42f2f8eca1e0ef",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.4981262519237667,
+  "sha256_after": "97fafa2618fd8fabecf67b12eb07132ed8de265c3c05b1894cd3574cded3643a",
+  "pearson_delta_after": 0.5346045190858292
+ },
+ {
+  "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "dd5cc4f5ac8fcba43da8eddcfd09cb82ff36389db53b9b11f77ded92e317ca47",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.3782527690994462,
+  "sha256_after": "05f21ffd40e0396e6babe3f7e656c1f008d6c05f0cbc681d8a70e5f3e4bcf00f",
+  "pearson_delta_after": 0.37445989494474397
+ },
+ {
+  "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "1ff726eb6829e0f3e86a2cd4a081c73b71f82db1261c9155cedab742c25e9593",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.4567718551596923,
+  "sha256_after": "4887b554af02f7d09b51c14a032306e0245b1119df82cb093b10f0e03430c3b7",
+  "pearson_delta_after": 0.45901757630479195
+ },
+ {
+  "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "1edfeed1c73343e219b989da1cb601cbd7f65f0300a9b8f0ea388bacf269131d",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.3200599629594275,
+  "sha256_after": "b20dfa2354edb5ee3288f30af9dbe6dde4ec63ba59957a03652e9e51abd405a9",
+  "pearson_delta_after": 0.32395153440407903
+ },
+ {
+  "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "2025393440234491147ae8ed1f2df0063f33a42bd2cdeb22e7fe21aa1dee3d5e",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.4981262519237667,
+  "sha256_after": "fe64ffd0b4527fb3c6db7eac3009f3b73e7853b48ed5be0b07616e380cd3fd8f",
+  "pearson_delta_after": 0.5346045190858292
+ },
+ {
+  "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "57d3b4849ff70be35df5aa9fa96f9bf277cf4d8ce72e67e99a26f2adbd292de3",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.3173572304819091,
+  "sha256_after": "0da7a639337f880a5f15d62059616e65460d4727e3d78033378b90961bd72c8f",
+  "pearson_delta_after": 0.3175479331844314
+ },
+ {
+  "bundle": "predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10.npz",
+  "sha256_before": "8c956048c30812e3f185141d47dad7208e99215440052d3abe34b61cc155565a",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.37245565129725844,
+  "sha256_after": "d9b6a6dc06840174c4bb3a3c72941d83b4b841c630439195344864b85bd8ed9f",
+  "pearson_delta_after": 0.375935974396074
+ },
+ {
+  "bundle": "predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10.npz",
+  "sha256_before": "51144e7369b0dd65118190ed8111ec4f564bb90f716138c93d197c4e6547092a",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.312449785287674,
+  "sha256_after": "250a8d26c76ca33ea0a56fa20ee9d589a3b7d6fd13106f64345195413a530207",
+  "pearson_delta_after": 0.3184557541972891
+ },
+ {
+  "bundle": "predictions/C4/C4_Axis2__CPA__C4_modality_lo_ko_25.npz",
+  "sha256_before": "6b35d10f3b73e0ba909a14f4714916e979ca9d61b11c10eee032e0b50666a714",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.5092643489359968,
+  "sha256_after": "15738ea80cdbd3d42fdfa999edbc520773b1a44d3ce80d51302054e20713d9a5",
+  "pearson_delta_after": 0.5080041941536505
+ },
+ {
+  "bundle": "predictions/C4/C4_Axis2__CPA__C4_modality_lo_ko_50.npz",
+  "sha256_before": "0de4e1e7e0ff51fc7fc1a4ba341c7a065f9f93c2b9ac4f93423a4dc2e9ef9e7d",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.5602868621404076,
+  "sha256_after": "c96c56232309d9a916862f352e6c09e32a840943040a7ac33333cf64dd7d7132",
+  "pearson_delta_after": 0.5588522043002182
+ },
+ {
+  "bundle": "predictions/C4/C4_Axis2__cell-mean__C4_modality_lo_ko_25.npz",
+  "sha256_before": "1af67cbe93a7613b7168e7cdb99b53fd7cb33f2ad6849ef88489ca9e7a9abb5a",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.6719523842604803,
+  "sha256_after": "bb6745d70c9367c0b16ff6a108075a89d6d8c93b7565a5640f22705b20fb25a8",
+  "pearson_delta_after": 0.6703519822070186
+ },
+ {
+  "bundle": "predictions/C4/C4_Axis2__cell-mean__C4_modality_lo_ko_50.npz",
+  "sha256_before": "0a3cf3627979e22794fb8fca2fc1fad6b3cbdd56ce51048296ddb2736d2c47b6",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.6505081998808627,
+  "sha256_after": "f166c8dc1d7270c4aaf91d8495e3aaac9151a55f4cb7dd1fa22ccd5be054e250",
+  "pearson_delta_after": 0.6492796208070685
+ },
+ {
+  "bundle": "predictions/C4/C4_Axis2__linear-PCA__C4_modality_lo_ko_25.npz",
+  "sha256_before": "b6b2ef96d451b512d8c26b6a406c21d1c659247a539f407179b5422a54e4c4b3",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.29149318799724927,
+  "sha256_after": "2aa473cacd8f8c518d9691a47b8d0040d9d631e68c0f89479e96e2886b590d82",
+  "pearson_delta_after": 0.28477198085023286
+ },
+ {
+  "bundle": "predictions/C4/C4_Axis2__linear-PCA__C4_modality_lo_ko_50.npz",
+  "sha256_before": "6639d50b699e98024115484eaae3814c5a527298b1fba684d7bb4c5ac7b68b10",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.2751580313018566,
+  "sha256_after": "979a75a00e5584967e28f6f4a4626414eb6e5d0e1c5ec0299dc5ad891a8e7b16",
+  "pearson_delta_after": 0.2703448124298907
+ },
+ {
+  "bundle": "predictions/C4/C4__CellOT__C4_modality_lo_ko_25.npz",
+  "sha256_before": "e6c1e03d662044c6a77e99e9ecab78b50a50c8faa8bab304f79305a9ee4acc3b",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.6085673854537277,
+  "sha256_after": "7520ed5f5eb230da6a0bf5223b62ccf06e0cca4f3c7147b7f42d03b376acd886",
+  "pearson_delta_after": 0.6070050272833993
+ },
+ {
+  "bundle": "predictions/C4/C4__CellOT__C4_modality_lo_ko_50.npz",
+  "sha256_before": "7155e7c08a8b24c63f76b0e98b005f1318ac25f50db83c52640039908bf88c6f",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.5749142291514612,
+  "sha256_after": "5577cf35d624f56552aaf17d381298d7f658554375501be4a1dda2f8df9990b3",
+  "pearson_delta_after": 0.5733723812914835
+ },
+ {
+  "bundle": "predictions/C4/C4__scPRAM__C4_modality_lo_ko_25.npz",
+  "sha256_before": "964d164ad4d7e452166acb18adb89415257c266379191b5bbab38628047d0a8f",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.39263417824832003,
+  "sha256_after": "0b3c49b1671c3e5ade896c838e8c33a122961f162dea8f23021e57c18e7ba0da",
+  "pearson_delta_after": 0.3881631775376255
+ },
+ {
+  "bundle": "predictions/C4/C4__scPRAM__C4_modality_lo_ko_50.npz",
+  "sha256_before": "9ae07985acd3fec90f597b74a002ea051b76ec61c9f93752c00f2dacd1b659be",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.2377519261590979,
+  "sha256_after": "f5a2d7fd775279ee1c2c4fd800e8aa9f5c5fefa3e2320b4708f5654d60f1ff25",
+  "pearson_delta_after": 0.23404172391228806
+ },
+ {
+  "bundle": "predictions/C4_Axis2__Biolord__C4_modality_lo_ko_25.npz",
+  "sha256_before": "e36137007d3adcce2f588b8151d3391b5e2ef3b83822a1586e803cf9e7d50a92",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.6264579209728364,
+  "sha256_after": "f4d9a46911aa44b43e828b8ca95bb33edaf9771e5c94e1924ae81ae3f95b00da",
+  "pearson_delta_after": 0.6249820180764021
+ },
+ {
+  "bundle": "predictions/C4_Axis2__Biolord__C4_modality_lo_ko_50.npz",
+  "sha256_before": "9532ee709549263a1242f0b804e8a81e90e1caa755b56580662ed9ba33f4f22a",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.5990873045584996,
+  "sha256_after": "557dd0d75421b26e69a1c575be260e64ac24396a17d9047aebb997c4c702690f",
+  "pearson_delta_after": 0.5980274873633118
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "b1041fdc952d0867f986c11fc606822d11225b32599b88fdbe4644d1b2e558a5",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.3424701653240446,
+  "sha256_after": "28462871c2a8550b3d0638b8599f31e7590c0df0a78dba48db11f6111e35bbde",
+  "pearson_delta_after": 0.3410207521720667
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "1761b2691e10b848c667da9113d8cca5ba23a43a74d19168b1972cd722194832",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.17523933861649665,
+  "sha256_after": "15950ad34d083af32dc32d133e8e6e3fb2ad7aa47c6ce9c2aa810c5421920d47",
+  "pearson_delta_after": 0.17461286087429756
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "5726fb7547c8a17aea6095fbccb1921af9ea208c45050ba59354d257cdc45823",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.30399080623150593,
+  "sha256_after": "ce0a004ad57e1d5b5c26eb4a92be991df192f4ae042f7d8dd04ddecc19a14c82",
+  "pearson_delta_after": 0.30416171657423624
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "b4a062abde8469a9188e699745750472099d43e6970f3f46836cfbeffc78016a",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.40962300392942314,
+  "sha256_after": "4f6b5b589cddee7268406a2bb140b833548fd815aec8c4ed2fa5bae945d8094e",
+  "pearson_delta_after": 0.4399262168726624
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "1f8ab673dcaaf6c735191cbfd1550e53c141f2a9ffe705f544acbf6f0f900600",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.3724475466234972,
+  "sha256_after": "e593d120c9b33f77d4815a0cd4bc2510fa5568aea491cd1aae10324843efb331",
+  "pearson_delta_after": 0.37595334673713016
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "996b9b8277502a7de89b5bd8e8455084f7f5c740043480b1698788e834088ba7",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.2311662414902396,
+  "sha256_after": "e41a7d9cc41558b7aad458cca137f26f70b1374cf243c9fdfc71fbd22fd3deb9",
+  "pearson_delta_after": 0.2707313760625104
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "3b9749870a2b74ef11008549ad97a8620706d3b9b5e57139861e72cb6efe5e57",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.12230213219468712,
+  "sha256_after": "59e62180dd364d138dedcb3895d2defce30628367321acb52a68b9ad33d26fcb",
+  "pearson_delta_after": 0.12858040726355502
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "93722be6a2ef9d9b7537d0060537173b123f0f7217190cf79fc61055772f6c1b",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.3189499990911498,
+  "sha256_after": "f1ada31ee862b4312eb09e56aa27ba98a83cbcce751617df22d7e1c0ce666e28",
+  "pearson_delta_after": 0.3214094770722494
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "7ad788aa748fa37be65be55724adee2f613f3dc925d0e4aceba6bff20d0f6837",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.42572715450200027,
+  "sha256_after": "0cedd59b12fc4e8aa0db90b07ae1e4ef9baf24331b5e16e70800495298edbe74",
+  "pearson_delta_after": 0.43086030195380054
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "e6b1823aa610660dfd31207d2006fc6ff913d20c92e1e925839db1f12caa594f",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.288882290913668,
+  "sha256_after": "5415e06beea2dba88200a8ff8ac24254f917861ea22c56f95bf74d9ec638e0b7",
+  "pearson_delta_after": 0.28796263771396746
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "b6e6f50f47f47d954a0bdd9e98f55c48d0c01ff33112825df54b16ef35c8fb9b",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.46126968566375937,
+  "sha256_after": "b396015147ed49547b483e0e16d443760fc8dac3ac9d13e832e5133a0dd50df8",
+  "pearson_delta_after": 0.49740671111834306
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "cb66edb3001cbdab8c66c5d9bd247a717b4d6c37ff58a98b6f92bbfe0dd874b3",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.31245018290472765,
+  "sha256_after": "1c8c0da61539f365bdc6b44a194792fb31ac137d9b06546184f0ea43cbe30fa6",
+  "pearson_delta_after": 0.31845522167263984
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "29fa18484c7a53e66a2a1d69489cb1fa4ee0f4b6fbe5c9a5c5364a5290594274",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.10363661405280036,
+  "sha256_after": "63cfa36ba38a3dfcc11cd1e99f2deb0cad349dee7767cf53e1cf4931ed33b182",
+  "pearson_delta_after": 0.10241201028597365
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "2d50a63e9d3402f1b1a2ab419ef942ce2fdc70a0de3a4d4c5d53568e852e78ee",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.18280848979478453,
+  "sha256_after": "f948dac98662c8e04716d3f952a30cf79cc42fb061837ec43caab220cdb58509",
+  "pearson_delta_after": 0.18395775335811984
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "8094858c8363f9c48e7279c78d845e1bf935abd5a5b15cc17c8b1be7361314fb",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.054659907133710814,
+  "sha256_after": "68e9773c3cf2904e42f811f91785bc342bcc133ba79398ca9ebd0f3b9ff7d540",
+  "pearson_delta_after": 0.05401128826997932
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "e66b23736802b0993e89285b61eac760ce09abdba0bb1a56d8f5e84d0256cfe7",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.3078842197572819,
+  "sha256_after": "affa0bb131ad4cc9e7d03efeef714a4e941918089c4562bd2950649d62794d90",
+  "pearson_delta_after": 0.3315695308232292
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "058e3557f843b6ea8366796efa86de5642825beb9f5f3145303da42cbadf988b",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.044143134206954565,
+  "sha256_after": "7b163ab595ac2027df91ae6dc7ddbb0f91b7b99131f9c13da1522672ad3dc661",
+  "pearson_delta_after": 0.045394261650647943
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_25__chen.npz",
+  "sha256_before": "07872f0b442ebb7fa2f78b3a60c8792e2699a22019ec1108572cf364ab97ea34",
+  "excluded_before": 74,
+  "panel_mask_genes": 59,
+  "excluded_after": 133,
+  "pearson_delta_before": 0.11550907280917867,
+  "sha256_after": "2111cf87663bac241c1d6fbb6a01ce8412af0d2bf609b92e5ddd1f6440f155a2",
+  "pearson_delta_after": 0.11761775640043926
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_25__mccutcheon_CRISPRa.npz",
+  "sha256_before": "9d86a4b4bba141230c71d151a2088b6420f3724e9be40b8712c79f670b63c540",
+  "excluded_before": 6,
+  "panel_mask_genes": 54,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.12295060219865622,
+  "sha256_after": "6ec198bc29542a6d3c9881b918b5de4cb96efe225f1a71829d6f95bd27afbaa1",
+  "pearson_delta_after": 0.1221163978728075
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_25__mccutcheon_CRISPRi.npz",
+  "sha256_before": "cacf409fb066c6934886264a09d7eea56b28f6d4a371b95c5f501ffd30ad76e1",
+  "excluded_before": 6,
+  "panel_mask_genes": 58,
+  "excluded_after": 64,
+  "pearson_delta_before": 0.02881927483767829,
+  "sha256_after": "34c10b1b1687d26ea135c54d43da8935dd2eb25b8b55bc4620547e2a37564f7d",
+  "pearson_delta_after": 0.02910356600116877
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_25__schmidt.npz",
+  "sha256_before": "69f4a35b7449a2db61af38b469c37a8fa4cc4f64154a1d758eb795fe33dfd1cb",
+  "excluded_before": 17,
+  "panel_mask_genes": 49,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.2869556312747979,
+  "sha256_after": "cc1925196d00263fedaa656b9a4d26314f5b610de17d1ae79046358982e47f09",
+  "pearson_delta_after": 0.3041292932945118
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_25__shifrut.npz",
+  "sha256_before": "431f450f0895a6f8a94fc3bf27bdce2fa1a4dfa36f9033a837bcec878547a3b1",
+  "excluded_before": 5,
+  "panel_mask_genes": 31,
+  "excluded_after": 36,
+  "pearson_delta_before": 0.1005797407938496,
+  "sha256_after": "1a0f126b5f6da9553cbfda9f1b9d83f54769ffad697ac76e11cb1cb2888752a3",
+  "pearson_delta_after": 0.10023422290203617
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_50__chen.npz",
+  "sha256_before": "12333b4b452a25fa903aa3096b824d93257ee2a1f70ac8eaba16f4e42c6d5527",
+  "excluded_before": 147,
+  "panel_mask_genes": 59,
+  "excluded_after": 206,
+  "pearson_delta_before": 0.10840077999500557,
+  "sha256_after": "daff362fce3107133811f1695a655945ba4c947dded56d1456b246082356ee0e",
+  "pearson_delta_after": 0.11099896200884793
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_50__mccutcheon_CRISPRa.npz",
+  "sha256_before": "f98c4d0eba0fa1b02579590d8b3bfcf03aa96bdf40d9f8be6c6503289ac162c5",
+  "excluded_before": 12,
+  "panel_mask_genes": 54,
+  "excluded_after": 66,
+  "pearson_delta_before": 0.10795306460242844,
+  "sha256_after": "1afa974d9dc06c91fabe9d41a97fe7c8d044aafc697ff8ad68abb7cfbe769cf1",
+  "pearson_delta_after": 0.1071267146975446
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_50__mccutcheon_CRISPRi.npz",
+  "sha256_before": "b807e354fa141646b2362ff028bf51995a9d2ac201221336d4de0428a77eeb83",
+  "excluded_before": 12,
+  "panel_mask_genes": 58,
+  "excluded_after": 70,
+  "pearson_delta_before": 0.044902798122180176,
+  "sha256_after": "c521d5739359c528f8325f7c9f54e15b0a6fb57746571f9fb8fa37e7d3323a93",
+  "pearson_delta_after": 0.04389424679405696
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_50__schmidt.npz",
+  "sha256_before": "43ef5de761c75df71f721e220d1e7d778200e0b98edd1469488d41fa5525045c",
+  "excluded_before": 36,
+  "panel_mask_genes": 49,
+  "excluded_after": 85,
+  "pearson_delta_before": 0.42042491213700506,
+  "sha256_after": "3ed5bf87b8e3750a0ae87418507fa20bbc7936e4fdb7a8f13dc45739c31f64b2",
+  "pearson_delta_after": 0.43589569709162546
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_50__shifrut.npz",
+  "sha256_before": "fc30ec95195052275253edc8c0a3c70d0eab3a0e4ebb3db8fc12e9185359a608",
+  "excluded_before": 10,
+  "panel_mask_genes": 31,
+  "excluded_after": 41,
+  "pearson_delta_before": 0.08221699264923103,
+  "sha256_after": "494653521e7a73fd8358ce64ee238b1407afd5a7f408f5a67c5cc06e5873765e",
+  "pearson_delta_after": 0.08078309280683157
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__chen.npz",
+  "sha256_before": "bd42b9f7cc05379090156127f06796a21751a565ca080fda16152902b7e7b0d2",
+  "excluded_before": 29,
+  "panel_mask_genes": 59,
+  "excluded_after": 88,
+  "pearson_delta_before": 0.5092374644223749,
+  "sha256_after": "1b11e787a445191cd0e5afa38f96c532f4ec3371ba2ca2ed4951c67ac0b3bf4c",
+  "pearson_delta_after": 0.5094139108399026
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "0f26d639cd78bc2d36ce34d1deb4d290bbe015462e5bf0cd5771a11d7ad871e1",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.594022629171394,
+  "sha256_after": "40742fc820523a78cbf28d1a96de40c437dd52005b7def29cf159d0baf0cd8ad",
+  "pearson_delta_after": 0.5962135295592771
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "9e1c60147fe40a28cb46f6d7c9410eb2a1ba51c941df20d81691e9aa4514547c",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.42966944426291065,
+  "sha256_after": "9c943c88808eed1ae6446828614d6afe123f7d5031ab15afdac1addd5527d697",
+  "pearson_delta_after": 0.4299584209793265
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "b10ef5e7b959cc42570c99c01eeefcd2e429158b260c633c35b15fff9440765e",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.4544857378528025,
+  "sha256_after": "c8da48c94cdd9d70a3b50049151ed85f7cc0b29ef78f58385784975fc790514b",
+  "pearson_delta_after": 0.4892249091003568
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__shifrut.npz",
+  "sha256_before": "a8d47e09c038cacf0296e02c59d17bfb8acc323b4793f62bc62356208e5a9010",
+  "excluded_before": 2,
+  "panel_mask_genes": 31,
+  "excluded_after": 33,
+  "pearson_delta_before": 0.44236345440678504,
+  "sha256_after": "0c4d874f1ba3dc7aff09cfd393039fe778d47d5d2400e2caa5619ff74ee80910",
+  "pearson_delta_after": 0.44556479193421056
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+  "sha256_before": "4faf56253f1ba358f772a6e692a54184709522dd97bc566be9f55f7d7e2d036e",
+  "excluded_before": 2,
+  "panel_mask_genes": 54,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.24627924691063682,
+  "sha256_after": "bff5361444e1978b7b673c968cdfdf16e7e152f0032c5b0294c345deac754d03",
+  "pearson_delta_after": 0.25069816164774433
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+  "sha256_before": "d9d31e0ba458158a0aaf58fb6f421a4e766878fb2f4b7b595ad5970e0f0f271c",
+  "excluded_before": 2,
+  "panel_mask_genes": 58,
+  "excluded_after": 60,
+  "pearson_delta_before": 0.10240157555625302,
+  "sha256_after": "199f363b4a05105c59143d9ed0cf1e16d58ee4d047fae3f7db0f4f3a1391ea49",
+  "pearson_delta_after": 0.10455478229689416
+ },
+ {
+  "bundle": "predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__schmidt.npz",
+  "sha256_before": "aa18eb59a488a3a53847de655f00c2cd4ef8ca00ede40ddb4949178aeb00bb5b",
+  "excluded_before": 7,
+  "panel_mask_genes": 49,
+  "excluded_after": 56,
+  "pearson_delta_before": 0.07616213511324485,
+  "sha256_after": "8cce4ac4e3924d28e99f793777488fef38eec33743fb1f6188a98a7e77a177ba",
+  "pearson_delta_after": 0.0807274818352242
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__AttentionPert__C4_modality_lo_ko_25.npz",
+  "sha256_before": "465044a8833b7629fcade8dc2a66d097ca7364a9ebb67dd9318c7cd5c37cd0ac",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.514341326230932,
+  "sha256_after": "9d656b47563750d291ed344f31722ac4658597b341c08893903ad0c4bd52a94c",
+  "pearson_delta_after": 0.5123464340936542
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__AttentionPert__C4_modality_lo_ko_50.npz",
+  "sha256_before": "bd9cad3fc444c9b271ed965f700dd829c88278e4aa939711c3db9479356f5e74",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.4953994142633483,
+  "sha256_after": "06bac3d91c23be1c402bca58a6f6145854fa6b07cfb903acc2226aa6d80bc662",
+  "pearson_delta_after": 0.4940683110358303
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__CellFlow__C4_modality_lo_ko_25.npz",
+  "sha256_before": "cd29c19b36170d72745e568d5533e2a5a1eb2e92e4c4f80c389b90fe563333a4",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.49937669185657685,
+  "sha256_after": "695c17c9eca2ff87d4bcf08b70330a397415e9d4983990743160fdede84f64d6",
+  "pearson_delta_after": 0.4967726766985753
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__CellFlow__C4_modality_lo_ko_50.npz",
+  "sha256_before": "2cc03677ff8d9653eff2e7f4248119244c5d2b55c062b6117162183d8383fb1e",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.48111859538600127,
+  "sha256_after": "b1425623bae14acddfa08a839d95ca66754a5da823f0cbf52bc3581452028d29",
+  "pearson_delta_after": 0.47843414530253153
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__GEARS__C4_modality_lo_ko_25.npz",
+  "sha256_before": "37c1b08e710f4615f7b5ca237e62e8224f5316e87bb01eab064f6d9598cdc1ee",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.4629726893224956,
+  "sha256_after": "356353f7aa21cff8185980d26e925933617a88d7797416cf1cc9c13dc3160253",
+  "pearson_delta_after": 0.4616020909102992
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__GEARS__C4_modality_lo_ko_50.npz",
+  "sha256_before": "a3b75b07cb542b3ae42120e895936cea41823dcea34840581a04ff44c7663638",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.41525247259599474,
+  "sha256_after": "509be74e55d9628c793de83980ad9fe96beafca8f6bdb67f3552b4cb72388d3d",
+  "pearson_delta_after": 0.41350241092224826
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__PertAdapt__C4_modality_lo_ko_25.npz",
+  "sha256_before": "5a89a6499b7eb777ca4e25252bdff4b248be6c43ebc942ce0551572b0d8e143a",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.5027971673155046,
+  "sha256_after": "53e1f19fda79a81e13cfc071a25c4b64c129a0798e393947cc4084442622f7fa",
+  "pearson_delta_after": 0.5021404832296693
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__PertAdapt__C4_modality_lo_ko_50.npz",
+  "sha256_before": "c823aad33f52f75e06ed9211e1c14af3a9db04bf420cb4e1ae25881e8ca67436",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.5280136297386678,
+  "sha256_after": "47373a98e7919b98fb73e40046f9448354ebdbda54b94d3de931b54d04811680",
+  "pearson_delta_after": 0.5286172425277305
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__PerturbNet__C4_modality_lo_ko_25.npz",
+  "sha256_before": "195198b4c4fb11e463c651a10c117fb2b0249cf622d6d61bd17db3ba4acf0c25",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.610010133743168,
+  "sha256_after": "581bd65d89ff9270ea404b8c826868471d5ab183d1dba4de50ed06c22f4abd71",
+  "pearson_delta_after": 0.608518163011651
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__PerturbNet__C4_modality_lo_ko_50.npz",
+  "sha256_before": "10c9848735aa579c90032ece4cfb226e351eb80b4216e09de11f784539927bbe",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.583892594930238,
+  "sha256_after": "9dfa57973918f53dabc143a063dc7545b12cda9797fbd883599da4786ae05b9f",
+  "pearson_delta_after": 0.5831564569262022
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__STATE__C4_modality_lo_ko_25.npz",
+  "sha256_before": "1f9c3612e9c09c98bb47dec2b4449feb4fc3452a916610f64ebe21308ca1ce5a",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.24066013616726986,
+  "sha256_after": "8c330c2b799e1ab9b11cbc61d4a776119164cbc968b64bcf07a0d8c14e73a7f2",
+  "pearson_delta_after": 0.23683880459465514
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__STATE__C4_modality_lo_ko_50.npz",
+  "sha256_before": "c0d943bab4be028a27838ab274c1e2cd8b960ab13ba32ce5e8c1caabd44caa0f",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.23145312003796792,
+  "sha256_after": "edb31d22862982d01daa061da9245490e31e29337b44d40c81fa1ed08d3fa493",
+  "pearson_delta_after": 0.22841570035194195
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__linear-shift-KOemb__C4_modality_lo_ko_25.npz",
+  "sha256_before": "502d23e037c8408f1365b6bc1ba4ed4172827a55718153a2003407fa2996e69e",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.6145745533974467,
+  "sha256_after": "89f7581ca5e9179c4a6dd441c15ebe88f20d96ef4eefa5f22f7a61c5d447aada",
+  "pearson_delta_after": 0.6131715705835082
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__linear-shift-KOemb__C4_modality_lo_ko_50.npz",
+  "sha256_before": "3f780f6bdafd11d14092ebd0c3fdbec17c6644cedfdb570997f7a54fb4623c50",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.616632774477133,
+  "sha256_after": "8621ccd574a41593fcfa173781b7b2ff8917113b621f293310ea1bd143d553d2",
+  "pearson_delta_after": 0.6154818312046215
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__scGPT__C4_modality_lo_ko_25.npz",
+  "sha256_before": "ee7bfbbc8536cd9e762d27144ba468fb4de7504049f264e09f79f2a9944ea72f",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.5917629583210059,
+  "sha256_after": "8d1fe387f2dcabb705779874f6615b283d5ee3d7ce16c24f089ccb5595d722e3",
+  "pearson_delta_after": 0.5900529038030143
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__scGPT__C4_modality_lo_ko_50.npz",
+  "sha256_before": "910efe433f70f80935e144b3d4b33238c51c965ad52a3cedeb3a732e5e183cc3",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.5465469058264033,
+  "sha256_after": "71ee48b0d0f16e697dcd2a7b030f99f37ba59971470da2ba948ac29dd4dda6f3",
+  "pearson_delta_after": 0.5463689192052171
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__scGen__C4_modality_lo_ko_25.npz",
+  "sha256_before": "bb99406386cd7f40dadec7bed771b6a4ad924a0f804c8ea2d4548bbf4e388c8e",
+  "excluded_before": 57,
+  "panel_mask_genes": 26,
+  "excluded_after": 83,
+  "pearson_delta_before": 0.5548090007780346,
+  "sha256_after": "465d64c332dd9cacaab230b54270b40a1bc10d0824ff040bfbee15127596dc64",
+  "pearson_delta_after": 0.5538903534341267
+ },
+ {
+  "bundle": "predictions/v2_native/C4_Axis2__scGen__C4_modality_lo_ko_50.npz",
+  "sha256_before": "c8524094c50739b352f87906ebd64c48aa023270cb25f92558bdadb48d1ab1ee",
+  "excluded_before": 118,
+  "panel_mask_genes": 26,
+  "excluded_after": 139,
+  "pearson_delta_before": 0.5538170799585909,
+  "sha256_after": "acad5b8a9e1f56e3431a4048714a1a21c9d1e453980f792ac27642fbbd62efc5",
+  "pearson_delta_after": 0.5521375156664083
+ }
+]

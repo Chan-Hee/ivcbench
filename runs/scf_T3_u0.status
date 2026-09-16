@@ -1,1 +1,1 @@
-RUNNING 2026-09-14T19:52:12Z pid 982712
+HELD 2026-09-15: run_obligation memory grew ~107 GB/h and reached 91 GB in 50 min before the runner even started; it would have exhausted the box and taken the other ten jobs with it. Needs to run alone with a cell cap.

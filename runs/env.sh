@@ -34,7 +34,8 @@ export NUMEXPR_NUM_THREADS=4
 # frozen foundation encoder and holds 41 GB. Giving it one card lets it run to completion at its
 # own pace while the other three finish CellOT, PertAdapt and PerturbNet. Space-separated indices;
 # empty means nothing is reserved.
-export IVCBENCH_RESERVED_GPUS="1"
+# GPU 1 was held for the scFoundation re-runs, which finished at 23:51 on 2026-09-15.
+export IVCBENCH_RESERVED_GPUS=""
 
 export IVCBENCH_JOBS_PER_GPU=3
 # GPU 0 currently carries only light jobs (CellOT at 2000 iters, STATE donor shards that

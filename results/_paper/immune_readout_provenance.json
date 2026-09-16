@@ -2,265 +2,385 @@
   "inputs": [
     {
       "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__chen.npz",
-      "bundle_sha256": "fbb42e83a40a0e9f908eaaf9b80f2416a83aef87bc9d30dbf1a97425149d30c6",
+      "bundle_sha256": "bc65e78f8231feeb7fdf692f1e8d9fc87ff8f42304557e10f3e5ede0f63dc7cd",
       "cache": "results/_paper/program_observations/T3__chen.npz",
       "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
-      "bundle_sha256": "772fb8a66b6247d171b1df90f39d41eeb6d034332e44cb955595f049b6f4f44d",
+      "bundle_sha256": "fd3060bf6f9ffd6a834d7b51e84e86de5dddaf6452e55b52ac4183dc1fa7944f",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
       "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
-      "bundle_sha256": "5bf112b7181f7c6e2f20ab8d5705fe0623e83a0db447eb0665b02313df0a27c1",
+      "bundle_sha256": "78396648e2080b3720f95d205b4ede06a8c6ad0913e61ffc600366a9c12a8a63",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
       "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__schmidt.npz",
-      "bundle_sha256": "fd89905ea7573c18056997975a23a235ec3f736503d63db2d96efa02c4d7e643",
+      "bundle_sha256": "4cc76871bfb6b91fe05c89a07bd69fa802bc31ddb16100198de7e2b65214b3f6",
       "cache": "results/_paper/program_observations/T3__schmidt.npz",
       "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__shifrut.npz",
-      "bundle_sha256": "2f6fcd8a41757d15d8b350b357778112da93280c90334d493129d64c747f0a01",
+      "bundle_sha256": "7c959ebb07fc47d68e1fa0b58d33ba405c8154c60ace52edcf2eba44f70af8a7",
       "cache": "results/_paper/program_observations/T3__shifrut.npz",
       "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
     },
     {
       "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__chen.npz",
-      "bundle_sha256": "dd5cc4f5ac8fcba43da8eddcfd09cb82ff36389db53b9b11f77ded92e317ca47",
+      "bundle_sha256": "05f21ffd40e0396e6babe3f7e656c1f008d6c05f0cbc681d8a70e5f3e4bcf00f",
       "cache": "results/_paper/program_observations/T3__chen.npz",
       "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
     },
     {
       "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
-      "bundle_sha256": "1ff726eb6829e0f3e86a2cd4a081c73b71f82db1261c9155cedab742c25e9593",
+      "bundle_sha256": "4887b554af02f7d09b51c14a032306e0245b1119df82cb093b10f0e03430c3b7",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
       "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
     },
     {
       "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
-      "bundle_sha256": "1edfeed1c73343e219b989da1cb601cbd7f65f0300a9b8f0ea388bacf269131d",
+      "bundle_sha256": "b20dfa2354edb5ee3288f30af9dbe6dde4ec63ba59957a03652e9e51abd405a9",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
       "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
     },
     {
       "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__schmidt.npz",
-      "bundle_sha256": "2025393440234491147ae8ed1f2df0063f33a42bd2cdeb22e7fe21aa1dee3d5e",
+      "bundle_sha256": "fe64ffd0b4527fb3c6db7eac3009f3b73e7853b48ed5be0b07616e380cd3fd8f",
       "cache": "results/_paper/program_observations/T3__schmidt.npz",
       "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
     },
     {
       "bundle": "predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__shifrut.npz",
-      "bundle_sha256": "57d3b4849ff70be35df5aa9fa96f9bf277cf4d8ce72e67e99a26f2adbd292de3",
+      "bundle_sha256": "0da7a639337f880a5f15d62059616e65460d4727e3d78033378b90961bd72c8f",
       "cache": "results/_paper/program_observations/T3__shifrut.npz",
       "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
     },
     {
-      "bundle": "predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__chen.npz",
-      "bundle_sha256": "2bb67a827817085cb51feab8d55871bb83546be90f94f64b694b34c6ea478cd6",
+      "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__chen.npz",
+      "bundle_sha256": "28462871c2a8550b3d0638b8599f31e7590c0df0a78dba48db11f6111e35bbde",
       "cache": "results/_paper/program_observations/T3__chen.npz",
       "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
     },
     {
-      "bundle": "predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
-      "bundle_sha256": "0081901421546a5c8c21118cf53ef601372a3989833c7d82c724558ddd882a54",
+      "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+      "bundle_sha256": "15950ad34d083af32dc32d133e8e6e3fb2ad7aa47c6ce9c2aa810c5421920d47",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
       "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
     },
     {
-      "bundle": "predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
-      "bundle_sha256": "3d2bb10941ab266622ff3ca9fc565a709b631dd6a81dcd4a085fddd40569454d",
+      "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+      "bundle_sha256": "ce0a004ad57e1d5b5c26eb4a92be991df192f4ae042f7d8dd04ddecc19a14c82",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
       "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
     },
     {
-      "bundle": "predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__schmidt.npz",
-      "bundle_sha256": "6c96e0a18ef525524edfecc9af4d599da23159c42355218873a6e01e9d44f66d",
+      "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__schmidt.npz",
+      "bundle_sha256": "4f6b5b589cddee7268406a2bb140b833548fd815aec8c4ed2fa5bae945d8094e",
       "cache": "results/_paper/program_observations/T3__schmidt.npz",
       "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
     },
     {
-      "bundle": "predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__shifrut.npz",
-      "bundle_sha256": "600bd53e4633593870fc38aae639b3d8715b3bf6ddaf1e1e5fe49a24601ff41e",
+      "bundle": "predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__shifrut.npz",
+      "bundle_sha256": "e593d120c9b33f77d4815a0cd4bc2510fa5568aea491cd1aae10324843efb331",
       "cache": "results/_paper/program_observations/T3__shifrut.npz",
       "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__chen.npz",
-      "bundle_sha256": "2a1463f105d6c1ac31ab92dc4c169e17ecc9bd0d0260761a8b0c776d0a7e5f2b",
+      "bundle_sha256": "b6f493d5d384c87652d3dd8a4c0cd953065a03e8ba1616e82a149c90575f24c9",
       "cache": "results/_paper/program_observations/T3__chen.npz",
       "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
-      "bundle_sha256": "05a7cbaa35c7fd0570d913f16aa246452bd0cfe55560884ade9d43c8fa2becca",
+      "bundle_sha256": "23685081a7362f52646135d356c2682207718bfa14c1adc7e240bacfed0004e3",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
       "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
-      "bundle_sha256": "cf6e318215c32a1ae2743beff178d3a9d4bb85c3f2832eee55455d28ba59dc49",
+      "bundle_sha256": "2159bc30a8536cb751b33b9a229c758b1103e481a3742a3ac3e0761ae7adc66c",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
       "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__schmidt.npz",
-      "bundle_sha256": "46126fbac8c06bad92881bd649511c1dc92d4d9d6c9fb9033720ea3784fdb495",
+      "bundle_sha256": "15e00bcfea31bf4430c7eb8e72ae9fa3ea47fa4de619cac8c0790b5a5704aa3e",
       "cache": "results/_paper/program_observations/T3__schmidt.npz",
       "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__shifrut.npz",
-      "bundle_sha256": "69eecd529047404cd018c13b3cebeaf0c3ff99643912a374b030c64d797b878d",
+      "bundle_sha256": "208c6813a750a88e69c2bd0c973474066434e0f74a868b6b2a8c20c891690e25",
       "cache": "results/_paper/program_observations/T3__shifrut.npz",
       "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
     },
     {
-      "bundle": "predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__chen.npz",
-      "bundle_sha256": "4257ba2c664ee93bf37b4cec080fe201080d0b455a5716decb072d839aab610d",
+      "bundle": "predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__chen.npz",
+      "bundle_sha256": "c9f84273ff186615b78bcf054b770b5cd281227998663903aadeaae89ec4db3a",
       "cache": "results/_paper/program_observations/T3__chen.npz",
       "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
     },
     {
-      "bundle": "predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
-      "bundle_sha256": "dcfe4e4ced4a34b8feab90062c9bdd14ed3dbb028012da7ebac08f66b4212ab7",
+      "bundle": "predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+      "bundle_sha256": "260a2eafc9e15d520e93dcbebef304994d0e5815107d9583fa2097ccee982754",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
       "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
     },
     {
-      "bundle": "predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
-      "bundle_sha256": "edd750a2db24fdfb5f6d095582298098e0e45851b05e230393b00a443137043b",
+      "bundle": "predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+      "bundle_sha256": "03953878fefc9f8e7d77e01a8b91c0135837fb8b8fd49f33eb001b387efe23bc",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
       "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
     },
     {
-      "bundle": "predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__schmidt.npz",
-      "bundle_sha256": "51e0a528e2aa8d7b412f002182e8cf8b9b395cf821fcb86c4a2b0b62f24708e9",
+      "bundle": "predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__schmidt.npz",
+      "bundle_sha256": "e41a7d9cc41558b7aad458cca137f26f70b1374cf243c9fdfc71fbd22fd3deb9",
       "cache": "results/_paper/program_observations/T3__schmidt.npz",
       "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
     },
     {
-      "bundle": "predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__shifrut.npz",
-      "bundle_sha256": "58c199d99a447fa2522b2bd6bc5d7bdee8a53a5fafa612034c654894c3a067e2",
+      "bundle": "predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__shifrut.npz",
+      "bundle_sha256": "59e62180dd364d138dedcb3895d2defce30628367321acb52a68b9ad33d26fcb",
+      "cache": "results/_paper/program_observations/T3__shifrut.npz",
+      "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__chen.npz",
+      "bundle_sha256": "f1ada31ee862b4312eb09e56aa27ba98a83cbcce751617df22d7e1c0ce666e28",
+      "cache": "results/_paper/program_observations/T3__chen.npz",
+      "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+      "bundle_sha256": "0cedd59b12fc4e8aa0db90b07ae1e4ef9baf24331b5e16e70800495298edbe74",
+      "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
+      "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+      "bundle_sha256": "5415e06beea2dba88200a8ff8ac24254f917861ea22c56f95bf74d9ec638e0b7",
+      "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
+      "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__schmidt.npz",
+      "bundle_sha256": "b396015147ed49547b483e0e16d443760fc8dac3ac9d13e832e5133a0dd50df8",
+      "cache": "results/_paper/program_observations/T3__schmidt.npz",
+      "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__shifrut.npz",
+      "bundle_sha256": "1c8c0da61539f365bdc6b44a194792fb31ac137d9b06546184f0ea43cbe30fa6",
+      "cache": "results/_paper/program_observations/T3__shifrut.npz",
+      "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__chen.npz",
+      "bundle_sha256": "63cfa36ba38a3dfcc11cd1e99f2deb0cad349dee7767cf53e1cf4931ed33b182",
+      "cache": "results/_paper/program_observations/T3__chen.npz",
+      "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+      "bundle_sha256": "f948dac98662c8e04716d3f952a30cf79cc42fb061837ec43caab220cdb58509",
+      "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
+      "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+      "bundle_sha256": "68e9773c3cf2904e42f811f91785bc342bcc133ba79398ca9ebd0f3b9ff7d540",
+      "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
+      "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__schmidt.npz",
+      "bundle_sha256": "affa0bb131ad4cc9e7d03efeef714a4e941918089c4562bd2950649d62794d90",
+      "cache": "results/_paper/program_observations/T3__schmidt.npz",
+      "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__shifrut.npz",
+      "bundle_sha256": "7b163ab595ac2027df91ae6dc7ddbb0f91b7b99131f9c13da1522672ad3dc661",
       "cache": "results/_paper/program_observations/T3__shifrut.npz",
       "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__chen.npz",
-      "bundle_sha256": "84e07c43666e7cf48c1358d177547ce800b088390c30ba213202128124d0494c",
+      "bundle_sha256": "22cbca9a493646abe7273efc2a202159ec963b76143a88ddf53a7ede0a83f2aa",
       "cache": "results/_paper/program_observations/T3__chen.npz",
       "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
-      "bundle_sha256": "702aaf2cedf9ff74886f3ea3cfca745520166ebe6e8fea2b0a03074eb34f5af9",
+      "bundle_sha256": "1530b0540fa068ec2fd9e30664ef987e7f1fc392173d8a4db7cb998a5cd12d6f",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
       "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
-      "bundle_sha256": "ef94ae4e7bf21fd89f5d4aa55720a829f6a87c48a41cc396a4c5c8ded2b484ae",
+      "bundle_sha256": "ed8c02abfde67ce88945847fec42721003822dd3fdf7e0108ac4a4a70a33de7c",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
       "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz",
-      "bundle_sha256": "463a2154d4f8beb1f50fbc827e17c71c9cc7353d5f2159272c588e8ee8f258fd",
+      "bundle_sha256": "2037970ec52109206d415524976bbe70a0ae9f19e8e8b18656c6b3a5e86a0350",
       "cache": "results/_paper/program_observations/T3__schmidt.npz",
       "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__shifrut.npz",
-      "bundle_sha256": "a4a1ba200f4663868c5942e65a50af411394e8a4dbfb134f29dbb56dee27e196",
+      "bundle_sha256": "dc2100bcf43fece1f5eef73ca612b17b19227c6567a6581f188fe1f1d49993de",
       "cache": "results/_paper/program_observations/T3__shifrut.npz",
       "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__chen.npz",
-      "bundle_sha256": "6a0d6245217af0ddcd89051d1ca04b99f0494dbdd8a12d2bacbd8921a11d0024",
+      "bundle_sha256": "04eb5e74d3da959d3ec1ff53d199a42d847e1490aa32adfd07fe0ef8fa169ca0",
       "cache": "results/_paper/program_observations/T3__chen.npz",
       "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
-      "bundle_sha256": "a1c9ffcccf5a975e2207b2ff4d655d7973de50e4fc55d752cc684925b44def95",
+      "bundle_sha256": "86f7b49e29aa2124ef9d6491090d53ee9951f2c54dc9e27509c46147a9cdcd1f",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
       "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
-      "bundle_sha256": "c3386eefba89fa3005fd979606d8ea3e3077ce2f4be3d63292e4aeffb7c5975b",
+      "bundle_sha256": "9622d855cd7f9681269d94105deba8f0042583db6b9ed214b3a27570c48373fc",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
       "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__schmidt.npz",
-      "bundle_sha256": "9595126f4370a3f7b809ce2ec63317911810fe5e78120406fd51d6b55e1b1ee2",
+      "bundle_sha256": "8088fdca340c7420a71524385deda3f23e7fc6f6f9b04b9716a6b35987b548eb",
       "cache": "results/_paper/program_observations/T3__schmidt.npz",
       "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__shifrut.npz",
-      "bundle_sha256": "72beda45336fb7583c240294ab2c37d5029cb9ade7dcef9b99232b20fd94559c",
+      "bundle_sha256": "711a66dc8ba8443a9acacf58693352be40cf5687841d4232771313a1594b6cd3",
+      "cache": "results/_paper/program_observations/T3__shifrut.npz",
+      "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__chen.npz",
+      "bundle_sha256": "1b11e787a445191cd0e5afa38f96c532f4ec3371ba2ca2ed4951c67ac0b3bf4c",
+      "cache": "results/_paper/program_observations/T3__chen.npz",
+      "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+      "bundle_sha256": "40742fc820523a78cbf28d1a96de40c437dd52005b7def29cf159d0baf0cd8ad",
+      "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
+      "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+      "bundle_sha256": "9c943c88808eed1ae6446828614d6afe123f7d5031ab15afdac1addd5527d697",
+      "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
+      "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__schmidt.npz",
+      "bundle_sha256": "c8da48c94cdd9d70a3b50049151ed85f7cc0b29ef78f58385784975fc790514b",
+      "cache": "results/_paper/program_observations/T3__schmidt.npz",
+      "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__shifrut.npz",
+      "bundle_sha256": "0c4d874f1ba3dc7aff09cfd393039fe778d47d5d2400e2caa5619ff74ee80910",
+      "cache": "results/_paper/program_observations/T3__shifrut.npz",
+      "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__chen.npz",
+      "bundle_sha256": "4626bce76bce393ed03421e22b4909769d05ed5d8eb5d8f2167d7c6e763be372",
+      "cache": "results/_paper/program_observations/T3__chen.npz",
+      "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
+      "bundle_sha256": "bff5361444e1978b7b673c968cdfdf16e7e152f0032c5b0294c345deac754d03",
+      "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
+      "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
+      "bundle_sha256": "199f363b4a05105c59143d9ed0cf1e16d58ee4d047fae3f7db0f4f3a1391ea49",
+      "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
+      "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__schmidt.npz",
+      "bundle_sha256": "8cce4ac4e3924d28e99f793777488fef38eec33743fb1f6188a98a7e77a177ba",
+      "cache": "results/_paper/program_observations/T3__schmidt.npz",
+      "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
+    },
+    {
+      "bundle": "predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__shifrut.npz",
+      "bundle_sha256": "196544e9ab43bd48985aa1004301fdae41be0223436cfea041baab197bbd6698",
       "cache": "results/_paper/program_observations/T3__shifrut.npz",
       "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__chen.npz",
-      "bundle_sha256": "5e18b93c4a96db03dbab1463a4d05a3589d8d41a14d824ed1ce486610d7e6a08",
+      "bundle_sha256": "1ff9d9b7f916cb0bd2ef580cf68b2c79452ed2217a595ea8a2d0d4d88cb08fe6",
       "cache": "results/_paper/program_observations/T3__chen.npz",
       "cache_sha256": "5509e3753e9f00363207f8536dfe7dc14e3ad53beeb2fd428d8a7a6d6e7c791c"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz",
-      "bundle_sha256": "d870919deafaa2b2b9cd65a55ae5b99e166ab9aabc663cd384730955bfef1cb4",
+      "bundle_sha256": "3bf97fa6f7c736eabb7f5162f8272fd13ef4925acd8a3c49026459c8e5bb15f1",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRa.npz",
       "cache_sha256": "99f73437d7867b4879071024990aab23aadb3d0b428771023ae0e46ab3e77b49"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz",
-      "bundle_sha256": "9198970a52eeb57c80b203c2275f1896180cb5b8a36df0276b24d464c009d2f7",
+      "bundle_sha256": "e5e227f1ec028f5b29c36927c6d14dbeacfe064062b3d60a6cd21ea99d36c039",
       "cache": "results/_paper/program_observations/T3__mccutcheon_CRISPRi.npz",
       "cache_sha256": "809780a75a2d0038e053ca7ffc8d81d9f79a3e8466a6d440840d4f248850f7f6"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__schmidt.npz",
-      "bundle_sha256": "71510a0d434ef8a3d088de8f821801b5043b94a459709f681ebee450d56067e0",
+      "bundle_sha256": "a054af3bbe730150ef4a8759ff67b3f72a70b505af43625c075737fff9ff797f",
       "cache": "results/_paper/program_observations/T3__schmidt.npz",
       "cache_sha256": "0cb91bafb4b9e2b709f9b53465d370728b52a37a82f1ee0fcbf947fc2edfae11"
     },
     {
       "bundle": "predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__shifrut.npz",
-      "bundle_sha256": "81ca48c8beb30cdab8fd8b5e4ae1dac5d697e5c97302fa19e3f38f9d0c72a483",
+      "bundle_sha256": "e1767f7cf1c77436f0939f983d9f1b5924428ab71d370ed392584df157ebf4f3",
       "cache": "results/_paper/program_observations/T3__shifrut.npz",
       "cache_sha256": "7daab64b59561def4ccbcbc77287ec19a3b4b23b21ae0e1d6fee8428ae9ff2af"
     },
     {
-      "bundle": "predictions/C5_LOCT__Biolord__C5_loct_B.npz",
-      "bundle_sha256": "65864dcec224ec3b70a4626a4a42331b11e71ed3744d065e05a152578919fb8d",
+      "bundle": "predictions/v2_native/C5_LOCT__CPA__C5_loct_B.npz",
+      "bundle_sha256": "971950f67a95144ebb02a1e3fb657712971ee8f7b7c6eef66d2f1b19a2b75279",
       "cache": "results/_paper/program_observations/T5c__B.npz",
       "cache_sha256": "b228c9efc3e8704b90bb201d154deda0ff53c804222c3cf43eb2741049dee646"
     },
     {
-      "bundle": "predictions/C5_LOCT__Biolord__C5_loct_Mono.npz",
-      "bundle_sha256": "31acb5233c083e8a379dae70af4c767662fbcef38a748a978e14cdd87836d679",
+      "bundle": "predictions/v2_native/C5_LOCT__CPA__C5_loct_Mono.npz",
+      "bundle_sha256": "eee52de597f94fdd6e02ddb9883a76b17e4cba647522b913bfe54a80386ade23",
       "cache": "results/_paper/program_observations/T5c__Mono.npz",
       "cache_sha256": "5e2680775d85a86ba54126cad9e2ecf13d82f70f100c14df69082fb204bdb245"
     },
     {
-      "bundle": "predictions/C5_LOCT__Biolord__C5_loct_NK.npz",
-      "bundle_sha256": "f68ac5702f29cd311a1eea50502ac106808b516eeb084058f48cecbf7bda50aa",
+      "bundle": "predictions/v2_native/C5_LOCT__CPA__C5_loct_NK.npz",
+      "bundle_sha256": "5985c6a3f188f753ee4afd947a81e16153b2d4027cd903263a145b49ef3b9bfe",
       "cache": "results/_paper/program_observations/T5c__NK.npz",
       "cache_sha256": "f3bfcffd68c56541f1abf240b280bb6ab45a856665892d280e1e2090dbc2af67"
     },
     {
-      "bundle": "predictions/C5_LOCT__Biolord__C5_loct_T_cells.npz",
-      "bundle_sha256": "265275a6f050e6210c9eae5851616f317625bc2835cf48382ea1d6973f143af8",
+      "bundle": "predictions/v2_native/C5_LOCT__CPA__C5_loct_T_cells.npz",
+      "bundle_sha256": "999fc686ed8d695952f87b14d3d1a5fb5c1d95dced5e3bd41174bdd57aa26976",
       "cache": "results/_paper/program_observations/T5c__T_cells.npz",
       "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
     },
@@ -289,26 +409,26 @@
       "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
     },
     {
-      "bundle": "predictions/C5_LOCT__CellOT__C5_loct_B.npz",
-      "bundle_sha256": "548d3eb9b67eaab1738fd27cd8cc0442f12b207db85bf991deb8cf9d2638d6c3",
+      "bundle": "predictions/v2_native/C5_LOCT__CellOT__C5_loct_B.npz",
+      "bundle_sha256": "6d6e2080884be98199635e3be0f190894e9eac0d5fd95177126ae5e1c0207698",
       "cache": "results/_paper/program_observations/T5c__B.npz",
       "cache_sha256": "b228c9efc3e8704b90bb201d154deda0ff53c804222c3cf43eb2741049dee646"
     },
     {
-      "bundle": "predictions/C5_LOCT__CellOT__C5_loct_Mono.npz",
-      "bundle_sha256": "1ce35bf7e9bb1593e6799d9bf62324babc3a886e2e27e803ad597374f3545cb9",
+      "bundle": "predictions/v2_native/C5_LOCT__CellOT__C5_loct_Mono.npz",
+      "bundle_sha256": "8c7693458a8226dba66d28b772a1b02715ba75bb40e8bf10c2d1d5d92ca7954f",
       "cache": "results/_paper/program_observations/T5c__Mono.npz",
       "cache_sha256": "5e2680775d85a86ba54126cad9e2ecf13d82f70f100c14df69082fb204bdb245"
     },
     {
-      "bundle": "predictions/C5_LOCT__CellOT__C5_loct_NK.npz",
-      "bundle_sha256": "a9889ab8125689021c703b8e422a1e2a87b41ca1ca3d31f61d7e3f0b017a361d",
+      "bundle": "predictions/v2_native/C5_LOCT__CellOT__C5_loct_NK.npz",
+      "bundle_sha256": "c06800f3cc5710a1099359754b019df71d462183fc59b87beb211c8d42637a8e",
       "cache": "results/_paper/program_observations/T5c__NK.npz",
       "cache_sha256": "f3bfcffd68c56541f1abf240b280bb6ab45a856665892d280e1e2090dbc2af67"
     },
     {
-      "bundle": "predictions/C5_LOCT__CellOT__C5_loct_T_cells.npz",
-      "bundle_sha256": "ab0d33a59742b7e5d893d039eaa93c1a03c7dacd8b20c5397c8b3ac0be4e2313",
+      "bundle": "predictions/v2_native/C5_LOCT__CellOT__C5_loct_T_cells.npz",
+      "bundle_sha256": "00b67f1bcd8b1b9787e385709c9a948661c429b21a014d90d7a771ddebc03440",
       "cache": "results/_paper/program_observations/T5c__T_cells.npz",
       "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
     },
@@ -361,6 +481,54 @@
       "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
     },
     {
+      "bundle": "predictions/v2_native/C5_LOCT__PerturbNet__C5_loct_B.npz",
+      "bundle_sha256": "9e846161fbf0388f3d048e99899e4614dc5ede7504e5f9fd2ed6a3d3fe979b41",
+      "cache": "results/_paper/program_observations/T5c__B.npz",
+      "cache_sha256": "b228c9efc3e8704b90bb201d154deda0ff53c804222c3cf43eb2741049dee646"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__PerturbNet__C5_loct_Mono.npz",
+      "bundle_sha256": "5ded9ca15ef887830dab16cb1fe8ba58565880b14d9770950120fbca2c025c06",
+      "cache": "results/_paper/program_observations/T5c__Mono.npz",
+      "cache_sha256": "5e2680775d85a86ba54126cad9e2ecf13d82f70f100c14df69082fb204bdb245"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__PerturbNet__C5_loct_NK.npz",
+      "bundle_sha256": "6c34b98b38b3199a38ceec103cf90d43c5bbb8c31ec991eb40ceb6f9dcec177e",
+      "cache": "results/_paper/program_observations/T5c__NK.npz",
+      "cache_sha256": "f3bfcffd68c56541f1abf240b280bb6ab45a856665892d280e1e2090dbc2af67"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__PerturbNet__C5_loct_T_cells.npz",
+      "bundle_sha256": "e6892b5f9991ba4ce1b3985a3bb993c81aaadf1a57bac397ff1c79d352c6c3ef",
+      "cache": "results/_paper/program_observations/T5c__T_cells.npz",
+      "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__STATE__C5_loct_B.npz",
+      "bundle_sha256": "4dc5151ce3d50c72a4dd1eaf88a11bc4b9bb36f7c05f8500664f79151cd08199",
+      "cache": "results/_paper/program_observations/T5c__B.npz",
+      "cache_sha256": "b228c9efc3e8704b90bb201d154deda0ff53c804222c3cf43eb2741049dee646"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__STATE__C5_loct_Mono.npz",
+      "bundle_sha256": "d2f17ca04f44782b7e1aeba1e1d3e4a02e4c747d946441b959f2f0441f618e83",
+      "cache": "results/_paper/program_observations/T5c__Mono.npz",
+      "cache_sha256": "5e2680775d85a86ba54126cad9e2ecf13d82f70f100c14df69082fb204bdb245"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__STATE__C5_loct_NK.npz",
+      "bundle_sha256": "1fcb2319be6fca2c69dc5b21754f09300e5fabf0aa935fec9279935180f8bfa1",
+      "cache": "results/_paper/program_observations/T5c__NK.npz",
+      "cache_sha256": "f3bfcffd68c56541f1abf240b280bb6ab45a856665892d280e1e2090dbc2af67"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__STATE__C5_loct_T_cells.npz",
+      "bundle_sha256": "ccd0d696a0548db6c594a702cc38ccbf5e80e9414d77f14edf00b81d511ee4a7",
+      "cache": "results/_paper/program_observations/T5c__T_cells.npz",
+      "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
+    },
+    {
       "bundle": "predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz",
       "bundle_sha256": "05ed4d198c5a1856d35473f8a7af90ebe90d3362d45c1709d2c3cd37bc6f5a18",
       "cache": "results/_paper/program_observations/T5c__B.npz",
@@ -409,74 +577,98 @@
       "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
     },
     {
-      "bundle": "predictions/C5/C1_LOCT__scFoundation__C5_loct_B.npz",
-      "bundle_sha256": "615f156d8a6eef84224831ef6ce7dfff9e97642a58889b84a4a9c49fc9ff31de",
+      "bundle": "predictions/C5_LOCT__scFoundation__C5_loct_B__op3_fcond.npz",
+      "bundle_sha256": "a8c91a02e8ade5f5a0e17e305a49e021744366a2c8c229cc6573cba29a0a613b",
       "cache": "results/_paper/program_observations/T5c__B.npz",
       "cache_sha256": "b228c9efc3e8704b90bb201d154deda0ff53c804222c3cf43eb2741049dee646"
     },
     {
-      "bundle": "predictions/C5/C1_LOCT__scFoundation__C5_loct_Mono.npz",
-      "bundle_sha256": "e8f1be5fc5fffb1d3465d2adf5bf85c335b529e7166a2d97c33e9d980d27268a",
+      "bundle": "predictions/C5_LOCT__scFoundation__C5_loct_Mono__op3_fcond.npz",
+      "bundle_sha256": "6b4c38fd005790092bae1b358174630ef5282c6dad3bb1cbf7a5715cc6d8fd28",
       "cache": "results/_paper/program_observations/T5c__Mono.npz",
       "cache_sha256": "5e2680775d85a86ba54126cad9e2ecf13d82f70f100c14df69082fb204bdb245"
     },
     {
-      "bundle": "predictions/C5/C1_LOCT__scFoundation__C5_loct_NK.npz",
-      "bundle_sha256": "44abea629c67d00fee4637da4c87019be0eab2f55b8704d90b813dab3a1ee975",
+      "bundle": "predictions/C5_LOCT__scFoundation__C5_loct_NK__op3_fcond.npz",
+      "bundle_sha256": "fdedec390a3b61c0c5aa6879ad93aa62f2327901285e740e301b1a3b446834c6",
       "cache": "results/_paper/program_observations/T5c__NK.npz",
       "cache_sha256": "f3bfcffd68c56541f1abf240b280bb6ab45a856665892d280e1e2090dbc2af67"
     },
     {
-      "bundle": "predictions/C5/C1_LOCT__scFoundation__C5_loct_T_cells.npz",
-      "bundle_sha256": "2a060011a2c6bc0fe38a44656192004d9d7948e94f125138a00a3f8670ba791c",
+      "bundle": "predictions/C5_LOCT__scFoundation__C5_loct_T_cells__op3_fcond.npz",
+      "bundle_sha256": "ee7b3a3f5c47af2219c7066959082495f922ef909a83d1d485372c76a619aa09",
       "cache": "results/_paper/program_observations/T5c__T_cells.npz",
       "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
     },
     {
-      "bundle": "predictions/C5/C1_LOCT__scGPT__C5_loct_B.npz",
-      "bundle_sha256": "3cf69d6c2ba36b998248f75223966a11e70365da59ab4c47c77d08c74f544034",
+      "bundle": "predictions/C5_LOCT__scGPT__C5_loct_B__op3_fcond.npz",
+      "bundle_sha256": "fc19fe174da0449e5072128f1a922ad991cdc8eaad3772c7049aa2d92cf76402",
       "cache": "results/_paper/program_observations/T5c__B.npz",
       "cache_sha256": "b228c9efc3e8704b90bb201d154deda0ff53c804222c3cf43eb2741049dee646"
     },
     {
-      "bundle": "predictions/C5/C1_LOCT__scGPT__C5_loct_Mono.npz",
-      "bundle_sha256": "4d0fd006772017eefbc5564f4408fa814333ff13c931f83ec156d3410671a564",
+      "bundle": "predictions/C5_LOCT__scGPT__C5_loct_Mono__op3_fcond.npz",
+      "bundle_sha256": "13fc209536fad8b554d62b5e43134ef099b25d20710744d44ef9a6af6aca425c",
       "cache": "results/_paper/program_observations/T5c__Mono.npz",
       "cache_sha256": "5e2680775d85a86ba54126cad9e2ecf13d82f70f100c14df69082fb204bdb245"
     },
     {
-      "bundle": "predictions/C5/C1_LOCT__scGPT__C5_loct_NK.npz",
-      "bundle_sha256": "8f44952a18db788ba884585ab3e1936e88eb497b6f9a59e02fe42353feb732f0",
+      "bundle": "predictions/C5_LOCT__scGPT__C5_loct_NK__op3_fcond.npz",
+      "bundle_sha256": "fdf16f7efd28d9dee36ebf5e36d06bf0fab7c81a268b656b3bda4e27dafae028",
       "cache": "results/_paper/program_observations/T5c__NK.npz",
       "cache_sha256": "f3bfcffd68c56541f1abf240b280bb6ab45a856665892d280e1e2090dbc2af67"
     },
     {
-      "bundle": "predictions/C5/C1_LOCT__scGPT__C5_loct_T_cells.npz",
-      "bundle_sha256": "222242cfae7fed577dcc46b1c37dcd32f4f4d007d86aba0247a5b66fc8c39fd7",
+      "bundle": "predictions/C5_LOCT__scGPT__C5_loct_T_cells__op3_fcond.npz",
+      "bundle_sha256": "3f4a582b1906e6ea4c578dfdbec5ec59174fa114ce8f9f0429f0bd9eed9c716c",
       "cache": "results/_paper/program_observations/T5c__T_cells.npz",
       "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
     },
     {
-      "bundle": "predictions/C5_LOCT__scPRAM__C5_loct_B.npz",
-      "bundle_sha256": "3fa58f5ed172c50af9a23ba7928dbfd56d9afb7c974ccdb9ed665e73e23620d2",
+      "bundle": "predictions/v2_native/C5_LOCT__scGen__C5_loct_B.npz",
+      "bundle_sha256": "2f51f2d6b1655567f0d9a614fd841c7b84d63c1888ef14fd696822e96d3288e3",
       "cache": "results/_paper/program_observations/T5c__B.npz",
       "cache_sha256": "b228c9efc3e8704b90bb201d154deda0ff53c804222c3cf43eb2741049dee646"
     },
     {
-      "bundle": "predictions/C5_LOCT__scPRAM__C5_loct_Mono.npz",
-      "bundle_sha256": "4935cabccfc5523eabd42f4e3bd7d9be8a277ed3fd638cc78ad2a652b05e4762",
+      "bundle": "predictions/v2_native/C5_LOCT__scGen__C5_loct_Mono.npz",
+      "bundle_sha256": "ecc2bba3bb8b8cf545761f66eb135bcbe1dd5f7892c5d9998fc9c78f4f6335ca",
       "cache": "results/_paper/program_observations/T5c__Mono.npz",
       "cache_sha256": "5e2680775d85a86ba54126cad9e2ecf13d82f70f100c14df69082fb204bdb245"
     },
     {
-      "bundle": "predictions/C5_LOCT__scPRAM__C5_loct_NK.npz",
-      "bundle_sha256": "be6daf6da160ee3a300e8f6dbc0145c02402f0b335a6ac4ceac918bf899d6f53",
+      "bundle": "predictions/v2_native/C5_LOCT__scGen__C5_loct_NK.npz",
+      "bundle_sha256": "1f3a6a4f76310e3239b904f7e2379dd215eef9d2c92f9d6be6c0278d43b1d23e",
       "cache": "results/_paper/program_observations/T5c__NK.npz",
       "cache_sha256": "f3bfcffd68c56541f1abf240b280bb6ab45a856665892d280e1e2090dbc2af67"
     },
     {
-      "bundle": "predictions/C5_LOCT__scPRAM__C5_loct_T_cells.npz",
-      "bundle_sha256": "a6e30af71179fb1a187fe19c6ceca9afcb3a98a574557f7c0e76332372a937ba",
+      "bundle": "predictions/v2_native/C5_LOCT__scGen__C5_loct_T_cells.npz",
+      "bundle_sha256": "48c6970a70cf67b082a2fa62c0cf2dfb845e4fc593b565fba625426174ef4493",
+      "cache": "results/_paper/program_observations/T5c__T_cells.npz",
+      "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__scPRAM__C5_loct_B.npz",
+      "bundle_sha256": "21afefbeb8a4a51c1447929247b28dbe10072be3c27552a999488ce15b8dcbab",
+      "cache": "results/_paper/program_observations/T5c__B.npz",
+      "cache_sha256": "b228c9efc3e8704b90bb201d154deda0ff53c804222c3cf43eb2741049dee646"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__scPRAM__C5_loct_Mono.npz",
+      "bundle_sha256": "e581f01a797c27f17fe6c9175926dcb44820365f0b809b1bb530f461d2275974",
+      "cache": "results/_paper/program_observations/T5c__Mono.npz",
+      "cache_sha256": "5e2680775d85a86ba54126cad9e2ecf13d82f70f100c14df69082fb204bdb245"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__scPRAM__C5_loct_NK.npz",
+      "bundle_sha256": "9edf661b4655e4bae32c2b170516b1bc393534ec2bac1ad43994364fb6dd0112",
+      "cache": "results/_paper/program_observations/T5c__NK.npz",
+      "cache_sha256": "f3bfcffd68c56541f1abf240b280bb6ab45a856665892d280e1e2090dbc2af67"
+    },
+    {
+      "bundle": "predictions/v2_native/C5_LOCT__scPRAM__C5_loct_T_cells.npz",
+      "bundle_sha256": "712cc1d5f2516d974bfaca17d929881d23665b85a94590075fb79b80cec5e7bd",
       "cache": "results/_paper/program_observations/T5c__T_cells.npz",
       "cache_sha256": "9e5505ea9294b946a47e5dfce010dd733d8320494ea380d70938c7e6a8a49180"
     }
@@ -492,8 +684,8 @@
     "estimable (descriptive)": 12
   },
   "counts": {
-    "constant observed rank-program score": 206,
-    "constant predicted rank-program score": 68,
-    "estimable (descriptive)": 46
+    "constant observed rank-program score": 303,
+    "estimable (descriptive)": 92,
+    "constant predicted rank-program score": 61
   }
 }

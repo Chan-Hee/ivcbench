@@ -1,0 +1,2 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+scFoundation,foundation,C3_true_lo_gene_10,run_headline,True,True,18320,1778,2,0.10240160803191563,0.09192670684616991,0.11287650921766135,8.581504922205877,,,mccutcheon_CRISPRi

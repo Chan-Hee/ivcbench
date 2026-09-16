@@ -1,12 +1,12 @@
 task_key,task_id,cluster,task,split,unit_kind,unit,model,execution_model,status,pearson_delta,bundle_path
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,B,Biolord,Biolord,native,0.6641558050224813,predictions/C1/C1_LOCT__Biolord__C1_loct_B.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD4T,Biolord,Biolord,native,0.6159887693807926,predictions/C1/C1_LOCT__Biolord__C1_loct_CD4T.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD8T,Biolord,Biolord,native,0.636169586484372,predictions/C1/C1_LOCT__Biolord__C1_loct_CD8T.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,DC,Biolord,Biolord,native,0.6924290032249788,predictions/C1/C1_LOCT__Biolord__C1_loct_DC.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mk,Biolord,Biolord,native,0.5456627187159349,predictions/C1/C1_LOCT__Biolord__C1_loct_Mk.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_CD14,Biolord,Biolord,native,0.454114955518326,predictions/C1/C1_LOCT__Biolord__C1_loct_Mono_CD14.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_FCGR3A,Biolord,Biolord,native,0.49731176167160507,predictions/C1/C1_LOCT__Biolord__C1_loct_Mono_FCGR3A.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,NK,Biolord,Biolord,native,0.5992120827990794,predictions/C1/C1_LOCT__Biolord__C1_loct_NK.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,B,CPA,CPA,native,0.362148553716997,predictions/v2_native/C1_LOCT__CPA__C1_loct_B.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD4T,CPA,CPA,native,0.3410425938980195,predictions/v2_native/C1_LOCT__CPA__C1_loct_CD4T.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD8T,CPA,CPA,native,0.5348744614000643,predictions/v2_native/C1_LOCT__CPA__C1_loct_CD8T.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,DC,CPA,CPA,native,0.5043522727715918,predictions/v2_native/C1_LOCT__CPA__C1_loct_DC.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mk,CPA,CPA,native,0.2718319477246286,predictions/v2_native/C1_LOCT__CPA__C1_loct_Mk.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_CD14,CPA,CPA,native,0.4088526910027206,predictions/v2_native/C1_LOCT__CPA__C1_loct_Mono_CD14.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_FCGR3A,CPA,CPA,native,0.2599228698339759,predictions/v2_native/C1_LOCT__CPA__C1_loct_Mono_FCGR3A.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,NK,CPA,CPA,native,0.40826855934734224,predictions/v2_native/C1_LOCT__CPA__C1_loct_NK.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,B,CellFlow,CellFlow,native,0.8261516048789135,predictions/C1_LOCT__CellFlow__C1_loct_B.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD4T,CellFlow,CellFlow,native,0.8164834431195068,predictions/C1_LOCT__CellFlow__C1_loct_CD4T.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD8T,CellFlow,CellFlow,native,0.7922935305430429,predictions/C1_LOCT__CellFlow__C1_loct_CD8T.npz
@@ -23,14 +23,22 @@ T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mk,CellOT,CellOT,native,0.556
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_CD14,CellOT,CellOT,native,0.9130139182685304,predictions/C1/C1_LOCT__CellOT__C1_loct_Mono_CD14.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_FCGR3A,CellOT,CellOT,native,0.8960799485187844,predictions/C1/C1_LOCT__CellOT__C1_loct_Mono_FCGR3A.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,NK,CellOT,CellOT,native,0.7371009330093503,predictions/C1/C1_LOCT__CellOT__C1_loct_NK.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,B,STATE,STATE,native,0.7144807937307667,predictions/C1_LOCT__STATE__C1_loct_B.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD4T,STATE,STATE,native,0.7115658881722363,predictions/C1_LOCT__STATE__C1_loct_CD4T.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD8T,STATE,STATE,native,0.7145274613538098,predictions/C1_LOCT__STATE__C1_loct_CD8T.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,DC,STATE,STATE,native,0.7315875833564989,predictions/C1_LOCT__STATE__C1_loct_DC.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mk,STATE,STATE,native,0.5452961501589864,predictions/C1_LOCT__STATE__C1_loct_Mk.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_CD14,STATE,STATE,native,0.7761560166379591,predictions/C1_LOCT__STATE__C1_loct_Mono_CD14.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_FCGR3A,STATE,STATE,native,0.8385515206384596,predictions/C1_LOCT__STATE__C1_loct_Mono_FCGR3A.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,NK,STATE,STATE,native,0.6328037731955031,predictions/C1_LOCT__STATE__C1_loct_NK.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,B,PerturbNet,PerturbNet,native,0.7891262844852266,predictions/v2_native/C1_LOCT__PerturbNet__C1_loct_B.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD4T,PerturbNet,PerturbNet,native,0.788377174081426,predictions/v2_native/C1_LOCT__PerturbNet__C1_loct_CD4T.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD8T,PerturbNet,PerturbNet,native,0.7752590571796489,predictions/v2_native/C1_LOCT__PerturbNet__C1_loct_CD8T.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,DC,PerturbNet,PerturbNet,native,0.8215188963607607,predictions/v2_native/C1_LOCT__PerturbNet__C1_loct_DC.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mk,PerturbNet,PerturbNet,native,0.5529094495696809,predictions/v2_native/C1_LOCT__PerturbNet__C1_loct_Mk.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_CD14,PerturbNet,PerturbNet,native,0.9398164991944893,predictions/v2_native/C1_LOCT__PerturbNet__C1_loct_Mono_CD14.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_FCGR3A,PerturbNet,PerturbNet,native,0.8804518758089874,predictions/v2_native/C1_LOCT__PerturbNet__C1_loct_Mono_FCGR3A.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,NK,PerturbNet,PerturbNet,native,0.7472204752250222,predictions/v2_native/C1_LOCT__PerturbNet__C1_loct_NK.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,B,STATE,STATE,native,0.5891758745674159,predictions/v2_native/C1_LOCT__STATE__C1_loct_B.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD4T,STATE,STATE,native,0.6252543556772152,predictions/v2_native/C1_LOCT__STATE__C1_loct_CD4T.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD8T,STATE,STATE,native,0.6790313289977841,predictions/v2_native/C1_LOCT__STATE__C1_loct_CD8T.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,DC,STATE,STATE,native,0.7030789798374497,predictions/v2_native/C1_LOCT__STATE__C1_loct_DC.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mk,STATE,STATE,native,0.4114139168465476,predictions/v2_native/C1_LOCT__STATE__C1_loct_Mk.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_CD14,STATE,STATE,native,0.7562883860890764,predictions/v2_native/C1_LOCT__STATE__C1_loct_Mono_CD14.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_FCGR3A,STATE,STATE,native,0.7905421705781139,predictions/v2_native/C1_LOCT__STATE__C1_loct_Mono_FCGR3A.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,NK,STATE,STATE,native,0.5777383711417701,predictions/v2_native/C1_LOCT__STATE__C1_loct_NK.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,B,cell-mean,cell-mean,floor,0.6650275677326014,predictions/C1/C1_LOCT__cell-mean__C1_loct_B.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD4T,cell-mean,cell-mean,floor,0.6202834193649843,predictions/C1/C1_LOCT__cell-mean__C1_loct_CD4T.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD8T,cell-mean,cell-mean,floor,0.6186532631599475,predictions/C1/C1_LOCT__cell-mean__C1_loct_CD8T.npz
@@ -71,120 +79,120 @@ T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mk,scGen,scGen,native,0.54415
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_CD14,scGen,scGen,native,0.8352235909361597,predictions/C1/C1_LOCT__scGen__C1_loct_Mono_CD14.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_FCGR3A,scGen,scGen,native,0.8242887523176287,predictions/C1/C1_LOCT__scGen__C1_loct_Mono_FCGR3A.npz
 T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,NK,scGen,scGen,native,0.7460928878608168,predictions/C1/C1_LOCT__scGen__C1_loct_NK.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,B,scPRAM,scPRAM,native,0.7979910290163349,predictions/C1_LOCT__scPRAM__C1_loct_B.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD4T,scPRAM,scPRAM,native,0.7276954606255679,predictions/C1_LOCT__scPRAM__C1_loct_CD4T.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD8T,scPRAM,scPRAM,native,0.6861394293055407,predictions/C1_LOCT__scPRAM__C1_loct_CD8T.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,DC,scPRAM,scPRAM,native,0.8140936639316064,predictions/C1_LOCT__scPRAM__C1_loct_DC.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mk,scPRAM,scPRAM,native,0.5366048115849325,predictions/C1_LOCT__scPRAM__C1_loct_Mk.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_CD14,scPRAM,scPRAM,native,0.9022282321927961,predictions/C1_LOCT__scPRAM__C1_loct_Mono_CD14.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_FCGR3A,scPRAM,scPRAM,native,0.8604969156951452,predictions/C1_LOCT__scPRAM__C1_loct_Mono_FCGR3A.npz
-T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,NK,scPRAM,scPRAM,native,0.680482902658389,predictions/C1_LOCT__scPRAM__C1_loct_NK.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D348,Biolord,Biolord,native,0.059953942497886485,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D348.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D349,Biolord,Biolord,native,0.06715203242603818,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D349.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D350,Biolord,Biolord,native,0.0697740616937195,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D350.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D351,Biolord,Biolord,native,0.03654301478203649,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D351.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D352,Biolord,Biolord,native,0.08222501638277246,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D352.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D353,Biolord,Biolord,native,0.12735954109866324,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D353.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D354,Biolord,Biolord,native,0.1306474160360421,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D354.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D355,Biolord,Biolord,native,0.18064072916202015,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D355.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D356,Biolord,Biolord,native,0.08826010222523402,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D356.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D357,Biolord,Biolord,native,0.08183825311918949,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D357.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D358,Biolord,Biolord,native,0.08245003642267301,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D358.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D359,Biolord,Biolord,native,0.08456237479779045,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D359.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D363,Biolord,Biolord,native,0.09701323683885722,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D363.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D364,Biolord,Biolord,native,0.1004745957856488,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D364.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D365,Biolord,Biolord,native,0.1242459362076303,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D365.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D366,Biolord,Biolord,native,-0.03731886524451031,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D366.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D367,Biolord,Biolord,native,0.12809332279605637,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D367.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D368,Biolord,Biolord,native,0.0588836102985925,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D368.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D369,Biolord,Biolord,native,-0.034272463775252344,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D369.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D370,Biolord,Biolord,native,0.06958414930156226,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D370.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D371,Biolord,Biolord,native,0.07339680920087262,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D371.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D372,Biolord,Biolord,native,0.08531277587889595,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D372.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D373,Biolord,Biolord,native,0.1435754031089717,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D373.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D374,Biolord,Biolord,native,0.050227494687279786,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D374.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D378,Biolord,Biolord,native,0.06282094867716917,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D378.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D379,Biolord,Biolord,native,0.13362905314808254,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D379.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D380,Biolord,Biolord,native,0.06386694577135972,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D380.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D381,Biolord,Biolord,native,-0.020306724549852634,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D381.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D382,Biolord,Biolord,native,0.08588872269431737,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D382.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D383,Biolord,Biolord,native,0.10027651872744926,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D383.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D387,Biolord,Biolord,native,0.10163256488200731,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D387.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D388,Biolord,Biolord,native,0.11245081131708248,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D388.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D389,Biolord,Biolord,native,0.1321116620582551,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D389.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D390,Biolord,Biolord,native,0.11986620115467787,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D390.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D391,Biolord,Biolord,native,0.03328176538037973,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D391.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D392,Biolord,Biolord,native,0.04341434294532808,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D392.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D393,Biolord,Biolord,native,0.058011906441099395,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D393.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D394,Biolord,Biolord,native,0.05349264063682797,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D394.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D395,Biolord,Biolord,native,0.06758909222591658,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D395.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D396,Biolord,Biolord,native,0.1177028485466514,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D396.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D397,Biolord,Biolord,native,0.12855597766317192,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D397.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D398,Biolord,Biolord,native,0.14785851583900675,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D398.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D405,Biolord,Biolord,native,0.037361717112534665,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D405.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D406,Biolord,Biolord,native,0.05089559546236823,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D406.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D407,Biolord,Biolord,native,0.11389437439095838,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D407.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D408,Biolord,Biolord,native,-0.033771593342406106,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D408.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D409,Biolord,Biolord,native,0.04027606479182086,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D409.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D410,Biolord,Biolord,native,0.00793470530812622,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D410.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D411,Biolord,Biolord,native,-0.04291614082819811,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D411.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D412,Biolord,Biolord,native,0.019864985552135214,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D412.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D413,Biolord,Biolord,native,0.0623905103171824,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D413.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D414,Biolord,Biolord,native,0.007666885092240561,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D414.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D415,Biolord,Biolord,native,0.09863559384615594,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D415.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D416,Biolord,Biolord,native,0.07805987865421718,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D416.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D417,Biolord,Biolord,native,0.12399063437060097,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D417.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D418,Biolord,Biolord,native,0.03932677930956934,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D418.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D419,Biolord,Biolord,native,0.060205589674556956,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D419.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D420,Biolord,Biolord,native,0.09530657220176468,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D420.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D421,Biolord,Biolord,native,-0.009086025508382441,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D421.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D422,Biolord,Biolord,native,-0.02304127820880448,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D422.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D423,Biolord,Biolord,native,-0.07039630809392865,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D423.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D424,Biolord,Biolord,native,0.0022201452957780633,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D424.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D425,Biolord,Biolord,native,-0.03779354911578181,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D425.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D426,Biolord,Biolord,native,0.03159915708920526,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D426.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D427,Biolord,Biolord,native,0.05900233907531585,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D427.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D428,Biolord,Biolord,native,0.12376408374620887,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D428.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D429,Biolord,Biolord,native,0.0423885178694626,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D429.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D430,Biolord,Biolord,native,0.2223371246470373,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D430.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D431,Biolord,Biolord,native,0.07399339291775037,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D431.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D432,Biolord,Biolord,native,0.12790425344069722,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D432.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D433,Biolord,Biolord,native,0.08237950007133188,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D433.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D434,Biolord,Biolord,native,0.044577877127997656,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D434.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D435,Biolord,Biolord,native,0.07916364750515098,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D435.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D436,Biolord,Biolord,native,-0.031140436314787617,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D436.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D439,Biolord,Biolord,native,0.04565034954422877,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D439.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D440,Biolord,Biolord,native,0.08377171857057485,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D440.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D441,Biolord,Biolord,native,0.1403738854581523,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D441.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D442,Biolord,Biolord,native,0.0498976767108982,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D442.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D443,Biolord,Biolord,native,-0.035058787254682935,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D443.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D445,Biolord,Biolord,native,0.10755933006368593,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D445.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D446,Biolord,Biolord,native,0.06587359531225019,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D446.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D447,Biolord,Biolord,native,0.13898116846510147,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D447.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D448,Biolord,Biolord,native,0.03684395950943661,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D448.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D449,Biolord,Biolord,native,0.05911250800852549,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D449.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D450,Biolord,Biolord,native,0.10593664031813702,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D450.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D451,Biolord,Biolord,native,0.3145412148777097,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D451.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D452,Biolord,Biolord,native,0.05832733301468131,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D452.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D453,Biolord,Biolord,native,0.08202662748620117,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D453.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D454,Biolord,Biolord,native,0.34686165030397803,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D454.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D455,Biolord,Biolord,native,0.10769155523389451,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D455.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D456,Biolord,Biolord,native,0.06037006110000119,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D456.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D457,Biolord,Biolord,native,0.13331139045222898,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D457.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D458,Biolord,Biolord,native,0.06236818563571572,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D458.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D459,Biolord,Biolord,native,0.2563383116062504,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D459.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D460,Biolord,Biolord,native,0.11435972708731645,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D460.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D461,Biolord,Biolord,native,0.075011253471076,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D461.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D462,Biolord,Biolord,native,0.12064818264648727,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D462.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D463,Biolord,Biolord,native,0.24990514100674902,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D463.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D464,Biolord,Biolord,native,0.30211376029864395,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D464.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D465,Biolord,Biolord,native,0.13546557866668052,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D465.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D466,Biolord,Biolord,native,0.07803624001689932,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D466.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D481,Biolord,Biolord,native,0.07567505119184803,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D481.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D482,Biolord,Biolord,native,0.15160189629379148,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D482.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D483,Biolord,Biolord,native,0.016305680035815506,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D483.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D484,Biolord,Biolord,native,0.10830515109047276,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D484.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D485,Biolord,Biolord,native,0.09132178694922627,predictions/C2_metric_aligned/C2_LODO__Biolord__C2_lodo_D485.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,B,scPRAM,scPRAM,native,0.7979910172292023,predictions/v2_native/C1_LOCT__scPRAM__C1_loct_B.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD4T,scPRAM,scPRAM,native,0.7276954485878995,predictions/v2_native/C1_LOCT__scPRAM__C1_loct_CD4T.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,CD8T,scPRAM,scPRAM,native,0.6861394178591267,predictions/v2_native/C1_LOCT__scPRAM__C1_loct_CD8T.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,DC,scPRAM,scPRAM,native,0.8140936687262889,predictions/v2_native/C1_LOCT__scPRAM__C1_loct_DC.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mk,scPRAM,scPRAM,native,0.5366048107342326,predictions/v2_native/C1_LOCT__scPRAM__C1_loct_Mk.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_CD14,scPRAM,scPRAM,native,0.9022282132909603,predictions/v2_native/C1_LOCT__scPRAM__C1_loct_Mono_CD14.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,Mono_FCGR3A,scPRAM,scPRAM,native,0.8604969218217726,predictions/v2_native/C1_LOCT__scPRAM__C1_loct_Mono_FCGR3A.npz
+T1,T1,C1,cytokine/Kang,cell-context (LOCT),lineage,NK,scPRAM,scPRAM,native,0.6804828874571747,predictions/v2_native/C1_LOCT__scPRAM__C1_loct_NK.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D348,CPA,CPA,native,0.19224352574323006,predictions/v2_native/C2_LODO__CPA__C2_lodo_D348.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D349,CPA,CPA,native,0.13927897340498818,predictions/v2_native/C2_LODO__CPA__C2_lodo_D349.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D350,CPA,CPA,native,0.15969940549819092,predictions/v2_native/C2_LODO__CPA__C2_lodo_D350.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D351,CPA,CPA,native,0.19266216618097917,predictions/v2_native/C2_LODO__CPA__C2_lodo_D351.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D352,CPA,CPA,native,0.2026021777781815,predictions/v2_native/C2_LODO__CPA__C2_lodo_D352.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D353,CPA,CPA,native,0.2441087155623019,predictions/v2_native/C2_LODO__CPA__C2_lodo_D353.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D354,CPA,CPA,native,0.22508232421365762,predictions/v2_native/C2_LODO__CPA__C2_lodo_D354.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D355,CPA,CPA,native,0.4505173900660128,predictions/v2_native/C2_LODO__CPA__C2_lodo_D355.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D356,CPA,CPA,native,0.1975523028351302,predictions/v2_native/C2_LODO__CPA__C2_lodo_D356.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D357,CPA,CPA,native,0.26979785985637245,predictions/v2_native/C2_LODO__CPA__C2_lodo_D357.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D358,CPA,CPA,native,0.24409174117732496,predictions/v2_native/C2_LODO__CPA__C2_lodo_D358.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D359,CPA,CPA,native,0.31161905430722175,predictions/v2_native/C2_LODO__CPA__C2_lodo_D359.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D363,CPA,CPA,native,0.18195605752587465,predictions/v2_native/C2_LODO__CPA__C2_lodo_D363.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D364,CPA,CPA,native,0.21489922031997782,predictions/v2_native/C2_LODO__CPA__C2_lodo_D364.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D365,CPA,CPA,native,0.2508337267308262,predictions/v2_native/C2_LODO__CPA__C2_lodo_D365.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D366,CPA,CPA,native,0.16191355664457188,predictions/v2_native/C2_LODO__CPA__C2_lodo_D366.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D367,CPA,CPA,native,0.2957602192510379,predictions/v2_native/C2_LODO__CPA__C2_lodo_D367.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D368,CPA,CPA,native,0.17582263157161454,predictions/v2_native/C2_LODO__CPA__C2_lodo_D368.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D369,CPA,CPA,native,0.23037738185881418,predictions/v2_native/C2_LODO__CPA__C2_lodo_D369.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D370,CPA,CPA,native,0.16605726364775736,predictions/v2_native/C2_LODO__CPA__C2_lodo_D370.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D371,CPA,CPA,native,0.08423527484748514,predictions/v2_native/C2_LODO__CPA__C2_lodo_D371.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D372,CPA,CPA,native,0.09804961280645354,predictions/v2_native/C2_LODO__CPA__C2_lodo_D372.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D373,CPA,CPA,native,0.1385782181148356,predictions/v2_native/C2_LODO__CPA__C2_lodo_D373.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D374,CPA,CPA,native,0.11488185897366704,predictions/v2_native/C2_LODO__CPA__C2_lodo_D374.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D378,CPA,CPA,native,0.226717726882117,predictions/v2_native/C2_LODO__CPA__C2_lodo_D378.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D379,CPA,CPA,native,0.075992093844514,predictions/v2_native/C2_LODO__CPA__C2_lodo_D379.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D380,CPA,CPA,native,0.08348364640797287,predictions/v2_native/C2_LODO__CPA__C2_lodo_D380.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D381,CPA,CPA,native,0.1917135942132732,predictions/v2_native/C2_LODO__CPA__C2_lodo_D381.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D382,CPA,CPA,native,0.1777770102360355,predictions/v2_native/C2_LODO__CPA__C2_lodo_D382.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D383,CPA,CPA,native,0.23469567196393498,predictions/v2_native/C2_LODO__CPA__C2_lodo_D383.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D387,CPA,CPA,native,0.312694464478172,predictions/v2_native/C2_LODO__CPA__C2_lodo_D387.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D388,CPA,CPA,native,0.22630422202955047,predictions/v2_native/C2_LODO__CPA__C2_lodo_D388.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D389,CPA,CPA,native,0.19048034223929614,predictions/v2_native/C2_LODO__CPA__C2_lodo_D389.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D390,CPA,CPA,native,0.15181143305619088,predictions/v2_native/C2_LODO__CPA__C2_lodo_D390.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D391,CPA,CPA,native,0.2635248515373686,predictions/v2_native/C2_LODO__CPA__C2_lodo_D391.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D392,CPA,CPA,native,0.16486054462660682,predictions/v2_native/C2_LODO__CPA__C2_lodo_D392.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D393,CPA,CPA,native,0.18279473375255179,predictions/v2_native/C2_LODO__CPA__C2_lodo_D393.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D394,CPA,CPA,native,0.23897257861986784,predictions/v2_native/C2_LODO__CPA__C2_lodo_D394.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D395,CPA,CPA,native,0.1646629418022509,predictions/v2_native/C2_LODO__CPA__C2_lodo_D395.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D396,CPA,CPA,native,0.21317630240948998,predictions/v2_native/C2_LODO__CPA__C2_lodo_D396.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D397,CPA,CPA,native,0.22323639194934042,predictions/v2_native/C2_LODO__CPA__C2_lodo_D397.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D398,CPA,CPA,native,0.22338619423586387,predictions/v2_native/C2_LODO__CPA__C2_lodo_D398.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D405,CPA,CPA,native,0.2455435903868038,predictions/v2_native/C2_LODO__CPA__C2_lodo_D405.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D406,CPA,CPA,native,0.29391019526293555,predictions/v2_native/C2_LODO__CPA__C2_lodo_D406.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D407,CPA,CPA,native,0.15852975442833345,predictions/v2_native/C2_LODO__CPA__C2_lodo_D407.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D408,CPA,CPA,native,0.0456764782886577,predictions/v2_native/C2_LODO__CPA__C2_lodo_D408.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D409,CPA,CPA,native,0.12944489284170344,predictions/v2_native/C2_LODO__CPA__C2_lodo_D409.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D410,CPA,CPA,native,0.2872172269759101,predictions/v2_native/C2_LODO__CPA__C2_lodo_D410.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D411,CPA,CPA,native,0.1432212388777101,predictions/v2_native/C2_LODO__CPA__C2_lodo_D411.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D412,CPA,CPA,native,0.22707457919931726,predictions/v2_native/C2_LODO__CPA__C2_lodo_D412.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D413,CPA,CPA,native,0.16492110634794577,predictions/v2_native/C2_LODO__CPA__C2_lodo_D413.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D414,CPA,CPA,native,0.13877236362347029,predictions/v2_native/C2_LODO__CPA__C2_lodo_D414.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D415,CPA,CPA,native,0.1848242145578214,predictions/v2_native/C2_LODO__CPA__C2_lodo_D415.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D416,CPA,CPA,native,0.227930344610457,predictions/v2_native/C2_LODO__CPA__C2_lodo_D416.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D417,CPA,CPA,native,0.1956082047811153,predictions/v2_native/C2_LODO__CPA__C2_lodo_D417.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D418,CPA,CPA,native,0.2386731519912917,predictions/v2_native/C2_LODO__CPA__C2_lodo_D418.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D419,CPA,CPA,native,0.10893855355190644,predictions/v2_native/C2_LODO__CPA__C2_lodo_D419.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D420,CPA,CPA,native,0.22133656581314132,predictions/v2_native/C2_LODO__CPA__C2_lodo_D420.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D421,CPA,CPA,native,0.10435710263922016,predictions/v2_native/C2_LODO__CPA__C2_lodo_D421.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D422,CPA,CPA,native,-0.061383073853043396,predictions/v2_native/C2_LODO__CPA__C2_lodo_D422.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D423,CPA,CPA,native,0.13496542930384325,predictions/v2_native/C2_LODO__CPA__C2_lodo_D423.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D424,CPA,CPA,native,0.1395197211786022,predictions/v2_native/C2_LODO__CPA__C2_lodo_D424.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D425,CPA,CPA,native,0.08724113364076208,predictions/v2_native/C2_LODO__CPA__C2_lodo_D425.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D426,CPA,CPA,native,0.22601388227760205,predictions/v2_native/C2_LODO__CPA__C2_lodo_D426.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D427,CPA,CPA,native,0.1136498095576158,predictions/v2_native/C2_LODO__CPA__C2_lodo_D427.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D428,CPA,CPA,native,0.1661957401061872,predictions/v2_native/C2_LODO__CPA__C2_lodo_D428.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D429,CPA,CPA,native,0.10317928483443878,predictions/v2_native/C2_LODO__CPA__C2_lodo_D429.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D430,CPA,CPA,native,0.33244093420152615,predictions/v2_native/C2_LODO__CPA__C2_lodo_D430.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D431,CPA,CPA,native,0.20645234427065226,predictions/v2_native/C2_LODO__CPA__C2_lodo_D431.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D432,CPA,CPA,native,0.18700560265650448,predictions/v2_native/C2_LODO__CPA__C2_lodo_D432.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D433,CPA,CPA,native,0.21479762439311773,predictions/v2_native/C2_LODO__CPA__C2_lodo_D433.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D434,CPA,CPA,native,0.1406896852147286,predictions/v2_native/C2_LODO__CPA__C2_lodo_D434.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D435,CPA,CPA,native,0.138287825687094,predictions/v2_native/C2_LODO__CPA__C2_lodo_D435.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D436,CPA,CPA,native,0.205210259672509,predictions/v2_native/C2_LODO__CPA__C2_lodo_D436.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D439,CPA,CPA,native,0.18684812135013645,predictions/v2_native/C2_LODO__CPA__C2_lodo_D439.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D440,CPA,CPA,native,0.22814145765582855,predictions/v2_native/C2_LODO__CPA__C2_lodo_D440.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D441,CPA,CPA,native,0.17408221783704908,predictions/v2_native/C2_LODO__CPA__C2_lodo_D441.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D442,CPA,CPA,native,0.18044776618574832,predictions/v2_native/C2_LODO__CPA__C2_lodo_D442.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D443,CPA,CPA,native,0.1531327664492606,predictions/v2_native/C2_LODO__CPA__C2_lodo_D443.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D445,CPA,CPA,native,0.2402957462053743,predictions/v2_native/C2_LODO__CPA__C2_lodo_D445.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D446,CPA,CPA,native,0.2024037021311016,predictions/v2_native/C2_LODO__CPA__C2_lodo_D446.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D447,CPA,CPA,native,0.21212966750329468,predictions/v2_native/C2_LODO__CPA__C2_lodo_D447.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D448,CPA,CPA,native,0.2863150365052546,predictions/v2_native/C2_LODO__CPA__C2_lodo_D448.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D449,CPA,CPA,native,0.24442753897095715,predictions/v2_native/C2_LODO__CPA__C2_lodo_D449.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D450,CPA,CPA,native,0.28032372516039294,predictions/v2_native/C2_LODO__CPA__C2_lodo_D450.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D451,CPA,CPA,native,0.4795919471779506,predictions/v2_native/C2_LODO__CPA__C2_lodo_D451.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D452,CPA,CPA,native,0.22986899017124407,predictions/v2_native/C2_LODO__CPA__C2_lodo_D452.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D453,CPA,CPA,native,0.3040032374121306,predictions/v2_native/C2_LODO__CPA__C2_lodo_D453.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D454,CPA,CPA,native,0.5673971592477214,predictions/v2_native/C2_LODO__CPA__C2_lodo_D454.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D455,CPA,CPA,native,0.18269020205712197,predictions/v2_native/C2_LODO__CPA__C2_lodo_D455.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D456,CPA,CPA,native,0.2096068364704355,predictions/v2_native/C2_LODO__CPA__C2_lodo_D456.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D457,CPA,CPA,native,0.15720725483482267,predictions/v2_native/C2_LODO__CPA__C2_lodo_D457.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D458,CPA,CPA,native,0.2426465158161374,predictions/v2_native/C2_LODO__CPA__C2_lodo_D458.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D459,CPA,CPA,native,0.35588645605377156,predictions/v2_native/C2_LODO__CPA__C2_lodo_D459.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D460,CPA,CPA,native,0.23822025276319403,predictions/v2_native/C2_LODO__CPA__C2_lodo_D460.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D461,CPA,CPA,native,0.1811894085626787,predictions/v2_native/C2_LODO__CPA__C2_lodo_D461.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D462,CPA,CPA,native,0.17756448513169118,predictions/v2_native/C2_LODO__CPA__C2_lodo_D462.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D463,CPA,CPA,native,0.3976545214522141,predictions/v2_native/C2_LODO__CPA__C2_lodo_D463.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D464,CPA,CPA,native,0.38201143019050604,predictions/v2_native/C2_LODO__CPA__C2_lodo_D464.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D465,CPA,CPA,native,0.32328794625116464,predictions/v2_native/C2_LODO__CPA__C2_lodo_D465.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D466,CPA,CPA,native,0.2527239461760185,predictions/v2_native/C2_LODO__CPA__C2_lodo_D466.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D481,CPA,CPA,native,0.28364514568600274,predictions/v2_native/C2_LODO__CPA__C2_lodo_D481.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D482,CPA,CPA,native,0.24817642428452358,predictions/v2_native/C2_LODO__CPA__C2_lodo_D482.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D483,CPA,CPA,native,0.20332101889567264,predictions/v2_native/C2_LODO__CPA__C2_lodo_D483.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D484,CPA,CPA,native,0.14133009265553845,predictions/v2_native/C2_LODO__CPA__C2_lodo_D484.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D485,CPA,CPA,native,0.1801664262121652,predictions/v2_native/C2_LODO__CPA__C2_lodo_D485.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D348,CellFlow,CellFlow,native,0.2280555887260956,predictions/C2_metric_aligned/C2_LODO__CellFlow__C2_lodo_D348.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D349,CellFlow,CellFlow,native,0.24937613537398312,predictions/C2_metric_aligned/C2_LODO__CellFlow__C2_lodo_D349.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D350,CellFlow,CellFlow,native,0.19219041352119104,predictions/C2_metric_aligned/C2_LODO__CellFlow__C2_lodo_D350.npz
@@ -397,218 +405,218 @@ T2,T2,C2,donor/Soskic,donor (LODO),donor,D482,CellOT,CellOT,native,0.35746743797
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D483,CellOT,CellOT,native,0.38208363913922727,predictions/C2/C2__CellOT__C2_soskic_LODO_D483.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D484,CellOT,CellOT,native,0.4262426251345226,predictions/C2/C2__CellOT__C2_soskic_LODO_D484.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D485,CellOT,CellOT,native,0.5233557364948033,predictions/C2/C2__CellOT__C2_soskic_LODO_D485.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D348,PertAdapt,PertAdapt,adapted,0.2168679490209131,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D348.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D349,PertAdapt,PertAdapt,adapted,0.07021906454066046,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D349.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D350,PertAdapt,PertAdapt,adapted,0.17699626407399058,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D350.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D351,PertAdapt,PertAdapt,adapted,0.13455065892402046,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D351.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D352,PertAdapt,PertAdapt,adapted,0.16746711039365916,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D352.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D353,PertAdapt,PertAdapt,adapted,0.2281011797585734,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D353.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D354,PertAdapt,PertAdapt,adapted,0.20237919508471575,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D354.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D355,PertAdapt,PertAdapt,adapted,0.3638505661535604,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D355.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D356,PertAdapt,PertAdapt,adapted,0.16078433001248932,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D356.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D357,PertAdapt,PertAdapt,adapted,0.32257246952660046,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D357.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D358,PertAdapt,PertAdapt,adapted,0.29108364944322873,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D358.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D359,PertAdapt,PertAdapt,adapted,0.3612072454282367,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D359.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D363,PertAdapt,PertAdapt,adapted,0.2094451708856642,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D363.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D364,PertAdapt,PertAdapt,adapted,0.1616805445942652,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D364.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D365,PertAdapt,PertAdapt,adapted,0.2589225281464207,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D365.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D366,PertAdapt,PertAdapt,adapted,0.20779119498114412,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D366.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D367,PertAdapt,PertAdapt,adapted,0.2558848112591043,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D367.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D368,PertAdapt,PertAdapt,adapted,0.22004492220819252,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D368.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D369,PertAdapt,PertAdapt,adapted,0.1757004934855071,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D369.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D370,PertAdapt,PertAdapt,adapted,0.18436869538152056,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D370.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D371,PertAdapt,PertAdapt,adapted,0.13740737201783437,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D371.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D372,PertAdapt,PertAdapt,adapted,0.09625913437926442,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D372.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D373,PertAdapt,PertAdapt,adapted,0.11167604556437621,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D373.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D374,PertAdapt,PertAdapt,adapted,0.07498020233984473,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D374.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D378,PertAdapt,PertAdapt,adapted,0.2528241160062525,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D378.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D379,PertAdapt,PertAdapt,adapted,0.07576573146969787,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D379.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D380,PertAdapt,PertAdapt,adapted,0.1714933519234548,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D380.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D381,PertAdapt,PertAdapt,adapted,0.2051683112495439,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D381.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D382,PertAdapt,PertAdapt,adapted,0.11073058274763792,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D382.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D383,PertAdapt,PertAdapt,adapted,0.2038584864735981,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D383.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D387,PertAdapt,PertAdapt,adapted,0.3347762372664739,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D387.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D388,PertAdapt,PertAdapt,adapted,0.3342256320127473,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D388.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D389,PertAdapt,PertAdapt,adapted,0.15082365669009767,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D389.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D390,PertAdapt,PertAdapt,adapted,0.23239566855943253,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D390.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D391,PertAdapt,PertAdapt,adapted,0.36226196537850386,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D391.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D392,PertAdapt,PertAdapt,adapted,0.24162935192264268,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D392.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D393,PertAdapt,PertAdapt,adapted,0.2155998413347756,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D393.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D394,PertAdapt,PertAdapt,adapted,0.2441854962415534,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D394.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D395,PertAdapt,PertAdapt,adapted,0.20060998209528147,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D395.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D396,PertAdapt,PertAdapt,adapted,0.26480866150948135,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D396.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D397,PertAdapt,PertAdapt,adapted,0.20124948682649932,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D397.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D398,PertAdapt,PertAdapt,adapted,0.11740842183651251,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D398.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D405,PertAdapt,PertAdapt,adapted,0.24770596549171792,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D405.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D406,PertAdapt,PertAdapt,adapted,0.2548469215977417,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D406.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D407,PertAdapt,PertAdapt,adapted,0.1786298706445056,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D407.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D408,PertAdapt,PertAdapt,adapted,0.1788512986085299,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D408.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D409,PertAdapt,PertAdapt,adapted,0.16723974025425103,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D409.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D410,PertAdapt,PertAdapt,adapted,0.3102805976339299,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D410.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D411,PertAdapt,PertAdapt,adapted,0.2073286786379028,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D411.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D412,PertAdapt,PertAdapt,adapted,0.34405549762841003,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D412.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D413,PertAdapt,PertAdapt,adapted,0.11069956563025395,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D413.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D414,PertAdapt,PertAdapt,adapted,0.17318780352953006,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D414.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D415,PertAdapt,PertAdapt,adapted,0.15376244903657377,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D415.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D416,PertAdapt,PertAdapt,adapted,0.19289734430409883,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D416.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D417,PertAdapt,PertAdapt,adapted,0.09699659924544404,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D417.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D418,PertAdapt,PertAdapt,adapted,0.27285263753953126,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D418.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D419,PertAdapt,PertAdapt,adapted,0.13223314056942043,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D419.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D420,PertAdapt,PertAdapt,adapted,0.2337362808448915,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D420.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D421,PertAdapt,PertAdapt,adapted,0.08104752246952039,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D421.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D422,PertAdapt,PertAdapt,adapted,0.1618879382309271,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D422.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D423,PertAdapt,PertAdapt,adapted,0.27387034647208636,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D423.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D424,PertAdapt,PertAdapt,adapted,0.11007136882550647,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D424.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D425,PertAdapt,PertAdapt,adapted,0.056241189209977546,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D425.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D426,PertAdapt,PertAdapt,adapted,0.23976519791549383,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D426.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D427,PertAdapt,PertAdapt,adapted,0.17583109269206193,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D427.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D428,PertAdapt,PertAdapt,adapted,0.130402556028812,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D428.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D429,PertAdapt,PertAdapt,adapted,0.13670129374621748,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D429.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D430,PertAdapt,PertAdapt,adapted,0.2828889681212619,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D430.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D431,PertAdapt,PertAdapt,adapted,0.17143018952170022,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D431.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D432,PertAdapt,PertAdapt,adapted,0.1941868444465048,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D432.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D433,PertAdapt,PertAdapt,adapted,0.2655457602317039,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D433.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D434,PertAdapt,PertAdapt,adapted,0.16562284160214188,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D434.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D435,PertAdapt,PertAdapt,adapted,0.22147840493977333,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D435.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D436,PertAdapt,PertAdapt,adapted,0.24392274621513443,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D436.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D439,PertAdapt,PertAdapt,adapted,0.1373587849335547,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D439.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D440,PertAdapt,PertAdapt,adapted,0.2250405710269311,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D440.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D441,PertAdapt,PertAdapt,adapted,0.23339881280445404,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D441.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D442,PertAdapt,PertAdapt,adapted,0.28515989009835124,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D442.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D443,PertAdapt,PertAdapt,adapted,0.1580012716270941,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D443.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D445,PertAdapt,PertAdapt,adapted,0.2334992692800193,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D445.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D446,PertAdapt,PertAdapt,adapted,0.1408908450759714,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D446.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D447,PertAdapt,PertAdapt,adapted,0.2228427335657187,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D447.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D448,PertAdapt,PertAdapt,adapted,0.2420639138490837,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D448.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D449,PertAdapt,PertAdapt,adapted,0.2931327360825645,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D449.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D450,PertAdapt,PertAdapt,adapted,0.28718516757083085,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D450.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D451,PertAdapt,PertAdapt,adapted,0.4845552271645765,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D451.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D452,PertAdapt,PertAdapt,adapted,0.2290794040307048,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D452.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D453,PertAdapt,PertAdapt,adapted,0.19428855830785147,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D453.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D454,PertAdapt,PertAdapt,adapted,0.357459734912413,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D454.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D455,PertAdapt,PertAdapt,adapted,0.23834583410041482,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D455.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D456,PertAdapt,PertAdapt,adapted,0.25869153315099025,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D456.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D457,PertAdapt,PertAdapt,adapted,0.16946290172341782,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D457.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D458,PertAdapt,PertAdapt,adapted,0.1978380187161142,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D458.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D459,PertAdapt,PertAdapt,adapted,0.34066641324301344,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D459.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D460,PertAdapt,PertAdapt,adapted,0.30121188246758024,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D460.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D461,PertAdapt,PertAdapt,adapted,0.34669791493130175,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D461.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D462,PertAdapt,PertAdapt,adapted,0.1986103863069152,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D462.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D463,PertAdapt,PertAdapt,adapted,0.36081453576605704,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D463.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D464,PertAdapt,PertAdapt,adapted,0.46282561445365633,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D464.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D465,PertAdapt,PertAdapt,adapted,0.3843616081949965,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D465.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D466,PertAdapt,PertAdapt,adapted,0.24785216444701633,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D466.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D481,PertAdapt,PertAdapt,adapted,0.26095238683184074,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D481.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D482,PertAdapt,PertAdapt,adapted,0.29064353764447287,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D482.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D483,PertAdapt,PertAdapt,adapted,0.28207407357415526,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D483.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D484,PertAdapt,PertAdapt,adapted,0.2099835197261638,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D484.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D485,PertAdapt,PertAdapt,adapted,0.12969222881488904,predictions/C2/C2_LODO__PertAdapt__C2_lodo_D485.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D348,STATE,STATE,native,0.17152723085676247,predictions/C2/C2__STATE__C2_soskic_LODO_D348.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D349,STATE,STATE,native,0.22317253527790404,predictions/C2/C2__STATE__C2_soskic_LODO_D349.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D350,STATE,STATE,native,0.13831743755519987,predictions/C2/C2__STATE__C2_soskic_LODO_D350.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D351,STATE,STATE,native,0.12409844958445873,predictions/C2/C2__STATE__C2_soskic_LODO_D351.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D352,STATE,STATE,native,0.22398048991759706,predictions/C2/C2__STATE__C2_soskic_LODO_D352.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D353,STATE,STATE,native,0.19335403518192895,predictions/C2/C2__STATE__C2_soskic_LODO_D353.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D354,STATE,STATE,native,0.17898099638539888,predictions/C2/C2__STATE__C2_soskic_LODO_D354.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D355,STATE,STATE,native,0.3979774793305937,predictions/C2/C2__STATE__C2_soskic_LODO_D355.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D356,STATE,STATE,native,0.22262154900129413,predictions/C2/C2__STATE__C2_soskic_LODO_D356.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D357,STATE,STATE,native,0.2713500859204529,predictions/C2/C2__STATE__C2_soskic_LODO_D357.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D358,STATE,STATE,native,0.26080763295769194,predictions/C2/C2__STATE__C2_soskic_LODO_D358.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D359,STATE,STATE,native,0.2810036396038525,predictions/C2/C2__STATE__C2_soskic_LODO_D359.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D363,STATE,STATE,native,0.17705279852074157,predictions/C2/C2__STATE__C2_soskic_LODO_D363.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D364,STATE,STATE,native,0.20560020446028293,predictions/C2/C2__STATE__C2_soskic_LODO_D364.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D365,STATE,STATE,native,0.20530345795376478,predictions/C2/C2__STATE__C2_soskic_LODO_D365.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D366,STATE,STATE,native,0.13858320754439446,predictions/C2/C2__STATE__C2_soskic_LODO_D366.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D367,STATE,STATE,native,0.21082087085422893,predictions/C2/C2__STATE__C2_soskic_LODO_D367.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D368,STATE,STATE,native,0.1455960970368941,predictions/C2/C2__STATE__C2_soskic_LODO_D368.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D369,STATE,STATE,native,0.15421661750351612,predictions/C2/C2__STATE__C2_soskic_LODO_D369.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D370,STATE,STATE,native,0.08214266815952619,predictions/C2/C2__STATE__C2_soskic_LODO_D370.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D371,STATE,STATE,native,0.119307948891676,predictions/C2/C2__STATE__C2_soskic_LODO_D371.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D372,STATE,STATE,native,0.15997965103017392,predictions/C2/C2__STATE__C2_soskic_LODO_D372.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D373,STATE,STATE,native,0.08065798033108418,predictions/C2/C2__STATE__C2_soskic_LODO_D373.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D374,STATE,STATE,native,0.1425582314985946,predictions/C2/C2__STATE__C2_soskic_LODO_D374.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D378,STATE,STATE,native,0.15950729858940219,predictions/C2/C2__STATE__C2_soskic_LODO_D378.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D379,STATE,STATE,native,0.09416163878118489,predictions/C2/C2__STATE__C2_soskic_LODO_D379.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D380,STATE,STATE,native,0.0927060582257832,predictions/C2/C2__STATE__C2_soskic_LODO_D380.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D381,STATE,STATE,native,0.1442800332561491,predictions/C2/C2__STATE__C2_soskic_LODO_D381.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D382,STATE,STATE,native,0.13483703409898562,predictions/C2/C2__STATE__C2_soskic_LODO_D382.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D383,STATE,STATE,native,0.19695944648243496,predictions/C2/C2__STATE__C2_soskic_LODO_D383.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D387,STATE,STATE,native,0.22518584865426958,predictions/C2/C2__STATE__C2_soskic_LODO_D387.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D388,STATE,STATE,native,0.276680602196993,predictions/C2/C2__STATE__C2_soskic_LODO_D388.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D389,STATE,STATE,native,0.14606142464438884,predictions/C2/C2__STATE__C2_soskic_LODO_D389.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D390,STATE,STATE,native,0.19511350970198577,predictions/C2/C2__STATE__C2_soskic_LODO_D390.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D391,STATE,STATE,native,0.2244396749601999,predictions/C2/C2__STATE__C2_soskic_LODO_D391.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D392,STATE,STATE,native,0.22675357408868335,predictions/C2/C2__STATE__C2_soskic_LODO_D392.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D393,STATE,STATE,native,0.17563680696422504,predictions/C2/C2__STATE__C2_soskic_LODO_D393.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D394,STATE,STATE,native,0.13388920915785035,predictions/C2/C2__STATE__C2_soskic_LODO_D394.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D395,STATE,STATE,native,0.14367403497257622,predictions/C2/C2__STATE__C2_soskic_LODO_D395.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D396,STATE,STATE,native,0.21717723736094807,predictions/C2/C2__STATE__C2_soskic_LODO_D396.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D397,STATE,STATE,native,0.15392762586397685,predictions/C2/C2__STATE__C2_soskic_LODO_D397.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D398,STATE,STATE,native,0.26964641743081075,predictions/C2/C2__STATE__C2_soskic_LODO_D398.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D405,STATE,STATE,native,0.16485853533608946,predictions/C2/C2__STATE__C2_soskic_LODO_D405.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D406,STATE,STATE,native,0.16972924776376103,predictions/C2/C2__STATE__C2_soskic_LODO_D406.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D407,STATE,STATE,native,0.1965085971073603,predictions/C2/C2__STATE__C2_soskic_LODO_D407.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D408,STATE,STATE,native,0.1527814570614254,predictions/C2/C2__STATE__C2_soskic_LODO_D408.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D409,STATE,STATE,native,0.17287091792192674,predictions/C2/C2__STATE__C2_soskic_LODO_D409.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D410,STATE,STATE,native,0.23996450891834073,predictions/C2/C2__STATE__C2_soskic_LODO_D410.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D411,STATE,STATE,native,0.10305031065457866,predictions/C2/C2__STATE__C2_soskic_LODO_D411.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D412,STATE,STATE,native,0.1256968763252893,predictions/C2/C2__STATE__C2_soskic_LODO_D412.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D413,STATE,STATE,native,0.15046103769495167,predictions/C2/C2__STATE__C2_soskic_LODO_D413.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D414,STATE,STATE,native,0.11757897603987347,predictions/C2/C2__STATE__C2_soskic_LODO_D414.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D415,STATE,STATE,native,0.20701369502384634,predictions/C2/C2__STATE__C2_soskic_LODO_D415.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D416,STATE,STATE,native,0.1189549196511572,predictions/C2/C2__STATE__C2_soskic_LODO_D416.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D417,STATE,STATE,native,0.10715346282307656,predictions/C2/C2__STATE__C2_soskic_LODO_D417.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D418,STATE,STATE,native,0.16607635510992924,predictions/C2/C2__STATE__C2_soskic_LODO_D418.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D419,STATE,STATE,native,0.12738463355913304,predictions/C2/C2__STATE__C2_soskic_LODO_D419.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D420,STATE,STATE,native,0.238722331387473,predictions/C2/C2__STATE__C2_soskic_LODO_D420.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D421,STATE,STATE,native,0.16397604044548028,predictions/C2/C2__STATE__C2_soskic_LODO_D421.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D422,STATE,STATE,native,-0.020277024911215313,predictions/C2/C2__STATE__C2_soskic_LODO_D422.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D423,STATE,STATE,native,0.010043763797954965,predictions/C2/C2__STATE__C2_soskic_LODO_D423.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D424,STATE,STATE,native,0.042492971116169065,predictions/C2/C2__STATE__C2_soskic_LODO_D424.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D425,STATE,STATE,native,0.08313307328113284,predictions/C2/C2__STATE__C2_soskic_LODO_D425.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D426,STATE,STATE,native,0.16630279358636582,predictions/C2/C2__STATE__C2_soskic_LODO_D426.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D427,STATE,STATE,native,0.12168929159769637,predictions/C2/C2__STATE__C2_soskic_LODO_D427.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D428,STATE,STATE,native,0.18182004040470534,predictions/C2/C2__STATE__C2_soskic_LODO_D428.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D429,STATE,STATE,native,0.12098956180139672,predictions/C2/C2__STATE__C2_soskic_LODO_D429.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D430,STATE,STATE,native,0.3159378554763128,predictions/C2/C2__STATE__C2_soskic_LODO_D430.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D431,STATE,STATE,native,0.1332049966788958,predictions/C2/C2__STATE__C2_soskic_LODO_D431.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D432,STATE,STATE,native,0.20513103994675447,predictions/C2/C2__STATE__C2_soskic_LODO_D432.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D433,STATE,STATE,native,0.18565573729302876,predictions/C2/C2__STATE__C2_soskic_LODO_D433.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D434,STATE,STATE,native,0.15771331150219103,predictions/C2/C2__STATE__C2_soskic_LODO_D434.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D435,STATE,STATE,native,0.13588762385907893,predictions/C2/C2__STATE__C2_soskic_LODO_D435.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D436,STATE,STATE,native,0.15404183202925073,predictions/C2/C2__STATE__C2_soskic_LODO_D436.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D439,STATE,STATE,native,0.18380305294571744,predictions/C2/C2__STATE__C2_soskic_LODO_D439.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D440,STATE,STATE,native,0.15406043423091523,predictions/C2/C2__STATE__C2_soskic_LODO_D440.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D441,STATE,STATE,native,0.14741664521982145,predictions/C2/C2__STATE__C2_soskic_LODO_D441.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D442,STATE,STATE,native,0.12602032284562978,predictions/C2/C2__STATE__C2_soskic_LODO_D442.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D443,STATE,STATE,native,0.17379422274623477,predictions/C2/C2__STATE__C2_soskic_LODO_D443.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D445,STATE,STATE,native,0.2529060410339629,predictions/C2/C2__STATE__C2_soskic_LODO_D445.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D446,STATE,STATE,native,0.1810685458355516,predictions/C2/C2__STATE__C2_soskic_LODO_D446.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D447,STATE,STATE,native,0.19923474284193854,predictions/C2/C2__STATE__C2_soskic_LODO_D447.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D448,STATE,STATE,native,0.24252306895178533,predictions/C2/C2__STATE__C2_soskic_LODO_D448.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D449,STATE,STATE,native,0.2036023485163201,predictions/C2/C2__STATE__C2_soskic_LODO_D449.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D450,STATE,STATE,native,0.2255510239900289,predictions/C2/C2__STATE__C2_soskic_LODO_D450.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D451,STATE,STATE,native,0.4249587457113794,predictions/C2/C2__STATE__C2_soskic_LODO_D451.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D452,STATE,STATE,native,0.21195365499559382,predictions/C2/C2__STATE__C2_soskic_LODO_D452.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D453,STATE,STATE,native,0.2450468826654801,predictions/C2/C2__STATE__C2_soskic_LODO_D453.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D454,STATE,STATE,native,0.43993494119881277,predictions/C2/C2__STATE__C2_soskic_LODO_D454.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D455,STATE,STATE,native,0.11767288479791388,predictions/C2/C2__STATE__C2_soskic_LODO_D455.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D456,STATE,STATE,native,0.16130100127001945,predictions/C2/C2__STATE__C2_soskic_LODO_D456.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D457,STATE,STATE,native,0.1936447590101461,predictions/C2/C2__STATE__C2_soskic_LODO_D457.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D458,STATE,STATE,native,0.1386375355906825,predictions/C2/C2__STATE__C2_soskic_LODO_D458.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D459,STATE,STATE,native,0.3338631752158091,predictions/C2/C2__STATE__C2_soskic_LODO_D459.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D460,STATE,STATE,native,0.20461030707848032,predictions/C2/C2__STATE__C2_soskic_LODO_D460.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D461,STATE,STATE,native,0.2065437582408496,predictions/C2/C2__STATE__C2_soskic_LODO_D461.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D462,STATE,STATE,native,0.20353033572649953,predictions/C2/C2__STATE__C2_soskic_LODO_D462.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D463,STATE,STATE,native,0.3228230453680938,predictions/C2/C2__STATE__C2_soskic_LODO_D463.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D464,STATE,STATE,native,0.32245756810146803,predictions/C2/C2__STATE__C2_soskic_LODO_D464.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D465,STATE,STATE,native,0.24031174717156206,predictions/C2/C2__STATE__C2_soskic_LODO_D465.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D466,STATE,STATE,native,0.18755059942458918,predictions/C2/C2__STATE__C2_soskic_LODO_D466.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D481,STATE,STATE,native,0.14586159538682109,predictions/C2/C2__STATE__C2_soskic_LODO_D481.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D482,STATE,STATE,native,0.21535089667617197,predictions/C2/C2__STATE__C2_soskic_LODO_D482.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D483,STATE,STATE,native,0.21939099774691828,predictions/C2/C2__STATE__C2_soskic_LODO_D483.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D484,STATE,STATE,native,0.18755855471858296,predictions/C2/C2__STATE__C2_soskic_LODO_D484.npz
-T2,T2,C2,donor/Soskic,donor (LODO),donor,D485,STATE,STATE,native,0.15295133356383914,predictions/C2/C2__STATE__C2_soskic_LODO_D485.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D348,PerturbNet,PerturbNet,native,0.22004991848837258,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D348.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D349,PerturbNet,PerturbNet,native,0.24948804108374684,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D349.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D350,PerturbNet,PerturbNet,native,0.22661655744125733,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D350.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D351,PerturbNet,PerturbNet,native,0.24221114777999075,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D351.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D352,PerturbNet,PerturbNet,native,0.2908880922543512,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D352.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D353,PerturbNet,PerturbNet,native,0.301547071979742,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D353.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D354,PerturbNet,PerturbNet,native,0.21886813211409323,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D354.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D355,PerturbNet,PerturbNet,native,0.22697648182335786,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D355.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D356,PerturbNet,PerturbNet,native,0.18622044705660162,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D356.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D357,PerturbNet,PerturbNet,native,0.31995014368284225,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D357.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D358,PerturbNet,PerturbNet,native,0.3590629608108037,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D358.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D359,PerturbNet,PerturbNet,native,0.37517552126754783,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D359.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D363,PerturbNet,PerturbNet,native,0.2333807559133718,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D363.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D364,PerturbNet,PerturbNet,native,0.2215127723138266,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D364.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D365,PerturbNet,PerturbNet,native,0.27556062032017153,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D365.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D366,PerturbNet,PerturbNet,native,0.14972595739964248,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D366.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D367,PerturbNet,PerturbNet,native,0.294222930315038,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D367.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D368,PerturbNet,PerturbNet,native,0.2080785240804776,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D368.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D369,PerturbNet,PerturbNet,native,0.33799328168926523,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D369.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D370,PerturbNet,PerturbNet,native,0.2016250961686333,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D370.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D371,PerturbNet,PerturbNet,native,0.16315239576777527,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D371.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D372,PerturbNet,PerturbNet,native,0.13840589726749242,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D372.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D373,PerturbNet,PerturbNet,native,0.22996829650216738,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D373.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D374,PerturbNet,PerturbNet,native,0.14921846215527068,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D374.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D378,PerturbNet,PerturbNet,native,0.30171648612924196,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D378.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D379,PerturbNet,PerturbNet,native,0.12479354468108271,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D379.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D380,PerturbNet,PerturbNet,native,0.13014720862452178,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D380.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D381,PerturbNet,PerturbNet,native,0.21712750597528618,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D381.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D382,PerturbNet,PerturbNet,native,0.24282026285914032,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D382.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D383,PerturbNet,PerturbNet,native,0.32743123676567454,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D383.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D387,PerturbNet,PerturbNet,native,0.30606988332179846,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D387.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D388,PerturbNet,PerturbNet,native,0.3538632480593519,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D388.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D389,PerturbNet,PerturbNet,native,0.18946936439794007,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D389.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D390,PerturbNet,PerturbNet,native,0.211507859144759,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D390.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D391,PerturbNet,PerturbNet,native,0.3683918245143788,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D391.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D392,PerturbNet,PerturbNet,native,0.20961133764823314,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D392.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D393,PerturbNet,PerturbNet,native,0.23427717989837285,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D393.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D394,PerturbNet,PerturbNet,native,0.25993501810098063,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D394.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D395,PerturbNet,PerturbNet,native,0.2886102881836982,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D395.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D396,PerturbNet,PerturbNet,native,0.28572312073404327,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D396.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D397,PerturbNet,PerturbNet,native,0.3048225580905356,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D397.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D398,PerturbNet,PerturbNet,native,0.27681705103984866,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D398.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D405,PerturbNet,PerturbNet,native,0.2704471851423318,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D405.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D406,PerturbNet,PerturbNet,native,0.3032921967741367,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D406.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D407,PerturbNet,PerturbNet,native,0.22700241620321499,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D407.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D408,PerturbNet,PerturbNet,native,0.15125915622563757,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D408.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D409,PerturbNet,PerturbNet,native,0.2214340500032909,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D409.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D410,PerturbNet,PerturbNet,native,0.3477405985019531,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D410.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D411,PerturbNet,PerturbNet,native,0.2191993986535068,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D411.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D412,PerturbNet,PerturbNet,native,0.25464152116890326,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D412.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D413,PerturbNet,PerturbNet,native,0.2202629979119382,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D413.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D414,PerturbNet,PerturbNet,native,0.19570925378911358,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D414.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D415,PerturbNet,PerturbNet,native,0.2692896999405163,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D415.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D416,PerturbNet,PerturbNet,native,0.2330991312063612,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D416.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D417,PerturbNet,PerturbNet,native,0.2792931381979741,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D417.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D418,PerturbNet,PerturbNet,native,0.28360541202518064,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D418.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D419,PerturbNet,PerturbNet,native,0.2244174506915369,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D419.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D420,PerturbNet,PerturbNet,native,0.29958161283254003,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D420.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D421,PerturbNet,PerturbNet,native,0.06566238907592922,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D421.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D422,PerturbNet,PerturbNet,native,-0.07840598236430961,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D422.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D423,PerturbNet,PerturbNet,native,0.14303548400183907,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D423.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D424,PerturbNet,PerturbNet,native,-0.006258204230663586,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D424.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D425,PerturbNet,PerturbNet,native,0.02797064338155354,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D425.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D426,PerturbNet,PerturbNet,native,0.23538229091833307,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D426.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D427,PerturbNet,PerturbNet,native,0.14250296941522542,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D427.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D428,PerturbNet,PerturbNet,native,0.18849759431369417,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D428.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D429,PerturbNet,PerturbNet,native,0.16077355581371844,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D429.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D430,PerturbNet,PerturbNet,native,0.36838779323917725,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D430.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D431,PerturbNet,PerturbNet,native,0.22296269542195354,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D431.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D432,PerturbNet,PerturbNet,native,0.2478829028585141,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D432.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D433,PerturbNet,PerturbNet,native,0.25701465852640415,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D433.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D434,PerturbNet,PerturbNet,native,0.17052536343038002,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D434.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D435,PerturbNet,PerturbNet,native,0.2588669408785413,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D435.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D436,PerturbNet,PerturbNet,native,0.24398652666945791,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D436.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D439,PerturbNet,PerturbNet,native,0.23006830303739642,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D439.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D440,PerturbNet,PerturbNet,native,0.25440663693664656,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D440.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D441,PerturbNet,PerturbNet,native,0.2195476197999634,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D441.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D442,PerturbNet,PerturbNet,native,0.24491137782950878,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D442.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D443,PerturbNet,PerturbNet,native,0.21989575433118874,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D443.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D445,PerturbNet,PerturbNet,native,0.23526919581526137,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D445.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D446,PerturbNet,PerturbNet,native,0.18952308271491358,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D446.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D447,PerturbNet,PerturbNet,native,0.2840346521686156,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D447.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D448,PerturbNet,PerturbNet,native,0.3386861572509846,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D448.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D449,PerturbNet,PerturbNet,native,0.3326524552946608,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D449.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D450,PerturbNet,PerturbNet,native,0.3554053189547992,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D450.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D451,PerturbNet,PerturbNet,native,0.5379623788804866,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D451.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D452,PerturbNet,PerturbNet,native,0.28176562928705695,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D452.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D453,PerturbNet,PerturbNet,native,0.3900927981972163,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D453.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D454,PerturbNet,PerturbNet,native,0.6301770056070323,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D454.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D455,PerturbNet,PerturbNet,native,0.1942577732581888,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D455.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D456,PerturbNet,PerturbNet,native,0.3293111176555152,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D456.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D457,PerturbNet,PerturbNet,native,0.2774254106909955,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D457.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D458,PerturbNet,PerturbNet,native,0.31151548818399466,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D458.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D459,PerturbNet,PerturbNet,native,0.3748308344899695,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D459.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D460,PerturbNet,PerturbNet,native,0.2746141714538346,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D460.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D461,PerturbNet,PerturbNet,native,0.2997772143188284,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D461.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D462,PerturbNet,PerturbNet,native,0.27472197843217216,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D462.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D463,PerturbNet,PerturbNet,native,0.4613426388204343,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D463.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D464,PerturbNet,PerturbNet,native,0.46037872290065024,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D464.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D465,PerturbNet,PerturbNet,native,0.3800248273056839,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D465.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D466,PerturbNet,PerturbNet,native,0.3107066475775813,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D466.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D481,PerturbNet,PerturbNet,native,0.2856408483584555,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D481.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D482,PerturbNet,PerturbNet,native,0.26539775867853865,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D482.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D483,PerturbNet,PerturbNet,native,0.24378778128292716,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D483.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D484,PerturbNet,PerturbNet,native,0.19452139822691655,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D484.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D485,PerturbNet,PerturbNet,native,0.19828462587124315,predictions/v2_native/C2_LODO__PerturbNet__C2_lodo_D485.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D348,STATE,STATE,native,0.18016208001674552,predictions/v2_native/C2__STATE__C2_soskic_LODO_D348.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D349,STATE,STATE,native,0.12146566008221621,predictions/v2_native/C2__STATE__C2_soskic_LODO_D349.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D350,STATE,STATE,native,0.1895273322252163,predictions/v2_native/C2__STATE__C2_soskic_LODO_D350.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D351,STATE,STATE,native,0.14426544300510669,predictions/v2_native/C2__STATE__C2_soskic_LODO_D351.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D352,STATE,STATE,native,0.2223060075417433,predictions/v2_native/C2__STATE__C2_soskic_LODO_D352.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D353,STATE,STATE,native,0.12051189362789458,predictions/v2_native/C2__STATE__C2_soskic_LODO_D353.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D354,STATE,STATE,native,0.13034687945483792,predictions/v2_native/C2__STATE__C2_soskic_LODO_D354.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D355,STATE,STATE,native,0.30272216533625895,predictions/v2_native/C2__STATE__C2_soskic_LODO_D355.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D356,STATE,STATE,native,0.13464452683774988,predictions/v2_native/C2__STATE__C2_soskic_LODO_D356.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D357,STATE,STATE,native,0.19609379068375205,predictions/v2_native/C2__STATE__C2_soskic_LODO_D357.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D358,STATE,STATE,native,0.16006450724660914,predictions/v2_native/C2__STATE__C2_soskic_LODO_D358.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D359,STATE,STATE,native,0.19656262677559322,predictions/v2_native/C2__STATE__C2_soskic_LODO_D359.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D363,STATE,STATE,native,0.06747943677980774,predictions/v2_native/C2__STATE__C2_soskic_LODO_D363.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D364,STATE,STATE,native,0.09012308799776719,predictions/v2_native/C2__STATE__C2_soskic_LODO_D364.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D365,STATE,STATE,native,0.16350414691802453,predictions/v2_native/C2__STATE__C2_soskic_LODO_D365.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D366,STATE,STATE,native,0.07153613251063835,predictions/v2_native/C2__STATE__C2_soskic_LODO_D366.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D367,STATE,STATE,native,0.15191459193130896,predictions/v2_native/C2__STATE__C2_soskic_LODO_D367.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D368,STATE,STATE,native,0.1109969302603091,predictions/v2_native/C2__STATE__C2_soskic_LODO_D368.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D369,STATE,STATE,native,0.13832476002722588,predictions/v2_native/C2__STATE__C2_soskic_LODO_D369.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D370,STATE,STATE,native,0.10600580185976513,predictions/v2_native/C2__STATE__C2_soskic_LODO_D370.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D371,STATE,STATE,native,0.019348262526565713,predictions/v2_native/C2__STATE__C2_soskic_LODO_D371.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D372,STATE,STATE,native,0.07260621766740764,predictions/v2_native/C2__STATE__C2_soskic_LODO_D372.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D373,STATE,STATE,native,0.05599876616183672,predictions/v2_native/C2__STATE__C2_soskic_LODO_D373.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D374,STATE,STATE,native,0.0636974743845107,predictions/v2_native/C2__STATE__C2_soskic_LODO_D374.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D378,STATE,STATE,native,0.11957811664817648,predictions/v2_native/C2__STATE__C2_soskic_LODO_D378.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D379,STATE,STATE,native,0.025871147854613974,predictions/v2_native/C2__STATE__C2_soskic_LODO_D379.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D380,STATE,STATE,native,0.0396618808610776,predictions/v2_native/C2__STATE__C2_soskic_LODO_D380.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D381,STATE,STATE,native,0.1181407133746412,predictions/v2_native/C2__STATE__C2_soskic_LODO_D381.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D382,STATE,STATE,native,0.1112052230272356,predictions/v2_native/C2__STATE__C2_soskic_LODO_D382.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D383,STATE,STATE,native,0.038630625965561674,predictions/v2_native/C2__STATE__C2_soskic_LODO_D383.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D387,STATE,STATE,native,0.23113123618190665,predictions/v2_native/C2__STATE__C2_soskic_LODO_D387.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D388,STATE,STATE,native,0.13710375203663855,predictions/v2_native/C2__STATE__C2_soskic_LODO_D388.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D389,STATE,STATE,native,0.13928563235460387,predictions/v2_native/C2__STATE__C2_soskic_LODO_D389.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D390,STATE,STATE,native,0.02945484966581011,predictions/v2_native/C2__STATE__C2_soskic_LODO_D390.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D391,STATE,STATE,native,0.1824784198753532,predictions/v2_native/C2__STATE__C2_soskic_LODO_D391.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D392,STATE,STATE,native,0.11008931252517981,predictions/v2_native/C2__STATE__C2_soskic_LODO_D392.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D393,STATE,STATE,native,0.14063828141808626,predictions/v2_native/C2__STATE__C2_soskic_LODO_D393.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D394,STATE,STATE,native,0.11308187172481754,predictions/v2_native/C2__STATE__C2_soskic_LODO_D394.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D395,STATE,STATE,native,0.08660998778316191,predictions/v2_native/C2__STATE__C2_soskic_LODO_D395.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D396,STATE,STATE,native,0.11571938448265495,predictions/v2_native/C2__STATE__C2_soskic_LODO_D396.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D397,STATE,STATE,native,0.16245616248528336,predictions/v2_native/C2__STATE__C2_soskic_LODO_D397.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D398,STATE,STATE,native,0.21969056859604233,predictions/v2_native/C2__STATE__C2_soskic_LODO_D398.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D405,STATE,STATE,native,0.16067894091084628,predictions/v2_native/C2__STATE__C2_soskic_LODO_D405.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D406,STATE,STATE,native,0.14646703521489227,predictions/v2_native/C2__STATE__C2_soskic_LODO_D406.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D407,STATE,STATE,native,0.17379232029123937,predictions/v2_native/C2__STATE__C2_soskic_LODO_D407.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D408,STATE,STATE,native,0.11294720192620566,predictions/v2_native/C2__STATE__C2_soskic_LODO_D408.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D409,STATE,STATE,native,0.10524191515194996,predictions/v2_native/C2__STATE__C2_soskic_LODO_D409.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D410,STATE,STATE,native,0.1272561955345917,predictions/v2_native/C2__STATE__C2_soskic_LODO_D410.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D411,STATE,STATE,native,0.12046708341594661,predictions/v2_native/C2__STATE__C2_soskic_LODO_D411.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D412,STATE,STATE,native,0.17800986573621017,predictions/v2_native/C2__STATE__C2_soskic_LODO_D412.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D413,STATE,STATE,native,0.10126064770740414,predictions/v2_native/C2__STATE__C2_soskic_LODO_D413.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D414,STATE,STATE,native,0.07861195243592513,predictions/v2_native/C2__STATE__C2_soskic_LODO_D414.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D415,STATE,STATE,native,0.22621444801688328,predictions/v2_native/C2__STATE__C2_soskic_LODO_D415.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D416,STATE,STATE,native,0.12035691846051308,predictions/v2_native/C2__STATE__C2_soskic_LODO_D416.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D417,STATE,STATE,native,0.07320392197429453,predictions/v2_native/C2__STATE__C2_soskic_LODO_D417.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D418,STATE,STATE,native,0.12199629284260241,predictions/v2_native/C2__STATE__C2_soskic_LODO_D418.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D419,STATE,STATE,native,0.1000639795584974,predictions/v2_native/C2__STATE__C2_soskic_LODO_D419.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D420,STATE,STATE,native,0.18341553162010735,predictions/v2_native/C2__STATE__C2_soskic_LODO_D420.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D421,STATE,STATE,native,0.11009309690199694,predictions/v2_native/C2__STATE__C2_soskic_LODO_D421.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D422,STATE,STATE,native,-0.005745027965692803,predictions/v2_native/C2__STATE__C2_soskic_LODO_D422.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D423,STATE,STATE,native,0.012254778088114513,predictions/v2_native/C2__STATE__C2_soskic_LODO_D423.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D424,STATE,STATE,native,0.06573629732721122,predictions/v2_native/C2__STATE__C2_soskic_LODO_D424.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D425,STATE,STATE,native,0.02682022600943255,predictions/v2_native/C2__STATE__C2_soskic_LODO_D425.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D426,STATE,STATE,native,0.11218151756090486,predictions/v2_native/C2__STATE__C2_soskic_LODO_D426.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D427,STATE,STATE,native,0.08067460343603902,predictions/v2_native/C2__STATE__C2_soskic_LODO_D427.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D428,STATE,STATE,native,0.06328352012206898,predictions/v2_native/C2__STATE__C2_soskic_LODO_D428.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D429,STATE,STATE,native,0.039868680573459145,predictions/v2_native/C2__STATE__C2_soskic_LODO_D429.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D430,STATE,STATE,native,0.26890055098225724,predictions/v2_native/C2__STATE__C2_soskic_LODO_D430.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D431,STATE,STATE,native,0.11477155527352488,predictions/v2_native/C2__STATE__C2_soskic_LODO_D431.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D432,STATE,STATE,native,0.1285984825887337,predictions/v2_native/C2__STATE__C2_soskic_LODO_D432.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D433,STATE,STATE,native,0.1462580025472788,predictions/v2_native/C2__STATE__C2_soskic_LODO_D433.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D434,STATE,STATE,native,0.10106722822536626,predictions/v2_native/C2__STATE__C2_soskic_LODO_D434.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D435,STATE,STATE,native,0.15314142145145668,predictions/v2_native/C2__STATE__C2_soskic_LODO_D435.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D436,STATE,STATE,native,0.12483237646546845,predictions/v2_native/C2__STATE__C2_soskic_LODO_D436.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D439,STATE,STATE,native,0.1385416724998928,predictions/v2_native/C2__STATE__C2_soskic_LODO_D439.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D440,STATE,STATE,native,0.11241440663400329,predictions/v2_native/C2__STATE__C2_soskic_LODO_D440.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D441,STATE,STATE,native,0.1286375004285134,predictions/v2_native/C2__STATE__C2_soskic_LODO_D441.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D442,STATE,STATE,native,0.09334927652626239,predictions/v2_native/C2__STATE__C2_soskic_LODO_D442.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D443,STATE,STATE,native,0.09385946805259715,predictions/v2_native/C2__STATE__C2_soskic_LODO_D443.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D445,STATE,STATE,native,0.18178710532477332,predictions/v2_native/C2__STATE__C2_soskic_LODO_D445.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D446,STATE,STATE,native,0.14307474894588587,predictions/v2_native/C2__STATE__C2_soskic_LODO_D446.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D447,STATE,STATE,native,0.237316133397106,predictions/v2_native/C2__STATE__C2_soskic_LODO_D447.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D448,STATE,STATE,native,0.20184797172182323,predictions/v2_native/C2__STATE__C2_soskic_LODO_D448.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D449,STATE,STATE,native,0.17920074296426527,predictions/v2_native/C2__STATE__C2_soskic_LODO_D449.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D450,STATE,STATE,native,0.11046990964168776,predictions/v2_native/C2__STATE__C2_soskic_LODO_D450.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D451,STATE,STATE,native,0.35647001689377733,predictions/v2_native/C2__STATE__C2_soskic_LODO_D451.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D452,STATE,STATE,native,0.1590058104322473,predictions/v2_native/C2__STATE__C2_soskic_LODO_D452.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D453,STATE,STATE,native,0.1879131096450263,predictions/v2_native/C2__STATE__C2_soskic_LODO_D453.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D454,STATE,STATE,native,0.3299267214177381,predictions/v2_native/C2__STATE__C2_soskic_LODO_D454.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D455,STATE,STATE,native,0.16616569341925247,predictions/v2_native/C2__STATE__C2_soskic_LODO_D455.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D456,STATE,STATE,native,0.1589127541883058,predictions/v2_native/C2__STATE__C2_soskic_LODO_D456.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D457,STATE,STATE,native,0.12961454749374413,predictions/v2_native/C2__STATE__C2_soskic_LODO_D457.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D458,STATE,STATE,native,0.1711913415496391,predictions/v2_native/C2__STATE__C2_soskic_LODO_D458.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D459,STATE,STATE,native,0.2497706867589922,predictions/v2_native/C2__STATE__C2_soskic_LODO_D459.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D460,STATE,STATE,native,0.17724096927749958,predictions/v2_native/C2__STATE__C2_soskic_LODO_D460.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D461,STATE,STATE,native,0.16361888552955384,predictions/v2_native/C2__STATE__C2_soskic_LODO_D461.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D462,STATE,STATE,native,0.08970137495967728,predictions/v2_native/C2__STATE__C2_soskic_LODO_D462.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D463,STATE,STATE,native,0.2469411247126359,predictions/v2_native/C2__STATE__C2_soskic_LODO_D463.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D464,STATE,STATE,native,0.25202042598735713,predictions/v2_native/C2__STATE__C2_soskic_LODO_D464.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D465,STATE,STATE,native,0.2048789570095928,predictions/v2_native/C2__STATE__C2_soskic_LODO_D465.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D466,STATE,STATE,native,0.13972868210501396,predictions/v2_native/C2__STATE__C2_soskic_LODO_D466.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D481,STATE,STATE,native,0.12703111054259109,predictions/v2_native/C2__STATE__C2_soskic_LODO_D481.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D482,STATE,STATE,native,0.15337239454858184,predictions/v2_native/C2__STATE__C2_soskic_LODO_D482.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D483,STATE,STATE,native,0.13334725689888355,predictions/v2_native/C2__STATE__C2_soskic_LODO_D483.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D484,STATE,STATE,native,0.10576980652116552,predictions/v2_native/C2__STATE__C2_soskic_LODO_D484.npz
+T2,T2,C2,donor/Soskic,donor (LODO),donor,D485,STATE,STATE,native,0.08278861656781565,predictions/v2_native/C2__STATE__C2_soskic_LODO_D485.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D348,cell-mean,cell-mean,floor,0.24417475092198893,predictions/C2/C2_LODO__cell-mean__C2_lodo_D348.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D349,cell-mean,cell-mean,floor,0.27321892817825033,predictions/C2/C2_LODO__cell-mean__C2_lodo_D349.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D350,cell-mean,cell-mean,floor,0.17511813254000141,predictions/C2/C2_LODO__cell-mean__C2_lodo_D350.npz
@@ -1245,85 +1253,102 @@ T2,T2,C2,donor/Soskic,donor (LODO),donor,D482,scPRAM,scPRAM,native,0.10310617708
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D483,scPRAM,scPRAM,native,0.1511941962958885,predictions/C2/C2__scPRAM__C2_soskic_LODO_D483.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D484,scPRAM,scPRAM,native,0.12770765779633192,predictions/C2/C2__scPRAM__C2_soskic_LODO_D484.npz
 T2,T2,C2,donor/Soskic,donor (LODO),donor,D485,scPRAM,scPRAM,native,0.26497344837237835,predictions/C2/C2__scPRAM__C2_soskic_LODO_D485.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,AttentionPert,AttentionPert,native,0.20839530722189695,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__chen.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,AttentionPert,AttentionPert,native,0.3213628227840932,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,AttentionPert,AttentionPert,native,0.12994650951309258,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,AttentionPert,AttentionPert,native,0.33042956173805177,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__schmidt.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,AttentionPert,AttentionPert,native,0.14438642419024977,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__shifrut.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,Biolord,Biolord,native,0.3782527690994462,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__chen.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,Biolord,Biolord,native,0.4567718551596923,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,Biolord,Biolord,native,0.3200599629594275,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,Biolord,Biolord,native,0.4981262519237667,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__schmidt.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,Biolord,Biolord,native,0.3173572304819091,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__shifrut.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,CINEMA-OT,CINEMA-OT,diagnostic,0.46259645241556996,predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__chen.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,CINEMA-OT,CINEMA-OT,diagnostic,0.5529154511849891,predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,CINEMA-OT,CINEMA-OT,diagnostic,0.4333195174180829,predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,CINEMA-OT,CINEMA-OT,diagnostic,0.45310440733265656,predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__schmidt.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,CINEMA-OT,CINEMA-OT,diagnostic,0.38738776694625804,predictions/C3/C3_LO_gene__CINEMA-OT__C3_true_lo_gene_10__shifrut.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,CellFlow,CellFlow,native,0.3436622487341155,predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__chen.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,CellFlow,CellFlow,native,0.17534030267276568,predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,CellFlow,CellFlow,native,0.3038201152835858,predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,CellFlow,CellFlow,native,0.4096690507782074,predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__schmidt.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,CellFlow,CellFlow,native,0.37245565129725844,predictions/C3_LO_gene__CellFlow__C3_true_lo_gene_10__shifrut.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,GEARS,GEARS,native,0.19766963594569145,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__chen.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,GEARS,GEARS,native,0.3339466236849527,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,GEARS,GEARS,native,0.009893987374978236,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,GEARS,GEARS,native,0.3185476623563565,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__schmidt.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,GEARS,GEARS,native,0.17491535125388885,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__shifrut.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,PerturbNet,PerturbNet,native,0.32013531897189357,predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__chen.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,PerturbNet,PerturbNet,native,0.4257241869175292,predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,PerturbNet,PerturbNet,native,0.2888869607315873,predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,PerturbNet,PerturbNet,native,0.46126896479862733,predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__schmidt.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,PerturbNet,PerturbNet,native,0.312449785287674,predictions/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__shifrut.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,cell-mean,cell-mean,floor,0.5161272861419791,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__chen.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,cell-mean,cell-mean,floor,0.5917022210811875,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,cell-mean,cell-mean,floor,0.4568211452495244,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,cell-mean,cell-mean,floor,0.45579178267895043,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,cell-mean,cell-mean,floor,0.44821560011367867,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__shifrut.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,linear-PCA,linear-PCA,floor,0.3918871493165301,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__chen.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,linear-PCA,linear-PCA,floor,0.4486456095219666,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,linear-PCA,linear-PCA,floor,0.0858271501634954,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,linear-PCA,linear-PCA,floor,0.271160287009302,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__schmidt.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,linear-PCA,linear-PCA,floor,0.28534475476922894,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__shifrut.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,scGPT,scGPT,native,0.3859064820746299,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__chen.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,scGPT,scGPT,native,0.33149455281183393,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,scGPT,scGPT,native,0.0027788405187689214,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,scGPT,scGPT,native,0.2808351362850464,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__schmidt.npz
-T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,scGPT,scGPT,native,-0.17425221994690682,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__shifrut.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,AttentionPert,AttentionPert,native,0.5142311348174518,predictions/C4/C4_Axis2__AttentionPert__C4_modality_lo_ko_25.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,AttentionPert,AttentionPert,native,0.5016334840765589,predictions/C4/C4_Axis2__AttentionPert__C4_modality_lo_ko_50.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,Biolord,Biolord,native,0.6264579209728364,predictions/C4_Axis2__Biolord__C4_modality_lo_ko_25.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,Biolord,Biolord,native,0.5990873045584996,predictions/C4_Axis2__Biolord__C4_modality_lo_ko_50.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,CellFlow,CellFlow,native,0.5021610709224367,predictions/C4_Axis2__CellFlow__C4_modality_lo_ko_25.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,CellFlow,CellFlow,native,0.4825605189550563,predictions/C4_Axis2__CellFlow__C4_modality_lo_ko_50.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,GEARS,GEARS,native,0.468826781824024,predictions/C4/C4_Axis2__GEARS__C4_modality_lo_ko_25.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,GEARS,GEARS,native,0.4145659320752334,predictions/C4/C4_Axis2__GEARS__C4_modality_lo_ko_50.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,PerturbNet,PerturbNet,native,0.6111098926608751,predictions/C4_Axis2__PerturbNet__C4_modality_lo_ko_25.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,PerturbNet,PerturbNet,native,0.5851416197983073,predictions/C4_Axis2__PerturbNet__C4_modality_lo_ko_50.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,cell-mean,cell-mean,floor,0.6719523842604803,predictions/C4/C4_Axis2__cell-mean__C4_modality_lo_ko_25.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,cell-mean,cell-mean,floor,0.6505081998808627,predictions/C4/C4_Axis2__cell-mean__C4_modality_lo_ko_50.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,linear-PCA,linear-PCA,floor,0.29149318799724927,predictions/C4/C4_Axis2__linear-PCA__C4_modality_lo_ko_25.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,linear-PCA,linear-PCA,floor,0.2751580313018566,predictions/C4/C4_Axis2__linear-PCA__C4_modality_lo_ko_50.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,linear-shift-KOemb,linear-shift-KOemb,diagnostic,0.6172898131197707,predictions/C4/C4_Axis2__linear-shift-KOemb__C4_modality_lo_ko_25.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,linear-shift-KOemb,linear-shift-KOemb,diagnostic,0.6180576555777835,predictions/C4/C4_Axis2__linear-shift-KOemb__C4_modality_lo_ko_50.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,scGPT,scGPT,native,0.5724107069579517,predictions/C4/C4_Axis2__scGPT__C4_modality_lo_ko_25.npz
-T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,scGPT,scGPT,native,0.541210974377705,predictions/C4/C4_Axis2__scGPT__C4_modality_lo_ko_50.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,Biolord,Biolord,native,0.11659766566279259,predictions/C5_LOCT__Biolord__C5_loct_B.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,Biolord,Biolord,native,0.06225666659212706,predictions/C5_LOCT__Biolord__C5_loct_Mono.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,Biolord,Biolord,native,0.05383444433187623,predictions/C5_LOCT__Biolord__C5_loct_NK.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,Biolord,Biolord,native,0.08213132107655759,predictions/C5_LOCT__Biolord__C5_loct_T_cells.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,CINEMA-OT,CINEMA-OT,diagnostic,0.27297268296135513,predictions/C5/C1_LOCT__CINEMA-OT__C5_loct_B.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,CINEMA-OT,CINEMA-OT,diagnostic,0.1898790792145425,predictions/C5/C1_LOCT__CINEMA-OT__C5_loct_Mono.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,CINEMA-OT,CINEMA-OT,diagnostic,0.2515329053724629,predictions/C5/C1_LOCT__CINEMA-OT__C5_loct_NK.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,CINEMA-OT,CINEMA-OT,diagnostic,0.2988785600163919,predictions/C5/C1_LOCT__CINEMA-OT__C5_loct_T_cells.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,AttentionPert,AttentionPert,native,0.20630010311741107,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,AttentionPert,AttentionPert,native,0.32017612002680884,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,AttentionPert,AttentionPert,native,0.12873712777736873,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,AttentionPert,AttentionPert,native,0.3761022574160742,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,AttentionPert,AttentionPert,native,0.14655158122501935,predictions/C3/C3_LO_gene__AttentionPert__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,Biolord,Biolord,native,0.37445989494474397,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,Biolord,Biolord,native,0.45901757630479195,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,Biolord,Biolord,native,0.32395153440407903,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,Biolord,Biolord,native,0.5346045190858292,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,Biolord,Biolord,native,0.3175479331844314,predictions/C3_LO_gene__Biolord__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,CellFlow,CellFlow,native,0.3410207521720667,predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,CellFlow,CellFlow,native,0.17461286087429756,predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,CellFlow,CellFlow,native,0.30416171657423624,predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,CellFlow,CellFlow,native,0.4399262168726624,predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,CellFlow,CellFlow,native,0.37595334673713016,predictions/v2_native/C3_LO_gene__CellFlow__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,GEARS,GEARS,native,0.19320916756655931,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,GEARS,GEARS,native,0.3395100076042519,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,GEARS,GEARS,native,0.00678436909732745,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,GEARS,GEARS,native,0.35033423727024215,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,GEARS,GEARS,native,0.1745993705098823,predictions/C3/C3_LO_gene__GEARS__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,PertAdapt,PertAdapt,native,0.16894294419652897,predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,PertAdapt,PertAdapt,native,0.398881531347824,predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,PertAdapt,PertAdapt,native,0.23351598443458288,predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,PertAdapt,PertAdapt,native,0.2707313760625104,predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,PertAdapt,PertAdapt,native,0.12858040726355502,predictions/v2_native/C3_LO_gene__PertAdapt__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,PerturbNet,PerturbNet,native,0.3214094770722494,predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,PerturbNet,PerturbNet,native,0.43086030195380054,predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,PerturbNet,PerturbNet,native,0.28796263771396746,predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,PerturbNet,PerturbNet,native,0.49740671111834306,predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,PerturbNet,PerturbNet,native,0.31845522167263984,predictions/v2_native/C3_LO_gene__PerturbNet__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,STATE,STATE,native,0.10241201028597365,predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,STATE,STATE,native,0.18395775335811984,predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,STATE,STATE,native,0.05401128826997932,predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,STATE,STATE,native,0.3315695308232292,predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,STATE,STATE,native,0.045394261650647943,predictions/v2_native/C3_LO_gene__STATE__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,cell-mean,cell-mean,floor,0.5165414816363149,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,cell-mean,cell-mean,floor,0.5939835283886649,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,cell-mean,cell-mean,floor,0.4568569338722511,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,cell-mean,cell-mean,floor,0.49086681803084137,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,cell-mean,cell-mean,floor,0.451803269057297,predictions/C3/C3_LO_gene__cell-mean__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,linear-PCA,linear-PCA,floor,0.389627628172583,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,linear-PCA,linear-PCA,floor,0.45009299588993307,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,linear-PCA,linear-PCA,floor,0.08376816682106045,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,linear-PCA,linear-PCA,floor,0.2960190049241712,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,linear-PCA,linear-PCA,floor,0.28646434028818885,predictions/C3/C3_LO_gene__linear-PCA__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,linear-shift-KOemb,linear-shift-KOemb,diagnostic,0.5094139108399026,predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,linear-shift-KOemb,linear-shift-KOemb,diagnostic,0.5962135295592771,predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,linear-shift-KOemb,linear-shift-KOemb,diagnostic,0.4299584209793265,predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,linear-shift-KOemb,linear-shift-KOemb,diagnostic,0.4892249091003568,predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,linear-shift-KOemb,linear-shift-KOemb,diagnostic,0.44556479193421056,predictions/v2_native/C3_LO_gene__linear-shift-KOemb__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,scFoundation,scFoundation,native,0.2260698401166946,predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,scFoundation,scFoundation,native,0.25069816164774433,predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,scFoundation,scFoundation,native,0.10455478229689416,predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,scFoundation,scFoundation,native,0.0807274818352242,predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,scFoundation,scFoundation,native,-0.010724148681505872,predictions/v2_native/C3_LO_gene__scFoundation__C3_true_lo_gene_10__shifrut.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,chen,scGPT,scGPT,native,0.3876211829423824,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__chen.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRa,scGPT,scGPT,native,0.3340238455479416,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__mccutcheon_CRISPRa.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,mccutcheon_CRISPRi,scGPT,scGPT,native,0.0038209638484298647,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__mccutcheon_CRISPRi.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,schmidt,scGPT,scGPT,native,0.2916060660764714,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__schmidt.npz
+T3,T3,C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),dataset,shifrut,scGPT,scGPT,native,-0.17297155597493938,predictions/C3/C3_LO_gene__scGPT__C3_true_lo_gene_10__shifrut.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,AttentionPert,AttentionPert,native,0.5123464340936542,predictions/v2_native/C4_Axis2__AttentionPert__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,AttentionPert,AttentionPert,native,0.4940683110358303,predictions/v2_native/C4_Axis2__AttentionPert__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,Biolord,Biolord,native,0.6249820180764021,predictions/C4_Axis2__Biolord__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,Biolord,Biolord,native,0.5980274873633118,predictions/C4_Axis2__Biolord__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,CellFlow,CellFlow,native,0.4967726766985753,predictions/v2_native/C4_Axis2__CellFlow__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,CellFlow,CellFlow,native,0.47843414530253153,predictions/v2_native/C4_Axis2__CellFlow__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,GEARS,GEARS,native,0.4616020909102992,predictions/v2_native/C4_Axis2__GEARS__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,GEARS,GEARS,native,0.41350241092224826,predictions/v2_native/C4_Axis2__GEARS__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,PertAdapt,PertAdapt,native,0.5021404832296693,predictions/v2_native/C4_Axis2__PertAdapt__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,PertAdapt,PertAdapt,native,0.5286172425277305,predictions/v2_native/C4_Axis2__PertAdapt__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,PerturbNet,PerturbNet,native,0.608518163011651,predictions/v2_native/C4_Axis2__PerturbNet__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,PerturbNet,PerturbNet,native,0.5831564569262022,predictions/v2_native/C4_Axis2__PerturbNet__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,STATE,STATE,native,0.23683880459465514,predictions/v2_native/C4_Axis2__STATE__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,STATE,STATE,native,0.22841570035194195,predictions/v2_native/C4_Axis2__STATE__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,cell-mean,cell-mean,floor,0.6703519822070186,predictions/C4/C4_Axis2__cell-mean__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,cell-mean,cell-mean,floor,0.6492796208070685,predictions/C4/C4_Axis2__cell-mean__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,linear-PCA,linear-PCA,floor,0.28477198085023286,predictions/C4/C4_Axis2__linear-PCA__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,linear-PCA,linear-PCA,floor,0.2703448124298907,predictions/C4/C4_Axis2__linear-PCA__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,linear-shift-KOemb,linear-shift-KOemb,diagnostic,0.6131715705835082,predictions/v2_native/C4_Axis2__linear-shift-KOemb__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,linear-shift-KOemb,linear-shift-KOemb,diagnostic,0.6154818312046215,predictions/v2_native/C4_Axis2__linear-shift-KOemb__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,scFoundation,scFoundation,native,0.2975080631057601,predictions/v2_native/C4_Axis2__scFoundation__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,scFoundation,scFoundation,native,0.30811205524160745,predictions/v2_native/C4_Axis2__scFoundation__C4_modality_lo_ko_50.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_25,scGPT,scGPT,native,0.5900529038030143,predictions/v2_native/C4_Axis2__scGPT__C4_modality_lo_ko_25.npz
+T4,T4,C4,complex/Frangieh,"unseen-KO (modality, RNA)",modality-fold,C4_modality_lo_ko_50,scGPT,scGPT,native,0.5463689192052171,predictions/v2_native/C4_Axis2__scGPT__C4_modality_lo_ko_50.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,CPA,CPA,native,0.11074350534869808,predictions/v2_native/C5_LOCT__CPA__C5_loct_B.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,CPA,CPA,native,-0.01632518983130606,predictions/v2_native/C5_LOCT__CPA__C5_loct_Mono.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,CPA,CPA,native,0.1040326124579465,predictions/v2_native/C5_LOCT__CPA__C5_loct_NK.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,CPA,CPA,native,0.04398480374923696,predictions/v2_native/C5_LOCT__CPA__C5_loct_T_cells.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,CellFlow,CellFlow,native,0.10031796437416915,predictions/C5_LOCT__CellFlow__C5_loct_B.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,CellFlow,CellFlow,native,0.06858944630536244,predictions/C5_LOCT__CellFlow__C5_loct_Mono.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,CellFlow,CellFlow,native,0.09279681756303652,predictions/C5_LOCT__CellFlow__C5_loct_NK.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,CellFlow,CellFlow,native,0.15357761670570186,predictions/C5_LOCT__CellFlow__C5_loct_T_cells.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,CellOT,CellOT,native,0.059821272232449,predictions/C5_LOCT__CellOT__C5_loct_B.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,CellOT,CellOT,native,0.04412586837544825,predictions/C5_LOCT__CellOT__C5_loct_Mono.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,CellOT,CellOT,native,0.1641414166275829,predictions/C5_LOCT__CellOT__C5_loct_NK.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,CellOT,CellOT,native,0.13786420255465803,predictions/C5_LOCT__CellOT__C5_loct_T_cells.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,CellOT,CellOT,native,0.14801831656239897,predictions/v2_native/C5_LOCT__CellOT__C5_loct_B.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,CellOT,CellOT,native,0.14504380340085185,predictions/v2_native/C5_LOCT__CellOT__C5_loct_Mono.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,CellOT,CellOT,native,0.2557348337195982,predictions/v2_native/C5_LOCT__CellOT__C5_loct_NK.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,CellOT,CellOT,native,0.22572086511431333,predictions/v2_native/C5_LOCT__CellOT__C5_loct_T_cells.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,FP-ridge,FP-ridge,diagnostic,0.41557680280232406,predictions/C5/C1_LOCT__FP-ridge__C5_loct_B.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,FP-ridge,FP-ridge,diagnostic,0.30570868567599013,predictions/C5/C1_LOCT__FP-ridge__C5_loct_Mono.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,FP-ridge,FP-ridge,diagnostic,0.3898076443662576,predictions/C5/C1_LOCT__FP-ridge__C5_loct_NK.npz
@@ -1332,6 +1357,14 @@ T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,PRnet,PRnet,native,0.13320
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,PRnet,PRnet,native,0.04120661628001475,predictions/C5_LOCT__PRnet__C5_loct_Mono.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,PRnet,PRnet,native,0.07808120548245313,predictions/C5_LOCT__PRnet__C5_loct_NK.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,PRnet,PRnet,native,0.1252356570186401,predictions/C5_LOCT__PRnet__C5_loct_T_cells.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,PerturbNet,PerturbNet,native,0.1224272961411901,predictions/v2_native/C5_LOCT__PerturbNet__C5_loct_B.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,PerturbNet,PerturbNet,native,0.10427375769797395,predictions/v2_native/C5_LOCT__PerturbNet__C5_loct_Mono.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,PerturbNet,PerturbNet,native,0.22238064245237563,predictions/v2_native/C5_LOCT__PerturbNet__C5_loct_NK.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,PerturbNet,PerturbNet,native,0.1473117935923207,predictions/v2_native/C5_LOCT__PerturbNet__C5_loct_T_cells.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,STATE,STATE,native,0.08305742869204565,predictions/v2_native/C5_LOCT__STATE__C5_loct_B.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,STATE,STATE,native,-0.0048170383812991295,predictions/v2_native/C5_LOCT__STATE__C5_loct_Mono.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,STATE,STATE,native,0.034649229532572476,predictions/v2_native/C5_LOCT__STATE__C5_loct_NK.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,STATE,STATE,native,0.05378736578613429,predictions/v2_native/C5_LOCT__STATE__C5_loct_T_cells.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,cell-mean,cell-mean,floor,0.0741336363764497,predictions/C5/C1_LOCT__cell-mean__C5_loct_B.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,cell-mean,cell-mean,floor,0.018724629695881116,predictions/C5/C1_LOCT__cell-mean__C5_loct_Mono.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,cell-mean,cell-mean,floor,-0.004159008082909935,predictions/C5/C1_LOCT__cell-mean__C5_loct_NK.npz
@@ -1340,18 +1373,22 @@ T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,linear-PCA,linear-PCA,floo
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,linear-PCA,linear-PCA,floor,0.18464485458250002,predictions/C5/C1_LOCT__linear-PCA__C5_loct_Mono.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,linear-PCA,linear-PCA,floor,0.2593769112419187,predictions/C5/C1_LOCT__linear-PCA__C5_loct_NK.npz
 T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,linear-PCA,linear-PCA,floor,0.3339668867283791,predictions/C5/C1_LOCT__linear-PCA__C5_loct_T_cells.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,scFoundation,scFoundation,adapted,0.04966792107852179,predictions/C5/C1_LOCT__scFoundation__C5_loct_B.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,scFoundation,scFoundation,adapted,0.05895084140190594,predictions/C5/C1_LOCT__scFoundation__C5_loct_Mono.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,scFoundation,scFoundation,adapted,0.03525620410888529,predictions/C5/C1_LOCT__scFoundation__C5_loct_NK.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,scFoundation,scFoundation,adapted,0.0767304812133874,predictions/C5/C1_LOCT__scFoundation__C5_loct_T_cells.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,scGPT,scGPT,adapted,0.069745197199877,predictions/C5/C1_LOCT__scGPT__C5_loct_B.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,scGPT,scGPT,adapted,0.014461921445601805,predictions/C5/C1_LOCT__scGPT__C5_loct_Mono.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,scGPT,scGPT,adapted,-0.007575875741954584,predictions/C5/C1_LOCT__scGPT__C5_loct_NK.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,scGPT,scGPT,adapted,0.022199828071576926,predictions/C5/C1_LOCT__scGPT__C5_loct_T_cells.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,scPRAM,scPRAM,native,-0.02399670857777483,predictions/C5_LOCT__scPRAM__C5_loct_B.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,scPRAM,scPRAM,native,0.007090496627701175,predictions/C5_LOCT__scPRAM__C5_loct_Mono.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,scPRAM,scPRAM,native,-0.009602097574848742,predictions/C5_LOCT__scPRAM__C5_loct_NK.npz
-T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,scPRAM,scPRAM,native,-0.008273477335415034,predictions/C5_LOCT__scPRAM__C5_loct_T_cells.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,scFoundation,scFoundation,adapted,0.28432736237109996,predictions/C5_LOCT__scFoundation__C5_loct_B__op3_fcond.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,scFoundation,scFoundation,adapted,0.2793453597765234,predictions/C5_LOCT__scFoundation__C5_loct_Mono__op3_fcond.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,scFoundation,scFoundation,adapted,0.3754157233452769,predictions/C5_LOCT__scFoundation__C5_loct_NK__op3_fcond.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,scFoundation,scFoundation,adapted,0.37723175341393844,predictions/C5_LOCT__scFoundation__C5_loct_T_cells__op3_fcond.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,scGPT,scGPT,adapted,0.3783233615004612,predictions/C5_LOCT__scGPT__C5_loct_B__op3_fcond.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,scGPT,scGPT,adapted,0.2779576279202432,predictions/C5_LOCT__scGPT__C5_loct_Mono__op3_fcond.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,scGPT,scGPT,adapted,0.3491054203359287,predictions/C5_LOCT__scGPT__C5_loct_NK__op3_fcond.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,scGPT,scGPT,adapted,0.3815612953192547,predictions/C5_LOCT__scGPT__C5_loct_T_cells__op3_fcond.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,scGen,scGen,native,0.1274710289516907,predictions/v2_native/C5_LOCT__scGen__C5_loct_B.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,scGen,scGen,native,0.15880112345868566,predictions/v2_native/C5_LOCT__scGen__C5_loct_Mono.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,scGen,scGen,native,0.2414667742763602,predictions/v2_native/C5_LOCT__scGen__C5_loct_NK.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,scGen,scGen,native,0.19390335866362632,predictions/v2_native/C5_LOCT__scGen__C5_loct_T_cells.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,B,scPRAM,scPRAM,native,0.18596862016397758,predictions/v2_native/C5_LOCT__scPRAM__C5_loct_B.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,Mono,scPRAM,scPRAM,native,0.11888604098037724,predictions/v2_native/C5_LOCT__scPRAM__C5_loct_Mono.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,NK,scPRAM,scPRAM,native,0.21704925170616127,predictions/v2_native/C5_LOCT__scPRAM__C5_loct_NK.npz
+T5c,T5,C5,small-mol/OP3,cell-context (LOCT),lineage,T_cells,scPRAM,scPRAM,native,0.2028632297444176,predictions/v2_native/C5_LOCT__scPRAM__C5_loct_T_cells.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,Biolord,Biolord,native,0.2059891091688485,predictions/C5_unseen_cpd__Biolord__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=ABT-199 (GDC-0199),Biolord,Biolord,native,0.1298689467312074,predictions/C5_unseen_cpd__Biolord__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AT 7867,Biolord,Biolord,native,0.1728632047901137,predictions/C5_unseen_cpd__Biolord__C5_global_compound_holdout.npz
@@ -1380,62 +1417,34 @@ T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Tivozanib,Biolord,
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Topotecan,Biolord,Biolord,native,0.1370405693107498,predictions/C5_unseen_cpd__Biolord__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Vorinostat,Biolord,Biolord,native,0.2734045220775922,predictions/C5_unseen_cpd__Biolord__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=YK 4-279,Biolord,Biolord,native,0.0044425097792267915,predictions/C5_unseen_cpd__Biolord__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,CINEMA-OT,CINEMA-OT,diagnostic,0.3168422172509682,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=ABT-199 (GDC-0199),CINEMA-OT,CINEMA-OT,diagnostic,0.11388686925076255,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AT 7867,CINEMA-OT,CINEMA-OT,diagnostic,0.2395696766281079,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AZD3514,CINEMA-OT,CINEMA-OT,diagnostic,0.18429045207015787,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=BMS-536924,CINEMA-OT,CINEMA-OT,diagnostic,0.274913183401727,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Cabozantinib,CINEMA-OT,CINEMA-OT,diagnostic,0.14043519456050935,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clomipramine,CINEMA-OT,CINEMA-OT,diagnostic,0.21333328952849287,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clotrimazole,CINEMA-OT,CINEMA-OT,diagnostic,0.1743518159473132,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=GSK-1070916,CINEMA-OT,CINEMA-OT,diagnostic,0.18506702580081463,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=HYDROXYUREA,CINEMA-OT,CINEMA-OT,diagnostic,0.18217101465629182,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=IN1451,CINEMA-OT,CINEMA-OT,diagnostic,0.18085519612382334,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=LY2090314,CINEMA-OT,CINEMA-OT,diagnostic,0.097653199005033,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Lapatinib,CINEMA-OT,CINEMA-OT,diagnostic,0.14275864007958325,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Masitinib,CINEMA-OT,CINEMA-OT,diagnostic,0.21223995165331327,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Mometasone Furoate,CINEMA-OT,CINEMA-OT,diagnostic,0.30275305303558553,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Navitoclax,CINEMA-OT,CINEMA-OT,diagnostic,0.106624509478973,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=PRT-062607,CINEMA-OT,CINEMA-OT,diagnostic,0.2812481439595622,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Perhexiline,CINEMA-OT,CINEMA-OT,diagnostic,0.2694178509430282,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Pitavastatin Calcium,CINEMA-OT,CINEMA-OT,diagnostic,0.03256950969456713,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Proscillaridin A;Proscillaridin-A,CINEMA-OT,CINEMA-OT,diagnostic,0.10652030347124232,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Ricolinostat,CINEMA-OT,CINEMA-OT,diagnostic,0.11048038028617455,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=SCH-58261,CINEMA-OT,CINEMA-OT,diagnostic,0.14900466220247482,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Selumetinib,CINEMA-OT,CINEMA-OT,diagnostic,0.23296511645979784,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=TL_HRAS26,CINEMA-OT,CINEMA-OT,diagnostic,0.183286634117655,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Tivozanib,CINEMA-OT,CINEMA-OT,diagnostic,0.18929877695399822,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Topotecan,CINEMA-OT,CINEMA-OT,diagnostic,0.1622757074836356,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Vorinostat,CINEMA-OT,CINEMA-OT,diagnostic,-0.11529033825762741,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=YK 4-279,CINEMA-OT,CINEMA-OT,diagnostic,0.14143759863505956,predictions/C5/C5_unseen_cpd__CINEMA-OT__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,CPA,chemCPA,native,0.12637739546963744,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=ABT-199 (GDC-0199),CPA,chemCPA,native,0.13082015196242644,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AT 7867,CPA,chemCPA,native,0.13588509603567717,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AZD3514,CPA,chemCPA,native,0.11538239796297704,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=BMS-536924,CPA,chemCPA,native,0.13150561066969885,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Cabozantinib,CPA,chemCPA,native,0.11159238286138068,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clomipramine,CPA,chemCPA,native,0.13142081735745517,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clotrimazole,CPA,chemCPA,native,0.12808727420004157,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=GSK-1070916,CPA,chemCPA,native,0.13034224999004845,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=HYDROXYUREA,CPA,chemCPA,native,0.12753713490900254,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=IN1451,CPA,chemCPA,native,0.06594022495513094,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=LY2090314,CPA,chemCPA,native,0.18173821563883416,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Lapatinib,CPA,chemCPA,native,0.13244586581117263,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Masitinib,CPA,chemCPA,native,0.12498182933906522,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Mometasone Furoate,CPA,chemCPA,native,0.10680217447263837,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Navitoclax,CPA,chemCPA,native,0.1432561632055109,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=PRT-062607,CPA,chemCPA,native,0.11524581998857326,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Perhexiline,CPA,chemCPA,native,0.11816943070585667,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Pitavastatin Calcium,CPA,chemCPA,native,0.09185531956299257,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Proscillaridin A;Proscillaridin-A,CPA,chemCPA,native,0.1020823010866572,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Ricolinostat,CPA,chemCPA,native,0.0704475571988562,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=SCH-58261,CPA,chemCPA,native,0.11855148383081691,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Selumetinib,CPA,chemCPA,native,0.1185888985991101,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=TL_HRAS26,CPA,chemCPA,native,0.13743182036138132,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Tivozanib,CPA,chemCPA,native,0.12063920011729182,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Topotecan,CPA,chemCPA,native,0.16152868625574593,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Vorinostat,CPA,chemCPA,native,-0.18030116277965674,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=YK 4-279,CPA,chemCPA,native,0.12615384590795148,predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,CPA,chemCPA,native,0.08995842827057302,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=ABT-199 (GDC-0199),CPA,chemCPA,native,0.11158495710205267,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AT 7867,CPA,chemCPA,native,0.11077140661954567,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AZD3514,CPA,chemCPA,native,0.1217785490575892,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=BMS-536924,CPA,chemCPA,native,0.08989936867162976,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Cabozantinib,CPA,chemCPA,native,0.13154167883617904,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clomipramine,CPA,chemCPA,native,0.10264216925931928,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clotrimazole,CPA,chemCPA,native,0.11481693977929713,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=GSK-1070916,CPA,chemCPA,native,0.10330511273773027,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=HYDROXYUREA,CPA,chemCPA,native,0.11118521704533979,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=IN1451,CPA,chemCPA,native,0.09172682137409545,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=LY2090314,CPA,chemCPA,native,0.11688106014373231,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Lapatinib,CPA,chemCPA,native,0.11759826676426728,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Masitinib,CPA,chemCPA,native,0.1072627416677508,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Mometasone Furoate,CPA,chemCPA,native,0.08280555485947523,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Navitoclax,CPA,chemCPA,native,0.11284484319245575,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=PRT-062607,CPA,chemCPA,native,0.09977596188712878,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Perhexiline,CPA,chemCPA,native,0.08720251676349788,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Pitavastatin Calcium,CPA,chemCPA,native,0.1545010311084632,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Proscillaridin A;Proscillaridin-A,CPA,chemCPA,native,0.16014544858227187,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Ricolinostat,CPA,chemCPA,native,0.04251677497571489,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=SCH-58261,CPA,chemCPA,native,0.11141226589984819,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Selumetinib,CPA,chemCPA,native,0.12420876736384379,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=TL_HRAS26,CPA,chemCPA,native,0.10877900066775113,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Tivozanib,CPA,chemCPA,native,0.11067295938215518,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Topotecan,CPA,chemCPA,native,0.13430253887358912,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Vorinostat,CPA,chemCPA,native,-0.18188527417030814,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=YK 4-279,CPA,chemCPA,native,0.13222962868580723,predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,CellFlow,CellFlow,native,0.322547776974679,predictions/C5_unseen_cpd__CellFlow__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=ABT-199 (GDC-0199),CellFlow,CellFlow,native,0.1163333825210797,predictions/C5_unseen_cpd__CellFlow__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AT 7867,CellFlow,CellFlow,native,0.215927741249972,predictions/C5_unseen_cpd__CellFlow__C5_global_compound_holdout.npz
@@ -1520,34 +1529,62 @@ T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Tivozanib,PRnet,PR
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Topotecan,PRnet,PRnet,native,0.12050038970642057,predictions/C5_unseen_cpd__PRnet__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Vorinostat,PRnet,PRnet,native,-0.11004192488587382,predictions/C5_unseen_cpd__PRnet__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=YK 4-279,PRnet,PRnet,native,0.14921508110757387,predictions/C5_unseen_cpd__PRnet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,PerturbNet,PerturbNet,native,0.35916162050915357,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=ABT-199 (GDC-0199),PerturbNet,PerturbNet,native,0.055228329960233594,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AT 7867,PerturbNet,PerturbNet,native,0.2525378209759694,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AZD3514,PerturbNet,PerturbNet,native,0.17482506412891796,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=BMS-536924,PerturbNet,PerturbNet,native,0.2956284796935872,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Cabozantinib,PerturbNet,PerturbNet,native,0.08456075799855331,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clomipramine,PerturbNet,PerturbNet,native,0.21234493345079522,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clotrimazole,PerturbNet,PerturbNet,native,0.1405700909650059,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=GSK-1070916,PerturbNet,PerturbNet,native,0.12073634700020125,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=HYDROXYUREA,PerturbNet,PerturbNet,native,0.16209255293564506,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=IN1451,PerturbNet,PerturbNet,native,0.14174036921991512,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=LY2090314,PerturbNet,PerturbNet,native,0.06033687256929442,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Lapatinib,PerturbNet,PerturbNet,native,0.12998053163490358,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Masitinib,PerturbNet,PerturbNet,native,0.18524967202039294,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Mometasone Furoate,PerturbNet,PerturbNet,native,0.3586511630659285,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Navitoclax,PerturbNet,PerturbNet,native,0.005517811760435167,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=PRT-062607,PerturbNet,PerturbNet,native,0.3208295104670944,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Perhexiline,PerturbNet,PerturbNet,native,0.24477703868554934,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Pitavastatin Calcium,PerturbNet,PerturbNet,native,0.16530269911231282,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Proscillaridin A;Proscillaridin-A,PerturbNet,PerturbNet,native,0.12228882962624704,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Ricolinostat,PerturbNet,PerturbNet,native,0.08931705744961432,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=SCH-58261,PerturbNet,PerturbNet,native,0.12691000108924141,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Selumetinib,PerturbNet,PerturbNet,native,0.2207010612121953,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=TL_HRAS26,PerturbNet,PerturbNet,native,0.1720546332323442,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Tivozanib,PerturbNet,PerturbNet,native,0.1248143443176101,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Topotecan,PerturbNet,PerturbNet,native,0.16793780726694235,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Vorinostat,PerturbNet,PerturbNet,native,-0.16585853663793812,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
-T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=YK 4-279,PerturbNet,PerturbNet,native,0.19404908013267474,predictions/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,PerturbNet,PerturbNet,native,0.35916170011371157,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=ABT-199 (GDC-0199),PerturbNet,PerturbNet,native,0.05522835207983181,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AT 7867,PerturbNet,PerturbNet,native,0.25253778687005135,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AZD3514,PerturbNet,PerturbNet,native,0.17482516765514455,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=BMS-536924,PerturbNet,PerturbNet,native,0.2956284410930971,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Cabozantinib,PerturbNet,PerturbNet,native,0.08456077871315182,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clomipramine,PerturbNet,PerturbNet,native,0.21234494114531538,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clotrimazole,PerturbNet,PerturbNet,native,0.14057016024353852,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=GSK-1070916,PerturbNet,PerturbNet,native,0.12073648518274793,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=HYDROXYUREA,PerturbNet,PerturbNet,native,0.16209261708078118,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=IN1451,PerturbNet,PerturbNet,native,0.14174041838379947,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=LY2090314,PerturbNet,PerturbNet,native,0.060336955782506585,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Lapatinib,PerturbNet,PerturbNet,native,0.12998044906007572,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Masitinib,PerturbNet,PerturbNet,native,0.18524969818910364,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Mometasone Furoate,PerturbNet,PerturbNet,native,0.3586512180631092,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Navitoclax,PerturbNet,PerturbNet,native,0.0,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=PRT-062607,PerturbNet,PerturbNet,native,0.320829574616455,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Perhexiline,PerturbNet,PerturbNet,native,0.24477720192268326,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Pitavastatin Calcium,PerturbNet,PerturbNet,native,0.16530271227166202,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Proscillaridin A;Proscillaridin-A,PerturbNet,PerturbNet,native,0.12228886229650801,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Ricolinostat,PerturbNet,PerturbNet,native,0.08931699593108286,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=SCH-58261,PerturbNet,PerturbNet,native,0.12690991940478352,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Selumetinib,PerturbNet,PerturbNet,native,0.22070108375956948,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=TL_HRAS26,PerturbNet,PerturbNet,native,0.1720547115579249,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Tivozanib,PerturbNet,PerturbNet,native,0.12481436601692118,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Topotecan,PerturbNet,PerturbNet,native,0.1679378010826177,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Vorinostat,PerturbNet,PerturbNet,native,-0.16585817013604912,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=YK 4-279,PerturbNet,PerturbNet,native,0.19404900348595117,predictions/v2_native/C5_unseen_cpd__PerturbNet__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,STATE,STATE,native,0.21077412701177803,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=ABT-199 (GDC-0199),STATE,STATE,native,0.08376516101181032,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AT 7867,STATE,STATE,native,0.14743287139223302,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AZD3514,STATE,STATE,native,0.11221667366813667,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=BMS-536924,STATE,STATE,native,0.17959713375504888,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Cabozantinib,STATE,STATE,native,0.0954643216858568,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clomipramine,STATE,STATE,native,0.13808448539073306,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Clotrimazole,STATE,STATE,native,0.1218562509109169,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=GSK-1070916,STATE,STATE,native,0.13391583932052664,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=HYDROXYUREA,STATE,STATE,native,0.13177659684979898,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=IN1451,STATE,STATE,native,0.07185720652693124,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=LY2090314,STATE,STATE,native,0.07667846867364522,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Lapatinib,STATE,STATE,native,0.11159943462436174,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Masitinib,STATE,STATE,native,0.11509617985771019,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Mometasone Furoate,STATE,STATE,native,0.204732537460528,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Navitoclax,STATE,STATE,native,0.0783060522457647,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=PRT-062607,STATE,STATE,native,0.1900439386078131,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Perhexiline,STATE,STATE,native,0.17613967334995242,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Pitavastatin Calcium,STATE,STATE,native,0.02073870025246208,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Proscillaridin A;Proscillaridin-A,STATE,STATE,native,0.06660582161219973,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Ricolinostat,STATE,STATE,native,0.07563422244584678,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=SCH-58261,STATE,STATE,native,0.12423215386233594,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Selumetinib,STATE,STATE,native,0.1724508783448197,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=TL_HRAS26,STATE,STATE,native,0.1146395206917597,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Tivozanib,STATE,STATE,native,0.13946937289561395,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Topotecan,STATE,STATE,native,0.12189013638951285,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=Vorinostat,STATE,STATE,native,-0.08585499502613024,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
+T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=YK 4-279,STATE,STATE,native,0.09145185096542736,predictions/v2_native/C5_unseen_cpd__STATE__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=5-(9-Isopropyl-8-methyl-2-morpholino-9H-purin-6-yl)pyrimidin-2-amine,cell-mean,cell-mean,floor,0.31372118265273863,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=ABT-199 (GDC-0199),cell-mean,cell-mean,floor,0.118619974267478,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz
 T5u,T5,C5,small-mol/OP3,unseen-compound,compound,perturbation=AT 7867,cell-mean,cell-mean,floor,0.24118504971418642,predictions/C5/C5_unseen_cpd__cell-mean__C5_global_compound_holdout.npz

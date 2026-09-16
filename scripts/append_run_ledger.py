@@ -39,6 +39,42 @@ def main() -> None:
     rows = list(csv.DictReader(open(LEDGER)))
     fields = list(rows[0])
     have = {(r["model"], r["task"], r["sec"]) for r in rows}
+    # The elapsed-seconds key only catches a job whose time reproduces exactly, and the ledger
+    # already records which JOB each row came from, so key on that too. Without it a second pass
+    # of finish_census.sh re-adds a job the first pass had dropped as superseded -- the by_cell
+    # rule below picks the latest run of a cell out of `add` alone, and once the winner is in
+    # `rows` the loser is no longer competing with anything. finish_census.sh is meant to be
+    # re-runnable, so a second pass must not inflate the compute total in Table S16.
+    have_source = {r.get("source", "") for r in rows}
+
+    def _end_of(job: str) -> float:
+        """UTC end stamp of a finished job, from its status file."""
+        st = RUNS / f"{job}.status"
+        if not st.is_file():
+            return 0.0
+        m = re.search(r"(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ)", st.read_text())
+        if not m:
+            return 0.0
+        return datetime.strptime(m.group(1), TS).replace(tzinfo=timezone.utc).timestamp()
+
+    def _shard_of_job(job: str) -> str:
+        cmd = RUNS / f"{job}.cmd"
+        sh = shard_of(cmd.read_text().strip()) if cmd.is_file() else None
+        return f"{sh[0]}/{sh[1]}" if sh else ""
+
+    # The latest run ALREADY RECORDED for each cell. The by_cell rule below keeps only the last
+    # run of a cell, but it compares candidates against each other, not against the ledger -- so
+    # once the winner is written, a discarded earlier attempt for the same cell stops competing
+    # with anything and is added on the next pass. state_C5 (05:30Z) did exactly that against the
+    # v2_state_C5 row (07:51Z) it had already lost to.
+    recorded_end = {}
+    for r in rows:
+        src = r.get("source", "")
+        if not src.startswith("runs/") or not src.endswith(".status"):
+            continue
+        job = src[len("runs/"):-len(".status")]
+        cell = (r["model"], r["task"], _shard_of_job(job))
+        recorded_end[cell] = max(recorded_end.get(cell, 0.0), _end_of(job))
 
     add, skipped, superseded = [], [], []
     for st in sorted(RUNS.glob("*.status")):
@@ -74,13 +110,17 @@ def main() -> None:
             skipped.append((st.stem, "nonpositive elapsed"))
             continue
         key = (target[0], target[1], f"{sec}")
-        if key in have:
+        if key in have or f"runs/{st.stem}.status" in have_source:
             continue
         # A cell re-run under the corrected code appears twice in runs/: the discarded first
         # attempt (no bundle deposited, pre-fix code) and the run that produced the deposit.
         # Only the second is a cost of the reported census -- counting both would inflate S16.
         superseded.append((st.stem, target)) if False else None
         _sh = shard_of(cmd)
+        _cell = (target[0], target[1], f"{_sh[0]}/{_sh[1]}" if _sh else "")
+        if end <= recorded_end.get(_cell, 0.0):
+            skipped.append((st.stem, "an earlier attempt at a cell the ledger already records"))
+            continue
         add.append({
             "wave": WAVE, "model": target[0], "task": target[1],
             "sec": f"{sec}", "hours": f"{sec / 3600:.3f}",

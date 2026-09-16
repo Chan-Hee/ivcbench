@@ -10,6 +10,14 @@ This resolves it the way the audit requires: the OLD bundle is withdrawn by exac
 naming the run that supersedes it. Nothing is deleted; the history stays on disk and the registry
 records why it no longer counts.
 
+The filename is not always the same, though. STATE's C5 LOCT bundles were deposited in June under
+a wrong cluster stamp (predictions/C5/C1_LOCT__STATE__C5_loct_*.npz) and the re-run writes the
+right one (predictions/v2_native/C5_LOCT__STATE__C5_loct_*.npz), so a filename match sees a new
+cell with nothing to supersede and leaves both in place. What the census actually keys on is the
+bundle's identity -- its model and its split -- so that is the second thing matched here. Two
+eligible bundles sharing a model and a split ARE the ambiguity the assembler refuses; there is no
+case where both should count.
+
   python scripts/supersede_reruns.py [--apply]     (default: report only)
 """
 from __future__ import annotations
@@ -69,13 +77,47 @@ def main() -> None:
     _sys.path.insert(0, str(Path(__file__).resolve().parent))
     from assemble_cross_cluster import eligible_bundle
 
+    # model+split for every eligible bundle outside the re-run directory, for the identity match.
+    import numpy as np
+
+    def identity(path):
+        try:
+            d = np.load(path, allow_pickle=True)
+        except Exception:
+            return None
+        if "model" not in d.files or "split" not in d.files:
+            return None
+
+        def one(key):
+            a = d[key]
+            return str(a.item() if a.shape == () else a)
+
+        return one("model"), one("split")
+
+    by_identity = {}
+    for p in sorted(ROOT.joinpath("predictions").rglob("*.npz")):
+        if NEW in p.parents or not eligible_bundle(p):
+            continue
+        ident = identity(p)
+        if ident is not None:
+            by_identity.setdefault(ident, []).append(p)
+
     added, missing = [], []
     for new in sorted(NEW.glob("*.npz")):
+        # A re-run that was itself withdrawn cannot supersede anything. The cancelled CINEMA-OT
+        # jobs deposited here; without this, their partial output would withdraw the historical
+        # bundles the final 102 ruling says to keep.
+        if not eligible_bundle(new):
+            continue
         old = [
             p
             for p in ROOT.joinpath("predictions").rglob(new.name)
             if p != new and NEW not in p.parents and eligible_bundle(p)
         ]
+        if not old:
+            # Same cell, different filename: match on what the census keys on instead.
+            ident = identity(new)
+            old = list(by_identity.get(ident, [])) if ident else []
         if not old:
             missing.append(new.name)          # a genuinely new cell; nothing to supersede
             continue

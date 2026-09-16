@@ -244,7 +244,49 @@ def assert_uniform_metric_mask(df):
         )
 
 
+def assert_withdrawals_still_bind():
+    """A withdrawal is a decision. A later job writing over the file must not undo it silently.
+
+    _is_withdrawn pins each entry to a sha256 -- "still the exact execution that was withdrawn" --
+    which is right when a file is replaced by something legitimately different, and wrong when the
+    thing that replaced it is another run of what was already refused. That happened: 107 CINEMA-OT
+    bundles were withdrawn on 2026-09-14 and then overwritten by cinemaot_T1_v2/T2_v2, jobs the
+    final 102 ruling had cancelled, so every one of those withdrawals quietly lapsed and the
+    bundles were being scored again. Nothing downstream noticed, because a lapsed withdrawal looks
+    exactly like a bundle that was never withdrawn.
+
+    So: if a registered path exists with a different sha, stop. Either the write was a mistake, or
+    the decision needs re-recording against the new execution -- both are for a person to settle.
+    apply_panel_mask.py, the one tool that legitimately rewrites bundles in place, skips withdrawn
+    ones for this reason, so there is no benign case here.
+    """
+    import hashlib
+
+    lapsed = []
+    for rel, want in _WITHDRAWN.items():
+        if not want:
+            continue
+        path = os.path.join(ROOT, rel)
+        if not os.path.exists(path):
+            continue
+        h = hashlib.sha256()
+        with open(path, "rb") as fh:
+            for chunk in iter(lambda: fh.read(1 << 20), b""):
+                h.update(chunk)
+        if h.hexdigest() != want:
+            lapsed.append(rel)
+    if lapsed:
+        raise SystemExit(
+            "withdrawn bundles have been overwritten, so their withdrawal no longer binds and "
+            f"they are being scored again ({len(lapsed)}):\n  "
+            + "\n  ".join(lapsed[:12])
+            + ("\n  ..." if len(lapsed) > 12 else "")
+            + "\n\nRe-record the decision against the execution now on disk, or restore the file."
+        )
+
+
 def score_all():
+    assert_withdrawals_still_bind()
     files = sorted(
         f
         for f in glob.glob(

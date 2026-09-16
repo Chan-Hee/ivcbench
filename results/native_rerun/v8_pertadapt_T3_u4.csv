@@ -1,0 +1,2 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PertAdapt,hybrid,C3_true_lo_gene_10,run_headline,True,True,23496,1598,2,0.12230210378027931,0.11815897219474472,0.1264452353658139,7.51779519774532,,,shifrut

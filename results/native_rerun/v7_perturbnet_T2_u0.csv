@@ -1,0 +1,3 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+PerturbNet,generative,C2_lodo_D348,run_floor,True,True,119914,600,2,0.22004991982516756,0.06126816826956644,0.3788316713807687,6.0660066122086045,,,D348
+PerturbNet,generative,C2_lodo_D356,run_floor,True,True,119973,541,2,0.18622044707469104,0.06876599110529101,0.30367490304409106,5.877051010732022,,,D356

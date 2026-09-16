@@ -6,7 +6,10 @@
     "Biolord",
     "CellFlow",
     "GEARS",
+    "PertAdapt",
     "PerturbNet",
+    "STATE",
+    "scFoundation",
     "scGPT"
   ],
   "binding_floor": "cell-mean",

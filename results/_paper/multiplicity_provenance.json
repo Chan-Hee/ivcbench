@@ -1,6 +1,6 @@
 {
-  "family_size": 24,
-  "descriptive_cells": 23,
+  "family_size": 25,
+  "descriptive_cells": 31,
   "positive_supported": [
     "C2_donor_CellOT_vs_floor"
   ],

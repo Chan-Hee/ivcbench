@@ -1,0 +1,7 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+scFoundation,foundation,C3_true_lo_gene_10,failed,False,,,,,,,,,"RuntimeError: scFoundation runner failed (rc=1):
+… AssertionError: native inference graph basal is not an X_ctrl_inf row
+ Loss: 0.4073
+Epoch 14 Step 1601 Train Loss: 0.4526
+Epoch 14 Step 1651 Train Loss: 0.4543
+Epo",,mccutcheon_CRISPRi

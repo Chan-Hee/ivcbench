@@ -1,18 +1,25 @@
 cluster,task,split,family,models,deltas_vs_floor_mean,n_beat_both_floor,n_models,verdict_agreement,spearman_rho_pair,flag
+C1,cytokine/Kang,cell-context (LOCT),Flow,CellFlow+PerturbNet,"[0.1135, 0.1019]",2,2,agree,1.0,
 C1,cytokine/Kang,cell-context (LOCT),Foundation,scFoundation+scGPT,"[-0.0076, -0.0995]",0,2,agree,0.6666666666666669,
-C1,cytokine/Kang,cell-context (LOCT),Latent,Biolord+scGen,"[-0.0968, 0.0647]",0,2,agree,-0.5000000000000001,
+C1,cytokine/Kang,cell-context (LOCT),Latent,CPA+scGen,"[-0.2985, 0.0647]",0,2,agree,-0.04761904761904763,
 C1,cytokine/Kang,cell-context (LOCT),OT,CellOT+scPRAM,"[0.1016, 0.0658]",1,2,split,0.9047619047619048,
+C2,donor/Soskic,donor (LODO),Flow,CellFlow+PerturbNet,"[0.0893, 0.1065]",0,2,agree,0.7943723707081141,
 C2,donor/Soskic,donor (LODO),Foundation,scFoundation+scGPT,"[-0.0283, 0.1021]",0,2,agree,0.6898002367937124,
-C2,donor/Soskic,donor (LODO),Hybrid,PertAdapt+STATE,"[0.0716, 0.035]",0,2,agree,0.541809204725798,
-C2,donor/Soskic,donor (LODO),Latent,Biolord+scGen,"[-0.0659, -0.001]",0,2,agree,0.2761669647580422,
+C2,donor/Soskic,donor (LODO),Latent,CPA+scGen,"[0.0601, -0.001]",0,2,agree,0.5671511701136106,
 C2,donor/Soskic,donor (LODO),OT,CellOT+scPRAM,"[0.2186, 0.0111]",1,2,split,0.41923067234299827,
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Flow,CellFlow+PerturbNet,"[-0.0742, -0.0335]",0,2,agree,0.3,
-C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Graph,AttentionPert+GEARS,"[-0.1682, -0.1882]",0,2,agree,0.8999999999999998,
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",Flow,CellFlow+PerturbNet,"[0.0201, 0.1258]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design"
-C4,complex/Frangieh,"unseen-KO (modality, RNA)",Graph,AttentionPert+GEARS,"[0.0357, -0.0306]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design"
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Flow,CellFlow+PerturbNet,"[-0.0745, -0.0304]",0,2,agree,0.3,
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Foundation,scFoundation+scGPT,"[-0.2713, -0.2328]",0,2,agree,0.7999999999999999,
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Graph,AttentionPert+GEARS,"[-0.166, -0.1887]",0,2,agree,0.9999999999999999,
+C3,gene/CRISPR,unseen-perturbation (LO-gene 10%),Hybrid,PertAdapt+STATE,"[-0.1615, -0.2581]",0,2,agree,0.7999999999999999,
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",Flow,CellFlow+PerturbNet,"[0.0189, 0.1272]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design"
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",Foundation,scFoundation+scGPT,"[-0.1659, 0.0995]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design"
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",Graph,AttentionPert+GEARS,"[0.0345, -0.0311]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design"
+C4,complex/Frangieh,"unseen-KO (modality, RNA)",Hybrid,PertAdapt+STATE,"[0.0467, -0.2361]",0,2,agree,,"C4: 2 modality folds only (rho undefined, <3 biological-unit replicates); descriptive only, no inferential CI by design"
 C5,small-mol/OP3,cell-context (LOCT),Chemistry,FP-ridge+PRnet,"[0.2402, -0.0528]",1,2,split,0.7999999999999999,
-C5,small-mol/OP3,cell-context (LOCT),Foundation,scFoundation+scGPT,"[-0.0921, -0.1225]",0,2,agree,0.39999999999999997,
-C5,small-mol/OP3,cell-context (LOCT),OT,CINEMA-OT+CellOT+scPRAM,"[0.1061, -0.0457, -0.1559]",0,3,agree,,
+C5,small-mol/OP3,cell-context (LOCT),Flow,CellFlow+PerturbNet,"[-0.0434, 0.0019]",0,2,agree,0.39999999999999997,
+C5,small-mol/OP3,cell-context (LOCT),Foundation,scFoundation+scGPT,"[0.1819, 0.1995]",2,2,agree,0.7999999999999999,
+C5,small-mol/OP3,cell-context (LOCT),Latent,CPA+scGen,"[-0.0866, 0.0332]",0,2,agree,-0.19999999999999998,
+C5,small-mol/OP3,cell-context (LOCT),OT,CellOT+scPRAM,"[0.0464, 0.034]",0,2,agree,1.0,
 C5,small-mol/OP3,unseen-compound,Chemistry,FP-ridge+PRnet,"[0.0032, -0.0267]",0,2,agree,,
-C5,small-mol/OP3,unseen-compound,Flow,CellFlow+PerturbNet,"[0.0051, 0.0005]",0,2,agree,,
-C5,small-mol/OP3,unseen-compound,Latent,Biolord+CPA,"[-0.0343, -0.0494]",0,2,agree,,
+C5,small-mol/OP3,unseen-compound,Flow,CellFlow+PerturbNet,"[0.0051, 0.0003]",0,2,agree,,
+C5,small-mol/OP3,unseen-compound,Latent,Biolord+CPA,"[-0.0343, -0.061]",0,2,agree,,

@@ -1,1 +1,1 @@
-RUNNING 2026-09-14T18:48:45Z pid 904117
+KILLED 2026-09-15 by author: batch_size=2 (published GEARS default is 32) put a single unit past the 8h budget; three of three attempts timed out with ran=False. Re-run at the published batch after a time-bounded validation.

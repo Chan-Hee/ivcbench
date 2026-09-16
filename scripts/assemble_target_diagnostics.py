@@ -12,7 +12,7 @@ import json
 
 import pandas as pd
 
-from assemble_cross_cluster import ROOT
+from assemble_cross_cluster import EXPECTED_CENSUS_CELLS, ROOT
 
 PAPER = Path(ROOT) / "results/_paper"
 DATASETS = [
@@ -127,11 +127,14 @@ def attach_diagnostics(
         panel.loc[index, "precision_class"] = category
         panel.loc[index, "power_statement"] = statement
         panel.loc[index, "attenuation_statement"] = describe_attenuation(row)
-    assert (
-        len(panel) == 47
-        and panel.power_statement.notna().all()
-        and panel.attenuation_statement.notna().all()
+    # One row per reported cell. The count was written out as 47 when the census was that size,
+    # which then failed the whole summaries chain the moment the revision added cells. Take it
+    # from the assembler, which is where the panel size is decided.
+    assert len(panel) == EXPECTED_CENSUS_CELLS, (
+        f"{len(panel)} panel rows against {EXPECTED_CENSUS_CELLS} census cells"
     )
+    assert panel.power_statement.notna().all()
+    assert panel.attenuation_statement.notna().all()
     return panel
 
 

@@ -1,0 +1,8 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+scFoundation,foundation,C4_modality_lo_ko_25,failed,False,,,,,,,,,"RuntimeError: scFoundation runner failed (rc=1):
+… AssertionError
+ain Loss: 0.5674
+Epoch 13 Step 751 Train Loss: 0.9623
+Epoch 13 Step 801 Train Loss: 0.4474
+Epoch 13 Step 851 Train Loss: 1.0313
+Epoch 13 Step 901 Tr",,25

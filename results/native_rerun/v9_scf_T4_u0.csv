@@ -1,0 +1,2 @@
+baseline,family,split,action,ran,leak_free,n_train,n_test,n_test_strata,pearson_delta,pearson_delta_lo,pearson_delta_hi,e_distance,error,reason,unit
+scFoundation,foundation,C4_modality_lo_ko_25,run_headline,True,True,10700,3576,62,0.2975080626031626,0.27036472550640056,0.32302750312242895,7.40989027232327,,,25

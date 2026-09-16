@@ -1,30 +1,29 @@
 {
-  "census_cells": 47,
+  "census_cells": 56,
   "status": {
-    "native": 34,
-    "adapted": 7,
-    "diagnostic": 6
+    "native": 46,
+    "adapted": 6,
+    "diagnostic": 4
   },
   "per_task": {
-    "T1": 8,
+    "T1": 9,
     "T2": 9,
-    "T3": 7,
-    "T4": 7,
+    "T3": 10,
+    "T4": 10,
     "T5u": 7,
-    "T5c": 9
+    "T5c": 11
   },
   "per_task_models": {
-    "T1": 8,
+    "T1": 9,
     "T2": 9,
-    "T3": 6,
-    "T4": 6,
-    "T5u": 5,
-    "T5c": 7
+    "T3": 9,
+    "T4": 9,
+    "T5u": 6,
+    "T5c": 10
   },
   "models": [
     "AttentionPert",
     "Biolord",
-    "CINEMA-OT",
     "CPA",
     "CellFlow",
     "CellOT",
@@ -40,12 +39,11 @@
     "scGen",
     "scPRAM"
   ],
-  "n_models": 17,
-  "n_conditioned": 41,
+  "n_models": 16,
+  "n_conditioned": 52,
   "adapted_cells": [
     "scFoundation @ T1",
     "scGPT @ T1",
-    "PertAdapt @ T2",
     "scFoundation @ T2",
     "scGPT @ T2",
     "scFoundation @ T5c",
@@ -65,6 +63,12 @@
       "pd": 0.7865
     },
     {
+      "task": "T1",
+      "model": "PerturbNet",
+      "status": "native",
+      "pd": 0.7868
+    },
+    {
       "task": "T2",
       "model": "CellOT",
       "status": "native",
@@ -75,6 +79,18 @@
       "model": "FP-ridge",
       "status": "diagnostic",
       "pd": 0.3874
+    },
+    {
+      "task": "T5c",
+      "model": "scFoundation",
+      "status": "adapted",
+      "pd": 0.3291
+    },
+    {
+      "task": "T5c",
+      "model": "scGPT",
+      "status": "adapted",
+      "pd": 0.3467
     }
   ],
   "floors": {
@@ -87,12 +103,12 @@
       "linear_PCA": 0.0362
     },
     "T3": {
-      "cell_mean": 0.4937,
-      "linear_PCA": 0.2966
+      "cell_mean": 0.502,
+      "linear_PCA": 0.3012
     },
     "T4": {
-      "cell_mean": 0.6612,
-      "linear_PCA": 0.2833
+      "cell_mean": 0.6598,
+      "linear_PCA": 0.2776
     },
     "T5u": {
       "cell_mean": 0.1722,
@@ -110,10 +126,10 @@
     "PRnet",
     "PerturbNet"
   ],
-  "census_bundles": 1362,
-  "method_prediction_bundles": 1110,
+  "census_bundles": 1399,
+  "method_prediction_bundles": 1147,
   "floor_prediction_bundles": 252,
-  "rescored_bundles": 1931,
+  "rescored_bundles": 2176,
   "bundle_count_definition": "census_bundles counts only method and two-member-floor inputs listed in census_bundle_manifest.csv; rescored_bundles also includes preserved non-census references and sensitivity splits",
   "execution_variants": [
     {

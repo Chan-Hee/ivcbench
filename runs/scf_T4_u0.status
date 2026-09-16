@@ -1,0 +1,1 @@
+HELD 2026-09-15: would launch at batch_size=2, which never completed a unit. Re-queue at the published batch once the bounded validation answers.

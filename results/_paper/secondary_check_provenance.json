@@ -1,5 +1,5 @@
 {
-  "t3": "five dataset-arms from four studies; 10% held targets; 6 conditioned methods",
+  "t3": "five dataset-arms from four studies; 10% held targets; 9 conditioned methods",
   "t5": "current 28-compound scores paired with preserved distances to training compounds",
   "distance_scope": "linear association within one test set and fingerprint representation; not proof that chemical similarity is irrelevant",
   "seeds": "same fitted prediction policy as census; no retraining"
