@@ -173,7 +173,7 @@ def main():
     axB.text(0.98, 0.02, "floor wins\n(small-n lineages)", transform=axB.transAxes,
              ha="right", va="bottom", fontsize=6.2, color=NAVY_DARK, style="italic")
     panel_title(axB, "b", "The transfer win is broad across immune lineages",
-                sub="observed-elsewhere cytokine transfer, per cell type", x_letter=-0.20)
+                sub="neighbour chosen on the other cell types, per cell type", x_letter=-0.20)
     despine(axB)
 
     # ================= (c) the two conditioning regimes =================
@@ -232,7 +232,10 @@ def main():
              ha="left", va="bottom", fontsize=6.6, color=CLAY_DARK, style="italic")
     # same convention: real subtraction "−" between method and floor, plain hyphens within names.
     axC.set_xlabel("feature-nearest − floor  (annotation only)", fontsize=7.4)
-    axC.set_ylabel("DE-profile-nearest − floor  (observed elsewhere)", fontsize=7.4)
+    # "(observed elsewhere)" read as transferring the held cytokine's own effect from another cell
+    # type; the full phrase "neighbour from other cell types" overran the panel height. The
+    # neighbour is matched on the held cytokine's profile in those cell types.
+    axC.set_ylabel("DE-profile-nearest − floor  (profile-matched)", fontsize=7.4)
     _y0, _y1 = axC.get_ylim()
     axC.axhspan(0, _y1, xmin=0.0, xmax=1.0, color=CONDITIONED, alpha=0.05, zorder=0)
     axC.set_ylim(_y0, _y1)
