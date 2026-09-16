@@ -10,7 +10,10 @@ setup:
 	$(PIP) install -e .
 
 test:
-	$(PY) -m pytest -q
+# -rs prints the reason for every skip. The six that skip by default are the whole panel-mask
+# suite, so a bare "98 passed, 6 skipped" reads as full coverage of the 19,264-gene mask when
+# it covers none of it.
+	$(PY) -m pytest -q -rs
 
 reproduce-eval:
 	$(PY) scripts/reproduce_eval.py --manifest results/_paper/census_bundle_manifest.csv -o reproduced_results.csv

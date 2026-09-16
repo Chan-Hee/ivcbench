@@ -178,8 +178,10 @@ def main() -> None:
         ),
         matches=[s for d in checks for s in d["inputs"]],
         inference=(
-            "Each of the 47 contrasts has a precision/power-scale and attenuation"
-            " statement; no model-failure or unlearnability attribution"
+            # Derived, not written: the census grew from 47 to 58 and this sentence stayed at 47
+            # while the assert ten lines above already pinned len(panel) to the census size.
+            f"Each of the {len(panel)} contrasts has a precision/power-scale and"
+            " attenuation statement; no model-failure or unlearnability attribution"
         ),
     )
     (PAPER / "target_repeatability_provenance.json").write_text(

@@ -34,8 +34,13 @@ SPECS = [
         ["RNA"],
     ),  # C4: RNA arm only (bundles are RNA)
     (
+        # "C5_LOCT" is the cluster tag the eleven conditioned OP3 cell-context bundles carry; only
+        # FP-ridge and the reference rows kept the legacy "C1_LOCT" tag. Leaving it out meant those
+        # bundles never entered the bundle map, so twelve cells (CPA, STATE and scGen over the four
+        # coarse lineages) were never re-derived -- and drift() skips unmatched rows silently, so
+        # check_consistency reported zero drift while blind to exactly them.
         "results/C5/results_raw.csv",
-        ["C1_LOCT", "C5", "C5_unseen_cpd"],
+        ["C1_LOCT", "C5_LOCT", "C5", "C5_unseen_cpd"],
         [],
     ),  # C5 LOCT + unseen-compound
 ]

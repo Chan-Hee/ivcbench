@@ -112,7 +112,13 @@ def main():
     }
     out = ROOT / "results/_paper/native_chemcpa_provenance.json"
     out.parent.mkdir(exist_ok=True)
-    out.write_text(json.dumps(result, indent=2) + "\n")
+    # `make check` should leave the tree as it found it. Rewriting this file unconditionally
+    # advanced its mtime on every run, so a read-only gate was the sole producer of a deposited
+    # artefact and a clean checkout came back dirty.
+    payload = json.dumps(result, indent=2) + "\n"
+    if not out.exists() or out.read_text() != payload:
+        out.write_text(payload)
+        print(f"  provenance record updated: {out.relative_to(ROOT)}")
     print(json.dumps(result, indent=2))
 
 

@@ -1517,5 +1517,5 @@
       "independent_control_halves": true
     }
   ],
-  "inference": "Each of the 47 contrasts has a precision/power-scale and attenuation statement; no model-failure or unlearnability attribution"
+  "inference": "Each of the 58 contrasts has a precision/power-scale and attenuation statement; no model-failure or unlearnability attribution"
 }
