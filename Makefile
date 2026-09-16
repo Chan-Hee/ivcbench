@@ -37,6 +37,7 @@ summaries:
 	$(PY) scripts/assemble_secondary_checks.py
 	$(PY) scripts/immune_readout_audit.py
 	$(PY) scripts/assemble_target_diagnostics.py
+	$(PY) scripts/assemble_s8_energy_distance.py
 	$(PY) scripts/assemble_donor_validation.py
 	$(PY) scripts/assemble_learning_curves.py
 	$(PY) scripts/assemble_budget_sensitivity.py
