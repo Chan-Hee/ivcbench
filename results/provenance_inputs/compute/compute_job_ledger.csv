@@ -70,7 +70,6 @@ wave,model,task,sec,hours,source,note
 2 foundation,scFoundation,T2,1840.0,0.511,raw/foundation/c2_scf_5.log,"10 units, per-unit seconds summed"
 2 foundation,scFoundation,T2,1656.0,0.46,raw/foundation/c2_scf_6.log,"9 units, per-unit seconds summed"
 2 foundation,scFoundation,T2,1814.0,0.504,raw/foundation/c2_scf_7.log,"10 units, per-unit seconds summed"
-2 foundation,scFoundation,T4,535.0,0.149,raw/foundation/c4_scf.log,"2 units, per-unit seconds summed"
 2 foundation,scGPT,T2,7129.0,1.98,raw/foundation/c2_scgpt_0.log,"14 units, per-unit seconds summed"
 2 foundation,scGPT,T2,6727.0,1.869,raw/foundation/c2_scgpt_1.log,"14 units, per-unit seconds summed"
 2 foundation,scGPT,T2,6409.0,1.78,raw/foundation/c2_scgpt_2.log,"13 units, per-unit seconds summed"
@@ -242,3 +241,10 @@ wave,model,task,sec,hours,source,note
 4 native coverage (2026-09-14),STATE,T3,1998.3,0.555,runs/state_C3.status,job state_C3; rc=0
 4 native coverage (2026-09-14),STATE,T4,493.6,0.137,runs/state_C4.status,job state_C4; rc=0
 4 native coverage (2026-09-14),STATE,T5c,1937.0,0.538,runs/v2_state_C5.status,job v2_state_C5; rc=0
+4 native coverage (2026-09-14),scFoundation,T3,10740.0,2.983,logs/scf_tail_driver.log,"hand-driven re-run, chunk 0 of 5 (chen); wall clock from the wrapper's START/END"
+4 native coverage (2026-09-14),scFoundation,T3,4334.0,1.204,logs/scf_real.log,"hand-driven re-run, chunk 1 of 5; wall clock from the wrapper's START/END"
+4 native coverage (2026-09-14),scFoundation,T3,4942.0,1.373,logs/scf_real.log,"hand-driven re-run, chunk 2 of 5; wall clock from the wrapper's START/END"
+4 native coverage (2026-09-14),scFoundation,T3,5681.0,1.578,logs/scf_real.log,"hand-driven re-run, chunk 3 of 5; wall clock from the wrapper's START/END"
+4 native coverage (2026-09-14),scFoundation,T3,5350.0,1.486,logs/scf_shifrut_driver.log,"hand-driven re-run, chunk 4 of 5 (shifrut), encoder cache on; wall clock from the wrapper's START/END"
+4 native coverage (2026-09-14),scFoundation,T4,2892.0,0.803,logs/scf_real.log,"hand-driven re-run, chunk 0 of 2 (25% holdout); wall clock from the wrapper's START/END"
+4 native coverage (2026-09-14),scFoundation,T4,2599.0,0.722,logs/scf_real.log,"hand-driven re-run, chunk 1 of 2 (50% holdout); wall clock from the wrapper's START/END"
