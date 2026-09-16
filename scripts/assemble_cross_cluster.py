@@ -486,7 +486,21 @@ def cell_long(df, cell):
     """Long table of per-(model, unit) pearson_delta for one census cell."""
     d = df[df["cluster"].isin(cell["clusters"]) & df["split"].map(cell["match"])].copy()
     d["unit"] = d.apply(cell["unit_of"], axis=1)
-    # collapse any cluster/dataset duplication onto (model, unit) -> the model's own bundle value
+    # One bundle per (model, unit). This used to take the MEAN, which silently averages a model
+    # with itself when a unit is scored twice -- and the average is a number that describes
+    # neither run. Measured: duplicating one real C1/scGen/CD4T bundle moves scGen @ T1 from
+    # 0.7497 (margin -0.0307) to 0.7809 (margin +0.0006), flipping the cell above the floor.
+    # The refusal did exist, but in census_bundle_manifest(), which both writers happen to call
+    # afterwards -- so purity was a call-order convention rather than a property of this
+    # function, and any new caller inherited the average. It refuses here now.
+    dup = d.groupby(["model", "unit"]).size()
+    dup = dup[dup > 1]
+    if len(dup):
+        raise SystemExit(
+            f"{cell['task_id']} {cell['split']}: {len(dup)} (model, unit) pair(s) scored more than once; "
+            "one of them must be withdrawn or superseded before the census can be built.\n  "
+            + "\n  ".join(f"{m} @ {u}: {n} bundles" for (m, u), n in dup.items())
+        )
     return d.groupby(["model", "unit"], as_index=False)["pearson_delta"].mean()
 
 
@@ -929,25 +943,49 @@ def canonical_numbers(head, scored, manifest):
             }
             for (cluster, split, model), source in EXECUTION_MODEL.items()
         ],
-        "withdrawn_from_census": [
-            "SCREEN (all cells)",
-            "PertAdapt @ T3",
-            "scPRAM @ T4",
-            "scFoundation @ T3",
-            "scFoundation @ T4",
-            "STATE @ T4",
-            "STATE @ T3 (adata_real recovery error)",
-            "STATE @ T5c (adata_real recovery error)",
-            "STATE @ T5u (adata_real recovery error)",
-            "PerturbNet @ T5c",
-            "CPA @ T1 (latent-shift adaptation)",
-            "CPA @ T2 (latent-shift adaptation)",
-            "CPA @ T5c (fingerprint adaptation)",
-            "scGen @ T5c (fingerprint adaptation)",
-            "CellOT @ T4 (pooled-KO map without target-KO input)",
-        ],
+        # Derived, not listed. The literal this replaces was a snapshot of an earlier state:
+        # 12 of its 15 entries named cells the census REPORTS, because the model was re-run and
+        # re-admitted at a new path while the old bundle stayed withdrawn. check_consistency
+        # compares stored against rebuilt, so a literal is always equal to itself and the gate was
+        # structurally blind to it -- and this is the machine-readable file the availability
+        # statement points a reviewer at. A cell belongs here only if a withdrawal still binds
+        # against its sha256 AND the census does not report it. The full not-reported record,
+        # with a reason for every cell, is Supplementary Table S15b.
+        "withdrawn_from_census": withdrawn_cells(head, task_of),
     }
     return result
+
+
+_TASK_OF_SPLIT_PREFIX = {
+    "C1_LOCT": "T1", "C2": "T2", "C2_LODO": "T2", "C3_LO_gene": "T3", "C4_Axis2": "T4",
+    "C5_LOCT": "T5c", "C5": "T5u", "C5_unseen_cpd": "T5u",
+}
+
+
+def withdrawn_cells(head, task_of):
+    """Cells whose withdrawal still binds and which the census does not report.
+
+    Most withdrawn bundles belong to a cell the census DOES report, at a different path: the
+    execution was superseded by a re-run, and it is the execution that was withdrawn, not the
+    cell. Those must not appear here. A withdrawal whose sha256 no longer matches has lapsed
+    (a same-path re-run), and is not a withdrawal at all.
+    """
+    reported = {(str(row.model), task_of(row)) for row in head.itertuples()}
+    cells = set()
+    for path in sorted(_WITHDRAWN):
+        if not _is_withdrawn(path):
+            continue                      # lapsed: the file on disk is the replacement
+        name = os.path.basename(path)[:-4].split("__")
+        prefix, model = name[0], name[1]
+        task = _TASK_OF_SPLIT_PREFIX.get(prefix)
+        if task is None:
+            raise SystemExit(f"withdrawn bundle with an unknown split prefix: {path}")
+        # The census names this cell by its method group; chemCPA is the CPA group's execution.
+        model = {v: k[2] for k, v in EXECUTION_MODEL.items()}.get(model, model)
+        if (model, task) not in reported:
+            cells.add(f"{model} @ {task}")
+    return sorted(cells)
+
 
 
 def main():

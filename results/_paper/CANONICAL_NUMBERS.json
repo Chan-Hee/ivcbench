@@ -148,20 +148,9 @@
     }
   ],
   "withdrawn_from_census": [
-    "SCREEN (all cells)",
-    "PertAdapt @ T3",
-    "scPRAM @ T4",
-    "scFoundation @ T3",
-    "scFoundation @ T4",
-    "STATE @ T4",
-    "STATE @ T3 (adata_real recovery error)",
-    "STATE @ T5c (adata_real recovery error)",
-    "STATE @ T5u (adata_real recovery error)",
-    "PerturbNet @ T5c",
-    "CPA @ T1 (latent-shift adaptation)",
-    "CPA @ T2 (latent-shift adaptation)",
-    "CPA @ T5c (fingerprint adaptation)",
-    "scGen @ T5c (fingerprint adaptation)",
-    "CellOT @ T4 (pooled-KO map without target-KO input)"
+    "CINEMA-OT @ T2",
+    "CINEMA-OT @ T5c",
+    "scGen @ T4",
+    "scGen @ T5u"
   ]
 }
