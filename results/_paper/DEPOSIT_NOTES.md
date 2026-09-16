@@ -9,11 +9,11 @@ roster or a holdout slice the printed table does not.
 | File | Status |
 |---|---|
 | `supplementary_tables/Supplementary_Table_S*.csv` | **Table of record.** Matches the printed table. |
-| `Supplementary_Table_S7_OP3_programs.csv` | Superseded intermediate, different schema. It was computed over a roster that still included the CPA, scGen and STATE drug runs the interface rule excludes, so its per-program values differ from printed Table S7. Use `supplementary_tables/Supplementary_Table_S7.csv`. |
+| `superseded_Table_S7_OP3_programs.csv` | Superseded intermediate, different schema. It was computed over a roster that still included the CPA, scGen and STATE drug runs the interface rule excludes, so its per-program values differ from printed Table S7. Use `supplementary_tables/Supplementary_Table_S7.csv`. |
 | `supplementary_tables/Supplementary_Table_S13.csv` | **Table of record**, the **50 %** slice the paper prints, derived from `results/C3/results_raw.csv` each build. It used to hold the 10 % slice instead, so the deposited file shared no value with the table it claimed to back. |
 | `t3_by_dataset.csv` | The **10 %** leave-one-gene-out slice over the current census roster — the one the census verdicts use. A different analysis of the same axis, not another version of printed Table S13. |
 | `Supplementary_Table_S6_marker_readout.csv`, `Supplementary_Table_S20_panel_checks.csv` | Full-precision sources the printed tables are re-sourced from. Authoritative for precision. |
-| `Supplementary_Table_S3_descriptive_fit_matrix.csv`, `Supplementary_Table_S12_T3_programs.csv`, `Supplementary_Table_S14_Tanimoto_current.csv`, `Supplementary_Table_S17_effect_stratification.csv` | Superseded 2026-09-09 snapshots kept for provenance. Each is smaller or older than the printed table and disagrees with it: S3 has 32 rows against 35, S12 a different schema, S14 the pre-STATE T5u roster including CINEMA-OT, S17 the pre-re-run margins. The producers beside them (`descriptive_fit_matrix.csv`, `op3_tanimoto_sensitivity.csv`, `t3_effect_stratification.csv`) are what the build reads. |
+| `superseded_Table_S3_descriptive_fit_matrix.csv`, `superseded_Table_S12_T3_programs.csv`, `superseded_Table_S14_Tanimoto_current.csv`, `superseded_Table_S17_effect_stratification.csv` | Superseded 2026-09-09 snapshots kept for provenance. Each is smaller or older than the printed table and disagrees with it: S3 has 32 rows against 35, S12 a different schema, S14 the pre-STATE T5u roster including CINEMA-OT, S17 the pre-re-run margins. The producers beside them (`descriptive_fit_matrix.csv`, `op3_tanimoto_sensitivity.csv`, `t3_effect_stratification.csv`) are what the build reads. |
 | `Supplementary_Table_S8_energy_distance.csv` | The producer. `supplementary_tables/Supplementary_Table_S8.csv` is copied from it every build, so the two are identical; before 2026-09-16 the deposit had no such path and sat 32 rows behind. |
 | `chemcpa_op3_unseen_compound_summary.csv` | **Correction, 2026-09-16.** Its `CPA_existing_score` (0.158691) was taken from that run's `pearson_delta_ontarget` column rather than `pearson_delta`, the census metric every other anchor in `scripts/chemcpa_evaluate.py` uses; on-target exclusion is a CRISPR convention and does not apply to a compound split. The like-for-like value is **0.106687**, so `chemCPA_minus_CPA_existing` is **-0.0067**, not -0.0587, and the verdict sentence's "0.159 (-0.047)" should read "0.107 (+0.005)". The anchor in the script is fixed; the CSV is left as the record of the run it describes because re-deriving it needs the model. No number in the manuscript, supplement, response letter, or any printed or deposited table depends on it -- the chemCPA note reports from `chemcpa_op3_unseen_compound_by_unit.csv`. |
 
@@ -80,7 +80,7 @@ complete. Nothing in the deposit reads it and no number in it is reported. Its o
 
 ## The legacy `Supplementary_Table_S<N>_*.csv` files in this directory
 
-Fifteen files here carry a supplementary-table number in their NAME. They are working artefacts
+Nine files here carry a supplementary-table number in their NAME. Six more did and have been renamed `superseded_Table_S<N>_*.csv`, because nothing reads them and a reader navigating by number would have landed on a roster that contradicts the printed table -- most sharply `S14_Tanimoto_current`, whose chemCPA slope is negative where the printed Table S14's is the only positive one. They are working artefacts
 from earlier numbering, kept because figures and notes were computed from them. **The table of
 record for every number is `supplementary_tables/Supplementary_Table_S<N>.csv`**, indexed by
 `MANIFEST.csv`; resolve a table by that file, never by a name in this directory.
@@ -94,13 +94,13 @@ Three of the fifteen carry a number that now belongs to a different table:
 | `Supplementary_Table_S11_multiplicity.csv` (58 contrasts) | the panel-wide multiplicity family | **S23** (27 contrasts). Printed S11 is the 8-row pre-specified headline family. |
 
 Five more share a number with the printed table but are older and smaller:
-`S3_descriptive_fit_matrix.csv` (32 rows against 35), `S7_OP3_programs.csv` (27 against 39),
-`S12_T3_programs.csv` (175 rows, a different schema), `S14_Tanimoto_current.csv` (9 rows on the
+`superseded_Table_S3_descriptive_fit_matrix.csv` (32 rows against 35), `superseded_Table_S7_OP3_programs.csv` (27 against 39),
+`superseded_Table_S12_T3_programs.csv` (175 rows, a different schema), `superseded_Table_S14_Tanimoto_current.csv` (9 rows on the
 pre-STATE T5u roster, including a CINEMA-OT row the census does not report), and
 `S15_training_configuration.csv` (46 rows with no Seeds column; printed S15c has 65).
-`S17_effect_stratification.csv` holds the pre-panel-mask quartile margins (Q1 -0.1505 where the
+`superseded_Table_S17_effect_stratification.csv` holds the pre-panel-mask quartile margins (Q1 -0.1505 where the
 current run gives -0.1520).
-`S13_T3_by_dataset.csv` is a **third** file under that number and the easiest to mistake for a
+`superseded_Table_S13_T3_by_dataset.csv` is a **third** file under that number and the easiest to mistake for a
 current one: it is the 10 % leave-one-gene-out slice on a superseded roster (Chen's best
 conditioned entry is scGPT at 0.386, where the current 10 % slice in `t3_by_dataset.csv` differs
 and the printed 50 % table gives 0.393). Printed Table S13 is the 50 % slice in
