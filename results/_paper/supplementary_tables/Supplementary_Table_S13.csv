@@ -1,6 +1,6 @@
-dataset,holdout_pct,binding_floor,floor_score,best_model,best_score,best_margin,selection
-chen,10,cell-mean,0.5165414816363149,scGPT,0.3876211829423824,-0.12892029869393246,retrospective per-dataset best; descriptive only
-mccutcheon_CRISPRa,10,cell-mean,0.5939835283886649,Biolord,0.4590175763047919,-0.13496595208387296,retrospective per-dataset best; descriptive only
-mccutcheon_CRISPRi,10,cell-mean,0.4568569338722511,Biolord,0.323951534404079,-0.13290539946817215,retrospective per-dataset best; descriptive only
-schmidt,10,cell-mean,0.4908668180308413,Biolord,0.5346045190858292,0.043737701054987865,retrospective per-dataset best; descriptive only
-shifrut,10,cell-mean,0.451803269057297,CellFlow,0.3759533467371301,-0.07584992232016691,retrospective per-dataset best; descriptive only
+Dataset (modality),Best simple baseline (cell-mean/donor-shift),Best applicable conditioned (model),Conditioned − baseline (derived)
+Chen (KO),0.514,0.393 (scGPT),−0.122
+McCutcheon (CRISPRa),0.495,0.232 (scGPT),−0.262
+McCutcheon (CRISPRi),0.400,0.179 (scGPT),−0.222
+Schmidt (CRISPRa),0.573,0.436 (STATE),−0.137
+Shifrut (KO),0.391,0.173 (scGPT),−0.217

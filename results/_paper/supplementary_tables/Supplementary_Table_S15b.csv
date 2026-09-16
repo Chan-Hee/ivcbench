@@ -33,8 +33,8 @@ PertAdapt,T1,the split does not define an input the interface needs,"IFN-beta is
 PertAdapt,T2,the split does not define an input the interface needs,"Anti-CD3/CD28 stimulation is not a genetic alteration, so it has no node in the perturbation graph the released adapter conditions on, and the interface carries no donor slot. The number in the submitted census came from a study-written head over frozen scFoundation embeddings, not from that published conditioning."
 PertAdapt,T5c,the split does not define an input the interface needs,"The perturbation is a compound, which is not a gene, and the released interface does not represent a held lineage."
 PertAdapt,T5u,the split does not define an input the interface needs,"The same, with the held compound also absent from training."
-PRnet,T1,would need an interface written for this study,"IFN-beta is a protein, and the Perturb-adaptor's only perturbation input is a fingerprint computed from a small-molecule SMILES string; a protein has no such representation."
-PRnet,T2,would need an interface written for this study,"The same, for antibody stimulation."
+PRnet,T1,the split does not define an input the interface needs,"IFN-beta is a protein, and the Perturb-adaptor's only perturbation input is a fingerprint computed from a small-molecule SMILES string; a protein has no such representation."
+PRnet,T2,the split does not define an input the interface needs,"The same, for antibody stimulation."
 PRnet,T3,the split does not define an input the interface needs,A gene knockout has no molecular structure; the released model is defined for chemical perturbations only.
 PRnet,T4,the split does not define an input the interface needs,"The same, for the held knockout."
 scGen,T3,would need an interface written for this study,"The held gene never appears in training, so no latent shift exists for it and the released call has no argument by which to name it; reaching the cell would need a regression from a gene embedding onto the latent shift, an estimator the published method does not contain."
