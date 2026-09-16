@@ -20,5 +20,5 @@ Subtotal: refitting the reported panel,"one NVIDIA L40, 48 GB",131,326.761,"the 
 Matched donor learning curve,"one NVIDIA L40, 48 GB",50,5.688,the 5 x 10 donor grid behind Table S20 and Figure S8
 External donor cohorts,"one NVIDIA L40, 48 GB",2,5.011,the two additional leave-one-donor-out cohorts in Table S19
 Conditioned compound heads,"one NVIDIA L40, 48 GB",5,0.025,a disclosed comparison reported outside the panel
-Run and not carried,"one NVIDIA L40, 48 GB",61,114.824,"executions withdrawn from the panel or superseded, chiefly SCREEN and the protein readout sweep; their output appears in no reported table"
-Total recorded (GPU jobs),"one NVIDIA L40, 48 GB",249,452.309,"every GPU job re-timed for this revision, measured wall-clock and not extrapolated; the CPU replay row is separate and is not added in"
+Run and not carried,"one NVIDIA L40, 48 GB",64,117.167,"executions withdrawn from the panel or superseded, chiefly SCREEN and the protein readout sweep; their output appears in no reported table"
+Total recorded (GPU jobs),"one NVIDIA L40, 48 GB",252,454.652,"every GPU job re-timed for this revision, measured wall-clock and not extrapolated; the CPU replay row is separate and is not added in"

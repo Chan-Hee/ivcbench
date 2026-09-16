@@ -30,7 +30,7 @@
     },
     {
       "path": "ivcbench/results/provenance_inputs/compute/compute_job_ledger.csv",
-      "sha256": "e509037057e79903c4a548b2c094f47b20cb2f00273ce1fb60b8d1e926a17c42"
+      "sha256": "03b4258df7908221414c8e19a4718cf15963b54a9f820ec11164be0aaec4e2cf"
     },
     {
       "path": "ivcbench/results/newdata/scgpt_donor_curve_shard0_timing.json",
@@ -48,6 +48,6 @@
   "gpu_memory": "48-GB L40 worker configuration, not a measured minimum; no uniform peak-VRAM audit exists",
   "time": "elapsed seconds, not utilization-integrated GPU-hours; parallel execution changes calendar time",
   "completeness": "partial rerun estimates only; no defensible all-census retraining total",
-  "revision_ledger_elapsed_hours": 452.3124722222222,
+  "revision_ledger_elapsed_hours": 454.6563611111111,
   "ledger_scope": "includes excluded/failed/repeated jobs and partial timings; not added to model-specific estimates"
 }

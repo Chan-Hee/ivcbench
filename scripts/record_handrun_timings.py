@@ -16,9 +16,23 @@ Each timing is the wrapper's own START/END pair, matched to the deposited bundle
 That is the same evidentiary standard as the rows already in the ledger sourced from a log rather
 than a status file (raw/foundation/c4_scf.log, raw/admission/sweep.log).
 
-Discarded attempts are not added. The first shifrut run was killed by the eight-hour adapter budget
-at 2,952 s (rc=137) and the cache-off retry took 4,509 s and was superseded by the cache-on run
-that deposited; neither produced a bundle, and the ledger counts what the census reports.
+Discarded attempts ARE added, because the paper counts them. The manuscript calls 452.3 GPU-hours
+over 249 jobs "the complete record, including executions that were run and not carried", and the
+supplement states the not-carried subtotal separately; a ledger that silently drops three real
+GPU-hours makes both sentences false. The shifrut unit took four attempts and only the last
+deposited:
+
+  19:46:26 -> 20:35:38  2,952 s  rc=137, SIGKILL  (logs/scf_real.log)
+  20:35:41 -> 20:51:58    977 s  SIGKILL, cache off, restarted  (logs/scf_u4_driver.log)
+  20:52:32 -> 22:07:41  4,509 s  rc=0, cache off; superseded, its bundle overwritten
+                                 (logs/scf_tail_driver.log)
+  22:07:56 -> 23:37:06  5,350 s  rc=0, cache on; this is the deposited bundle
+                                 (logs/scf_shifrut_driver.log)
+
+The first three are 8,438 s = 2.344 GPU-hours and carry note="discarded attempt". Two earlier
+claims here were wrong and are corrected by those log lines: the 2,952 s run was killed by SIGKILL
+and not by a time budget -- run_obligation.py has no such budget -- and the 4,509 s run did exit 0
+and did deposit a bundle, which the cache-on run then overwrote.
 
     python scripts/record_handrun_timings.py [--apply]
 """
@@ -43,6 +57,14 @@ RUNS = [
     ("T4", 2892, "logs/scf_real.log", "chunk 0 of 2 (25% holdout)"),
     ("T4", 2599, "logs/scf_real.log", "chunk 1 of 2 (50% holdout)"),
 ]
+# Attempts that produced no bundle the census reads. They are GPU time that was spent, so the
+# "run and not carried" total has to include them.
+DISCARDED = [
+    ("T3", 2952, "logs/scf_real.log", "chunk 4 of 5 (shifrut), first attempt, SIGKILL"),
+    ("T3", 977, "logs/scf_u4_driver.log", "chunk 4 of 5 (shifrut), cache-off restart, SIGKILL"),
+    ("T3", 4509, "logs/scf_tail_driver.log",
+     "chunk 4 of 5 (shifrut), cache-off run superseded by the cache-on run that deposited"),
+]
 # the row this supersedes: same cell, earlier wave, not the execution that deposited
 STALE = {("scFoundation", "T4", "raw/foundation/c4_scf.log")}
 
@@ -66,6 +88,15 @@ def main() -> None:
                     "sec": f"{float(sec)}", "hours": f"{sec / 3600:.3f}",
                     "source": log,
                     "note": f"hand-driven re-run, {what}; wall clock from the wrapper's START/END"})
+    for task, sec, log, what in DISCARDED:
+        key = ("scFoundation", task, log, f"{float(sec)}")
+        if key in have:
+            continue
+        add.append({"wave": WAVE, "model": "scFoundation", "task": task,
+                    "sec": f"{float(sec)}", "hours": f"{sec / 3600:.3f}",
+                    "source": log,
+                    "note": f"discarded attempt, {what}; carried in the run-and-not-carried "
+                            "total, not in the panel subtotal"})
 
     print(f"ledger: {len(rows)} rows")
     print(f"  superseded (earlier wave, not the deposited execution): {len(dropped)}")
