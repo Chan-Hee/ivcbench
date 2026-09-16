@@ -46,7 +46,12 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+# finish_census.sh calls this from revision_claude/, so a relative glob finds nothing and the
+# migration reports "0 candidate bundle(s)" and exits happily, leaving the census half masked.
+# Anchor on the repository instead of the working directory.
+os.chdir(ROOT)
 
 from ivcbench.eval.bundle import score_bundle  # noqa: E402
 from ivcbench.eval.panel_mask import unrepresentable  # noqa: E402
