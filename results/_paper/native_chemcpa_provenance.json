@@ -11,27 +11,27 @@
   "held_compounds": 28,
   "scored_strata": 112,
   "genes": 2000,
-  "bundle_score": 0.11158957805986694,
-  "reconstructed_from_seeds_score": 0.11158957382348865,
-  "max_absolute_prediction_difference": 3.5762786865234375e-06,
+  "bundle_score": 0.10001659769288558,
+  "reconstructed_from_seeds_score": 0.10001659769288558,
+  "max_absolute_prediction_difference": 0.0,
   "prediction_tolerance": 1e-05,
   "training_performed_by_this_check": false,
   "inputs": [
     {
-      "path": "benchmark/outputs/additional_models/chemcpa_native_seed0.npz",
-      "sha256": "d8b2639f877bfd367c74b5161c0ca423444ffe0028ba3c8af87b91f9f79db5f2"
+      "path": "provenance/chemcpa/chemcpa_native_seed0.npz",
+      "sha256": "ce010dfd9f6c717e211d2960959a537612146582b8433e7693b598c32851c95e"
     },
     {
-      "path": "benchmark/outputs/additional_models/chemcpa_native_seed1.npz",
-      "sha256": "dc6003830f017e9d462624b52da84277af6036520fd95b4309fb0cbbad9c9eef"
+      "path": "provenance/chemcpa/chemcpa_native_seed1.npz",
+      "sha256": "7d697bb9bd47b553760b43d61322627a12ce72f60879a8647e0e1994ea251427"
     },
     {
-      "path": "benchmark/outputs/additional_models/chemcpa_native_seed2.npz",
-      "sha256": "c4e132a662f686d44356409023bd3a0333779a06ac7635512d82249e0c6c5875"
+      "path": "provenance/chemcpa/chemcpa_native_seed2.npz",
+      "sha256": "4bf860c6fdb673325095cd67a40aa2917881b21d4af3040758840bf0324ecc77"
     },
     {
-      "path": "predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz",
-      "sha256": "45d5af4297800cdab8482cc173c242558c85b3684df25df6f930ca541df95d15"
+      "path": "predictions/v2_native/C5__chemCPA__C5_global_compound_holdout.npz",
+      "sha256": "cffe691fad6ec0ab7a1613eeb65e602932d963e9d51a404223a892333d0bb6fd"
     },
     {
       "path": "scripts/chemcpa_native_op3.py",

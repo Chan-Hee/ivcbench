@@ -11,17 +11,45 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 IVC = ROOT
+# The seed outputs are deposited IN the repository. The old fallback reached outside it, to a
+# directory that exists only on the author's machine, so `make check` failed on a fresh clone with
+# a FileNotFoundError -- for every reviewer, on the documented path.
 RAW = ROOT / "provenance/chemcpa"
-if not RAW.is_dir():
-    RAW = ROOT.parent / "benchmark/outputs/additional_models"
 sys.path.insert(0, str(IVC / "src"))
 from ivcbench.eval.bundle import score_bundle
 from ivcbench.metrics.response import pearson_delta
 
 
+def census_bundle():
+    """The bundle the census actually scores for T5u/CPA, read from the manifest.
+
+    This was hardcoded to predictions/C5/..., which has been WITHDRAWN since 2026-09-14 and is
+    registered against its sha256 as "superseded by predictions/v2_native/...". So the one machine
+    check of the chemCPA provenance claim certified a file the census refuses, and reconstructed
+    a score (0.111590) that appears nowhere in the paper. Reading the manifest means the gate
+    cannot drift from the census again.
+    """
+    import csv
+
+    manifest = IVC / "results/_paper/census_bundle_manifest.csv"
+    with manifest.open() as handle:
+        paths = {r["bundle_path"] for r in csv.DictReader(handle)
+                 if r["task"] == "T5u" and r["model"] == "CPA"}
+    if len(paths) != 1:
+        raise SystemExit(f"expected one T5u/CPA bundle in the manifest, found {sorted(paths)}")
+    return IVC / paths.pop()
+
+
 def main():
-    path = IVC / "predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz"
+    path = census_bundle()
     sources = [RAW / f"chemcpa_native_seed{s}.npz" for s in (0, 1, 2)]
+    missing = [str(s) for s in sources if not s.is_file()]
+    if missing:
+        raise SystemExit(
+            "chemCPA seed outputs are missing, so this gate cannot run:\n  "
+            + "\n  ".join(missing)
+            + "\nThey are deposited in provenance/chemcpa/ and tracked; a clone has them."
+        )
     by_compound = {}
     with np.load(path, allow_pickle=True) as bundle:
         for seed, source in enumerate(sources):

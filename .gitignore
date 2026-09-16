@@ -30,6 +30,9 @@ outputs/
 !predictions/v2_native/*.npz
 !predictions/C2_metric_aligned/*.npz
 !predictions/*.npz
+# The chemCPA T5u provenance gate replays the census bundle from the three seed outputs that
+# produced it. They used to live outside the repo, so `make check` died on a fresh clone.
+!provenance/chemcpa/*.npz
 *.pkl
 *.rds
 *.mtx
