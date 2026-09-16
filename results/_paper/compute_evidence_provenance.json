@@ -21,11 +21,11 @@
       "sha256": "1ba86eb11112980fc3c0b61104e6c139425dafc813a31ba82103741be0102bb2"
     },
     {
-      "path": "ivcbench/outputs/additional_models/state_soskic_timing.json",
+      "path": "ivcbench/provenance/timing/state_soskic_timing.json",
       "sha256": "15d46abd2e2d3a584dbac342098d44e37ee5b03d9320a465b7611e6ecb167db2"
     },
     {
-      "path": "ivcbench/outputs/additional_models/scpram_soskic_timing.json",
+      "path": "ivcbench/provenance/timing/scpram_soskic_timing.json",
       "sha256": "b27b0db931d27ac89d281cc3f36706f6dea023c7d5a1497bff33a1612afcdedc"
     },
     {

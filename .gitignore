@@ -33,6 +33,9 @@ outputs/
 # The chemCPA T5u provenance gate replays the census bundle from the three seed outputs that
 # produced it. They used to live outside the repo, so `make check` died on a fresh clone.
 !provenance/chemcpa/*.npz
+# make summaries reads these; they were gitignored, so two of its eight steps died on a clone.
+!results/_paper/program_observations/*.npz
+!provenance/timing/*.json
 *.pkl
 *.rds
 *.mtx

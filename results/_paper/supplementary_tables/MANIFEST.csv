@@ -2,7 +2,7 @@ supplementary_table,file,data_rows,contents
 S1,Supplementary_Table_S1.csv,24,Curated dataset inventory
 S2,Supplementary_Table_S2.csv,35,Surveyed method inventory
 S3,Supplementary_Table_S3.csv,35,A-priori descriptive fit matrix
-S4,Supplementary_Table_S4.csv,58,"Cross-cluster headline census, 47 evaluations, with status, uncertainty, detectable margin and verdict"
+S4,Supplementary_Table_S4.csv,58,"Cross-cluster headline census, 58 evaluations, with status, uncertainty, detectable margin and verdict"
 S5,Supplementary_Table_S5.csv,6,OP3 fine-lineage sensitivity
 S6,Supplementary_Table_S6.csv,40,Per-marker surface-protein recovery (Frangieh)
 S7,Supplementary_Table_S7.csv,39,Per-program readout on the OP3 held-cell-type split
@@ -23,4 +23,4 @@ S19,Supplementary_Table_S19.csv,14,"Independent donor cohorts, per donor"
 S20,Supplementary_Table_S20.csv,5,"Matched donor learning curve, CellOT and fine-tuned scGPT"
 S21,Supplementary_Table_S21.csv,27,Chemical-representation sensitivity sweep
 S22,Supplementary_Table_S22.csv,13,Predicted-to-observed response norm and calibration slope
-S23,Supplementary_Table_S23.csv,27,"Panel-wide multiplicity family, 24 contrasts"
+S23,Supplementary_Table_S23.csv,27,"Panel-wide multiplicity family, 27 contrasts"

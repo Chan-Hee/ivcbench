@@ -1,8 +1,8 @@
 {
   "command": "python scripts/check_consistency.py",
-  "elapsed_seconds": 10.300319649279118,
-  "maximum_resident_MiB": 149.84375,
-  "stdout": "DEPOSIT CONSISTENCY: PASS (1931 stored bundles re-scored; 47 census cells; scores, metadata, manifest hashes and counts agree)\n",
+  "elapsed_seconds": 10.32415750529617,
+  "maximum_resident_MiB": 151.89453125,
+  "stdout": "[withdrawals] 107 entr(ies) superseded by the re-run they name; the file on disk is the replacement\nDEPOSIT CONSISTENCY: PASS (2283 stored bundles re-scored; 58 census cells; scores, metadata, manifest hashes and counts agree)\n",
   "stderr": "",
   "threads_available": 64,
   "physical_cores": 32,

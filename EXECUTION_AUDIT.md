@@ -4,7 +4,7 @@
 > superseded by execution. The runner defect below was fixed, and STATE was re-run on
 > T3, T4, T5c and T5u through the corrected runner, which requires exactly one named
 > `adata_pred.h5ad`. Those four cells are back in the census, so STATE is now evaluated
-> on all six tasks and the panel holds 56 entries (46 native, 6 adapted, 4 diagnostic).
+> on all six tasks and the panel holds 58 entries (46 native, 8 adapted, 4 diagnostic).
 > The exclusions this document records were correct for the artifacts that existed on
 > 9 September; they are not the current roster. Everything below is kept as the record
 > of what was found and why, in its own tense.

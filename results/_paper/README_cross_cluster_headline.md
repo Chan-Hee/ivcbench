@@ -26,9 +26,9 @@ interchangeable, and only one of them is the verdict used in the paper:
   `delta_vs_linear_PCA` are provided for the same descriptive purpose.
 
 In short: **read `beats_both_floor_members` for the verdict; read `delta_vs_floor_mean` only as a
-descriptive margin.** Several rows in this CSV illustrate the gap between the two — e.g. CINEMA-OT on
-C3 (`delta_vs_floor_mean = +0.063` but `beats_both_floor_members = False`, because it is below the
-binding cell-mean member). `donor-shift` and `FP-ridge`-as-context are context-only comparators and
+descriptive margin.** Several rows in this CSV illustrate the gap between the two — e.g. PerturbNet on
+the Soskic donor split (`delta_vs_floor_mean = +0.106` but `beats_both_floor_members = False`,
+because it is below the binding cell-mean member). `donor-shift` and `FP-ridge`-as-context are context-only comparators and
 are **not** universal-floor members.
 
 The CI-gated descriptive *fit* verdict (cluster-bootstrap CI_low > 0 on the family-minus-floor gap,

@@ -19,6 +19,7 @@ check:
 	$(PY) scripts/check_deposit_completeness.py
 	$(PY) scripts/check_consistency.py
 	$(PY) scripts/check_chemcpa_provenance.py
+	$(PY) scripts/check_release_docs.py
 
 reproduce:
 	$(MAKE) reproduce-eval
@@ -45,5 +46,10 @@ figures:
 	$(PY) scripts/figure_benchmark_workflow.py
 	$(PY) scripts/make_figure2_landscape_verdict.py --deposit --out-dir results/_paper --tiff
 	$(PY) scripts/figure_immune_readouts.py
+# figure_immune_readouts writes figure_immune_blindspot at 2157x2475, overwriting the
+# deposited Figure 3 (1644x1608). figure3_blindspot.py reproduces the deposited file
+# byte-identically and was missing from this target, so `make figures` replaced the
+# paper's figure with a different one.
+	$(PY) scripts/figure3_blindspot.py
 	$(PY) scripts/figure_reliability_ceiling.py
 	$(PY) scripts/assemble_learning_curves.py

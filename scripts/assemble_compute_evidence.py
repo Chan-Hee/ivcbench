@@ -148,7 +148,12 @@ def main():
             )
         )
     for model in ["STATE", "scPRAM"]:
-        path = ROOT / f"outputs/additional_models/{model.lower()}_soskic_timing.json"
+        # outputs/ is gitignored in its entirety, so this died with FileNotFoundError on a fresh
+        # clone and took two of make summaries' eight steps with it. The timing records are
+        # deposited under provenance/timing/, which is tracked; the working copy is the fallback.
+        path = ROOT / f"provenance/timing/{model.lower()}_soskic_timing.json"
+        if not path.is_file():
+            path = ROOT / f"outputs/additional_models/{model.lower()}_soskic_timing.json"
         frame = pd.DataFrame(json.loads(path.read_text()))
         rows.append(
             dict(

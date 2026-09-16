@@ -1,0 +1,20 @@
+[
+  {
+    "donor": "D348",
+    "seed": 0,
+    "sec": 2180.6,
+    "n_train": 119914,
+    "n_test": 600,
+    "n_ctrl": 600,
+    "n_lineages": 2
+  },
+  {
+    "donor": "D349",
+    "seed": 0,
+    "sec": 1518.7,
+    "n_train": 119914,
+    "n_test": 600,
+    "n_ctrl": 600,
+    "n_lineages": 2
+  }
+]

@@ -1,6 +1,6 @@
 # Reproduction guide
 
-Use the v1.2.3 revision snapshot accompanying BIB-26-1553. This interface/provenance correction preserves v1.2.2's prediction scores, reclassifies the PertAdapt-inspired T2 head as adapted, and corrects reference inventory and display rounding. The package has three distinct reproduction levels.
+Use the v1.2.3 revision snapshot accompanying BIB-26-1553. It preserves v1.2.2's prediction scores where the execution was unchanged, re-runs the executions the 9 September audit had excluded, admits scGPT and scFoundation on the two compound settings through a task interface written for this study, and corrects reference inventory and display rounding. The package has three distinct reproduction levels.
 
 ## 1. Mean-profile evaluation: CPU only
 
@@ -12,11 +12,11 @@ make reproduce
 make test
 ```
 
-`make reproduce-eval` uses `results/_paper/census_bundle_manifest.csv`, not an unrestricted glob. It writes 1,399 rows to `reproduced_results.csv`. The manifest includes 1,147 selected model inputs and 252 simple-reference inputs. A bundle can contain multiple held-out strata; bundle count is not sample size.
+`make reproduce-eval` uses `results/_paper/census_bundle_manifest.csv`, not an unrestricted glob. It writes 1,401 rows to `reproduced_results.csv`. The manifest includes 1,149 selected model inputs and 252 simple-reference inputs. A bundle can contain multiple held-out strata; bundle count is not sample size.
 
-`make check` independently re-scores eligible saved bundles, reconstructs the selected 56 evaluations and checks their scores, target alignment, source hashes, 1,642 analysis-unit rows and uncertainty summaries. It must print `DEPOSIT CONSISTENCY: PASS`. Historical bundles can remain in the archive without entering the selected panel; their existence does not imply valid native execution.
+`make check` independently re-scores eligible saved bundles, reconstructs the selected 58 evaluations and checks their scores, target alignment, source hashes, 1,698 analysis-unit rows and uncertainty summaries. It must print `DEPOSIT CONSISTENCY: PASS`. Historical bundles can remain in the archive without entering the selected panel; their existence does not imply valid native execution.
 
-The panel has 34 native, seven adapted and six diagnostic entries. Native CPA/scGen only are included; native chemCPA supplies the held-compound CPA/chemCPA entry. STATE T1/T2 select genuine prediction files. STATE T3/T4/T5 results were excluded after an output-recovery error; see [EXECUTION_AUDIT.md](EXECUTION_AUDIT.md). No new drug fitting is needed for replay.
+The panel has 46 native, eight adapted and four diagnostic entries. Native CPA/scGen only are included; native chemCPA supplies the held-compound CPA/chemCPA entry. STATE's T3/T4/T5 executions were excluded after an output-recovery error and have since been re-run through the corrected runner, so STATE is native on all six settings; see [EXECUTION_AUDIT.md](EXECUTION_AUDIT.md), whose update header records both. No new drug fitting is needed for replay.
 
 Mean profiles reproduce response-direction Pearson-Δ, not per-cell distributions. Energy distance is unavailable from mean-only bundles. A per-cell bundle must also supply a training-only PCA basis; the scorer returns a missing energy-distance value when that information is absent rather than fitting a basis on held-out cells.
 
@@ -33,12 +33,12 @@ make figures
 Run from the package root. The document commands apply to the submission archive,
 which includes the `submission/` source directory.
 
-The common inference family has 24 entries with at least eight analysis units; the remaining 23 receive descriptive observed ranges, not confidence intervals or P values. Bootstrap intervals and Wilcoxon tests condition on the recorded fits, selected floor and fixed masks. They do not quantify optimization-seed or independent-dataset uncertainty. See [ANALYSIS_SCOPE.md](ANALYSIS_SCOPE.md).
+The common inference family has 27 entries with at least eight analysis units; the remaining 31 receive descriptive observed ranges, not confidence intervals or P values. Bootstrap intervals and Wilcoxon tests condition on the recorded fits, selected floor and fixed masks. They do not quantify optimization-seed or independent-dataset uncertainty. See [ANALYSIS_SCOPE.md](ANALYSIS_SCOPE.md).
 
 Auxiliary reproducibility is explicitly bounded:
 
 - Immune-program comparisons score predicted and observed mean profiles with the same rank function. Identity controls are in `immune_readout_target_validation.csv`; NA-O means a constant observed target and NA-P a constant prediction against a variable target. Observed per-cell caches serve only an aggregation diagnostic. Regenerating those caches requires source cells.
-- `assemble_target_diagnostics.py` replays retained disjoint-control and paired shared-control partition correlations for the exact held targets and score masks. It emits six task summaries and precision/power/attenuation statements for all 47 contrasts. Regenerating partitions with `build_target_repeatability.py` requires the source cells and raw-data loader dependencies; no model is fitted. The 100-partition ranges are not biological confidence intervals or prediction ceilings.
+- `assemble_target_diagnostics.py` replays retained disjoint-control and paired shared-control partition correlations for the exact held targets and score masks. It emits six task summaries and precision/power/attenuation statements for all 58 contrasts. Regenerating partitions with `build_target_repeatability.py` requires the source cells and raw-data loader dependencies; no model is fitted. The 100-partition ranges are not biological confidence intervals or prediction ceilings.
 - External donor validation retains seed-level scalar scores, not fitted cell predictions. The two training seeds are averaged within donor.
 - The matched learning curve uses the same ten evaluation donors and seed-0 training subsets for CellOT/scGPT. scGPT uses a fixed 8,000-stimulated-cell cap. Available training cells are not the number actually consumed.
 - Frangieh/Chen checkpoint figures can be regenerated from their supplied marker-level summaries. Recomputing those summaries requires the source RNA/protein objects and their documented normalizations.

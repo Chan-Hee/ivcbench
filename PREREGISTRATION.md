@@ -232,3 +232,37 @@ frozen/immutable claims; that reclassification does not alter the substantive an
 
 4. **Reporting precision.** Answering Reviewer 1's first minor comment, table values are re-printed at
    a uniform precision. This is a display convention; no value changed.
+
+## AMENDMENT 2 — 2026-09-16 (execution outcomes after Amendment 1)
+
+Amendment 1 was written against a 39-cell headline census. Execution has moved it twice since,
+and this amendment records where, so that the numbers quoted above are read as the snapshot they
+are rather than as current values.
+
+1. **Census size: 39 → 47 → 56 → 58 cells.** The 47-cell panel was the submitted one. Re-running
+   the executions excluded by the 9 September output-recovery audit restored STATE on T3, T4, T5c
+   and T5u and PertAdapt on T3 and T4, and admitting scGPT and scFoundation on both compound
+   settings through a task interface written for this study took the panel to 58: 46 native, eight
+   adapted and four diagnostic, with 9 / 9 / 10 / 10 / 11 / 9 entries across T1 / T2 / T3 / T4 /
+   T5c / T5u. No rule in this document changed; only what was executed under it.
+
+2. **The Amendment 1 fit-matrix gaps are a 2026-09-01 snapshot.** Five of the eight listed there
+   no longer reproduce, because the fixed member is chosen by macro value among the models in the
+   census and the census grew. Current values from `results/_paper/descriptive_fit_matrix.csv`:
+   C1 latent −0.031 (scGen, unchanged); C2 hybrid −0.124 (STATE); C2 latent −0.052 (CPA);
+   C3 foundation −0.333 (scGPT); C3 graph −0.266 (AttentionPert); C3 hybrid −0.262 (PertAdapt);
+   C3 latent −0.100 (Biolord); C4 latent −0.048 (Biolord). The rule that produces them is
+   unchanged; the members it selects are not.
+
+3. **H3 cannot be computed and is reported as a shortfall, not as a null.** Section (6) specifies
+   H3 as latent (scGen) against the universal floor on C4 unseen-KO. scGen has no C4 cell in the
+   census — its published interface does not condition on a held knockout, and the cell carries
+   that reason in Supplementary Table S15b — so the contrast has no entry to compute. The
+   pre-specified family therefore reports H3 as missing rather than silently dropping it, and the
+   multiplicity correction is applied over the contrasts that exist. H3 also names "RNA & protein"
+   while the only C4 split scored is unseen-KO on the RNA modality; the Frangieh protein readout
+   is scored separately and is not part of this contrast.
+
+4. **Inference family size follows the census.** The common family is the cells with at least
+   eight biological units: 27 of the 58, with the other 31 reported as observed ranges. Amendment
+   1's era had 24 and 23.
