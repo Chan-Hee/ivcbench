@@ -12,7 +12,7 @@ S10,Supplementary_Table_S10.csv,1,"scPRAM vs CellOT, paired per donor"
 S11,Supplementary_Table_S11.csv,8,Pre-specified headline multiplicity family
 S12,Supplementary_Table_S12.csv,60,Per-program readout on the unseen-gene split
 S13,Supplementary_Table_S13.csv,5,Per-dataset CRISPR breakdown
-S14,Supplementary_Table_S14.csv,9,Tanimoto-distance negative control
+S14,Supplementary_Table_S14.csv,11,Tanimoto-distance negative control
 S15a,Supplementary_Table_S15a.csv,17,Model-by-task coverage matrix
 S15b,Supplementary_Table_S15b.csv,44,One reason for every cell the census does not report
 S15c,Supplementary_Table_S15c.csv,65,Training configuration of every executed cell

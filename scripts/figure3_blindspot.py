@@ -114,13 +114,41 @@ NAMES = [
 ]
 
 
+# Which task each program is scored on, and therefore which summary carries it. Panel b lists
+# three OP3 programs and five T3 programs; the OP3 macro file holds only the first three.
+PROGRAM_TASK = {"type_I_IFN": "T5c", "inflammatory_NFkB": "T5c", "effector_lymphocyte": "T5c",
+                "TCR_activation": "T3", "IL2_STAT5": "T3", "proliferation": "T3",
+                "effector_cytokine": "T3", "Treg_exhaustion": "T3"}
+
+
 def complete_macro():
-    """Entries whose program correlation is defined on EVERY lineage of the split."""
+    """Entries whose program correlation is defined on EVERY required unit of the split.
+
+    The T5c entries come from the deposited OP3 macro, which already carries the estimable count.
+    The five T3 programs had no source at all: they were looked up in that same OP3 file, found
+    absent, and drawn NA. The NA is right today -- no model is estimable on all five T3 dataset
+    arms -- but it was right by accident, and a future T3 result would have gone on being drawn NA.
+    T3 completeness is computed here from immune_readout_summary, the file that records it.
+    """
     out = collections.defaultdict(list)
     for r in rd("immune_readout_op3_macro"):
         if r["program_corr"] and r["n_estimable_lineages"] == r["n_lineages"]:
             out[r["program"]].append((r["model"], float(r["program_corr"]),
                                       float(r["pearson_delta"])))
+
+    t3 = [r for r in rd("immune_readout_summary") if r["task_key"] == "T3"]
+    units = {r["unit"] for r in t3}
+    by = collections.defaultdict(dict)
+    for r in t3:
+        if r["program_corr"]:
+            by[(r["program"], r["model"])][r["unit"]] = (float(r["program_corr"]),
+                                                         float(r["pearson_delta"]))
+    for (program, model), per_unit in by.items():
+        if PROGRAM_TASK.get(program) != "T3" or set(per_unit) != units:
+            continue                      # an incomplete macro is not a macro
+        vals = list(per_unit.values())
+        out[program].append((model, sum(v[0] for v in vals) / len(vals),
+                             sum(v[1] for v in vals) / len(vals)))
     return out
 
 

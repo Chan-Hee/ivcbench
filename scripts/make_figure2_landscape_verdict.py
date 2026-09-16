@@ -138,17 +138,27 @@ LUM_T = 0.30  # luminance guard for in-cell ink
 # and cell-context axes at revision (PerturbNet, PRnet, CellFlow) carry the families their runners
 # declare in baselines/heavy.py ("generative", "flow").
 FAM_ROWS = [
-    ("simple", ["ctrl-pred", "cell-mean", "donor-shift", "linear-PCA"]),
-    ("latent", ["scGen", "CPA", "Biolord"]),
-    ("graph", ["GEARS", "AttentionPert"]),
-    ("foundation", ["scGPT", "scFoundation"]),
-    ("hybrid", ["STATE", "PertAdapt"]),
-    ("opt-transport", ["CellOT", "scPRAM"]),
-    ("generative", ["PerturbNet", "PRnet"]),
-    ("flow", ["CellFlow"]),
-    ("chemistry", ["FP-ridge"]),
-    ("shift", ["linear-shift-KOemb"]),
+    # Rows are grouped by the PRINCIPAL PREDICTION INPUT a model uses in this figure, not by a new
+    # architecture taxonomy -- the six method families in the text are unchanged. The point is that
+    # a reader can see the two universal references together, and see at a glance which models take
+    # a genetic perturbation as input and therefore share a column footprint.
+    ("Universal references", ["cell-mean", "linear-PCA"]),
+    ("Other references", ["ctrl-pred", "donor-shift"]),
+    ("Diagnostic comparators", ["FP-ridge", "linear-shift-KOemb"]),
+    ("Genetic perturbation", ["GEARS", "AttentionPert", "PertAdapt"]),
+    ("Observed-response transfer", ["scGen", "CellOT", "scPRAM"]),
+    ("Attribute / chemical inputs", ["CPA", "Biolord", "PRnet"]),
+    ("Flexible condition inputs", ["CellFlow", "PerturbNet", "STATE"]),
+    ("Foundation models", ["scGPT", "scFoundation"]),
 ]
+# The left-gutter accent shows the CENSUS role, which is not the display group: FP-ridge and
+# linear-shift-KOemb are diagnostic wherever they are drawn, and the four reference rows are
+# baselines. Keying the accent off the display name would have made the role follow the layout.
+ROLE_OF_MODEL = {
+    "cell-mean": "baseline", "linear-PCA": "baseline",
+    "ctrl-pred": "baseline", "donor-shift": "baseline",
+    "FP-ridge": "diagnostic", "linear-shift-KOemb": "diagnostic",
+}
 # CINEMA-OT is gone from FAM_ROWS, not forgotten: all six of its cells are excluded under this
 # revision's interface rule, so it contributes no census row. The grid asserts that the drawn
 # roster equals the census roster exactly (see the roster rule below), so leaving it here would
@@ -782,9 +792,10 @@ def draw_landscape(
             )
     yacc = nM - 1
     _present = [
-        (ROLE_OF[fam], len([m for m in ms if m in models]))
-        for fam, ms in FAM_ROWS
-        if any(m in models for m in ms)
+        (ROLE_OF_MODEL.get(m, "conditioned"), 1)
+        for _fam, ms in FAM_ROWS
+        for m in ms
+        if m in models
     ]
     _spans = []
     for role, n in _present:
@@ -1230,7 +1241,7 @@ def main():
     # be one complete line and the wrap is asserted rather than truncated.
     sub_txt = (
         f"{cen.model.nunique()} methods and comparators over {len(cen)} evaluations;"
-        " blue clears that column’s floor, orange falls below."
+        " blue a positive column margin, orange negative."
     )
     n_sub = textwrap.wrap(sub_txt, width=100)
     if len(n_sub) != 1:
