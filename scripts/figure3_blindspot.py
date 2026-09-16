@@ -37,7 +37,7 @@ from ivcbench.report.style import INK_BODY, INK_HEAD, INK_NOTE, MAIN_FS  # noqa:
 # black. figure_consistency.py fails the build on exactly that leak.
 # PD-L1 was orange here and rose in Figures S4 and S5, so the same marker wore two colours
 # across the set. The rose is the one the supplementary captions name.
-NAVY, BLUE, ORANGE, GREY, GREEN = INK_HEAD, "#226ca0", "#B34E68", "#99a4ae", "#24856a"
+NAVY, BLUE, ORANGE, GREY, GREEN = INK_HEAD, "#226ca0", "#B34E68", "#99a4ae", "#33866E"
 INK = INK_NOTE
 plt.rcParams.update({
     "font.family": "DejaVu Sans", "font.size": MAIN_FS["tick"],
