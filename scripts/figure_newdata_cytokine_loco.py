@@ -79,7 +79,9 @@ def main():
     # shortening the panels would push both onto the axes -- the height stays.
     fig = plt.figure(figsize=(6.6, 5.4))
     gs = fig.add_gridspec(2, 2, width_ratios=[1.0, 1.02], height_ratios=[1.0, 1.0],
-                          wspace=0.70, hspace=0.72,
+                          # 0.72 left a 0.53 in strip of the left column completely empty
+                          # between (a) and (c) while (b) ran full height beside it.
+                          wspace=0.70, hspace=0.58,
                           left=0.245, right=0.985, top=0.925, bottom=0.075)
     axA = fig.add_subplot(gs[0, 0])     # pooled bars — top-left
     axC = fig.add_subplot(gs[1, 0])     # two conditioning regimes — bottom-left
@@ -115,11 +117,14 @@ def main():
         lab_x = max(hi, m) + 0.012
         if floor_m - 0.035 < lab_x < floor_m + 0.012:
             lab_x = floor_m + 0.016
-        axA.text(lab_x, y, _u(f"{m:.2f}"),
+        # Two decimals printed the floor as 0.19 against the caption's 0.195; three decimals is
+        # the project's rounding, and the widest label still ends 0.02 inside the right limit.
+        axA.text(lab_x, y, _u(f"{m:.3f}"),
                  va="center", ha="left",
                  fontsize=7.0, color=INK)  # _u here IS correct: a formatted, sign-sensitive number
     axA.axvline(floor_m, color=NAVY_DARK, lw=1.1, ls="--", zorder=2)
-    axA.text(floor_m + 0.008, len(rows) - 0.58, "floor", rotation=90, va="top", ha="left",
+    # +0.008 left 1.6 pt between the glyphs and the dashed rule, which reads as one object.
+    axA.text(floor_m + 0.020, len(rows) - 0.58, "floor", rotation=90, va="top", ha="left",
              fontsize=6.4, color=NAVY_DARK, style="italic")
     axA.axvline(0, color="#bbb", lw=0.6, zorder=1)
     # method names + axis text below are compound words (cytokine-mean, feature-nearest,
@@ -133,7 +138,7 @@ def main():
                    fontsize=7.4)
     panel_title(axA, "a", "Unseen-cytokine extrapolation",
                 sub=f"leave-one-cytokine-out, {summ['n_held_cytokine_instances']:,} held instances "
-                    f"across {summ['n_celltypes_tested']} celltypes", x_letter=-0.30)
+                    f"across {summ['n_celltypes_tested']} cell types", x_letter=-0.30)
     despine(axA)
 
     # ================= (b) per-celltype paired gap =================
@@ -154,13 +159,13 @@ def main():
     n_pos = int((pc["gap"] > 0).sum())
     # "−" here is a real subtraction (DE-profile-nearest minus the floor); the two method names
     # either side of it keep plain hyphens as compound words.
-    axB.set_xlabel("DE-profile-nearest − cytokine-mean floor  (Δ Pearson)  →",
+    axB.set_xlabel("DE-profile-nearest − cytokine-mean floor  (Δ Pearson)  ↑",
                    fontsize=7.4)
     # Each note goes beside the rows it describes, in the empty half of those rows. The winning
     # rows have bars running RIGHT from zero, so their free space is on the left; the losing rows
     # run left, so theirs is on the right. Putting both notes on one side, as before, meant one of
     # them always sat either on the bars or beside the wrong rows.
-    axB.text(0.02, 0.97, f"transfer beats floor in\n{n_pos}/{len(pc)} celltypes",
+    axB.text(0.02, 0.97, f"transfer beats floor in\n{n_pos}/{len(pc)} cell types",
              transform=axB.transAxes, ha="left", va="top", fontsize=6.6,
              color=CONDITIONED_DARK, style="italic")
     # It used to sit at y=0.96, beside CD4 T cell and CD4 Memory T cell -- the two largest
@@ -168,7 +173,7 @@ def main():
     axB.text(0.98, 0.02, "floor wins\n(small-n lineages)", transform=axB.transAxes,
              ha="right", va="bottom", fontsize=6.2, color=NAVY_DARK, style="italic")
     panel_title(axB, "b", "The transfer win is broad across immune lineages",
-                sub="observed-elsewhere cytokine transfer, per celltype", x_letter=-0.20)
+                sub="observed-elsewhere cytokine transfer, per cell type", x_letter=-0.20)
     despine(axB)
 
     # ================= (c) the two conditioning regimes =================
@@ -179,7 +184,9 @@ def main():
     axC.axhline(0, color=NAVY_DARK, lw=1.0, ls="--", zorder=1)
     axC.axvline(0, color=NAVY_DARK, lw=1.0, ls="--", zorder=1)
     # shaded quadrants
-    axC.axhspan(0, 0.35, xmin=0.0, xmax=1.0, color=CONDITIONED, alpha=0.05, zorder=0)
+    # 0.35 was a hardcoded top inside axes that reach 0.38, so a hard-edged white strip sat
+    # between the band and the panel top -- on a panel with no top spine, that edge reads as a
+    # threshold the data respects. The band is drawn after the data, to the axis limit.
     # Filled and near-opaque, two coincident cell types printed as one marker -- and the two that
     # clear the floor (CD14 Mono and Mono, 0.001 apart in x and 0.008 in y) are the caption's own
     # "2 of 24". A light fill with a solid edge keeps the size encoding and shows both rings.
@@ -191,26 +198,46 @@ def main():
                 linewidth=1.0, alpha=0.95, zorder=4)
     axC.scatter([np.mean(g_ft)], [np.mean(g_de)], marker="D", s=46, c=NAVY,
                 edgecolor="white", linewidth=0.9, zorder=6)
+    # Up and left, the leader crossed the MAIT ring on its way to the diamond. Down and right
+    # of the mean the panel is empty, so nothing is drawn over.
     axC.annotate("mean over cell types", xy=(np.mean(g_ft), np.mean(g_de)),
-                 xytext=(np.mean(g_ft) - 0.085, np.mean(g_de) + 0.045), fontsize=6.2,
-                 color=NAVY_DARK, ha="center",
+                 xytext=(np.mean(g_ft) + 0.050, np.mean(g_de) - 0.062), fontsize=6.2,
+                 color=NAVY_DARK, ha="left", va="center",
                  arrowprops=dict(arrowstyle="-", color=NAVY_DARK, lw=0.6))
+    # The caption counts "2 of 24" to the right of the zero line. Those two are Mono
+    # (+0.034, +0.207) and CD14 Mono (+0.035, +0.199): 0.0009 apart in x, 0.0075 in y, and with
+    # 87 held cytokines each they draw at the SAME radius, so the pair printed as one thick ring
+    # and the count could not be checked. Neither axis can be dodged -- both are measured -- so
+    # the right limit is opened and each ring is named, which is what the count needs.
+    axC.set_xlim(right=max(0.078, axC.get_xlim()[1]))
+    for _nm, _dy in (("Mono", 6), ("CD14 Mono", -8)):
+        _i = int(np.argmax(per_ct["celltype"].values == _nm.replace(" ", "_")))
+        axC.annotate(_nm, xy=(g_ft[_i], g_de[_i]), xytext=(9, _dy),
+                     textcoords="offset points", ha="left", va="center", fontsize=6.0,
+                     color=CONDITIONED_DARK,
+                     arrowprops=dict(arrowstyle="-", color=CONDITIONED_DARK, lw=0.5, alpha=0.8))
     # Anchored to the panel's right edge, this sat across the dashed zero line at x=0.00 on the
     # narrower plate. It is placed just right of that line instead, in the quadrant it names.
-    axC.text(0.74, 0.97, "transfer escapes\nthe floor", transform=axC.transAxes, ha="right",
+    # Opening the right limit for the Mono labels moved the ring cluster under this text. Every
+    # point with y above 0.19 sits right of x = -0.05, so the band's top-LEFT corner is the one
+    # corner of the quadrant that is empty.
+    axC.text(0.03, 0.97, "transfer escapes\nthe floor", transform=axC.transAxes, ha="left",
              va="top", fontsize=6.6, color=CONDITIONED_DARK, style="italic")
     # The Plasmablast outlier sits at the extreme bottom-left corner of the panel (the widest
     # gap in both x and y), exactly where this label used to anchor — text landed on top of the
     # marker. Moved up and right, clear of the point, with a short leader back to it.
-    axC.annotate("annotation-only\nconditioning fails", xy=(g_ft.min(), g_de.min()),
-                 xytext=(0.15, 0.14), textcoords="axes fraction",
-                 ha="left", va="bottom", fontsize=6.6, color=CLAY_DARK, style="italic",
-                 arrowprops=dict(arrowstyle="-", color=CLAY_DARK, lw=0.6, alpha=0.7))
+    # The leader ended on the single Plasmablast outlier, but the sentence describes the 22 of
+    # 24 cell types left of the zero line. A quadrant label needs no leader.
+    axC.text(0.15, 0.14, "annotation-only\nconditioning fails", transform=axC.transAxes,
+             ha="left", va="bottom", fontsize=6.6, color=CLAY_DARK, style="italic")
     # same convention: real subtraction "−" between method and floor, plain hyphens within names.
     axC.set_xlabel("feature-nearest − floor  (annotation only)", fontsize=7.4)
     axC.set_ylabel("DE-profile-nearest − floor  (observed elsewhere)", fontsize=7.4)
+    _y0, _y1 = axC.get_ylim()
+    axC.axhspan(0, _y1, xmin=0.0, xmax=1.0, color=CONDITIONED, alpha=0.05, zorder=0)
+    axC.set_ylim(_y0, _y1)
     panel_title(axC, "c", "Two conditioning regimes",
-                sub="each point a celltype; marker size ~ held cytokines", x_letter=-0.34)
+                sub="each point a cell type; marker size ~ held cytokines", x_letter=-0.34)
     despine(axC)
 
     # NOTE: the long methods footnote that used to sit under the plate is intentionally NOT drawn
