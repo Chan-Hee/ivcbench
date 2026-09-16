@@ -157,7 +157,11 @@ def main():
         ys = [np.nanmean(per_split_mean(grid, key, sp)) for sp, _ in SPLITS]
         if key != "cell-mean":
             _other_max = max(_other_max, max(ys))
+        # Hollow markers: at the 50% holdout both nearest-gene priors sit at 0.25, and the
+        # lighter GO-Jaccard dot, drawn second, completely covered the co-expr one -- the caption
+        # says both score 0.25 and the panel showed one endpoint.
         h, = axB.plot(xs, ys, ls=ls, lw=lw, color=col, marker="o", ms=ms,
+                      mfc="none", mec=col, mew=1.4,
                       zorder=(5 if key == "cell-mean" else 3),
                       label=lab)
         handles.append(h)
