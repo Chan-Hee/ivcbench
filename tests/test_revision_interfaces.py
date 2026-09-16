@@ -13,9 +13,21 @@ from assemble_cross_cluster import census_metadata_rows
 
 
 def submission_tables():
+    """The manuscript's table builder, which lives outside this repository.
+
+    README and REPRODUCE advertise `make test` as one of three commands a reader runs, and the
+    fallback path below exists only on the author's machine: in a fresh clone six tests died with
+    FileNotFoundError, which reads as a broken deposit rather than as a check that needs a file
+    the deposit does not ship. Skip instead, and say which file is missing.
+    """
     source = ROOT / "submission/tables.py"
     if not source.is_file():
         source = ROOT.parent / "revision_BIB-26-1553/03_etc/11_final/tables.py"
+    if not source.is_file():
+        pytest.skip(
+            "the manuscript table builder is not in this checkout "
+            "(submission/tables.py); these checks cover the paper's tables, not the deposit"
+        )
     spec = importlib.util.spec_from_file_location("tested_submission_tables", source)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
