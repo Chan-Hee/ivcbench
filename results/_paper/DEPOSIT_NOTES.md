@@ -44,3 +44,32 @@ would expect to be a supplementary figure and hold a **different** one:
 Figures S1, S6 and S8 are built in the manuscript repository
 (`revision_claude/02_build/figures/`) and are not deposited here. The supplement does not claim
 that its artwork lives in this directory; the record is the embedded image in the document.
+
+## The legacy `Supplementary_Table_S<N>_*.csv` files in this directory
+
+Fifteen files here carry a supplementary-table number in their NAME. They are working artefacts
+from earlier numbering, kept because figures and notes were computed from them. **The table of
+record for every number is `supplementary_tables/Supplementary_Table_S<N>.csv`**, indexed by
+`MANIFEST.csv`; resolve a table by that file, never by a name in this directory.
+
+Three of the fifteen carry a number that now belongs to a different table:
+
+| File here | What it contains | Its number in the paper |
+|---|---|---|
+| `Supplementary_Table_S20_panel_checks.csv` (13 rows) | immune-program panel checks | **S18**. Printed S20 is the matched donor learning curve (5 rows). |
+| `Supplementary_Table_S25_matched_donor_learning_curve.csv` | the matched donor learning curve | **S20**. The supplement runs S1 to S23; there is no S25. |
+| `Supplementary_Table_S11_multiplicity.csv` (58 contrasts) | the panel-wide multiplicity family | **S23** (27 contrasts). Printed S11 is the 8-row pre-specified headline family. |
+
+Four more share a number with the printed table but are older and smaller:
+`S3_descriptive_fit_matrix.csv` (32 rows against 35), `S7_OP3_programs.csv` (27 against 39),
+`S12_T3_programs.csv` (175 rows, a different schema), `S14_Tanimoto_current.csv` (9 rows on the
+pre-STATE T5u roster, including a CINEMA-OT row the census does not report), and
+`S15_training_configuration.csv` (46 rows with no Seeds column; printed S15c has 65).
+`S17_effect_stratification.csv` holds the pre-panel-mask quartile margins (Q1 -0.1505 where the
+current run gives -0.1520).
+
+The remaining five (`S1_dataset_inventory`, `S2_method_inventory`, `S5_op3_fine_lineage`,
+`S6_marker_readout`, `S8_energy_distance`) agree with the printed table of the same number;
+`S6` and `S20_panel_checks` are the full-precision sources the printed tables are re-sourced from,
+and `S8_energy_distance` is the producer `supplementary_tables/Supplementary_Table_S8.csv` is
+copied from each build.
