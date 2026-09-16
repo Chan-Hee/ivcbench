@@ -116,7 +116,7 @@ def main():
                    fontsize=7.4)
     panel_title(axA, "a", "Unseen-cytokine extrapolation",
                 sub=f"leave-one-cytokine-out, {summ['n_held_cytokine_instances']:,} held instances "
-                    f"× {summ['n_celltypes_tested']} celltypes", x_letter=-0.30)
+                    f"across {summ['n_celltypes_tested']} celltypes", x_letter=-0.30)
     despine(axA)
 
     # ================= (b) per-celltype paired gap =================
@@ -158,7 +158,7 @@ def main():
                 alpha=0.85, zorder=4)
     axC.scatter([np.mean(g_ft)], [np.mean(g_de)], marker="D", s=46, c=NAVY,
                 edgecolor="white", linewidth=0.9, zorder=6)
-    axC.annotate("pooled mean", xy=(np.mean(g_ft), np.mean(g_de)),
+    axC.annotate("mean over cell types", xy=(np.mean(g_ft), np.mean(g_de)),
                  xytext=(np.mean(g_ft) - 0.085, np.mean(g_de) + 0.045), fontsize=6.2,
                  color=NAVY_DARK, ha="center",
                  arrowprops=dict(arrowstyle="-", color=NAVY_DARK, lw=0.6))

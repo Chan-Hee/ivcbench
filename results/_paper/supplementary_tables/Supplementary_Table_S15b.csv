@@ -1,5 +1,5 @@
 Model,Task,Category,Why this cell is not reported
-AttentionPert,T1,the split does not define an input the interface needs,"IFN-beta occupies no coordinate of the gene indicator, and the model has no covariate slot through which a held cell type could enter."
+AttentionPert,T1,the split does not define an input the interface needs,"IFN-β occupies no coordinate of the gene indicator, and the model has no covariate slot through which a held cell type could enter."
 AttentionPert,T2,the split does not define an input the interface needs,"The same, for antibody stimulation."
 AttentionPert,T5c,the split does not define an input the interface needs,A compound is not a gene in the measured panel.
 AttentionPert,T5u,the split does not define an input the interface needs,"The same, and no molecular encoder exists to stand in for one."
@@ -7,7 +7,7 @@ biolord,T1,no published interface for the held entity,"The held-out cell type ha
 biolord,T2,no published interface for the held entity,"The held-out donor has no trained donor representation, and the released model has no expression encoder that infers a donor-specific state from its control cells. Predictions based only on retained cell-type and stimulation attributes would not represent donor transfer under this split."
 biolord,T5c,no published interface for the held entity,"The same, for the held lineage on the compound split: it has no trained categorical representation, and the released model has no expression encoder that would infer its state from its control cells."
 CellOT,T3,the split does not define an input the interface needs,"A gene never perturbed in training has no observed perturbed cells, so there is no target distribution to transport to and no map can be fitted."
-CellOT,T4,interface does not condition on the held entity,"The historical runner fits one transport map to pooled training-KO cells and takes no held-KO identity as input. The same predicted control cloud is tiled to each test stratum; unequal cell counts yield different prefix means without KO conditioning. Its RNA score (0.592) is retained as a pooled-map diagnostic, not a native unseen-KO evaluation."
+CellOT,T4,interface does not condition on the held entity,"CellOT learns a transport map from observed control and treated populations. A held-out knockout has no treated training population, and the released model has no gene encoder to infer its map."
 CellOT,T5u,the split does not define an input the interface needs,"A compound absent from training has no observed perturbed cells, and the released code carries no molecular encoder to stand in for them."
 CINEMA-OT,T1,no published interface for the held entity,CINEMA-OT estimates treatment effects by matching observed control and treated populations. Its released interface does not provide an inductive predictor for a held-out context or an intervention with no treated observations.
 CINEMA-OT,T2,no published interface for the held entity,"The same, for the held donor."
@@ -15,25 +15,25 @@ CINEMA-OT,T3,no published interface for the held entity,"The released call selec
 CINEMA-OT,T4,no published interface for the held entity,"The same, for the held knockout."
 CINEMA-OT,T5c,no published interface for the held entity,"The same, for the held lineage on the compound split: the transport is solved between two named populations of one experiment, and the released interface provides no operation that carries a compound response measured in other lineages onto a lineage held out of the solve."
 CINEMA-OT,T5u,no published interface for the held entity,A held-out compound has no treated cells to select and the method reads no chemical structure.
-CPA,T3,would need an interface written for this study,"CPA conditions on a perturbation-embedding table learned over the training perturbations. A held gene has no row in it, and the released code carries no gene-side encoder from which one could be built. The submitted census scored this cell from an author-written substitute rather than that published conditioning."
-CPA,T4,would need an interface written for this study,"The same, for the held knockout: no row in the published embedding table and no encoder to construct one, and the submitted number likewise came from the author-written substitute."
-FP-ridge,T1,the split does not define an input the interface needs,The benchmarked interface represents small-molecule interventions with molecular fingerprints. It has no specified perturbation encoding for IFN-beta; using this biologic stimulus would require a new input representation.
+CPA,T3,would need an interface written for this study,CPA learns a separate embedding for each observed perturbation. It has no gene-feature encoder to generate an embedding for a gene perturbation absent from training.
+CPA,T4,would need an interface written for this study,CPA learns a separate embedding for each observed perturbation. It has no gene-feature encoder to generate an embedding for a knockout absent from training.
+FP-ridge,T1,the split does not define an input the interface needs,The benchmarked interface represents small-molecule interventions with molecular fingerprints. It has no specified perturbation encoding for IFN-β; using this biologic stimulus would require a new input representation.
 FP-ridge,T2,the split does not define an input the interface needs,"The same, for anti-CD3/CD28 stimulation."
 FP-ridge,T3,the split does not define an input the interface needs,A gene knockout has no chemical structure.
 FP-ridge,T4,the split does not define an input the interface needs,"The same, for the held knockout."
-GEARS,T1,the split does not define an input the interface needs,"The perturbation is exogenous IFN-beta, which is not a gene and carries no node in the Gene Ontology graph; the released code also states that transfer to a held cell type is out of scope."
+GEARS,T1,the split does not define an input the interface needs,"The perturbation is exogenous IFN-β, which is not a gene and carries no node in the Gene Ontology graph; the released code also states that transfer to a held cell type is out of scope."
 GEARS,T2,the split does not define an input the interface needs,"The same, for antibody-based activation, with the donor as the held group."
 GEARS,T5c,the split does not define an input the interface needs,"The perturbation is a compound, which has no node in the graph."
 GEARS,T5u,the split does not define an input the interface needs,"The same, and the held compound is absent from training as well."
-linear-shift-KOemb,T1,the split does not define an input the interface needs,"IFN-beta occupies no row of the expression matrix, so it has no embedding and the comparator would return the control mean."
+linear-shift-KOemb,T1,the split does not define an input the interface needs,"IFN-β occupies no row of the expression matrix, so it has no embedding and the comparator would return the control mean."
 linear-shift-KOemb,T2,the split does not define an input the interface needs,"The same, for antibody stimulation."
 linear-shift-KOemb,T5c,the split does not define an input the interface needs,A compound has no row in the gene matrix.
 linear-shift-KOemb,T5u,the split does not define an input the interface needs,"The same, with the held compound absent from training."
-PertAdapt,T1,the split does not define an input the interface needs,"IFN-beta is not a genetic alteration, so it has no node in the perturbation graph, and the released interface has no cell-type slot."
-PertAdapt,T2,the split does not define an input the interface needs,"Anti-CD3/CD28 stimulation is not a genetic alteration, so it has no node in the perturbation graph the released adapter conditions on, and the interface carries no donor slot. The number in the submitted census came from a study-written head over frozen scFoundation embeddings, not from that published conditioning."
-PertAdapt,T5c,the split does not define an input the interface needs,"The perturbation is a compound, which is not a gene, and the released interface does not represent a held lineage."
-PertAdapt,T5u,the split does not define an input the interface needs,"The same, with the held compound also absent from training."
-PRnet,T1,the split does not define an input the interface needs,The benchmarked interface represents small-molecule interventions with molecular fingerprints. It has no specified perturbation encoding for IFN-beta; using this biologic stimulus would require a new input representation.
+PertAdapt,T1,the split does not define an input the interface needs,The released adapter represents genetic perturbations through gene-level inputs. It provides no published encoding for IFN-β stimulation.
+PertAdapt,T2,the split does not define an input the interface needs,The released adapter represents genetic perturbations through gene-level inputs. It provides no published encoding for anti-CD3/CD28 stimulation.
+PertAdapt,T5c,the split does not define an input the interface needs,"The released adapter conditions on gene perturbations and provides no published representation for compounds, including those observed in other cell types."
+PertAdapt,T5u,the split does not define an input the interface needs,The released adapter conditions on gene perturbations and has no chemical encoder for a held-out compound.
+PRnet,T1,the split does not define an input the interface needs,The benchmarked interface represents small-molecule interventions with molecular fingerprints. It has no specified perturbation encoding for IFN-β; using this biologic stimulus would require a new input representation.
 PRnet,T2,the split does not define an input the interface needs,"The same, for anti-CD3/CD28 stimulation."
 PRnet,T3,the split does not define an input the interface needs,A gene knockout has no molecular structure; the released model is defined for chemical perturbations only.
 PRnet,T4,the split does not define an input the interface needs,"The same, for the held knockout."
