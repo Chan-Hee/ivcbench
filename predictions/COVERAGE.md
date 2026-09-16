@@ -10,4 +10,6 @@ These compact inputs retain predicted/observed per-stratum means, controls, gene
 
 For the same task, target vectors and exclusion masks must agree across models. The consistency checks enforce this contract. For Soskic, aligned C2 metric metadata accompany the revision; the preserved numeric mean predictions are unchanged. Seed provenance is task-specific and is recorded in Supplementary Note S2; do not infer that every single saved bundle represents a multi-seed ensemble.
 
+One label in the deposit is wrong and is left as deposited. The 44 OP3 cell-context bundles in `predictions/C5/` are named and stamped `C1_LOCT__<model>__C5_loct_<lineage>`: the runner that wrote them reused C1's leave-one-cell-type tag. Their `split` field is correct, the manifest keys on it and assigns them to T5c, and `check_consistency.py` and the census read the manifest, so nothing inferential depends on the tag. The archives are not rewritten because their sha256 is recorded in the manifest; `scripts/reproduce_eval.py` corrects the tag to `C5_loct` in its own output and says so on stderr.
+
 Run `make reproduce` at the package root. A passing gate ends with `DEPOSIT CONSISTENCY: PASS`.

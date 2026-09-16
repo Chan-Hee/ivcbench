@@ -17,7 +17,9 @@ diverged to NaN on some folds"). Eight donors completed.
 
 Reporting T1 alone would have made the model's coverage a matter of which cells happened to run
 rather than of what its interface supports, which is the inconsistency the revision's admission rule
-exists to prevent. SCREEN is therefore withdrawn in full, T1 included, and the reason is stated in
-the per-method supplementary entries.
+exists to prevent. SCREEN is therefore withdrawn in full, T1 included. It carries no row in Tables S15a-c,
+which cover the evaluated panel; the reason and the compute it used are stated in the
+"Run and not carried" row of Table S16, and Note S2 records that it was run and withdrawn
+before the panel was fixed.
 
 The 8 completed T2 donors and the 8 T1 lineages are kept here so the claim can be checked.

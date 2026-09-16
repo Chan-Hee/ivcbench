@@ -36,6 +36,30 @@ from ivcbench.eval.bundle import (
 )  # noqa: F401  (save_bundle re-exported for tests)
 
 
+def relabel_cluster(row):
+    """Correct a bundle whose stored cluster tag names a different cluster than its own split.
+
+    The runner that produced the OP3 cell-context fold stamped its 44 bundles with C1's
+    leave-one-cell-type tag: predictions/C5/C1_LOCT__*__C5_loct_*.npz store cluster="C1_LOCT"
+    beside split="C5_loct_*". The split is the authoritative field -- it names the fold that was
+    held out, and it is what results/_paper/census_bundle_manifest.csv keys on (task T5c) -- so
+    these are correct evaluations under a wrong label, and the census, which reads the manifest,
+    is unaffected. The archives themselves are left untouched because their sha256 is recorded in
+    that manifest; the label is corrected on the way out, and reported rather than fixed silently.
+
+    Returns True when the row was relabelled.
+    """
+    cluster, split = row.get("cluster", ""), row.get("split", "")
+    if not cluster or not split:
+        return False
+    family = split.split("_")[0]
+    if cluster.split("_")[0] == family:
+        return False
+    parts = split.split("_")
+    row["cluster"] = "_".join(parts[:2]) if len(parts) > 2 else family
+    return True
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(
         description="GPU-free predictions -> metrics reproduction"
@@ -73,6 +97,14 @@ def main(argv=None):
     # They document the .npz layout and are NOT census members. Keep them out of the rows.
     files = [f for f in files if os.sep + "example" + os.sep not in f]
     rows = [score_bundle(f) for f in files]
+    n_relabelled = sum(relabel_cluster(r) for r in rows)
+    if n_relabelled:
+        print(
+            f"note: {n_relabelled} bundles carry a cluster tag from a different cluster than the "
+            "fold they hold out; the split is authoritative and the tag is corrected in this "
+            "output only (see predictions/COVERAGE.md)",
+            file=sys.stderr,
+        )
     cols = [
         "cluster",
         "model",
