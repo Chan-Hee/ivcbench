@@ -13,6 +13,7 @@ Raw single-cell objects are not bundled with the code. Mean profiles are suffici
 | Chen | T3; supplementary surface readouts | GEA E-GEAD-648 / BioProject PRJDB16517 | 30 held genes; source registration/access procedure required |
 | Frangieh | T4; supplementary independent protein fits | scPerturb Zenodo record 13350497 | IFNγ melanoma subset; 25%/50% KO holdouts; public |
 | OP3 | T5c/T5u | GEO GSE279945 | Four coarse lineages / 28 held compounds; public |
+| Human Cytokine Dictionary | Supplementary Fig. S7 only (leave-one-cytokine-out probe; not a benchmark cluster) | The study's published pseudobulk differential-expression summary table, placed at `data/human_cytokine_dict/hcd_mini.csv` | 24 cell types / 87 cytokines / 1,810 held instances; the table is sparse (significant-DE rows only) and `scripts/newdata_cytokine_loco.py` documents the columns it reads |
 
 The broader immune-resource survey includes studies not executed in the final panel. Their presence in the inventory is not evidence that their raw data were downloaded or included in a numerical result.
 

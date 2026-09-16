@@ -75,7 +75,7 @@
     ]
   },
   "primary_floor_note": {
-    "rule": "Universal two-member floor = {cell-mean, linear-PCA}; a model must beat BOTH members. Donor shift and training-mean shift are descriptive context comparators, not universal-floor members; the per-cell best-of-four-floors is reported descriptively as an upper floor only.",
+    "rule": "Universal two-member floor = {cell-mean, linear-PCA}; a model must beat BOTH members. Control-as-prediction and donor shift are descriptive context comparators, not universal-floor members; the per-cell best-of-four-floors is reported descriptively as an upper floor only.",
     "C3_floor_winner_counts": {
       "cell-mean": 15
     }
@@ -87,7 +87,11 @@
       "donor-shift": "run_headline",
       "linear-PCA": "run_headline",
       "scGen": "run_headline",
-      "CPA": "run_headline"
+      "CPA": "run_headline",
+      "scFoundation": "run_headline",
+      "Biolord": "run_headline",
+      "CellOT": "run_headline",
+      "scGPT": "run_headline"
     },
     "C3": {
       "ctrl-pred": "run_headline",

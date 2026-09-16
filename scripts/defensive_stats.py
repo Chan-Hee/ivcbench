@@ -114,7 +114,10 @@ out["donor_inflation"] = dict(n_donors=len(per_donor), mean=m, cluster_ci=[lo, h
 # ---------- pre-specified primary floor: is training-mean/donor-shift the top floor? ----------
 out["primary_floor_note"] = dict(
     rule="Universal two-member floor = {cell-mean, linear-PCA}; a model must beat BOTH members. "
-         "Donor shift and training-mean shift are descriptive context comparators, not universal-floor "
+         # "training-mean shift" is the cell-mean FLOOR member under another name, so naming it
+         # here made a floor member a non-floor comparator, and control-as-prediction -- which
+         # really is one of the two context comparators -- was missing.
+         "Control-as-prediction and donor shift are descriptive context comparators, not universal-floor "
          "members; the per-cell best-of-four-floors is reported descriptively as an upper floor only.",
     C3_floor_winner_counts=out["C3_perturbation"]["floor_winner_counts"])
 
