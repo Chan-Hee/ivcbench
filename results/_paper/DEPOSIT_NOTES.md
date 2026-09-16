@@ -15,6 +15,7 @@ roster or a holdout slice the printed table does not.
 | `Supplementary_Table_S6_marker_readout.csv`, `Supplementary_Table_S20_panel_checks.csv` | Full-precision sources the printed tables are re-sourced from. Authoritative for precision. |
 | `Supplementary_Table_S3_descriptive_fit_matrix.csv`, `Supplementary_Table_S12_T3_programs.csv`, `Supplementary_Table_S14_Tanimoto_current.csv`, `Supplementary_Table_S17_effect_stratification.csv` | Superseded 2026-09-09 snapshots kept for provenance. Each is smaller or older than the printed table and disagrees with it: S3 has 32 rows against 35, S12 a different schema, S14 the pre-STATE T5u roster including CINEMA-OT, S17 the pre-re-run margins. The producers beside them (`descriptive_fit_matrix.csv`, `op3_tanimoto_sensitivity.csv`, `t3_effect_stratification.csv`) are what the build reads. |
 | `Supplementary_Table_S8_energy_distance.csv` | The producer. `supplementary_tables/Supplementary_Table_S8.csv` is copied from it every build, so the two are identical; before 2026-09-16 the deposit had no such path and sat 32 rows behind. |
+| `chemcpa_op3_unseen_compound_summary.csv` | **Correction, 2026-09-16.** Its `CPA_existing_score` (0.158691) was taken from that run's `pearson_delta_ontarget` column rather than `pearson_delta`, the census metric every other anchor in `scripts/chemcpa_evaluate.py` uses; on-target exclusion is a CRISPR convention and does not apply to a compound split. The like-for-like value is **0.106687**, so `chemCPA_minus_CPA_existing` is **-0.0067**, not -0.0587, and the verdict sentence's "0.159 (-0.047)" should read "0.107 (+0.005)". The anchor in the script is fixed; the CSV is left as the record of the run it describes because re-deriving it needs the model. No number in the manuscript, supplement, response letter, or any printed or deposited table depends on it -- the chemCPA note reports from `chemcpa_op3_unseen_compound_by_unit.csv`. |
 
 Numbers in `supplementary_tables/` are printed at the precision the paper uses. Where full
 precision matters, read the analysis CSVs in this directory (`census_uncertainty.csv`,
@@ -27,3 +28,19 @@ scale and the matched-mask split-half precision diagnostic they describe. It is 
 Note S2 points at for the per-cell power and attenuation statements; `status` there is the
 census provenance label, which supersedes the older per-model summaries in this directory
 (`cellot_summary.csv` still carries the submitted `adapted` label for the donor split).
+
+## Supplementary figure artwork
+
+The supplement embeds its own PNGs; only three have a byte-identical twin here
+(`figure_cellcontext.png` = Fig. S2, `figS_c3_nearest_gene.png` = Fig. S3,
+`figS_newdata_cytokine_loco.png` = Fig. S7). Two files in this directory carry a name a reader
+would expect to be a supplementary figure and hold a **different** one:
+
+| File | What it actually is |
+|---|---|
+| `figS_c4_pdl1_assay_power.png` | A single-panel chart of the observed Frangieh RNA and surface CD274 shifts. Printed Figure S4 is a three-panel figure; this is only its panel c. |
+| `figS_chen_checkpoint_replication.png` | A two-panel normalisation comparison. Printed Figure S5 is the three-panel figure deposited at `results/newdata/figS_chen_checkpoint_replication.png`. |
+
+Figures S1, S6 and S8 are built in the manuscript repository
+(`revision_claude/02_build/figures/`) and are not deposited here. The supplement does not claim
+that its artwork lives in this directory; the record is the embedded image in the document.

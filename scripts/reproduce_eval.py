@@ -21,7 +21,7 @@ self-describing .npz (the `ivcbench` prediction-bundle format, one per cluster x
 recomputes per-(cluster, model, split) Pearson-Delta with the SAME frozen metric code used for the paper
 (ivcbench.metrics); energy distance requires per-cell arrays AND a stored training-fold PCA basis.
 The deposited compact mean bundles return NaN for energy distance (Pearson-Delta only).
-This low-level command scores the files requested; the final 47-cell census additionally
+This low-level command scores the files requested; the final 58-cell census additionally
 requires the inclusion manifest and aggregation in scripts/assemble_cross_cluster.py.
 scripts/check_consistency.py verifies the census, not arbitrary NPZ globs.
 """

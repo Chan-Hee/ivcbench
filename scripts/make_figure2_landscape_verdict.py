@@ -1177,12 +1177,10 @@ def main():
     for _, r in cen.iterrows():
         want = max(r.floor_cell_mean, r.floor_linear_PCA)
         got = np.mean([floor_by_col[c] for c in TASK_COLS[r.task]])
-        assert abs(got - want) < 0.02 or r.task in (
-            "T1",
-            "T5c",
-            "T3",
-            "T4",
-        ), f"{r.task}: drawn floor {got:.4f} vs census binding floor {want:.4f}"
+        # The carve-out that excused T1, T5c, T3 and T4 left only 18 of 58 rows checked. All six
+        # tasks now agree to 0.0000, so it was dead code hiding four fifths of the assertion.
+        assert abs(got - want) < 0.02, (
+            f"{r.task}: drawn floor {got:.4f} vs census binding floor {want:.4f}")
     ring_support = verify_ring_support(cells, verdicts, floor_by_col)
 
     official_cells = {(m, ck) for m, cks, _s, _t in verdicts for ck in cks}

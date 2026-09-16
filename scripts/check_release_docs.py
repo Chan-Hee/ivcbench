@@ -58,6 +58,7 @@ def _n(value) -> set[str]:
     out = {str(value), f"{value:,}"}
     if value in WORDS:
         out.add(WORDS[value])
+        out.add(WORDS[value].capitalize())   # sentence-initial: "Eight point estimates exceed..."
     return out
 
 
@@ -104,6 +105,14 @@ CHECKS = [
     (".zenodo.json", r"contains (\d+) model-by-task evaluations", "cells"),
     (".zenodo.json", r"evaluations: (\d+) native", "native"),
     (".zenodo.json", r"([\d,]+) deposited mean-profile bundles", "bundles"),
+    # "clears" was derived in facts() and consumed by nothing, so the one README sentence that
+    # states it was unchecked; and EXECUTION_AUDIT's status triple was unpinned, so 999/777/555
+    # passed. Both are pinned now.
+    ("README.md", r"(\w+) point estimates exceed the task-fixed", "clears"),
+    ("EXECUTION_AUDIT.md", r"the panel holds (\d+) entries", "cells"),
+    ("EXECUTION_AUDIT.md", r"entries \((\d+) native", "native"),
+    ("EXECUTION_AUDIT.md", r"native, (\d+) adapted", "adapted"),
+    ("EXECUTION_AUDIT.md", r"adapted, (\d+) diagnostic", "diagnostic"),
 ]
 
 

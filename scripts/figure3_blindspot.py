@@ -268,8 +268,10 @@ def main() -> None:
         fig.savefig(out / f"figure_immune_blindspot.{ext}", **kw)
     plt.close(fig)
     print(f"wrote {out}/figure_immune_blindspot.{{png,pdf,tiff}}")
-    ent = complete_macro().get("type_I_IFN", [])
-    print(f"  panel b: 1 of {len(NAMES)} programs has a complete estimable macro")
+    _macro = complete_macro()
+    ent = _macro.get("type_I_IFN", [])
+    _complete = sum(1 for v in _macro.values() if v)
+    print(f"  panel b: {_complete} of {len(NAMES)} programs has a complete estimable macro")
     print(f"  panel c: {len(ent)} entries with a complete type-I IFN macro")
 
 

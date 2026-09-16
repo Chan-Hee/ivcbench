@@ -34,7 +34,11 @@ OUT = os.path.join(REPO, "outputs/additional_models")
 ANCHOR = {
     "no_chemistry_baseline": 0.17217957843448467,   # cell-mean = donor-shift (best simple)
     "FP_ridge": 0.16420038796786685,                 # chemistry post-hoc FP->profile ridge
-    "CPA_existing": 0.15869120594912342,             # existing conditioned CPA (FP->latent-δ-ridge)
+    # was 0.15869120594912342, which is that row's pearson_delta_ontarget. Every other anchor here
+    # is pearson_delta, the census metric, and on-target exclusion is a CRISPR convention that does
+    # not apply to a compound split -- so the deposited gap subtracted two different metrics and
+    # reported chemCPA trailing by -0.059 where the like-for-like gap is -0.007.
+    "CPA_existing": 0.1066869333002916,             # existing conditioned CPA (FP->latent-δ-ridge)
     "linear_PCA": 0.14980776662040235,
     "ctrl_pred": 0.002707070748816217,
     "CINEMA_OT": 0.17181999296423914,
