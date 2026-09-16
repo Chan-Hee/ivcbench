@@ -16,6 +16,7 @@ reproduce-eval:
 	$(PY) scripts/reproduce_eval.py --manifest results/_paper/census_bundle_manifest.csv -o reproduced_results.csv
 
 check:
+	$(PY) scripts/check_deposit_completeness.py
 	$(PY) scripts/check_consistency.py
 	$(PY) scripts/check_chemcpa_provenance.py
 

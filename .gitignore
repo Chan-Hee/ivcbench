@@ -21,6 +21,15 @@ outputs/
 !predictions/C3/*.npz
 !predictions/C4/*.npz
 !predictions/C5/*.npz
+# ...and the directories this revision's re-runs deposit into. The allowlist named only C1-C5, so a
+# fresh clone was missing 567 of the 1,401 bundles census_bundle_manifest.csv points at -- every
+# native re-run (v2_native), the T2 metric-metadata correction (C2_metric_aligned) and the cells
+# deposited at the predictions/ root. The availability statement promises a reader can re-score the
+# deposit; without these they cannot. scripts/check_deposit_completeness.py fails the build if the
+# manifest ever names a bundle git does not track again.
+!predictions/v2_native/*.npz
+!predictions/C2_metric_aligned/*.npz
+!predictions/*.npz
 *.pkl
 *.rds
 *.mtx
