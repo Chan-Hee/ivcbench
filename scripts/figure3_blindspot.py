@@ -81,21 +81,21 @@ def marker_panel(ax):
     for j, r in enumerate(d):
         obs, pred = float(r["obsDelta_mean"]), float(r["predDelta"])
         ax.plot([obs, pred], [j, j], color="#bdc6ce", lw=1, zorder=1)
-        ax.scatter(obs, j, s=19, color=GREY, zorder=2)
         ax.scatter(pred, j, s=22, facecolor="none", edgecolor=BLUE, linewidths=1.0,
-                   marker="D", zorder=3)
+                   marker="D", zorder=2)
+        ax.scatter(obs, j, s=11, color=GREY, zorder=3)
         name = r["alias"]
         if r["marker"] in ("CD279", "CD274"):
             c = GREEN if r["marker"] == "CD279" else ORANGE
-            ax.scatter(obs, j, s=40, facecolor=GREY, edgecolor=c, linewidths=1.3, zorder=4)
-            ax.scatter(pred, j, s=40, facecolor="none", edgecolor=c, marker="D",
-                       linewidths=1.5, zorder=5)
+            ax.scatter(pred, j, s=44, facecolor="none", edgecolor=c, marker="D",
+                       linewidths=1.5, zorder=4)
+            ax.scatter(obs, j, s=24, facecolor=GREY, edgecolor=c, linewidths=1.1, zorder=5)
             # Every other row in this panel is labelled with its CD alias, and so are the same
             # two markers in Figures S4a and S5. Naming only these two by their protein name
             # made them the one pair a reader could not match across the three figures.
             name = "PD-1 (CD279)" if r["marker"] == "CD279" else "PD-L1 (CD274)"
         labels.append(name)
-    ax.scatter([], [], s=19, color=GREY, label="Observed")
+    ax.scatter([], [], s=11, color=GREY, label="Observed")
     ax.scatter([], [], s=22, facecolor="none", edgecolor=BLUE, linewidths=1.0,
                marker="D", label="Predicted")
     ax.axvline(0, color=GREY, ls="--", lw=0.8)
@@ -242,7 +242,7 @@ def lineage_panel(ax):
             labels.append(tag + ALIAS.get(unit, unit))
     for j, (task, pred, ref) in enumerate(rows):
         ax.plot([ref, pred], [j, j], color="#b5bdc7", lw=1.5, zorder=1)
-        ax.scatter(ref, j, color=GREY, s=18, zorder=2)
+        ax.scatter(ref, j, facecolor="none", edgecolor=GREY, linewidths=1.1, s=34, zorder=3)
         # One colour for the model, as in panel a: colouring by DATASET here made FP-ridge a
         # blue star in (c) and a teal dot in (d), scGen a slate dot in (c) and a blue dot in
         # (d), and teal mean PD-1 in (a) and FP-ridge-on-OP3 in (d). The two blocks are
@@ -255,7 +255,9 @@ def lineage_panel(ax):
     # is 0.829), so each sits in the blank strip that opens the block instead: above the first row
     # for scGen, between the dividing rule and the first OP3 row for FP-ridge.
     _split = sum(1 for r in rows if r[0] == "T1")
-    for y, name in ((-0.45, "scGen"), (_split + 0.25, "FP-ridge")):
+    # corner-anchored, "FP-ridge" sat level with OP3 B and read as annotating that one row;
+    # each name is centred on the block it names instead
+    for y, name in (((_split - 1) / 2, "scGen"), ((_split + len(rows) - 1) / 2, "FP-ridge")):
         ax.text(0.985, y, name, ha="right", va="center", fontsize=MAIN_FS["name"],
                 color=BLUE, fontweight="bold")
     ax.set_yticks(range(len(rows)), labels, fontsize=MAIN_FS["name"])

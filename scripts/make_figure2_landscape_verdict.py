@@ -524,7 +524,9 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
     axB.bar(
         x, g, width=1.0, color=bar_colors, edgecolor=CELL_EC, linewidth=0.12, zorder=3
     )
-    axB.axhline(0.0, color=INK_BODY, lw=1.0, zorder=4)
+    # lw 1.0 at zorder 4 drew the reference over the bars: four of the 106, whose margin is
+    # thinner than the rule, disappeared into it. Thinner, and underneath the data.
+    axB.axhline(0.0, color=INK_BODY, lw=0.6, zorder=2)
     axB.text(
         n - 1.5,
         -0.016,
@@ -766,11 +768,13 @@ def draw_landscape(
                 linestyle="solid" if survives else (0, (2.6, 1.6)),
             )
         )
+        # 0.16 of a cell from the corner at s=30 left 1 px between the star and the cell's
+        # printed value in four cells. Tighter into the corner and smaller.
         ax.scatter(
-            [x0 - 0.5 + 0.16],
-            [y + 0.5 - 0.16],
+            [x0 - 0.5 + 0.13],
+            [y + 0.5 - 0.13],
             marker="*",
-            s=30,
+            s=22,
             c=(WIN_RING if survives else "white"),
             edgecolors=WIN_DARK,
             linewidths=0.5 if survives else 0.9,
@@ -1442,15 +1446,20 @@ def main():
     def _x1(artist):  # real right edge of a text artist, figure fraction
         return artist.get_window_extent(_rend0).x1 / (fig_w * fig.dpi)
 
-    def _key(xt, yb, draw, text):
-        a = fig.add_axes([xt, yb - swh / 2, sww, swh])
+    # The two gold-ring keys need a wider swatch than the rest: a 1.7 pt ring plus a star inside
+    # a 5.6 pt square left no fill to see, and the solid-versus-dashed outline the caption asks
+    # the reader to tell apart was the part the star covered.
+    def _key(xt, yb, draw, text, w=None):
+        w = w or sww
+        hh = swh * w / sww          # keep the swatch square, as the heatmap cells are
+        a = fig.add_axes([xt, yb - hh / 2, w, hh])
         a.set_xlim(0, 1)
         a.set_ylim(0, 1)
         a.axis("off")
         draw(a)
         key_artists.append(
             fig.text(
-                xt + lab_dx,
+                xt + w + (lab_dx - sww),
                 yb,
                 text,
                 fontsize=FS_KEY,
@@ -1466,17 +1475,9 @@ def main():
         a.add_patch(
             Rectangle((0, 0), 1, 1, fc=DIV_CMAP(mnorm(vmax_margin)), ec=CELL_EC, lw=0.8)
         )
-        a.add_patch(Rectangle((0.08, 0.08), 0.84, 0.84, fc="none", ec=WIN_RING, lw=1.7))
-        a.scatter(
-            [0.5],
-            [1.20],
-            marker="*",
-            s=52,
-            c=WIN_RING,
-            edgecolors=WIN_DARK,
-            linewidths=0.5,
-            clip_on=False,
-        )
+        a.add_patch(Rectangle((0.08, 0.08), 0.84, 0.84, fc="none", ec=WIN_RING, lw=1.1))
+        a.scatter([0.22], [0.78], marker="*", s=20, c=WIN_RING,
+                  edgecolors=WIN_DARK, linewidths=0.4, zorder=5)
 
     def _d_win_borderline(a):
         a.add_patch(
@@ -1491,20 +1492,12 @@ def main():
                 0.84,
                 fc="none",
                 ec=WIN_RING,
-                lw=1.7,
+                lw=1.1,
                 linestyle=(0, (2.2, 1.4)),
             )
         )
-        a.scatter(
-            [0.5],
-            [1.20],
-            marker="*",
-            s=52,
-            c="white",
-            edgecolors=WIN_DARK,
-            linewidths=0.9,
-            clip_on=False,
-        )
+        a.scatter([0.22], [0.78], marker="*", s=20, c="white",
+                  edgecolors=WIN_DARK, linewidths=0.7, zorder=5)
 
     def _d_adapt(a):
         a.add_patch(Rectangle((0, 0), 1, 1, fc="white", ec=CELL_EC, lw=0.8))
@@ -1532,12 +1525,14 @@ def main():
         band_top,
         _d_win,
         "clears both floor members and\nsurvives multiplicity correction",
+        w=sww * 1.55,
     )
     t = _key(
         _x1(t) + KEY_GAP,
         band_top,
         _d_win_borderline,
         "point-estimate clearance,\nwithout statistical support",
+        w=sww * 1.55,
     )
     kx_top_end = _x1(t)
 

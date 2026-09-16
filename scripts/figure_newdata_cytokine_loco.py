@@ -138,7 +138,7 @@ def main():
                    fontsize=7.4)
     panel_title(axA, "a", "Unseen-cytokine extrapolation",
                 sub=f"leave-one-cytokine-out, {summ['n_held_cytokine_instances']:,} held instances "
-                    f"across {summ['n_celltypes_tested']} cell types", x_letter=-0.30)
+                    f"across {summ['n_celltypes_tested']} cell types", x_letter=-0.34)
     despine(axA)
 
     # ================= (b) per-celltype paired gap =================
@@ -209,11 +209,21 @@ def main():
     # 87 held cytokines each they draw at the SAME radius, so the pair printed as one thick ring
     # and the count could not be checked. Neither axis can be dodged -- both are measured -- so
     # the right limit is opened and each ring is named, which is what the count needs.
-    axC.set_xlim(right=max(0.078, axC.get_xlim()[1]))
-    for _nm, _dy in (("Mono", 6), ("CD14 Mono", -8)):
+    axC.set_xlim(right=max(0.115, axC.get_xlim()[1]))
+    # Mono sits at the top of the cloud, so its label needs headroom or it lands on the panel
+    # subtitle. 10% of the range, added once, before anything is placed in axes fractions.
+    _ylo, _yhi = axC.get_ylim()
+    axC.set_ylim(_ylo, _yhi + 0.10 * (_yhi - _ylo))
+    # To the right of the markers these labels ran 0.26 in outside the plot box. Above and below
+    # instead: the pair is 0.0075 apart in y, so one label goes up and the other down, and both
+    # stay inside the axes.
+    # Mono is the upper of the pair, so its label goes above it into the headroom opened above;
+    # CD14 Mono's goes to the right, where the widened limit leaves room inside the axes.
+    for _nm, _off, _ha, _va in (("Mono", (0, 9), "center", "bottom"),
+                                ("CD14 Mono", (8, -2), "left", "center")):
         _i = int(np.argmax(per_ct["celltype"].values == _nm.replace(" ", "_")))
-        axC.annotate(_nm, xy=(g_ft[_i], g_de[_i]), xytext=(9, _dy),
-                     textcoords="offset points", ha="left", va="center", fontsize=6.0,
+        axC.annotate(_nm, xy=(g_ft[_i], g_de[_i]), xytext=_off,
+                     textcoords="offset points", ha=_ha, va=_va, fontsize=6.0,
                      color=CONDITIONED_DARK,
                      arrowprops=dict(arrowstyle="-", color=CONDITIONED_DARK, lw=0.5, alpha=0.8))
     # Anchored to the panel's right edge, this sat across the dashed zero line at x=0.00 on the

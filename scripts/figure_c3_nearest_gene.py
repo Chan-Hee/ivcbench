@@ -159,7 +159,7 @@ def main():
         ("cell-mean",           NAVY,        "-",  "o", 7.0, 2.6, "cell-mean (floor)"),
         ("linear-PCA",          "#6E97B4",   "-",  "s", 6.0, 1.4, "linear-PCA (floor)"),
         ("nearest-gene-coexpr", "#9E5A3C",   "-",  "^", 6.2, 1.6, "nearest-gene: co-expr NN"),
-        ("nearest-gene-go",     "#C28C6F",   "-",  "v", 4.6, 1.6, "nearest-gene: GO-Jaccard NN"),
+        ("nearest-gene-go",     "#C28C6F",   "-",  "x", 5.0, 1.6, "nearest-gene: GO-Jaccard NN"),
         ("GEARS",               "#882255",   "--", "D", 4.0, 1.5, "GEARS"),
         ("AttentionPert",       "#AA4499",   "--", "d", 5.0, 1.5, "AttentionPert"),
     ]
