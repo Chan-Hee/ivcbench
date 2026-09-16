@@ -249,8 +249,11 @@ def main() -> None:
     # printed width the margins have to be retuned, not merely scaled, because panel a carries
     # twenty marker names and panel d twelve lineage labels.
     fig = plt.figure(figsize=(6.85, 6.7))
+    # wspace 0.52 left panel b's long program names ("Regulatory / exhaustion (T3)") and panel d's
+    # lineage labels drawn INSIDE the axes box of the panel to their left -- panel a's x=0.2
+    # gridline ran through the first glyphs of "Effector lymphocyte (OP3)".
     gs = fig.add_gridspec(2, 2, left=0.145, right=0.978, bottom=0.095, top=0.875,
-                          wspace=0.52, hspace=0.34)
+                          wspace=0.62, hspace=0.34)
     axes = [fig.add_subplot(gs[i, j]) for i, j in ((0, 0), (0, 1), (1, 0), (1, 1))]
     marker_panel(axes[0]); label(axes[0], "a", "Surface-marker shifts")
     program_panel(axes[1]); label(axes[1], "b", "Immune-program concordance")
