@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import glob
 import os
 import re
@@ -64,15 +65,22 @@ def main() -> None:
     # is the whole shard set, so the bound is the EARLIEST stamp among the jobs credited with the
     # cell. build_cell_ledger.py already treats a shard set as one unit of completion; this did not.
     by_cell = {}
+    unstamped = []
     for r in csv.DictReader(open(a.manifest)):
         if r.get("complete") != "yes":
             continue
         t0p = Path(dump) / f".{r['job']}.t0"
         if not t0p.exists():
-            continue                      # a historical job, before the stamp existed
+            # A historical job, from before the stamp existed. Skipping it is right -- there is
+            # nothing to compare against -- but skipping it SILENTLY was not: five jobs have no
+            # stamp, and one whole cell (scPRAM x T1, eight census bundles) is covered by nothing
+            # else, so the summary printed "0 cell(s)" while never looking at it. Say so.
+            unstamped.append((r["job"], r.get("model", "?"), r.get("task", "?")))
+            continue
         try:
             t0 = float(t0p.read_text())
         except Exception:
+            unstamped.append((r["job"], r.get("model", "?"), r.get("task", "?")))
             continue
         key = (r["model"], r["task"])
         cur = by_cell.get(key)
@@ -80,19 +88,50 @@ def main() -> None:
             by_cell[key] = (t0, r["job"], set())
         by_cell[key][2].add(r["job"])
 
+    # A bundle rewritten by the panel-mask migration carries the migration's mtime, not the run's.
+    # Where the migration recorded the original we use it; where it did not (the first migration
+    # predates that record) the bundle cannot be checked this way and must not be counted as
+    # passing.
+    migrated, recovered = set(), {}
+    mig = Path("results/_paper/panel_mask_migration.json")
+    if mig.is_file():
+        for e in json.loads(mig.read_text()):
+            full = str(Path(e["bundle"]).resolve())
+            migrated.add(full)
+            if "mtime_before" in e:
+                recovered[full] = float(e["mtime_before"])
+
     problems = []
+    unverifiable = []
     for (model, task), (t0, job, jobs) in sorted(by_cell.items()):
         cl = CEN_CLUSTER.get(task, ())
         mine = [b for b in bundles if b[0] in cl and b[1] == model
                 and Path(b[2]).parent.resolve() == Path(dump).resolve()]
-        stale = [b for b in mine if b[3] < t0]
+        opaque = [b for b in mine
+                  if str(Path(b[2]).resolve()) in migrated
+                  and str(Path(b[2]).resolve()) not in recovered]
+        if opaque:
+            unverifiable.append((model, task, len(opaque), len(mine)))
+        mtime = lambda b: recovered.get(str(Path(b[2]).resolve()), b[3])
+        stale = [b for b in mine if b not in opaque and mtime(b) < t0]
         if stale:
             label = job if len(jobs) == 1 else f"{len(jobs)} shards, earliest {job}"
             problems.append((label, model, task, len(stale), len(mine),
                              sorted(Path(b[2]).name for b in stale)[:4]))
 
+    checked = set(by_cell)
+    blind = sorted({(m, t) for _, m, t in unstamped} - checked)
     print(f"verify_cell_provenance: {len(problems)} cell(s) hold bundles older than the job that "
-          "was credited with completing them")
+          f"was credited with completing them; {len(checked)} cell(s) checked")
+    if unstamped:
+        print(f"  {len(unstamped)} job(s) carry no start stamp and were not compared: "
+              + ", ".join(sorted(j for j, _, _ in unstamped)))
+    for m, t in blind:
+        print(f"  NOT CHECKED: {m} x {t} -- every job credited with this cell is unstamped, so "
+              "the 0 above says nothing about it")
+    for m, t, no, n in sorted(unverifiable):
+        print(f"  NOT CHECKED: {m} x {t} -- {no} of {n} bundles were rewritten by the panel-mask "
+              "migration before it recorded the original mtime, so their age proves nothing")
     for job, m, t, ns, n, names in problems:
         print(f"  {m} x {t} (job {job}): {ns} of {n} bundles predate the job -- {names}")
         print("     the cell is a MIXTURE of two runs; re-run it whole or withdraw the old paths")

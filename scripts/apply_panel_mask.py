@@ -177,6 +177,12 @@ def main() -> int:
         entry = {
             "bundle": str(path),
             "sha256_before": _sha(path),
+            # Rewriting a bundle resets its mtime, and verify_cell_provenance.py decides whether a
+            # bundle predates the job that produced it by comparing exactly that. After the first
+            # migration every rewritten T3/T4 bundle was newer than every job stamp, so that check
+            # could no longer fail for them while still printing "0 cell(s)". Record the mtime the
+            # bundle had, and the gate can use it instead.
+            "mtime_before": os.path.getmtime(path),
             "excluded_before": int(base.size),
             "panel_mask_genes": int(mask.size),
             "excluded_after": int(merged.size),
