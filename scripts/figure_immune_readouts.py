@@ -536,9 +536,13 @@ def figure_s3(summary, units):
                 fontsize=6,
                 style="italic",
             )
-    for ax in axes:
+    # Both panels share the same eleven rows in the same order, so panel (b) was printing a
+    # pixel-exact copy of panel (a)'s names and spending 0.66 in of the plate on it. Only (a)
+    # carries them; (b) keeps its ticks so the rows still line up.
+    for k, ax in enumerate(axes):
         ax.set_yticks(range(len(OP3_MODELS)),
-                      [m.replace("Biolord", "biolord") for m in OP3_MODELS])
+                      [m.replace("Biolord", "biolord") for m in OP3_MODELS] if k == 0
+                      else [""] * len(OP3_MODELS))
         ax.invert_yaxis()
     t5c = units[units.task_key == "T5c"]
     q = t5c.groupby("model").pearson_delta.mean()

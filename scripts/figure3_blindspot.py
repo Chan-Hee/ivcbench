@@ -83,19 +83,20 @@ def marker_panel(ax):
     labels = []
     for j, r in enumerate(d):
         obs, pred = float(r["obsDelta_mean"]), float(r["predDelta"])
+        # A highlighted row used to draw FOUR markers: the generic blue diamond and grey dot,
+        # then a larger coloured pair on top. At PD-L1, where observed and predicted nearly meet,
+        # that overlay erased two thirds of the diamond it exists to draw attention to. One
+        # diamond and one dot per row, in the row's own colour, larger where it is highlighted.
+        hl = r["marker"] in ("CD279", "CD274")
+        c = (GREEN if r["marker"] == "CD279" else ORANGE) if hl else BLUE
         ax.plot([obs, pred], [j, j], color="#bdc6ce", lw=1, zorder=1)
-        ax.scatter(pred, j, s=22, facecolor="none", edgecolor=BLUE, linewidths=1.0,
-                   marker="D", zorder=2)
-        ax.scatter(obs, j, s=11, color=GREY, zorder=3)
+        ax.scatter(pred, j, s=40 if hl else 22, facecolor="none", edgecolor=c,
+                   linewidths=1.4 if hl else 1.0, marker="D", zorder=2)
+        ax.scatter(obs, j, s=20 if hl else 11, color=c if hl else GREY, zorder=3)
         name = r["alias"]
-        if r["marker"] in ("CD279", "CD274"):
-            c = GREEN if r["marker"] == "CD279" else ORANGE
-            ax.scatter(pred, j, s=44, facecolor="none", edgecolor=c, marker="D",
-                       linewidths=1.5, zorder=4)
-            ax.scatter(obs, j, s=24, facecolor=GREY, edgecolor=c, linewidths=1.1, zorder=5)
+        if hl:
             # Every other row in this panel is labelled with its CD alias, and so are the same
-            # two markers in Figures S4a and S5. Naming only these two by their protein name
-            # made them the one pair a reader could not match across the three figures.
+            # two markers in Figures S4a and S5.
             name = "PD-1 (CD279)" if r["marker"] == "CD279" else "PD-L1 (CD274)"
         labels.append(name)
     ax.scatter([], [], s=11, color=GREY, label="Observed")
@@ -215,7 +216,8 @@ def program_scatter(ax):
            "scPRAM": (0, 9, "center"), "PerturbNet": (0, -11, "center"),
            # to the right of its dot, "PRnet" ended 0.078 in from the CellFlow marker against
            # 0.063 in from its own; to the left the panel is empty as far as the axis.
-           "PRnet": (-9, -3, "right")}
+           # left of its dot the label was bisected by the y spine; below it the panel is empty
+           "PRnet": (0, -11, "center")}
     for model, corr, pd_ in entries:
         dx, dy, ha = OFF.get(model, (8, 3, "left"))
         ax.annotate(model, (corr, pd_), xytext=(dx, dy), textcoords="offset points",
@@ -250,12 +252,14 @@ def lineage_panel(ax):
             labels.append(tag + ALIAS.get(unit, unit))
     for j, (task, pred, ref) in enumerate(rows):
         ax.plot([ref, pred], [j, j], color="#b5bdc7", lw=1.5, zorder=1)
-        ax.scatter(ref, j, facecolor="none", edgecolor=GREY, linewidths=1.1, s=34, zorder=3)
+        # over the navy result the ring split it into fragments on the two rows where they
+        # nearly coincide; the hollow ring is the larger marker, so it belongs underneath
+        ax.scatter(ref, j, facecolor="none", edgecolor=GREY, linewidths=1.1, s=34, zorder=2)
         # One colour for the model, as in panel a: colouring by DATASET here made FP-ridge a
         # blue star in (c) and a teal dot in (d), scGen a slate dot in (c) and a blue dot in
         # (d), and teal mean PD-1 in (a) and FP-ridge-on-OP3 in (d). The two blocks are
         # already separated by the rule and named by their own y labels.
-        ax.scatter(pred, j, color=BLUE, s=23, zorder=2)
+        ax.scatter(pred, j, color=BLUE, s=23, zorder=3)
     # Blue is scGen above the rule and FP-ridge below it; the caption said so and the panel did
     # not. Both blocks stop well short of the right edge (0.881 and 0.439 on a 0-1 axis), so the
     # name goes there, on the block's first row, in the colour it names.

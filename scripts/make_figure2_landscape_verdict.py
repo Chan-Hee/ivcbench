@@ -770,17 +770,18 @@ def draw_landscape(
         )
         # 0.16 of a cell from the corner at s=30 left 1 px between the star and the cell's
         # printed value in four cells. Tighter into the corner and smaller.
-        ax.scatter(
-            [x0 - 0.5 + 0.13],
-            [y + 0.5 - 0.13],
-            marker="*",
-            s=22,
-            c=(WIN_RING if survives else "white"),
-            edgecolors=WIN_DARK,
-            linewidths=0.5 if survives else 0.9,
-            zorder=9,
-            clip_on=True,
-        )
+        if survives:
+            ax.scatter(
+                [x0 - 0.5 + 0.13],
+                [y + 0.5 - 0.13],
+                marker="*",
+                s=22,
+                c=WIN_RING,
+                edgecolors=WIN_DARK,
+                linewidths=0.5,
+                zorder=9,
+                clip_on=True,
+            )
 
     # ---- left gutter: role accent bar | model name ; floor-row flag ----
     for m in models:
@@ -1429,7 +1430,10 @@ def main():
     sub_artist = fig.text(
         cb_x0,
         cb_y0 - 0.015,
-        "blue = above the floor;  white = at the floor;  orange = below it;  arms scaled separately",
+        # "arms" reads as the two column blocks; it means the two sides of this diverging scale,
+        # which a TwoSlopeNorm stretches independently (the bar's own -.43 / +.13 ends show it)
+        "blue = above the floor;  white = at the floor;  orange = below it;  "
+        "the two sides of the scale are stretched separately",
         fontsize=FS_KEY,
         ha="left",
         va="top",
@@ -1496,8 +1500,7 @@ def main():
                 linestyle=(0, (2.2, 1.4)),
             )
         )
-        a.scatter([0.22], [0.78], marker="*", s=20, c="white",
-                  edgecolors=WIN_DARK, linewidths=0.7, zorder=5)
+        # no star: the dashed outline is the whole distinction
 
     def _d_adapt(a):
         a.add_patch(Rectangle((0, 0), 1, 1, fc="white", ec=CELL_EC, lw=0.8))

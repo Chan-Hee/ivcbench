@@ -161,7 +161,7 @@ def main():
         ("nearest-gene-coexpr", "#9E5A3C",   "-",  "^", 6.2, 1.6, "nearest-gene: co-expr NN"),
         ("nearest-gene-go",     "#C28C6F",   "-",  "x", 5.0, 1.6, "nearest-gene: GO-Jaccard NN"),
         ("GEARS",               "#882255",   "--", "D", 4.0, 1.5, "GEARS"),
-        ("AttentionPert",       "#AA4499",   "--", "d", 5.0, 1.5, "AttentionPert"),
+        ("AttentionPert",       "#AA4499",   "--", "P", 5.4, 1.5, "AttentionPert"),
     ]
     xs = [p for _, p in SPLITS]
     handles = []

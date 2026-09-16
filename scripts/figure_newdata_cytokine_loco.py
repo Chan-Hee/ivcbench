@@ -172,8 +172,13 @@ def main():
     # transfer wins -- while the rows it describes are the five orange bars at the bottom.
     axB.text(0.98, 0.02, "floor wins\n(small-n lineages)", transform=axB.transAxes,
              ha="right", va="bottom", fontsize=6.2, color=NAVY_DARK, style="italic")
+    # panel_title places the letter at y=1.06 in AXES fractions, and (b) spans both grid rows, so
+    # 1.06 of its height put its letter 0.14 in above (a)'s. Scaled by the height ratio
+    # (2 rows + hspace 0.58) so the two letters sit on one baseline.
+    _hr = 2 + 0.58
     panel_title(axB, "b", "The transfer win is broad across immune lineages",
-                sub="neighbour chosen on the other cell types, per cell type", x_letter=-0.20)
+                sub="neighbour chosen on the other cell types, per cell type", x_letter=-0.20,
+                y=1 + 0.06 / _hr, sub_dy=0.046 / _hr)
     despine(axB)
 
     # ================= (c) the two conditioning regimes =================
