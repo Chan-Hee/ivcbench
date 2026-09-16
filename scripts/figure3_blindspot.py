@@ -86,8 +86,9 @@ def marker_panel(ax):
         name = r["alias"]
         if r["marker"] in ("CD279", "CD274"):
             c = GREEN if r["marker"] == "CD279" else ORANGE
-            ax.scatter(obs, j, s=33, color=c, zorder=4)
-            ax.scatter(pred, j, s=29, color=c, marker="D", zorder=4)
+            ax.scatter(obs, j, s=40, facecolor=GREY, edgecolor=c, linewidths=1.3, zorder=4)
+            ax.scatter(pred, j, s=36, facecolor=BLUE, edgecolor=c, marker="D",
+                       linewidths=1.3, zorder=4)
             name = "PD-1" if r["marker"] == "CD279" else "PD-L1"
         labels.append(name)
     ax.scatter([], [], s=19, color=GREY, label="Observed")
@@ -234,7 +235,7 @@ def lineage_panel(ax):
         ax.scatter(pred, j, color=BLUE if task == "T1" else GREEN, s=23, zorder=2)
     ax.set_yticks(range(len(rows)), labels, fontsize=MAIN_FS["name"])
     ax.set(ylim=(len(rows) - 0.3, -0.7), xlim=(0, 1),
-           xlabel="Pearson-Δ (grey: stronger local reference)")
+           xlabel="Pearson-Δ (grey: stronger of the two simple references)")
     ax.axhline(sum(1 for r in rows if r[0] == "T1") - 0.5, color="#d6dce2", lw=0.8)
     tidy(ax)
 

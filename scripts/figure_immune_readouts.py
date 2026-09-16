@@ -507,13 +507,15 @@ def figure_s3(summary, units):
     for i, model in enumerate(OP3_MODELS):
         sub = frame[frame.model == model]
         for row in sub.itertuples():
-            axes[0].plot(
-                row.pearson_delta, i, "o", color=colors[row.unit], ms=4, alpha=0.8
-            )
+            # Solid markers hid each other where two lineages land close together: CellOT's B
+            # (0.757) sat completely under its T cells (0.759) in panel b, so the row showed
+            # three markers for four estimable lineages while the caption counts them. Hollow
+            # markers keep the exact positions and let both rings be seen.
+            axes[0].plot(row.pearson_delta, i, "o", ms=4.6, mfc="none",
+                         mec=colors[row.unit], mew=1.1, alpha=0.95)
             if row.correlation_status == "estimable (descriptive)":
-                axes[1].plot(
-                    row.program_corr, i, "o", color=colors[row.unit], ms=4, alpha=0.8
-                )
+                axes[1].plot(row.program_corr, i, "o", ms=4.6, mfc="none",
+                             mec=colors[row.unit], mew=1.1, alpha=0.95)
         if not (sub.correlation_status == "estimable (descriptive)").any():
             axes[1].axhspan(i - 0.42, i + 0.42, color="#EFEFEF", zorder=0, lw=0)
             axes[1].text(
@@ -547,7 +549,9 @@ def figure_s3(summary, units):
         _ax.set_ylim(len(OP3_MODELS) - 0.4, -1.35)
     for unit, val in per.items():
         axes[0].plot([val, val], [-1.25, -0.95], color=colors.get(unit, GREY), lw=1.2)
-    axes[0].text(0.99, 1.02, "ticks above the panel: per-lineage binding floor; dashed: their mean",
+    # right-aligned to the panel: left-aligned it began outside the axes, left even of the panel
+    # letter, and was the leftmost ink in the whole plate
+    axes[0].text(1.0, 1.02, "ticks above the panel: per-lineage binding floor; dashed: their mean",
                  transform=axes[0].transAxes, ha="right", fontsize=6, color=GREY)
     axes[0].set_xlabel("Gene-response pattern correlation (Pearson-Δ)")
     axes[1].set_xlabel("Type-I IFN program correlation\nacross compounds")
@@ -556,7 +560,9 @@ def figure_s3(summary, units):
     title(axes[1], "b", "Program concordance")
     fig.legend(
         handles=[
-            Line2D([], [], color=c, marker="o", ls="", label=k.replace("_", " "))
+            # hollow, like the markers in the panels
+            Line2D([], [], marker="o", ls="", mfc="none", mec=c, mew=1.1, ms=6,
+                   label=k.replace("_", " "))
             for k, c in colors.items()
         ],
         loc="lower center",

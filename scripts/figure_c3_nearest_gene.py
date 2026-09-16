@@ -92,6 +92,7 @@ def main():
     for key, lab, col, kind in METHODS:
         m, lo, hi = boot_ci(per_split_mean(grid, key, "C3_true_lo_gene_50"))
         rows.append((key, lab, col, kind, m, lo, hi))
+    _lab_x = max(max(r[6] for r in rows), max(r[4] for r in rows)) + 0.022
     # floor reference value (cell-mean)
     floor_m = next(r[4] for r in rows if r[0] == "cell-mean")
     # order top->bottom: floor block first, then priors, then deep (visual narrative)
@@ -111,7 +112,11 @@ def main():
         axA.plot([hi, hi], [y - 0.13, y + 0.13], color=INK, lw=1.0, zorder=4)
         xlab = m + 0.012 if m >= 0 else m - 0.012
         ha = "left" if m >= 0 else "right"
-        axA.text(max(hi, m) + 0.015, y, _u(f"{m:.2f}"), va="center", ha="left",
+        # One shared x for every value, right of the longest interval and right of the floor line.
+        # Placed just past each bar, the linear-PCA label (0.31) ran INTO the dashed cell-mean
+        # floor at 0.475 -- the digit ink and the dash shared pixels -- and a per-label nudge only
+        # moves the problem, because it is the label's width that reaches the line, not its anchor.
+        axA.text(_lab_x, y, _u(f"{m:.2f}"), va="center", ha="left",
                  fontsize=6.8, color=INK)  # _u here IS correct: this is a formatted number, sign-sensitive
 
     axA.axvline(floor_m, color=NAVY_DARK, lw=1.1, ls="--", zorder=2)
@@ -126,7 +131,8 @@ def main():
     axA.set_yticks(yy)
     axA.set_yticklabels([r[1] for r in rows], fontsize=7.2)
     axA.set_ylim(-0.6, len(rows) - 0.4)
-    axA.set_xlim(min(-0.05, min(r[5] for r in rows) - 0.03), 0.62)
+    # room for the aligned value column past the longest interval
+    axA.set_xlim(min(-0.05, min(r[5] for r in rows) - 0.03), _lab_x + 0.085)
     axA.set_xlabel("response-direction Pearson-Δ  (50% leave-one-gene-out, mean over 5 datasets)  ↑",
                    fontsize=7.6)
     panel_title(axA, "a", "A nearest-gene prior also fails to beat the floor",

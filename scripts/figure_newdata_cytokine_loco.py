@@ -153,18 +153,17 @@ def main():
     # either side of it keep plain hyphens as compound words.
     axB.set_xlabel("DE-profile-nearest − cytokine-mean floor  (Δ Pearson)  →",
                    fontsize=7.4)
-    # On the narrower plate this reached back across zero onto the Granulocyte bar. The open
-    # quadrant is to the RIGHT of zero at the bottom, where the negative rows leave the panel
-    # empty, so it is anchored there instead of to the panel's right edge.
-    axB.text(0.62, 0.02, f"transfer beats floor in\n{n_pos}/{len(pc)} celltypes",
-             transform=axB.transAxes, ha="left", va="bottom", fontsize=6.6,
+    # Each note goes beside the rows it describes, in the empty half of those rows. The winning
+    # rows have bars running RIGHT from zero, so their free space is on the left; the losing rows
+    # run left, so theirs is on the right. Putting both notes on one side, as before, meant one of
+    # them always sat either on the bars or beside the wrong rows.
+    axB.text(0.02, 0.97, f"transfer beats floor in\n{n_pos}/{len(pc)} celltypes",
+             transform=axB.transAxes, ha="left", va="top", fontsize=6.6,
              color=CONDITIONED_DARK, style="italic")
     # It used to sit at y=0.96, beside CD4 T cell and CD4 Memory T cell -- the two largest
     # transfer wins -- while the rows it describes are the five orange bars at the bottom.
-    # y=0.10 put the second line across the Granulocyte bar, and lower still is the long
-    # Plasmablast bar; 0.22 sits beside the short HSPC and Granulocyte bars and clears both.
-    axB.text(0.02, 0.22, "floor wins\n(small-n lineages)", transform=axB.transAxes,
-             ha="left", va="top", fontsize=6.2, color=CLAY_DARK, style="italic")
+    axB.text(0.98, 0.02, "floor wins\n(small-n lineages)", transform=axB.transAxes,
+             ha="right", va="bottom", fontsize=6.2, color=CLAY_DARK, style="italic")
     panel_title(axB, "b", "The transfer win is broad across immune lineages",
                 sub="observed-elsewhere cytokine transfer, per celltype", x_letter=-0.20)
     despine(axB)
@@ -178,8 +177,11 @@ def main():
     axC.axvline(0, color=NAVY_DARK, lw=1.0, ls="--", zorder=1)
     # shaded quadrants
     axC.axhspan(0, 0.35, xmin=0.0, xmax=1.0, color=CONDITIONED, alpha=0.05, zorder=0)
-    axC.scatter(g_ft, g_de, s=sz, c=CONDITIONED, edgecolor=CONDITIONED_DARK, linewidth=0.6,
-                alpha=0.85, zorder=4)
+    # Filled and near-opaque, two coincident cell types printed as one marker -- and the two that
+    # clear the floor (CD14 Mono and Mono, 0.001 apart in x and 0.008 in y) are the caption's own
+    # "2 of 24". A light fill with a solid edge keeps the size encoding and shows both rings.
+    axC.scatter(g_ft, g_de, s=sz, facecolor=CONDITIONED, edgecolor=CONDITIONED_DARK,
+                linewidth=0.8, alpha=0.45, zorder=4)
     axC.scatter([np.mean(g_ft)], [np.mean(g_de)], marker="D", s=46, c=NAVY,
                 edgecolor="white", linewidth=0.9, zorder=6)
     axC.annotate("mean over cell types", xy=(np.mean(g_ft), np.mean(g_de)),
@@ -188,7 +190,7 @@ def main():
                  arrowprops=dict(arrowstyle="-", color=NAVY_DARK, lw=0.6))
     # Anchored to the panel's right edge, this sat across the dashed zero line at x=0.00 on the
     # narrower plate. It is placed just right of that line instead, in the quadrant it names.
-    axC.text(0.80, 0.97, "transfer escapes\nthe floor", transform=axC.transAxes, ha="right",
+    axC.text(0.74, 0.97, "transfer escapes\nthe floor", transform=axC.transAxes, ha="right",
              va="top", fontsize=6.6, color=CONDITIONED_DARK, style="italic")
     # The Plasmablast outlier sits at the extreme bottom-left corner of the panel (the widest
     # gap in both x and y), exactly where this label used to anchor — text landed on top of the
