@@ -594,11 +594,16 @@ AUTHOR_WRITTEN_INTERFACE = {
         "fingerprint onto the response, fitted on the training fold against observed "
         "lineage-by-compound means."
     ),
+    # The two heads are NOT the same construction, and describing both from one runner is how
+    # Supplementary Table S15c also came to call scGPT's a two-branch MLP. scGPT's is one MLP over
+    # the concatenation (scgpt_c5_cond_runner.py:388-397, Sequential(Linear, ReLU, Linear) over
+    # torch.cat([E, F])); scFoundation's CondHead projects each input through its own 256-unit
+    # branch and joins them in a shared trunk (scfoundation_c5cond_runner.py:380-397).
     ("C5", "cell-context (LOCT)", "scFoundation"): (
         "Yes — a compound-conditioned head: the released scFoundation encoder is held fixed and a "
-        "trainable MLP maps its cell embedding concatenated with the compound's Morgan "
-        "fingerprint onto the response, fitted on the training fold against observed "
-        "lineage-by-compound means."
+        "trainable head projects its cell embedding and the compound's Morgan fingerprint through "
+        "separate branches, joining them in a shared trunk that emits the response, fitted on the "
+        "training fold against observed lineage-by-compound means."
     ),
     # Same head, unseen-compound regime: the held compounds are absent from every training cell and
     # reach the model only as a fingerprint, which is what this cell is reported to measure.

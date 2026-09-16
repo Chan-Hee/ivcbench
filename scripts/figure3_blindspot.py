@@ -149,9 +149,16 @@ def program_scatter(ax):
     entries.sort(key=lambda e: -e[1])
     unc = {(r["task_key"], r["model"]): r for r in rd("census_uncertainty")}
     floor = float(unc[("T5c", "FP-ridge")]["binding_floor_score"])
-    top = max(entries, key=lambda e: e[2])[0] if entries else None
+    # The emphasis is derived, not chosen: the stars are the entries that clear this split's floor
+    # in EVERY one of its four lineage units -- the census verdict "positive in all units" -- which
+    # is the rule the caption states. Note this is NOT "above the dashed line": the line is the
+    # mean of the four per-lineage floors, and scFoundation sits above it while falling below the
+    # floor in B cells (0.284 vs 0.300). The previous rule was the largest Pearson-Delta plus a
+    # hard-coded "scGPT", which encoded nothing a reader could name.
+    lead_set = {m for (t, m), r in unc.items() if t == "T5c"
+                and int(r["units_above_floor"].split("/")[0]) == int(r["n_units"])}
     for model, corr, pd_ in entries:
-        lead = model in (top, "scGPT")
+        lead = model in lead_set
         ax.scatter(corr, pd_, s=80 if lead else 38, marker="*" if lead else "o",
                    color=BLUE if lead else "#456c80", zorder=3)
     # Labels are placed by hand: the nine entries cluster between 0.51 and 0.83 on x, so a uniform
@@ -165,7 +172,7 @@ def program_scatter(ax):
     for model, corr, pd_ in entries:
         dx, dy, ha = OFF.get(model, (8, 3, "left"))
         ax.annotate(model, (corr, pd_), xytext=(dx, dy), textcoords="offset points",
-                    fontsize=MAIN_FS["name"], ha=ha, color=BLUE if model in (top, "scGPT") else "#456c80")
+                    fontsize=MAIN_FS["name"], ha=ha, color=BLUE if model in lead_set else "#456c80")
     ax.axhline(floor, ls="--", color=GREY, lw=1)
     ax.set(xlim=(0.42, 0.95), ylim=(0, 0.48), xlabel="Type-I IFN program concordance",
            ylabel="Response-direction Pearson-\u0394")

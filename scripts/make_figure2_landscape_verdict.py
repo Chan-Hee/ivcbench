@@ -112,7 +112,16 @@ DIV_CMAP = LinearSegmentedColormap.from_list(
 NEG_PCTILE = (
     10  # orange saturates at this low percentile of the NEGATIVE margins (robust)
 )
-NA_FC = "#eef0f2"  # flat cool light-grey: model not evaluated on that unit
+# A model not evaluated on a unit must not be mistakable for one scored AT its floor. Colour alone
+# cannot do that here: the diverging ramp passes through white at margin 0, and every light
+# neutral grey sits within ~23/255 of some colour on the ramp -- the old #eef0f2 was 6.5/255 from
+# the fill of a +0.007 margin, which is what PerturbNet on the Schmidt arm actually has. The
+# distinction is therefore made non-chromatically, with a hatch that survives greyscale printing
+# and colour-blind readers, and the grey is darkened so the two differ in value as well.
+NA_FC = "#dde1e5"  # cool light-grey: model not evaluated on that unit
+NA_HATCH = "///"   # the part that carries the distinction; NA_EC is its stroke colour
+NA_EC = "#b9c0c7"
+HATCH_LW = 0.45   # a cell is a few mm wide in print; the default 1.0 fills it in
 CELL_EC = "#dfe3e7"  # faint grey cell border so the grid still reads
 WIN_RING = (  # gold ring: clears BOTH simple-baseline floor members at the split level
     "#D9A300"
@@ -619,7 +628,8 @@ def _draw_cell(ax, x, y, score, status, margin, mnorm, hollow=False):
     """
     if score is None:
         ax.add_patch(
-            Rectangle((x - 0.5, y - 0.5), 1, 1, fc=NA_FC, ec=CELL_EC, lw=0.9, zorder=1)
+            Rectangle((x - 0.5, y - 0.5), 1, 1, fc=NA_FC, ec=NA_EC, lw=0.9,
+                      hatch=NA_HATCH, zorder=1)
         )
         return
     if hollow:  # CINEMA-OT: perturbation-agnostic reference, no margin fill
@@ -1045,6 +1055,9 @@ def main():
     set_pub_style()
     plt.rcParams["axes.unicode_minus"] = True
     plt.rcParams["font.family"] = "DejaVu Sans"   # the rest of the figure set uses it
+    # A heatmap cell is a few millimetres wide in print; matplotlib's default 1.0 hatch stroke
+    # fills it solid, which would swap one confusion for another.
+    plt.rcParams["hatch.linewidth"] = HATCH_LW
     # matplotlib's default black must not leak into any text or axis chrome: text.color does not
     # reach tick labels, spines or tick marks, so those are set explicitly to the body ink
     plt.rcParams.update(
@@ -1480,7 +1493,7 @@ def main():
         )
 
     def _d_na(a):
-        a.add_patch(Rectangle((0, 0), 1, 1, fc=NA_FC, ec=LEGEND_EC, lw=0.8))
+        a.add_patch(Rectangle((0, 0), 1, 1, fc=NA_FC, ec=NA_EC, lw=0.8, hatch=NA_HATCH))
 
     # Keys are placed by measurement: each key starts one KEY_GAP after the real right edge of
     # the previous key's label, so the horizontal rhythm is even and the *_end values below are

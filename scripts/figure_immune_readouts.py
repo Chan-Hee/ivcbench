@@ -546,7 +546,7 @@ def figure_s3(summary, units):
     axes[0].text(0.99, 1.02, "ticks above the panel: per-lineage binding floor; dashed: their mean",
                  transform=axes[0].transAxes, ha="right", fontsize=6, color=GREY)
     axes[0].set_xlabel("Gene-response pattern correlation (Pearson-Δ)")
-    axes[1].set_xlabel("Type-I IFN program correlation across compounds")
+    axes[1].set_xlabel("Type-I IFN program correlation\nacross compounds")
     axes[1].set_xlim(-1.02, 1.02)
     title(axes[0], "a", "Expression-pattern fidelity")
     title(axes[1], "b", "Program concordance")
