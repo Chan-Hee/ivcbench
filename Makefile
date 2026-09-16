@@ -1,6 +1,12 @@
 PY ?= ./.venv/bin/python
 PIP ?= ./.venv/bin/pip
 
+# Matplotlib stamps a CreationDate into every PDF it writes, so `make figures` left the tree dirty
+# with pixel-identical PNGs beside the "changed" PDFs, and a real figure change was
+# indistinguishable from a clock tick. Matplotlib honours SOURCE_DATE_EPOCH; exporting it here
+# makes every deposited PDF byte-reproducible. The value is arbitrary and fixed.
+export SOURCE_DATE_EPOCH = 1600000000
+
 .PHONY: setup test reproduce reproduce-eval check census summaries figures
 
 setup:

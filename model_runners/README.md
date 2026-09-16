@@ -8,7 +8,7 @@ These scripts run inside their model-family environments, separately from the CP
 
 The typical payload contains training expression/conditions, inference controls, gene identities and held-target labels. The ordinary prediction interface must not receive held treated expression; any transductive diagnostic operation or upstream shared feature processing is identified separately. Mean outputs are paired with observed targets in the evaluation layer.
 
-Native/adapted/diagnostic status belongs to an **executed model–task operation**, not to the filename or model family. The final 47-entry panel and all omissions are documented in Table 2, Supplementary Table S3 and `source_data/model_task_interfaces.csv`. Folder membership alone is not evidence that a runner is evaluated.
+Native/adapted/diagnostic status belongs to an **executed model–task operation**, not to the filename or model family. The final 58-entry panel and all omissions are documented in Table 2 and Supplementary Tables S15a-S15c. Folder membership alone is not evidence that a runner is evaluated.
 
 Important execution distinctions:
 

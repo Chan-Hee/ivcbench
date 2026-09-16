@@ -28,12 +28,18 @@ Mean profiles reproduce response-direction Pearson-Δ, not per-cell distribution
 make census
 make summaries
 make figures
-.venv/bin/python submission/build_submission.py --out rebuilt_documents
-.venv/bin/python submission/build_response.py --out rebuilt_documents
 ```
 
-Run from the package root. The document commands apply to the submission archive,
-which includes the `submission/` source directory.
+Run from the package root.
+
+The document builders are **not in this repository** and the two commands below will not run from
+a clone or from the Zenodo archive. They apply only to the submission archive, which carries the
+`submission/` source directory:
+
+```
+python submission/build_submission.py --out rebuilt_documents
+python submission/build_response.py --out rebuilt_documents
+```
 
 The common inference family has 27 entries with at least eight analysis units; the remaining 31 receive descriptive observed ranges, not confidence intervals or P values. Bootstrap intervals and Wilcoxon tests condition on the recorded fits, selected floor and fixed masks. They do not quantify optimization-seed or independent-dataset uncertainty. See [ANALYSIS_SCOPE.md](ANALYSIS_SCOPE.md).
 

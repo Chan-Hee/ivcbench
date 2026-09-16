@@ -2,10 +2,10 @@
 r"""Main Figure 2: executed model-by-task landscape and paired donor margins.
 
 All values are re-scored from the saved prediction profiles and restricted to the
-current 47-entry panel in assemble_cross_cluster. Column fills use the stronger
+current 58-entry panel in assemble_cross_cluster. Column fills use the stronger
 simple reference in that displayed column; gold task-level outlines instead use
 the task-macro floor. Only the positive CellOT T2 contrast is supported by the
-common 24-comparison BH/Holm family. Raw scores, coverage and paired uncertainty
+common 27-comparison BH/Holm family. Raw scores, coverage and paired uncertainty
 are derived from the current sources, never hardcoded in drawing instructions.
 
 The C4 ctrl-pred/donor-shift reference cells use recorded result-table scores.
@@ -77,7 +77,10 @@ def _resolve(*cands: Path) -> Path | None:
 
 GH = ROOT
 BM = REPO / "benchmark"
-DRAFT = REPO / "revision_BIB-26-1553" / "03_etc" / "09_draft" / "figures"
+# The argparse default for --out-dir. It used to point at a sibling of the clone, so running
+# this script bare -- as scripts/README.md instructs -- created a directory OUTSIDE the
+# reader's checkout. The Makefile always passes --deposit --out-dir results/_paper.
+DRAFT = REPO / "results" / "_paper"
 
 
 def _paper(name):

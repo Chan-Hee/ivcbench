@@ -64,6 +64,12 @@ def _n(value) -> set[str]:
 
 # (file, regex with ONE capture group, fact key). The capture is compared to the fact.
 CHECKS = [
+    # Two shipped files carried "47-entry" and "24-comparison" through every release because
+    # nothing outside this list was read. A script docstring and a runner README are things a
+    # reviewer opens, so they are covered now.
+    ("scripts/make_figure2_landscape_verdict.py", r"current (\d+)-entry panel", "cells"),
+    ("scripts/make_figure2_landscape_verdict.py", r"common (\d+)-comparison BH/Holm", "family"),
+    ("model_runners/README.md", r"The final (\d+)-entry panel", "cells"),
     ("README.md", r"\*\*(\d+) model-by-task evaluations", "cells"),
     ("README.md", r"evaluations: (\d+) native", "native"),
     ("README.md", r"native, (\w+) adapted", "adapted"),
@@ -136,7 +142,9 @@ def main() -> int:
         if not ok:
             print(f"  ✗ {name}: {key} reads {got!r}, the census says {want!r}")
             bad += 1
-    print(f"  릴리스 문서 {len(CHECKS)}개 검사 · 불일치 {bad}건")
+    # This is the last line of `make check`, which a reviewer runs. Say it in English too.
+    print(f"  release docs: {len(CHECKS)} checks, {bad} mismatch(es)"
+          f"  ·  릴리스 문서 {len(CHECKS)}개 검사 · 불일치 {bad}건")
     return 1 if bad else 0
 
 

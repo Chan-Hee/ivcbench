@@ -14,9 +14,13 @@ The current entry points are the root Makefile targets; see [REPRODUCE.md](../RE
 | Held-target repeatability / per-comparison precision statements | `assemble_target_diagnostics.py` (CPU replay); `build_target_repeatability.py` (source cells) |
 | Soskic input-coordinate audit | `audit_soskic_input_space.py` (source files; retained CSV/JSON for inspection) |
 | Donor validation / curves / compute | `assemble_donor_validation.py`, `assemble_learning_curves.py`, `assemble_compute_evidence.py` |
-| Figure 1 / Figure 2 | `figure_benchmark_workflow.py`, `make_figure2_landscape_verdict.py` |
-| Figure 3 / Figures S3–S5 | `figure_immune_readouts.py` |
-| Figure S1 / Figure S2 | `figure_reliability_ceiling.py`, `assemble_learning_curves.py` |
+| Figure 2 | `make_figure2_landscape_verdict.py` |
+| Figure 3 | `figure3_blindspot.py` — `figure_immune_readouts.py` also draws a Figure 3, and the Makefile runs it first and then overwrites it with this one |
+| Figure S2 | `figure_immune_readouts.py --figures S3` (its internal name for this figure is S3; the paper prints it as S2) |
+| Figure S3 | `figure_c3_nearest_gene.py` |
+| Figure S7 | `figure_newdata_cytokine_loco.py` |
+| Figures S1, S4, S5, S6, S8 | built in the manuscript repository (`revision_claude/02_build/tools/figure_s*.py`), not here. `figure_reliability_ceiling.py` and `assemble_learning_curves.py` draw earlier variants that the paper does not print — see `results/_paper/DEPOSIT_NOTES.md`. |
+| Figure 1 | not in this repository. `figure_benchmark_workflow.py` draws a different overview diagram; the printed Figure 1 has no source here (see DEPOSIT_NOTES). |
 
 The submission archive includes the raw fitting and cache-generation scripts needed to document the evaluated workflows, together with the thin interfaces in `model_runners/`. These are provenance tools: raw objects, checkpoints, original model environments and configuration of local paths are separate requirements. They are not all executed by the CPU replay.
 

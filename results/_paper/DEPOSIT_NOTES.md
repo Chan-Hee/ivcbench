@@ -41,9 +41,33 @@ would expect to be a supplementary figure and hold a **different** one:
 | `figS_c4_pdl1_assay_power.png` | A single-panel chart of the observed Frangieh RNA and surface CD274 shifts. Printed Figure S4 is a three-panel figure; this is only its panel c. |
 | `figS_chen_checkpoint_replication.png` | A two-panel normalisation comparison. Printed Figure S5 is the three-panel figure deposited at `results/newdata/figS_chen_checkpoint_replication.png`. |
 
-Figures S1, S6 and S8 are built in the manuscript repository
+Figures S1, S4, S5, S6 and S8 are built in the manuscript repository
 (`revision_claude/02_build/figures/`) and are not deposited here. The supplement does not claim
 that its artwork lives in this directory; the record is the embedded image in the document.
+
+## Main-figure artwork
+
+`Figure2.*` and `figure_immune_blindspot.*` (Figure 3) here are the files the paper prints.
+
+**`Figure1.{png,pdf,tiff}` here is NOT the paper's Figure 1.** It is a separate overview diagram,
+"Immune perturbation prediction: from task to evidence", drawn by
+`scripts/figure_benchmark_workflow.py`. The printed Figure 1 is the five-stage
+Tasks / Splits / Methods / Metrics / Verdict schematic, and it has **no source in this
+repository**: it is a design export with no script and no vector companion, so `make figures`
+cannot produce it and never touches it. Read the printed figure from the submitted manuscript
+package, not from this file.
+
+## Superseded figures kept for provenance
+
+These were drawn against the earlier **35-cell** census and disagree with the current one. They
+are kept as the record of that stage and are not results of this revision. Do not read a score,
+a roster or a floor-clearance count off any of them:
+
+| File | Why it disagrees |
+|---|---|
+| `figure_landscape.{pdf,png}` | The 35-cell landscape. Gives scGen T1 +.06 and CPA T1 +.03 where `cross_cluster_headline.csv` now gives -0.0307 and -0.3939, plots a full CINEMA-OT row although CINEMA-OT carries no census cell, and shows two floor-clearers where the census now has eight. Superseded by `figure2_landscape_verdict.*`. |
+| `figure_ranking.{pdf,png}`, `figure_perturbation.{pdf,png}`, `figure_within_family_fit.{pdf,png}` | Same vintage and the same 35-cell roster. |
+| `figure_ranking_ORIGTEST.pdf` | A test render from that stage; not used anywhere. |
 
 ## The legacy `Supplementary_Table_S<N>_*.csv` files in this directory
 
@@ -60,13 +84,19 @@ Three of the fifteen carry a number that now belongs to a different table:
 | `Supplementary_Table_S25_matched_donor_learning_curve.csv` | the matched donor learning curve | **S20**. The supplement runs S1 to S23; there is no S25. |
 | `Supplementary_Table_S11_multiplicity.csv` (58 contrasts) | the panel-wide multiplicity family | **S23** (27 contrasts). Printed S11 is the 8-row pre-specified headline family. |
 
-Four more share a number with the printed table but are older and smaller:
+Five more share a number with the printed table but are older and smaller:
 `S3_descriptive_fit_matrix.csv` (32 rows against 35), `S7_OP3_programs.csv` (27 against 39),
 `S12_T3_programs.csv` (175 rows, a different schema), `S14_Tanimoto_current.csv` (9 rows on the
 pre-STATE T5u roster, including a CINEMA-OT row the census does not report), and
 `S15_training_configuration.csv` (46 rows with no Seeds column; printed S15c has 65).
 `S17_effect_stratification.csv` holds the pre-panel-mask quartile margins (Q1 -0.1505 where the
 current run gives -0.1520).
+`S13_T3_by_dataset.csv` is a **third** file under that number and the easiest to mistake for a
+current one: it is the 10 % leave-one-gene-out slice on a superseded roster (Chen's best
+conditioned entry is scGPT at 0.386, where the current 10 % slice in `t3_by_dataset.csv` differs
+and the printed 50 % table gives 0.393). Printed Table S13 is the 50 % slice in
+`supplementary_tables/Supplementary_Table_S13.csv`; `t3_by_dataset.csv` is the current 10 % one.
+Neither is this file.
 
 The remaining five (`S1_dataset_inventory`, `S2_method_inventory`, `S5_op3_fine_lineage`,
 `S6_marker_readout`, `S8_energy_distance`) agree with the printed table of the same number;

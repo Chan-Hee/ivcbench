@@ -34,7 +34,7 @@ T3/T5c program scoring is symmetric: the same rank function is applied to predic
 ```bash
 make census       # panel, analysis units and common multiplicity family
 make summaries    # donor, effect-size, chemistry, program and cost summaries
-make figures      # three main and five supplementary figures
+make figures      # Figures 2 and 3, Figures S2, S3 and S7, and the superseded overview diagram
 ```
 
 See [REPRODUCE.md](REPRODUCE.md) for scopes and limits. Mean bundles do not retain per-cell prediction clouds or a training PCA basis; they cannot recompute energy distance. Raw-data fitting is a separate, model-environment-dependent workflow, not a one-command promise.
