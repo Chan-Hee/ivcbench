@@ -90,7 +90,10 @@ def marker_panel(ax):
             ax.scatter(obs, j, s=40, facecolor=GREY, edgecolor=c, linewidths=1.3, zorder=4)
             ax.scatter(pred, j, s=40, facecolor="none", edgecolor=c, marker="D",
                        linewidths=1.5, zorder=5)
-            name = "PD-1" if r["marker"] == "CD279" else "PD-L1"
+            # Every other row in this panel is labelled with its CD alias, and so are the same
+            # two markers in Figures S4a and S5. Naming only these two by their protein name
+            # made them the one pair a reader could not match across the three figures.
+            name = "PD-1 (CD279)" if r["marker"] == "CD279" else "PD-L1 (CD274)"
         labels.append(name)
     ax.scatter([], [], s=19, color=GREY, label="Observed")
     ax.scatter([], [], s=22, facecolor="none", edgecolor=BLUE, linewidths=1.0,
