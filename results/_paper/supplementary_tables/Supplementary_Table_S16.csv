@@ -1,5 +1,5 @@
 Stage,Hardware,Jobs,GPU-hours,What the jobs produced
-Re-score the deposited bundles (reproduce_eval),"CPU only, no GPU",1,n.a. (CPU 5.1 s),"reproduces all 58 reported evaluations from the deposited per-stratum mean profiles; peak resident memory 150 MB, measured on the 1,401 bundles of the current census"
+Re-score the deposited bundles (reproduce_eval),"CPU only, no GPU",1,n.a. (CPU 4.2 s),"reproduces all 58 reported evaluations from the deposited per-stratum mean profiles; peak resident memory 150 MB, measured on the 1,401 bundles of the current census"
 PerturbNet,"one NVIDIA L40, 48 GB",26,124.669,"refits the reported cells on T1, T2, T3, T4, T5c, T5u"
 PertAdapt,"one NVIDIA L40, 48 GB",8,61.676,"refits the reported cells on T3, T4"
 CellFlow,"one NVIDIA L40, 48 GB",15,40.880,"refits the reported cells on T1, T2, T3, T4, T5c, T5u"

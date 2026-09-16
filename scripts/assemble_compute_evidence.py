@@ -10,6 +10,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
+import re
 from pathlib import Path
 import resource
 import subprocess
@@ -24,6 +26,13 @@ RAW = ROOT.parent / "benchmark/outputs/additional_models"
 REV = ROOT.parent / "revision_BIB-26-1553/03_etc"
 if (ROOT / "results/provenance_inputs/compute").is_dir():
     RAW = ROOT / "results/provenance_inputs/compute"
+
+
+
+def _rescored(measurement):
+    """How many bundles the measured consistency check actually re-scored, from its own stdout."""
+    m = re.search(r"\(([\d,]+) stored bundles re-scored", measurement.get("stdout", ""))
+    return m.group(1) if m else "all"
 
 
 def main():
@@ -59,6 +68,52 @@ def main():
             json.dumps(measurement, indent=2) + "\n"
         )
         print(json.dumps(measurement, indent=2), flush=True)
+
+        # Table S16's first row and the availability statement quote the REPLAY -- the
+        # reproduce_eval pass over the census manifest -- not the consistency check above, which
+        # re-scores every stored bundle and takes twice as long. That number had no deposited
+        # source: it was a string constant in the manuscript build, measured on a 56-cell census
+        # over 1,399 bundles, while the sentence around it had moved to 58 and 1,401. Measure the
+        # command the sentence actually names, and deposit it.
+        # fork + wait4, not RUSAGE_CHILDREN: that reports the maximum over EVERY child this
+        # process has reaped, so it would hand back the consistency check's peak above (151.9 MiB)
+        # rather than the replay's own (~144).
+        _r, _w = os.pipe()
+        start = time.perf_counter()
+        pid = os.fork()
+        if pid == 0:                                    # child: run the replay, stdout to the pipe
+            os.close(_r)
+            os.dup2(_w, 1)
+            os.dup2(_w, 2)
+            os.chdir(ROOT)
+            os.execv(sys.executable,
+                     [sys.executable, "scripts/reproduce_eval.py",
+                      "--manifest", "results/_paper/census_bundle_manifest.csv"])
+            os._exit(127)                               # unreachable
+        os.close(_w)
+        with os.fdopen(_r, "r", errors="replace") as fh:
+            replay_out = fh.read()
+        _, status, usage = os.wait4(pid, 0)
+        if status != 0:
+            raise SystemExit(f"reproduce_eval exited {status}:\n{replay_out[-2000:]}")
+        replay_m = dict(
+            command=("python scripts/reproduce_eval.py --manifest"
+                     " results/_paper/census_bundle_manifest.csv"),
+            elapsed_seconds=time.perf_counter() - start,
+            maximum_resident_MiB=usage.ru_maxrss / 1024,
+            stdout=replay_out[-2000:],
+            stderr="",
+            threads_available=64,
+            physical_cores=32,
+            cpu="2 x Intel Xeon Silver 4314 @ 2.40 GHz",
+            gpu_required=False,
+            scope=("re-scores the deposited per-stratum mean profiles of the current census;"
+                   " no model is re-fitted and no GPU is used"),
+        )
+        (PAPER / "reproduce_eval_measurement.json").write_text(
+            json.dumps(replay_m, indent=2) + "\n"
+        )
+        print(json.dumps(replay_m, indent=2), flush=True)
     measurement = json.loads((PAPER / "cpu_replay_measurement.json").read_text())
     # The four seed-0 shards cover 86 donors. The base file supplies the first
     # recorded run for the remaining donors; later restarted/smoke rows are not
@@ -94,8 +149,14 @@ def main():
             range_min_seconds=np.nan,
             range_max_seconds=np.nan,
             host_RAM_MiB=measurement["maximum_resident_MiB"],
+            # The scope used to interpolate the CENSUS bundle count (1,401) into a description
+            # of check_consistency.py, which re-scores every stored bundle -- 2,283 of them, as
+            # its own recorded stdout says. Read the count the measured command reported, so this
+            # row cannot describe a different run from the one it is timing. It also stopped the
+            # row from reading as a contradiction of Table S16, whose 1,401-bundle replay is a
+            # different and much shorter command.
             scope=(
-                f"{canon['census_bundles']:,} selected mean-profile bundles; complete"
+                f"{_rescored(measurement)} stored bundles re-scored; complete"
                 " consistency check; single measured invocation"
             ),
         ),

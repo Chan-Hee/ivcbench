@@ -1,0 +1,12 @@
+{
+  "command": "python scripts/reproduce_eval.py --manifest results/_paper/census_bundle_manifest.csv",
+  "elapsed_seconds": 4.169672307558358,
+  "maximum_resident_MiB": 143.41015625,
+  "stdout": "o_50,None,124,0.6154818312046215,nan\nC4_Axis2,scFoundation,C4_modality_lo_ko_25,None,62,0.2975080631057601,nan\nC4_Axis2,scFoundation,C4_modality_lo_ko_50,None,124,0.30811205524160745,nan\nC4_Axis2,scGPT,C4_modality_lo_ko_25,None,62,0.5900529038030143,nan\nC4_Axis2,scGPT,C4_modality_lo_ko_50,None,124,0.5463689192052171,nan\nC5_LOCT,CPA,C5_loct_B,None,141,0.11074350534869808,nan\nC5_LOCT,CPA,C5_loct_Mono,None,140,-0.01632518983130606,nan\nC5_LOCT,CPA,C5_loct_NK,None,141,0.1040326124579465,nan\nC5_LOCT,CPA,C5_loct_T_cells,None,141,0.04398480374923696,nan\nC5_LOCT,CellOT,C5_loct_B,None,141,0.14801831656239897,nan\nC5_LOCT,CellOT,C5_loct_Mono,None,140,0.14504380340085185,nan\nC5_LOCT,CellOT,C5_loct_NK,None,141,0.2557348337195982,nan\nC5_LOCT,CellOT,C5_loct_T_cells,None,141,0.22572086511431333,nan\nC5_LOCT,PerturbNet,C5_loct_B,None,141,0.1224272961411901,nan\nC5_LOCT,PerturbNet,C5_loct_Mono,None,140,0.10427375769797395,nan\nC5_LOCT,PerturbNet,C5_loct_NK,None,141,0.22238064245237563,nan\nC5_LOCT,PerturbNet,C5_loct_T_cells,None,141,0.1473117935923207,nan\nC5_LOCT,STATE,C5_loct_B,None,141,0.08305742869204565,nan\nC5_LOCT,STATE,C5_loct_Mono,None,140,-0.0048170383812991295,nan\nC5_LOCT,STATE,C5_loct_NK,None,141,0.034649229532572476,nan\nC5_LOCT,STATE,C5_loct_T_cells,None,141,0.05378736578613429,nan\nC5_LOCT,scGen,C5_loct_B,None,141,0.1274710289516907,nan\nC5_LOCT,scGen,C5_loct_Mono,None,140,0.15880112345868566,nan\nC5_LOCT,scGen,C5_loct_NK,None,141,0.2414667742763602,nan\nC5_LOCT,scGen,C5_loct_T_cells,None,141,0.19390335866362632,nan\nC5_LOCT,scPRAM,C5_loct_B,None,141,0.18596862016397758,nan\nC5_LOCT,scPRAM,C5_loct_Mono,None,140,0.11888604098037724,nan\nC5_LOCT,scPRAM,C5_loct_NK,None,141,0.21704925170616127,nan\nC5_LOCT,scPRAM,C5_loct_T_cells,None,141,0.2028632297444176,nan\nC5,chemCPA,C5_global_compound_holdout,,112,0.10001659769288558,nan\nC5_unseen_cpd,PerturbNet,C5_global_compound_holdout,None,112,0.16131318685235985,nan\nC5_unseen_cpd,STATE,C5_global_compound_holdout,None,112,0.11502123624204977,nan\n",
+  "stderr": "",
+  "threads_available": 64,
+  "physical_cores": 32,
+  "cpu": "2 x Intel Xeon Silver 4314 @ 2.40 GHz",
+  "gpu_required": false,
+  "scope": "re-scores the deposited per-stratum mean profiles of the current census; no model is re-fitted and no GPU is used"
+}
