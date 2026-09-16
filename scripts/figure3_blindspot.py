@@ -197,7 +197,7 @@ def program_scatter(ax):
     OFF = {"FP-ridge": (8, 4, "left"), "scGPT": (8, -10, "left"),
            "scFoundation": (9, -3, "left"), "CellOT": (8, 4, "left"),
            "scGen": (9, -3, "left"), "CellFlow": (9, -3, "left"),
-           "scPRAM": (0, 9, "center"), "PerturbNet": (8, 5, "left"),
+           "scPRAM": (0, 9, "center"), "PerturbNet": (0, -11, "center"),
            "PRnet": (9, -3, "left")}
     for model, corr, pd_ in entries:
         dx, dy, ha = OFF.get(model, (8, 3, "left"))

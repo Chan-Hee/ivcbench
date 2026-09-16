@@ -159,7 +159,11 @@ def main():
     axB.text(0.62, 0.02, f"transfer beats floor in\n{n_pos}/{len(pc)} celltypes",
              transform=axB.transAxes, ha="left", va="bottom", fontsize=6.6,
              color=CONDITIONED_DARK, style="italic")
-    axB.text(0.02, 0.96, "floor wins\n(small-n lineages)", transform=axB.transAxes,
+    # It used to sit at y=0.96, beside CD4 T cell and CD4 Memory T cell -- the two largest
+    # transfer wins -- while the rows it describes are the five orange bars at the bottom.
+    # y=0.10 put the second line across the Granulocyte bar, and lower still is the long
+    # Plasmablast bar; 0.22 sits beside the short HSPC and Granulocyte bars and clears both.
+    axB.text(0.02, 0.22, "floor wins\n(small-n lineages)", transform=axB.transAxes,
              ha="left", va="top", fontsize=6.2, color=CLAY_DARK, style="italic")
     panel_title(axB, "b", "The transfer win is broad across immune lineages",
                 sub="observed-elsewhere cytokine transfer, per celltype", x_letter=-0.20)
@@ -182,7 +186,9 @@ def main():
                  xytext=(np.mean(g_ft) - 0.085, np.mean(g_de) + 0.045), fontsize=6.2,
                  color=NAVY_DARK, ha="center",
                  arrowprops=dict(arrowstyle="-", color=NAVY_DARK, lw=0.6))
-    axC.text(0.97, 0.97, "transfer escapes\nthe floor", transform=axC.transAxes, ha="right",
+    # Anchored to the panel's right edge, this sat across the dashed zero line at x=0.00 on the
+    # narrower plate. It is placed just right of that line instead, in the quadrant it names.
+    axC.text(0.80, 0.97, "transfer escapes\nthe floor", transform=axC.transAxes, ha="right",
              va="top", fontsize=6.6, color=CONDITIONED_DARK, style="italic")
     # The Plasmablast outlier sits at the extreme bottom-left corner of the panel (the widest
     # gap in both x and y), exactly where this label used to anchor — text landed on top of the
