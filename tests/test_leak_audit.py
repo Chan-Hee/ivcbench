@@ -44,3 +44,18 @@ def test_auditor_catches_treated_in_inference_input():
     split.inference_input_idx = np.append(split.inference_input_idx, split.test_idx[0])
     with pytest.raises(LeakError):
         audit_split(cs, split)
+
+
+def test_typo_in_held_values_is_caught():
+    """A spec whose held value does not occur holds nothing out and used to certify clean.
+
+    The other checks are consequences of build_split's own set algebra -- train is ~in_group and
+    test is in_group & ~is_control over the same frame -- so none of them can fail for a split
+    this package built. These two can.
+    """
+    cs = make_op3_like(seed=1)
+    spec = c5.cross_celltype_loct("NK")
+    spec.held_values = ["N_K"]          # the data has "NK"
+    split = build_split(cs, spec)
+    with pytest.raises(LeakError, match="do not occur"):
+        audit_split(cs, split)

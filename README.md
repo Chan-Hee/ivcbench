@@ -29,7 +29,7 @@ Eight point estimates exceed the task-fixed stronger cell-mean/linear-PCA refere
 
 T2 evaluates the supplied condition-specific covariate-regressed, scaled and clipped Soskic matrices, not unregressed activation expression. Training-only additional scaling does not undo this source processing. All tasks remain conditional on shared upstream feature selection. The input audit and source-method provenance are retained in `results/_paper/soskic_input_space*`.
 
-T3/T5c program scoring is symmetric: the same rank function is applied to predicted and observed mean expression. The identity predictor has zero error for all 37 targets and correlation one for the 12 variable targets; 22/25 T3 targets are constant, not evidence of model failure. Exact-held-target repeatability uses disjoint treated/control halves and the stored gene masks. It diagnoses cell-sampling stability, not a prediction ceiling. These corrections do not change the primary Pearson-Δ panel.
+T3/T5c program scoring is symmetric: the same rank function is applied to predicted and observed mean expression. The identity predictor has zero error for all 37 targets and correlation one for the 12 variable targets. That outcome is structural, because predicted and observed profiles go through the same deterministic scorer: it confirms the scoring path is symmetric, and is not independent evidence about the scores.  22/25 T3 targets are constant, not evidence of model failure. Exact-held-target repeatability uses disjoint treated/control halves and the stored gene masks. It diagnoses cell-sampling stability, not a prediction ceiling. These corrections do not change the primary Pearson-Δ panel.
 
 ```bash
 make census       # panel, analysis units and common multiplicity family

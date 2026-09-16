@@ -63,6 +63,20 @@ def audit_split(cs: CellSet, split: Split) -> dict:
             "inference-input baseline must be control cells",
         )
 
+    # Checks 1-5 above are all consequences of build_split's own set algebra: it defines
+    # train as ~in_group and test as in_group & ~is_control over the same obs, so they cannot
+    # fail for a split this package built, and "leak_free": True was a hardcoded literal. The
+    # two checks below are NOT implied by the constructor, and they are the ones that catch the
+    # failure the others cannot: a spec whose held_values do not occur in the data holds nothing
+    # out, produces an empty test set, and used to certify itself clean.
+    present = set(obs[spec.key_col].unique())
+    _check(
+        held.issubset(present),
+        f"held value(s) {sorted(held - present)} do not occur in {spec.key_col}; "
+        f"nothing was held out",
+    )
+    _check(len(test) > 0, "the held-out group has no treated cells to score")
+
     return {
         "split": spec.name,
         "n_train": int(len(train)),
@@ -70,5 +84,6 @@ def audit_split(cs: CellSet, split: Split) -> dict:
         "n_inference_input": int(len(inf)),
         "n_test_strata": int(len(set(split.test_strata.tolist()))),
         "held_values": sorted(held),
+        # reached only if every _check above passed; _check raises otherwise
         "leak_free": True,
     }

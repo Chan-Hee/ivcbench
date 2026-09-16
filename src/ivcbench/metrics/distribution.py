@@ -23,8 +23,13 @@ def e_distance(
 ) -> dict:
     """Energy distance between predicted and observed cell clouds, per stratum then macro-avg.
 
-    PCA is fit on `fit_on` (typically the training expression) to define a fixed PCA-50 space,
-    avoiding test-set leakage into the projection.
+    PCA is fit on `fit_on` (the training expression) to define a fixed PCA-50 space, avoiding
+    test-set leakage into the projection. PASS IT. With `fit_on=None` the basis falls back to the
+    predicted and observed clouds themselves, so the held-out cells define the projection they are
+    then scored in -- which is the case the deposited replay refuses outright (eval/bundle.py
+    returns NaN rather than fit a PCA on held-out data). The fallback is kept only for the two
+    exploratory scripts that predate this contract (c1_alt_partition.py, c2_soskic_loct.py);
+    nothing it produces enters the census.
     """
     basis = fit_on if fit_on is not None else np.vstack([pred_cells, test_cells])
     k = int(min(n_pca, basis.shape[0] - 1, basis.shape[1]))
