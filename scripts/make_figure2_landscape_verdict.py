@@ -1243,8 +1243,8 @@ def main():
     # that stopped mid-clause ("...on that column, orange"), so the subtitle is now written to
     # be one complete line and the wrap is asserted rather than truncated.
     sub_txt = (
-        f"{cen.model.nunique()} methods and comparators over {len(cen)} evaluations;"
-        " blue a positive column margin, orange negative."
+        f"{cen.model.nunique()} methods and comparators over {len(cen)} evaluations and"
+        " 4 reference rows; blue positive, orange negative."
     )
     n_sub = textwrap.wrap(sub_txt, width=100)
     if len(n_sub) != 1:
@@ -1412,7 +1412,7 @@ def main():
     sub_artist = fig.text(
         cb_x0,
         cb_y0 - 0.015,
-        "blue = above the floor;  white = at the floor;  orange = below it",
+        "blue = above the floor;  white = at the floor;  orange = below it;  arms scaled separately",
         fontsize=FS_KEY,
         ha="left",
         va="top",

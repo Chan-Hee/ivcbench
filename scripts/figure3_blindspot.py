@@ -82,17 +82,19 @@ def marker_panel(ax):
         obs, pred = float(r["obsDelta_mean"]), float(r["predDelta"])
         ax.plot([obs, pred], [j, j], color="#bdc6ce", lw=1, zorder=1)
         ax.scatter(obs, j, s=19, color=GREY, zorder=2)
-        ax.scatter(pred, j, s=19, color=BLUE, marker="D", zorder=2)
+        ax.scatter(pred, j, s=22, facecolor="none", edgecolor=BLUE, linewidths=1.0,
+                   marker="D", zorder=3)
         name = r["alias"]
         if r["marker"] in ("CD279", "CD274"):
             c = GREEN if r["marker"] == "CD279" else ORANGE
             ax.scatter(obs, j, s=40, facecolor=GREY, edgecolor=c, linewidths=1.3, zorder=4)
-            ax.scatter(pred, j, s=36, facecolor=BLUE, edgecolor=c, marker="D",
-                       linewidths=1.3, zorder=4)
+            ax.scatter(pred, j, s=40, facecolor="none", edgecolor=c, marker="D",
+                       linewidths=1.5, zorder=5)
             name = "PD-1" if r["marker"] == "CD279" else "PD-L1"
         labels.append(name)
     ax.scatter([], [], s=19, color=GREY, label="Observed")
-    ax.scatter([], [], s=19, color=BLUE, marker="D", label="Predicted")
+    ax.scatter([], [], s=22, facecolor="none", edgecolor=BLUE, linewidths=1.0,
+               marker="D", label="Predicted")
     ax.axvline(0, color=GREY, ls="--", lw=0.8)
     ax.set_yticks(y, labels, fontsize=MAIN_FS["micro"])
     ax.set_ylim(-1, len(d))
