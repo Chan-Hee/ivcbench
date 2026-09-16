@@ -35,7 +35,9 @@ from ivcbench.report.style import INK_BODY, INK_HEAD, INK_NOTE, MAIN_FS  # noqa:
 # The shared ink ladder and type scale, so this figure matches Figures 1 and 2. Setting text.color
 # alone is not enough: it never reaches tick labels, spines or tick marks, which print matplotlib
 # black. figure_consistency.py fails the build on exactly that leak.
-NAVY, BLUE, ORANGE, GREY, GREEN = INK_HEAD, "#226ca0", "#d88245", "#99a4ae", "#24856a"
+# PD-L1 was orange here and rose in Figures S4 and S5, so the same marker wore two colours
+# across the set. The rose is the one the supplementary captions name.
+NAVY, BLUE, ORANGE, GREY, GREEN = INK_HEAD, "#226ca0", "#B34E68", "#99a4ae", "#24856a"
 INK = INK_NOTE
 plt.rcParams.update({
     "font.family": "DejaVu Sans", "font.size": MAIN_FS["tick"],
@@ -195,7 +197,7 @@ def program_scatter(ax):
     OFF = {"FP-ridge": (8, 4, "left"), "scGPT": (8, -10, "left"),
            "scFoundation": (9, -3, "left"), "CellOT": (8, 4, "left"),
            "scGen": (9, -3, "left"), "CellFlow": (9, -3, "left"),
-           "scPRAM": (0, 9, "center"), "PerturbNet": (-11, -3, "right"),
+           "scPRAM": (0, 9, "center"), "PerturbNet": (8, 5, "left"),
            "PRnet": (9, -3, "left")}
     for model, corr, pd_ in entries:
         dx, dy, ha = OFF.get(model, (8, 3, "left"))
@@ -252,7 +254,7 @@ def main() -> None:
     # wspace 0.52 left panel b's long program names ("Regulatory / exhaustion (T3)") and panel d's
     # lineage labels drawn INSIDE the axes box of the panel to their left -- panel a's x=0.2
     # gridline ran through the first glyphs of "Effector lymphocyte (OP3)".
-    gs = fig.add_gridspec(2, 2, left=0.145, right=0.978, bottom=0.095, top=0.875,
+    gs = fig.add_gridspec(2, 2, left=0.145, right=0.955, bottom=0.095, top=0.875,
                           wspace=0.62, hspace=0.34)
     axes = [fig.add_subplot(gs[i, j]) for i, j in ((0, 0), (0, 1), (1, 0), (1, 1))]
     marker_panel(axes[0]); label(axes[0], "a", "Surface-marker shifts")

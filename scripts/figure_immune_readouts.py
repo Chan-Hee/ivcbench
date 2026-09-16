@@ -539,8 +539,12 @@ def figure_s3(summary, units):
     # the binding floor is per lineage; one line at their mean puts some lineages on the wrong side
     per = t5c[t5c.model.isin(["cell-mean", "linear-PCA"])].groupby("unit").pearson_delta.max()
     axes[0].axvline(floor, color=GREY, ls="--", lw=1)
-    # the ticks used to sit at ymin=0.94, which is the top data row; give them their own band
-    axes[0].set_ylim(len(OP3_MODELS) - 0.4, -1.35)
+    # the ticks used to sit at ymin=0.94, which is the top data row; give them their own band.
+    # BOTH panels take these limits: extending only panel a moved its eleven rows down relative
+    # to panel b by up to 0.17 in on the page, so a reader tracking one model across the two
+    # panels was reading two different heights for the same row.
+    for _ax in axes:
+        _ax.set_ylim(len(OP3_MODELS) - 0.4, -1.35)
     for unit, val in per.items():
         axes[0].plot([val, val], [-1.25, -0.95], color=colors.get(unit, GREY), lw=1.2)
     axes[0].text(0.99, 1.02, "ticks above the panel: per-lineage binding floor; dashed: their mean",
