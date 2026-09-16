@@ -1,17 +1,24 @@
 Stage,Hardware,Jobs,GPU-hours,What the jobs produced
-Re-score the deposited bundles (reproduce_eval),"CPU only, no GPU",1,n.a. (CPU 10.3 s),"reproduces all 47 reported evaluations from the deposited per-stratum mean profiles; peak resident memory 150 MB, measured on the 1,362 bundles of the current census"
-CellFlow,"one NVIDIA L40, 48 GB",13,38.437,"refits the reported cells on T1, T2, T3, T4, T5c, T5u"
-biolord,"one NVIDIA L40, 48 GB",9,17.526,"refits the reported cells on T2, T3, T4, T5c, T5u"
-scGPT,"one NVIDIA L40, 48 GB",10,16.134,"refits the reported cells on T2, T4, T5c"
-PerturbNet,"one NVIDIA L40, 48 GB",4,6.483,"refits the reported cells on T3, T4, T5u"
-scFoundation,"one NVIDIA L40, 48 GB",8,3.935,refits the reported cells on T2 (78 of 106 donor fits measured)
-CellOT,"one NVIDIA L40, 48 GB",2,1.948,refits the reported cells on T5c
-STATE,"one NVIDIA L40, 48 GB",2,0.984,refits the reported cells on T1
-scPRAM,"one NVIDIA L40, 48 GB",4,0.768,"refits the reported cells on T1, T5c"
+Re-score the deposited bundles (reproduce_eval),"CPU only, no GPU",1,n.a. (CPU 5.1 s),"reproduces all 56 reported evaluations from the deposited per-stratum mean profiles; peak resident memory 150 MB, measured on the 1,399 bundles of the current census"
+PerturbNet,"one NVIDIA L40, 48 GB",26,124.669,"refits the reported cells on T1, T2, T3, T4, T5c, T5u"
+PertAdapt,"one NVIDIA L40, 48 GB",8,61.676,"refits the reported cells on T3, T4"
+CellFlow,"one NVIDIA L40, 48 GB",15,40.880,"refits the reported cells on T1, T2, T3, T4, T5c, T5u"
+CellOT,"one NVIDIA L40, 48 GB",6,33.133,refits the reported cells on T5c
+STATE,"one NVIDIA L40, 48 GB",17,18.206,"refits the reported cells on T1, T2, T3, T4, T5c"
+scGPT,"one NVIDIA L40, 48 GB",11,16.826,"refits the reported cells on T2, T4, T5c"
+CPA,"one NVIDIA L40, 48 GB",3,6.933,"refits the reported cells on T1, T2, T5c"
+scFoundation,"one NVIDIA L40, 48 GB",9,4.084,"refits the reported cells on T2, T4 (78 of 106 donor fits measured)"
+chemCPA,"one NVIDIA L40, 48 GB",1,2.184,refits the reported cells on T5u
+linear-shift-KOemb,"one NVIDIA L40, 48 GB",4,2.029,"refits the reported cells on T3, T4"
+scPRAM,"one NVIDIA L40, 48 GB",8,1.652,"refits the reported cells on T1, T5c"
+biolord,"one NVIDIA L40, 48 GB",5,1.615,"refits the reported cells on T3, T4, T5u"
+scGen,"one NVIDIA L40, 48 GB",2,0.704,refits the reported cells on T5c
+AttentionPert,"one NVIDIA L40, 48 GB",1,0.588,refits the reported cells on T4
 PRnet,"one NVIDIA L40, 48 GB",2,0.406,"refits the reported cells on T5c, T5u"
-Subtotal: refitting the reported panel,"one NVIDIA L40, 48 GB",54,86.621,"the cells this revision re-timed; cells not re-timed for this version are not costed here, so 24 of the 47 census cells are covered and a per-model row lists only the tasks its timed jobs produced"
+GEARS,"one NVIDIA L40, 48 GB",1,0.288,refits the reported cells on T4
+Subtotal: refitting the reported panel,"one NVIDIA L40, 48 GB",119,315.873,"the cells this revision re-timed; cells not re-timed for this version are not costed here, so 40 of the 56 census cells are covered and a per-model row lists only the tasks its timed jobs produced"
 Matched donor learning curve,"one NVIDIA L40, 48 GB",50,5.688,the 5 x 10 donor grid behind Table S20 and Figure S8
 External donor cohorts,"one NVIDIA L40, 48 GB",2,5.011,the two additional leave-one-donor-out cohorts in Table S19
 Conditioned compound heads,"one NVIDIA L40, 48 GB",5,0.025,a disclosed comparison reported outside the panel
-Run and not carried,"one NVIDIA L40, 48 GB",63,99.170,"executions withdrawn from the panel or superseded, chiefly SCREEN and the protein readout sweep; their output appears in no reported table"
-Total recorded (GPU jobs),"one NVIDIA L40, 48 GB",174,196.515,"every GPU job re-timed for this revision, measured wall-clock and not extrapolated; the CPU replay row is separate and is not added in"
+Run and not carried,"one NVIDIA L40, 48 GB",67,115.712,"executions withdrawn from the panel or superseded, chiefly SCREEN and the protein readout sweep; their output appears in no reported table"
+Total recorded (GPU jobs),"one NVIDIA L40, 48 GB",243,442.309,"every GPU job re-timed for this revision, measured wall-clock and not extrapolated; the CPU replay row is separate and is not added in"

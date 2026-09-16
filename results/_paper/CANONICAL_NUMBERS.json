@@ -129,7 +129,7 @@
   "census_bundles": 1399,
   "method_prediction_bundles": 1147,
   "floor_prediction_bundles": 252,
-  "rescored_bundles": 2176,
+  "rescored_bundles": 2283,
   "bundle_count_definition": "census_bundles counts only method and two-member-floor inputs listed in census_bundle_manifest.csv; rescored_bundles also includes preserved non-census references and sensitivity splits",
   "execution_variants": [
     {

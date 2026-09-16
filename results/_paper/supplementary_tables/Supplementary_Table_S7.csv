@@ -1,31 +1,40 @@
 Task,Model,Status,Program,Units estimable,Measured genes (n),Best estimable correlation,Median estimable correlation,Why the other units are not estimable,Observed program-shift SD (max)
+T5c,CPA,native,effector_lymphocyte,1/4,11,+0.069,+0.069,2 observed target constant; 1 prediction constant,0.066
+T5c,CPA,native,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
+T5c,CPA,native,type_I_IFN,2/4,20,+0.072,+0.060,2 prediction constant,0.048
 T5c,CellFlow,native,effector_lymphocyte,1/4,11,−0.292,−0.292,2 observed target constant; 1 prediction constant,0.066
 T5c,CellFlow,native,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
 T5c,CellFlow,native,type_I_IFN,4/4,20,+0.750,+0.672,all units estimable,0.048
-T5c,CellOT,native,effector_lymphocyte,0/4,11,undefined,undefined,2 observed target constant; 2 prediction constant,0.066
-T5c,CellOT,native,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
-T5c,CellOT,native,type_I_IFN,0/4,20,undefined,undefined,4 prediction constant,0.048
+T5c,CellOT,native,effector_lymphocyte,1/4,11,+0.729,+0.729,2 observed target constant; 1 prediction constant,0.066
+T5c,CellOT,native,inflammatory_NFkB,2/4,7,+0.553,+0.495,1 prediction constant; 1 observed target constant,0.041
+T5c,CellOT,native,type_I_IFN,4/4,20,+0.759,+0.729,all units estimable,0.048
 T5c,FP-ridge,diagnostic,effector_lymphocyte,1/4,11,+0.201,+0.201,2 observed target constant; 1 prediction constant,0.066
 T5c,FP-ridge,diagnostic,inflammatory_NFkB,2/4,7,+0.568,+0.276,1 prediction constant; 1 observed target constant,0.041
 T5c,FP-ridge,diagnostic,type_I_IFN,4/4,20,+0.897,+0.847,all units estimable,0.048
 T5c,PRnet,native,effector_lymphocyte,1/4,11,−0.138,−0.138,2 observed target constant; 1 prediction constant,0.066
 T5c,PRnet,native,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
 T5c,PRnet,native,type_I_IFN,4/4,20,+0.654,+0.506,all units estimable,0.048
-T5c,biolord,native,effector_lymphocyte,2/4,11,−0.086,−0.205,2 observed target constant,0.066
-T5c,biolord,native,inflammatory_NFkB,2/4,7,+0.520,+0.249,1 prediction constant; 1 observed target constant,0.041
-T5c,biolord,native,type_I_IFN,4/4,20,+0.788,+0.538,all units estimable,0.048
+T5c,PerturbNet,native,effector_lymphocyte,1/4,11,+0.493,+0.493,2 observed target constant; 1 prediction constant,0.066
+T5c,PerturbNet,native,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
+T5c,PerturbNet,native,type_I_IFN,4/4,20,+0.738,+0.582,all units estimable,0.048
+T5c,STATE,native,effector_lymphocyte,0/4,11,undefined,undefined,2 observed target constant; 2 prediction constant,0.066
+T5c,STATE,native,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
+T5c,STATE,native,type_I_IFN,3/4,20,+0.095,+0.004,1 prediction constant,0.048
 T5c,cell-mean,floor,effector_lymphocyte,0/4,11,undefined,undefined,2 observed target constant; 2 prediction constant,0.066
 T5c,cell-mean,floor,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
 T5c,cell-mean,floor,type_I_IFN,0/4,20,undefined,undefined,4 prediction constant,0.048
 T5c,linear-PCA,floor,effector_lymphocyte,0/4,11,undefined,undefined,2 observed target constant; 2 prediction constant,0.066
 T5c,linear-PCA,floor,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
 T5c,linear-PCA,floor,type_I_IFN,0/4,20,undefined,undefined,4 prediction constant,0.048
-T5c,scFoundation,adapted,effector_lymphocyte,0/4,11,undefined,undefined,2 observed target constant; 2 prediction constant,0.066
-T5c,scFoundation,adapted,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
-T5c,scFoundation,adapted,type_I_IFN,0/4,20,undefined,undefined,4 prediction constant,0.048
-T5c,scGPT,adapted,effector_lymphocyte,0/4,11,undefined,undefined,2 observed target constant; 2 prediction constant,0.066
-T5c,scGPT,adapted,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
-T5c,scGPT,adapted,type_I_IFN,0/4,20,undefined,undefined,4 prediction constant,0.048
-T5c,scPRAM,native,effector_lymphocyte,1/4,11,−0.046,−0.046,2 observed target constant; 1 prediction constant,0.066
-T5c,scPRAM,native,inflammatory_NFkB,0/4,7,undefined,undefined,3 prediction constant; 1 observed target constant,0.041
-T5c,scPRAM,native,type_I_IFN,3/4,20,+0.115,+0.065,1 prediction constant,0.048
+T5c,scFoundation,adapted,effector_lymphocyte,1/4,11,+0.473,+0.473,2 observed target constant; 1 prediction constant,0.066
+T5c,scFoundation,adapted,inflammatory_NFkB,1/4,7,+0.462,+0.462,2 prediction constant; 1 observed target constant,0.041
+T5c,scFoundation,adapted,type_I_IFN,4/4,20,+0.837,+0.622,all units estimable,0.048
+T5c,scGPT,adapted,effector_lymphocyte,1/4,11,+0.468,+0.468,2 observed target constant; 1 prediction constant,0.066
+T5c,scGPT,adapted,inflammatory_NFkB,3/4,7,+0.532,+0.172,1 observed target constant,0.041
+T5c,scGPT,adapted,type_I_IFN,4/4,20,+0.931,+0.880,all units estimable,0.048
+T5c,scGen,native,effector_lymphocyte,1/4,11,−0.081,−0.081,2 observed target constant; 1 prediction constant,0.066
+T5c,scGen,native,inflammatory_NFkB,1/4,7,−0.013,−0.013,2 prediction constant; 1 observed target constant,0.041
+T5c,scGen,native,type_I_IFN,4/4,20,+0.799,+0.748,all units estimable,0.048
+T5c,scPRAM,native,effector_lymphocyte,2/4,11,+0.502,+0.234,2 observed target constant,0.066
+T5c,scPRAM,native,inflammatory_NFkB,3/4,7,+0.607,+0.020,1 observed target constant,0.041
+T5c,scPRAM,native,type_I_IFN,4/4,20,+0.690,+0.579,all units estimable,0.048

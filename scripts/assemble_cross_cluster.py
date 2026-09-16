@@ -27,6 +27,7 @@ import glob
 import hashlib
 import json
 import os
+import re
 
 import numpy as np
 import pandas as pd
@@ -141,7 +142,17 @@ def _is_withdrawn(path):
     return got == want
 
 
+def _withdrawal_reasons():
+    """The reason recorded against each withdrawal, for the lapsed-entry check."""
+    import csv as _csv
+
+    path = os.path.join(ROOT, "results", "_paper", "withdrawn_bundles.csv")
+    with open(path, encoding="utf-8") as fh:
+        return {r["bundle_path"]: (r.get("reason") or "") for r in _csv.DictReader(fh)}
+
+
 _WITHDRAWN = _withdrawn_bundles()
+_WITHDRAWN_REASON = _withdrawal_reasons()
 
 
 _STALE_UNTAGGED_C3 = {
@@ -248,21 +259,23 @@ def assert_withdrawals_still_bind():
     """A withdrawal is a decision. A later job writing over the file must not undo it silently.
 
     _is_withdrawn pins each entry to a sha256 -- "still the exact execution that was withdrawn" --
-    which is right when a file is replaced by something legitimately different, and wrong when the
-    thing that replaced it is another run of what was already refused. That happened: 107 CINEMA-OT
-    bundles were withdrawn on 2026-09-14 and then overwritten by cinemaot_T1_v2/T2_v2, jobs the
-    final 102 ruling had cancelled, so every one of those withdrawals quietly lapsed and the
-    bundles were being scored again. Nothing downstream noticed, because a lapsed withdrawal looks
-    exactly like a bundle that was never withdrawn.
+    so an entry stops applying the moment its file changes. That is right for the withdrawal that
+    names its own remedy: the CINEMA-OT bundles were withdrawn because the reference arm collapsed
+    the prediction to the training treated mean, and the reason ends "superseded by the re-run
+    whose reference also carries the training controls". When that re-run wrote over them, the
+    entry lapsing IS the supersession landing.
 
-    So: if a registered path exists with a different sha, stop. Either the write was a mistake, or
-    the decision needs re-recording against the new execution -- both are for a person to settle.
-    apply_panel_mask.py, the one tool that legitimately rewrites bundles in place, skips withdrawn
-    ones for this reason, so there is no benign case here.
+    It is wrong for a withdrawal that names no replacement. There the file changing means some job
+    has written over a bundle a person refused, and the refusal has quietly stopped applying --
+    which looks exactly like a bundle that was never withdrawn. apply_panel_mask.py, the one tool
+    that rewrites bundles in place, skips withdrawn ones, so nothing benign does this.
+
+    So: flag a lapsed entry only when its reason does not say the bundle was replaced.
     """
     import hashlib
 
-    lapsed = []
+    replaced = re.compile(r"supersede|superseded by|re-run", re.I)
+    lapsed, expected = [], 0
     for rel, want in _WITHDRAWN.items():
         if not want:
             continue
@@ -273,12 +286,21 @@ def assert_withdrawals_still_bind():
         with open(path, "rb") as fh:
             for chunk in iter(lambda: fh.read(1 << 20), b""):
                 h.update(chunk)
-        if h.hexdigest() != want:
-            lapsed.append(rel)
+        if h.hexdigest() == want:
+            continue
+        if replaced.search(_WITHDRAWN_REASON.get(rel, "")):
+            expected += 1
+            continue
+        lapsed.append(rel)
+    if expected:
+        print(
+            f"[withdrawals] {expected} entr(ies) superseded by the re-run they name; "
+            "the file on disk is the replacement"
+        )
     if lapsed:
         raise SystemExit(
-            "withdrawn bundles have been overwritten, so their withdrawal no longer binds and "
-            f"they are being scored again ({len(lapsed)}):\n  "
+            "withdrawn bundles have been overwritten by something their reason does not name, so "
+            f"the withdrawal no longer binds and they are being scored again ({len(lapsed)}):\n  "
             + "\n  ".join(lapsed[:12])
             + ("\n  ..." if len(lapsed) > 12 else "")
             + "\n\nRe-record the decision against the execution now on disk, or restore the file."

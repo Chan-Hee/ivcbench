@@ -89,6 +89,12 @@ def main():
     )
     paper = Path(ROOT) / "results/_paper"
     result.to_csv(paper / "headline_multiplicity_adjusted.csv", index=False)
+    # Table S11 IS this table. It was a separate deposited file that nothing regenerated, so it
+    # sat at the 47-cell census for a week while the census grew to 56: it still carried Biolord
+    # and PertAdapt rows for cells the census does not report, had none for the sixteen cells this
+    # revision added, and audit_numbers.py was checking the manuscript against it. Write both here
+    # and the two cannot diverge.
+    result.to_csv(paper / "Supplementary_Table_S11_multiplicity.csv", index=False)
     report = dict(
         family_size=int(valid.sum()),
         descriptive_cells=int((~valid).sum()),
