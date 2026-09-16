@@ -1,5 +1,14 @@
 # STATE prediction-artifact recovery audit (9 September 2026)
 
+> **Update, 16 September 2026.** What this audit ordered was carried out and then
+> superseded by execution. The runner defect below was fixed, and STATE was re-run on
+> T3, T4, T5c and T5u through the corrected runner, which requires exactly one named
+> `adata_pred.h5ad`. Those four cells are back in the census, so STATE is now evaluated
+> on all six tasks and the panel holds 56 entries (46 native, 6 adapted, 4 diagnostic).
+> The exclusions this document records were correct for the artifacts that existed on
+> 9 September; they are not the current roster. Everything below is kept as the record
+> of what was found and why, in its own tense.
+
 The earlier 50-entry census is superseded by a 47-entry census (34 native,
 7 adapted, 6 diagnostic). STATE remains evaluated on T1/T2 only. This is an
 implementation correction, not a score-based or low-variance exclusion.

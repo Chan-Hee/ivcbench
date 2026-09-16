@@ -12,9 +12,9 @@ make reproduce
 make test
 ```
 
-`make reproduce-eval` uses `results/_paper/census_bundle_manifest.csv`, not an unrestricted glob. It writes 1,362 rows to `reproduced_results.csv`. The manifest includes 1,110 selected model inputs and 252 simple-reference inputs. A bundle can contain multiple held-out strata; bundle count is not sample size.
+`make reproduce-eval` uses `results/_paper/census_bundle_manifest.csv`, not an unrestricted glob. It writes 1,399 rows to `reproduced_results.csv`. The manifest includes 1,147 selected model inputs and 252 simple-reference inputs. A bundle can contain multiple held-out strata; bundle count is not sample size.
 
-`make check` independently re-scores eligible saved bundles, reconstructs the selected 47 evaluations and checks their scores, target alignment, source hashes, 1,605 analysis-unit rows and uncertainty summaries. It must print `DEPOSIT CONSISTENCY: PASS`. Historical bundles can remain in the archive without entering the selected panel; their existence does not imply valid native execution.
+`make check` independently re-scores eligible saved bundles, reconstructs the selected 56 evaluations and checks their scores, target alignment, source hashes, 1,642 analysis-unit rows and uncertainty summaries. It must print `DEPOSIT CONSISTENCY: PASS`. Historical bundles can remain in the archive without entering the selected panel; their existence does not imply valid native execution.
 
 The panel has 34 native, seven adapted and six diagnostic entries. Native CPA/scGen only are included; native chemCPA supplies the held-compound CPA/chemCPA entry. STATE T1/T2 select genuine prediction files. STATE T3/T4/T5 results were excluded after an output-recovery error; see [EXECUTION_AUDIT.md](EXECUTION_AUDIT.md). No new drug fitting is needed for replay.
 

@@ -1,6 +1,6 @@
 dataset,holdout_pct,binding_floor,floor_score,best_model,best_score,best_margin,selection
-chen,10,cell-mean,0.5161272861419791,scGPT,0.3859064820746299,-0.1302208040673492,retrospective per-dataset best; descriptive only
-mccutcheon_CRISPRa,10,cell-mean,0.5917022210811875,Biolord,0.4567718551596923,-0.1349303659214952,retrospective per-dataset best; descriptive only
-mccutcheon_CRISPRi,10,cell-mean,0.4568211452495244,Biolord,0.3200599629594275,-0.13676118229009687,retrospective per-dataset best; descriptive only
-schmidt,10,cell-mean,0.4557917826789504,Biolord,0.4981262519237667,0.04233446924481632,retrospective per-dataset best; descriptive only
-shifrut,10,cell-mean,0.4482156001136786,CellFlow,0.3724556512972584,-0.07575994881642023,retrospective per-dataset best; descriptive only
+chen,10,cell-mean,0.5165414816363149,scGPT,0.3876211829423824,-0.12892029869393246,retrospective per-dataset best; descriptive only
+mccutcheon_CRISPRa,10,cell-mean,0.5939835283886649,Biolord,0.4590175763047919,-0.13496595208387296,retrospective per-dataset best; descriptive only
+mccutcheon_CRISPRi,10,cell-mean,0.4568569338722511,Biolord,0.323951534404079,-0.13290539946817215,retrospective per-dataset best; descriptive only
+schmidt,10,cell-mean,0.4908668180308413,Biolord,0.5346045190858292,0.043737701054987865,retrospective per-dataset best; descriptive only
+shifrut,10,cell-mean,0.451803269057297,CellFlow,0.3759533467371301,-0.07584992232016691,retrospective per-dataset best; descriptive only

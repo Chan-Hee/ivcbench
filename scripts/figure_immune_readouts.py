@@ -436,12 +436,16 @@ def magnitude_panel(ax):
         ax.scatter(r.ratio, r.slope, s=26, zorder=3,
                    facecolor="white" if adapted else FACE.get(r["Role"], BLUE),
                    edgecolor=FACE.get(r["Role"], BLUE), linewidths=0.9)
-    # the three understating entries sit close together against the left spine, so their labels
-    # go into the empty space around them rather than off the axis; a white halo keeps the one
-    # that has to cross the dotted x = 1 guide (FP-ridge) legible
+    # The understating entries sit close together against the left spine, so their labels go into
+    # the empty space around them rather than off the axis; a white halo keeps them legible where
+    # they cross the dotted guides. These four are the point of the panel: they are the only
+    # entries below x = 1, and three of them are exactly the three that clear the floor on
+    # response direction. The overstating band near y = 0 is left unlabelled -- seven entries
+    # between 1.8 and 3.0 that all read the same way -- with its two ends named.
     halo = dict(boxstyle="square,pad=0.12", fc="white", ec="none")
-    for name, dx, dy, ha in [("linear-PCA", 0, 7, "center"), ("CINEMA-OT", 0, -11, "center"),
-                             ("FP-ridge", 8, -1, "left"), ("PRnet", 6, 1, "left"),
+    for name, dx, dy, ha in [("linear-PCA", 0, 7, "center"), ("scFoundation", 9, -2, "left"),
+                             ("FP-ridge", 0, -11, "center"), ("scGPT", 9, -2, "left"),
+                             ("PRnet", 0, 9, "center"),
                              ("cell-mean", 0, -11, "center")]:
         r = plotted[plotted.Entry == name]
         if len(r):
@@ -453,9 +457,10 @@ def magnitude_panel(ax):
     ax.set_ylim(-0.12, 1.12)
     ax.set_xlabel("predicted / observed response norm")
     ax.set_ylabel("calibration slope")
-    # The reading of the panel (six conditioned predictors overstate the response 1.5-3.0x with
-    # slopes near zero; the three that understate it keep slopes well above zero; scPRAM
-    # predicts no shift) is prose for the Results and the legend, not for the plate.
+    # The reading of the panel (eight conditioned predictors overstate the response 1.8-3.0x with
+    # slopes near zero and all fall short on direction; the entries that understate it keep slopes
+    # well above zero and include all three that clear the floor) is prose for the Results and the
+    # legend, not for the plate.
     return [  # the colour key, drawn under the panel by _keys_below
         Line2D([], [], marker="o", ls="", mfc=BLUE, mec=BLUE, ms=5, label="conditioned"),
         Line2D([], [], marker="o", ls="", mfc="white", mec=BLUE, ms=5, label="adapted interface"),

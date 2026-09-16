@@ -1163,9 +1163,16 @@ def main():
 
     official_cells = {(m, ck) for m, cks, _s, _t in verdicts for ck in cks}
     pos_cells = {mc: v for mc, v in cell_margin.items() if v > 0}
+    # A ring marks a TASK-AVERAGED clearance, so the columns it spans are not all individually
+    # positive -- CellFlow's T1 ring covers eight lineages and is above the floor in four. Counting
+    # the ring's columns as though they were a subset of the positive cells printed "36 of 272
+    # drawn cells sit above their column floor; 37 of them are inside a ring".
+    ringed_pos = pos_cells.keys() & official_cells
     print(
         f"  honesty: {len(pos_cells)} of {len(cell_margin)} drawn cells sit above their"
-        f" column floor; {len(official_cells)} of them are inside a ring"
+        f" column floor; {len(ringed_pos)} of those are inside a ring and"
+        f" {len(pos_cells) - len(ringed_pos)} are single-column positives the task average does"
+        f" not carry"
     )
 
     pos_margins = [v for v in cell_margin.values() if v > 0]

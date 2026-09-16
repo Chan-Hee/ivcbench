@@ -28,6 +28,7 @@ census:
 	$(PY) scripts/census_units.py
 	$(PY) scripts/assemble_fit_matrix.py
 	$(PY) scripts/headline_multiplicity.py
+	$(PY) scripts/headline_family.py --apply
 
 summaries:
 	$(PY) scripts/t3_effect_stratification.py

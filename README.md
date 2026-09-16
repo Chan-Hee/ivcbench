@@ -23,9 +23,9 @@ make reproduce
 make test
 ```
 
-The default path re-scores the **1,362 selected mean-profile bundles** (1,110 model and 252 simple-reference inputs), then checks the 47-entry panel, 1,605 analysis-unit rows, paired targets, source hashes and uncertainty. Success prints `DEPOSIT CONSISTENCY: PASS`. Historical/reference bundles outside this panel are retained for traceability; the default manifest does not treat them as native-model evidence.
+The default path re-scores the **1,399 selected mean-profile bundles** (1,147 model and 252 simple-reference inputs), then checks the 56-entry panel, 1,642 analysis-unit rows, paired targets, source hashes and uncertainty. Success prints `DEPOSIT CONSISTENCY: PASS`. Historical/reference bundles outside this panel are retained for traceability; the default manifest does not treat them as native-model evidence.
 
-Four point estimates exceed the task-fixed stronger cell-mean/linear-PCA reference. Only CellOT T2 has a positive margin supported by the conditional interval and the 24-comparison BH/Holm family. The three other positive estimates remain descriptive or uncertain. No included conditioned method clears the task-level reference on unseen genes or compounds. These are results for the recorded implementations and inputs, not universal statements about a model family.
+Seven point estimates exceed the task-fixed stronger cell-mean/linear-PCA reference. Only CellOT T2 has a positive margin supported by the conditional interval and the 25-comparison BH/Holm family. The six other positive estimates remain descriptive or uncertain. No included conditioned method clears the task-level reference on unseen genes, on the modality split or on unseen compounds. These are results for the recorded implementations and inputs, not universal statements about a model family.
 
 T2 evaluates the supplied condition-specific covariate-regressed, scaled and clipped Soskic matrices, not unregressed activation expression. Training-only additional scaling does not undo this source processing. All tasks remain conditional on shared upstream feature selection. The input audit and source-method provenance are retained in `results/_paper/soskic_input_space*`.
 

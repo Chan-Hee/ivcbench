@@ -1,7 +1,7 @@
 # Analysis scope for the revised panel
 
 This is a review-stage analysis specification, not a prospective preregistration.
-The final panel contains 47 evaluations: 34 native, seven adapted and six diagnostic.
+The final panel contains 56 evaluations: 46 native, six adapted and four diagnostic.
 The executed-interface inventory and bundle-selection manifest are authoritative.
 
 The PertAdapt-labelled T2 result is a study-written adaptation: reconstruction of
