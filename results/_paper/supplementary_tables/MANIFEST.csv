@@ -1,8 +1,8 @@
 supplementary_table,file,data_rows,contents
 S1,Supplementary_Table_S1.csv,24,Curated dataset inventory
 S2,Supplementary_Table_S2.csv,35,Surveyed method inventory
-S3,Supplementary_Table_S3.csv,34,A-priori descriptive fit matrix
-S4,Supplementary_Table_S4.csv,56,"Cross-cluster headline census, 47 evaluations, with status, uncertainty, detectable margin and verdict"
+S3,Supplementary_Table_S3.csv,35,A-priori descriptive fit matrix
+S4,Supplementary_Table_S4.csv,58,"Cross-cluster headline census, 47 evaluations, with status, uncertainty, detectable margin and verdict"
 S5,Supplementary_Table_S5.csv,6,OP3 fine-lineage sensitivity
 S6,Supplementary_Table_S6.csv,40,Per-marker surface-protein recovery (Frangieh)
 S7,Supplementary_Table_S7.csv,39,Per-program readout on the OP3 held-cell-type split
@@ -14,8 +14,8 @@ S12,Supplementary_Table_S12.csv,60,Per-program readout on the unseen-gene split
 S13,Supplementary_Table_S13.csv,5,Per-dataset CRISPR breakdown
 S14,Supplementary_Table_S14.csv,9,Tanimoto-distance negative control
 S15a,Supplementary_Table_S15a.csv,17,Model-by-task coverage matrix
-S15b,Supplementary_Table_S15b.csv,46,One reason for every cell the census does not report
-S15c,Supplementary_Table_S15c.csv,63,Training configuration of every executed cell
+S15b,Supplementary_Table_S15b.csv,44,One reason for every cell the census does not report
+S15c,Supplementary_Table_S15c.csv,65,Training configuration of every executed cell
 S16,Supplementary_Table_S16.csv,23,"Compute cost, per model and per stage"
 S17,Supplementary_Table_S17.csv,6,Unseen-gene effect-size stratification
 S18,Supplementary_Table_S18.csv,14,Immune program definitions and observed-panel checks
@@ -23,4 +23,4 @@ S19,Supplementary_Table_S19.csv,14,"Independent donor cohorts, per donor"
 S20,Supplementary_Table_S20.csv,5,"Matched donor learning curve, CellOT and fine-tuned scGPT"
 S21,Supplementary_Table_S21.csv,27,Chemical-representation sensitivity sweep
 S22,Supplementary_Table_S22.csv,13,Predicted-to-observed response norm and calibration slope
-S23,Supplementary_Table_S23.csv,25,"Panel-wide multiplicity family, 24 contrasts"
+S23,Supplementary_Table_S23.csv,27,"Panel-wide multiplicity family, 24 contrasts"

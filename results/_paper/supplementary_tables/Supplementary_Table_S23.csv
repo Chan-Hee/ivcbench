@@ -1,26 +1,28 @@
 Contrast,Task,Model,Units (n),Binding floor,Mean margin,Units positive,Raw P,BH-adjusted P,Holm-adjusted P,Positive and supported
-T2_scFoundation_vs_floor,T2,scFoundation,106,cell-mean,−0.140,2/106,4.35 × 10⁻¹⁹,1.04 × 10⁻¹⁷,1.09 × 10⁻¹⁷,no
-T2_STATE_vs_floor,T2,STATE,106,cell-mean,−0.124,3/106,8.35 × 10⁻¹⁹,1.04 × 10⁻¹⁷,2.00 × 10⁻¹⁷,no
-T2_scGen_vs_floor,T2,scGen,106,cell-mean,−0.113,5/106,1.35 × 10⁻¹⁸,1.12 × 10⁻¹⁷,3.10 × 10⁻¹⁷,no
-T2_CPA_vs_floor,T2,CPA,106,cell-mean,−0.052,8/106,1.58 × 10⁻¹⁶,9.89 × 10⁻¹⁶,3.48 × 10⁻¹⁵,no
-T2_scGPT_vs_floor,T2,scGPT,106,cell-mean,−0.010,13/106,7.19 × 10⁻¹⁶,3.59 × 10⁻¹⁵,1.51 × 10⁻¹⁴,no
-T2_scPRAM_vs_floor,T2,scPRAM,106,cell-mean,−0.101,12/106,1.06 × 10⁻¹⁵,4.41 × 10⁻¹⁵,2.12 × 10⁻¹⁴,no
-C2_donor_CellOT_vs_floor,T2,CellOT,106,cell-mean,+0.107,93/106,1.58 × 10⁻¹³,5.65 × 10⁻¹³,3.00 × 10⁻¹²,yes
-T5u_STATE_vs_floor,T5u,STATE,28,cell-mean,−0.057,1/28,4.10 × 10⁻⁷,1.28 × 10⁻⁶,7.38 × 10⁻⁶,no
-T2_CellFlow_vs_floor,T2,CellFlow,106,cell-mean,−0.022,33/106,3.47 × 10⁻⁵,9.65 × 10⁻⁵,5.90 × 10⁻⁴,no
-T5u_PRnet_vs_floor,T5u,PRnet,28,cell-mean,−0.038,6/28,4.21 × 10⁻⁵,1.05 × 10⁻⁴,6.74 × 10⁻⁴,no
-T5u_CPA_vs_floor,T5u,CPA,28,cell-mean,−0.072,4/28,4.83 × 10⁻⁵,1.10 × 10⁻⁴,7.25 × 10⁻⁴,no
-T5u_Biolord_vs_floor,T5u,biolord,28,cell-mean,−0.046,5/28,2.44 × 10⁻⁴,5.09 × 10⁻⁴,0.003,no
-T1_CPA_vs_floor,T1,CPA,8,linear-PCA,−0.394,0/8,0.008,0.012,0.102,no
-T1_STATE_vs_floor,T1,STATE,8,linear-PCA,−0.139,0/8,0.008,0.012,0.102,no
-T1_scFoundation_vs_floor,T1,scFoundation,8,linear-PCA,−0.103,0/8,0.008,0.012,0.102,no
-T1_scGPT_vs_floor,T1,scGPT,8,linear-PCA,−0.195,0/8,0.008,0.012,0.102,no
-T5u_FP-ridge_vs_floor,T5u,FP-ridge,28,cell-mean,−0.008,7/28,0.063,0.092,0.565,no
-T1_scGen_vs_floor,T1,scGen,8,linear-PCA,−0.031,2/8,0.109,0.152,0.875,no
-T5u_PerturbNet_vs_floor,T5u,PerturbNet,28,cell-mean,−0.011,10/28,0.120,0.158,0.875,no
-T5u_CellFlow_vs_floor,T5u,CellFlow,28,cell-mean,−0.006,9/28,0.144,0.177,0.875,no
-T1_scPRAM_vs_floor,T1,scPRAM,8,linear-PCA,−0.030,1/8,0.148,0.177,0.875,no
-T2_PerturbNet_vs_floor,T2,PerturbNet,106,cell-mean,−0.005,42/106,0.168,0.191,0.875,no
-T1_CellFlow_vs_floor,T1,CellFlow,8,linear-PCA,+0.018,4/8,0.547,0.594,1.000,no
+T2_scFoundation_vs_floor,T2,scFoundation,106,cell-mean,−0.140,2/106,4.35 × 10⁻¹⁹,1.13 × 10⁻¹⁷,1.17 × 10⁻¹⁷,no
+T2_STATE_vs_floor,T2,STATE,106,cell-mean,−0.124,3/106,8.35 × 10⁻¹⁹,1.13 × 10⁻¹⁷,2.17 × 10⁻¹⁷,no
+T2_scGen_vs_floor,T2,scGen,106,cell-mean,−0.113,5/106,1.35 × 10⁻¹⁸,1.21 × 10⁻¹⁷,3.37 × 10⁻¹⁷,no
+T2_CPA_vs_floor,T2,CPA,106,cell-mean,−0.052,8/106,1.58 × 10⁻¹⁶,1.07 × 10⁻¹⁵,3.80 × 10⁻¹⁵,no
+T2_scGPT_vs_floor,T2,scGPT,106,cell-mean,−0.010,13/106,7.19 × 10⁻¹⁶,3.88 × 10⁻¹⁵,1.65 × 10⁻¹⁴,no
+T2_scPRAM_vs_floor,T2,scPRAM,106,cell-mean,−0.101,12/106,1.06 × 10⁻¹⁵,4.76 × 10⁻¹⁵,2.33 × 10⁻¹⁴,no
+C2_donor_CellOT_vs_floor,T2,CellOT,106,cell-mean,+0.107,93/106,1.58 × 10⁻¹³,6.10 × 10⁻¹³,3.32 × 10⁻¹²,yes
+T5u_STATE_vs_floor,T5u,STATE,28,cell-mean,−0.057,1/28,4.10 × 10⁻⁷,1.38 × 10⁻⁶,8.20 × 10⁻⁶,no
+T2_CellFlow_vs_floor,T2,CellFlow,106,cell-mean,−0.022,33/106,3.47 × 10⁻⁵,1.04 × 10⁻⁴,6.60 × 10⁻⁴,no
+T5u_PRnet_vs_floor,T5u,PRnet,28,cell-mean,−0.038,6/28,4.21 × 10⁻⁵,1.14 × 10⁻⁴,7.58 × 10⁻⁴,no
+T5u_CPA_vs_floor,T5u,CPA,28,cell-mean,−0.072,4/28,4.83 × 10⁻⁵,1.19 × 10⁻⁴,8.21 × 10⁻⁴,no
+T5u_Biolord_vs_floor,T5u,biolord,28,cell-mean,−0.046,5/28,2.44 × 10⁻⁴,5.49 × 10⁻⁴,0.004,no
+T1_CPA_vs_floor,T1,CPA,8,linear-PCA,−0.394,0/8,0.008,0.013,0.117,no
+T1_STATE_vs_floor,T1,STATE,8,linear-PCA,−0.139,0/8,0.008,0.013,0.117,no
+T1_scFoundation_vs_floor,T1,scFoundation,8,linear-PCA,−0.103,0/8,0.008,0.013,0.117,no
+T1_scGPT_vs_floor,T1,scGPT,8,linear-PCA,−0.195,0/8,0.008,0.013,0.117,no
+T5u_FP-ridge_vs_floor,T5u,FP-ridge,28,cell-mean,−0.008,7/28,0.063,0.100,0.691,no
+T1_scGen_vs_floor,T1,scGen,8,linear-PCA,−0.031,2/8,0.109,0.164,1.000,no
+T5u_PerturbNet_vs_floor,T5u,PerturbNet,28,cell-mean,−0.011,10/28,0.120,0.170,1.000,no
+T5u_scGPT_vs_floor,T5u,scGPT,28,cell-mean,−0.012,9/28,0.131,0.177,1.000,no
+T5u_CellFlow_vs_floor,T5u,CellFlow,28,cell-mean,−0.006,9/28,0.144,0.182,1.000,no
+T1_scPRAM_vs_floor,T1,scPRAM,8,linear-PCA,−0.030,1/8,0.148,0.182,1.000,no
+T2_PerturbNet_vs_floor,T2,PerturbNet,106,cell-mean,−0.005,42/106,0.168,0.197,1.000,no
+T1_CellFlow_vs_floor,T1,CellFlow,8,linear-PCA,+0.018,4/8,0.547,0.615,1.000,no
+T5u_scFoundation_vs_floor,T5u,scFoundation,28,cell-mean,+0.005,12/28,0.867,0.936,1.000,no
 T1_CellOT_vs_floor,T1,CellOT,8,linear-PCA,+0.006,4/8,1.000,1.000,1.000,no
 T1_PerturbNet_vs_floor,T1,PerturbNet,8,linear-PCA,+0.007,3/8,1.000,1.000,1.000,no

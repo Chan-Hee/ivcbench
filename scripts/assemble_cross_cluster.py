@@ -432,6 +432,13 @@ CELLS = [
         clusters=["C5", "C5_unseen_cpd"],
         match=lambda s: s == "C5_global_compound_holdout",
         unit_of=lambda r: r["split"],
+        # The two foundation models sit here through the same compound-conditioned head they use on
+        # the cell-context split. Reviewer 2 comment 1 named T1, T2 and T5, and the author's rule
+        # for this revision is that a foundation model may be adapted because adapting one for a
+        # downstream task is ordinary practice. The head is the construction chemCPA already uses
+        # and which is reported native on this very split -- a frozen molecular vector feeding a
+        # trainable map whose output is decoded through the model's own cell representation -- so
+        # admitting it for chemCPA and refusing it here would not be a position we could defend.
         roster=[
             "Biolord",
             "CPA",
@@ -440,6 +447,8 @@ CELLS = [
             "PRnet",
             "PerturbNet",
             "STATE",
+            "scFoundation",
+            "scGPT",
         ],
     ),
     dict(
@@ -510,6 +519,8 @@ STATUS_OVERRIDE = {
     ("C2", "donor (LODO)", "PertAdapt"): "adapted",
     ("C5", "cell-context (LOCT)", "scGPT"): "adapted",
     ("C5", "cell-context (LOCT)", "scFoundation"): "adapted",
+    ("C5", "unseen-compound", "scGPT"): "adapted",
+    ("C5", "unseen-compound", "scFoundation"): "adapted",
 }
 
 STATUS_DEFINITION = {
@@ -559,18 +570,33 @@ AUTHOR_WRITTEN_INTERFACE = {
         "latent shift with an MLP decoder for 512 response genes; "
         "other genes retain the held-control mean."
     ),
+    # These two described the T1 latent-shift/global-flag adapter, which was WITHDRAWN on this
+    # split: it pooled all 141 OP3 compounds into one exposure, so every compound received an
+    # identical profile. The deposited bundles come from the compound-conditioned head, and the
+    # disclosure has to describe the interface that produced them.
     ("C5", "cell-context (LOCT)", "scGPT"): (
-        "Yes — the author-written T1 cell-context interface reused "
-        "here for the seen-compound cell-axis split: the "
-        "gene-specific perturbation token is replaced by one global "
-        "flag for the seen exposure."
+        "Yes — a compound-conditioned head: the released scGPT_human encoder is held fixed and a "
+        "trainable MLP maps its cell embedding concatenated with the compound's Morgan "
+        "fingerprint onto the response, fitted on the training fold against observed "
+        "lineage-by-compound means."
     ),
     ("C5", "cell-context (LOCT)", "scFoundation"): (
-        "Yes — the author-written T1 cell-context interface "
-        "reused here for the seen-compound cell-axis split: a "
-        "training-lineage latent shift with an MLP decoder for "
-        "512 response genes; other genes retain the "
-        "held-control mean."
+        "Yes — a compound-conditioned head: the released scFoundation encoder is held fixed and a "
+        "trainable MLP maps its cell embedding concatenated with the compound's Morgan "
+        "fingerprint onto the response, fitted on the training fold against observed "
+        "lineage-by-compound means."
+    ),
+    # Same head, unseen-compound regime: the held compounds are absent from every training cell and
+    # reach the model only as a fingerprint, which is what this cell is reported to measure.
+    ("C5", "unseen-compound", "scGPT"): (
+        "Yes — the same compound-conditioned head as on the cell-context split, with the held "
+        "compounds absent from training: the frozen scGPT_human encoder embeds the control pool "
+        "and the held compound enters only as its Morgan fingerprint."
+    ),
+    ("C5", "unseen-compound", "scFoundation"): (
+        "Yes — the same compound-conditioned head as on the cell-context split, with the held "
+        "compounds absent from training: the frozen scFoundation encoder embeds the control pool "
+        "and the held compound enters only as its Morgan fingerprint."
     ),
 }
 
@@ -578,8 +604,8 @@ AUTHOR_WRITTEN_INTERFACE = {
 # submitted 47-cell panel when the CELLS rosters were moved to 56, which aborts the assembler --
 # retyping a roster in one place and a count in another is exactly how they drift, so
 # verify_census_closure.py now checks these two constants against cell_ledger.csv as well.
-EXPECTED_CENSUS_CELLS = 56
-EXPECTED_STATUS_COUNTS = {"native": 46, "adapted": 6, "diagnostic": 4}
+EXPECTED_CENSUS_CELLS = 58
+EXPECTED_STATUS_COUNTS = {"native": 46, "adapted": 8, "diagnostic": 4}
 
 
 def cell_status(cluster, split, model):

@@ -226,6 +226,7 @@ scFoundation,C5·B,T5c,0.284327,-0.015403,adapted,bundle,True,True
 scFoundation,C5·Mono,T5c,0.279345,0.094701,adapted,bundle,True,True
 scFoundation,C5·NK,T5c,0.375416,0.116039,adapted,bundle,True,True
 scFoundation,C5·T_cells,T5c,0.377232,0.043265,adapted,bundle,True,True
+scFoundation,C5·cpd,T5u,0.17685,0.00467,adapted,bundle,True,True
 scGPT,C1·B,T1,0.66848,-0.160699,adapted,bundle,True,False
 scGPT,C1·CD4T,T1,0.64278,-0.14174,adapted,bundle,True,False
 scGPT,C1·CD8T,T1,0.624203,-0.096883,adapted,bundle,True,False
@@ -245,6 +246,7 @@ scGPT,C5·B,T5c,0.378323,0.078593,adapted,bundle,True,True
 scGPT,C5·Mono,T5c,0.277958,0.093313,adapted,bundle,True,True
 scGPT,C5·NK,T5c,0.349105,0.089729,adapted,bundle,True,True
 scGPT,C5·T_cells,T5c,0.381561,0.047594,adapted,bundle,True,True
+scGPT,C5·cpd,T5u,0.160479,-0.011701,adapted,bundle,True,False
 scGen,C1·B,T1,0.767373,-0.061806,native,bundle,True,False
 scGen,C1·CD4T,T1,0.776839,-0.007681,native,bundle,True,False
 scGen,C1·CD8T,T1,0.771812,0.050726,native,bundle,True,False

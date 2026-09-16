@@ -1,8 +1,8 @@
 {
-  "census_cells": 56,
+  "census_cells": 58,
   "status": {
     "native": 46,
-    "adapted": 6,
+    "adapted": 8,
     "diagnostic": 4
   },
   "per_task": {
@@ -10,7 +10,7 @@
     "T2": 9,
     "T3": 10,
     "T4": 10,
-    "T5u": 7,
+    "T5u": 9,
     "T5c": 11
   },
   "per_task_models": {
@@ -18,7 +18,7 @@
     "T2": 9,
     "T3": 9,
     "T4": 9,
-    "T5u": 6,
+    "T5u": 8,
     "T5c": 10
   },
   "models": [
@@ -40,12 +40,14 @@
     "scPRAM"
   ],
   "n_models": 16,
-  "n_conditioned": 52,
+  "n_conditioned": 54,
   "adapted_cells": [
     "scFoundation @ T1",
     "scGPT @ T1",
     "scFoundation @ T2",
     "scGPT @ T2",
+    "scFoundation @ T5u",
+    "scGPT @ T5u",
     "scFoundation @ T5c",
     "scGPT @ T5c"
   ],
@@ -73,6 +75,12 @@
       "model": "CellOT",
       "status": "native",
       "pd": 0.3666
+    },
+    {
+      "task": "T5u",
+      "model": "scFoundation",
+      "status": "adapted",
+      "pd": 0.1768
     },
     {
       "task": "T5c",
@@ -126,8 +134,8 @@
     "PRnet",
     "PerturbNet"
   ],
-  "census_bundles": 1399,
-  "method_prediction_bundles": 1147,
+  "census_bundles": 1401,
+  "method_prediction_bundles": 1149,
   "floor_prediction_bundles": 252,
   "rescored_bundles": 2283,
   "bundle_count_definition": "census_bundles counts only method and two-member-floor inputs listed in census_bundle_manifest.csv; rescored_bundles also includes preserved non-census references and sensitivity splits",

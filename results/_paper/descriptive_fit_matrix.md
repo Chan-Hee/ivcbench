@@ -35,6 +35,7 @@ expectation or general model-selection recommendation is inferred from these res
 | T5u | Chemistry / conditioned | PRnet | 28 | 0.134 | 0.172 | -0.038 | 95% CI [-0.052, -0.023] |
 | T5u | Chemistry / diagnostic: FP-ridge | FP-ridge | 28 | 0.164 | 0.172 | -0.008 | 95% CI [-0.031, +0.019] |
 | T5u | Flow / conditioned | CellFlow | 28 | 0.166 | 0.172 | -0.006 | 95% CI [-0.019, +0.008] |
+| T5u | Foundation / conditioned | scFoundation | 28 | 0.177 | 0.172 | +0.005 | 95% CI [-0.017, +0.029] |
 | T5u | Hybrid / conditioned | STATE | 28 | 0.115 | 0.172 | -0.057 | 95% CI [-0.069, -0.045] |
 | T5u | Latent / conditioned | Biolord | 28 | 0.127 | 0.172 | -0.046 | 95% CI [-0.077, -0.005] |
 | T5c | Chemistry / conditioned | PRnet | 4 | 0.094 | 0.269 | -0.175 | range [-0.209, -0.143] |

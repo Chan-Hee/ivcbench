@@ -44,6 +44,8 @@ C5,small-mol/OP3,unseen-compound,compound,28,Chemistry,FP-ridge,0.1642,0.1722,0.
 C5,small-mol/OP3,unseen-compound,compound,28,Chemistry,PRnet,0.1343,0.1722,0.1498,cell-mean,0.1722,-0.0379,0.161,-0.0267,-0.0379,-0.0155,False,False,native,PRnet
 C5,small-mol/OP3,unseen-compound,compound,28,Flow,PerturbNet,0.1613,0.1722,0.1498,cell-mean,0.1722,-0.0109,0.161,0.0003,-0.0109,0.0115,False,True,native,PerturbNet
 C5,small-mol/OP3,unseen-compound,compound,28,Hybrid,STATE,0.115,0.1722,0.1498,cell-mean,0.1722,-0.0572,0.161,-0.046,-0.0572,-0.0348,False,False,native,STATE
+C5,small-mol/OP3,unseen-compound,compound,28,Foundation,scFoundation,0.1768,0.1722,0.1498,cell-mean,0.1722,0.0047,0.161,0.0159,0.0047,0.027,True,True,adapted,scFoundation
+C5,small-mol/OP3,unseen-compound,compound,28,Foundation,scGPT,0.1605,0.1722,0.1498,cell-mean,0.1722,-0.0117,0.161,-0.0005,-0.0117,0.0107,False,False,adapted,scGPT
 C5,small-mol/OP3,cell-context (LOCT),lineage,4,Latent,CPA,0.0606,0.025,0.2694,linear-PCA,0.2694,-0.2088,0.1472,-0.0866,0.0356,-0.2088,False,False,native,CPA
 C5,small-mol/OP3,cell-context (LOCT),lineage,4,Flow,CellFlow,0.1038,0.025,0.2694,linear-PCA,0.2694,-0.1656,0.1472,-0.0434,0.0788,-0.1656,False,False,native,CellFlow
 C5,small-mol/OP3,cell-context (LOCT),lineage,4,OT,CellOT,0.1936,0.025,0.2694,linear-PCA,0.2694,-0.0758,0.1472,0.0464,0.1687,-0.0758,False,True,native,CellOT

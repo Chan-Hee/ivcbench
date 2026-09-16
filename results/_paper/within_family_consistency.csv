@@ -22,4 +22,5 @@ C5,small-mol/OP3,cell-context (LOCT),Latent,CPA+scGen,"[-0.0866, 0.0332]",0,2,ag
 C5,small-mol/OP3,cell-context (LOCT),OT,CellOT+scPRAM,"[0.0464, 0.034]",0,2,agree,1.0,
 C5,small-mol/OP3,unseen-compound,Chemistry,FP-ridge+PRnet,"[0.0032, -0.0267]",0,2,agree,,
 C5,small-mol/OP3,unseen-compound,Flow,CellFlow+PerturbNet,"[0.0051, 0.0003]",0,2,agree,,
+C5,small-mol/OP3,unseen-compound,Foundation,scFoundation+scGPT,"[0.0159, -0.0005]",1,2,split,,
 C5,small-mol/OP3,unseen-compound,Latent,Biolord+CPA,"[-0.0343, -0.061]",0,2,agree,,

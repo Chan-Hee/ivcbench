@@ -44,6 +44,8 @@ T5u,small-mol/OP3,unseen-compound,compound,28,Chemistry,FP-ridge,diagnostic,0.16
 T5u,small-mol/OP3,unseen-compound,compound,28,Chemistry,PRnet,native,0.134,0.172,0.150,cell-mean,−0.038,"[−0.052, −0.023]",0.021,negative margin CI (unadjusted)
 T5u,small-mol/OP3,unseen-compound,compound,28,Flow,PerturbNet,native,0.161,0.172,0.150,cell-mean,−0.011,"[−0.027, +0.006]",0.024,inconclusive (interval spans zero)
 T5u,small-mol/OP3,unseen-compound,compound,28,Hybrid,STATE,native,0.115,0.172,0.150,cell-mean,−0.057,"[−0.069, −0.045]",0.017,negative margin CI (unadjusted)
+T5u,small-mol/OP3,unseen-compound,compound,28,Foundation,scFoundation,adapted,0.177,0.172,0.150,cell-mean,+0.005,"[−0.017, +0.029]",0.033,inconclusive (interval spans zero)
+T5u,small-mol/OP3,unseen-compound,compound,28,Foundation,scGPT,adapted,0.160,0.172,0.150,cell-mean,−0.012,"[−0.037, +0.015]",0.037,inconclusive (interval spans zero)
 T5c,small-mol/OP3,cell-context (LOCT),lineage,4,Latent,CPA,native,0.061,0.025,0.269,linear-PCA,−0.209,range −0.290 to −0.155,n.a.,negative in all units (descriptive)
 T5c,small-mol/OP3,cell-context (LOCT),lineage,4,Flow,CellFlow,native,0.104,0.025,0.269,linear-PCA,−0.166,range −0.199 to −0.116,n.a.,negative in all units (descriptive)
 T5c,small-mol/OP3,cell-context (LOCT),lineage,4,OT,CellOT,native,0.194,0.025,0.269,linear-PCA,−0.076,range −0.152 to −0.004,n.a.,negative in all units (descriptive)

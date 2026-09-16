@@ -1,5 +1,5 @@
 stage,hardware,measured_units,unit,seconds,elapsed_hours,median_seconds,range_min_seconds,range_max_seconds,host_RAM_MiB,scope
-CPU census verification,32 physical cores / 64 threads; no GPU,56,census entries,10.300319649279118,0.0028611999025775327,,,,149.84375,"1,399 selected mean-profile bundles; complete consistency check; single measured invocation"
+CPU census verification,32 physical cores / 64 threads; no GPU,58,census entries,10.300319649279118,0.0028611999025775327,,,,149.84375,"1,401 selected mean-profile bundles; complete consistency check; single measured invocation"
 "CellOT T2, seed 0",one NVIDIA L40 (48 GB) per fit,106,donor fits,80104.29999999999,22.25119444444444,750.95,671.5,830.5,,"selected full-budget run records; 12,000 AE + 8,000 transport iterations; serial sum"
 scGPT T2 recorded chunks,one NVIDIA L40 (48 GB) per fit,106,donor fits,52368.0,14.546666666666667,,,,,8 recorded chunks; partial if fewer than 106 donors; optimizer scope in training table
 scFoundation T2 recorded chunks,one NVIDIA L40 (48 GB) per fit,78,donor fits,14165.0,3.9347222222222222,,,,,8 recorded chunks; partial if fewer than 106 donors; optimizer scope in training table
