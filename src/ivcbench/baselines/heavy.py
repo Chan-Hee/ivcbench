@@ -287,17 +287,30 @@ class SubprocessAdapter(BaselineAdapter):
             n_strata = len(set(map(str, np.asarray(split.test_strata))))
             if len(profiles) == 1:
                 prof = next(iter(profiles.values()))
-                # One profile tiled over every test cell is correct only when the split HAS one
-                # stratum -- the held unit is the prediction. When the split has several and the
-                # runner returned one, the other strata were not predicted, and tiling marks them
-                # declined=False, i.e. certifies a prediction the model never made. That is how a
-                # pooled map came to be reported per compound.
-                if n_strata > 1:
+                # One profile tiled over every test cell certifies a prediction for strata the
+                # runner never produced -- that is how a pooled map came to be reported per
+                # compound. But it is only a pathology when the strata lie on the axis the model
+                # was asked to condition on. What the stratum labels name decides that: on a
+                # held-group split they are a nuisance axis ('donor_id=1256',
+                # 'cell_type_coarse=CD4_Naive') and one profile for the held unit IS the whole
+                # prediction -- the universal floor members tile identically on those same
+                # splits, eval/bundle.py documents the repeated-profile case as required, and
+                # test_constant_prediction_scores_zero.py asserts it. Refusing there broke the
+                # regeneration path for six deposited cells (scGPT, scFoundation and CellFlow on
+                # T1 and T2), whose runners return a single profile by design.
+                #
+                # 'perturbation=...' is the other case: those strata ARE the held entity, so a
+                # single profile means the rest went unpredicted. Refuse, as before. An
+                # unrecognised label shape is refused too -- the permissive branch has to be
+                # positively established, not assumed.
+                axes = {str(s).split("=", 1)[0] for s in np.asarray(split.test_strata)}
+                nuisance = axes and axes <= {"donor_id", "cell_type_coarse"}
+                if n_strata > 1 and not nuisance:
                     raise RuntimeError(
                         f"{self.name}: the runner returned ONE profile for a split with "
-                        f"{n_strata} strata. Tiling it would score {n_strata - 1} strata on a "
-                        "prediction that was never made. Fix the runner's keying, or have it "
-                        "decline the strata it cannot produce."
+                        f"{n_strata} strata on {sorted(axes)}. Tiling it would score "
+                        f"{n_strata - 1} strata on a prediction that was never made. Fix the "
+                        "runner's keying, or have it decline the strata it cannot produce."
                     )
                 return PredResult(
                     np.repeat(prof[None, :], len(test_perts), axis=0),

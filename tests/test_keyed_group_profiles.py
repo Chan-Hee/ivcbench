@@ -83,3 +83,21 @@ def test_no_key_matches_at_all_is_an_error_not_a_blend():
     b = np.array([9, 9, 9, 9], dtype=np.float32)
     with pytest.raises(RuntimeError, match="never predicted"):
         _run({"stim::aaa": a, "stim::bbb": b}, ["donor_id=1", "donor_id=2"])
+
+
+def test_one_profile_over_many_compounds_is_still_refused():
+    """The guard's real target: a pooled map reported per compound.
+
+    Tiling is permitted on a held-GROUP split because its strata are a nuisance axis and the
+    held unit is the whole prediction. When the strata are the perturbation axis they ARE the
+    held entity, so one profile means the rest went unpredicted.
+    """
+    a = np.array([5, 5, 5, 5], dtype=np.float32)
+    with pytest.raises(RuntimeError, match="never made"):
+        _run({"loct::whole-group": a}, ["perturbation=Atorvastatin", "perturbation=Vorinostat"])
+
+
+def test_an_unrecognised_stratum_axis_is_refused_rather_than_assumed():
+    a = np.array([5, 5, 5, 5], dtype=np.float32)
+    with pytest.raises(RuntimeError, match="never made"):
+        _run({"x::whole-group": a}, ["something_new=1", "something_new=2"])

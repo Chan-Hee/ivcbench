@@ -2,6 +2,8 @@
 
 from pathlib import Path
 import sys
+
+import pandas as pd
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "model_runners"))
@@ -35,4 +37,19 @@ def test_invalid_state_executions_are_not_census_entries():
     sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
     from assemble_cross_cluster import CELLS
 
-    assert {c["task_id"] for c in CELLS if "STATE" in c["roster"]} == {"T1", "T2"}
+    # "STATE remains evaluated on T1/T2 only" was the 9-September roster. STATE was re-run on
+    # T3, T4, T5c and T5u through the corrected path and admitted. What this test guards is that
+    # an INVALID execution never becomes a census entry, so check that against the withdrawal
+    # registry rather than freezing the roster.
+    from assemble_cross_cluster import census_metadata_rows
+
+    state_cells = {(c["task_id"], c["model"]) for c in census_metadata_rows()
+                   if c["model"] == "STATE"}
+    assert state_cells, "STATE reports no census cell at all"
+    manifest = pd.read_csv(
+        Path(__file__).resolve().parents[1] / "results/_paper/census_bundle_manifest.csv"
+    )
+    from assemble_cross_cluster import eligible_bundle
+
+    for path in manifest.loc[manifest.model == "STATE", "bundle_path"].unique():
+        assert eligible_bundle(Path(path)), f"a withdrawn bundle reached the census: {path}"

@@ -87,7 +87,14 @@ def test_recorded_program_targets_pass_identity_control():
 def test_every_contrast_has_matched_target_and_precision_statement():
     paper = ROOT / "results/_paper"
     panel = pd.read_csv(paper / "panel_precision_attenuation.csv")
-    assert len(panel) == 47 and not panel.duplicated(["task_key", "model"]).any()
+    # The production code carried this literal too and was de-hardcoded to EXPECTED_CENSUS_CELLS;
+    # the test kept the 47 and went red, so it stopped guarding the 1:1 panel-to-census mapping.
+    from assemble_cross_cluster import EXPECTED_CENSUS_CELLS
+
+    assert len(panel) == EXPECTED_CENSUS_CELLS
+    assert not panel.duplicated(["task_key", "model"]).any()
+    census = pd.read_csv(paper / "census_uncertainty.csv")
+    assert set(zip(panel.task_key, panel.model)) == set(zip(census.task_key, census.model))
     for column in ["power_statement", "attenuation_statement"]:
         assert panel[column].str.len().gt(100).all()
     assert (panel.n_units == panel.n_units_target).all()

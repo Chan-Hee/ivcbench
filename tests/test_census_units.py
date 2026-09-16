@@ -39,13 +39,19 @@ def test_paired_summary_rejects_nan_or_different_units():
 
 
 def test_current_census_units_and_s3_preserve_member_uncertainty():
+    from assemble_cross_cluster import EXPECTED_CENSUS_CELLS
+
     units = pd.read_csv(
         ROOT / "results/_paper/census_unit_scores.csv", dtype={"unit": str}
     )
     validate_units(units)
     summary = uncertainty_table(units)
-    assert len(summary) == 47
-    assert len(units) == 1605
+    # Derived, not frozen. These read 47 and 1605 through the census expansion to 58 cells, so
+    # the test that was supposed to catch a census-shape regression was itself red and caught
+    # nothing. The assembler's constant is the census's own declaration of its size.
+    assert len(summary) == EXPECTED_CENSUS_CELLS
+    assert len(units) == len(units.drop_duplicates(["task_key", "model", "unit"]))
+    assert set(summary.task_key) == set(units.task_key)
     matrix = build_fit_matrix(units)
     for row in matrix.itertuples():
         own = summary[

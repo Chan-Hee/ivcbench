@@ -20,8 +20,16 @@ from ivcbench.eval.bundle import score_bundle
 
 
 def test_native_chemcpa_is_the_compound_execution():
-    native = ROOT / "predictions/C5/C5__chemCPA__C5_global_compound_holdout.npz"
-    adapted = ROOT / "predictions/C5/C5_unseen_cpd__CPA__C5_global_compound_holdout.npz"
+    # The native path was hardcoded to predictions/C5/..., which has itself been withdrawn since
+    # 2026-09-14 as superseded by the v2_native re-run -- so the test asserted that a bundle the
+    # census refuses is admitted. Read the path the census actually uses.
+    manifest = pd.read_csv(ROOT / "results/_paper/census_bundle_manifest.csv")
+    paths = set(manifest.loc[(manifest.task == "T5u") & (manifest.model == "CPA"), "bundle_path"])
+    assert len(paths) == 1, f"expected one T5u/CPA bundle in the manifest, found {sorted(paths)}"
+    native = ROOT / paths.pop()
+    adapted = ROOT / "predictions/C5_unseen_cpd__CPA__C5_global_compound_holdout.npz"
+    if not adapted.exists():
+        adapted = ROOT / "predictions/C5/C5_unseen_cpd__CPA__C5_global_compound_holdout.npz"
     if not native.exists() or not adapted.exists():
         pytest.skip("Historical comparison bundles are not present")
     native_score, adapted_score = score_bundle(native), score_bundle(adapted)
@@ -78,9 +86,23 @@ def test_historical_seen_compound_bundles_stay_withdrawn():
 
 
 def test_context_cpa_adaptation_is_excluded_but_native_scgen_remains():
+    """The historical latent-mean-shift CPA adaptation must not be what the C1/C2 cells report.
+
+    'CPA is absent from the roster' was how that was checked when the only context CPA execution
+    WAS the adaptation. The runner was since rewritten to the public CPA.predict, so CPA is on the
+    roster legitimately and the old assertion inverted. What has to stay true is that the
+    adaptation's own bundles are withdrawn and none of them reaches the census.
+    """
+    withdrawn = pd.read_csv(ROOT / "results/_paper/withdrawn_bundles.csv")
+    historical = [r for r in withdrawn.to_dict("records")
+                  if "__CPA__" in r["bundle_path"]
+                  and ("C1_LOCT__" in r["bundle_path"] or "C2" in r["bundle_path"])]
+    assert historical, "the historical context-CPA bundles are no longer registered as withdrawn"
+    manifest = set(pd.read_csv(ROOT / "results/_paper/census_bundle_manifest.csv").bundle_path)
+    for row in historical:
+        assert row["bundle_path"] not in manifest, f"withdrawn bundle in census: {row}"
     for cell in CELLS:
         if cell["cl"] in {"C1", "C2"}:
-            assert "CPA" not in cell["roster"]
             assert "scGen" in cell["roster"]
 
 

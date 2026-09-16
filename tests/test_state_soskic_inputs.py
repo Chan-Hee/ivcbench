@@ -26,9 +26,20 @@ def test_held_cells_are_also_emitted_as_controls():
 
 
 def test_the_coordinate_shift_is_applied_and_inverted():
-    assert "STATE_SHIFT = float(max(0.0, -float(Xall.min())))" in SRC
-    assert "Xall = Xall + STATE_SHIFT" in SRC
-    assert "- STATE_SHIFT" in SRC, "the shift must be removed before the profiles are returned"
+    """The shift is OPT-IN now, and whichever way it is set it must be undone before returning.
+
+    It used to be unconditional; the same commit that added this test made it opt-in behind
+    IVCBENCH_STATE_BOXMAP (default "none") after measuring that it changed nothing. So asserting
+    that it is applied unconditionally asserts the opposite of what the runner does. What still
+    has to hold is that the default is off, and that any shift applied is inverted on the way out
+    -- an applied-but-not-removed shift would move every returned profile.
+    """
+    assert 'os.environ.get("IVCBENCH_STATE_BOXMAP", "none")' in SRC, "the default must be off"
+    assert "STATE_SHIFT, STATE_SCALE = 0.0, 1.0" in SRC, "the off case must be the identity"
+    assert "Xall = (Xall + STATE_SHIFT) * STATE_SCALE" in SRC
+    assert "/ STATE_SCALE - STATE_SHIFT" in SRC, (
+        "the shift must be removed before the profiles are returned"
+    )
 
 
 def test_a_constant_shift_cannot_change_the_metric():
