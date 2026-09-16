@@ -447,7 +447,7 @@ def census_table():
 # VERDICTS — the gold rings
 # ============================================================================================
 def build_verdicts(cen: pd.DataFrame, mult: pd.DataFrame):
-    """Point-estimate clearers, annotated from the current 25-test BH/Holm family."""
+    """Point-estimate clearers, annotated from the current 27-test BH/Holm family."""
     supported = set(
         zip(
             mult.loc[mult.positive_supported, "task_key"],
