@@ -71,7 +71,11 @@ def main():
     METHODS = [
         ("cell-mean",            "cell-mean (floor)",        NAVY,        "floor"),
         ("linear-PCA",           "linear-PCA (floor)",       "#6E97B4",   "floor"),
-        ("CINEMA-OT",            "CINEMA-OT (OT floor †)", SLATE_BAND, "floor"),
+        # SLATE_BAND (62,81,100) against the cell-mean bar's navy (28,85,124) is two dark
+        # blue-greys that do not separate at the printed 6.30 in. CINEMA-OT is a different KIND
+        # of reference -- perturbation-agnostic, daggered, not headline-ranked -- so it gets a
+        # hue of its own rather than a third shade of the floor's.
+        ("CINEMA-OT",            "CINEMA-OT (OT floor †)", "#3F7F7A", "floor"),
         ("nearest-gene-coexpr",  "nearest-gene: co-expr NN", "#9E5A3C",   "prior"),
         ("nearest-gene-go",      "nearest-gene: GO-Jaccard NN", "#C28C6F", "prior"),
         ("GEARS",                "GEARS (graph)",            "#882255",   "deep"),
@@ -116,13 +120,17 @@ def main():
         # Placed just past each bar, the linear-PCA label (0.31) ran INTO the dashed cell-mean
         # floor at 0.475 -- the digit ink and the dash shared pixels -- and a per-label nudge only
         # moves the problem, because it is the label's width that reaches the line, not its anchor.
-        axA.text(_lab_x, y, _u(f"{m:.2f}"), va="center", ha="left",
+        # Two decimals printed the floor as 0.47 while the caption, the legend gate and Note S7
+        # all carry 0.475 -- a reader comparing the two sees a mismatch that is only rounding.
+        # Three decimals is the project's rounding everywhere else.
+        axA.text(_lab_x, y, _u(f"{m:.3f}"), va="center", ha="left",
                  fontsize=6.8, color=INK)  # _u here IS correct: this is a formatted number, sign-sensitive
 
     axA.axvline(floor_m, color=NAVY_DARK, lw=1.1, ls="--", zorder=2)
     # It used to sit at the top of the axes, where it crossed the first rows' interval and value
     # labels. The bottom two rows are short bars, so the space beside the line down there is free.
-    axA.text(floor_m + 0.012, -0.30, "cell-mean floor", rotation=90, va="bottom", ha="left",
+    # +0.012 left 1.7 pt between the glyphs and the dashed rule, which reads as one object.
+    axA.text(floor_m + 0.030, -0.30, "cell-mean floor", rotation=90, va="bottom", ha="left",
              fontsize=6.2, color=NAVY_DARK, style="italic")
     axA.axvline(0, color="#bbb", lw=0.6, zorder=1)
     # method names below are hyphenated COMPOUND WORDS (cell-mean, linear-PCA, co-expr, GO-Jaccard,
@@ -140,33 +148,43 @@ def main():
     despine(axA)
 
     # ================= (b) robustness across 10/25/50% holdout =================
+    # Colour alone did not separate these: at the 25% holdout linear-PCA (0.2750) and the
+    # GO prior (0.2788) are 1.1 pt apart on this axis and GEARS (0.1885) and AttentionPert
+    # (0.1830) 1.6 pt, and at 50% the two priors (0.2506, 0.2492) are 0.4 pt apart -- same-size
+    # rings drawn in that order simply hid one another, at exactly the levels the panel subtitle
+    # asks the reader to rank. Each series now carries its own SHAPE and its own radius, so a
+    # coincident pair nests visibly instead of vanishing. The x positions stay on the true
+    # holdout fractions; nothing is dodged.
     CURVES = [
-        ("cell-mean",           NAVY,        "-",  4.5, 2.6, "cell-mean (floor)"),
-        ("linear-PCA",          "#6E97B4",   "-",  3.2, 1.4, "linear-PCA (floor)"),
-        ("nearest-gene-coexpr", "#9E5A3C",   "-",  3.6, 1.6, "nearest-gene: co-expr NN"),
-        ("nearest-gene-go",     "#C28C6F",   "-",  3.6, 1.6, "nearest-gene: GO-Jaccard NN"),
-        ("GEARS",               "#882255",   "--", 3.4, 1.5, "GEARS"),
-        ("AttentionPert",       "#AA4499",   "--", 3.4, 1.5, "AttentionPert"),
+        ("cell-mean",           NAVY,        "-",  "o", 7.0, 2.6, "cell-mean (floor)"),
+        ("linear-PCA",          "#6E97B4",   "-",  "s", 6.0, 1.4, "linear-PCA (floor)"),
+        ("nearest-gene-coexpr", "#9E5A3C",   "-",  "^", 6.2, 1.6, "nearest-gene: co-expr NN"),
+        ("nearest-gene-go",     "#C28C6F",   "-",  "v", 4.6, 1.6, "nearest-gene: GO-Jaccard NN"),
+        ("GEARS",               "#882255",   "--", "D", 4.0, 1.5, "GEARS"),
+        ("AttentionPert",       "#AA4499",   "--", "d", 5.0, 1.5, "AttentionPert"),
     ]
     xs = [p for _, p in SPLITS]
     handles = []
     # floor band fill (under cell-mean)
     cm_y = [np.nanmean(per_split_mean(grid, "cell-mean", sp)) for sp, _ in SPLITS]
     _other_max = 0.0
-    for key, col, ls, ms, lw, lab in CURVES:
+    for key, col, ls, mk, ms, lw, lab in CURVES:
         ys = [np.nanmean(per_split_mean(grid, key, sp)) for sp, _ in SPLITS]
         if key != "cell-mean":
             _other_max = max(_other_max, max(ys))
         # Hollow markers: at the 50% holdout both nearest-gene priors sit at 0.25, and the
         # lighter GO-Jaccard dot, drawn second, completely covered the co-expr one -- the caption
         # says both score 0.25 and the panel showed one endpoint.
-        h, = axB.plot(xs, ys, ls=ls, lw=lw, color=col, marker="o", ms=ms,
-                      mfc="none", mec=col, mew=1.4,
+        h, = axB.plot(xs, ys, ls=ls, lw=lw, color=col, marker=mk, ms=ms,
+                      mfc="none", mec=col, mew=1.1,
                       zorder=(5 if key == "cell-mean" else 3),
                       label=lab)
         handles.append(h)
     ytop = max(cm_y) * 1.13
-    axB.fill_between(xs, cm_y, ytop, color=NAVY, alpha=0.05, zorder=0)
+    # The pale fill between the floor curve and the top of the axes was named nowhere -- not in
+    # the legend, the caption or the footnote -- and it stopped at the 10% and 50% points, 0.13 in
+    # short of the left spine and 0.18 in short of the right, so it read as a plotted object with
+    # its own extent. The bold navy floor curve and the annotation below already say what it said.
     axB.axhline(0, color="#bbb", lw=0.6, zorder=0)
     # The leader used to curve up-right and land in white space between the floor line and
     # linear-PCA, pointing at nothing, and the text lay on the linear-PCA series. The shaded band

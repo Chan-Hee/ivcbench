@@ -61,5 +61,8 @@ figures:
 # byte-identically and was missing from this target, so `make figures` replaced the
 # paper's figure with a different one.
 	$(PY) scripts/figure3_blindspot.py
+# README called this target "Figures 2 and 3, Figures S2, S3 and S7"; S3 and S7 were not in it.
+	$(PY) scripts/figure_c3_nearest_gene.py
+	$(PY) scripts/figure_newdata_cytokine_loco.py
 	$(PY) scripts/figure_reliability_ceiling.py
 	$(PY) scripts/assemble_learning_curves.py

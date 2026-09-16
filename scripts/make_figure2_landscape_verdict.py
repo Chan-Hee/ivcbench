@@ -77,10 +77,12 @@ def _resolve(*cands: Path) -> Path | None:
 
 GH = ROOT
 BM = REPO / "benchmark"
-# The argparse default for --out-dir. It used to point at a sibling of the clone, so running
-# this script bare -- as scripts/README.md instructs -- created a directory OUTSIDE the
-# reader's checkout. The Makefile always passes --deposit --out-dir results/_paper.
-DRAFT = REPO / "results" / "_paper"
+# The argparse default for --out-dir. REPO / "results" is a SIBLING of the clone, so running
+# this script bare created a stray directory next to the reader's checkout -- the comment that
+# used to stand here claimed that was fixed, and it was not. The default now stays inside the
+# clone and outside the deposit, which the --deposit guard below protects. The Makefile always
+# passes --deposit --out-dir results/_paper.
+DRAFT = ROOT / "results" / "_draft"
 
 
 def _paper(name):
@@ -244,7 +246,11 @@ BLOCK_B = [
     ("C4·RNA", "T4", "Frangieh", "Frangieh"),
     ("C5·cpd", "T5u", "OP3", "OP3"),
 ]
-AXIS_A = [("cell-context", 0, 11, "c"), ("donor", 12, 12, "r")]
+# "donor" leaned right off its one-column rule, which put its centre 6 pt right of the rule's
+# and of the T2 column it names, while the other two group labels are centred to the pixel.
+# Centred it overhangs the column by ~0.4 of a column on each side and still clears both the
+# "cell-context" label on its left and the block divider on its right.
+AXIS_A = [("cell-context", 0, 11, "c"), ("donor", 12, 12, "c")]
 AXIS_B = [("unseen perturbation", 0, 6, "c")]
 DSET_ABBR = {"Frangieh": "Frang."}
 
@@ -605,9 +611,13 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
             y0 -= 0.082
     # va="bottom" at the mean itself left 0.84 pt between the glyphs and the dashed rule, with
     # the bottom of the text drawn on the pale 95% band. Lifted clear of both.
+    # x=0.30 put the label directly under "paired Wilcoxon p = ...", 1.3 pt between the baselines,
+    # so the line label read as a fifth line of the stats block. The block ends near x=0.37 of the
+    # widened panel; at x=0.46 the label starts at 0.39, and +0.030 clears the tallest bar under
+    # it (0.122) by 1.7 pt while staying attached to the rule it names.
     axB.text(
-        0.30,
-        summ["mean"] + 0.020,
+        0.46,
+        summ["mean"] + 0.030,
         f"mean {fmt_signed(summ['mean'], 3)}",
         ha="center",
         va="bottom",
@@ -1293,8 +1303,11 @@ def main():
         ax2a, cells, models, status_of, cell_margin, mnorm, verdicts, new_models
     )
 
+    # Panel (b) was inset 0.44 in on the left and 0.54 in on the right, which left a white wedge
+    # under panel (a)'s right-hand columns. The left inset aligns it with block A's first cell and
+    # stays; the right edge now meets panel (a)'s.
     xB = (m_left + 0.44) / fig_w
-    wB = (land_w - 0.98) / fig_w
+    wB = (land_w - 0.44) / fig_w
     hB = donor_h / fig_h
     yB = (m_bot + donor_xlab) / fig_h
     ax2b = fig.add_axes([xB, yB, wB, hB])

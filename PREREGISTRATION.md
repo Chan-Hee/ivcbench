@@ -8,7 +8,8 @@ text preceded every result it describes. Post-review changes are recorded in the
 **Version:** 1.0
 **Plan date recorded by the authors:** 2026-06-05 (self-recorded; not an independently verifiable
 pre-result public timestamp)
-**Scope governed:** the immune-perturbation benchmark in `benchmark/`, clusters C1 (immune stimulation —
+**Scope governed:** the immune-perturbation benchmark (developed in the authors' `benchmark/`
+working tree, released as this `ivcbench` package), clusters C1 (immune stimulation —
 Kang IFN-β), C2 (immune stimulation — Soskic CD4 activation), C3 (CRISPR — primary-T Perturb-seq),
 C4 (CRISPR / modality — Frangieh), C5 (drug — OP3 compounds), and any later cluster of the same three
 perturbation classes added under the same shared contracts.

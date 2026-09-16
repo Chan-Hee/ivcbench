@@ -7,7 +7,7 @@ The current entry points are the root Makefile targets; see [REPRODUCE.md](../RE
 | Mean-profile replay | `scripts/reproduce_eval.py --manifest results/_paper/census_bundle_manifest.csv` (run from package root) |
 | Current panel and exact input manifest | `assemble_cross_cluster.py` |
 | Biological units / conditional uncertainty | `census_units.py` |
-| Integrity gate | `check_consistency.py`, `audit_census_targets.py`, `sync_results_raw.py` (read-only check) |
+| Integrity gate | `check_consistency.py` (read-only); `audit_census_targets.py` (writes `results/_paper/census_target_audit.json`); `sync_results_raw.py` (**rewrites `results/C*/results_raw.csv` and `results/C2/soskic_donor_axis.csv` in place** -- import `drift()` from it for the read-only comparison) |
 | Common eligible testing family | `headline_multiplicity.py` |
 | T3 effects / compound distance | `t3_effect_stratification.py`, `assemble_secondary_checks.py` |
 | Symmetric immune-program scores and identity controls | `immune_readout_audit.py` |

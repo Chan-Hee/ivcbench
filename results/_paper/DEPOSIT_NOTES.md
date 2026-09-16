@@ -47,7 +47,9 @@ that its artwork lives in this directory; the record is the embedded image in th
 
 ## Main-figure artwork
 
-`Figure2.*` and `figure_immune_blindspot.*` (Figure 3) here are the files the paper prints.
+`figure2_landscape_verdict.*` (Figure 2) and `figure_immune_blindspot.*` (Figure 3) here are the
+files the paper prints. There is no `Figure2.*` in this directory; the submitted plate carries
+that name only inside the manuscript package.
 
 **`Figure1.{png,pdf,tiff}` here is NOT the paper's Figure 1.** It is a separate overview diagram,
 "Immune perturbation prediction: from task to evidence", drawn by
@@ -68,6 +70,13 @@ a roster or a floor-clearance count off any of them:
 | `figure_landscape.{pdf,png}` | The 35-cell landscape. Gives scGen T1 +.06 and CPA T1 +.03 where `cross_cluster_headline.csv` now gives -0.0307 and -0.3939, plots a full CINEMA-OT row although CINEMA-OT carries no census cell, and shows two floor-clearers where the census now has eight. Superseded by `figure2_landscape_verdict.*`. |
 | `figure_ranking.{pdf,png}`, `figure_perturbation.{pdf,png}`, `figure_within_family_fit.{pdf,png}` | Same vintage and the same 35-cell roster. |
 | `figure_ranking_ORIGTEST.pdf` | A test render from that stage; not used anywhere. |
+
+## Quarantined outputs: `results/_invalid_wrong_venv/`
+
+That directory holds runs made against the wrong `ivcbench` package (the authors' historical
+`benchmark/` copy rather than the released one), kept only so the record of what was executed is
+complete. Nothing in the deposit reads it and no number in it is reported. Its own README says so;
+`scripts/_env_guard.py` prevents a repeat.
 
 ## The legacy `Supplementary_Table_S<N>_*.csv` files in this directory
 

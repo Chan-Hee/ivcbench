@@ -201,7 +201,10 @@ def program_scatter(ax):
     # offset overlaps. Each goes into the empty side of its own point, and the two on the left edge
     # are right-aligned so the text runs away from the axis rather than back over the marker.
     OFF = {"FP-ridge": (8, 4, "left"), "scGPT": (8, -10, "left"),
-           "scFoundation": (9, -3, "left"), "CellOT": (8, 4, "left"),
+           # CellOT (0.622) and scGen (0.708) are 0.086 apart on an axis 0.53 wide, so a
+           # right-hand label on CellOT landed 112 px from scGen's marker and 154 px from its
+           # own: the nearest label to the scGen dot was "CellOT". Moved above its own marker.
+           "scFoundation": (9, -3, "left"), "CellOT": (0, 9, "center"),
            "scGen": (9, -3, "left"), "CellFlow": (9, -3, "left"),
            "scPRAM": (0, 9, "center"), "PerturbNet": (0, -11, "center"),
            "PRnet": (9, -3, "left")}
@@ -242,6 +245,16 @@ def lineage_panel(ax):
         # (d), and teal mean PD-1 in (a) and FP-ridge-on-OP3 in (d). The two blocks are
         # already separated by the rule and named by their own y labels.
         ax.scatter(pred, j, color=BLUE, s=23, zorder=2)
+    # Blue is scGen above the rule and FP-ridge below it; the caption said so and the panel did
+    # not. Both blocks stop well short of the right edge (0.881 and 0.439 on a 0-1 axis), so the
+    # name goes there, on the block's first row, in the colour it names.
+    # On the block's first row the name landed on that row's own grey marker (Kang B's reference
+    # is 0.829), so each sits in the blank strip that opens the block instead: above the first row
+    # for scGen, between the dividing rule and the first OP3 row for FP-ridge.
+    _split = sum(1 for r in rows if r[0] == "T1")
+    for y, name in ((-0.45, "scGen"), (_split + 0.25, "FP-ridge")):
+        ax.text(0.985, y, name, ha="right", va="center", fontsize=MAIN_FS["name"],
+                color=BLUE, fontweight="bold")
     ax.set_yticks(range(len(rows)), labels, fontsize=MAIN_FS["name"])
     ax.set(ylim=(len(rows) - 0.3, -0.7), xlim=(0, 1),
            # "stronger of the two simple references" is accurate but too long for this panel: it

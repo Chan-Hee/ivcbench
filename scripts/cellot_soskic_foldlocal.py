@@ -71,7 +71,7 @@ def main():
     rows = []
     for k, d in enumerate(donors):
         t0 = time.time()
-        cs = fold_standardised(raw, don != str(d))  # 보류 도너를 뺀 통계로만 표준화
+        cs = fold_standardised(raw, don != str(d))  # standardise on the training donors alone, with the held donor removed
         sp = build_split(cs, lodo_spec(d))
         assert audit_split(cs, sp)["leak_free"], f"LEAK {d}"
         test_X = cs.X[sp.test_idx]
@@ -114,7 +114,7 @@ def main():
         cellot = float(np.mean(pes))
         binding = max(
             bp["cell-mean"], bp["linear-PCA"]
-        )  # 넘어야 하는 floor = 둘 중 큰 값
+        )  # the floor to clear is the stronger of the two simple references
         rows.append(
             dict(
                 donor=str(d),

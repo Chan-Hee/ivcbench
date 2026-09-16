@@ -142,9 +142,8 @@ def main() -> int:
         if not ok:
             print(f"  ✗ {name}: {key} reads {got!r}, the census says {want!r}")
             bad += 1
-    # This is the last line of `make check`, which a reviewer runs. Say it in English too.
-    print(f"  release docs: {len(CHECKS)} checks, {bad} mismatch(es)"
-          f"  ·  릴리스 문서 {len(CHECKS)}개 검사 · 불일치 {bad}건")
+    # This is the last line of `make check`, which a reviewer runs.
+    print(f"  release docs: {len(CHECKS)} checks, {bad} mismatch(es)")
     return 1 if bad else 0
 
 

@@ -15,7 +15,8 @@ implementation correction, not a score-based or low-variance exclusion.
 
 Evidence inspected directly:
 
-- Historical `benchmark/model_runners/state_runner.py` and `state_c5_runner.py`
+- Historical `state_runner.py` and `state_c5_runner.py` in the authors' non-redistributed
+  `benchmark/` working tree
   aggregate the lexicographically last `*.h5ad` below the STATE output directory.
   Their copied `ivcbench/model_runners` versions had the same defect.
 - The installed arc-state `_cli/_tx/_predict.py`, lines 498–502, always saves
@@ -42,7 +43,9 @@ mean bundles. Fixing a runner does not retroactively repair its saved results.
 The release runner now requires exactly one named `adata_pred.h5ad`, with no
 generic fallback. Regression tests cover real-file ordering, missing prediction,
 ambiguous checkpoints and exclusion from the current census. The unmodified
-historical runner copies remain in `benchmark/` as evidence.
+historical runner copies remain in the authors' `benchmark/` working tree, which is retained as
+evidence but is not redistributed with this deposit; the corrected copies under
+`model_runners/` are the ones released here.
 
 The unrelated scFoundation T3/T4 exclusion is supported by its executed source:
 condition vocabulary is built from training perturbations only; a held gene is
