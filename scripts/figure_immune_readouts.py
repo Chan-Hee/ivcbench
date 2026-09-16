@@ -504,17 +504,19 @@ def figure_s3(summary, units):
         & summary.model.isin(OP3_MODELS)
     ]
     colors = dict(B="#287fba", Mono="#b34e68", NK="#33866e", T_cells="#9b7435")
+    DODGE = dict(B=-0.21, Mono=-0.07, NK=0.07, T_cells=0.21)
     for i, model in enumerate(OP3_MODELS):
         sub = frame[frame.model == model]
         for row in sub.itertuples():
-            # Solid markers hid each other where two lineages land close together: CellOT's B
-            # (0.757) sat completely under its T cells (0.759) in panel b, so the row showed
-            # three markers for four estimable lineages while the caption counts them. Hollow
-            # markers keep the exact positions and let both rings be seen.
-            axes[0].plot(row.pearson_delta, i, "o", ms=4.6, mfc="none",
+            # Each lineage gets its own height inside the model's row. Hollow markers alone were
+            # not enough: CellOT's B (0.753) and T cells (0.761) land 3 px apart on rings 27 px
+            # across, so the row printed three lineages for four and the caption counts them.
+            # The y axis is the model, a category, so a within-row offset moves nothing measured.
+            dy = DODGE[row.unit]
+            axes[0].plot(row.pearson_delta, i + dy, "o", ms=4.2, mfc="none",
                          mec=colors[row.unit], mew=1.1, alpha=0.95)
             if row.correlation_status == "estimable (descriptive)":
-                axes[1].plot(row.program_corr, i, "o", ms=4.6, mfc="none",
+                axes[1].plot(row.program_corr, i + dy, "o", ms=4.2, mfc="none",
                              mec=colors[row.unit], mew=1.1, alpha=0.95)
         if not (sub.correlation_status == "estimable (descriptive)").any():
             axes[1].axhspan(i - 0.42, i + 0.42, color="#EFEFEF", zorder=0, lw=0)

@@ -141,7 +141,10 @@ def main():
     pc["gap"] = pc["DE-profile-nearest"] - pc[floor_col]
     pc = pc.sort_values("gap")
     yb = np.arange(len(pc))
-    cols = [CONDITIONED if g > 0 else CLAY_DARK for g in pc["gap"]]
+    # A negative gap means the FLOOR wins, so it takes the floor's own colour. CLAY_DARK is
+    # the annotation-only predictor in panel a and the "annotation-only fails" note in panel
+    # c, so using it here made orange mean two different things inside one figure.
+    cols = [CONDITIONED if g > 0 else NAVY for g in pc["gap"]]
     axB.barh(yb, pc["gap"], height=0.72, color=cols, edgecolor=INK, linewidth=0.5,
              alpha=0.9, zorder=3)
     axB.axvline(0, color=NAVY_DARK, lw=1.0, zorder=2)
@@ -163,7 +166,7 @@ def main():
     # It used to sit at y=0.96, beside CD4 T cell and CD4 Memory T cell -- the two largest
     # transfer wins -- while the rows it describes are the five orange bars at the bottom.
     axB.text(0.98, 0.02, "floor wins\n(small-n lineages)", transform=axB.transAxes,
-             ha="right", va="bottom", fontsize=6.2, color=CLAY_DARK, style="italic")
+             ha="right", va="bottom", fontsize=6.2, color=NAVY_DARK, style="italic")
     panel_title(axB, "b", "The transfer win is broad across immune lineages",
                 sub="observed-elsewhere cytokine transfer, per celltype", x_letter=-0.20)
     despine(axB)
@@ -180,8 +183,12 @@ def main():
     # Filled and near-opaque, two coincident cell types printed as one marker -- and the two that
     # clear the floor (CD14 Mono and Mono, 0.001 apart in x and 0.008 in y) are the caption's own
     # "2 of 24". A light fill with a solid edge keeps the size encoding and shows both rings.
-    axC.scatter(g_ft, g_de, s=sz, facecolor=CONDITIONED, edgecolor=CONDITIONED_DARK,
-                linewidth=0.8, alpha=0.45, zorder=4)
+    # Hollow. Both axes are measured values, so the points cannot be dodged apart, and a light
+    # fill was still not enough for the pair the caption counts: CD14 Mono and Mono differ by
+    # 0.0009 in x and 0.0075 in y and printed as one marker against a stated "2 of 24". Two rings
+    # read as two; the marker-size encoding survives.
+    axC.scatter(g_ft, g_de, s=sz, facecolor="none", edgecolor=CONDITIONED_DARK,
+                linewidth=1.0, alpha=0.95, zorder=4)
     axC.scatter([np.mean(g_ft)], [np.mean(g_de)], marker="D", s=46, c=NAVY,
                 edgecolor="white", linewidth=0.9, zorder=6)
     axC.annotate("mean over cell types", xy=(np.mean(g_ft), np.mean(g_de)),

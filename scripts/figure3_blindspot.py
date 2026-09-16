@@ -105,15 +105,18 @@ def marker_panel(ax):
 
 
 # ---------------------------------------------------------------- b. program concordance
+# The tag is the TASK, as it is in Figure S6, Table S12 and the census. This list used to mix
+# the two vocabularies inside one panel -- three programs tagged with the dataset (OP3) and five
+# with the task (T3) -- and named Treg_exhaustion differently from Figure S6.
 NAMES = [
-    ("type_I_IFN", "Type-I IFN (OP3)"),
-    ("inflammatory_NFkB", "NF-κB (OP3)"),
-    ("effector_lymphocyte", "Effector lymphocyte (OP3)"),
+    ("type_I_IFN", "Type-I IFN (T5c)"),
+    ("inflammatory_NFkB", "NF-κB (T5c)"),
+    ("effector_lymphocyte", "Effector lymphocyte (T5c)"),
     ("TCR_activation", "TCR activation (T3)"),
     ("IL2_STAT5", "IL2–STAT5 (T3)"),
     ("proliferation", "Proliferation (T3)"),
     ("effector_cytokine", "Effector cytokine (T3)"),
-    ("Treg_exhaustion", "Regulatory / exhaustion (T3)"),
+    ("Treg_exhaustion", "Treg / exhaustion (T3)"),
 ]
 
 
@@ -232,10 +235,17 @@ def lineage_panel(ax):
     for j, (task, pred, ref) in enumerate(rows):
         ax.plot([ref, pred], [j, j], color="#b5bdc7", lw=1.5, zorder=1)
         ax.scatter(ref, j, color=GREY, s=18, zorder=2)
-        ax.scatter(pred, j, color=BLUE if task == "T1" else GREEN, s=23, zorder=2)
+        # One colour for the model, as in panel a: colouring by DATASET here made FP-ridge a
+        # blue star in (c) and a teal dot in (d), scGen a slate dot in (c) and a blue dot in
+        # (d), and teal mean PD-1 in (a) and FP-ridge-on-OP3 in (d). The two blocks are
+        # already separated by the rule and named by their own y labels.
+        ax.scatter(pred, j, color=BLUE, s=23, zorder=2)
     ax.set_yticks(range(len(rows)), labels, fontsize=MAIN_FS["name"])
     ax.set(ylim=(len(rows) - 0.3, -0.7), xlim=(0, 1),
-           xlabel="Pearson-Δ (grey: stronger of the two simple references)")
+           # "stronger of the two simple references" is accurate but too long for this panel: it
+           # ran to the canvas edge with zero margin and its closing parenthesis was cut. Same
+           # meaning, short enough to fit.
+           xlabel="Pearson-Δ (grey: the stronger simple reference)")
     ax.axhline(sum(1 for r in rows if r[0] == "T1") - 0.5, color="#d6dce2", lw=0.8)
     tidy(ax)
 

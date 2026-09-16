@@ -603,9 +603,11 @@ def draw_donor_panel(axB, gaps, wins, n, summ, pw):
                 zorder=8,
             )
             y0 -= 0.082
+    # va="bottom" at the mean itself left 0.84 pt between the glyphs and the dashed rule, with
+    # the bottom of the text drawn on the pale 95% band. Lifted clear of both.
     axB.text(
         0.30,
-        summ["mean"],
+        summ["mean"] + 0.020,
         f"mean {fmt_signed(summ['mean'], 3)}",
         ha="center",
         va="bottom",
