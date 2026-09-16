@@ -78,9 +78,12 @@ def main():
         ("AttentionPert",        "AttentionPert (graph)",    "#AA4499",   "deep"),
     ]
 
-    fig = plt.figure(figsize=(11.0, 4.9))
-    gs = fig.add_gridspec(1, 2, width_ratios=[1.18, 1.0], wspace=0.34,
-                          left=0.255, right=0.985, top=0.86, bottom=0.27)
+    # The supplement prints every figure at 6.30 in across, so an 11.0 in plate reached the page
+    # at 0.64x and its 7 pt row labels landed at 4.5 pt. Authored near its printed width instead;
+    # only the width is constrained, so the height grows to keep the panels from being squeezed.
+    fig = plt.figure(figsize=(6.9, 4.3))
+    gs = fig.add_gridspec(1, 2, width_ratios=[1.18, 1.0], wspace=0.50,
+                          left=0.275, right=0.985, top=0.88, bottom=0.30)
     axA = fig.add_subplot(gs[0, 0])
     axB = fig.add_subplot(gs[0, 1])
 
@@ -112,7 +115,9 @@ def main():
                  fontsize=6.8, color=INK)  # _u here IS correct: this is a formatted number, sign-sensitive
 
     axA.axvline(floor_m, color=NAVY_DARK, lw=1.1, ls="--", zorder=2)
-    axA.text(floor_m + 0.012, len(rows) - 0.62, "cell-mean floor", rotation=90, va="top", ha="left",
+    # It used to sit at the top of the axes, where it crossed the first rows' interval and value
+    # labels. The bottom two rows are short bars, so the space beside the line down there is free.
+    axA.text(floor_m + 0.012, -0.30, "cell-mean floor", rotation=90, va="bottom", ha="left",
              fontsize=6.2, color=NAVY_DARK, style="italic")
     axA.axvline(0, color="#bbb", lw=0.6, zorder=1)
     # method names below are hyphenated COMPOUND WORDS (cell-mean, linear-PCA, co-expr, GO-Jaccard,
@@ -141,8 +146,11 @@ def main():
     handles = []
     # floor band fill (under cell-mean)
     cm_y = [np.nanmean(per_split_mean(grid, "cell-mean", sp)) for sp, _ in SPLITS]
+    _other_max = 0.0
     for key, col, ls, ms, lw, lab in CURVES:
         ys = [np.nanmean(per_split_mean(grid, key, sp)) for sp, _ in SPLITS]
+        if key != "cell-mean":
+            _other_max = max(_other_max, max(ys))
         h, = axB.plot(xs, ys, ls=ls, lw=lw, color=col, marker="o", ms=ms,
                       zorder=(5 if key == "cell-mean" else 3),
                       label=lab)
@@ -150,10 +158,13 @@ def main():
     ytop = max(cm_y) * 1.13
     axB.fill_between(xs, cm_y, ytop, color=NAVY, alpha=0.05, zorder=0)
     axB.axhline(0, color="#bbb", lw=0.6, zorder=0)
-    axB.annotate("priors & deep models\nstay below the floor", xy=(50, np.mean([cm_y[2], 0.25])),
-                 xytext=(33, ytop * 0.55), fontsize=6.6, color=GREY_MID, ha="center", va="center",
-                 arrowprops=dict(arrowstyle="-|>", color="#999", lw=0.8,
-                                 connectionstyle="arc3,rad=-0.2"))
+    # The leader used to curve up-right and land in white space between the floor line and
+    # linear-PCA, pointing at nothing, and the text lay on the linear-PCA series. The shaded band
+    # already marks the region the sentence describes, so the text stands on its own, above it.
+    # Placed in the gap the sentence is about: below the floor curve, above every other series,
+    # derived so it cannot drift onto a line when the numbers move.
+    axB.text(33, (min(cm_y) + _other_max) / 2, "priors & deep models\nstay below the floor",
+             fontsize=6.6, color=GREY_MID, ha="center", va="center")
     axB.set_xticks([10, 25, 50])
     axB.set_xlim(6, 54)
     axB.set_ylim(min(-0.05, axB.get_ylim()[0]), ytop)

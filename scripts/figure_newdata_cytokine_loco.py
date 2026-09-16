@@ -26,6 +26,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -70,10 +71,16 @@ def main():
     # spans the RIGHT column, and the two-regime scatter (c) closes bottom-left. The long methods
     # footnote lives in the figure CAPTION (Supplementary Fig. S8 caption), not in the figure, so
     # the plate breathes. Target aspect ~2:1. No data value / colour / label changes.
-    fig = plt.figure(figsize=(10.2, 5.2))                       # ~1.96:1
+    # 6.9 in wide, not 10.2: the supplement prints every figure at 6.30 in, and at 10.2 the
+    # 6.0 pt cell-type labels of panel b reached the page at 3.5 pt. Same aspect, same point
+    # sizes, authored at the size it is printed at.
+    # Only the WIDTH is constrained (the supplement prints at 6.30 in); height is free, and
+    # panel b's 24 rows want it. panel_title places its title and subtitle in AXES fractions, so
+    # shortening the panels would push both onto the axes -- the height stays.
+    fig = plt.figure(figsize=(6.6, 5.4))
     gs = fig.add_gridspec(2, 2, width_ratios=[1.0, 1.02], height_ratios=[1.0, 1.0],
-                          wspace=0.46, hspace=0.62,
-                          left=0.07, right=0.985, top=0.90, bottom=0.085)
+                          wspace=0.70, hspace=0.72,
+                          left=0.245, right=0.985, top=0.925, bottom=0.075)
     axA = fig.add_subplot(gs[0, 0])     # pooled bars — top-left
     axC = fig.add_subplot(gs[1, 0])     # two conditioning regimes — bottom-left
     axB = fig.add_subplot(gs[:, 1])     # per-celltype gap — tall, spans both rows (right column)
@@ -92,14 +99,24 @@ def main():
     floor_m = next(r[4] for r in rows if r[0] == floor_col)
     yy = np.arange(len(rows))[::-1]
     for y, (key, lab, col, kind, m, lo, hi) in zip(yy, rows):
-        edge = NAVY_DARK if key == floor_col else (CONDITIONED_DARK if kind == "cond" else SIMPLE_DARK)
+        # The edge was chosen by KIND, so feature-nearest -- orange fill, kind "cond" -- wore
+        # the conditioned plum, and the bar read as outlined in another series' colour. Every
+        # bar now takes a darkened version of its own fill, as the navy and magenta already did.
+        edge = tuple(0.62 * c for c in mcolors.to_rgb(col))
         axA.barh(y, m, height=0.64, color=col, edgecolor=edge, linewidth=0.8,
                  alpha=0.95 if kind == "floor" else 0.9, zorder=3)
         if np.isfinite(lo):
             axA.plot([lo, hi], [y, y], color=INK, lw=1.0, zorder=4)
             axA.plot([lo, lo], [y - 0.12, y + 0.12], color=INK, lw=1.0, zorder=4)
             axA.plot([hi, hi], [y - 0.12, y + 0.12], color=INK, lw=1.0, zorder=4)
-        axA.text(max(hi, m) + 0.012, y, _u(f"{m:.2f}"), va="center", ha="left",
+        # The bar labels sit just past each bar, which put the 0.15 one ON the dashed floor
+        # line at 0.195. Only a label that would land in that band is pushed past the line;
+        # nudging all of them drove the zero bar's label into the rotated "floor" annotation.
+        lab_x = max(hi, m) + 0.012
+        if floor_m - 0.035 < lab_x < floor_m + 0.012:
+            lab_x = floor_m + 0.016
+        axA.text(lab_x, y, _u(f"{m:.2f}"),
+                 va="center", ha="left",
                  fontsize=7.0, color=INK)  # _u here IS correct: a formatted, sign-sensitive number
     axA.axvline(floor_m, color=NAVY_DARK, lw=1.1, ls="--", zorder=2)
     axA.text(floor_m + 0.008, len(rows) - 0.58, "floor", rotation=90, va="top", ha="left",
@@ -136,8 +153,11 @@ def main():
     # either side of it keep plain hyphens as compound words.
     axB.set_xlabel("DE-profile-nearest − cytokine-mean floor  (Δ Pearson)  →",
                    fontsize=7.4)
-    axB.text(0.98, 0.04, f"transfer beats floor in\n{n_pos}/{len(pc)} celltypes",
-             transform=axB.transAxes, ha="right", va="bottom", fontsize=6.6,
+    # On the narrower plate this reached back across zero onto the Granulocyte bar. The open
+    # quadrant is to the RIGHT of zero at the bottom, where the negative rows leave the panel
+    # empty, so it is anchored there instead of to the panel's right edge.
+    axB.text(0.62, 0.02, f"transfer beats floor in\n{n_pos}/{len(pc)} celltypes",
+             transform=axB.transAxes, ha="left", va="bottom", fontsize=6.6,
              color=CONDITIONED_DARK, style="italic")
     axB.text(0.02, 0.96, "floor wins\n(small-n lineages)", transform=axB.transAxes,
              ha="left", va="top", fontsize=6.2, color=CLAY_DARK, style="italic")
@@ -175,7 +195,7 @@ def main():
     axC.set_xlabel("feature-nearest − floor  (annotation only)", fontsize=7.4)
     axC.set_ylabel("DE-profile-nearest − floor  (observed elsewhere)", fontsize=7.4)
     panel_title(axC, "c", "Two conditioning regimes",
-                sub="each point a celltype; marker size ~ held cytokines", x_letter=-0.22)
+                sub="each point a celltype; marker size ~ held cytokines", x_letter=-0.34)
     despine(axC)
 
     # NOTE: the long methods footnote that used to sit under the plate is intentionally NOT drawn
