@@ -39,7 +39,7 @@ would expect to be a supplementary figure and hold a **different** one:
 | File | What it actually is |
 |---|---|
 | `figS_c4_pdl1_assay_power.png` | A single-panel chart of the observed Frangieh RNA and surface CD274 shifts. Printed Figure S4 is a three-panel figure; this is only its panel c. |
-| `figS_chen_checkpoint_replication.png` | A two-panel normalisation comparison. Printed Figure S5 is the three-panel figure deposited at `results/newdata/figS_chen_checkpoint_replication.png`. |
+| `figS_chen_checkpoint_replication.png` | A two-panel normalization comparison. Printed Figure S5 is the revised three-panel figure embedded in the submitted supplement; `results/newdata/figS_chen_checkpoint_replication.png` preserves the earlier version. |
 
 Figures S1, S4, S5, S6 and S8 are built in the manuscript repository
 (`revision_claude/02_build/figures/`) and are not deposited here. The supplement does not claim
