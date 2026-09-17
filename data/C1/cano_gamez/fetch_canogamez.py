@@ -8,7 +8,11 @@ import subprocess, struct, zlib, os, sys
 URL = ("https://ftp.ebi.ac.uk/biostudies/fire/S-BSST/978/S-BSST2978/"
        "Files/scRNAseq.zip")
 CD_OFF, CD_SIZE = 8027319652, 1402          # ZIP64 central directory
-OUT = sys.argv[1] if len(sys.argv) > 1 else "./canogamez2020"
+# Beside this script, which is data/C1/cano_gamez -- the directory download_all.sh names and
+# the one loaders/cano_gamez.py reads by default. The old "./canogamez2020" put the files
+# wherever the reader happened to be standing, so the documented command fetched correctly
+# and the loader then found nothing.
+OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.abspath(__file__))
 WANT = ("metadata.txt", "genes.tsv", "barcodes.tsv", "raw_UMIs.mtx")
 
 def rng(a, b):

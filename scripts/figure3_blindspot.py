@@ -174,7 +174,7 @@ def program_panel(ax):
     for j, (key, name) in enumerate(NAMES):
         entries = full.get(key, [])
         if not entries:
-            ax.text(0.025, j, "NA — no complete estimable macro", va="center",
+            ax.text(0.025, j, "NA – no complete estimable macro", va="center",
                     color=INK, fontsize=MAIN_FS["name"])
             continue
         model, value, _ = max(entries, key=lambda e: e[1])

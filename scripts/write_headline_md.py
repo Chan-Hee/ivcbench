@@ -54,10 +54,30 @@ lines.append(f"- Conditioned models that beat BOTH universal-floor members (poin
              + ("; ".join(f"{r.model}@{r.cluster}/{r.task.split('/')[0]} "
                          f"({r.split.split('(')[0].strip()}, +{r.delta_vs_floor_mean:.3f})"
                          for r in beat_rows.itertuples()) if len(beat_rows) else "none") + ".")
+# This bullet was the last hardcoded string in the file. Written for the 35-cell census, it said
+# "C5 unseen-compound: chemCPA/scGen below floor" -- and after the tables were regenerated from the
+# 58-cell census neither model has a row in that split, while scFoundation IS printed there above
+# the binding floor, which the bullet's own sibling on the line above lists by name. Derive the two
+# extrapolation splits so the sentence can only say what the table says.
+def _below(cluster, split_contains):
+    m = h[(h["cluster"] == cluster) & (h["split"].str.contains(split_contains, case=False))]
+    return m, int((~m["beats_both_floor_members"]).sum()), len(m)
+
+_c3, _c3_below, _c3_n = _below("C3", "gene")
+_c5, _c5_below, _c5_n = _below("C5", "compound")
+def _phrase(tag, m, below, n):
+    if not n:
+        return f"{tag}: no rows"
+    if below == n:
+        return f"{tag}: all {n} conditioned entries below floor"
+    beat = "; ".join(sorted(r.model for r in m[m["beats_both_floor_members"]].itertuples()))
+    return (f"{tag}: {below} of {n} below floor, with {beat} above it on the point estimate "
+            f"(see the uncertainty column before reading that as a clearance)")
 lines.append("- Pattern matches the integrated finding: conditioning helps on **cell/donor-context "
-             "transfer** (C2 CellOT donor-LODO; C5 FP-ridge LOCT) but **fails on unseen-perturbation "
-             "extrapolation** (C3 LO-gene: every conditioned family is below floor; C5 unseen-compound: "
-             "chemCPA/scGen below floor).")
+             "transfer** (C2 CellOT donor-LODO; C5 FP-ridge LOCT) but largely **fails on "
+             "unseen-perturbation extrapolation** — "
+             + _phrase("C3 LO-gene", _c3, _c3_below, _c3_n) + "; "
+             + _phrase("C5 unseen-compound", _c5, _c5_below, _c5_n) + ".")
 with open(os.path.join(OUT, "cross_cluster_headline.md"), "w") as fh:
     fh.write("\n".join(lines) + "\n")
 
