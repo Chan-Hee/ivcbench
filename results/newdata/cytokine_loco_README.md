@@ -40,7 +40,11 @@ Pooled mean response-direction Pearson over all 1,810 held cytokine instances:
 | feature-nearest (annotation only) | 0.153 | 0.089 | **−0.041** (does NOT beat floor) |
 | DE-profile-nearest (observed-elsewhere transfer) | 0.325 | 0.302 | **+0.131** (beats floor) |
 
-Paired floor-vs-conditioned gap (resampling unit = held cytokine, 95% CI over held cytokines):
+Paired floor-vs-conditioned gap. The resampling unit is the (cell type, cytokine) INSTANCE,
+not the held cytokine: newdata_cytokine_loco.py pivots on both fields and bootstraps the flat
+array of 1,810 pair margins drawn from 87 cytokines and 24 cell types, so the interval does
+not account for dependence among pairs sharing either factor. Note S7 and the Figure S7
+caption say the same; this is a descriptive interval, not a cluster bootstrap.
 - DE-profile-nearest − floor: **+0.131 [+0.122, +0.139]**, beats floor on **1429/1810 (79%)** of held
   cytokines, and in **19/24 celltypes** (the 5 losses are the small-n / under-sampled lineages:
   Plasmablast n=15, Granulocyte n=26, HSPC, pDC, ILC n=9).
