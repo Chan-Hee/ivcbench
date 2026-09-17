@@ -114,13 +114,17 @@ def main():
         # The bar labels sit just past each bar, which put the 0.15 one ON the dashed floor
         # line at 0.195. Only a label that would land in that band is pushed past the line;
         # nudging all of them drove the zero bar's label into the rotated "floor" annotation.
-        lab_x = max(hi, m) + 0.012
+        lab_x, lab_y, lab_ha = max(hi, m) + 0.012, y, "left"
         if floor_m - 0.035 < lab_x < floor_m + 0.012:
-            lab_x = floor_m + 0.016
+            # There is no room for this label beside its own bar: the whisker ends 0.032 from the
+            # dashed floor and the label is 0.035 wide. Pushing it past the rule put it on the far
+            # side of the floor from its bar; pulling it left put it on the whisker. It goes above
+            # the bar's own end instead, right-aligned so it stops short of the rule.
+            lab_y, lab_x, lab_ha = y + 0.30, floor_m - 0.005, "right"
         # Two decimals printed the floor as 0.19 against the caption's 0.195; three decimals is
         # the project's rounding, and the widest label still ends 0.02 inside the right limit.
-        axA.text(lab_x, y, _u(f"{m:.3f}"),
-                 va="center", ha="left",
+        axA.text(lab_x, lab_y, _u(f"{m:.3f}"),
+                 va="center", ha=lab_ha,
                  fontsize=7.0, color=INK)  # _u here IS correct: a formatted, sign-sensitive number
     axA.axvline(floor_m, color=NAVY_DARK, lw=1.1, ls="--", zorder=2)
     # +0.008 left 1.6 pt between the glyphs and the dashed rule, which reads as one object.
@@ -206,7 +210,7 @@ def main():
     # Up and left, the leader crossed the MAIT ring on its way to the diamond. Down and right
     # of the mean the panel is empty, so nothing is drawn over.
     axC.annotate("mean over cell types", xy=(np.mean(g_ft), np.mean(g_de)),
-                 xytext=(np.mean(g_ft) + 0.050, np.mean(g_de) - 0.062), fontsize=6.2,
+                 xytext=(np.mean(g_ft) + 0.062, np.mean(g_de) - 0.062), fontsize=6.2,
                  color=NAVY_DARK, ha="left", va="center",
                  arrowprops=dict(arrowstyle="-", color=NAVY_DARK, lw=0.6))
     # The caption counts "2 of 24" to the right of the zero line. Those two are Mono
@@ -230,7 +234,8 @@ def main():
         axC.annotate(_nm, xy=(g_ft[_i], g_de[_i]), xytext=_off,
                      textcoords="offset points", ha=_ha, va=_va, fontsize=6.0,
                      color=CONDITIONED_DARK,
-                     arrowprops=dict(arrowstyle="-", color=CONDITIONED_DARK, lw=0.5, alpha=0.8))
+                     arrowprops=dict(arrowstyle="-", color=CONDITIONED_DARK, lw=0.5,
+                                     alpha=0.8, shrinkA=1, shrinkB=2))
     # Anchored to the panel's right edge, this sat across the dashed zero line at x=0.00 on the
     # narrower plate. It is placed just right of that line instead, in the quadrant it names.
     # Opening the right limit for the Mono labels moved the ring cluster under this text. Every

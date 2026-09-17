@@ -92,7 +92,8 @@ def marker_panel(ax):
         ax.plot([obs, pred], [j, j], color="#bdc6ce", lw=1, zorder=1)
         ax.scatter(pred, j, s=40 if hl else 22, facecolor="none", edgecolor=c,
                    linewidths=1.4 if hl else 1.0, marker="D", zorder=2)
-        ax.scatter(obs, j, s=20 if hl else 11, color=c if hl else GREY, zorder=3)
+        ax.scatter(obs, j, s=22 if hl else 11, facecolor=GREY,
+                   edgecolor=c if hl else 'none', linewidths=1.1 if hl else 0, zorder=3)
         name = r["alias"]
         if hl:
             # Every other row in this panel is labelled with its CD alias, and so are the same
@@ -293,11 +294,11 @@ def main() -> None:
     # live area. The arrangement this restores was drawn at 12 x 10 inches for the screen; at the
     # printed width the margins have to be retuned, not merely scaled, because panel a carries
     # twenty marker names and panel d twelve lineage labels.
-    fig = plt.figure(figsize=(6.85, 6.7))
+    fig = plt.figure(figsize=(6.85, 6.95))
     # wspace 0.52 left panel b's long program names ("Regulatory / exhaustion (T3)") and panel d's
     # lineage labels drawn INSIDE the axes box of the panel to their left -- panel a's x=0.2
     # gridline ran through the first glyphs of "Effector lymphocyte (OP3)".
-    gs = fig.add_gridspec(2, 2, left=0.145, right=0.955, bottom=0.095, top=0.875,
+    gs = fig.add_gridspec(2, 2, left=0.145, right=0.955, bottom=0.125, top=0.880,
                           wspace=0.62, hspace=0.34)
     axes = [fig.add_subplot(gs[i, j]) for i, j in ((0, 0), (0, 1), (1, 0), (1, 1))]
     marker_panel(axes[0]); label(axes[0], "a", "Surface-marker shifts")
@@ -306,8 +307,10 @@ def main() -> None:
     lineage_panel(axes[3]); label(axes[3], "d", "Prediction varies by lineage")
     fig.text(0.015, 0.978, "Immune readouts retain distinct marker, program and lineage information",
              fontsize=MAIN_FS["title"], color=NAVY, fontweight="bold", va="top")
-    # 0.012 of a 6.7 in plate put the footnote's descenders 0.063 in from the trim
-    fig.text(0.155, 0.022,
+    # On the same band as panel c/d's x-axis labels the note's ascenders met their descenders --
+    # "fitted" fused with the "g" of "program". The plate is 0.25 in taller and the note sits in
+    # the room that opened, 0.10 in clear of the trim.
+    fig.text(0.155, 0.016,
              "Protein reference is fitted within modality. Undefined program correlations are not "
              "zero recovery.\nLocal point advantages do not establish task-wide or "
              "multiplicity-adjusted support.", fontsize=MAIN_FS["micro"], color=INK)

@@ -771,14 +771,17 @@ def draw_landscape(
         # 0.16 of a cell from the corner at s=30 left 1 px between the star and the cell's
         # printed value in four cells. Tighter into the corner and smaller.
         if survives:
+            # Filled with the ring's own gold it had 1.7:1 contrast against the ring it sits on
+            # and read as a nick in the border. White on the cell, outlined in the ring's dark
+            # gold, is the only star in the panel and has to be findable.
             ax.scatter(
-                [x0 - 0.5 + 0.13],
-                [y + 0.5 - 0.13],
+                [x0 - 0.5 + 0.14],
+                [y + 0.5 - 0.14],
                 marker="*",
-                s=22,
-                c=WIN_RING,
+                s=26,
+                c="white",
                 edgecolors=WIN_DARK,
-                linewidths=0.5,
+                linewidths=0.7,
                 zorder=9,
                 clip_on=True,
             )
@@ -1480,8 +1483,8 @@ def main():
             Rectangle((0, 0), 1, 1, fc=DIV_CMAP(mnorm(vmax_margin)), ec=CELL_EC, lw=0.8)
         )
         a.add_patch(Rectangle((0.08, 0.08), 0.84, 0.84, fc="none", ec=WIN_RING, lw=1.1))
-        a.scatter([0.22], [0.78], marker="*", s=20, c=WIN_RING,
-                  edgecolors=WIN_DARK, linewidths=0.4, zorder=5)
+        a.scatter([0.22], [0.78], marker="*", s=22, c="white",
+                  edgecolors=WIN_DARK, linewidths=0.6, zorder=5)
 
     def _d_win_borderline(a):
         a.add_patch(
@@ -1541,7 +1544,7 @@ def main():
 
     t = _key(kx0, band_mid, _d_adapt, "adapted interface")
     t = _key(_x1(t) + KEY_GAP, band_mid, _d_diag, "diagnostic comparator")
-    t = _key(_x1(t) + KEY_GAP, band_mid, _d_na, "not evaluated")
+    t = _key(_x1(t) + KEY_GAP, band_mid, _d_na, "no census value")
     kx_mid_end = _x1(t)
 
     # Scientific role key; revision highlighting belongs in editable Word text.
