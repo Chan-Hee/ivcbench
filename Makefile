@@ -36,6 +36,12 @@ reproduce:
 
 census:
 	$(PY) scripts/assemble_cross_cluster.py
+# write_headline_md.py renders the two human-readable companions of the CSVs written just
+# above. It was never wired here, so both froze: the CSV was regenerated with the 58-cell
+# census while the .md beside it still showed the 41-row, 13-model pre-revision roster, and
+# within_family_consistency.md printed a 'split' verdict under a note claiming every family
+# cell agreed. Rendered from the same CSVs, in the same target, they cannot drift apart.
+	$(PY) scripts/write_headline_md.py
 	$(PY) scripts/census_units.py
 	$(PY) scripts/assemble_fit_matrix.py
 	$(PY) scripts/headline_multiplicity.py

@@ -77,20 +77,56 @@ for r in c.itertuples():
                f"{r.n_beat_both_floor} | {r.n_models} | {r.verdict_agreement} | {rho} | {flag} |")
 cl2.append("")
 cl2.append("## Notes\n")
-cl2.append("- **Verdict agreement = `agree` in every family/task cell**: paired members of the same "
-           "family reach the SAME beat-floor verdict (all beat, or none beat). No within-family "
-           "verdict split anywhere in the matrix.")
-cl2.append("- **C3 ρ is high within family** (Foundation ρ=1.00, Graph 0.90, Hybrid 0.70, Latent 0.70 "
-           "across the 5 primary-T datasets): family members rank datasets the same way even though "
-           "both members sit below floor — consistent failure, not noise.")
-cl2.append("- **C1 / C2 Latent ρ moderate** (0.48 / 0.44 across lineages / 106 donors): scGen and CPA "
-           "agree directionally but not tightly.")
-cl2.append("- **C5 Latent ρ = −0.80** on the unseen-compound split (only 1 unit there → "
-           "computed across the LOCT lineages instead; small n, treat as indicative).")
-cl2.append("- **C4 ρ undefined**: only 2 modality folds (LO-KO 25% / 50%) → <3 units, so cross-model "
-           "ρ is not computable. **CellOT and scPRAM on Frangieh ran a single seed per split (the two "
-           "LO-KO fractions, no CI / no multi-seed) — FLAGGED for re-run** to obtain a marker-bootstrap "
-           "CI before any inferential claim.")
+# This note used to assert "agree in every family/task cell ... no within-family verdict split
+# anywhere in the matrix" as a hardcoded string. It was true of the 35-cell census it was written
+# for; on the current roster four family/task cells split, and the sentence contradicted the table
+# printed directly above it. Derive it, so the note can only ever say what the data says.
+_agree = int((c["verdict_agreement"] == "agree").sum())
+_split = int((c["verdict_agreement"] == "split").sum())
+if _split == 0:
+    cl2.append("- **Verdict agreement = `agree` in every family/task cell**: paired members of the "
+               "same family reach the SAME beat-floor verdict (all beat, or none beat). No "
+               "within-family verdict split anywhere in the matrix.")
+else:
+    _rows = c[c["verdict_agreement"] == "split"]
+    _which = "; ".join(f"{r.cluster} {r.family} ({r.models})" for r in _rows.itertuples())
+    cl2.append(f"- **Verdict agreement: {_agree} of {_agree + _split} family/task cells agree**, "
+               f"{_split} split — {_which}. In a split cell one member of the family clears both "
+               "floor members and the other does not, so family membership does not by itself "
+               "predict the beat-floor verdict.")
+# These three bullets used to carry hardcoded rho values from the 35-cell census. Every one of
+# them had drifted: C3 Foundation was printed as 1.00 against a current 0.80, C3 Graph as 0.90
+# against 1.00, and C1 Latent as "0.48 ... agree directionally" against a current -0.05, which is
+# no agreement at all and the opposite sign. Derive them from the same frame the table is built
+# from, and print nothing where rho is undefined.
+def _rho(cluster, family):
+    m = c[(c["cluster"] == cluster) & (c["family"] == family)]
+    m = m[m["spearman_rho_pair"].notna()]
+    return None if m.empty else float(m["spearman_rho_pair"].iloc[0])
+
+_c3 = [(f, _rho("C3", f)) for f in ("Foundation", "Graph", "Hybrid", "Flow")]
+_c3 = [(f, v) for f, v in _c3 if v is not None]
+if _c3:
+    cl2.append("- **C3 within-family rho** (" + ", ".join(f"{f} {fmt(v, 2)}" for f, v in _c3) +
+               "): where rho is high the family's members rank datasets the same way even though "
+               "both sit below the floor, which is consistent failure rather than noise.")
+_lat = [(cl, _rho(cl, "Latent")) for cl in ("C1", "C2", "C5")]
+_lat = [(cl, v) for cl, v in _lat if v is not None]
+if _lat:
+    cl2.append("- **Latent-family rho by cluster**: " +
+               ", ".join(f"{cl} {fmt(v, 2)}" for cl, v in _lat) +
+               ". These are two-model rank correlations over the units of one split; read them as "
+               "indicative, not as an estimate with an interval.")
+# The old version of this bullet carried an internal "FLAGGED for re-run" TODO about CellOT and
+# scPRAM on Frangieh. Neither is in the T4 panel any more, so the flag named work that no longer
+# applies, in a file a reader downloads. State the structural reason rho is undefined instead.
+_undef = sorted({r.family for r in c[(c["cluster"] == "C4") &
+                                     (c["spearman_rho_pair"].isna())].itertuples()})
+if _undef:
+    cl2.append("- **C4 rho is undefined** for " + ", ".join(_undef) +
+               ": the modality split has only two folds (LO-KO 25% and 50%), fewer than the three "
+               "units a rank correlation needs. The census reports those cells by their observed "
+               "unit range rather than an interval, for the same reason.")
 with open(os.path.join(OUT, "within_family_consistency.md"), "w") as fh:
     fh.write("\n".join(cl2) + "\n")
 

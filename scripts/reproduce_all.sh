@@ -8,7 +8,7 @@
 # the GPU families), calling the SAME per-row preflight+run logic as scripts/train_one.sh (both source
 # scripts/_train_lib.sh, so there is one implementation). A model whose conda env or raw data is missing
 # on this host is reported as a clean SKIP; one bad model never aborts the whole run. It finishes with a
-# COVERAGE line over the 35-cell census.
+# COVERAGE line over the 58-cell census.
 #
 # THIS IS THE HEAVY PATH. It needs the per-family conda environments (built from each upstream repo per
 # REPRODUCE.md), the raw data (per data/README.md), and GPUs for the GPU families. It does NOT replace
@@ -94,7 +94,7 @@ if [ "${DRY_RUN}" -eq 0 ] && [ "${RAN_ANY}" -eq 1 ]; then
 
   echo ""
   echo "------------------------------------------------------------------"
-  echo " COVERAGE over the 35-cell census"
+  echo " COVERAGE over the 58-cell census"
   echo "------------------------------------------------------------------"
   "${VENV_PY}" - <<'PY'
 import csv
@@ -113,10 +113,10 @@ if repro.exists():
             have.add((fam(r["cluster"]), r["model"]))
 
 print(f"reproduced (cluster-family, model) cells with a bundle: {len(have)}")
-print("note: the deposited census is 35 model-by-task cells; this run reproduces whatever the READY")
+print("note: the deposited census is 58 model-by-task cells; this run reproduces whatever the READY")
 print("units above emitted. Cells whose env/data were SKIPPED above are not refrozen by this run; they")
 print("retain their deposited bundles, which `make reproduce-eval` still scores. See predictions/COVERAGE.md")
-print("for the authoritative 35/35 cell-by-cell account.")
+print("for the authoritative 58-cell account.")
 PY
 else
   echo ""
