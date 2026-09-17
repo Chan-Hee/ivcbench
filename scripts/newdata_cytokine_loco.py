@@ -322,7 +322,12 @@ def main():
     beat_either = int(((wide["DE-profile-nearest"] > floor) |
                        (wide["feature-nearest"] > floor)).sum())
 
-    # bootstrap CI of the mean paired gap (resampling unit = held cytokine)
+    # Bootstrap CI of the mean paired gap. The resampling unit is the (cell type, cytokine)
+    # INSTANCE, not the held cytokine: `wide` is indexed by both fields, so gap_de.values is a
+    # flat array of 1,810 pair margins drawn from 87 cytokines and 24 cell types and the
+    # interval does not account for dependence among pairs sharing either factor. Note S7 and
+    # the Figure S7 caption say so; this is a descriptive interval, not the census's
+    # biological-unit cluster bootstrap.
     def boot_mean_ci(vals, n=10000, seed=0):
         v = np.asarray([x for x in vals if np.isfinite(x)], float)
         if len(v) == 0:

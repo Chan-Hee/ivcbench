@@ -56,7 +56,7 @@ Auxiliary reproducibility is explicitly bounded:
 
 ## 3. Original-data fitting: separate model environments
 
-Raw cell data and third-party pretrained weights are not redistributed here. Accessions and access limits are in [data/README.md](data/README.md). The executed configurations, trained components and budgets are recorded in Supplementary Table S3 and `source_data/Table_S3.csv`.
+Raw cell data and third-party pretrained weights are not redistributed here. Accessions and access limits are in [data/README.md](data/README.md). The executed configurations, trained components and budgets are recorded in Supplementary Table S15c and `results/_paper/supplementary_tables/Supplementary_Table_S15c.csv`.
 
 The thin interfaces under `model_runners/` require their original model-family packages/environments, data preparation and checkpoints. Their native/adapted status is task-specific. The common CPU environment is not an environment for simultaneously fitting all neural methods. Historical fitting scripts are provenance, not a guarantee that a single command recreates every run on arbitrary hardware.
 

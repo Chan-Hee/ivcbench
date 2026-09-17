@@ -97,7 +97,10 @@ Five more share a number with the printed table but are older and smaller:
 `superseded_Table_S3_descriptive_fit_matrix.csv` (32 rows against 35), `superseded_Table_S7_OP3_programs.csv` (27 against 39),
 `superseded_Table_S12_T3_programs.csv` (175 rows, a different schema), `superseded_Table_S14_Tanimoto_current.csv` (9 rows on the
 pre-STATE T5u roster, including a CINEMA-OT row the census does not report), and
-`S15_training_configuration.csv` (46 rows with no Seeds column; printed S15c has 65).
+`superseded_Table_S15_training_configuration.csv` (46 rows with no Seeds column; printed S15c
+has 65, and its scFoundation T2 row still describes an MLP decoder "for 512 response genes", which
+the printed table corrects to all 381 genes that split scores). It was the only one of these five still
+named `Supplementary_Table_...`, which read as a table of record; renamed to match the others.
 `superseded_Table_S17_effect_stratification.csv` holds the pre-panel-mask quartile margins (Q1 -0.1505 where the
 current run gives -0.1520).
 `superseded_Table_S13_T3_by_dataset.csv` is a **third** file under that number and the easiest to mistake for a

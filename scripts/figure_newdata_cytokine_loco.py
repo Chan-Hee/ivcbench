@@ -8,8 +8,10 @@ the Cytokine Dictionary summary table). Navy editorial style (src/ivcbench/repor
 Three panels tell the nuanced finding:
   (a) POOLED bars — mean response-direction Pearson over every held cytokine (pooled across celltypes)
       for the zero baseline, the cytokine-mean floor, the annotation feature-nearest predictor, and
-      the DE-profile-nearest predictor. A dashed line marks the cytokine-mean floor. 95% CI over held
-      cytokines.
+      the DE-profile-nearest predictor. A dashed line marks the cytokine-mean floor. The error bars
+      are 95% bootstrap intervals over the (celltype, cytokine) INSTANCES -- boot_ci() below
+      resamples res["pearson"] flat -- so they do not account for dependence among instances
+      sharing a cytokine or a cell type. The Figure S7 caption says so.
   (b) PER-CELLTYPE gap — DE-profile-nearest minus floor, per celltype (paired); positive in 19/24
       celltypes. Shows the transfer win is broad, concentrated in the well-sampled immune lineages.
   (c) THE TWO CONDITIONING REGIMES — a scatter of feature-nearest (x, annotation-only: the cytokine

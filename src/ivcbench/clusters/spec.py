@@ -267,7 +267,7 @@ register(
         fig_no="Figure 5",
         program_key="tcell_activation",
         program_genes=c3.TCELL_ACTIVATION,
-        programs=c3.C3_PROGRAMS,  # dataset-aware multi-program AUCell (Supp Table S3)
+        programs=c3.C3_PROGRAMS,  # dataset-aware multi-program AUCell (Supp Table S18)
         splits=_c3_splits,
         # Family coverage (every family has ≥1 method): simple×4, latent={scGen,CPA}, graph={GEARS,
         # AttentionPert}, foundation={scGPT} (UCE=not-defined, no decoder), hybrid={STATE, PertAdapt} (GPU,

@@ -578,11 +578,15 @@ AUTHOR_WRITTEN_INTERFACE = {
         "with the donor as the held group: the gene-specific perturbation "
         "token is replaced by one global flag for the seen stimulation."
     ),
+    # 512 is the CAP in scfoundation_c1_runner.py:126, n_resp = min(512, len(genes)), not the
+    # decoder's width. T2 scores the 381 genes the two Soskic condition matrices share, so the
+    # decoder emits all 381 and no gene retains the control mean. The wording below was carried
+    # over from T1, which scores 2,000 genes and where it is correct.
     ("C2", "donor (LODO)", "scFoundation"): (
         "Yes — the author-written T1 cell-context interface reused "
         "here, with the donor as the held group: a training-group "
-        "latent shift with an MLP decoder for 512 response genes; "
-        "other genes retain the held-control mean."
+        "latent shift with an MLP decoder predicting all 381 "
+        "available genes."
     ),
     # These two described the T1 latent-shift/global-flag adapter, which was WITHDRAWN on this
     # split: it pooled all 141 OP3 compounds into one exposure, so every compound received an
