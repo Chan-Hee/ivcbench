@@ -1411,7 +1411,13 @@ def main():
     cax = fig.add_axes([cb_x0, cb_y0, cb_w, cb_h])
     cb = fig.colorbar(sm, cax=cax, orientation="horizontal")
     cb.set_ticks([mnorm.vmin, 0.0, mnorm.vmax])
-    cb.set_ticklabels([_fmt(mnorm.vmin), ".00", "+" + _fmt(mnorm.vmax)])
+    # The low end is a percentile of the negative margins, i.e. where the orange saturates,
+    # not the lowest margin drawn; the high end is the true maximum. Without the "<=" a reader
+    # takes the endpoint for the worst cell, and 21 of the 274 cells lie beyond it.
+    _lo = _fmt(mnorm.vmin)
+    if neg_margins and min(neg_margins) < mnorm.vmin:
+        _lo = "\u2264" + _lo
+    cb.set_ticklabels([_lo, ".00", "+" + _fmt(mnorm.vmax)])
     cb.ax.tick_params(labelsize=FS_TICK, length=0, pad=2, colors=INK_BODY)
     cb.outline.set_visible(True)
     cb.outline.set_edgecolor(CELL_EC)
