@@ -12,11 +12,11 @@ Native/adapted/diagnostic status belongs to an **executed model–task operation
 
 Important execution distinctions:
 
-- Native scGen T1/T2 remain. Historical CPA context and CPA/scGen fingerprint-to-latent interfaces are excluded under the native-only rule.
+- Native scGen T1/T2/T5c remain. Historical CPA context and CPA/scGen fingerprint-to-latent interfaces are excluded under the native-only rule.
 - Native chemCPA T5u uses `scripts/chemcpa_native_op3.py`, cpa-tools 0.8.8, molecular embeddings and the counterfactual prediction call; its existing three-seed mean profiles supply the reported CPA/chemCPA result.
 - STATE T3/T4/T5 historically recovered `adata_real.h5ad` rather than model predictions. Those saved results are excluded. The corrected shared selector now requires exactly one `adata_pred.h5ad`; fixing source does not repair old results. Separate T1/T2 runners selected the correct prediction artifact.
 - scFoundation genetic executions lacking a held-target-specific input and the pooled CellOT genetic map are excluded by their executed operation, not by a low-variance threshold.
-- PertAdapt T2 is a study-written adaptation, not the published genetic predictor. It reconstructs stimulated profiles from their own frozen pooled cell embeddings, then takes held-control embeddings at inference. The stimulation/lineage inputs, binary GO mask and shared decoder differ from the published operation. Its exact local modules are in `vendor/pertadapt/` in the submission archive, with provenance and separate attribution; see `vendor/pertadapt/README.md` there. The T3 execution remains excluded.
+- PertAdapt T2 is a study-written adaptation, not the published genetic predictor. It reconstructs stimulated profiles from their own frozen pooled cell embeddings, then takes held-control embeddings at inference. The stimulation/lineage inputs, binary GO mask and shared decoder differ from the published operation. Its exact local modules are in `vendor/pertadapt/` in the submission archive, with provenance and separate attribution; see `vendor/pertadapt/README.md` there. Its T3 and T4 executions are the published genetic predictor and are reported natively; the T2 adaptation above is what stays outside the panel.
 
 Historical/excluded interfaces remain as compact source-level audit evidence, not an invitation to count their saved outputs in the panel. See [EXECUTION_AUDIT.md](../EXECUTION_AUDIT.md).
 

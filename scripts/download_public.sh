@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Download the PUBLIC GEO datasets (no DAC) for C1 + C3. Resumable; records checksums.
-# DAC (Cano-Gamez, Soskic), preprint (Zhu, Moonen, Belk, Zhou, Oesinghaus), and auth-gated
+# DAC (Soskic), preprint (Zhu, Moonen, Belk, Zhou, Oesinghaus), and auth-gated
 # (Frangieh SCP1064) datasets are NOT fetched here — see scripts/datasets.csv.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

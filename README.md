@@ -46,7 +46,7 @@ See [REPRODUCE.md](REPRODUCE.md) for scopes and limits. Mean bundles do not reta
 | `src/ivcbench/` | Split construction, scoring, loaders and benchmark interfaces |
 | `predictions/` | Mean profiles; selection documented in [COVERAGE.md](predictions/COVERAGE.md) |
 | `results/_paper/` | Current panel, full-precision analytical summaries and figures |
-| `results/_paper/supplementary_tables/` | **The table of record for every Supplementary Table S1-S23**, indexed by `MANIFEST.csv`. Resolve a table by its number HERE. The fifteen `Supplementary_Table_S<N>_*.csv` files one directory up are working artefacts from earlier numbering and several carry a number that now belongs to a different table; `results/_paper/DEPOSIT_NOTES.md` lists each collision |
+| `results/_paper/supplementary_tables/` | **The table of record for every Supplementary Table S1-S23**, indexed by `MANIFEST.csv`. Resolve a table by its number HERE. The eight `Supplementary_Table_S<N>_*.csv` files one directory up are working artefacts from earlier numbering and several carry a number that now belongs to a different table; `results/_paper/DEPOSIT_NOTES.md` lists each collision |
 | `results/provenance_inputs/` | Preserved scalar/timing inputs for auxiliary analyses |
 | `scripts/` | Re-scoring, summaries, figures and provenance tools |
 | `model_runners/` | Model-family execution interfaces; separate environments required |

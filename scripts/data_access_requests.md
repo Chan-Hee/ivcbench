@@ -17,7 +17,7 @@ their archives:
 
 | Dataset | Accession | Access route | Local target |
 |---|---|---|---|
-| Cano-Gamez CD4+ effectorness | `EGAS00001003215` / `EGAD00001005290` | EGA DAC approval | `data/C1/cano_gamez/` |
+| Cano-Gamez CD4+ effectorness (raw reads only) | `EGAS00001003215` / `EGAD00001005290` | EGA DAC approval; **not needed for this benchmark**, which scores the public BioStudies `S-BSST2978` counts | `data/C1/cano_gamez/` |
 | Chen FOXP3 Perturb-icCITE-seq | `PRJDB16517` / `E-GEAD-648` | DDBJ/GEA login | `data/C3/chen/` |
 
 After manual download, record the archive, file names, checksums, and access

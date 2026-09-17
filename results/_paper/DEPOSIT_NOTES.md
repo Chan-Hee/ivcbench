@@ -80,7 +80,7 @@ complete. Nothing in the deposit reads it and no number in it is reported. Its o
 
 ## The legacy `Supplementary_Table_S<N>_*.csv` files in this directory
 
-Nine files here carry a supplementary-table number in their NAME. Six more did and have been renamed `superseded_Table_S<N>_*.csv`, because nothing reads them and a reader navigating by number would have landed on a roster that contradicts the printed table -- most sharply `S14_Tanimoto_current`, whose chemCPA slope is negative where the printed Table S14's is the only positive one. They are working artefacts
+Eight files here carry a supplementary-table number in their NAME. Seven more did and have been renamed `superseded_Table_S<N>_*.csv`, because nothing reads them and a reader navigating by number would have landed on a roster that contradicts the printed table -- most sharply `S14_Tanimoto_current`, whose chemCPA slope is negative where the printed Table S14's is the only positive one. They are working artefacts
 from earlier numbering, kept because figures and notes were computed from them. **The table of
 record for every number is `supplementary_tables/Supplementary_Table_S<N>.csv`**, indexed by
 `MANIFEST.csv`; resolve a table by that file, never by a name in this directory.

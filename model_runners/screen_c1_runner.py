@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""SCREEN (Xu et al. 2024) runner for CELL-CONTEXT / held-group splits — `cellot` conda env.
+"""SCREEN (Wang et al. 2024) runner for CELL-CONTEXT / held-group splits — `cellot` conda env.
 
 Invoked by ivcbench.baselines.heavy.ScreenC1:
     <env python> screen_c1_runner.py <in.npz> <out.npz>

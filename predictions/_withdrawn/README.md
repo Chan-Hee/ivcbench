@@ -6,7 +6,7 @@ happened and the evidence is kept.
 
 ## SCREEN (16 bundles)
 
-SCREEN (Xu et al., Front Comput Sci 2024) is native by interface on T1 and T2 — an optimal-transport
+SCREEN (Wang et al., Front Comput Sci 2024) is native by interface on T1 and T2 — an optimal-transport
 VAE that predicts the perturbed counterpart of a held-out group from that group's own control cells,
 which is exactly the structure of both tasks. It was run on both.
 

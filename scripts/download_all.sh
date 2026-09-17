@@ -7,8 +7,9 @@
 # It runs each public download script in turn, each guarded so one failure reports and the rest still
 # run, then names the access-controlled datasets that need a manual login/DAC, and ends with a SUMMARY
 # of what is now present under data/ and which IVCBENCH_* path variables to export before retraining.
-# This covers the PUBLIC census only; the access-controlled deposits (Chen, Cano-Gamez) are listed but
-# not fetched, because they sit behind a login / data-access committee.
+# This covers the PUBLIC census only; the access-controlled deposit (Chen) is listed but not
+# fetched, because it sits behind a registration/login. Cano-Gamez is public: only its raw reads
+# are EGA-gated, and the processed counts this study scores come from BioStudies S-BSST2978.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SCRIPTS="${ROOT}/scripts"
@@ -52,8 +53,11 @@ echo " ACCESS-CONTROLLED (manual, NOT fetched here)"
 echo "------------------------------------------------------------------"
 echo " Chen 2025 FOXP3 Perturb-icCITE-seq (C3)"
 echo "   DDBJ/GEA login: PRJDB16517 / E-GEAD-648  ->  data/C3/chen/"
-echo " Cano-Gamez CD4+ effectorness (C1)"
-echo "   EGA DAC: EGAS00001003215  (see scripts/apply_ega_dac.md)  ->  data/C1/cano_gamez/"
+echo ""
+echo " Cano-Gamez CD4+ effectorness (C1) is NOT access-controlled: the processed counts this"
+echo " study scores are public (BioStudies S-BSST2978, CC0). Fetch them with"
+echo "   python data/C1/cano_gamez/fetch_canogamez.py   ->  data/C1/cano_gamez/"
+echo " Only the raw reads are EGA-gated (EGAS00001003215); the benchmark does not use them."
 echo ""
 
 if [ "${LIST_ONLY}" -eq 1 ]; then
@@ -127,7 +131,8 @@ for e in "${EXPECT[@]}"; do
 done
 echo ""
 echo " ${N_PRESENT} present, ${N_MISSING} missing (of the public sentinels above)."
-echo " Access-controlled Chen (C3) and Cano-Gamez (C1) are never fetched here; obtain them by login/DAC."
+echo " Access-controlled Chen (C3) is never fetched here; obtain it by DDBJ/GEA login."
+echo " Cano-Gamez (C1) is public: python data/C1/cano_gamez/fetch_canogamez.py."
 echo ""
 echo " Before retraining, export the raw-data path variables (the \$IVCBENCH_* table in REPRODUCE.md):"
 echo "   IVCBENCH_KANG_PATH, IVCBENCH_SOSKIC_PATH, IVCBENCH_OP3_PATH, IVCBENCH_FRANGIEH_DIR,"

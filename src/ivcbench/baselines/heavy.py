@@ -470,7 +470,7 @@ class ScGPTC1(SubprocessAdapter):
 
 
 class ScreenC1(SubprocessAdapter):
-    """SCREEN (Xu et al., Front Comput Sci 2024): optimal transport in a VAE latent space, predicting
+    """SCREEN (Wang et al., Front Comput Sci 2024): optimal transport in a VAE latent space, predicting
     the perturbed counterpart of a held-out group from that group's own control cells. The published
     interface is exactly this task, so it runs native with the authors' default settings. Added at
     review for a broader recent-method panel, and because it tests whether the donor-axis OT result
