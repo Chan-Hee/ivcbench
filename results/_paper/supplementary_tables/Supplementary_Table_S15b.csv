@@ -37,8 +37,8 @@ PRnet,T1,the split does not define an input the interface needs,The benchmarked 
 PRnet,T2,the split does not define an input the interface needs,"The same, for anti-CD3/CD28 stimulation."
 PRnet,T3,the split does not define an input the interface needs,A gene knockout has no molecular structure; the released model is defined for chemical perturbations only.
 PRnet,T4,the split does not define an input the interface needs,"The same, for the held knockout."
-scGen,T3,would need an interface written for this study,"The held gene never appears in training, so no latent shift exists for it and the released call has no argument by which to name it; reaching the cell would need a regression from a gene embedding onto the latent shift, an estimator the published method does not contain."
-scGen,T4,would need an interface written for this study,"The same, for the held knockout on the RNA readout."
+scGen,T3,would need an interface written for this study,"The released model estimates a latent shift from observed control and treated cells. A held-out genetic perturbation has no treated reference population in training, and the model has no gene-feature encoder to infer its response."
+scGen,T4,would need an interface written for this study,"The released model estimates a latent shift from observed control and treated cells. A held-out genetic perturbation has no treated reference population in training, and the model has no gene-feature encoder to infer its response."
 scGen,T5u,would need an interface written for this study,The released model estimates a latent shift from observed control and treated cells. It provides no chemical-structure encoder or published prediction operation for a compound with no treated observations in training.
 scPRAM,T3,interface does not condition on the held entity,The held-out perturbation has no treated reference population in training. The released prediction interface selects an observed perturbation by its stimulation label but does not infer its response from a gene or chemical descriptor.
 scPRAM,T4,interface does not condition on the held entity,"The same, for the held knockout."
