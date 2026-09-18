@@ -1,0 +1,5 @@
+{
+  "primary": "median stratum norm ratio within each lineage, then median across four lineages; same nesting for defined slopes when complete",
+  "mean_sensitivity": "mean stratum ratios within each lineage, then equal-lineage mean; explicitly separate from primary",
+  "legacy_reproduction": "all stored full-support OP3 outputs and original per-bundle targets/controls; exact existing S22 nanmedian-then-median estimator; counts of defined slopes and explicit declines retained"
+}

@@ -1,0 +1,14 @@
+model,status,response_norm_ratio,calibration_slope,n_units,n_strata,aggregation
+CPA,native,2.345102542837476,0.0347301508563592,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+CellFlow,native,2.4583613835697893,0.034805236313427,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+CellOT,native,2.018856688296768,0.0799580273457094,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+FP-ridge,diagnostic,0.5958928863503774,0.6692346062417077,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+PRnet,native,3.015340533927142,0.0402630051444826,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+PerturbNet,native,2.0725964848492855,0.0575648163651012,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+STATE,native,2.6418500024967746,0.0186323456610118,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+cell-mean,floor,2.594708936844823,0.000841095586045,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+linear-PCA,floor,0.3765577090987185,0.8421112394727324,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+scFoundation,adapted,0.4595694169414894,0.7542483379623506,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+scGPT,adapted,0.7623465235894243,0.4654360508738494,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+scGen,native,1.7567062193332412,0.091142819187855,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units
+scPRAM,native,2.298766620643982,0.078348280874304,4,558,response: equal-stratum/equal-unit mean; norm/slope: median within unit then median across units

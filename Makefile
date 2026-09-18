@@ -61,12 +61,17 @@ summaries:
 figures:
 	$(PY) scripts/figure_benchmark_workflow.py
 	$(PY) scripts/make_figure2_landscape_verdict.py --deposit --out-dir results/_paper --tiff
-	$(PY) scripts/figure_immune_readouts.py
-# figure_immune_readouts writes figure_immune_blindspot at 2157x2475, overwriting the
-# deposited Figure 3 (1644x1608). figure3_blindspot.py reproduces the deposited file
-# byte-identically and was missing from this target, so `make figures` replaced the
-# paper's figure with a different one.
-	$(PY) scripts/figure3_blindspot.py
+# Figure 3 was rebuilt during revision: the primary immune-program readout is now the
+# equal-weight mean-expression shift, not the top-5% rank score. Both of the old main-Figure-3
+# producers here predate that change. figure_immune_readouts.py's default run includes "3", whose
+# magnitude panel reads a Supplementary Table S22 column ("Predicted / observed response norm")
+# that the revised table no longer has, so the bare command raises KeyError; and
+# figure3_blindspot.py writes figure_immune_blindspot.{png,pdf,tiff}, which would overwrite the
+# deposited Figure 3 with the superseded rank-based plate. So this target now builds only the
+# supplementary panels that producer still owns, and Figure 3 stays as deposited. Its
+# full-precision unit values, program membership, support, exclusion reasons and original-rank
+# sensitivities are in results/_paper/immune_program_revision/.
+	$(PY) scripts/figure_immune_readouts.py --figures S3 S4 S5
 # README called this target "Figures 2 and 3, Figures S2, S3 and S7"; S3 and S7 were not in it.
 	$(PY) scripts/figure_c3_nearest_gene.py
 	$(PY) scripts/figure_newdata_cytokine_loco.py
