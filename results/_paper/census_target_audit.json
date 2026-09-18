@@ -1,8 +1,8 @@
 {
-  "bundles_checked": 1372,
+  "bundles_checked": 1401,
   "paired_targets_controls_genes_masks": true,
   "maximum_float32_difference": {
-    "obs_means": 9.5367431640625e-07,
+    "obs_means": 6.198883056640625e-06,
     "control_mean": 4.76837158203125e-07
   },
   "tolerance": {
