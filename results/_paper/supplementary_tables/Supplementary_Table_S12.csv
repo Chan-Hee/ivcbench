@@ -1,61 +1,13 @@
-Task,Model,Status,Program,Units estimable,Measured genes (n),Best estimable correlation,Median estimable correlation,Why the other units are not estimable,Observed program-shift SD (max)
-T3,AttentionPert,native,IL2_STAT5,1/5,4–9,−0.135,−0.135,4 observed target constant,0.002
-T3,AttentionPert,native,TCR_activation,1/5,3–9,−0.107,−0.107,4 observed target constant,0.004
-T3,AttentionPert,native,Treg_exhaustion,1/5,3–6,−0.062,−0.062,4 observed target constant,0.014
-T3,AttentionPert,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,AttentionPert,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,CellFlow,native,IL2_STAT5,1/5,4–9,−0.216,−0.216,4 observed target constant,0.002
-T3,CellFlow,native,TCR_activation,1/5,3–9,−0.082,−0.082,4 observed target constant,0.004
-T3,CellFlow,native,Treg_exhaustion,1/5,3–6,+0.013,+0.013,4 observed target constant,0.014
-T3,CellFlow,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,CellFlow,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,GEARS,native,IL2_STAT5,1/5,4–9,+0.287,+0.287,4 observed target constant,0.002
-T3,GEARS,native,TCR_activation,1/5,3–9,+0.374,+0.374,4 observed target constant,0.004
-T3,GEARS,native,Treg_exhaustion,1/5,3–6,+0.105,+0.105,4 observed target constant,0.014
-T3,GEARS,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,GEARS,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,PertAdapt,native,IL2_STAT5,1/5,4–9,−0.273,−0.273,4 observed target constant,0.002
-T3,PertAdapt,native,TCR_activation,1/5,3–9,−0.112,−0.112,4 observed target constant,0.004
-T3,PertAdapt,native,Treg_exhaustion,1/5,3–6,+0.036,+0.036,4 observed target constant,0.014
-T3,PertAdapt,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,PertAdapt,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,PerturbNet,native,IL2_STAT5,1/5,4–9,−0.022,−0.022,4 observed target constant,0.002
-T3,PerturbNet,native,TCR_activation,1/5,3–9,+0.039,+0.039,4 observed target constant,0.004
-T3,PerturbNet,native,Treg_exhaustion,1/5,3–6,+0.005,+0.005,4 observed target constant,0.014
-T3,PerturbNet,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,PerturbNet,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,STATE,native,IL2_STAT5,1/5,4–9,−0.012,−0.012,4 observed target constant,0.002
-T3,STATE,native,TCR_activation,1/5,3–9,−0.221,−0.221,4 observed target constant,0.004
-T3,STATE,native,Treg_exhaustion,1/5,3–6,+0.176,+0.176,4 observed target constant,0.014
-T3,STATE,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,STATE,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,biolord,native,IL2_STAT5,1/5,4–9,+0.059,+0.059,4 observed target constant,0.002
-T3,biolord,native,TCR_activation,1/5,3–9,+0.137,+0.137,4 observed target constant,0.004
-T3,biolord,native,Treg_exhaustion,1/5,3–6,−0.080,−0.080,4 observed target constant,0.014
-T3,biolord,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,biolord,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,cell-mean,floor,IL2_STAT5,0/5,4–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.002
-T3,cell-mean,floor,TCR_activation,0/5,3–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.004
-T3,cell-mean,floor,Treg_exhaustion,0/5,3–6,undefined,undefined,4 observed target constant; 1 prediction constant,0.014
-T3,cell-mean,floor,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,cell-mean,floor,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,linear-PCA,floor,IL2_STAT5,0/5,4–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.002
-T3,linear-PCA,floor,TCR_activation,0/5,3–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.004
-T3,linear-PCA,floor,Treg_exhaustion,0/5,3–6,undefined,undefined,4 observed target constant; 1 prediction constant,0.014
-T3,linear-PCA,floor,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,linear-PCA,floor,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,linear-shift-KOemb,diagnostic,IL2_STAT5,0/5,4–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.002
-T3,linear-shift-KOemb,diagnostic,TCR_activation,1/5,3–9,−0.031,−0.031,4 observed target constant,0.004
-T3,linear-shift-KOemb,diagnostic,Treg_exhaustion,1/5,3–6,+0.022,+0.022,4 observed target constant,0.014
-T3,linear-shift-KOemb,diagnostic,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,linear-shift-KOemb,diagnostic,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,scFoundation,native,IL2_STAT5,1/5,4–9,+0.119,+0.119,4 observed target constant,0.002
-T3,scFoundation,native,TCR_activation,1/5,3–9,+0.091,+0.091,4 observed target constant,0.004
-T3,scFoundation,native,Treg_exhaustion,1/5,3–6,+0.311,+0.311,4 observed target constant,0.014
-T3,scFoundation,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,scFoundation,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
-T3,scGPT,native,IL2_STAT5,0/5,4–9,undefined,undefined,4 observed target constant; 1 prediction constant,0.002
-T3,scGPT,native,TCR_activation,1/5,3–9,+0.089,+0.089,4 observed target constant,0.004
-T3,scGPT,native,Treg_exhaustion,1/5,3–6,+0.392,+0.392,4 observed target constant,0.014
-T3,scGPT,native,effector_cytokine,0/5,4–8,undefined,undefined,5 observed target constant,0.000
-T3,scGPT,native,proliferation,0/5,8–11,undefined,undefined,5 observed target constant,0.000
+Model,Evaluation,Units,TCR activation,IL2–STAT5,proliferation,effector cytokine,Treg / exhaustion
+cell-mean,floor,2/5,Undefined,Undefined,Undefined,Undefined,Undefined
+linear-PCA,floor,2/5,Undefined,Undefined,Undefined,Undefined,Undefined
+linear-shift-KOemb,diagnostic,2/5,"-0.002 [-0.109, 0.105]","-0.019 [-0.150, 0.113]","0.202 [0.065, 0.338]","-0.032 [-0.314, 0.251]","0.171 [0.089, 0.253]"
+Biolord,native,2/5,"0.371 [-0.102, 0.844]","-0.488 [-0.762, -0.215]","0.149 [-0.115, 0.412]","0.273 [-0.080, 0.626]","0.295 [-0.107, 0.696]"
+CellFlow,native,2/5,"-0.276 [-0.518, -0.034]","0.061 [-0.129, 0.250]","0.039 [-0.042, 0.120]","-0.052 [-0.424, 0.321]","-0.098 [-0.292, 0.095]"
+GEARS,native,2/5,"0.384 [0.167, 0.600]","0.079 [0.057, 0.100]","0.241 [0.121, 0.362]","0.106 [-0.190, 0.401]","0.364 [0.347, 0.381]"
+AttentionPert,native,2/5,"0.202 [0.126, 0.278]","-0.210 [-0.492, 0.073]","0.455 [0.306, 0.604]","0.238 [-0.040, 0.517]","0.148 [0.039, 0.257]"
+PerturbNet,native,2/5,"0.641 [0.523, 0.759]","0.450 [0.430, 0.469]","0.399 [0.126, 0.671]","0.313 [0.248, 0.379]","0.389 [0.256, 0.521]"
+STATE,native,2/5,"0.327 [-0.134, 0.789]","-0.134 [-0.196, -0.073]","-0.047 [-0.182, 0.088]","-0.200 [-0.310, -0.090]","0.279 [-0.131, 0.689]"
+PertAdapt,native,2/5,"0.230 [0.136, 0.324]","-0.096 [-0.403, 0.211]","0.167 [0.038, 0.296]","0.477 [0.097, 0.857]","0.200 [0.098, 0.302]"
+scGPT,native,2/5,"-0.045 [-0.371, 0.281]","-0.023 [-0.146, 0.100]","-0.118 [-0.370, 0.133]","0.256 [0.245, 0.266]","0.270 [0.036, 0.505]"
+scFoundation,native,2/5,"0.422 [0.069, 0.775]","0.013 [-0.064, 0.090]","0.315 [0.160, 0.470]","0.379 [0.198, 0.560]","0.187 [0.127, 0.248]"

@@ -1,14 +1,14 @@
-Entry,Role,Lineages,Predicted / observed response norm,Calibration slope,Pearson-Δ,Reading
-linear-PCA,floor member,4,0.376,0.837,n.a.,smaller predicted response norm than observed; slope well above zero
-scFoundation,adapted,4,0.459,0.753,0.329,smaller predicted response norm than observed; slope well above zero
-FP-ridge,diagnostic,4,0.596,0.668,0.387,smaller predicted response norm than observed; slope well above zero
-scGPT,adapted,4,0.761,0.466,0.347,smaller predicted response norm than observed; slope well above zero
-scGen,native,4,1.759,0.090,0.180,larger predicted response norm than observed; slope at or near zero
-CellOT,native,4,2.019,0.081,0.194,larger predicted response norm than observed; slope at or near zero
-PerturbNet,native,4,2.072,0.058,0.149,larger predicted response norm than observed; slope at or near zero
-scPRAM,native,4,2.293,0.079,0.181,larger predicted response norm than observed; slope at or near zero
-CPA,native,4,2.345,0.035,0.061,larger predicted response norm than observed; slope at or near zero
-CellFlow,native,4,2.464,0.035,0.104,larger predicted response norm than observed; slope at or near zero
-cell-mean,floor member,4,2.592,0.000,n.a.,larger predicted response norm than observed; slope at or near zero
-STATE,native,4,2.631,0.018,0.042,larger predicted response norm than observed; slope at or near zero
-PRnet,native,4,3.013,0.040,0.094,larger predicted response norm than observed; slope at or near zero
+Model,Evaluation,Norm ratio: shared support,Slope: shared support,Norm ratio: full census,Slope: full census
+CPA,native,2.345,0.035,2.345,0.035
+CellFlow,native,2.458,0.035,2.464,0.035
+CellOT,native,2.019,0.080,2.019,0.081
+FP-ridge,diagnostic,0.596,0.669,0.596,0.668
+PRnet,native,3.015,0.040,3.013,0.040
+PerturbNet,native,2.073,0.058,2.072,0.058
+STATE,native,2.642,0.019,2.631,0.018
+cell-mean,floor,2.595,0.001,2.592,0.000
+linear-PCA,floor,0.377,0.842,0.376,0.837
+scFoundation,adapted,0.460,0.754,0.459,0.753
+scGPT,adapted,0.762,0.465,0.761,0.466
+scGen,native,1.757,0.091,1.759,0.090
+scPRAM,native,2.299,0.078,2.293,0.079
