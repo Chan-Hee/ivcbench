@@ -1088,7 +1088,17 @@ def main():
 
     set_pub_style()
     plt.rcParams["axes.unicode_minus"] = True
-    plt.rcParams["font.family"] = "DejaVu Sans"   # the rest of the figure set uses it
+    plt.rcParams["font.family"] = "sans-serif"   # resolved by the shared Helvetica-first chain
+    # One superscript exponent still goes through mathtext (p = 1.6 x 10^-13). mathtext.rm
+    # will not take "sans-serif", so resolve the chain to a concrete family name and point
+    # every mathtext face at it; otherwise matplotlib embeds DejaVu Sans for those glyphs
+    # alone and the figure ships two typefaces again.
+    from matplotlib import font_manager as _fm
+    _resolved = _fm.FontProperties(fname=_fm.findfont(
+        _fm.FontProperties(family=plt.rcParams["font.sans-serif"]))).get_name()
+    plt.rcParams.update({"mathtext.fontset": "custom", "mathtext.default": "regular",
+                         "mathtext.rm": _resolved, "mathtext.it": _resolved,
+                         "mathtext.bf": _resolved, "mathtext.sf": _resolved})
     # A heatmap cell is a few millimetres wide in print; matplotlib's default 1.0 hatch stroke
     # fills it solid, which would swap one confusion for another.
     plt.rcParams["hatch.linewidth"] = HATCH_LW
@@ -1275,8 +1285,16 @@ def main():
     # ---- figure geometry (inches) ----
     xspan = (BOFF + (len(BLOCK_B) - 1) + 0.5 + 0.12) - GUT_LEFT
     yspan = (nM - 0.5 + YHEAD) - YFOOT
-    cell = 0.215  # inch per data unit; 0.27 put the plate over the 174 x 234 mm live area
-    land_w = cell * xspan
+    cell = 0.215  # inch per data unit (vertical); 0.27 put the plate over the 174 x 234 mm live area
+    # Helvetica's metrics are about 7% narrower than DejaVu's, and savefig.bbox is 'tight', so the
+    # saved plate is the ink box: moving the whole figure set to one face shrank this plate from
+    # 170.6 mm to 160.0 mm while Figures 1 (173.8) and 3 (174.0) kept their fixed canvases. A
+    # uniform `cell` increase cannot recover it -- the plate is already 229.9 mm of the 234 mm live
+    # height -- so the HORIZONTAL unit is widened on its own. Heatmap cells become slightly wider
+    # than tall, which carries no meaning here, and all three plates then print at one width with
+    # one type size. Set by measurement; CELL_W_TARGET_MM asserts the result.
+    cell_w = float(os.environ.get('IVCBENCH_FIG2_CELL_W', 0.2348))
+    land_w = cell_w * xspan
     land_h = cell * yspan
 
     m_left, m_right = 0.12, 0.16
@@ -1346,8 +1364,8 @@ def main():
     fig.text(
         PTX,
         a_base_y,
-        r"Method $\times$ task performance landscape (response-direction"
-        r" Pearson-$\Delta$)",
+        "Method \u00d7 task performance landscape (response-direction"
+        " Pearson-\u0394)",
         ha="left",
         va="bottom",
         fontsize=FS_PANEL_TITLE,
@@ -1656,6 +1674,17 @@ def main():
             save_kw["compression"] = "tiff_lzw"
         rgb.save(p, **save_kw)
         assert Image.open(p).mode == "RGB", f"{p.name} is not RGB after flatten"
+        # savefig.bbox is 'tight', so the plate is the ink box: a font change or a longer row
+        # label moves it. Figures 1 and 3 print at 173.8 and 174.0 mm, and the journal's live
+        # area is 174 x 234 mm, so check the delivered pixels rather than trusting figsize.
+        _mm = tuple(round(v / 600 * 25.4, 2) for v in Image.open(p).size)
+        assert _mm[0] <= 174.0 and _mm[1] <= 234.0, (
+            f"{p.name} is {_mm[0]} x {_mm[1]} mm, over the 174 x 234 mm live area"
+        )
+        assert _mm[0] >= 170.0, (
+            f"{p.name} is only {_mm[0]} mm wide; Figures 1 and 3 are 173.8 and 174.0, so this "
+            f"plate would be scaled up in production and its type would print larger than theirs"
+        )
     print(
         f"wrote {base}.png/.pdf  ({fig_w:.2f} x {fig_h:.2f} in; cell {cell} in;"
         f" {nM} rows, {len(BLOCK_A) + len(BLOCK_B)} columns)"

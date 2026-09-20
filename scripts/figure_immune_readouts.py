@@ -78,7 +78,11 @@ DS_LABELS = [
 def style():
     plt.rcParams.update(
         {
-            "font.family": "DejaVu Sans",
+            "font.family": "sans-serif",
+            # Helvetica, else its URW metric clone Nimbus Sans (the face Figure 1 is patched
+            # with); without this list matplotlib falls back to DejaVu Sans.
+            "font.sans-serif": ["Helvetica", "Nimbus Sans", "Arial",
+                                "Liberation Sans", "DejaVu Sans"],
             "font.size": MAIN_FS["tick"],
             "axes.labelsize": MAIN_FS["axis"],
             "axes.titlesize": MAIN_FS["title"],

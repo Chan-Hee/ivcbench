@@ -344,12 +344,14 @@ def set_pub_style() -> None:
             # above the 0.10 in the journal's artwork check wants.
             "savefig.pad_inches": 0.14,
             "font.family": "sans-serif",
-            # Arial/Helvetica if present, else Liberation Sans (Arial-metric-compatible) / Nimbus Sans
+            # Helvetica if present, else its URW metric clone Nimbus Sans, which is the face
+            # patch_figure1.py sets Figure 1 in; Arial/Liberation Sans are the Arial-metric
+            # fallback. One face across the plate set was the point of reordering this.
             "font.sans-serif": [
-                "Arial",
                 "Helvetica",
-                "Liberation Sans",
                 "Nimbus Sans",
+                "Arial",
+                "Liberation Sans",
                 "DejaVu Sans",
             ],
             "pdf.fonttype": 42,
