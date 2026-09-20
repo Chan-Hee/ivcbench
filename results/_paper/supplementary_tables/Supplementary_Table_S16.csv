@@ -17,7 +17,7 @@ AttentionPert,"one NVIDIA L40, 48 GB",1,0.588,refits the reported cells on T4
 PRnet,"one NVIDIA L40, 48 GB",2,0.406,"refits the reported cells on T5c, T5u"
 GEARS,"one NVIDIA L40, 48 GB",1,0.288,refits the reported cells on T4
 Subtotal: refitting the reported panel,"one NVIDIA L40, 48 GB",131,326.761,"the cells this revision re-timed; cells not re-timed for this version are not costed here, so 44 of the 58 census cells are covered and a per-model row lists only the tasks its timed jobs produced"
-Matched donor learning curve,"one NVIDIA L40, 48 GB",50,5.688,the 5 x 10 donor grid behind Table S20 and Figure S8
+Matched donor learning curve,"one NVIDIA L40, 48 GB",50,5.688,the 5 x 10 donor grid behind Table S20 and Figure S7
 External donor cohorts,"one NVIDIA L40, 48 GB",2,5.011,the two additional leave-one-donor-out cohorts in Table S19
 Conditioned compound heads,"one NVIDIA L40, 48 GB",5,0.025,a disclosed comparison reported outside the panel
 Run and not carried,"one NVIDIA L40, 48 GB",64,117.167,"executions withdrawn from the panel or superseded; their output appears in no reported table. 85.538 of the hours are SCREEN (Wang et al., 2024), an optimal-transport method run at the reviewers' request on T1 and T2, with 60.414 of those hours belonging to the opening admission sweep over T1, T2, T5c, T5u; it was withdrawn in full because its released implementation did not converge on 45 of 53 donors; its bundles and the reason are deposited under predictions/_withdrawn/. The remaining 31.629 are withdrawn or superseded executions of panel models, chiefly biolord T2, chemCPA T5c, scFoundation T3"

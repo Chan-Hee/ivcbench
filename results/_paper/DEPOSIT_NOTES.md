@@ -32,8 +32,8 @@ census provenance label, which supersedes the older per-model summaries in this 
 ## Supplementary figure artwork
 
 The supplement embeds its own PNGs; only three have a byte-identical twin here
-(`figure_cellcontext.png` = Fig. S2, `figS_c3_nearest_gene.png` = Fig. S3,
-`figS_newdata_cytokine_loco.png` = Fig. S7). Two files in this directory carry a name a reader
+(`figure_cellcontext.png` = Fig. S1, `figS_c3_nearest_gene.png` = Fig. S3,
+`figS_newdata_cytokine_loco.png` = Fig. S8). Two files in this directory carry a name a reader
 would expect to be a supplementary figure and hold a **different** one:
 
 | File | What it actually is |
