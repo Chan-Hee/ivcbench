@@ -1,6 +1,6 @@
 # ivcbench
 
-Revision package v1.2.3 for **Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization**, by Chanhee Lee and Jae Yong Ryu (BIB-26-1553).
+Revision package v1.2.4 for **Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization**, by Chanhee Lee and Jae Yong Ryu (BIB-26-1553).
 
 This is an evaluation of existing methods, not a new prediction model. The final panel contains **58 model-by-task evaluations: 46 native, eight adapted and four diagnostic**, spanning 16 of the 17 method/comparator groups surveyed. The six reported settings have 9 / 9 / 10 / 10 / 11 / 9 entries for T1 / T2 / T3 / T4 / T5c / T5u.
 

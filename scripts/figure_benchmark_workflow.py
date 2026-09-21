@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Figure 1: the executed workflow, including preprocessing and inference limits."""
+"""A workflow schematic of the executed benchmark, including preprocessing and inference limits.
+
+This is NOT the manuscript's Figure 1. It used to write results/_paper/Figure1.{png,pdf,tiff},
+which is where the paper's own Figure 1 is deposited -- a design export with no generating
+script -- so running this replaced the deposited manuscript figure with a different image under
+the same name. It shipped that way in v1.2.3. The output is named after the script now, and the
+deposited Figure1.* belongs to the manuscript alone.
+"""
 from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -182,9 +189,9 @@ def main():
         kw = dict(dpi=600 if suffix == ".tiff" else 350, facecolor="white")
         if suffix == ".tiff":
             kw["pil_kwargs"] = {"compression": "tiff_lzw"}
-        fig.savefig(OUT / ("Figure1" + suffix), **kw)
+        fig.savefig(OUT / ("figure_benchmark_workflow" + suffix), **kw)
     plt.close(fig)
-    print("Figure1: executed workflow and explicitly scoped evidence")
+    print("figure_benchmark_workflow: executed workflow and explicitly scoped evidence")
 
 
 if __name__ == "__main__":
