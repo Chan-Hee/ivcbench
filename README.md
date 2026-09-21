@@ -29,12 +29,13 @@ Eight point estimates exceed the task-fixed stronger cell-mean/linear-PCA refere
 
 T2 evaluates the supplied condition-specific covariate-regressed, scaled and clipped Soskic matrices, not unregressed activation expression. Training-only additional scaling does not undo this source processing. All tasks remain conditional on shared upstream feature selection. The input audit and source-method provenance are retained in `results/_paper/soskic_input_space*`.
 
-T3/T5c program scoring is symmetric: the same rank function is applied to predicted and observed mean expression. The identity predictor has zero error for all 37 targets and correlation one for the 12 variable targets. That outcome is structural, because predicted and observed profiles go through the same deterministic scorer: it confirms the scoring path is symmetric, and is not independent evidence about the scores.  22/25 T3 targets are constant, not evidence of model failure. Exact-held-target repeatability uses disjoint treated/control halves and the stored gene masks. It diagnoses cell-sampling stability, not a prediction ceiling. These corrections do not change the primary Pearson-Δ panel.
+T3/T5c program scoring is symmetric: the same operator is applied to predicted and observed mean expression. The primary readout is the equal-weight mean-expression shift of each program's measured members, behind Figure 3b/3c and Supplementary Tables S7 and S12; the top-5% rank score it replaced is retained as a sensitivity analysis (Figure S6). `scripts/program_analysis.py` recomputes both from the deposited bundles on CPU and compares the result with `results/_paper/immune_program_revision/`. The identity predictor has zero error for all 37 targets and correlation one for the 12 variable targets. That outcome is structural, because predicted and observed profiles go through the same deterministic scorer: it confirms the scoring path is symmetric, and is not independent evidence about the scores.  22/25 T3 targets are constant, not evidence of model failure. Exact-held-target repeatability uses disjoint treated/control halves and the stored gene masks. It diagnoses cell-sampling stability, not a prediction ceiling. These corrections do not change the primary Pearson-Δ panel.
 
 ```bash
 make census       # panel, analysis units and common multiplicity family
 make summaries    # donor, effect-size, chemistry, program and cost summaries
-make figures      # Figures 2 and 3, Figures S2, S3 and S7, and the superseded overview diagram
+make figures      # Figure 2, the supplementary readout panels and the overview diagram
+make programs     # the immune-program and lineage analyses, keeping their output
 ```
 
 See [REPRODUCE.md](REPRODUCE.md) for scopes and limits. Mean bundles do not retain per-cell prediction clouds or a training PCA basis; they cannot recompute energy distance. Raw-data fitting is a separate, model-environment-dependent workflow, not a one-command promise.
@@ -47,6 +48,7 @@ See [REPRODUCE.md](REPRODUCE.md) for scopes and limits. Mean bundles do not reta
 | `predictions/` | Mean profiles; selection documented in [COVERAGE.md](predictions/COVERAGE.md) |
 | `results/_paper/` | Current panel, full-precision analytical summaries and figures |
 | `results/_paper/supplementary_tables/` | **The table of record for every Supplementary Table S1-S23**, indexed by `MANIFEST.csv`. Resolve a table by its number HERE. The eight `Supplementary_Table_S<N>_*.csv` files one directory up are working artefacts from earlier numbering and several carry a number that now belongs to a different table; `results/_paper/DEPOSIT_NOTES.md` lists each collision |
+| `results/_paper/immune_program_revision/` | Full-precision record behind Figure 3b-d, Figure S6 and Tables S7/S12/S22: per-unit values, program membership, support and exclusions, and the retained rank sensitivities. `scripts/program_analysis.py` and `scripts/lineage_analysis.py` recompute it |
 | `results/provenance_inputs/` | Preserved scalar/timing inputs for auxiliary analyses |
 | `scripts/` | Re-scoring, summaries, figures and provenance tools |
 | `model_runners/` | Model-family execution interfaces; separate environments required |
@@ -56,8 +58,9 @@ See [REPRODUCE.md](REPRODUCE.md) for scopes and limits. Mean bundles do not reta
 | [ANALYSIS_SCOPE.md](ANALYSIS_SCOPE.md) | Analysis units, conditional inference and review-stage scope |
 
 For code navigation, begin with `eval/bundle.py` for stored-profile scoring,
-`scripts/census_units.py` for paired inference, and `scripts/immune_readout_audit.py`
-for symmetric program scores and target validation. Raw fitting enters through
+`scripts/census_units.py` for paired inference, `scripts/program_analysis.py` for the
+mean-expression program and response analysis, and `scripts/immune_readout_audit.py` for the
+retained rank scores and target validation. Raw fitting enters through
 `runner/run.py` and task-specific scripts. Its `report/` outputs are diagnostic
 run notes, not another manuscript; only `submission/` builds the submitted text.
 

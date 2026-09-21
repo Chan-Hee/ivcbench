@@ -15,8 +15,8 @@ The current entry points are the root Makefile targets; see [REPRODUCE.md](../RE
 | Soskic input-coordinate audit | `audit_soskic_input_space.py` (source files; retained CSV/JSON for inspection) |
 | Donor validation / curves / compute | `assemble_donor_validation.py`, `assemble_learning_curves.py`, `assemble_compute_evidence.py` |
 | Figure 2 | `make_figure2_landscape_verdict.py` |
-| Figure 3 | `figure3_blindspot.py` — `figure_immune_readouts.py` also draws a Figure 3, and the Makefile runs it first and then overwrites it with this one |
-| Figure S2 | `figure_immune_readouts.py --figures S3` (its internal name for this figure is S3; the paper prints it as S2) |
+| Figure 3 | Not rebuilt here: the plate is deposited as `results/_paper/figure_immune_blindspot.*`. Its numbers come from `program_analysis.py` and `lineage_analysis.py`. `figure3_blindspot.py` and `figure_immune_readouts.py --figures 3` draw the SUPERSEDED rank-based Figure 3 and would overwrite the deposited plate |
+| Figure S1 | `figure_immune_readouts.py --figures S3` (its internal name for this figure is S3; the paper prints it as S1) |
 | Figure S3 | `figure_c3_nearest_gene.py` |
 | Figure S7 | `figure_newdata_cytokine_loco.py` |
 | Figures S1, S4, S5, S6, S8 | built in the manuscript repository (`revision_claude/02_build/tools/figure_s*.py`), not here. `figure_reliability_ceiling.py` and `assemble_learning_curves.py` draw earlier variants that the paper does not print — see `results/_paper/DEPOSIT_NOTES.md`. |

@@ -10,8 +10,17 @@ These files are the full-precision record behind that analysis: the printed Supp
 S7, S12 and S22 round them, and Supplementary Notes S6–S7 describe the protocol. The plate itself
 is deposited as `../figure_immune_blindspot.{png,pdf,tiff}` (Figure 3).
 
-The analysis code is the revision package, which is not part of this archive. This directory
-therefore supports **checking** the published values, not re-deriving them from cells.
+The analysis is in this archive. `scripts/program_analysis.py` recomputes the program and
+response tables and `scripts/lineage_analysis.py` the Figure 3d lineage anchors, both from the
+deposited prediction bundles under `predictions/` -- no cells, no model, no GPU, about twenty
+seconds on CPU. Each compares what it computes with the files here and prints a verdict; `make
+check` runs both, and `make programs` keeps their output for inspection.
+
+The recompute agrees to a maximum absolute difference of 4.4e-16, which is float text rather
+than arithmetic: five of these files reached the deposit through a pandas re-serialization that
+respells floats. `protocol.json` is the record of the original run, so its recorded input paths
+name the frozen workspace where a fresh run names this archive; every rule in it is identical,
+and the comparison checks that.
 
 ## Unit values, membership and support
 

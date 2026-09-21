@@ -7,7 +7,7 @@ PIP ?= ./.venv/bin/pip
 # makes every deposited PDF byte-reproducible. The value is arbitrary and fixed.
 export SOURCE_DATE_EPOCH = 1600000000
 
-.PHONY: setup test reproduce reproduce-eval check census summaries figures
+.PHONY: setup test reproduce reproduce-eval check census summaries figures programs
 
 setup:
 	python3 -m venv .venv
@@ -28,11 +28,21 @@ check:
 	$(PY) scripts/check_deposit_completeness.py
 	$(PY) scripts/check_consistency.py
 	$(PY) scripts/check_chemcpa_provenance.py
+# Figure 3b/3c, Figure S6 and Tables S7/S12/S22 come from the mean-expression program analysis.
+# It reads only the deposited bundles, so it belongs in the gate that re-derives the deposit:
+# both scripts recompute and compare, and neither can write into results/_paper.
+	$(PY) scripts/program_analysis.py
+	$(PY) scripts/lineage_analysis.py
 	$(PY) scripts/check_release_docs.py
 
 reproduce:
 	$(MAKE) reproduce-eval
 	$(MAKE) check
+
+programs:
+# the same two analyses, keeping their output so it can be inspected beside the deposit
+	$(PY) scripts/program_analysis.py -o work/program
+	$(PY) scripts/lineage_analysis.py -o work/lineage
 
 census:
 	$(PY) scripts/assemble_cross_cluster.py

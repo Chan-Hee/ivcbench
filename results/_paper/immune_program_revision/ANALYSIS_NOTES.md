@@ -1,12 +1,14 @@
 # Frozen-bundle program and response reanalysis
 
-Run from the project root:
+Run from the archive root:
 
 ```sh
-env PYTHONDONTWRITEBYTECODE=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 ivcbench/.venv/bin/python -B revision_claude/figure3_complete_20260918_1556/scripts/program_analysis.py
+python scripts/program_analysis.py            # recompute and compare; writes nothing
+python scripts/program_analysis.py -o work/program   # keep the rebuilt CSVs
 ```
 
-The script reads only the isolated input snapshot and writes only this directory. It does not import models, load raw cells, train, or use a GPU. `protocol.json` was frozen before this final computation. The metric change was chosen during manuscript revision; this is not a claim of study preregistration. An attempted rerun with a different input/protocol raises an error.
+The script reads the deposited prediction bundles and the census tables, and never writes into
+this directory. It does not import models, load raw cells, train, or use a GPU. `protocol.json` was frozen before this final computation. The metric change was chosen during manuscript revision; this is not a claim of study preregistration. An attempted rerun with a different input/protocol raises an error.
 
 ## Estimands and support
 

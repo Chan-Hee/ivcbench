@@ -1,0 +1,7 @@
+task,legacy_priority_numerical_status,n_model_unit_program_comparisons
+T3,constant_observed,264
+T3,constant_predicted,8
+T3,estimable,28
+T5c,constant_observed,39
+T5c,constant_predicted,53
+T5c,estimable,64

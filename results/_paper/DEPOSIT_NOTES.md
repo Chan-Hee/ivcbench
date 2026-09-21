@@ -29,6 +29,19 @@ Note S2 points at for the per-cell power and attenuation statements; `status` th
 census provenance label, which supersedes the older per-model summaries in this directory
 (`cellot_summary.csv` still carries the submitted `adapted` label for the donor split).
 
+## The immune-program reanalysis
+
+`immune_program_revision/` holds the full-precision record behind Figure 3b-d, Figure S6 and
+Supplementary Tables S7, S12 and S22: per-unit correlations, program membership after masking,
+the supported conditions and every exclusion reason, the retained rank-score sensitivities, and
+the frozen protocol. It is not a summary of those tables -- it is what they round.
+
+Two scripts in this archive recompute it from the deposited prediction bundles alone, on CPU and
+without fitting anything: `scripts/program_analysis.py` and `scripts/lineage_analysis.py`. Each
+compares what it computes with the files in that directory and prints a verdict, and `make check`
+runs both. `census_roster.csv` in there is `census_uncertainty.csv` verbatim, kept beside the
+analysis it scopes.
+
 ## Supplementary figure artwork
 
 The supplement embeds its own PNGs; only three have a byte-identical twin here

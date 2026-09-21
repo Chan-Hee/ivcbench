@@ -1,0 +1,33 @@
+{
+  "all_input_hashes_verified": true,
+  "all_target_labels_and_masks_aligned": true,
+  "canonical_targets_shared_across_candidates": true,
+  "identity_score_max_error": 0.0,
+  "common_observed_unit_selection_checked": true,
+  "all_finite_aggregates_match_fixed_member_units": true,
+  "no_undefined_correlation_encoded_as_zero": true,
+  "full_census_response_score_max_difference": 1.4475237079796671e-06,
+  "constant_and_two_stratum_cases_checked": true,
+  "bundle_count": 200,
+  "program_unit_rows": 3648,
+  "protocol_sha256": "473d91c4d25862276447886db54ff695898982206a3af86cc5b5c4d8ede58659",
+  "script_sha256": "35b3d6974c398530ce8ecb5f3779dc5ffbccf3ce2843f6d4698b9cef8069ee83",
+  "outputs": {
+    "figure3b_best.csv": "2b4711186b36dd7437b28f46d9ea6ac7323bf05cad9f491f1a047ac26b5534ea",
+    "gene_coverage.csv": "1e00e7f64a9ac73c9bbed7d1d14a8b3e5a720e1049494cebf88d9e1ac2568d64",
+    "legacy_full_support_magnitude.csv": "02ee618fe89f8289d8cf95bebd09d600dc94f78fe5f9696b07a057723eb4e402",
+    "legacy_full_support_magnitude_units.csv": "56382c58a478a2617499725b7035b9686a16842f8ace68ccde43eef24e31963d",
+    "legacy_rank_degeneracy_counts.csv": "0674b552dcf88544412aaf16cad6e69b995d425f3527c94ec2bafdfcb1b63d45",
+    "model_program_summary.csv": "c5df3a0c58e26d84d51d894594130d75abe285892e017c6d561fa580fa339729",
+    "observed_unit_selection.csv": "c3706c8a3aff7005baeed15dba8ade32b3006f87389bb85dc5188ba9092c6ea2",
+    "panel_c.csv": "930e668aece1ff08968dd8ccce0a59686c42dcda7bfdd98af9107e911998875c",
+    "program_stratum_scores.csv": "f806809677a95c8489303f82dbe7352e4ef29fc809d75b876bf86fc732d19ca7",
+    "program_unit_metrics.csv": "863eccb6f5689784fb91e26b2143ac6944981486670173fbe99b407906569133",
+    "rank_degeneracy_counts.csv": "f41f88433c43b8525460bcd74764372d801a49aef49d28b261d449067f8c328a",
+    "response_model_summary.csv": "07a0d022a06e3f967fb290ced769b5577b773fca9fb66de94b1178841bc1e77c",
+    "response_stratum_metrics.csv": "9e3a164eaf94016973b316085aec8c7b73032ba4cc4727a755f29304aeaa355d",
+    "response_unit_metrics.csv": "ce4be820438fade71ea31c8bec1032783db41866276d49b15096be3814f4529f",
+    "source_alignment.csv": "0be6b8bb5891b1d08302ab6dc9b984da9998673a00c3c224762aeff7fbf1d710",
+    "support_by_unit.csv": "1998bfec77b9e15b543f6b134f767bce68f53637f54168422bf15a9242daa058"
+  }
+}
