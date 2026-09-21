@@ -1,1 +1,0 @@
-env IVCBENCH_SCGPT_MODEL_DIR=/data1/home/chlee/projects/single_cell_fm/models/scGPT_human .venv/bin/python scripts/scgpt_donor_learning_curve.py --grid 96 --seeds 0 --epochs 30 --max-cells 32000 --gpu 1 --out results/newdata/scgpt_budget_12x.csv --timing-out results/newdata/scgpt_budget_12x_timing.json

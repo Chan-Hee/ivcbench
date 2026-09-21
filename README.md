@@ -74,7 +74,7 @@ predictions or statistical outputs. Model-family environments remain separate.
 
 This exact package accompanies the revision. Its file checksums identify the submitted snapshot. The [project repository](https://github.com/Chan-Hee/ivcbench) and [all-versions archive DOI](https://doi.org/10.5281/zenodo.20756042) also contain earlier versions; those versions do not reproduce this revised 58-entry panel. The concept DOI is not a version-specific identifier for an unpublished revision snapshot.
 
-Please cite the manuscript and identify the package version/checksum used. Citation metadata are in [CITATION.cff](CITATION.cff). Original project code is under the [MIT license](LICENSE); this does not relicense third-party-derived material. The study-local PertAdapt extraction has separate [attribution and redistribution notes](vendor/pertadapt/README.md). Original dataset and model terms remain applicable; no public release of this revision has been performed.
+Please cite the manuscript and identify the package version/checksum used. Citation metadata are in [CITATION.cff](CITATION.cff). Original project code is under the [MIT license](LICENSE); this does not relicense third-party-derived material. The study-local PertAdapt extraction has separate [attribution and redistribution notes](vendor/pertadapt/README.md). Original dataset and model terms remain applicable.
 
 ## Funding
 

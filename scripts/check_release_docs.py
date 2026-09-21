@@ -96,11 +96,11 @@ CHECKS = [
     ("REPRODUCE.md", r"inference family has (\d+) entries", "family"),
     ("REPRODUCE.md", r"the remaining (\d+) receive descriptive", "descriptive"),
     ("REPRODUCE.md", r"statements for all (\d+) contrasts", "panel_rows"),
-    ("RELEASE_FOR_REVISION.md", r"revision reports \*\*(\d+)\*\* evaluations", "cells"),
-    ("RELEASE_FOR_REVISION.md", r"assert len\(h\) == (\d+)", "cells"),
-    ("RELEASE_FOR_REVISION.md", r"([\d,]+) bundles covering all", "bundles"),
-    ("RELEASE_FOR_REVISION.md", r"bundles covering all (\d+) cells", "cells"),
-    ("RELEASE_FOR_REVISION.md", r"git tag -a v(\S+) -m", "version"),
+    # RELEASE_FOR_REVISION.md carried these five while the release was still pending. It said the
+    # paper's availability statement "is not true", which stops being true the moment the version
+    # exists, so it is deleted in the same commit that creates the tag -- as the file itself
+    # instructed. Its numbers are asserted by the documents that stay: the census size by README
+    # and REPRODUCE, the version by CITATION.cff and pyproject.toml.
     ("predictions/COVERAGE.md", r"\*\*([\d,]+) mean-profile bundles", "bundles"),
     ("predictions/COVERAGE.md", r"yielding (\d+) model-by-task", "cells"),
     ("predictions/COVERAGE.md", r"and ([\d,]+) model analysis-unit rows", "unit_rows"),

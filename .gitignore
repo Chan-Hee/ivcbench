@@ -103,3 +103,10 @@ reproduced_results.csv
 CPA_info.json
 history.csv
 work/
+
+# GPU dispatch scaffolding: shell wrappers and command files that embed the authoring
+# machine's absolute paths, plus a session-resume note. The run RECORDS the deposit cites --
+# runs/*.status, which compute_job_ledger.csv points at for every timed job -- stay tracked.
+runs/*.sh
+runs/*.cmd
+runs/RESUME.md

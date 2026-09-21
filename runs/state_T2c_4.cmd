@@ -1,1 +1,0 @@
-env IVCBENCH_STATE_SOSKIC_RUNNER=state_soskic_split_runner.py .venv/bin/python scripts/state_soskic.py --chunk 4 8 --gpu 1 --out outputs/native_rerun/state_soskic_v3_shard4.csv --timing-out outputs/native_rerun/state_soskic_v3_timing4.json
