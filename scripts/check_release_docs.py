@@ -122,6 +122,40 @@ CHECKS = [
 ]
 
 
+
+def check_readme_images(root: Path, fail):
+    """Every image the README embeds must exist, and the framework figure must be the paper's.
+
+    The README carried three badges and the Figure 1 embed from v1.1.3 through v1.1.7. A commit
+    about a STATE data split removed all four as collateral, and nothing noticed: the repository
+    front page lost its figure for the whole of v1.2.3. Separately, a schematic script wrote its
+    own plate over results/_paper/Figure1.png, so even a restored embed would have shown the wrong
+    image. Both are checked here -- the link resolves, and the file is the 3388x1768 manuscript
+    figure rather than the 3500x2240 workflow schematic.
+    """
+    readme = (root / "README.md").read_text(encoding="utf-8")
+    embeds = re.findall(r"!\[[^\]]*\]\(([^)]+)\)", readme)
+    local = [e for e in embeds if not e.startswith("http")]
+    if not local:
+        fail("README.md: embeds no local image; the framework figure was dropped once already")
+        return
+    for rel in local:
+        p = root / rel
+        if not p.exists():
+            fail(f"README.md: embedded image {rel} does not exist")
+            continue
+        if Path(rel).name.lower().startswith("figure1"):
+            try:
+                from PIL import Image
+                Image.MAX_IMAGE_PIXELS = None
+                if Image.open(p).size != (3388, 1768):
+                    fail(f"README.md: {rel} is {Image.open(p).size}, not the manuscript "
+                         f"Figure 1 (3388, 1768)")
+            except ImportError:
+                pass
+
+
+
 def main() -> int:
     f = facts()
     bad = 0
@@ -142,8 +176,16 @@ def main() -> int:
         if not ok:
             print(f"  ✗ {name}: {key} reads {got!r}, the census says {want!r}")
             bad += 1
+    extra = []
+
+    def fail(msg):
+        print(f"  ✗ {msg}")
+        extra.append(msg)
+
+    check_readme_images(ROOT, fail)
+    bad += len(extra)
     # This is the last line of `make check`, which a reviewer runs.
-    print(f"  release docs: {len(CHECKS)} checks, {bad} mismatch(es)")
+    print(f"  release docs: {len(CHECKS) + 1} checks, {bad} mismatch(es)")
     return 1 if bad else 0
 
 

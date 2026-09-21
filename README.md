@@ -1,6 +1,12 @@
 # ivcbench
 
-Revision package v1.2.4 for **Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization**, by Chanhee Lee and Jae Yong Ryu (BIB-26-1553).
+Revision package v1.2.5 for **Toward Immune Virtual Cells: An Immune-Aware Benchmark of Perturbation-Prediction Generalization**, by Chanhee Lee and Jae Yong Ryu (BIB-26-1553).
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20756042-1682D4)](https://doi.org/10.5281/zenodo.20756042)
+
+![Benchmark framework: five immune perturbation tasks connecting held-out evaluation, training-only reference fitting and immune-aware scoring](results/_paper/Figure1.png)
 
 This is an evaluation of existing methods, not a new prediction model. The final panel contains **58 model-by-task evaluations: 46 native, eight adapted and four diagnostic**, spanning 16 of the 17 method/comparator groups surveyed. The six reported settings have 9 / 9 / 10 / 10 / 11 / 9 entries for T1 / T2 / T3 / T4 / T5c / T5u.
 

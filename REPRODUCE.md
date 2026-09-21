@@ -1,6 +1,6 @@
 # Reproduction guide
 
-Use the v1.2.4 revision snapshot accompanying BIB-26-1553. It preserves v1.2.2's prediction scores where the execution was unchanged, re-runs the executions the 9 September audit had excluded, admits scGPT and scFoundation on the two compound settings through a task interface written for this study, and corrects reference inventory and display rounding. The package has three distinct reproduction levels.
+Use the v1.2.5 revision snapshot accompanying BIB-26-1553. It preserves v1.2.2's prediction scores where the execution was unchanged, re-runs the executions the 9 September audit had excluded, admits scGPT and scFoundation on the two compound settings through a task interface written for this study, and corrects reference inventory and display rounding. The package has three distinct reproduction levels.
 
 ## 1. Mean-profile evaluation: CPU only
 
